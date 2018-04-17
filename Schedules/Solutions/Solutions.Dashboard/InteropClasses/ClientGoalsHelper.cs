@@ -11,9 +11,9 @@ using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace Asa.Solutions.Dashboard.InteropClasses
 {
-	public static partial class SolutionPowerPointHelperExtensions
+	public static partial class SolutionDashboardPowerPointHelperExtensions
 	{
-		public static void AppendClientGoals(this PowerPointProcessor target, IClientGoalsOutputData outputData, Presentation destinationPresentation = null)
+		public static void AppendDashboardClientGoals(this PowerPointProcessor target, IClientGoalsOutputData outputData, Presentation destinationPresentation = null)
 		{
 			var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetClientGoalsFile(String.Format(MasterWizardManager.ClientGoalsSlideTemplate, outputData.GoalsCount));
 			if (!File.Exists(presentationTemplatePath)) return;
@@ -22,7 +22,7 @@ namespace Asa.Solutions.Dashboard.InteropClasses
 				var thread = new Thread(delegate ()
 				{
 					MessageFilter.Register();
-					var presentation = target.PowerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = target.PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					foreach (Slide slide in presentation.Slides)
 					{
 						foreach (Shape shape in slide.Shapes)
@@ -70,9 +70,9 @@ namespace Asa.Solutions.Dashboard.InteropClasses
 			}
 		}
 
-		public static void PrepareClientGoals(this PowerPointProcessor target, IClientGoalsOutputData outputData, string fileName)
+		public static void PrepareDashboardClientGoals(this PowerPointProcessor target, IClientGoalsOutputData outputData, string fileName)
 		{
-			target.PreparePresentation(fileName, presentation => target.AppendClientGoals(outputData, presentation));
+			target.PreparePresentation(fileName, presentation => target.AppendDashboardClientGoals(outputData, presentation));
 		}
 	}
 }

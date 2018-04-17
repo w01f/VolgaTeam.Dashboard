@@ -73,7 +73,7 @@ namespace Asa.Bar.App.Common
 					return;
 
 				var data = new APPBARDATA { cbSize = (uint)Marshal.SizeOf(typeof(APPBARDATA)), hWnd = Handle };
-				IntPtr result = Shell32.SHAppBarMessage(ABM.GetTaskbarPos, ref data);
+				var result = Shell32.SHAppBarMessage(ABM.GetTaskbarPos, ref data);
 
 				if (result == IntPtr.Zero)
 					throw new InvalidOperationException();
@@ -83,7 +83,7 @@ namespace Asa.Bar.App.Common
 
 				data.cbSize = (uint)Marshal.SizeOf(typeof(APPBARDATA));
 				result = Shell32.SHAppBarMessage(ABM.GetState, ref data);
-				int state = result.ToInt32();
+				var state = result.ToInt32();
 				AlwaysOnTop = (state & ABS.AlwaysOnTop) == ABS.AlwaysOnTop;
 				AutoHide = (state & ABS.Autohide) == ABS.Autohide;
 

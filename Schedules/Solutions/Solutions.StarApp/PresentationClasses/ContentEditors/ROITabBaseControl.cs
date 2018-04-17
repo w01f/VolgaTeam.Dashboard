@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using Asa.Common.GUI.Preview;
 using Asa.Solutions.StarApp.PresentationClasses.ImageEdit;
+using Asa.Solutions.StarApp.PresentationClasses.Output;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -12,13 +16,18 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		protected ROIControl ROIContentContainer { get; }
 		protected ROIControlImageEditorHelper ImageEditorHelper { get; }
 
-		public ROITabBaseControl()
+		public virtual StarAppOutputType OutputType { get; }
+		public virtual string OutputName { get; }
+		public int SlidesCount => 1;
+		public bool ReadyForOutput => GetOutputDataTextItems().Any();
+
+		protected ROITabBaseControl()
 		{
 			InitializeComponent();
 			ImageEditorHelper = new ROIControlImageEditorHelper(this);
 		}
 
-		public ROITabBaseControl(ROIControl shareContentContainer) : this()
+		protected ROITabBaseControl(ROIControl shareContentContainer) : this()
 		{
 			ROIContentContainer = shareContentContainer;
 		}
@@ -29,6 +38,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		}
 
 		public virtual void ApplyChanges()
+		{
+			throw new NotImplementedException();
+		}
+
+		protected virtual OutputDataPackage GetOutputData()
+		{
+			throw new NotImplementedException();
+		}
+
+		protected virtual Dictionary<string, string> GetOutputDataTextItems()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual void GenerateOutput()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual PreviewGroup GeneratePreview()
 		{
 			throw new NotImplementedException();
 		}

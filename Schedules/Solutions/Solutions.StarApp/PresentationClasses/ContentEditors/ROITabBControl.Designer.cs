@@ -645,6 +645,7 @@
 			// 
 			this.textEditTabBSubheader2.Location = new System.Drawing.Point(355, -963);
 			this.textEditTabBSubheader2.Name = "textEditTabBSubheader2";
+			this.textEditTabBSubheader2.Properties.NullText = "Type here";
 			this.textEditTabBSubheader2.Size = new System.Drawing.Size(83, 22);
 			this.textEditTabBSubheader2.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader2.TabIndex = 1;
@@ -654,6 +655,7 @@
 			// 
 			this.textEditTabBSubheader3.Location = new System.Drawing.Point(452, -963);
 			this.textEditTabBSubheader3.Name = "textEditTabBSubheader3";
+			this.textEditTabBSubheader3.Properties.NullText = "Type here";
 			this.textEditTabBSubheader3.Size = new System.Drawing.Size(104, 22);
 			this.textEditTabBSubheader3.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader3.TabIndex = 1;
@@ -685,6 +687,7 @@
 			// 
 			this.textEditTabBSubheader5.Location = new System.Drawing.Point(355, -827);
 			this.textEditTabBSubheader5.Name = "textEditTabBSubheader5";
+			this.textEditTabBSubheader5.Properties.NullText = "Type here";
 			this.textEditTabBSubheader5.Size = new System.Drawing.Size(83, 22);
 			this.textEditTabBSubheader5.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader5.TabIndex = 1;
@@ -694,6 +697,7 @@
 			// 
 			this.textEditTabBSubheader6.Location = new System.Drawing.Point(452, -827);
 			this.textEditTabBSubheader6.Name = "textEditTabBSubheader6";
+			this.textEditTabBSubheader6.Properties.NullText = "Type here";
 			this.textEditTabBSubheader6.Size = new System.Drawing.Size(104, 22);
 			this.textEditTabBSubheader6.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader6.TabIndex = 1;

@@ -47,8 +47,7 @@ namespace Asa.Common.Core.Objects.Output
 				var node = document.SelectSingleNode(@"/settings/hide");
 				if (node != null)
 				{
-					bool tempBool = false;
-					if (bool.TryParse(node.InnerText, out tempBool))
+					if (bool.TryParse(node.InnerText, out var tempBool))
 						Hide = tempBool;
 				}
 			}
@@ -58,9 +57,9 @@ namespace Asa.Common.Core.Objects.Output
 		#region Slide Template Getters
 
 		#region Dashboard Slides
-		private string GetBasicTemplateFile(IEnumerable<string> fileName)
+		private string GetBasicTemplateFile(IEnumerable<string> fileNameParts)
 		{
-			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { SlideSettingsManager.Instance.SlideSettings.SlideFolder, "Basic Slides" }).Merge(fileName));
+			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { SlideSettingsManager.Instance.SlideSettings.SlideFolder, "Basic Slides" }).Merge(fileNameParts));
 			return file.LocalPath;
 		}
 
@@ -111,9 +110,9 @@ namespace Asa.Common.Core.Objects.Output
 		#endregion
 
 		#region Online Slides
-		private string GetOnlineTemplateFile(IEnumerable<string> fileName)
+		private string GetOnlineTemplateFile(IEnumerable<string> fileNameParts)
 		{
-			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { SlideSettingsManager.Instance.SlideSettings.SlideFolder, "Online Slides" }).Merge(fileName));
+			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { SlideSettingsManager.Instance.SlideSettings.SlideFolder, "Online Slides" }).Merge(fileNameParts));
 			return file.LocalPath;
 		}
 
@@ -167,6 +166,69 @@ namespace Asa.Common.Core.Objects.Output
 		public string GetOnlineSummaryFile()
 		{
 			return GetOnlineTemplateFile(new[] { "summary", "digital_summary.pptx" });
+		}
+		#endregion
+
+		#region Star Slides
+		private string GetStarSolutionTemplateFile(IEnumerable<string> fileName)
+		{
+			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { SlideSettingsManager.Instance.SlideSettings.SlideFolder, "STAR Slides" }).Merge(fileName));
+			return file.LocalPath;
+		}
+
+		public string GetStarCoverFile(string fileName)
+		{
+			return GetStarSolutionTemplateFile(new[] { "01_cover", fileName });
+		}
+
+		public string GetStarCNAFile(string fileName)
+		{
+			return GetStarSolutionTemplateFile(new[] { "02_cna", fileName });
+		}
+
+		public string GetStarFishingFile(string fileName)
+		{
+			return GetStarSolutionTemplateFile(new[] { "03_fishing", fileName });
+		}
+
+		public string GetStarCustomerFile(string fileName)
+		{
+			return GetStarSolutionTemplateFile(new[] { "04_customer", fileName });
+		}
+
+		public string GetStarShareFile(string fileName)
+		{
+			return GetStarSolutionTemplateFile(new[] { "05_share", fileName });
+		}
+
+		public string GetStarROIFile(string fileName)
+		{
+			return GetStarSolutionTemplateFile(new[] { "06_roi", fileName });
+		}
+
+		public string GetStarMarketFile(string fileName)
+		{
+			return GetStarSolutionTemplateFile(new[] { "07_market", fileName });
+		}
+
+		public string GetStarVideoFile(string fileName)
+		{
+			return GetStarSolutionTemplateFile(new[] { "08_video", fileName });
+		}
+
+		public string GetStarAudienceFile(string fileName)
+		{
+			return GetStarSolutionTemplateFile(new[] { "09_audience", fileName });
+		}
+
+		public string GetStarSolutionFile(string fileName)
+		{
+			return GetStarSolutionTemplateFile(new[] { "10_solution", fileName });
+		}
+
+		public string GetStarClosersFile(string fileName)
+		{
+			return GetStarSolutionTemplateFile(new[] { "11_closers", fileName });
 		}
 		#endregion
 

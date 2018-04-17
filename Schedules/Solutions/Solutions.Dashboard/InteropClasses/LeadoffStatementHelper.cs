@@ -11,9 +11,9 @@ using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace Asa.Solutions.Dashboard.InteropClasses
 {
-	public static partial class SolutionPowerPointHelperExtensions
+	public static partial class SolutionDashboardPowerPointHelperExtensions
 	{
-		public static void AppendLeadoffStatements(this PowerPointProcessor target, ILeadoffStatementOutputData outputData, Presentation destinationPresentation = null)
+		public static void AppendDashboardLeadoffStatements(this PowerPointProcessor target, ILeadoffStatementOutputData outputData, Presentation destinationPresentation = null)
 		{
 			var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetLeadoffStatementsFile(String.Format(MasterWizardManager.LeadOffSlideTemplate, outputData.StatementsCount));
 			if (!File.Exists(presentationTemplatePath)) return;
@@ -64,9 +64,9 @@ namespace Asa.Solutions.Dashboard.InteropClasses
 			}
 		}
 
-		public static void PrepareLeadoffStatements(this PowerPointProcessor target, ILeadoffStatementOutputData outputData, string fileName)
+		public static void PrepareDashboardLeadoffStatements(this PowerPointProcessor target, ILeadoffStatementOutputData outputData, string fileName)
 		{
-			target.PreparePresentation(fileName, presentation => target.AppendLeadoffStatements(outputData, presentation));
+			target.PreparePresentation(fileName, presentation => target.AppendDashboardLeadoffStatements(outputData, presentation));
 		}
 	}
 }

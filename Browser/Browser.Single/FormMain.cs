@@ -27,6 +27,11 @@ namespace Asa.Browser.Single
 		{
 			InitializeComponent();
 
+			Width = (Int32)(Screen.PrimaryScreen.Bounds.Width * 0.8);
+			Height = (Int32)(Screen.PrimaryScreen.Bounds.Height * 0.8);
+			Left = (Screen.PrimaryScreen.Bounds.Width - Width) / 2;
+			Top = (Screen.PrimaryScreen.Bounds.Height - Height) / 2;
+
 			Closing += SaveSettings;
 			Resize += OnFormResize;
 

@@ -1,7 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
+using Asa.Common.GUI.Preview;
+using Asa.Solutions.StarApp.InteropClasses;
+using Asa.Solutions.StarApp.PresentationClasses.Output;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -51,6 +59,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ImageEditorHelper.AssignImageEditors(new[]{
 				pictureEditTabBClipart1,
 				pictureEditTabBClipart2,
+				pictureEditTabBClipart3,
 			});
 
 			Application.DoEvents();
@@ -246,6 +255,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			_dataChanged = false;
 		}
 
+		#region Event Handlers
 		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
@@ -407,23 +417,200 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			var formula3Value = Math.Ceiling(totalValue / investmentValue);
 			formula3Value = formula3Value < totalValue ? formula3Value : 1.0;
 
-			simpleLabelItemTabBFormula1.CustomizationFormText = avgFormula1Value.ToString();
+			simpleLabelItemTabBFormula1.CustomizationFormText = String.Format("{0:#,##0}", avgFormula1Value);
 			simpleLabelItemTabBFormula1.Text = String.Format("<b>{0:#,##0}</b>", avgFormula1Value);
-			simpleLabelItemTabBFormula2.CustomizationFormText = avgFormula2Value.ToString();
+			simpleLabelItemTabBFormula2.CustomizationFormText = String.Format("{0:$#,##0}", avgFormula2Value);
 			simpleLabelItemTabBFormula2.Text = String.Format("<b>{0:$#,##0}</b>", avgFormula2Value);
 
-			simpleLabelItemTabBFormula3.CustomizationFormText = highFormula1Value.ToString();
+			simpleLabelItemTabBFormula3.CustomizationFormText = String.Format("{0:#,##0}", highFormula1Value);
 			simpleLabelItemTabBFormula3.Text = String.Format("<b>{0:#,##0}</b>", highFormula1Value);
-			simpleLabelItemTabBFormula4.CustomizationFormText = highFormula2Value.ToString();
+			simpleLabelItemTabBFormula4.CustomizationFormText = String.Format("{0:$#,##0}", highFormula2Value);
 			simpleLabelItemTabBFormula4.Text = String.Format("<b>{0:$#,##0}</b>", highFormula2Value);
 
-			simpleLabelItemTabBFormula5.CustomizationFormText = totalValue.ToString();
+			simpleLabelItemTabBFormula5.CustomizationFormText = String.Format("{0:$#,##0}", totalValue);
 			simpleLabelItemTabBFormula5.Text = String.Format("<b>{0:$#,##0}</b>", totalValue);
 
-			layoutControlItemTabBSubheader25Value.CustomizationFormText = formula3Value.ToString();
+			layoutControlItemTabBSubheader25Value.CustomizationFormText = String.Format("{0:#,##0} : 1", formula3Value);
 			layoutControlItemTabBSubheader25Value.Text = String.Format("= <b>{0:#,##0} : 1</b>", formula3Value);
 
 			OnEditValueChanged(sender, e);
 		}
+		#endregion
+
+		#region Output
+		public override StarAppOutputType OutputType => StarAppOutputType.ROITabB;
+		public override String OutputName => ROIContentContainer.SlideContainer.StarInfo.Titles.Tab6SubBTitle;
+
+		protected override OutputDataPackage GetOutputData()
+		{
+			var outputDataPackage = new OutputDataPackage();
+
+			outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarROIFile("CP06B-1.pptx");
+			outputDataPackage.Theme = ROIContentContainer.SelectedTheme;
+
+			var clipart1 = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart1 ?? ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart1Image;
+			if (clipart1 != null)
+			{
+				var fileName = Path.GetTempFileName();
+				clipart1.Save(fileName);
+				outputDataPackage.ClipartItems.Add("CP06BCLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart1.Width, clipart1.Height) });
+			}
+
+			var clipart2 = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart2 ?? ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart2Image;
+			if (clipart2 != null)
+			{
+				var fileName = Path.GetTempFileName();
+				clipart2.Save(fileName);
+				outputDataPackage.ClipartItems.Add("CP06BCLIPART2", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart2.Width, clipart2.Height) });
+			}
+
+			var clipart3 = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart3 ?? ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart3Image;
+			if (clipart3 != null)
+			{
+				var fileName = Path.GetTempFileName();
+				clipart3.Save(fileName);
+				outputDataPackage.ClipartItems.Add("CP06BCLIPART3", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart3.Width, clipart3.Height) });
+			}
+
+			outputDataPackage.TextItems = GetOutputDataTextItems();
+
+			outputDataPackage.TextItems.Add("CP06BHEADER", ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.SlideHeader?.Value ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault)?.Value);
+			outputDataPackage.TextItems.Add("HEADER", ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.SlideHeader?.Value ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault)?.Value);
+
+			return outputDataPackage;
+		}
+
+		protected override Dictionary<string, string> GetOutputDataTextItems()
+		{
+			var textDataItems = new Dictionary<string, string>();
+
+			if (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Group1Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader1 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader1DefaultValue);
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader2 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader2DefaultValue);
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader3 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader3DefaultValue);
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP06BFormulaPhrase1".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+			}
+
+			if (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Group2Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader4 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader4DefaultValue);
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader5 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader5DefaultValue);
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader6 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader6DefaultValue);
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP06BFormulaPhrase2".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+			}
+
+			if (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Group3Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader7 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader7DefaultValue);
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader8 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader8DefaultValue);
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader9 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader9DefaultValue);
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP06BFormulaPhrase3".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+			}
+
+			if (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Group4Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader10 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader10DefaultValue);
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader11 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader11DefaultValue);
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader12 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader12DefaultValue);
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP06BFormulaPhrase4".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+			}
+
+			if (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Group5Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader13 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader13DefaultValue);
+				itemParts.Add(simpleLabelItemTabBFormula1.CustomizationFormText);
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader14 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader14DefaultValue);
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP06BFormulaPhrase5".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+			}
+
+			if (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Group6Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader15 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader15DefaultValue);
+				itemParts.Add(String.Format("= {0}", simpleLabelItemTabBFormula2.CustomizationFormText));
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP06BFormulaPhrase6".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+			}
+
+			if (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Group7Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader16 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader16DefaultValue);
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader17 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader17DefaultValue);
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader18 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader18DefaultValue);
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP06BFormulaPhrase7".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+			}
+
+			if (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Group8Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader19 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader19DefaultValue);
+				itemParts.Add(simpleLabelItemTabBFormula3.CustomizationFormText);
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader20 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader20DefaultValue);
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP06BFormulaPhrase8".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+			}
+
+			if (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Group9Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader21 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader21DefaultValue);
+				itemParts.Add(String.Format("= {0}", simpleLabelItemTabBFormula4.CustomizationFormText));
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP06BFormulaPhrase9".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+			}
+
+			if (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Group10Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader22 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader22DefaultValue);
+				itemParts.Add(String.Format("= {0}", simpleLabelItemTabBFormula5.CustomizationFormText));
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP06BFormulaPhrase10".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+			}
+
+			if (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Group11Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader23 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader23DefaultValue);
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP06BFormulaPhrase11".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+
+				if (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader24Toggle)
+					textDataItems.Add("CP06BFormulaPhrase12".ToUpper(), String.Format("{0} Per Month", ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader24 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader24DefaultValue));
+
+				if (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader25Toggle)
+					textDataItems.Add("CP06BFormulaPhrase13".ToUpper(), String.Format("{0} = {1}", ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader25 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader25DefaultValue, layoutControlItemTabBSubheader25Value.CustomizationFormText));
+			}
+
+			return textDataItems;
+		}
+
+		public override void GenerateOutput()
+		{
+			var outputDataPackage = GetOutputData();
+			ROIContentContainer.SlideContainer.PowerPointProcessor.AppendStarCommonSlide(outputDataPackage);
+		}
+
+		public override PreviewGroup GeneratePreview()
+		{
+			var outputDataPackage = GetOutputData();
+			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			ROIContentContainer.SlideContainer.PowerPointProcessor.PrepareStarCommonSlide(outputDataPackage, tempFileName);
+			return new PreviewGroup { Name = OutputName, PresentationSourcePath = tempFileName };
+		}
+		#endregion
 	}
 }

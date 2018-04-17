@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using Asa.Business.Solutions.Common.Dictionaries;
@@ -9,6 +10,7 @@ using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
+using Asa.Solutions.StarApp.InteropClasses;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
 using DevExpress.Skins;
 using DevExpress.XtraLayout;
@@ -16,13 +18,13 @@ using DevExpress.XtraLayout;
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	[ToolboxItem(false)]
-	public sealed partial class CoverControl : StarAppControl, IStarAppSlide
+	public sealed partial class CoverControl : StarAppControl
 	{
 		private readonly List<User> _usersByStation = new List<User>();
 		private readonly DateTime _defaultDate = DateTime.Today;
 
 		public override SlideType SlideType => SlideType.StarAppCover;
-		public override string SlideName => SlideContainer.StarInfo.Titles.Tab1Title;
+		public override string OutputName => SlideContainer.StarInfo.Titles.Tab1Title;
 
 		public CoverControl(BaseStarAppContainer slideContainer) : base(slideContainer)
 		{
@@ -97,7 +99,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				memoEditSubheader1.EditValue as String :
 				null;
 
-			SlideContainer.EditedContent.CoverState.Calendar1 = dateEditCalendar1.EditValue != null && (DateTime?)dateEditCalendar1.EditValue != _defaultDate ?
+			SlideContainer.EditedContent.CoverState.Calendar1 = checkEditCalendar1.Checked && dateEditCalendar1.EditValue != null && (DateTime?)dateEditCalendar1.EditValue != _defaultDate ?
 				(DateTime?)dateEditCalendar1.EditValue :
 				null;
 
@@ -167,19 +169,121 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		}
 
 		#region Output Staff
+		public override bool ReadyForOutput => true;
 
-		public override bool ReadyForOutput => false;
-
-		public override void GenerateOutput()
+		public override OutputGroup GetOutputGroup()
 		{
-			//SolutionDashboardPowerPointHelper.Instance.AppendCover(this);
+			return new OutputGroup(this)
+			{
+				Name = OutputName,
+				IsCurrent = SlideContainer.ActiveSlideContent == this,
+				Configurations = new[] { new OutputConfiguration(StarAppOutputType.Cover, OutputName, 1) }
+			};
 		}
 
-		public override PreviewGroup GeneratePreview()
+		private OutputDataPackage GetOutputData()
 		{
+			var outputDataPackage = new OutputDataPackage();
+
+			outputDataPackage.Theme = SelectedTheme;
+			outputDataPackage.AddAsFirtsPage = SlideContainer.EditedContent.CoverState.AddAsPageOne;
+
+			var clipart = SlideContainer.EditedContent.CoverState.Clipart1 ?? SlideContainer.StarInfo.Tab1SubAClipart1Image;
+			if (clipart != null)
+			{
+				var fileName = Path.GetTempFileName();
+				clipart.Save(fileName);
+				outputDataPackage.ClipartItems.Add("CP01ACLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
+			}
+
+			var slideHeader = SlideContainer.EditedContent.CoverState.SlideHeader?.Value ?? SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => h.IsDefault)?.Value;
+			var subHeader1 = SlideContainer.EditedContent.CoverState.Subheader1 ?? SlideContainer.StarInfo.CoverConfiguration.SubHeader1DefaultValue;
+			var calendar1 = SlideContainer.EditedContent.CoverState.Calendar1;
+			var combo1 = SlideContainer.EditedContent.CoverState.Combo1 ?? _usersByStation.FirstOrDefault();
+
+			if (!String.IsNullOrWhiteSpace(slideHeader) &&
+				!String.IsNullOrWhiteSpace(subHeader1) &&
+				calendar1.HasValue &&
+				combo1 != null)
+			{
+				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCoverFile(clipart != null ? "CP01A-1.pptx" : "CP01A-8.pptx");
+
+				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("CP01ASubheader1".ToUpper(), subHeader1);
+				outputDataPackage.TextItems.Add("CP01ACalendar1".ToUpper(), calendar1.Value.ToString("MM/dd/yyyy"));
+				outputDataPackage.TextItems.Add("CP01ACombo1".ToUpper(), combo1.ToString());
+				outputDataPackage.TextItems.Add("CP01ACombo1b".ToUpper(), String.Join("     ", combo1.Email, combo1.Phone));
+			}
+			else if (!String.IsNullOrWhiteSpace(slideHeader) &&
+				   calendar1.HasValue &&
+					 combo1 != null)
+			{
+				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCoverFile(clipart != null ? "CP01A-2.pptx" : "CP01A-9.pptx");
+
+				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("CP01ACalendar1".ToUpper(), calendar1.Value.ToString("MM/dd/yyyy"));
+				outputDataPackage.TextItems.Add("CP01ACombo1".ToUpper(), combo1.ToString());
+				outputDataPackage.TextItems.Add("CP01ACombo1b".ToUpper(), String.Join("     ", combo1.Email, combo1.Phone));
+			}
+			else if (!String.IsNullOrWhiteSpace(slideHeader) &&
+					 !String.IsNullOrWhiteSpace(subHeader1) &&
+					 calendar1.HasValue)
+			{
+				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCoverFile(clipart != null ? "CP01A-3.pptx" : "CP01A-10.pptx");
+
+				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("CP01ASubheader1".ToUpper(), subHeader1);
+				outputDataPackage.TextItems.Add("CP01ACalendar1".ToUpper(), calendar1.Value.ToString("MM/dd/yyyy"));
+			}
+			else if (!String.IsNullOrWhiteSpace(slideHeader) &&
+					 !String.IsNullOrWhiteSpace(subHeader1) &&
+					 combo1 != null)
+			{
+				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCoverFile(clipart != null ? "CP01A-7.pptx" : "CP018A-14.pptx");
+
+				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("CP01ASubheader1".ToUpper(), subHeader1);
+				outputDataPackage.TextItems.Add("CP01ACombo1".ToUpper(), combo1.ToString());
+				outputDataPackage.TextItems.Add("CP01ACombo1b".ToUpper(), String.Join("     ", combo1.Email, combo1.Phone));
+			}
+			else if (!String.IsNullOrWhiteSpace(slideHeader) &&
+					 !String.IsNullOrWhiteSpace(subHeader1))
+			{
+				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCoverFile(clipart != null ? "CP01A-4.pptx" : "CP01A-11.pptx");
+
+				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("CP01ASubheader1".ToUpper(), subHeader1);
+			}
+			else if (!String.IsNullOrWhiteSpace(slideHeader) &&
+					 calendar1.HasValue)
+			{
+				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCoverFile(clipart != null ? "CP01A-5.pptx" : "CP01A-12.pptx");
+
+				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("CP01ACalendar1".ToUpper(), calendar1.Value.ToString("MM/dd/yyyy"));
+			}
+			else if (!String.IsNullOrWhiteSpace(slideHeader))
+			{
+				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCoverFile(clipart != null ? "CP01A-6.pptx" : "CP01A-13.pptx");
+
+				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
+			}
+
+			return outputDataPackage;
+		}
+
+		public override void GenerateOutput(IList<OutputConfiguration> configurations)
+		{
+			var outputDataPackage = GetOutputData();
+			SlideContainer.PowerPointProcessor.AppendStarCommonSlide(outputDataPackage);
+		}
+
+		public override IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
+		{
+			var outputDataPackage = GetOutputData();
 			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			//SolutionDashboardPowerPointHelper.Instance.PrepareCover(this, tempFileName);
-			return new PreviewGroup { Name = SlideName, PresentationSourcePath = tempFileName };
+			SlideContainer.PowerPointProcessor.PrepareStarCommonSlide(outputDataPackage, tempFileName);
+			return new[] { new PreviewGroup { Name = OutputName, PresentationSourcePath = tempFileName } };
 		}
 		#endregion
 	}

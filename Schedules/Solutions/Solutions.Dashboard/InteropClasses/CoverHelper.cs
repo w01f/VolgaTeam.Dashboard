@@ -9,9 +9,9 @@ using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace Asa.Solutions.Dashboard.InteropClasses
 {
-	public static partial class SolutionPowerPointHelperExtensions
+	public static partial class SolutionDashboardPowerPointHelperExtensions
 	{
-		public static void AppendCover(this PowerPointProcessor target, ICoverOutputData outputData, Presentation destinationPresentation = null)
+		public static void AppendDashboardCover(this PowerPointProcessor target, ICoverOutputData outputData, Presentation destinationPresentation = null)
 		{
 			var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetCoverFile();
 			try
@@ -67,9 +67,9 @@ namespace Asa.Solutions.Dashboard.InteropClasses
 			}
 		}
 
-		public static void PrepareCover(this PowerPointProcessor target, ICoverOutputData outputData, string fileName)
+		public static void PrepareDashboardCover(this PowerPointProcessor target, ICoverOutputData outputData, string fileName)
 		{
-			target.PreparePresentation(fileName, presentation => target.AppendCover(outputData, presentation));
+			target.PreparePresentation(fileName, presentation => target.AppendDashboardCover(outputData, presentation));
 		}
 	}
 }

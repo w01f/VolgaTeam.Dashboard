@@ -17,12 +17,12 @@ using DevExpress.XtraTab;
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	[ToolboxItem(false)]
-	public sealed partial class ROIControl : StarAppControl, IStarAppSlide
+	public sealed partial class ROIControl : StarAppControl
 	{
 		private readonly List<XtraTabPage> _tabPages = new List<XtraTabPage>();
 
 		public override SlideType SlideType => SlideType.StarAppROI;
-		public override string SlideName => SlideContainer.StarInfo.Titles.Tab6Title;
+		public override string OutputName => SlideContainer.StarInfo.Titles.Tab6Title;
 
 		public ROIControl(BaseStarAppContainer slideContainer) : base(slideContainer)
 		{
@@ -190,18 +190,63 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		#region Output Staff
 
-		public override bool ReadyForOutput => false;
+		public override bool ReadyForOutput => _tabPages
+			.OfType<IROITabPageContainer>()
+			.Where(container => container.ContentControl != null)
+			.Select(container => container.ContentControl)
+			.Any(contentControl => contentControl.ReadyForOutput);
 
-		public override void GenerateOutput()
+		public override OutputGroup GetOutputGroup()
 		{
-			//SolutionDashboardPowerPointHelper.Instance.AppendCover(this);
+			var outputConfigurations = new List<OutputConfiguration>();
+
+			foreach (var roiControl in _tabPages
+				.OfType<IROITabPageContainer>()
+				.Where(container => container.ContentControl != null)
+				.Select(container => container.ContentControl)
+				.Where(contentControl => contentControl.ReadyForOutput)
+				.ToList())
+			{
+				outputConfigurations.Add(new OutputConfiguration(
+					roiControl.OutputType,
+					roiControl.OutputName,
+					roiControl.SlidesCount));
+			}
+
+			return new OutputGroup(this)
+			{
+				Name = OutputName,
+				IsCurrent = SlideContainer.ActiveSlideContent == this,
+				Configurations = outputConfigurations.ToArray()
+			};
 		}
 
-		public override PreviewGroup GeneratePreview()
+		public override void GenerateOutput(IList<OutputConfiguration> configurations)
 		{
-			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			//SolutionDashboardPowerPointHelper.Instance.PrepareCover(this, tempFileName);
-			return new PreviewGroup { Name = SlideName, PresentationSourcePath = tempFileName };
+			foreach (var configuration in configurations)
+			{
+				var tabPage = _tabPages
+					.OfType<IROITabPageContainer>()
+					.Select(container => container.ContentControl)
+					.First(contentControl => contentControl.OutputType == configuration.OutputType);
+				tabPage.GenerateOutput();
+			}
+		}
+
+		public override IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
+		{
+			var previewGroups = new List<PreviewGroup>();
+
+			foreach (var configuration in configurations)
+			{
+				var tabPage = _tabPages
+					.OfType<IROITabPageContainer>()
+					.Select(container => container.ContentControl)
+					.First(contentControl => contentControl.OutputType == configuration.OutputType);
+				previewGroups.Add(tabPage.GeneratePreview());
+			}
+
+			return previewGroups;
 		}
 		#endregion
 	}

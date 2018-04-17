@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.StarApp.Configuration;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
-using DevExpress.XtraEditors.ViewInfo;
+using Asa.Common.GUI.Preview;
+using Asa.Solutions.StarApp.InteropClasses;
+using Asa.Solutions.StarApp.PresentationClasses.Output;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -42,6 +48,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ImageEditorHelper.AssignImageEditors(new[]{
 				pictureEditTabEClipart1,
 				pictureEditTabEClipart2,
+				pictureEditTabEClipart3,
 			});
 
 			Application.DoEvents();
@@ -180,6 +187,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			_dataChanged = false;
 		}
 
+		#region Event Handlers
+
 		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
@@ -292,15 +301,147 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			var formula2Value = formula1Value * costValue;
 			var formula3Value = Math.Ceiling(formula2Value * (sharePercent / 100) / 100) * 100;
 
-			simpleLabelItemTabEFormula1.CustomizationFormText = formula1Value.ToString();
+			simpleLabelItemTabEFormula1.CustomizationFormText = String.Format("{0:#,##0}", formula1Value);
 			simpleLabelItemTabEFormula1.Text = String.Format("<b>{0:#,##0}</b>", formula1Value);
+			simpleLabelItemTabEFormula2.CustomizationFormText = String.Format("{0}", (textEditTabESubheader7.EditValue as String)?.Trim());
 			simpleLabelItemTabEFormula2.Text = String.Format("<b>{0}</b>", (textEditTabESubheader7.EditValue as String)?.Trim());
-			simpleLabelItemTabEFormula3.CustomizationFormText = formula2Value.ToString();
+			simpleLabelItemTabEFormula3.CustomizationFormText = String.Format("{0:$#,##0}", formula2Value);
 			simpleLabelItemTabEFormula3.Text = String.Format("<b>{0:$#,##0}</b>", formula2Value);
-			simpleLabelItemTabEFormula5.CustomizationFormText = formula3Value.ToString();
+			simpleLabelItemTabEFormula5.CustomizationFormText = String.Format("{0:$#,##0}", formula3Value);
 			simpleLabelItemTabEFormula5.Text = String.Format("<b>{0:$#,##0}</b>", formula3Value);
 
 			OnEditValueChanged(sender, e);
 		}
+		#endregion
+
+		#region Output
+		public override StarAppOutputType OutputType => StarAppOutputType.ShareTabE;
+		public override String OutputName => ShareContentContainer.SlideContainer.StarInfo.Titles.Tab5SubETitle;
+
+		protected override OutputDataPackage GetOutputData()
+		{
+			var outputDataPackage = new OutputDataPackage();
+
+			outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarShareFile("CP05E-1.pptx");
+			outputDataPackage.Theme = ShareContentContainer.SelectedTheme;
+
+			var clipart1 = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Clipart1 ?? ShareContentContainer.SlideContainer.StarInfo.Tab5SubEClipart1Image;
+			if (clipart1 != null)
+			{
+				var fileName = Path.GetTempFileName();
+				clipart1.Save(fileName);
+				outputDataPackage.ClipartItems.Add("CP05ECLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart1.Width, clipart1.Height) });
+			}
+
+			var clipart2 = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Clipart2 ?? ShareContentContainer.SlideContainer.StarInfo.Tab5SubEClipart2Image;
+			if (clipart2 != null)
+			{
+				var fileName = Path.GetTempFileName();
+				clipart2.Save(fileName);
+				outputDataPackage.ClipartItems.Add("CP05ECLIPART2", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart2.Width, clipart2.Height) });
+			}
+
+			var clipart3 = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Clipart3 ?? ShareContentContainer.SlideContainer.StarInfo.Tab5SubEClipart3Image;
+			if (clipart3 != null)
+			{
+				var fileName = Path.GetTempFileName();
+				clipart3.Save(fileName);
+				outputDataPackage.ClipartItems.Add("CP05ECLIPART3", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart3.Width, clipart3.Height) });
+			}
+
+			outputDataPackage.TextItems = GetOutputDataTextItems();
+
+			outputDataPackage.TextItems.Add("CP05EHEADER", ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.SlideHeader?.Value ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.HeadersPartEItems.FirstOrDefault(h => h.IsDefault)?.Value);
+			outputDataPackage.TextItems.Add("HEADER", ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.SlideHeader?.Value ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.HeadersPartEItems.FirstOrDefault(h => h.IsDefault)?.Value);
+
+			return outputDataPackage;
+		}
+
+		protected override Dictionary<string, string> GetOutputDataTextItems()
+		{
+			var textDataItems = new Dictionary<string, string>();
+
+			if (ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Group1Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader1 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader1DefaultValue);
+				itemParts.Add(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader2 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader2DefaultValue);
+				itemParts.Add(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Combo1?.Value ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartECombo1Items.FirstOrDefault(h => h.IsDefault)?.Value);
+				itemParts.Add(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader3 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader3DefaultValue);
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP05EFormulaPhrase1".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+
+				if (ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader4Toggle)
+					textDataItems.Add("CP05EFormulaPhrase2".ToUpper(), ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader4 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader4DefaultValue);
+			}
+
+			if (ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Group2Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader5 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader5DefaultValue);
+				itemParts.Add(String.Format("is {0}", ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Combo2?.Value ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartECombo2Items.FirstOrDefault(h => h.IsDefault)?.Value));
+				itemParts.Add(String.Format("of {0}", ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Combo3?.Value ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartECombo3Items.FirstOrDefault(h => h.IsDefault)?.Value));
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP05EFormulaPhrase3".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+			}
+
+			if (ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Group3Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader6 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader6DefaultValue);
+				itemParts.Add(String.Format("is {0}", ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader7 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader7DefaultValue));
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP05EFormulaPhrase4".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+			}
+
+			if (ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Group4Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(simpleLabelItemTabEFormula1.CustomizationFormText);
+				itemParts.Add(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader8 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader8DefaultValue);
+				itemParts.Add(String.Format("x {0}", simpleLabelItemTabEFormula2.CustomizationFormText));
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP05EFormulaPhrase5".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+			}
+
+			if (ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Group5Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(simpleLabelItemTabEFormula3.CustomizationFormText);
+				itemParts.Add(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader9 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader9DefaultValue);
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP05EFormulaPhrase6".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+			}
+
+			if (ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Group6Toggle)
+			{
+				var itemParts = new List<string>();
+				itemParts.Add(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Combo4?.Value ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartECombo4Items.FirstOrDefault(h => h.IsDefault)?.Value);
+				itemParts.Add(simpleLabelItemTabEFormula4.CustomizationFormText);
+				itemParts.Add(String.Format("= {0}", simpleLabelItemTabEFormula5.CustomizationFormText));
+				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
+					textDataItems.Add("CP05EFormulaPhrase7".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
+			}
+
+			if (ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Group7Toggle)
+				textDataItems.Add("CP05EFormulaPhrase8".ToUpper(), String.Format("Source: {0}", ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader10 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader10DefaultValue));
+
+			return textDataItems;
+		}
+
+		public override void GenerateOutput()
+		{
+			var outputDataPackage = GetOutputData();
+			ShareContentContainer.SlideContainer.PowerPointProcessor.AppendStarCommonSlide(outputDataPackage);
+		}
+
+		public override PreviewGroup GeneratePreview()
+		{
+			var outputDataPackage = GetOutputData();
+			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			ShareContentContainer.SlideContainer.PowerPointProcessor.PrepareStarCommonSlide(outputDataPackage, tempFileName);
+			return new PreviewGroup { Name = OutputName, PresentationSourcePath = tempFileName };
+		}
+		#endregion
 	}
 }

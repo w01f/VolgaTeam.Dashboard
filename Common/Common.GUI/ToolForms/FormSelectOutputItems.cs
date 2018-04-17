@@ -26,20 +26,19 @@ namespace Asa.Common.GUI.ToolForms
 			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 		}
 
-		private void buttonXSelectAll_Click(object sender, System.EventArgs e)
+		private void buttonXSelectAll_Click(object sender, EventArgs e)
 		{
 			checkedListBoxControlOutputItems.CheckAll();
 		}
 
-		private void buttonXSelectCurrent_Click(object sender, System.EventArgs e)
+		private void buttonXSelectCurrent_Click(object sender, EventArgs e)
 		{
 			checkedListBoxControlOutputItems.UnCheckAll();
-			var currentItem = buttonXSelectCurrent.Tag as CheckedListBoxItem;
-			if (currentItem != null)
+			if (buttonXSelectCurrent.Tag is CheckedListBoxItem currentItem)
 				currentItem.CheckState = CheckState.Checked;
 		}
 
-		private void buttonXSelectNone_Click(object sender, System.EventArgs e)
+		private void buttonXSelectNone_Click(object sender, EventArgs e)
 		{
 			checkedListBoxControlOutputItems.UnCheckAll();
 		}

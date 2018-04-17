@@ -199,13 +199,13 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		public void GenerateOutput(DashboardSlideInfo slideInfo)
 		{
-			SlideContainer.PowerPointProcessor.AppendTargetCustomers(this);
+			SlideContainer.PowerPointProcessor.AppendDashboardTargetCustomers(this);
 		}
 
 		public PreviewGroup GeneratePreview(DashboardSlideInfo slideInfo)
 		{
 			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			SlideContainer.PowerPointProcessor.PrepareTargetCustomers(this, tempFileName);
+			SlideContainer.PowerPointProcessor.PrepareDashboardTargetCustomers(this, tempFileName);
 			return new PreviewGroup { Name = ControlName, PresentationSourcePath = tempFileName };
 		}
 		#endregion

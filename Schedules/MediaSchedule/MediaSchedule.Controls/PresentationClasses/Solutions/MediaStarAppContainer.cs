@@ -51,31 +51,31 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 
 		public override void OutputPowerPoint()
 		{
-			var slides = GetOutputSlides();
-			if (!slides.Any()) return;
+			var outputGroups = GetOutputConfiguration();
+			if (!outputGroups.Any(g => g.Configurations.Any())) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				slides.ForEach(s => s.GenerateOutput());
+				outputGroups.ForEach(outputGroup => outputGroup.OutputContainer.GenerateOutput(outputGroup.Configurations));
 				FormProgress.CloseProgress();
 			});
 		}
 
 		public override void OutputPdf()
 		{
-			var slides = GetOutputSlides();
-			if (!slides.Any()) return;
+			var outputGroups = GetOutputConfiguration();
+			if (!outputGroups.Any(g => g.Configurations.Any())) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				var previewGroups = slides.Select(s => s.GeneratePreview()).ToList();
+				var previewGroups = outputGroups.SelectMany(g => g.OutputContainer.GeneratePreview(g.Configurations)).ToList();
 				var pdfFileName = Path.Combine(
 					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-					String.Format("{0}-{1}.pdf", SolutionInfo.ToggleTitle, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+					String.Format("{0}-{1:MM-dd-yy-hmmss}.pdf", SolutionInfo.ToggleTitle, DateTime.Now));
 				PowerPointProcessor.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
 				if (File.Exists(pdfFileName))
 					try
@@ -89,12 +89,12 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 
 		public override void Preview()
 		{
-			var slides = GetOutputSlides();
-			if (!slides.Any()) return;
+			var outputGroups = GetOutputConfiguration();
+			if (!outputGroups.Any(g => g.Configurations.Any())) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
-			var previewGroups = slides.Select(s => s.GeneratePreview()).ToList();
+			var previewGroups = outputGroups.SelectMany(g => g.OutputContainer.GeneratePreview(g.Configurations)).ToList();
 			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 
@@ -121,12 +121,12 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 
 		public override void Email()
 		{
-			var slides = GetOutputSlides();
-			if (!slides.Any()) return;
+			var outputGroups = GetOutputConfiguration();
+			if (!outputGroups.Any(g => g.Configurations.Any())) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Solution...");
 			FormProgress.ShowProgress();
-			var previewGroups = slides.Select(s => s.GeneratePreview()).ToList();
+			var previewGroups = outputGroups.SelectMany(g => g.OutputContainer.GeneratePreview(g.Configurations)).ToList();
 			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 

@@ -238,6 +238,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 			OnEditValueChanged(sender, e);
 		}
+
 		#region Output Staff
 
 		public override bool ReadyForOutput => !String.IsNullOrEmpty(comboBoxEditAdvertiser.EditValue as String);
@@ -273,13 +274,13 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		public void GenerateOutput(DashboardSlideInfo slideInfo)
 		{
-			SlideContainer.PowerPointProcessor.AppendCover(this);
+			SlideContainer.PowerPointProcessor.AppendDashboardCover(this);
 		}
 
 		public PreviewGroup GeneratePreview(DashboardSlideInfo slideInfo)
 		{
 			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			SlideContainer.PowerPointProcessor.PrepareCover(this, tempFileName);
+			SlideContainer.PowerPointProcessor.PrepareDashboardCover(this, tempFileName);
 			return new PreviewGroup { Name = ControlName, PresentationSourcePath = tempFileName };
 		}
 		#endregion

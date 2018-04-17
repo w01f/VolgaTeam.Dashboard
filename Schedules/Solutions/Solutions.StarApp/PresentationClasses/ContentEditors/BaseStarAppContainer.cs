@@ -1,4 +1,4 @@
-﻿	using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -9,7 +9,6 @@ using Asa.Common.Core.Enums;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
-using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
 
@@ -19,11 +18,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 	public abstract partial class BaseStarAppContainer : BaseSolutionEditor
 	{
 		private readonly List<XtraTabPage> _slides = new List<XtraTabPage>();
-		private StarAppControl ActiveSlideContent => (xtraTabControl.SelectedTabPage as IStarAppTabPageContainer)?.ContentControl;
 
 		public StarAppSolutionInfo StarInfo { get; }
 		public StarAppContent EditedContent { get; protected set; }
 		public abstract IStarAppSettingsContainer SettingsContainer { get; }
+		public StarAppControl ActiveSlideContent => (xtraTabControl.SelectedTabPage as IStarAppTabPageContainer)?.ContentControl;
 		public override SlideType SelectedSlideType => ActiveSlideContent?.SlideType ?? SlideType.Cleanslate;
 		public override string HelpKey
 		{
@@ -93,7 +92,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		private void OnSelectedSlideChanging(object sender, TabPageChangingEventArgs e)
 		{
-			((IStarAppTabPageContainer) e.PrevPage)?.ContentControl?.ApplyChanges();
+			((IStarAppTabPageContainer)e.PrevPage)?.ContentControl?.ApplyChanges();
 
 			var tabPageContainer = e.Page as IStarAppTabPageContainer;
 			if (tabPageContainer?.ContentControl != null) return;
@@ -152,27 +151,30 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public abstract Theme GetSelectedTheme(SlideType slideType);
 
-		public IList<IStarAppSlide> GetOutputSlides()
+		protected IList<OutputGroup> GetOutputConfiguration()
 		{
-			var selectedSlides = new List<IStarAppSlide>();
-			using (var form = new FormSelectOutputItems())
+			var outputGroups = new List<OutputGroup>();
+
+			var availableOutputGroups = _slides
+				.OfType<IStarAppTabPageContainer>()
+				.Where(container => container.ContentControl != null)
+				.Select(container => container.ContentControl)
+				.Where(control => control.ReadyForOutput)
+				.Select(control => control.GetOutputGroup())
+				.ToList();
+
+			if (availableOutputGroups.Any())
 			{
-				form.Text = "Slide Output Options";
-				foreach (var slideControl in _slides.OfType<StarAppControl>().ToList().Where(s => s.ReadyForOutput))
+				using (var form = new FormConfigureOutput(availableOutputGroups))
 				{
-					var item = new CheckedListBoxItem(slideControl, slideControl.SlideName, ActiveSlideContent.SlideType == SlideType.StarAppCleanslate || slideControl == ActiveSlideContent ? CheckState.Checked : CheckState.Unchecked);
-					form.checkedListBoxControlOutputItems.Items.Add(item);
-					if (slideControl == ActiveSlideContent)
-						form.buttonXSelectCurrent.Tag = item;
+
+					if (form.ShowDialog() == DialogResult.OK)
+						outputGroups.AddRange(availableOutputGroups);
+					else
+						availableOutputGroups.ForEach(g => g.Dispose());
 				}
-				if (form.ShowDialog() == DialogResult.OK)
-					selectedSlides.AddRange(form.checkedListBoxControlOutputItems.Items.
-						OfType<CheckedListBoxItem>().
-						Where(ci => ci.CheckState == CheckState.Checked).
-						Select(ci => ci.Value).
-						OfType<IStarAppSlide>());
 			}
-			return selectedSlides;
+			return outputGroups;
 		}
 		#endregion
 	}

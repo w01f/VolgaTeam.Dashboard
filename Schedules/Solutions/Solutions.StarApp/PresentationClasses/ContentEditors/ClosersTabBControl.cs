@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.Business.Solutions.Common.Dictionaries;
 using Asa.Business.Solutions.StarApp.Configuration;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
+using Asa.Common.GUI.Preview;
+using Asa.Solutions.StarApp.InteropClasses;
+using Asa.Solutions.StarApp.PresentationClasses.Output;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -115,5 +121,128 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			_dataChanged = true;
 			ClosersContentContainer.RaiseDataChanged();
 		}
+
+		#region Output
+		public override StarAppOutputType OutputType => StarAppOutputType.ClosersTabB;
+		public override String OutputName => ClosersContentContainer.SlideContainer.StarInfo.Titles.Tab11SubBTitle;
+
+		protected override OutputDataPackage GetOutputData()
+		{
+			var outputDataPackage = new OutputDataPackage();
+
+			outputDataPackage.Theme = ClosersContentContainer.SelectedTheme;
+
+			var clipart1 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Clipart1 ?? ClosersContentContainer.SlideContainer.StarInfo.Tab11SubBClipart1Image;
+			if (clipart1 != null)
+			{
+				var fileName = Path.GetTempFileName();
+				clipart1.Save(fileName);
+				outputDataPackage.ClipartItems.Add("CP11BCLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart1.Width, clipart1.Height) });
+			}
+
+			var clipart2 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Clipart2 ?? ClosersContentContainer.SlideContainer.StarInfo.Tab11SubBClipart2Image;
+			if (clipart2 != null)
+			{
+				var fileName = Path.GetTempFileName();
+				clipart2.Save(fileName);
+				outputDataPackage.ClipartItems.Add("CP11BCLIPART2", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart2.Width, clipart2.Height) });
+			}
+
+			var textDataItems = new Dictionary<string, string>();
+
+			var slideHeader = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.SlideHeader?.Value ?? ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault)?.Value;
+
+			var combo1 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo1;
+			var combo2 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo2;
+			var combo3 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo3;
+			var combo4 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo4;
+
+			var subheader1 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Subheader1 ??
+							 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBSubHeader1DefaultValue;
+			var subheader2 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Subheader2 ??
+							 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBSubHeader2DefaultValue;
+			var subheader3 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Subheader3 ??
+							 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBSubHeader3DefaultValue;
+
+			textDataItems.Add("CP11BHEADER".ToUpper(), slideHeader);
+			textDataItems.Add("HEADER".ToUpper(), slideHeader);
+
+			if (combo1 != null)
+				textDataItems.Add("CP11BCombo1".ToUpper(), combo1.ToString());
+
+			if (combo2 != null &&
+				combo3 != null &&
+				combo4 != null)
+			{
+				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11B-1.pptx");
+
+				textDataItems.Add("CP11BSubHeader1".ToUpper(), combo2.ToString());
+				if (!String.IsNullOrWhiteSpace(subheader1))
+					textDataItems.Add("CP11BSubHeader2".ToUpper(), subheader1);
+
+				textDataItems.Add("CP11BSubHeader3".ToUpper(), combo3.ToString());
+				if (!String.IsNullOrWhiteSpace(subheader2))
+					textDataItems.Add("CP11BSubHeader4".ToUpper(), subheader2);
+
+				textDataItems.Add("CP11BSubHeader5".ToUpper(), combo4.ToString());
+				if (!String.IsNullOrWhiteSpace(subheader3))
+					textDataItems.Add("CP11BSubHeader6".ToUpper(), subheader3);
+			}
+			else if (combo2 != null &&
+					 combo3 != null)
+			{
+				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11B-2.pptx");
+
+				textDataItems.Add("CP11BSubHeader1".ToUpper(), combo2.ToString());
+				if (!String.IsNullOrWhiteSpace(subheader1))
+					textDataItems.Add("CP11BSubHeader2".ToUpper(), subheader1);
+
+				textDataItems.Add("CP11BSubHeader3".ToUpper(), combo3.ToString());
+				if (!String.IsNullOrWhiteSpace(subheader2))
+					textDataItems.Add("CP11BSubHeader4".ToUpper(), subheader2);
+			}
+			else if (combo2 != null)
+			{
+				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11B-3.pptx");
+
+				textDataItems.Add("CP11BSubHeader1".ToUpper(), combo2.ToString());
+				if (!String.IsNullOrWhiteSpace(subheader1))
+					textDataItems.Add("CP11BSubHeader2".ToUpper(), subheader1);
+			}
+			else
+			{
+				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11B-1.pptx");
+
+				textDataItems.Add("CP11BSubHeader1".ToUpper(), combo2.ToString());
+				if (!String.IsNullOrWhiteSpace(subheader1))
+					textDataItems.Add("CP11BSubHeader2".ToUpper(), subheader1);
+
+				textDataItems.Add("CP11BSubHeader3".ToUpper(), combo3.ToString());
+				if (!String.IsNullOrWhiteSpace(subheader2))
+					textDataItems.Add("CP11BSubHeader4".ToUpper(), subheader2);
+
+				textDataItems.Add("CP11BSubHeader5".ToUpper(), combo4.ToString());
+				if (!String.IsNullOrWhiteSpace(subheader3))
+					textDataItems.Add("CP11BSubHeader6".ToUpper(), subheader3);
+			}
+			outputDataPackage.TextItems = textDataItems;
+
+			return outputDataPackage;
+		}
+
+		public override void GenerateOutput()
+		{
+			var outputDataPackage = GetOutputData();
+			ClosersContentContainer.SlideContainer.PowerPointProcessor.AppendStarCommonSlide(outputDataPackage);
+		}
+
+		public override PreviewGroup GeneratePreview()
+		{
+			var outputDataPackage = GetOutputData();
+			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			ClosersContentContainer.SlideContainer.PowerPointProcessor.PrepareStarCommonSlide(outputDataPackage, tempFileName);
+			return new PreviewGroup { Name = OutputName, PresentationSourcePath = tempFileName };
+		}
+		#endregion
 	}
 }

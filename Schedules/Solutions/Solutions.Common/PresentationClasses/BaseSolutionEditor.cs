@@ -33,6 +33,8 @@ namespace Asa.Solutions.Common.PresentationClasses
 		public virtual void ShowEditor()
 		{
 			BringToFront();
+			RaiseSlideTypeChanged();
+			RaiseOutputStatuesChanged();
 		}
 		public abstract void ShowHomeSlide();
 		#endregion

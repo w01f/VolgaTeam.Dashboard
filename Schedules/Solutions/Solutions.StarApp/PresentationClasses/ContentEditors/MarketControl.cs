@@ -1,23 +1,20 @@
 ﻿using System;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
-using Asa.Common.GUI.Preview;
-using Asa.Solutions.StarApp.PresentationClasses.Output;
 using DevExpress.Skins;
 using DevExpress.XtraLayout;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	[ToolboxItem(false)]
-	public sealed partial class MarketControl : StarAppControl, IStarAppSlide
+	public sealed partial class MarketControl : StarAppControl
 	{
 		public override SlideType SlideType => SlideType.StarAppMarket;
-		public override string SlideName => SlideContainer.StarInfo.Titles.Tab7Title;
+		public override string OutputName => SlideContainer.StarInfo.Titles.Tab7Title;
 
 		public MarketControl(BaseStarAppContainer slideContainer) : base(slideContainer)
 		{
@@ -80,6 +77,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			});
 
 			comboBoxEditTabCCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.MarketConfiguration.PartCCombo1Items);
+
+			_outputProcessors.AddRange(OutputProcessor.GetOutputProcessors(this));
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
@@ -263,22 +262,5 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			panelLogoRight.Visible = panelLogoBottom.Visible = Width > 1000;
 		}
-
-		#region Output Staff
-
-		public override bool ReadyForOutput => false;
-
-		public override void GenerateOutput()
-		{
-			//SolutionDashboardPowerPointHelper.Instance.AppendCover(this);
-		}
-
-		public override PreviewGroup GeneratePreview()
-		{
-			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			//SolutionDashboardPowerPointHelper.Instance.PrepareCover(this, tempFileName);
-			return new PreviewGroup { Name = SlideName, PresentationSourcePath = tempFileName };
-		}
-		#endregion
 	}
 }

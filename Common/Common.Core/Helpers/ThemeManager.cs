@@ -139,7 +139,43 @@ namespace Asa.Common.Core.Helpers
 					case "DigitalPkgB":
 						slideType = SlideType.DigitalStandalonePackage;
 						break;
-						#endregion
+					#endregion
+
+					#region StarApp
+					case "Star_01_cover":
+						slideType = SlideType.Cover;
+						break;
+					case "Star_02_cna":
+						slideType = SlideType.StarAppCNA;
+						break;
+					case "Star_03_fishing":
+						slideType = SlideType.StarAppFishing;
+						break;
+					case "Star_04_customer":
+						slideType = SlideType.StarAppCustomer;
+						break;
+					case "Star_05_share":
+						slideType = SlideType.StarAppShare;
+						break;
+					case "Star_06_roi":
+						slideType = SlideType.StarAppROI;
+						break;
+					case "Star_07_market":
+						slideType = SlideType.StarAppMarket;
+						break;
+					case "Star_08_video":
+						slideType = SlideType.StarAppVideo;
+						break;
+					case "Star_09_audience":
+						slideType = SlideType.StarAppAudience;
+						break;
+					case "Star_10_solution":
+						slideType = SlideType.StarAppSolution;
+						break;
+					case "Star_11_closers":
+						slideType = SlideType.StarAppClosers;
+						break;
+					#endregion
 				}
 				if (slideType == SlideType.None) continue;
 				foreach (var themeNode in slideNode.SelectNodes("Theme").OfType<XmlNode>())

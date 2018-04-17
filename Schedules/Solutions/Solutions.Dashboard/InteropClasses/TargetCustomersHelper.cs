@@ -11,9 +11,9 @@ using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace Asa.Solutions.Dashboard.InteropClasses
 {
-	public static partial class SolutionPowerPointHelperExtensions
+	public static partial class SolutionDashboardPowerPointHelperExtensions
 	{
-		public static void AppendTargetCustomers(this PowerPointProcessor target, ITargetCustomersOutputData outputData, Presentation destinationPresentation = null)
+		public static void AppendDashboardTargetCustomers(this PowerPointProcessor target, ITargetCustomersOutputData outputData, Presentation destinationPresentation = null)
 		{
 			var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetTargetCustomersFile(String.Format(MasterWizardManager.TargetCustomersSlideTemplate, 1));
 			if (!File.Exists(presentationTemplatePath)) return;
@@ -64,9 +64,9 @@ namespace Asa.Solutions.Dashboard.InteropClasses
 			}
 		}
 
-		public static void PrepareTargetCustomers(this PowerPointProcessor target, ITargetCustomersOutputData outputData, string fileName)
+		public static void PrepareDashboardTargetCustomers(this PowerPointProcessor target, ITargetCustomersOutputData outputData, string fileName)
 		{
-			target.PreparePresentation(fileName, presentation => target.AppendTargetCustomers(outputData, presentation));
+			target.PreparePresentation(fileName, presentation => target.AppendDashboardTargetCustomers(outputData, presentation));
 		}
 	}
 }

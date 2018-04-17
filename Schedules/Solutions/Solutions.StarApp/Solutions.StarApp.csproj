@@ -59,6 +59,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InteropClasses\StarCommonHelper.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\AudienceConrol.Output.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\BaseStarAppContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -89,11 +93,29 @@
     <Compile Include="PresentationClasses\ContentEditors\ClosersTabCControl.Designer.cs">
       <DependentUpon>ClosersTabCControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CNAControl.Output.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CustomerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CustomerControl.Designer.cs">
       <DependentUpon>CustomerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CustomerControl.Output.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\FishingControl.Output.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\MarketControl.Output.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\SolutionControl.Output.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\VideoControl.Output.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ImageEdit\FormFavoritesOpen.cs">
       <SubType>Form</SubType>
@@ -280,7 +302,21 @@
     <Compile Include="PresentationClasses\ImageEdit\ShareControlImageEditorHelper.cs" />
     <Compile Include="PresentationClasses\ImageEdit\StarAppCommonControlImageEditorHelper.cs" />
     <Compile Include="PresentationClasses\IStarAppShareContentControl.cs" />
+    <Compile Include="PresentationClasses\Output\FormConfigureOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Output\FormConfigureOutput.Designer.cs">
+      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Output\IOutputItem.cs" />
+    <Compile Include="PresentationClasses\Output\IStarAppSlideContainer.cs" />
     <Compile Include="PresentationClasses\Output\IStarAppSlide.cs" />
+    <Compile Include="PresentationClasses\Output\OutputConfiguration.cs" />
+    <Compile Include="PresentationClasses\Output\OutputDataPackage.cs" />
+    <Compile Include="PresentationClasses\Output\OutputGroup.cs" />
+    <Compile Include="PresentationClasses\Output\OutputImageInfo.cs" />
+    <Compile Include="PresentationClasses\Output\StarAppOutputType.cs" />
+    <Compile Include="PresentationClasses\Output\StarSlideOuputData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -394,6 +430,9 @@
     <EmbeddedResource Include="PresentationClasses\ImageEdit\FormPreviewImage.resx">
       <DependentUpon>FormPreviewImage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Output\FormConfigureOutput.resx">
+      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -424,7 +463,35 @@
       <Name>Solutions.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.PowerPoint">
+      <Guid>{91493440-5A91-11CF-8700-00AA0060263B}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>12</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

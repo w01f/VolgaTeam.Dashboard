@@ -17,12 +17,12 @@ using DevExpress.XtraTab;
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	[ToolboxItem(false)]
-	public sealed partial class ClosersControl : StarAppControl, IStarAppSlide
+	public sealed partial class ClosersControl : StarAppControl
 	{
 		private readonly List<XtraTabPage> _tabPages = new List<XtraTabPage>();
 
 		public override SlideType SlideType => SlideType.StarAppClosers;
-		public override string SlideName => SlideContainer.StarInfo.Titles.Tab11Title;
+		public override string OutputName => SlideContainer.StarInfo.Titles.Tab11Title;
 
 		public ClosersControl(BaseStarAppContainer slideContainer) : base(slideContainer)
 		{
@@ -175,18 +175,58 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		#region Output Staff
 
-		public override bool ReadyForOutput => false;
+		public override bool ReadyForOutput => true;
 
-		public override void GenerateOutput()
+		public override OutputGroup GetOutputGroup()
 		{
-			//SolutionDashboardPowerPointHelper.Instance.AppendCover(this);
+			var outputConfigurations = new List<OutputConfiguration>();
+
+			foreach (var closersControl in _tabPages
+				.OfType<IClosersTabPageContainer>()
+				.Where(container => container.ContentControl != null)
+				.Select(container => container.ContentControl)
+				.ToList())
+			{
+				outputConfigurations.Add(new OutputConfiguration(
+					closersControl.OutputType,
+					closersControl.OutputName,
+					closersControl.SlidesCount));
+			}
+
+			return new OutputGroup(this)
+			{
+				Name = OutputName,
+				IsCurrent = SlideContainer.ActiveSlideContent == this,
+				Configurations = outputConfigurations.ToArray()
+			};
 		}
 
-		public override PreviewGroup GeneratePreview()
+		public override void GenerateOutput(IList<OutputConfiguration> configurations)
 		{
-			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			//SolutionDashboardPowerPointHelper.Instance.PrepareCover(this, tempFileName);
-			return new PreviewGroup { Name = SlideName, PresentationSourcePath = tempFileName };
+			foreach (var configuration in configurations)
+			{
+				var tabPage = _tabPages
+					.OfType<IClosersTabPageContainer>()
+					.Select(container => container.ContentControl)
+					.First(contentControl => contentControl.OutputType == configuration.OutputType);
+				tabPage.GenerateOutput();
+			}
+		}
+
+		public override IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
+		{
+			var previewGroups = new List<PreviewGroup>();
+
+			foreach (var configuration in configurations)
+			{
+				var tabPage = _tabPages
+					.OfType<IClosersTabPageContainer>()
+					.Select(container => container.ContentControl)
+					.First(contentControl => contentControl.OutputType == configuration.OutputType);
+				previewGroups.Add(tabPage.GeneratePreview());
+			}
+
+			return previewGroups;
 		}
 		#endregion
 	}

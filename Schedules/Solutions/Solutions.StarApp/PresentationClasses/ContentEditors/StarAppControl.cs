@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using Asa.Common.Core.Enums;
@@ -10,7 +11,7 @@ using Asa.Solutions.StarApp.PresentationClasses.Output;
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	[ToolboxItem(false)]
-	public partial class StarAppControl : UserControl, IStarAppSlide
+	public partial class StarAppControl : UserControl, IStarAppSlideContainer
 	{
 		protected bool _allowToSave;
 		protected bool _dataChanged;
@@ -19,10 +20,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public BaseStarAppContainer SlideContainer { get; }
 
 		public virtual SlideType SlideType { get; }
-		public virtual bool ReadyForOutput { get; }
 		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType);
 
-		public StarAppControl()
+		protected StarAppControl()
 		{
 			InitializeComponent();
 			ImageEditorHelper = new StarAppCommonControlImageEditorHelper(this);
@@ -37,20 +37,25 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			throw new NotImplementedException();
 		}
-
 		public virtual void ApplyChanges()
 		{
 			throw new NotImplementedException();
 		}
 
-		public virtual string SlideName => null;
+		public virtual bool ReadyForOutput { get; }
+		public virtual string OutputName { get; }
 
-		public virtual void GenerateOutput()
+		public virtual OutputGroup GetOutputGroup()
 		{
 			throw new NotImplementedException();
 		}
 
-		public virtual PreviewGroup GeneratePreview()
+		public virtual void GenerateOutput(IList<OutputConfiguration> configurations)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
 		{
 			throw new NotImplementedException();
 		}

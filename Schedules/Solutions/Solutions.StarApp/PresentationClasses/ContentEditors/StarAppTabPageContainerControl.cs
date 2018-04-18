@@ -51,6 +51,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			_contentControl = (TStarAppControl)Activator.CreateInstance(typeof(TStarAppControl), _slideContainer);
 			_contentControl.Dock = DockStyle.Fill;
 			Controls.Add(_contentControl);
+			_slideContainer.AssignCloseActiveEditorsOnOutsideClick(_contentControl);
 			Application.DoEvents();
 		}
 

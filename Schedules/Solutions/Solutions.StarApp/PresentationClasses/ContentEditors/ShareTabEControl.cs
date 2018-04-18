@@ -29,7 +29,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			textEditTabESubheader4.EnableSelectAll();
 			textEditTabESubheader5.EnableSelectAll();
 			textEditTabESubheader6.EnableSelectAll();
-			textEditTabESubheader7.EnableSelectAll();
+			spinEditTabESubheader7.EnableSelectAll();
 			textEditTabESubheader8.EnableSelectAll();
 			textEditTabESubheader9.EnableSelectAll();
 			textEditTabESubheader10.EnableSelectAll();
@@ -101,7 +101,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader5DefaultValue;
 			textEditTabESubheader6.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader6 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader6DefaultValue;
-			textEditTabESubheader7.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader7 ??
+			spinEditTabESubheader7.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader7 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader7DefaultValue;
 			textEditTabESubheader8.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader8 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader8DefaultValue;
@@ -171,8 +171,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader6 = textEditTabESubheader6.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader6DefaultValue ?
 				textEditTabESubheader6.EditValue as String :
 				null;
-			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader7 = textEditTabESubheader7.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader7DefaultValue ?
-				textEditTabESubheader7.EditValue as String :
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader7 = (decimal?)spinEditTabESubheader7.EditValue != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader7DefaultValue ?
+				(decimal?)spinEditTabESubheader7.EditValue :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader8 = textEditTabESubheader8.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader8DefaultValue ?
 				textEditTabESubheader8.EditValue as String :
@@ -265,15 +265,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 			}
 
-			var costValue = 0.0;
-			try
-			{
-				costValue = Double.Parse((textEditTabESubheader7.EditValue as String)?.Trim() ?? "0",
-					NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
-			}
-			catch
-			{
-			}
+			var costValue = (double)spinEditTabESubheader7.Value;
 
 			var householdPercent = 0.0;
 			try
@@ -303,8 +295,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			simpleLabelItemTabEFormula1.CustomizationFormText = String.Format("{0:#,##0}", formula1Value);
 			simpleLabelItemTabEFormula1.Text = String.Format("<b>{0:#,##0}</b>", formula1Value);
-			simpleLabelItemTabEFormula2.CustomizationFormText = String.Format("{0}", (textEditTabESubheader7.EditValue as String)?.Trim());
-			simpleLabelItemTabEFormula2.Text = String.Format("<b>{0}</b>", (textEditTabESubheader7.EditValue as String)?.Trim());
+			simpleLabelItemTabEFormula2.CustomizationFormText = String.Format("{0:$#,##0}", spinEditTabESubheader7.Value);
+			simpleLabelItemTabEFormula2.Text = String.Format("<b>{0:$#,##0}</b>", spinEditTabESubheader7.Value);
 			simpleLabelItemTabEFormula3.CustomizationFormText = String.Format("{0:$#,##0}", formula2Value);
 			simpleLabelItemTabEFormula3.Text = String.Format("<b>{0:$#,##0}</b>", formula2Value);
 			simpleLabelItemTabEFormula5.CustomizationFormText = String.Format("{0:$#,##0}", formula3Value);

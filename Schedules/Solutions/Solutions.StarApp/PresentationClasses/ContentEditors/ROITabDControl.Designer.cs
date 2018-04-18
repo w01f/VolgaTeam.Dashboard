@@ -126,40 +126,40 @@
 			DevExpress.XtraLayout.RowDefinition rowDefinition62 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition63 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition64 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.pictureEditTabDClipart3 = new DevExpress.XtraEditors.PictureEdit();
 			this.panelTabDContentContainer = new System.Windows.Forms.Panel();
 			this.layoutControlTabD = new DevExpress.XtraLayout.LayoutControl();
 			this.checkEditTabDGroup1 = new DevExpress.XtraEditors.CheckEdit();
 			this.textEditTabDSubheader1 = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditTabDSubheader2 = new DevExpress.XtraEditors.CheckEdit();
-			this.textEditTabDSubheader2 = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditTabDGroup2 = new DevExpress.XtraEditors.CheckEdit();
 			this.textEditTabDSubheader3 = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditTabDSubheader4 = new DevExpress.XtraEditors.CheckEdit();
-			this.textEditTabDSubheader4 = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditTabDGroup3 = new DevExpress.XtraEditors.CheckEdit();
 			this.textEditTabDSubheader5 = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditTabDSubheader6 = new DevExpress.XtraEditors.CheckEdit();
-			this.textEditTabDSubheader6 = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditTabDGroup4 = new DevExpress.XtraEditors.CheckEdit();
 			this.textEditTabDSubheader7 = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditTabDSubheader8 = new DevExpress.XtraEditors.CheckEdit();
-			this.textEditTabDSubheader8 = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditTabDGroup5 = new DevExpress.XtraEditors.CheckEdit();
 			this.textEditTabDSubheader9 = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditTabDSubheader10 = new DevExpress.XtraEditors.CheckEdit();
-			this.textEditTabDSubheader10 = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditTabDGroup6 = new DevExpress.XtraEditors.CheckEdit();
 			this.textEditTabDSubheader11 = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditTabDSubheader12 = new DevExpress.XtraEditors.CheckEdit();
-			this.textEditTabDSubheader12 = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditTabDGroup7 = new DevExpress.XtraEditors.CheckEdit();
 			this.textEditTabDSubheader13 = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditTabDFormula1 = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditTabDGroup8 = new DevExpress.XtraEditors.CheckEdit();
 			this.textEditTabDSubheader14 = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditTabDSubheader15 = new DevExpress.XtraEditors.CheckEdit();
-			this.textEditTabDSubheader15 = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditTabDGroup9 = new DevExpress.XtraEditors.CheckEdit();
 			this.textEditTabDSubheader16 = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditTabDFormula2 = new DevExpress.XtraEditors.CheckEdit();
@@ -265,6 +265,13 @@
 			this.layoutControlItemTabDClipart3 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlGroupTabDScroll = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemTabD = new DevExpress.XtraLayout.LayoutControlItem();
+			this.spinEditTabDSubheader2 = new DevExpress.XtraEditors.SpinEdit();
+			this.spinEditTabDSubheader4 = new DevExpress.XtraEditors.SpinEdit();
+			this.spinEditTabDSubheader6 = new DevExpress.XtraEditors.SpinEdit();
+			this.spinEditTabDSubheader8 = new DevExpress.XtraEditors.SpinEdit();
+			this.spinEditTabDSubheader10 = new DevExpress.XtraEditors.SpinEdit();
+			this.spinEditTabDSubheader12 = new DevExpress.XtraEditors.SpinEdit();
+			this.spinEditTabDSubheader15 = new DevExpress.XtraEditors.SpinEdit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
@@ -277,34 +284,27 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDSubheader2.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader2.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup2.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader3.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDSubheader4.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader4.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup3.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader5.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDSubheader6.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader6.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup4.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader7.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDSubheader8.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader8.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup5.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader9.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDSubheader10.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader10.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup6.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader11.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDSubheader12.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader12.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup7.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader13.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDFormula1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup8.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader14.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDSubheader15.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader15.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup9.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader16.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDFormula2.Properties)).BeginInit();
@@ -410,6 +410,13 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabDClipart3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabDScroll)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabD)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditTabDSubheader2.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditTabDSubheader4.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditTabDSubheader6.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditTabDSubheader8.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditTabDSubheader10.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditTabDSubheader12.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditTabDSubheader15.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -518,40 +525,40 @@
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDGroup1);
 			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader1);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDSubheader2);
-			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader2);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDGroup2);
 			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader3);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDSubheader4);
-			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader4);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDGroup3);
 			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader5);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDSubheader6);
-			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader6);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDGroup4);
 			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader7);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDSubheader8);
-			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader8);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDGroup5);
 			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader9);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDSubheader10);
-			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader10);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDGroup6);
 			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader11);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDSubheader12);
-			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader12);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDGroup7);
 			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader13);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDFormula1);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDGroup8);
 			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader14);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDSubheader15);
-			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader15);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDGroup9);
 			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader16);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDFormula2);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDGroup10);
 			this.layoutControlTabD.Controls.Add(this.textEditTabDSubheader17);
 			this.layoutControlTabD.Controls.Add(this.checkEditTabDFormula3);
+			this.layoutControlTabD.Controls.Add(this.spinEditTabDSubheader2);
+			this.layoutControlTabD.Controls.Add(this.spinEditTabDSubheader4);
+			this.layoutControlTabD.Controls.Add(this.spinEditTabDSubheader6);
+			this.layoutControlTabD.Controls.Add(this.spinEditTabDSubheader8);
+			this.layoutControlTabD.Controls.Add(this.spinEditTabDSubheader10);
+			this.layoutControlTabD.Controls.Add(this.spinEditTabDSubheader12);
+			this.layoutControlTabD.Controls.Add(this.spinEditTabDSubheader15);
 			this.layoutControlTabD.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutControlTabD.ForeColor = System.Drawing.Color.Black;
 			this.layoutControlTabD.Location = new System.Drawing.Point(0, 0);
@@ -601,16 +608,6 @@
 			this.checkEditTabDSubheader2.TabIndex = 21;
 			this.checkEditTabDSubheader2.CheckedChanged += new System.EventHandler(this.OnTabDSubheader2CheckedChanged);
 			// 
-			// textEditTabDSubheader2
-			// 
-			this.textEditTabDSubheader2.Location = new System.Drawing.Point(108, -778);
-			this.textEditTabDSubheader2.Name = "textEditTabDSubheader2";
-			this.textEditTabDSubheader2.Properties.NullText = "Type here";
-			this.textEditTabDSubheader2.Size = new System.Drawing.Size(237, 22);
-			this.textEditTabDSubheader2.StyleController = this.layoutControlTabD;
-			this.textEditTabDSubheader2.TabIndex = 22;
-			this.textEditTabDSubheader2.EditValueChanged += new System.EventHandler(this.OnTabDFormulaSourceEditValueChanged);
-			// 
 			// checkEditTabDGroup2
 			// 
 			this.checkEditTabDGroup2.AutoSizeInLayoutControl = true;
@@ -644,16 +641,6 @@
 			this.checkEditTabDSubheader4.StyleController = this.layoutControlTabD;
 			this.checkEditTabDSubheader4.TabIndex = 21;
 			this.checkEditTabDSubheader4.CheckedChanged += new System.EventHandler(this.OnTabDSubheader4CheckedChanged);
-			// 
-			// textEditTabDSubheader4
-			// 
-			this.textEditTabDSubheader4.Location = new System.Drawing.Point(108, -624);
-			this.textEditTabDSubheader4.Name = "textEditTabDSubheader4";
-			this.textEditTabDSubheader4.Properties.NullText = "Type here";
-			this.textEditTabDSubheader4.Size = new System.Drawing.Size(237, 22);
-			this.textEditTabDSubheader4.StyleController = this.layoutControlTabD;
-			this.textEditTabDSubheader4.TabIndex = 22;
-			this.textEditTabDSubheader4.EditValueChanged += new System.EventHandler(this.OnTabDFormulaSourceEditValueChanged);
 			// 
 			// checkEditTabDGroup3
 			// 
@@ -689,16 +676,6 @@
 			this.checkEditTabDSubheader6.TabIndex = 21;
 			this.checkEditTabDSubheader6.CheckedChanged += new System.EventHandler(this.OnTabDSubheader6CheckedChanged);
 			// 
-			// textEditTabDSubheader6
-			// 
-			this.textEditTabDSubheader6.Location = new System.Drawing.Point(108, -470);
-			this.textEditTabDSubheader6.Name = "textEditTabDSubheader6";
-			this.textEditTabDSubheader6.Properties.NullText = "Type here";
-			this.textEditTabDSubheader6.Size = new System.Drawing.Size(237, 22);
-			this.textEditTabDSubheader6.StyleController = this.layoutControlTabD;
-			this.textEditTabDSubheader6.TabIndex = 22;
-			this.textEditTabDSubheader6.EditValueChanged += new System.EventHandler(this.OnTabDFormulaSourceEditValueChanged);
-			// 
 			// checkEditTabDGroup4
 			// 
 			this.checkEditTabDGroup4.AutoSizeInLayoutControl = true;
@@ -732,16 +709,6 @@
 			this.checkEditTabDSubheader8.StyleController = this.layoutControlTabD;
 			this.checkEditTabDSubheader8.TabIndex = 21;
 			this.checkEditTabDSubheader8.CheckedChanged += new System.EventHandler(this.OnTabDSubheader8CheckedChanged);
-			// 
-			// textEditTabDSubheader8
-			// 
-			this.textEditTabDSubheader8.Location = new System.Drawing.Point(108, -316);
-			this.textEditTabDSubheader8.Name = "textEditTabDSubheader8";
-			this.textEditTabDSubheader8.Properties.NullText = "Type here";
-			this.textEditTabDSubheader8.Size = new System.Drawing.Size(237, 22);
-			this.textEditTabDSubheader8.StyleController = this.layoutControlTabD;
-			this.textEditTabDSubheader8.TabIndex = 22;
-			this.textEditTabDSubheader8.EditValueChanged += new System.EventHandler(this.OnTabDFormulaSourceEditValueChanged);
 			// 
 			// checkEditTabDGroup5
 			// 
@@ -777,16 +744,6 @@
 			this.checkEditTabDSubheader10.TabIndex = 21;
 			this.checkEditTabDSubheader10.CheckedChanged += new System.EventHandler(this.OnTabDSubheader10CheckedChanged);
 			// 
-			// textEditTabDSubheader10
-			// 
-			this.textEditTabDSubheader10.Location = new System.Drawing.Point(108, -162);
-			this.textEditTabDSubheader10.Name = "textEditTabDSubheader10";
-			this.textEditTabDSubheader10.Properties.NullText = "Type here";
-			this.textEditTabDSubheader10.Size = new System.Drawing.Size(237, 22);
-			this.textEditTabDSubheader10.StyleController = this.layoutControlTabD;
-			this.textEditTabDSubheader10.TabIndex = 22;
-			this.textEditTabDSubheader10.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
-			// 
 			// checkEditTabDGroup6
 			// 
 			this.checkEditTabDGroup6.AutoSizeInLayoutControl = true;
@@ -820,16 +777,6 @@
 			this.checkEditTabDSubheader12.StyleController = this.layoutControlTabD;
 			this.checkEditTabDSubheader12.TabIndex = 21;
 			this.checkEditTabDSubheader12.CheckedChanged += new System.EventHandler(this.OnTabDSubheader12CheckedChanged);
-			// 
-			// textEditTabDSubheader12
-			// 
-			this.textEditTabDSubheader12.Location = new System.Drawing.Point(108, -8);
-			this.textEditTabDSubheader12.Name = "textEditTabDSubheader12";
-			this.textEditTabDSubheader12.Properties.NullText = "Type here";
-			this.textEditTabDSubheader12.Size = new System.Drawing.Size(237, 22);
-			this.textEditTabDSubheader12.StyleController = this.layoutControlTabD;
-			this.textEditTabDSubheader12.TabIndex = 22;
-			this.textEditTabDSubheader12.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabDGroup7
 			// 
@@ -898,16 +845,6 @@
 			this.checkEditTabDSubheader15.StyleController = this.layoutControlTabD;
 			this.checkEditTabDSubheader15.TabIndex = 21;
 			this.checkEditTabDSubheader15.CheckedChanged += new System.EventHandler(this.OnTabDSubheader15CheckedChanged);
-			// 
-			// textEditTabDSubheader15
-			// 
-			this.textEditTabDSubheader15.Location = new System.Drawing.Point(108, 300);
-			this.textEditTabDSubheader15.Name = "textEditTabDSubheader15";
-			this.textEditTabDSubheader15.Properties.NullText = "Type here";
-			this.textEditTabDSubheader15.Size = new System.Drawing.Size(237, 22);
-			this.textEditTabDSubheader15.StyleController = this.layoutControlTabD;
-			this.textEditTabDSubheader15.TabIndex = 22;
-			this.textEditTabDSubheader15.EditValueChanged += new System.EventHandler(this.OnTabDFormulaSourceEditValueChanged);
 			// 
 			// checkEditTabDGroup9
 			// 
@@ -1198,7 +1135,7 @@
 			// 
 			// layoutControlItemTabDSubheader2Value
 			// 
-			this.layoutControlItemTabDSubheader2Value.Control = this.textEditTabDSubheader2;
+			this.layoutControlItemTabDSubheader2Value.Control = this.spinEditTabDSubheader2;
 			this.layoutControlItemTabDSubheader2Value.CustomizationFormText = "Subheader 2 Value";
 			this.layoutControlItemTabDSubheader2Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabDSubheader2Value.Name = "layoutControlItemTabDSubheader2Value";
@@ -1342,7 +1279,7 @@
 			// 
 			// layoutControlItemTabDSubheader4Value
 			// 
-			this.layoutControlItemTabDSubheader4Value.Control = this.textEditTabDSubheader4;
+			this.layoutControlItemTabDSubheader4Value.Control = this.spinEditTabDSubheader4;
 			this.layoutControlItemTabDSubheader4Value.FillControlToClientArea = false;
 			this.layoutControlItemTabDSubheader4Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabDSubheader4Value.Name = "layoutControlItemTabDSubheader4Value";
@@ -1486,7 +1423,7 @@
 			// 
 			// layoutControlItemTabDSubheader6Value
 			// 
-			this.layoutControlItemTabDSubheader6Value.Control = this.textEditTabDSubheader6;
+			this.layoutControlItemTabDSubheader6Value.Control = this.spinEditTabDSubheader6;
 			this.layoutControlItemTabDSubheader6Value.FillControlToClientArea = false;
 			this.layoutControlItemTabDSubheader6Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabDSubheader6Value.Name = "layoutControlItemTabDSubheader6Value";
@@ -1630,7 +1567,7 @@
 			// 
 			// layoutControlItemTabDSubheader8Value
 			// 
-			this.layoutControlItemTabDSubheader8Value.Control = this.textEditTabDSubheader8;
+			this.layoutControlItemTabDSubheader8Value.Control = this.spinEditTabDSubheader8;
 			this.layoutControlItemTabDSubheader8Value.FillControlToClientArea = false;
 			this.layoutControlItemTabDSubheader8Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabDSubheader8Value.Name = "layoutControlItemTabDSubheader8Value";
@@ -1774,7 +1711,7 @@
 			// 
 			// layoutControlItemTabDSubheader10Value
 			// 
-			this.layoutControlItemTabDSubheader10Value.Control = this.textEditTabDSubheader10;
+			this.layoutControlItemTabDSubheader10Value.Control = this.spinEditTabDSubheader10;
 			this.layoutControlItemTabDSubheader10Value.FillControlToClientArea = false;
 			this.layoutControlItemTabDSubheader10Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabDSubheader10Value.Name = "layoutControlItemTabDSubheader10Value";
@@ -1918,7 +1855,7 @@
 			// 
 			// layoutControlItemTabDSubheader12Value
 			// 
-			this.layoutControlItemTabDSubheader12Value.Control = this.textEditTabDSubheader12;
+			this.layoutControlItemTabDSubheader12Value.Control = this.spinEditTabDSubheader12;
 			this.layoutControlItemTabDSubheader12Value.FillControlToClientArea = false;
 			this.layoutControlItemTabDSubheader12Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabDSubheader12Value.Name = "layoutControlItemTabDSubheader12Value";
@@ -2208,7 +2145,7 @@
 			// 
 			// layoutControlItemTabDSubheader15Value
 			// 
-			this.layoutControlItemTabDSubheader15Value.Control = this.textEditTabDSubheader15;
+			this.layoutControlItemTabDSubheader15Value.Control = this.spinEditTabDSubheader15;
 			this.layoutControlItemTabDSubheader15Value.FillControlToClientArea = false;
 			this.layoutControlItemTabDSubheader15Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabDSubheader15Value.Name = "layoutControlItemTabDSubheader15Value";
@@ -2708,6 +2645,202 @@
 			this.layoutControlItemTabD.TextVisible = false;
 			this.layoutControlItemTabD.TrimClientAreaToControl = false;
 			// 
+			// spinEditTabDSubheader2
+			// 
+			this.spinEditTabDSubheader2.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+			this.spinEditTabDSubheader2.Location = new System.Drawing.Point(108, -778);
+			this.spinEditTabDSubheader2.Name = "spinEditTabDSubheader2";
+			this.spinEditTabDSubheader2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+			this.spinEditTabDSubheader2.Properties.DisplayFormat.FormatString = "$#,##0";
+			this.spinEditTabDSubheader2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.spinEditTabDSubheader2.Properties.EditFormat.FormatString = "$#,##0";
+			this.spinEditTabDSubheader2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.spinEditTabDSubheader2.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+			this.spinEditTabDSubheader2.Properties.IsFloatValue = false;
+			this.spinEditTabDSubheader2.Properties.Mask.EditMask = "N00";
+			this.spinEditTabDSubheader2.Properties.MaxValue = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+			this.spinEditTabDSubheader2.Size = new System.Drawing.Size(237, 22);
+			this.spinEditTabDSubheader2.StyleController = this.layoutControlTabD;
+			this.spinEditTabDSubheader2.TabIndex = 22;
+			this.spinEditTabDSubheader2.EditValueChanged += new System.EventHandler(this.OnTabDFormulaSourceEditValueChanged);
+			// 
+			// spinEditTabDSubheader4
+			// 
+			this.spinEditTabDSubheader4.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+			this.spinEditTabDSubheader4.Location = new System.Drawing.Point(108, -624);
+			this.spinEditTabDSubheader4.Name = "spinEditTabDSubheader4";
+			this.spinEditTabDSubheader4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+			this.spinEditTabDSubheader4.Properties.DisplayFormat.FormatString = "$#,##0";
+			this.spinEditTabDSubheader4.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.spinEditTabDSubheader4.Properties.EditFormat.FormatString = "$#,##0";
+			this.spinEditTabDSubheader4.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.spinEditTabDSubheader4.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+			this.spinEditTabDSubheader4.Properties.IsFloatValue = false;
+			this.spinEditTabDSubheader4.Properties.Mask.EditMask = "N00";
+			this.spinEditTabDSubheader4.Properties.MaxValue = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+			this.spinEditTabDSubheader4.Size = new System.Drawing.Size(237, 22);
+			this.spinEditTabDSubheader4.StyleController = this.layoutControlTabD;
+			this.spinEditTabDSubheader4.TabIndex = 22;
+			this.spinEditTabDSubheader4.EditValueChanged += new System.EventHandler(this.OnTabDFormulaSourceEditValueChanged);
+			// 
+			// spinEditTabDSubheader6
+			// 
+			this.spinEditTabDSubheader6.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+			this.spinEditTabDSubheader6.Location = new System.Drawing.Point(108, -470);
+			this.spinEditTabDSubheader6.Name = "spinEditTabDSubheader6";
+			this.spinEditTabDSubheader6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+			this.spinEditTabDSubheader6.Properties.DisplayFormat.FormatString = "##0\'%\'";
+			this.spinEditTabDSubheader6.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.spinEditTabDSubheader6.Properties.EditFormat.FormatString = "##0\'%\'";
+			this.spinEditTabDSubheader6.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.spinEditTabDSubheader6.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+			this.spinEditTabDSubheader6.Properties.IsFloatValue = false;
+			this.spinEditTabDSubheader6.Properties.Mask.EditMask = "N00";
+			this.spinEditTabDSubheader6.Properties.MaxValue = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+			this.spinEditTabDSubheader6.Size = new System.Drawing.Size(237, 22);
+			this.spinEditTabDSubheader6.StyleController = this.layoutControlTabD;
+			this.spinEditTabDSubheader6.TabIndex = 22;
+			this.spinEditTabDSubheader6.EditValueChanged += new System.EventHandler(this.OnTabDFormulaSourceEditValueChanged);
+			// 
+			// spinEditTabDSubheader8
+			// 
+			this.spinEditTabDSubheader8.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+			this.spinEditTabDSubheader8.Location = new System.Drawing.Point(108, -316);
+			this.spinEditTabDSubheader8.Name = "spinEditTabDSubheader8";
+			this.spinEditTabDSubheader8.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+			this.spinEditTabDSubheader8.Properties.DisplayFormat.FormatString = "##0\'%\'";
+			this.spinEditTabDSubheader8.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.spinEditTabDSubheader8.Properties.EditFormat.FormatString = "##0\'%\'";
+			this.spinEditTabDSubheader8.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.spinEditTabDSubheader8.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+			this.spinEditTabDSubheader8.Properties.IsFloatValue = false;
+			this.spinEditTabDSubheader8.Properties.Mask.EditMask = "N00";
+			this.spinEditTabDSubheader8.Properties.MaxValue = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+			this.spinEditTabDSubheader8.Size = new System.Drawing.Size(237, 22);
+			this.spinEditTabDSubheader8.StyleController = this.layoutControlTabD;
+			this.spinEditTabDSubheader8.TabIndex = 22;
+			this.spinEditTabDSubheader8.EditValueChanged += new System.EventHandler(this.OnTabDFormulaSourceEditValueChanged);
+			// 
+			// spinEditTabDSubheader10
+			// 
+			this.spinEditTabDSubheader10.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+			this.spinEditTabDSubheader10.Location = new System.Drawing.Point(108, -162);
+			this.spinEditTabDSubheader10.Name = "spinEditTabDSubheader10";
+			this.spinEditTabDSubheader10.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true)});
+			this.spinEditTabDSubheader10.Properties.DisplayFormat.FormatString = "N00";
+			this.spinEditTabDSubheader10.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+			this.spinEditTabDSubheader10.Properties.EditFormat.FormatString = "N00";
+			this.spinEditTabDSubheader10.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+			this.spinEditTabDSubheader10.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+			this.spinEditTabDSubheader10.Properties.IsFloatValue = false;
+			this.spinEditTabDSubheader10.Properties.Mask.EditMask = "N00";
+			this.spinEditTabDSubheader10.Properties.MaxValue = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+			this.spinEditTabDSubheader10.Size = new System.Drawing.Size(237, 22);
+			this.spinEditTabDSubheader10.StyleController = this.layoutControlTabD;
+			this.spinEditTabDSubheader10.TabIndex = 22;
+			this.spinEditTabDSubheader10.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
+			// 
+			// spinEditTabDSubheader12
+			// 
+			this.spinEditTabDSubheader12.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+			this.spinEditTabDSubheader12.Location = new System.Drawing.Point(108, -8);
+			this.spinEditTabDSubheader12.Name = "spinEditTabDSubheader12";
+			this.spinEditTabDSubheader12.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true)});
+			this.spinEditTabDSubheader12.Properties.DisplayFormat.FormatString = "N00";
+			this.spinEditTabDSubheader12.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+			this.spinEditTabDSubheader12.Properties.EditFormat.FormatString = "N00";
+			this.spinEditTabDSubheader12.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+			this.spinEditTabDSubheader12.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+			this.spinEditTabDSubheader12.Properties.IsFloatValue = false;
+			this.spinEditTabDSubheader12.Properties.Mask.EditMask = "N00";
+			this.spinEditTabDSubheader12.Properties.MaxValue = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+			this.spinEditTabDSubheader12.Size = new System.Drawing.Size(237, 22);
+			this.spinEditTabDSubheader12.StyleController = this.layoutControlTabD;
+			this.spinEditTabDSubheader12.TabIndex = 22;
+			this.spinEditTabDSubheader12.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
+			// 
+			// spinEditTabDSubheader15
+			// 
+			this.spinEditTabDSubheader15.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+			this.spinEditTabDSubheader15.Location = new System.Drawing.Point(108, 300);
+			this.spinEditTabDSubheader15.Name = "spinEditTabDSubheader15";
+			this.spinEditTabDSubheader15.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject7, "", null, null, true)});
+			this.spinEditTabDSubheader15.Properties.DisplayFormat.FormatString = "N00";
+			this.spinEditTabDSubheader15.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+			this.spinEditTabDSubheader15.Properties.EditFormat.FormatString = "N00";
+			this.spinEditTabDSubheader15.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+			this.spinEditTabDSubheader15.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+			this.spinEditTabDSubheader15.Properties.IsFloatValue = false;
+			this.spinEditTabDSubheader15.Properties.Mask.EditMask = "N00";
+			this.spinEditTabDSubheader15.Properties.MaxValue = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+			this.spinEditTabDSubheader15.Size = new System.Drawing.Size(237, 22);
+			this.spinEditTabDSubheader15.StyleController = this.layoutControlTabD;
+			this.spinEditTabDSubheader15.TabIndex = 22;
+			this.spinEditTabDSubheader15.EditValueChanged += new System.EventHandler(this.OnTabDFormulaSourceEditValueChanged);
+			// 
 			// ROITabDControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2726,34 +2859,27 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDSubheader2.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader2.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup2.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader3.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDSubheader4.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader4.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup3.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader5.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDSubheader6.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader6.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup4.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader7.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDSubheader8.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader8.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup5.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader9.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDSubheader10.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader10.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup6.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader11.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDSubheader12.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader12.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup7.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader13.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDFormula1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup8.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader14.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDSubheader15.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader15.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDGroup9.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabDSubheader16.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTabDFormula2.Properties)).EndInit();
@@ -2859,6 +2985,13 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabDClipart3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabDScroll)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabD)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditTabDSubheader2.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditTabDSubheader4.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditTabDSubheader6.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditTabDSubheader8.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditTabDSubheader10.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditTabDSubheader12.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditTabDSubheader15.Properties)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -2880,34 +3013,27 @@
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDGroup1;
 		private DevExpress.XtraEditors.TextEdit textEditTabDSubheader1;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDSubheader2;
-		private DevExpress.XtraEditors.TextEdit textEditTabDSubheader2;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDGroup2;
 		private DevExpress.XtraEditors.TextEdit textEditTabDSubheader3;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDSubheader4;
-		private DevExpress.XtraEditors.TextEdit textEditTabDSubheader4;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDGroup3;
 		private DevExpress.XtraEditors.TextEdit textEditTabDSubheader5;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDSubheader6;
-		private DevExpress.XtraEditors.TextEdit textEditTabDSubheader6;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDGroup4;
 		private DevExpress.XtraEditors.TextEdit textEditTabDSubheader7;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDSubheader8;
-		private DevExpress.XtraEditors.TextEdit textEditTabDSubheader8;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDGroup5;
 		private DevExpress.XtraEditors.TextEdit textEditTabDSubheader9;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDSubheader10;
-		private DevExpress.XtraEditors.TextEdit textEditTabDSubheader10;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDGroup6;
 		private DevExpress.XtraEditors.TextEdit textEditTabDSubheader11;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDSubheader12;
-		private DevExpress.XtraEditors.TextEdit textEditTabDSubheader12;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDGroup7;
 		private DevExpress.XtraEditors.TextEdit textEditTabDSubheader13;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDFormula1;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDGroup8;
 		private DevExpress.XtraEditors.TextEdit textEditTabDSubheader14;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDSubheader15;
-		private DevExpress.XtraEditors.TextEdit textEditTabDSubheader15;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDGroup9;
 		private DevExpress.XtraEditors.TextEdit textEditTabDSubheader16;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabDFormula2;
@@ -3005,5 +3131,12 @@
 		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTabDFormula3;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem38;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+		private DevExpress.XtraEditors.SpinEdit spinEditTabDSubheader2;
+		private DevExpress.XtraEditors.SpinEdit spinEditTabDSubheader4;
+		private DevExpress.XtraEditors.SpinEdit spinEditTabDSubheader6;
+		private DevExpress.XtraEditors.SpinEdit spinEditTabDSubheader8;
+		private DevExpress.XtraEditors.SpinEdit spinEditTabDSubheader10;
+		private DevExpress.XtraEditors.SpinEdit spinEditTabDSubheader12;
+		private DevExpress.XtraEditors.SpinEdit spinEditTabDSubheader15;
 	}
 }

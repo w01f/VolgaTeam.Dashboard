@@ -34,6 +34,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ContentControl = (TShareTabControl)Activator.CreateInstance(typeof(TShareTabControl), _shareControl);
 			ContentControl.Dock = DockStyle.Fill;
 			Controls.Add(ContentControl);
+			_shareControl.SlideContainer.AssignCloseActiveEditorsOnOutsideClick(ContentControl);
 			Application.DoEvents();
 		}
 	}

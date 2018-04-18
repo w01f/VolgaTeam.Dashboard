@@ -39,7 +39,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			public ListDataItem Combo3 { get; set; }
 			public ListDataItem Combo4 { get; set; }
 			public string Subheader1 { get; set; }
-			public string Subheader2 { get; set; }
+			public decimal? Subheader2 { get; set; }
 			public string Subheader3 { get; set; }
 			public string Subheader4 { get; set; }
 			public string Subheader5 { get; set; }
@@ -77,9 +77,9 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			public string Subheader1 { get; set; }
 			public string Subheader2 { get; set; }
 			public string Subheader3 { get; set; }
-			public string Subheader4 { get; set; }
+			public decimal? Subheader4 { get; set; }
 			public string Subheader5 { get; set; }
-			public string Subheader6 { get; set; }
+			public decimal? Subheader6 { get; set; }
 			public string Subheader7 { get; set; }
 			public string Subheader8 { get; set; }
 
@@ -114,7 +114,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			public ListDataItem Combo4 { get; set; }
 			public ListDataItem Combo5 { get; set; }
 			public ListDataItem Combo6 { get; set; }
-			public string Subheader1 { get; set; }
+			public decimal? Subheader1 { get; set; }
 			public string Subheader2 { get; set; }
 			public string Subheader3 { get; set; }
 			public string Subheader4 { get; set; }
@@ -150,7 +150,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			public string Subheader1 { get; set; }
 			public string Subheader2 { get; set; }
 			public string Subheader3 { get; set; }
-			public string Subheader4 { get; set; }
+			public decimal? Subheader4 { get; set; }
 			public string Subheader5 { get; set; }
 			public string Subheader6 { get; set; }
 			public string Subheader7 { get; set; }
@@ -193,7 +193,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			public string Subheader4 { get; set; }
 			public string Subheader5 { get; set; }
 			public string Subheader6 { get; set; }
-			public string Subheader7 { get; set; }
+			public decimal? Subheader7 { get; set; }
 			public string Subheader8 { get; set; }
 			public string Subheader9 { get; set; }
 			public string Subheader10 { get; set; }

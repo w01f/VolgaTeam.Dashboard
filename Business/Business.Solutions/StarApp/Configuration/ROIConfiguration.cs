@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Xml;
 
@@ -9,19 +10,19 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 	{
 		public List<ListDataItem> HeadersPartAItems { get; set; }
 		public string PartASubHeader1DefaultValue { get; private set; }
-		public string PartASubHeader2DefaultValue { get; private set; }
+		public decimal? PartASubHeader2DefaultValue { get; private set; }
 		public string PartASubHeader3DefaultValue { get; private set; }
 		public string PartASubHeader4DefaultValue { get; private set; }
-		public string PartASubHeader5DefaultValue { get; private set; }
+		public decimal? PartASubHeader5DefaultValue { get; private set; }
 		public string PartASubHeader6DefaultValue { get; private set; }
 		public string PartASubHeader7DefaultValue { get; private set; }
-		public string PartASubHeader8DefaultValue { get; private set; }
+		public decimal? PartASubHeader8DefaultValue { get; private set; }
 		public string PartASubHeader9DefaultValue { get; private set; }
 		public string PartASubHeader10DefaultValue { get; private set; }
 		public string PartASubHeader11DefaultValue { get; private set; }
 		public string PartASubHeader12DefaultValue { get; private set; }
 		public string PartASubHeader13DefaultValue { get; private set; }
-		public string PartASubHeader14DefaultValue { get; private set; }
+		public decimal? PartASubHeader14DefaultValue { get; private set; }
 		public string PartASubHeader15DefaultValue { get; private set; }
 		public ClipartConfiguration PartAClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartAClipart2Configuration { get; private set; }
@@ -29,29 +30,29 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 
 		public List<ListDataItem> HeadersPartBItems { get; set; }
 		public string PartBSubHeader1DefaultValue { get; private set; }
-		public string PartBSubHeader2DefaultValue { get; private set; }
+		public decimal? PartBSubHeader2DefaultValue { get; private set; }
 		public string PartBSubHeader3DefaultValue { get; private set; }
 		public string PartBSubHeader4DefaultValue { get; private set; }
-		public string PartBSubHeader5DefaultValue { get; private set; }
+		public decimal? PartBSubHeader5DefaultValue { get; private set; }
 		public string PartBSubHeader6DefaultValue { get; private set; }
 		public string PartBSubHeader7DefaultValue { get; private set; }
-		public string PartBSubHeader8DefaultValue { get; private set; }
+		public decimal? PartBSubHeader8DefaultValue { get; private set; }
 		public string PartBSubHeader9DefaultValue { get; private set; }
 		public string PartBSubHeader10DefaultValue { get; private set; }
-		public string PartBSubHeader11DefaultValue { get; private set; }
+		public decimal? PartBSubHeader11DefaultValue { get; private set; }
 		public string PartBSubHeader12DefaultValue { get; private set; }
 		public string PartBSubHeader13DefaultValue { get; private set; }
 		public string PartBSubHeader14DefaultValue { get; private set; }
 		public string PartBSubHeader15DefaultValue { get; private set; }
 		public string PartBSubHeader16DefaultValue { get; private set; }
-		public string PartBSubHeader17DefaultValue { get; private set; }
+		public decimal? PartBSubHeader17DefaultValue { get; private set; }
 		public string PartBSubHeader18DefaultValue { get; private set; }
 		public string PartBSubHeader19DefaultValue { get; private set; }
 		public string PartBSubHeader20DefaultValue { get; private set; }
 		public string PartBSubHeader21DefaultValue { get; private set; }
 		public string PartBSubHeader22DefaultValue { get; private set; }
 		public string PartBSubHeader23DefaultValue { get; private set; }
-		public string PartBSubHeader24DefaultValue { get; private set; }
+		public decimal? PartBSubHeader24DefaultValue { get; private set; }
 		public string PartBSubHeader25DefaultValue { get; private set; }
 		public ClipartConfiguration PartBClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartBClipart2Configuration { get; private set; }
@@ -59,18 +60,18 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 
 		public List<ListDataItem> HeadersPartCItems { get; set; }
 		public string PartCSubHeader1DefaultValue { get; private set; }
-		public string PartCSubHeader2DefaultValue { get; private set; }
+		public decimal? PartCSubHeader2DefaultValue { get; private set; }
 		public string PartCSubHeader3DefaultValue { get; private set; }
-		public string PartCSubHeader4DefaultValue { get; private set; }
+		public decimal? PartCSubHeader4DefaultValue { get; private set; }
 		public string PartCSubHeader5DefaultValue { get; private set; }
 		public string PartCSubHeader6DefaultValue { get; private set; }
-		public string PartCSubHeader7DefaultValue { get; private set; }
+		public decimal? PartCSubHeader7DefaultValue { get; private set; }
 		public string PartCSubHeader8DefaultValue { get; private set; }
 		public string PartCSubHeader9DefaultValue { get; private set; }
 		public string PartCSubHeader10DefaultValue { get; private set; }
 		public string PartCSubHeader11DefaultValue { get; private set; }
 		public string PartCSubHeader12DefaultValue { get; private set; }
-		public string PartCSubHeader13DefaultValue { get; private set; }
+		public decimal? PartCSubHeader13DefaultValue { get; private set; }
 		public string PartCSubHeader14DefaultValue { get; private set; }
 		public string PartCSubHeader15DefaultValue { get; private set; }
 		public ClipartConfiguration PartCClipart1Configuration { get; private set; }
@@ -79,20 +80,20 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 
 		public List<ListDataItem> HeadersPartDItems { get; set; }
 		public string PartDSubHeader1DefaultValue { get; private set; }
-		public string PartDSubHeader2DefaultValue { get; private set; }
+		public decimal? PartDSubHeader2DefaultValue { get; private set; }
 		public string PartDSubHeader3DefaultValue { get; private set; }
-		public string PartDSubHeader4DefaultValue { get; private set; }
+		public decimal? PartDSubHeader4DefaultValue { get; private set; }
 		public string PartDSubHeader5DefaultValue { get; private set; }
-		public string PartDSubHeader6DefaultValue { get; private set; }
+		public decimal? PartDSubHeader6DefaultValue { get; private set; }
 		public string PartDSubHeader7DefaultValue { get; private set; }
-		public string PartDSubHeader8DefaultValue { get; private set; }
+		public decimal? PartDSubHeader8DefaultValue { get; private set; }
 		public string PartDSubHeader9DefaultValue { get; private set; }
-		public string PartDSubHeader10DefaultValue { get; private set; }
+		public decimal? PartDSubHeader10DefaultValue { get; private set; }
 		public string PartDSubHeader11DefaultValue { get; private set; }
-		public string PartDSubHeader12DefaultValue { get; private set; }
+		public decimal? PartDSubHeader12DefaultValue { get; private set; }
 		public string PartDSubHeader13DefaultValue { get; private set; }
 		public string PartDSubHeader14DefaultValue { get; private set; }
-		public string PartDSubHeader15DefaultValue { get; private set; }
+		public decimal? PartDSubHeader15DefaultValue { get; private set; }
 		public string PartDSubHeader16DefaultValue { get; private set; }
 		public string PartDSubHeader17DefaultValue { get; private set; }
 		public ClipartConfiguration PartDClipart1Configuration { get; private set; }
@@ -146,7 +147,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							PartASubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06ASubHeader2":
-							PartASubHeader2DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartASubHeader2DefaultValue = Decimal.Parse(childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0",
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06ASubHeader3":
 							PartASubHeader3DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
@@ -155,7 +157,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							PartASubHeader4DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06ASubHeader5":
-							PartASubHeader5DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartASubHeader5DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06ASubHeader6":
 							PartASubHeader6DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
@@ -164,7 +167,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							PartASubHeader7DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06ASubHeader8":
-							PartASubHeader8DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartASubHeader8DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06ASubHeader9":
 							PartASubHeader9DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
@@ -182,7 +186,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							PartASubHeader13DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06ASubHeader14":
-							PartASubHeader14DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartASubHeader14DefaultValue = Decimal.Parse(childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0",
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06ASubHeader15":
 							PartASubHeader15DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
@@ -216,7 +221,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							PartBSubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06BSubHeader2":
-							PartBSubHeader2DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartBSubHeader2DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06BSubHeader3":
 							PartBSubHeader3DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
@@ -225,7 +231,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							PartBSubHeader4DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06BSubHeader5":
-							PartBSubHeader5DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartBSubHeader5DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06BSubHeader6":
 							PartBSubHeader6DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
@@ -234,7 +241,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							PartBSubHeader7DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06BSubHeader8":
-							PartBSubHeader8DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartBSubHeader8DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06BSubHeader9":
 							PartBSubHeader9DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
@@ -243,7 +251,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							PartBSubHeader10DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06BSubHeader11":
-							PartBSubHeader11DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartBSubHeader11DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06BSubHeader12":
 							PartBSubHeader12DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
@@ -261,7 +270,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							PartBSubHeader16DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06BSubHeader17":
-							PartBSubHeader17DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartBSubHeader17DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06BSubHeader18":
 							PartBSubHeader18DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
@@ -282,7 +292,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							PartBSubHeader23DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06BSubHeader24":
-							PartBSubHeader24DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartBSubHeader24DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06BSubHeader25":
 							PartBSubHeader25DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
@@ -316,13 +327,15 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							PartCSubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06CSubHeader2":
-							PartCSubHeader2DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartCSubHeader2DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06CSubHeader3":
 							PartCSubHeader3DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06CSubHeader4":
-							PartCSubHeader4DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartCSubHeader4DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06CSubHeader5":
 							PartCSubHeader5DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
@@ -331,7 +344,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							PartCSubHeader6DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06CSubHeader7":
-							PartCSubHeader7DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartCSubHeader7DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06CSubHeader8":
 							PartCSubHeader8DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
@@ -349,7 +363,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							PartCSubHeader12DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06CSubHeader13":
-							PartCSubHeader13DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartCSubHeader13DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06CSubHeader14":
 							PartCSubHeader14DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
@@ -386,37 +401,43 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							PartDSubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06DSubHeader2":
-							PartDSubHeader2DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartDSubHeader2DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06DSubHeader3":
 							PartDSubHeader3DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06DSubHeader4":
-							PartDSubHeader4DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartDSubHeader4DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06DSubHeader5":
 							PartDSubHeader5DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06DSubHeader6":
-							PartDSubHeader6DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartDSubHeader6DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06DSubHeader7":
 							PartDSubHeader7DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06DSubHeader8":
-							PartDSubHeader8DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartDSubHeader8DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06DSubHeader9":
 							PartDSubHeader9DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06DSubHeader10":
-							PartDSubHeader10DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartDSubHeader10DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06DSubHeader11":
 							PartDSubHeader11DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06DSubHeader12":
-							PartDSubHeader12DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartDSubHeader12DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06DSubHeader13":
 							PartDSubHeader13DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
@@ -425,7 +446,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							PartDSubHeader14DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 						case "CP06DSubHeader15":
-							PartDSubHeader15DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							PartDSubHeader15DefaultValue = Decimal.Parse((childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value ?? "0").Replace(CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, String.Empty),
+								NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 							break;
 						case "CP06DSubHeader16":
 							PartDSubHeader16DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;

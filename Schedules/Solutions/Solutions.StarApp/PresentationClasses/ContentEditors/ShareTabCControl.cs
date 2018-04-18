@@ -26,7 +26,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			comboBoxEditTabCCombo4.EnableSelectAll();
 			comboBoxEditTabCCombo5.EnableSelectAll();
 			comboBoxEditTabCCombo6.EnableSelectAll();
-			textEditTabCSubheader1.EnableSelectAll();
+			spinEditTabCSubheader1.EnableSelectAll();
 			textEditTabCSubheader2.EnableSelectAll();
 			textEditTabCSubheader4.EnableSelectAll();
 			memoEditTabCSubheader3.EnableSelectAll();
@@ -89,7 +89,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			comboBoxEditTabCCombo5.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabC.Combo5 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartCCombo5Items.FirstOrDefault(item => item.IsDefault);
 
-			textEditTabCSubheader1.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabC.Subheader1 ??
+			spinEditTabCSubheader1.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabC.Subheader1 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartCSubHeader1DefaultValue;
 			textEditTabCSubheader2.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabC.Subheader2 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartCSubHeader2DefaultValue;
@@ -146,8 +146,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				comboBoxEditTabCCombo6.EditValue as ListDataItem ?? (comboBoxEditTabCCombo6.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditTabCCombo6.EditValue } : null) :
 				null;
 
-			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabC.Subheader1 = textEditTabCSubheader1.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartCSubHeader1DefaultValue ?
-				textEditTabCSubheader1.EditValue as String :
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabC.Subheader1 = (decimal?)spinEditTabCSubheader1.EditValue != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartCSubHeader1DefaultValue ?
+				(decimal?)spinEditTabCSubheader1.EditValue :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabC.Subheader2 = textEditTabCSubheader2.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartCSubHeader2DefaultValue ?
 				textEditTabCSubheader2.EditValue as String :
@@ -222,8 +222,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			var sourceValue = 0.0;
 			try
 			{
-				sourceValue = Double.Parse((textEditTabCSubheader1.EditValue as String)?.Trim() ?? "0",
-								  NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands) *
+				sourceValue = (double)spinEditTabCSubheader1.Value *
 							  (multiplierText.StartsWith("mi", StringComparison.InvariantCultureIgnoreCase)
 								  ? 1000000
 								  : (multiplierText.StartsWith("bi", StringComparison.InvariantCultureIgnoreCase)
@@ -259,13 +258,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			var formula1Value = sourceValue * (householdPercent / 100);
 			var formula2Value = formula1Value * (sharePercent / 100);
 
-			simpleLabelItemTabCFormula1.CustomizationFormText = String.Format("{0} {1} x {2} = {3:$#,##0}",
-				(textEditTabCSubheader1.EditValue as String)?.Trim(),
+			simpleLabelItemTabCFormula1.CustomizationFormText = String.Format("{0:$#,##0} {1} x {2} = {3:$#,##0}",
+				spinEditTabCSubheader1.Value,
 				(comboBoxEditTabCCombo1.EditValue as ListDataItem)?.Value?.Trim(),
 				(comboBoxEditTabCCombo4.EditValue as ListDataItem)?.Value?.Trim(),
 				formula1Value);
-			simpleLabelItemTabCFormula1.Text = String.Format("{0} {1} x {2} = <b>{3:$#,##0}</b>",
-				(textEditTabCSubheader1.EditValue as String)?.Trim(),
+			simpleLabelItemTabCFormula1.Text = String.Format("{0:$#,##0} {1} x {2} = <b>{3:$#,##0}</b>",
+				spinEditTabCSubheader1.Value,
 				(comboBoxEditTabCCombo1.EditValue as ListDataItem)?.Value?.Trim(),
 				(comboBoxEditTabCCombo4.EditValue as ListDataItem)?.Value?.Trim(),
 				formula1Value);

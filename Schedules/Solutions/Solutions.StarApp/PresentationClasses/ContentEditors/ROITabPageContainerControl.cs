@@ -32,6 +32,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ContentControl = (TROITabControl)Activator.CreateInstance(typeof(TROITabControl), _roiControl);
 			ContentControl.Dock = DockStyle.Fill;
 			Controls.Add(ContentControl);
+			_roiControl.SlideContainer.AssignCloseActiveEditorsOnOutsideClick(ContentControl);
 			Application.DoEvents();
 		}
 	}

@@ -20,29 +20,29 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			InitializeComponent();
 
 			textEditTabBSubheader1.EnableSelectAll();
-			textEditTabBSubheader2.EnableSelectAll();
+			spinEditTabBSubheader2.EnableSelectAll();
 			textEditTabBSubheader3.EnableSelectAll();
 			textEditTabBSubheader4.EnableSelectAll();
-			textEditTabBSubheader5.EnableSelectAll();
+			spinEditTabBSubheader5.EnableSelectAll();
 			textEditTabBSubheader6.EnableSelectAll();
 			textEditTabBSubheader7.EnableSelectAll();
-			textEditTabBSubheader8.EnableSelectAll();
+			spinEditTabBSubheader8.EnableSelectAll();
 			textEditTabBSubheader9.EnableSelectAll();
 			textEditTabBSubheader10.EnableSelectAll();
-			textEditTabBSubheader11.EnableSelectAll();
+			spinEditTabBSubheader11.EnableSelectAll();
 			textEditTabBSubheader12.EnableSelectAll();
 			textEditTabBSubheader13.EnableSelectAll();
 			textEditTabBSubheader14.EnableSelectAll();
 			textEditTabBSubheader15.EnableSelectAll();
 			textEditTabBSubheader16.EnableSelectAll();
-			textEditTabBSubheader17.EnableSelectAll();
+			spinEditTabBSubheader17.EnableSelectAll();
 			textEditTabBSubheader18.EnableSelectAll();
 			textEditTabBSubheader19.EnableSelectAll();
 			textEditTabBSubheader20.EnableSelectAll();
 			textEditTabBSubheader21.EnableSelectAll();
 			textEditTabBSubheader22.EnableSelectAll();
 			textEditTabBSubheader23.EnableSelectAll();
-			textEditTabBSubheader24.EnableSelectAll();
+			spinEditTabBSubheader24.EnableSelectAll();
 			textEditTabBSubheader25.EnableSelectAll();
 			Application.DoEvents();
 
@@ -92,25 +92,25 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			textEditTabBSubheader1.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader1 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader1DefaultValue;
-			textEditTabBSubheader2.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader2 ??
+			spinEditTabBSubheader2.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader2 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader2DefaultValue;
 			textEditTabBSubheader3.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader3 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader3DefaultValue;
 			textEditTabBSubheader4.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader4 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader4DefaultValue;
-			textEditTabBSubheader5.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader5 ??
+			spinEditTabBSubheader5.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader5 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader5DefaultValue;
 			textEditTabBSubheader6.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader6 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader6DefaultValue;
 			textEditTabBSubheader7.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader7 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader7DefaultValue;
-			textEditTabBSubheader8.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader8 ??
+			spinEditTabBSubheader8.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader8 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader8DefaultValue;
 			textEditTabBSubheader9.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader9 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader9DefaultValue;
 			textEditTabBSubheader10.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader10 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader10DefaultValue;
-			textEditTabBSubheader11.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader11 ??
+			spinEditTabBSubheader11.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader11 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader11DefaultValue;
 			textEditTabBSubheader12.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader12 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader12DefaultValue;
@@ -122,7 +122,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader15DefaultValue;
 			textEditTabBSubheader16.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader16 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader16DefaultValue;
-			textEditTabBSubheader17.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader17 ??
+			spinEditTabBSubheader17.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader17 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader17DefaultValue;
 			textEditTabBSubheader18.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader18 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader18DefaultValue;
@@ -136,7 +136,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader22DefaultValue;
 			textEditTabBSubheader23.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader23 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader23DefaultValue;
-			textEditTabBSubheader24.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader24 ??
+			spinEditTabBSubheader24.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader24 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader24DefaultValue;
 			textEditTabBSubheader25.EditValue = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader25 ??
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader25DefaultValue;
@@ -179,8 +179,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader1 = textEditTabBSubheader1.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader1DefaultValue ?
 				textEditTabBSubheader1.EditValue as String :
 				null;
-			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader2 = textEditTabBSubheader2.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader2DefaultValue ?
-				textEditTabBSubheader2.EditValue as String :
+			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader2 = (decimal?)spinEditTabBSubheader2.EditValue != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader2DefaultValue ?
+				(decimal?)spinEditTabBSubheader2.EditValue :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader3 = textEditTabBSubheader3.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader3DefaultValue ?
 				textEditTabBSubheader3.EditValue as String :
@@ -188,8 +188,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader4 = textEditTabBSubheader4.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader4DefaultValue ?
 				textEditTabBSubheader4.EditValue as String :
 				null;
-			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader5 = textEditTabBSubheader5.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader5DefaultValue ?
-				textEditTabBSubheader5.EditValue as String :
+			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader5 = (decimal?)spinEditTabBSubheader5.EditValue != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader5DefaultValue ?
+				(decimal?)spinEditTabBSubheader5.EditValue :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader6 = textEditTabBSubheader6.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader6DefaultValue ?
 				textEditTabBSubheader6.EditValue as String :
@@ -197,8 +197,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader7 = textEditTabBSubheader7.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader7DefaultValue ?
 				textEditTabBSubheader7.EditValue as String :
 				null;
-			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader8 = textEditTabBSubheader8.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader8DefaultValue ?
-				textEditTabBSubheader8.EditValue as String :
+			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader8 = (decimal?)spinEditTabBSubheader8.EditValue != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader8DefaultValue ?
+				(decimal?)spinEditTabBSubheader8.EditValue :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader9 = textEditTabBSubheader9.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader9DefaultValue ?
 				textEditTabBSubheader9.EditValue as String :
@@ -206,8 +206,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader10 = textEditTabBSubheader10.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader10DefaultValue ?
 				textEditTabBSubheader10.EditValue as String :
 				null;
-			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader11 = textEditTabBSubheader11.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader11DefaultValue ?
-				textEditTabBSubheader11.EditValue as String :
+			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader11 = (decimal?)spinEditTabBSubheader11.EditValue != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader11DefaultValue ?
+				(decimal?)spinEditTabBSubheader11.EditValue :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader12 = textEditTabBSubheader12.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader12DefaultValue ?
 				textEditTabBSubheader12.EditValue as String :
@@ -224,8 +224,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader16 = textEditTabBSubheader16.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader16DefaultValue ?
 				textEditTabBSubheader16.EditValue as String :
 				null;
-			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader17 = textEditTabBSubheader17.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader17DefaultValue ?
-				textEditTabBSubheader17.EditValue as String :
+			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader17 = (decimal?)spinEditTabBSubheader17.EditValue != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader17DefaultValue ?
+				(decimal?)spinEditTabBSubheader17.EditValue :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader18 = textEditTabBSubheader18.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader18DefaultValue ?
 				textEditTabBSubheader18.EditValue as String :
@@ -245,8 +245,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader23 = textEditTabBSubheader23.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader23DefaultValue ?
 				textEditTabBSubheader23.EditValue as String :
 				null;
-			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader24 = textEditTabBSubheader24.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader24DefaultValue ?
-				textEditTabBSubheader24.EditValue as String :
+			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader24 = (decimal?)spinEditTabBSubheader24.EditValue != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader24DefaultValue ?
+				(decimal?)spinEditTabBSubheader24.EditValue :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader25 = textEditTabBSubheader25.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader25DefaultValue ?
 				textEditTabBSubheader25.EditValue as String :
@@ -345,65 +345,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			if (!_allowToSave) return;
 
-			var avgValue = 0.0;
-			try
-			{
-				avgValue = Double.Parse((textEditTabBSubheader2.EditValue as String)?.Trim() ?? "0",
-					NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
-			}
-			catch
-			{
-			}
-
-			var highValue = 0.0;
-			try
-			{
-				highValue = Double.Parse((textEditTabBSubheader5.EditValue as String)?.Trim() ?? "0",
-					NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
-			}
-			catch
-			{
-			}
-
-			var callsCount = 0.0;
-			try
-			{
-				callsCount = Double.Parse((textEditTabBSubheader8.EditValue as String)?.Trim() ?? "0",
-					NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
-			}
-			catch
-			{
-			}
-
-			var avgPercent = 0.0;
-			try
-			{
-				avgPercent = Double.Parse((textEditTabBSubheader11.EditValue as String)?.Trim()?.Replace("%", "") ?? "0",
-					NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
-			}
-			catch
-			{
-			}
-
-			var highPercent = 0.0;
-			try
-			{
-				highPercent = Double.Parse((textEditTabBSubheader17.EditValue as String)?.Trim()?.Replace("%", "") ?? "0",
-					NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
-			}
-			catch
-			{
-			}
-
-			var investmentValue = 1.0;
-			try
-			{
-				investmentValue = Double.Parse((textEditTabBSubheader24.EditValue as String)?.Trim() ?? "1",
-					NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
-			}
-			catch
-			{
-			}
+			var avgValue = (double)spinEditTabBSubheader2.Value;
+			var highValue = (double)spinEditTabBSubheader5.Value;
+			var callsCount = (double)spinEditTabBSubheader8.Value;
+			var avgPercent = (double)spinEditTabBSubheader11.Value;
+			var highPercent = (double)spinEditTabBSubheader17.Value;
+			var investmentValue = (double)spinEditTabBSubheader24.Value;
 
 			var avgFormula1Value = Math.Ceiling(callsCount * avgPercent / 100);
 			var avgFormula2Value = avgValue * avgFormula1Value;
@@ -414,7 +361,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			var totalValue = avgFormula2Value + highFormula2Value;
 
-			var formula3Value = Math.Ceiling(totalValue / investmentValue);
+			var formula3Value = investmentValue > 0 ? Math.Ceiling(totalValue / investmentValue) : 0;
 			formula3Value = formula3Value < totalValue ? formula3Value : 1.0;
 
 			simpleLabelItemTabBFormula1.CustomizationFormText = String.Format("{0:#,##0}", avgFormula1Value);
@@ -488,7 +435,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				var itemParts = new List<string>();
 				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader1 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader1DefaultValue);
-				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader2 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader2DefaultValue);
+				itemParts.Add((ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader2 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader2DefaultValue ?? 0).ToString("$#,##0"));
 				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader3 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader3DefaultValue);
 				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
 					textDataItems.Add("CP06BFormulaPhrase1".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
@@ -498,7 +445,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				var itemParts = new List<string>();
 				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader4 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader4DefaultValue);
-				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader5 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader5DefaultValue);
+				itemParts.Add((ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader5 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader5DefaultValue ?? 0).ToString("$#,##0"));
 				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader6 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader6DefaultValue);
 				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
 					textDataItems.Add("CP06BFormulaPhrase2".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
@@ -508,7 +455,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				var itemParts = new List<string>();
 				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader7 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader7DefaultValue);
-				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader8 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader8DefaultValue);
+				itemParts.Add((ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader8 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader8DefaultValue ?? 0).ToString("#,##0"));
 				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader9 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader9DefaultValue);
 				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
 					textDataItems.Add("CP06BFormulaPhrase3".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
@@ -518,7 +465,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				var itemParts = new List<string>();
 				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader10 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader10DefaultValue);
-				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader11 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader11DefaultValue);
+				itemParts.Add((ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader11 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader11DefaultValue ?? 0).ToString("##0'%'"));
 				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader12 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader12DefaultValue);
 				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
 					textDataItems.Add("CP06BFormulaPhrase4".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
@@ -547,7 +494,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				var itemParts = new List<string>();
 				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader16 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader16DefaultValue);
-				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader17 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader17DefaultValue);
+				itemParts.Add((ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader17 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader17DefaultValue ?? 0).ToString("##0'%'"));
 				itemParts.Add(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader18 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader18DefaultValue);
 				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
 					textDataItems.Add("CP06BFormulaPhrase7".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
@@ -589,7 +536,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					textDataItems.Add("CP06BFormulaPhrase11".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));
 
 				if (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader24Toggle)
-					textDataItems.Add("CP06BFormulaPhrase12".ToUpper(), String.Format("{0} Per Month", ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader24 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader24DefaultValue));
+					textDataItems.Add("CP06BFormulaPhrase12".ToUpper(), String.Format("{0:$#,##0} Per Month", (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader24 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader24DefaultValue ?? 0)));
 
 				if (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader25Toggle)
 					textDataItems.Add("CP06BFormulaPhrase13".ToUpper(), String.Format("{0} = {1}", ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader25 ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader25DefaultValue, layoutControlItemTabBSubheader25Value.CustomizationFormText));

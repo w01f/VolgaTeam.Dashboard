@@ -24,9 +24,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			comboBoxEditTabBCombo2.EnableSelectAll();
 			textEditTabBSubheader2.EnableSelectAll();
 			textEditTabBSubheader3.EnableSelectAll();
-			textEditTabBSubheader4.EnableSelectAll();
+			spinEditTabBSubheader4.EnableSelectAll();
 			textEditTabBSubheader5.EnableSelectAll();
-			textEditTabBSubheader6.EnableSelectAll();
+			spinEditTabBSubheader6.EnableSelectAll();
 			textEditTabBSubheader7.EnableSelectAll();
 			textEditTabBSubheader8.EnableSelectAll();
 			Application.DoEvents();
@@ -84,11 +84,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader2DefaultValue;
 			textEditTabBSubheader3.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader3 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader3DefaultValue;
-			textEditTabBSubheader4.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader4 ??
+			spinEditTabBSubheader4.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader4 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader4DefaultValue;
 			textEditTabBSubheader5.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader5 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader5DefaultValue;
-			textEditTabBSubheader6.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader6 ??
+			spinEditTabBSubheader6.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader6 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader6DefaultValue;
 			textEditTabBSubheader7.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader7 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader7DefaultValue;
@@ -139,14 +139,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader3 = textEditTabBSubheader3.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader3DefaultValue ?
 				textEditTabBSubheader3.EditValue as String :
 				null;
-			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader4 = textEditTabBSubheader4.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader4DefaultValue ?
-				textEditTabBSubheader4.EditValue as String :
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader4 = (decimal?)spinEditTabBSubheader4.EditValue != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader4DefaultValue ?
+				(decimal?)spinEditTabBSubheader4.EditValue :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader5 = textEditTabBSubheader5.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader5DefaultValue ?
 				textEditTabBSubheader5.EditValue as String :
 				null;
-			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader6 = textEditTabBSubheader6.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader6DefaultValue ?
-				textEditTabBSubheader6.EditValue as String :
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader6 = (decimal?)spinEditTabBSubheader6.EditValue != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader6DefaultValue ?
+				(decimal?)spinEditTabBSubheader6.EditValue :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader7 = textEditTabBSubheader7.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader7DefaultValue ?
 				textEditTabBSubheader7.EditValue as String :
@@ -223,25 +223,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 			}
 
-			var percent = 0.0;
-			try
-			{
-				percent = Double.Parse((textEditTabBSubheader4.EditValue as String)?.Trim()?.Replace("%", "") ?? "0",
-					NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
-			}
-			catch
-			{
-			}
-
-			var costValue = 0.0;
-			try
-			{
-				costValue = Double.Parse((textEditTabBSubheader6.EditValue as String)?.Trim() ?? "0",
-					NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
-			}
-			catch
-			{
-			}
+			var percent = (double)spinEditTabBSubheader4.Value;
+			var costValue = (double)spinEditTabBSubheader6.Value;
 
 			var sharepointFactor = (comboBoxEditTabBCombo2.EditValue as ListDataItem)?.Value ?? String.Empty;
 

@@ -25,7 +25,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			comboBoxEditTabDCombo3.EnableSelectAll();
 			textEditTabDSubheader2.EnableSelectAll();
 			textEditTabDSubheader3.EnableSelectAll();
-			textEditTabDSubheader4.EnableSelectAll();
+			spinEditTabDSubheader4.EnableSelectAll();
 			textEditTabDSubheader5.EnableSelectAll();
 			textEditTabDSubheader6.EnableSelectAll();
 			textEditTabDSubheader7.EnableSelectAll();
@@ -89,7 +89,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartDSubHeader2DefaultValue;
 			textEditTabDSubheader3.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabD.Subheader3 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartDSubHeader3DefaultValue;
-			textEditTabDSubheader4.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabD.Subheader4 ??
+			spinEditTabDSubheader4.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabD.Subheader4 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartDSubHeader4DefaultValue;
 			textEditTabDSubheader5.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabD.Subheader5 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartDSubHeader5DefaultValue;
@@ -150,8 +150,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabD.Subheader3 = textEditTabDSubheader3.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartDSubHeader3DefaultValue ?
 				textEditTabDSubheader3.EditValue as String :
 				null;
-			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabD.Subheader4 = textEditTabDSubheader4.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartDSubHeader4DefaultValue ?
-				textEditTabDSubheader4.EditValue as String :
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabD.Subheader4 = (decimal?)spinEditTabDSubheader4.EditValue != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartDSubHeader4DefaultValue ?
+				(decimal?)spinEditTabDSubheader4.EditValue :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabD.Subheader5 = textEditTabDSubheader5.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartDSubHeader5DefaultValue ?
 				textEditTabDSubheader5.EditValue as String :
@@ -237,15 +237,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 			}
 
-			var costValue = 0.0;
-			try
-			{
-				costValue = Double.Parse((textEditTabDSubheader4.EditValue as String)?.Trim() ?? "0",
-					NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
-			}
-			catch
-			{
-			}
+			var costValue = (double)spinEditTabDSubheader4.Value;
 
 			var householdPercent = 0.0;
 			try
@@ -275,8 +267,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			simpleLabelItemTabDFormula1.CustomizationFormText = String.Format("{0:#,##0}", formula1Value);
 			simpleLabelItemTabDFormula1.Text = String.Format("<b>{0:#,##0}</b>", formula1Value);
-			simpleLabelItemTabDFormula2.CustomizationFormText = String.Format("{0}", (textEditTabDSubheader4.EditValue as String)?.Trim());
-			simpleLabelItemTabDFormula2.Text = String.Format("<b>{0}</b>", (textEditTabDSubheader4.EditValue as String)?.Trim());
+			simpleLabelItemTabDFormula2.CustomizationFormText = String.Format("{0:$#,##0}", spinEditTabDSubheader4.Value);
+			simpleLabelItemTabDFormula2.Text = String.Format("<b>{0:$#,##0}</b>", spinEditTabDSubheader4.Value);
 			simpleLabelItemTabDFormula3.CustomizationFormText = String.Format("{0:$#,##0}", formula2Value);
 			simpleLabelItemTabDFormula3.Text = String.Format("<b>{0:$#,##0}</b>", formula2Value);
 			simpleLabelItemTabDFormula5.CustomizationFormText = String.Format("{0:$#,##0}", formula3Value);
@@ -346,7 +338,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				var itemParts = new List<string>();
 				itemParts.Add(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabD.Subheader3 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartDSubHeader3DefaultValue);
-				itemParts.Add(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabD.Subheader4 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartDSubHeader4DefaultValue);
+				itemParts.Add((ShareContentContainer.SlideContainer.EditedContent.ShareState.TabD.Subheader4 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartDSubHeader4DefaultValue ?? 0).ToString("$#,##0"));
 				itemParts.Add(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabD.Subheader5 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartDSubHeader5DefaultValue);
 				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
 					textDataItems.Add("CP05DFormulaPhrase2".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));

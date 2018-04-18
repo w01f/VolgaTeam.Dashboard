@@ -11,6 +11,7 @@ using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
 using DevExpress.XtraTab;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
+using DevExpress.XtraEditors;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -121,6 +122,22 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			xtraTabControl.SelectedTabPage = _slides.FirstOrDefault();
 			OnSelectedSlideChanging(xtraTabControl, new TabPageChangingEventArgs(null, xtraTabControl.SelectedTabPage));
+		}
+
+		public void AssignCloseActiveEditorsOnOutsideClick(Control control)
+		{
+			if (!(control is BaseEdit ||
+			      control is CheckedListBoxControl))
+			{
+				control.Click += CloseActiveEditorsOnOutSideClick;
+				foreach (Control childControl in control.Controls)
+					AssignCloseActiveEditorsOnOutsideClick(childControl);
+			}
+		}
+
+		protected void CloseActiveEditorsOnOutSideClick(object sender, EventArgs e)
+		{
+			xtraTabControl.Focus();
 		}
 		#endregion
 

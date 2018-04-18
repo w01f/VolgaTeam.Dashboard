@@ -30,6 +30,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ContentControl = (TClosersTabControl)Activator.CreateInstance(typeof(TClosersTabControl), _closersControl);
 			ContentControl.Dock = DockStyle.Fill;
 			Controls.Add(ContentControl);
+			_closersControl.SlideContainer.AssignCloseActiveEditorsOnOutsideClick(ContentControl);
 			Application.DoEvents();
 		}
 	}

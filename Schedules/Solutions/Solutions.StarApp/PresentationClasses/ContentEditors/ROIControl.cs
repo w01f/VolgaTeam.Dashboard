@@ -227,6 +227,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				var tabPage = _tabPages
 					.OfType<IROITabPageContainer>()
+					.Where(container => container.ContentControl != null)
 					.Select(container => container.ContentControl)
 					.First(contentControl => contentControl.OutputType == configuration.OutputType);
 				tabPage.GenerateOutput();
@@ -241,6 +242,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				var tabPage = _tabPages
 					.OfType<IROITabPageContainer>()
+					.Where(container => container.ContentControl != null)
 					.Select(container => container.ContentControl)
 					.First(contentControl => contentControl.OutputType == configuration.OutputType);
 				previewGroups.Add(tabPage.GeneratePreview());

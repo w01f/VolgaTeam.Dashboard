@@ -24,7 +24,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			comboBoxEditTabACombo3.EnableSelectAll();
 			comboBoxEditTabACombo4.EnableSelectAll();
 			textEditTabASubheader1.EnableSelectAll();
-			textEditTabASubheader2.EnableSelectAll();
+			spinEditTabASubheader2.EnableSelectAll();
 			textEditTabASubheader3.EnableSelectAll();
 			textEditTabASubheader4.EnableSelectAll();
 			textEditTabASubheader5.EnableSelectAll();
@@ -88,7 +88,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			textEditTabASubheader1.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabA.Subheader1 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartASubHeader1DefaultValue;
-			textEditTabASubheader2.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabA.Subheader2 ??
+			spinEditTabASubheader2.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabA.Subheader2 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartASubHeader2DefaultValue;
 			textEditTabASubheader3.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabA.Subheader3 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartASubHeader3DefaultValue;
@@ -147,8 +147,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabA.Subheader1 = textEditTabASubheader1.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartASubHeader1DefaultValue ?
 				textEditTabASubheader1.EditValue as String :
 				null;
-			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabA.Subheader2 = textEditTabASubheader2.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartASubHeader2DefaultValue ?
-				textEditTabASubheader2.EditValue as String :
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabA.Subheader2 = (decimal?)spinEditTabASubheader2.EditValue != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartASubHeader2DefaultValue ?
+				(decimal?)spinEditTabASubheader2.EditValue :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabA.Subheader3 = textEditTabASubheader3.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartASubHeader3DefaultValue ?
 				textEditTabASubheader3.EditValue as String :
@@ -236,7 +236,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			try
 			{
 				sourceValue =
-					Double.Parse((textEditTabASubheader2.EditValue as String)?.Trim()?.Replace("$", String.Empty) ?? "0") *
+					(double)spinEditTabASubheader2.Value *
 					(multiplierText.StartsWith("mi", StringComparison.InvariantCultureIgnoreCase)
 						? 1000000
 						: (multiplierText.StartsWith("bi", StringComparison.InvariantCultureIgnoreCase)
@@ -328,7 +328,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				var itemParts = new List<string>();
 				itemParts.Add(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabA.Subheader1 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartASubHeader1DefaultValue);
-				itemParts.Add(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabA.Subheader2 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartASubHeader2DefaultValue);
+				itemParts.Add((ShareContentContainer.SlideContainer.EditedContent.ShareState.TabA.Subheader2 ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartASubHeader2DefaultValue)?.ToString("$#,##0"));
 				itemParts.Add(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabA.Combo1?.Value ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartACombo1Items.FirstOrDefault(h => h.IsDefault)?.Value);
 				if (itemParts.Any(item => !String.IsNullOrWhiteSpace(item)))
 					textDataItems.Add("CP05AFormulaPhrase1".ToUpper(), String.Join(" ", itemParts.Where(item => !String.IsNullOrWhiteSpace(item)).ToArray()));

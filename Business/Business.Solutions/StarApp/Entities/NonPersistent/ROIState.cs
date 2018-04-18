@@ -33,19 +33,19 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			public bool Subheader14Toggle { get; set; }
 			public bool Subheader15Toggle { get; set; }
 			public string Subheader1 { get; set; }
-			public string Subheader2 { get; set; }
+			public decimal? Subheader2 { get; set; }
 			public string Subheader3 { get; set; }
 			public string Subheader4 { get; set; }
-			public string Subheader5 { get; set; }
+			public decimal? Subheader5 { get; set; }
 			public string Subheader6 { get; set; }
 			public string Subheader7 { get; set; }
-			public string Subheader8 { get; set; }
+			public decimal? Subheader8 { get; set; }
 			public string Subheader9 { get; set; }
 			public string Subheader10 { get; set; }
 			public string Subheader11 { get; set; }
 			public string Subheader12 { get; set; }
 			public string Subheader13 { get; set; }
-			public string Subheader14 { get; set; }
+			public decimal? Subheader14 { get; set; }
 			public string Subheader15 { get; set; }
 
 			public TabAState()
@@ -81,29 +81,29 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			public bool Subheader24Toggle { get; set; }
 			public bool Subheader25Toggle { get; set; }
 			public string Subheader1 { get; set; }
-			public string Subheader2 { get; set; }
+			public decimal? Subheader2 { get; set; }
 			public string Subheader3 { get; set; }
 			public string Subheader4 { get; set; }
-			public string Subheader5 { get; set; }
+			public decimal? Subheader5 { get; set; }
 			public string Subheader6 { get; set; }
 			public string Subheader7 { get; set; }
-			public string Subheader8 { get; set; }
+			public decimal? Subheader8 { get; set; }
 			public string Subheader9 { get; set; }
 			public string Subheader10 { get; set; }
-			public string Subheader11 { get; set; }
+			public decimal? Subheader11 { get; set; }
 			public string Subheader12 { get; set; }
 			public string Subheader13 { get; set; }
 			public string Subheader14 { get; set; }
 			public string Subheader15 { get; set; }
 			public string Subheader16 { get; set; }
-			public string Subheader17 { get; set; }
+			public decimal? Subheader17 { get; set; }
 			public string Subheader18 { get; set; }
 			public string Subheader19 { get; set; }
 			public string Subheader20 { get; set; }
 			public string Subheader21 { get; set; }
 			public string Subheader22 { get; set; }
 			public string Subheader23 { get; set; }
-			public string Subheader24 { get; set; }
+			public decimal? Subheader24 { get; set; }
 			public string Subheader25 { get; set; }
 
 			public TabBState()
@@ -149,18 +149,18 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			public bool Formula2Toggle { get; set; }
 			public bool Formula3Toggle { get; set; }
 			public string Subheader1 { get; set; }
-			public string Subheader2 { get; set; }
+			public decimal? Subheader2 { get; set; }
 			public string Subheader3 { get; set; }
-			public string Subheader4 { get; set; }
+			public decimal? Subheader4 { get; set; }
 			public string Subheader5 { get; set; }
 			public string Subheader6 { get; set; }
-			public string Subheader7 { get; set; }
+			public decimal? Subheader7 { get; set; }
 			public string Subheader8 { get; set; }
 			public string Subheader9 { get; set; }
 			public string Subheader10 { get; set; }
 			public string Subheader11 { get; set; }
 			public string Subheader12 { get; set; }
-			public string Subheader13 { get; set; }
+			public decimal? Subheader13 { get; set; }
 			public string Subheader14 { get; set; }
 			public string Subheader15 { get; set; }
 
@@ -214,20 +214,20 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			public bool Formula2Toggle { get; set; }
 			public bool Formula3Toggle { get; set; }
 			public string Subheader1 { get; set; }
-			public string Subheader2 { get; set; }
+			public decimal? Subheader2 { get; set; }
 			public string Subheader3 { get; set; }
-			public string Subheader4 { get; set; }
+			public decimal? Subheader4 { get; set; }
 			public string Subheader5 { get; set; }
-			public string Subheader6 { get; set; }
+			public decimal? Subheader6 { get; set; }
 			public string Subheader7 { get; set; }
-			public string Subheader8 { get; set; }
+			public decimal? Subheader8 { get; set; }
 			public string Subheader9 { get; set; }
-			public string Subheader10 { get; set; }
+			public decimal? Subheader10 { get; set; }
 			public string Subheader11 { get; set; }
-			public string Subheader12 { get; set; }
+			public decimal? Subheader12 { get; set; }
 			public string Subheader13 { get; set; }
 			public string Subheader14 { get; set; }
-			public string Subheader15 { get; set; }
+			public decimal? Subheader15 { get; set; }
 			public string Subheader16 { get; set; }
 			public string Subheader17 { get; set; }
 

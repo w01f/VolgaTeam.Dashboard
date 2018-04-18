@@ -588,7 +588,7 @@ namespace Asa.Media.Single
 					Logo = BusinessObjects.Instance.ImageResourcesManager.FloaterLogo ?? Resources.RibbonLogo
 				});
 		}
-
+		
 		#region Expand/Collapse Processing
 		private bool? _lastRibbonExpanded = true;
 		private bool _allowRibbonStateChangeProcessing = true;

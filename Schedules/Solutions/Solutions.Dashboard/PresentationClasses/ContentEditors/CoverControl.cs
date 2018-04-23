@@ -267,7 +267,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 				new DashboardSlideInfo
 				{
 					SlideContainer = this,
-					SlideName = ControlName
+					SlideName = ControlName,
+					IsCurrent = SlideContainer.SelectedSlideType == SlideType
 				}
 			};
 		}

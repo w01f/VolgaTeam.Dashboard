@@ -215,23 +215,21 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			var outputConfigurations = new List<OutputConfiguration>();
 
-			foreach (var shareControl in _tabPages
-				.OfType<IShareTabPageContainer>()
-				.Where(container => container.ContentControl != null)
-				.Select(container => container.ContentControl)
-				.Where(contentControl => contentControl.ReadyForOutput)
-				.ToList())
+			foreach (var tabPage in _tabPages)
 			{
+				var shareControl = ((IShareTabPageContainer)tabPage).ContentControl;
+				if (shareControl == null || !shareControl.ReadyForOutput) continue;
+
 				outputConfigurations.Add(new OutputConfiguration(
 					shareControl.OutputType,
 					shareControl.OutputName,
-					shareControl.SlidesCount));
+					shareControl.SlidesCount,
+					SlideContainer.ActiveSlideContent == this && xtraTabControl.SelectedTabPage == tabPage));
 			}
 
 			return new OutputGroup(this)
 			{
 				Name = OutputName,
-				IsCurrent = SlideContainer.ActiveSlideContent == this,
 				Configurations = outputConfigurations.ToArray()
 			};
 		}

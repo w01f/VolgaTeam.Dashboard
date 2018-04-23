@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -28,6 +29,8 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		public MediaStarAppContainer(BaseSolutionInfo solutionInfo) : base(solutionInfo) { }
 
 		public override IStarAppSettingsContainer SettingsContainer => MediaMetaData.Instance.SettingsManager;
+		public override Form MainForm => Controller.Instance.FormMain;
+		public override Color? AccentColor => BusinessObjects.Instance.FormStyleManager.Style.AccentColor;
 
 		public override void LoadData()
 		{

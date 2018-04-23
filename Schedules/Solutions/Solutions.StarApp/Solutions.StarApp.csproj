@@ -40,6 +40,7 @@
     <Reference Include="DevExpress.XtraBars.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -315,6 +316,9 @@
     <Compile Include="PresentationClasses\Output\OutputDataPackage.cs" />
     <Compile Include="PresentationClasses\Output\OutputGroup.cs" />
     <Compile Include="PresentationClasses\Output\OutputImageInfo.cs" />
+    <Compile Include="PresentationClasses\Output\OutputItemsTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\Output\StarAppOutputType.cs" />
     <Compile Include="PresentationClasses\Output\StarSlideOuputData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

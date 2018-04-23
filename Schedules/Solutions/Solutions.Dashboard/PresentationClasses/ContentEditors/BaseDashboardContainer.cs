@@ -7,12 +7,12 @@ using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Dashboard.Configuration;
 using Asa.Business.Solutions.Dashboard.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
 using Asa.Solutions.Dashboard.PresentationClasses.Output;
 using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
 
 namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
@@ -27,6 +27,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public DashboardContent EditedContent { get; protected set; }
 		public abstract IDashboardSettingsContainer SettingsContainer { get; }
 		public override SlideType SelectedSlideType => ActiveSlide.SlideType;
+		public abstract Form MainForm { get; }
 		public abstract Color? AccentColor { get; }
 		public override string HelpKey
 		{
@@ -132,25 +133,39 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public IList<DashboardSlideInfo> GetOutputSlides()
 		{
 			var selectedSlideInfos = new List<DashboardSlideInfo>();
-			using (var form = new FormSelectOutputItems())
+			var availableSlideInfos = _slides
+				.Where(s => s.ReadyForOutput).OfType<IDashboardSlide>()
+				.SelectMany(slide => slide.GetSlideInfo())
+				.ToList();
+
+			if (availableSlideInfos.Any())
 			{
-				form.Text = "Slide Output Options";
-				foreach (var slideInfo in _slides
-					.Where(s => s.ReadyForOutput).OfType<IDashboardSlide>()
-					.SelectMany(slide => slide.GetSlideInfo())) 
+				FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+				FormProgress.ShowProgress();
+				var previewGroup = availableSlideInfos
+									   .Where(slideInfo => slideInfo.IsCurrent)
+									   .Select(slideInfo => slideInfo.SlideContainer.GeneratePreview(slideInfo))
+									   .FirstOrDefault() ?? availableSlideInfos.First().SlideContainer.GeneratePreview(availableSlideInfos.First());
+				Utilities.ActivateForm(MainForm.Handle, MainForm.WindowState == FormWindowState.Maximized, false);
+				FormProgress.CloseProgress();
+
+				using (var form = new FormConfigureOutput(availableSlideInfos, previewGroup))
 				{
-					var item = new CheckedListBoxItem(slideInfo, slideInfo.SlideName, ActiveSlide.SlideType == SlideType.Cleanslate || slideInfo.SlideContainer == ActiveSlide ? CheckState.Checked : CheckState.Unchecked);
-					form.checkedListBoxControlOutputItems.Items.Add(item);
-					if (slideInfo.SlideContainer == ActiveSlide)
-						form.buttonXSelectCurrent.Tag = item;
+					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditClearAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditClearAll.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedSlideInfos.AddRange(form.GetSelectedSlideItems());
 				}
-				if (form.ShowDialog() == DialogResult.OK)
-					selectedSlideInfos.AddRange(form.checkedListBoxControlOutputItems.Items.
-						OfType<CheckedListBoxItem>().
-						Where(ci => ci.CheckState == CheckState.Checked).
-						Select(ci => ci.Value).
-						OfType<DashboardSlideInfo>());
 			}
+
 			return selectedSlideInfos;
 		}
 		#endregion

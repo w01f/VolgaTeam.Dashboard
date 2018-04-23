@@ -1,4 +1,4 @@
-﻿namespace Asa.Solutions.StarApp.PresentationClasses.Output
+﻿namespace Asa.Solutions.Dashboard.PresentationClasses.Output
 {
     partial class FormConfigureOutput
     {
@@ -35,7 +35,7 @@
 			this.buttonXClose = new DevComponents.DotNetBar.ButtonX();
 			this.pictureEditCurrentSlidePreview = new DevExpress.XtraEditors.PictureEdit();
 			this.hyperLinkEditSelectAll = new DevExpress.XtraEditors.HyperLinkEdit();
-			this.treeList = new Asa.Solutions.StarApp.PresentationClasses.Output.OutputItemsTree();
+			this.treeList = new DevExpress.XtraTreeList.TreeList();
 			this.treeListColumnName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
 			this.hyperLinkEditClearAll = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -46,9 +46,7 @@
 			this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.tabbedControlGroup = new DevExpress.XtraLayout.TabbedControlGroup();
 			this.layoutControlGroupSingleSlide = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemAddSingleSlide = new DevExpress.XtraLayout.LayoutControlItem();
-			this.simpleLabelItemCurrentSlideGroupName = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.simpleLabelItemCurrentSlideName = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -75,9 +73,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSingleSlide)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemAddSingleSlide)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemCurrentSlideGroupName)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemCurrentSlideName)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
@@ -144,7 +140,7 @@
 			// 
 			this.hyperLinkEditAddSingleSlide.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.hyperLinkEditAddSingleSlide.EditValue = "Add this slide to my presentation";
-			this.hyperLinkEditAddSingleSlide.Location = new System.Drawing.Point(24, 516);
+			this.hyperLinkEditAddSingleSlide.Location = new System.Drawing.Point(24, 513);
 			this.hyperLinkEditAddSingleSlide.Name = "hyperLinkEditAddSingleSlide";
 			this.hyperLinkEditAddSingleSlide.Properties.AllowFocused = false;
 			this.hyperLinkEditAddSingleSlide.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
@@ -156,7 +152,7 @@
 			this.hyperLinkEditAddSingleSlide.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.hyperLinkEditAddSingleSlide.Properties.AutoHeight = false;
 			this.hyperLinkEditAddSingleSlide.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.hyperLinkEditAddSingleSlide.Size = new System.Drawing.Size(636, 20);
+			this.hyperLinkEditAddSingleSlide.Size = new System.Drawing.Size(636, 23);
 			this.hyperLinkEditAddSingleSlide.StyleController = this.layoutControl;
 			this.hyperLinkEditAddSingleSlide.TabIndex = 0;
 			this.hyperLinkEditAddSingleSlide.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.OnAddSingleSlideClick);
@@ -171,7 +167,7 @@
 			this.buttonXContinue.Name = "buttonXContinue";
 			this.buttonXContinue.Size = new System.Drawing.Size(116, 36);
 			this.buttonXContinue.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXContinue.TabIndex = 4;
+			this.buttonXContinue.TabIndex = 2;
 			this.buttonXContinue.Text = "Continue";
 			this.buttonXContinue.TextColor = System.Drawing.Color.Black;
 			// 
@@ -185,14 +181,14 @@
 			this.buttonXClose.Name = "buttonXClose";
 			this.buttonXClose.Size = new System.Drawing.Size(116, 36);
 			this.buttonXClose.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXClose.TabIndex = 5;
+			this.buttonXClose.TabIndex = 3;
 			this.buttonXClose.Text = "Cancel";
 			this.buttonXClose.TextColor = System.Drawing.Color.Black;
 			// 
 			// pictureEditCurrentSlidePreview
 			// 
 			this.pictureEditCurrentSlidePreview.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditCurrentSlidePreview.Location = new System.Drawing.Point(24, 123);
+			this.pictureEditCurrentSlidePreview.Location = new System.Drawing.Point(24, 91);
 			this.pictureEditCurrentSlidePreview.Name = "pictureEditCurrentSlidePreview";
 			this.pictureEditCurrentSlidePreview.Properties.AllowFocused = false;
 			this.pictureEditCurrentSlidePreview.Properties.Appearance.BackColor = System.Drawing.Color.White;
@@ -203,7 +199,7 @@
 			this.pictureEditCurrentSlidePreview.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditCurrentSlidePreview.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
 			this.pictureEditCurrentSlidePreview.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditCurrentSlidePreview.Size = new System.Drawing.Size(636, 369);
+			this.pictureEditCurrentSlidePreview.Size = new System.Drawing.Size(636, 398);
 			this.pictureEditCurrentSlidePreview.StyleController = this.layoutControl;
 			this.pictureEditCurrentSlidePreview.TabIndex = 1;
 			// 
@@ -257,12 +253,11 @@
 			this.treeList.OptionsView.ShowHorzLines = false;
 			this.treeList.OptionsView.ShowIndicator = false;
 			this.treeList.OptionsView.ShowVertLines = false;
-			this.treeList.RowHeight = 25;
+			this.treeList.RowHeight = 40;
 			this.treeList.ShowButtonMode = DevExpress.XtraTreeList.ShowButtonModeEnum.ShowForFocusedRow;
 			this.treeList.Size = new System.Drawing.Size(636, 453);
-			this.treeList.TabIndex = 0;
+			this.treeList.TabIndex = 1;
 			this.treeList.AfterCheckNode += new DevExpress.XtraTreeList.NodeEventHandler(this.OnAfterCheckNode);
-			this.treeList.CustomDrawNodeCell += new DevExpress.XtraTreeList.CustomDrawNodeCellEventHandler(this.OnCustomDrawNodeCell);
 			// 
 			// treeListColumnName
 			// 
@@ -426,9 +421,7 @@
 			this.layoutControlGroupSingleSlide.AppearanceTabPage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControlGroupSingleSlide.AppearanceTabPage.PageClient.Options.UseFont = true;
 			this.layoutControlGroupSingleSlide.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItem2,
             this.layoutControlItemAddSingleSlide,
-            this.simpleLabelItemCurrentSlideGroupName,
             this.emptySpaceItem3,
             this.simpleLabelItemCurrentSlideName,
             this.emptySpaceItem8,
@@ -438,45 +431,23 @@
 			this.layoutControlGroupSingleSlide.Size = new System.Drawing.Size(640, 491);
 			this.layoutControlGroupSingleSlide.Text = "Single Slide";
 			// 
-			// emptySpaceItem2
-			// 
-			this.emptySpaceItem2.AllowHotTrack = false;
-			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 22);
-			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 10);
-			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem2.Name = "emptySpaceItem2";
-			this.emptySpaceItem2.Size = new System.Drawing.Size(640, 10);
-			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-			// 
 			// layoutControlItemAddSingleSlide
 			// 
 			this.layoutControlItemAddSingleSlide.Control = this.hyperLinkEditAddSingleSlide;
 			this.layoutControlItemAddSingleSlide.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemAddSingleSlide.FillControlToClientArea = false;
-			this.layoutControlItemAddSingleSlide.Location = new System.Drawing.Point(0, 467);
+			this.layoutControlItemAddSingleSlide.Location = new System.Drawing.Point(0, 464);
 			this.layoutControlItemAddSingleSlide.Name = "layoutControlItemAddSingleSlide";
-			this.layoutControlItemAddSingleSlide.Size = new System.Drawing.Size(640, 24);
+			this.layoutControlItemAddSingleSlide.Size = new System.Drawing.Size(640, 27);
 			this.layoutControlItemAddSingleSlide.Text = "Add Single Slide";
 			this.layoutControlItemAddSingleSlide.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemAddSingleSlide.TextVisible = false;
 			this.layoutControlItemAddSingleSlide.TrimClientAreaToControl = false;
 			// 
-			// simpleLabelItemCurrentSlideGroupName
-			// 
-			this.simpleLabelItemCurrentSlideGroupName.AllowHotTrack = false;
-			this.simpleLabelItemCurrentSlideGroupName.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemCurrentSlideGroupName.CustomizationFormText = "Current Slide Group Name";
-			this.simpleLabelItemCurrentSlideGroupName.Location = new System.Drawing.Point(0, 0);
-			this.simpleLabelItemCurrentSlideGroupName.Name = "simpleLabelItemCurrentSlideGroupName";
-			this.simpleLabelItemCurrentSlideGroupName.Size = new System.Drawing.Size(640, 22);
-			this.simpleLabelItemCurrentSlideGroupName.Text = "<size=+2><color=gray>Current Slide Group Name</color></size>";
-			this.simpleLabelItemCurrentSlideGroupName.TextSize = new System.Drawing.Size(184, 18);
-			// 
 			// emptySpaceItem3
 			// 
 			this.emptySpaceItem3.AllowHotTrack = false;
-			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 54);
+			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 22);
 			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(0, 20);
 			this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 20);
 			this.emptySpaceItem3.Name = "emptySpaceItem3";
@@ -489,16 +460,16 @@
 			this.simpleLabelItemCurrentSlideName.AllowHotTrack = false;
 			this.simpleLabelItemCurrentSlideName.AllowHtmlStringInCaption = true;
 			this.simpleLabelItemCurrentSlideName.CustomizationFormText = "Current Slide Name";
-			this.simpleLabelItemCurrentSlideName.Location = new System.Drawing.Point(0, 32);
+			this.simpleLabelItemCurrentSlideName.Location = new System.Drawing.Point(0, 0);
 			this.simpleLabelItemCurrentSlideName.Name = "simpleLabelItemCurrentSlideName";
 			this.simpleLabelItemCurrentSlideName.Size = new System.Drawing.Size(640, 22);
 			this.simpleLabelItemCurrentSlideName.Text = "<size=+2>Current Slide Name</size>";
-			this.simpleLabelItemCurrentSlideName.TextSize = new System.Drawing.Size(184, 18);
+			this.simpleLabelItemCurrentSlideName.TextSize = new System.Drawing.Size(137, 18);
 			// 
 			// emptySpaceItem8
 			// 
 			this.emptySpaceItem8.AllowHotTrack = false;
-			this.emptySpaceItem8.Location = new System.Drawing.Point(0, 447);
+			this.emptySpaceItem8.Location = new System.Drawing.Point(0, 444);
 			this.emptySpaceItem8.MaxSize = new System.Drawing.Size(0, 20);
 			this.emptySpaceItem8.MinSize = new System.Drawing.Size(10, 20);
 			this.emptySpaceItem8.Name = "emptySpaceItem8";
@@ -511,9 +482,9 @@
 			this.layoutControlItemCurrentSlidePreview.Control = this.pictureEditCurrentSlidePreview;
 			this.layoutControlItemCurrentSlidePreview.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemCurrentSlidePreview.FillControlToClientArea = false;
-			this.layoutControlItemCurrentSlidePreview.Location = new System.Drawing.Point(0, 74);
+			this.layoutControlItemCurrentSlidePreview.Location = new System.Drawing.Point(0, 42);
 			this.layoutControlItemCurrentSlidePreview.Name = "layoutControlItemCurrentSlidePreview";
-			this.layoutControlItemCurrentSlidePreview.Size = new System.Drawing.Size(640, 373);
+			this.layoutControlItemCurrentSlidePreview.Size = new System.Drawing.Size(640, 402);
 			this.layoutControlItemCurrentSlidePreview.Text = "Current Slide Preview";
 			this.layoutControlItemCurrentSlidePreview.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemCurrentSlidePreview.TextVisible = false;
@@ -602,7 +573,7 @@
 			this.simpleLabelItemSlideCount.Name = "simpleLabelItemSlideCount";
 			this.simpleLabelItemSlideCount.Size = new System.Drawing.Size(447, 24);
 			this.simpleLabelItemSlideCount.Text = "Estimated Slides";
-			this.simpleLabelItemSlideCount.TextSize = new System.Drawing.Size(184, 16);
+			this.simpleLabelItemSlideCount.TextSize = new System.Drawing.Size(137, 16);
 			// 
 			// FormConfigureOutput
 			// 
@@ -620,7 +591,6 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Slide Output Options";
-			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
@@ -637,9 +607,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSingleSlide)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemAddSingleSlide)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemCurrentSlideGroupName)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemCurrentSlideName)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
@@ -658,7 +626,7 @@
 		private DevExpress.XtraEditors.StyleController styleController;
 		private DevExpress.XtraLayout.LayoutControl layoutControl;
 	    private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnName;
-		private OutputItemsTree treeList;
+		private DevExpress.XtraTreeList.TreeList treeList;
 		public DevComponents.DotNetBar.ButtonX buttonXContinue;
 		private DevComponents.DotNetBar.ButtonX buttonXClose;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;
@@ -670,9 +638,7 @@
 	    public DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditAddSingleSlide;
 		private DevExpress.XtraLayout.TabbedControlGroup tabbedControlGroup;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupSingleSlide;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemAddSingleSlide;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemCurrentSlideGroupName;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupAllSlides;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTreeView;

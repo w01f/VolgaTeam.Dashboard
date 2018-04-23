@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Business.Solutions.StarApp.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
@@ -25,6 +27,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public abstract IStarAppSettingsContainer SettingsContainer { get; }
 		public StarAppControl ActiveSlideContent => (xtraTabControl.SelectedTabPage as IStarAppTabPageContainer)?.ContentControl;
 		public override SlideType SelectedSlideType => ActiveSlideContent?.SlideType ?? SlideType.Cleanslate;
+		public abstract Form MainForm { get; }
+		public abstract Color? AccentColor { get; }
 		public override string HelpKey
 		{
 			get
@@ -127,7 +131,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public void AssignCloseActiveEditorsOnOutsideClick(Control control)
 		{
 			if (!(control is BaseEdit ||
-			      control is CheckedListBoxControl))
+				  control is CheckedListBoxControl))
 			{
 				control.Click += CloseActiveEditorsOnOutSideClick;
 				foreach (Control childControl in control.Controls)
@@ -182,8 +186,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			if (availableOutputGroups.Any())
 			{
-				using (var form = new FormConfigureOutput(availableOutputGroups))
+				FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+				FormProgress.ShowProgress();
+				var previewGroup = availableOutputGroups
+					.Where(group => group.Configurations.Any(configuration => configuration.IsCurrent))
+					.SelectMany(g => g.OutputContainer.GeneratePreview(g.Configurations.Where(configuration => configuration.IsCurrent).ToList()))
+					.First();
+				Utilities.ActivateForm(MainForm.Handle, MainForm.WindowState == FormWindowState.Maximized, false);
+				FormProgress.CloseProgress();
+
+				using (var form = new FormConfigureOutput(availableOutputGroups, previewGroup))
 				{
+					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditClearAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditClearAll.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
 
 					if (form.ShowDialog() == DialogResult.OK)
 						outputGroups.AddRange(availableOutputGroups);

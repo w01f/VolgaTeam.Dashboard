@@ -181,22 +181,21 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			var outputConfigurations = new List<OutputConfiguration>();
 
-			foreach (var closersControl in _tabPages
-				.OfType<IClosersTabPageContainer>()
-				.Where(container => container.ContentControl != null)
-				.Select(container => container.ContentControl)
-				.ToList())
+			foreach (var tabPage in _tabPages)
 			{
+				var closersControl = ((IClosersTabPageContainer)tabPage).ContentControl;
+				if (closersControl == null) continue;
+
 				outputConfigurations.Add(new OutputConfiguration(
 					closersControl.OutputType,
 					closersControl.OutputName,
-					closersControl.SlidesCount));
+					closersControl.SlidesCount,
+					SlideContainer.ActiveSlideContent == this && xtraTabControl.SelectedTabPage == tabPage));
 			}
 
 			return new OutputGroup(this)
 			{
 				Name = OutputName,
-				IsCurrent = SlideContainer.ActiveSlideContent == this,
 				Configurations = outputConfigurations.ToArray()
 			};
 		}

@@ -21,7 +21,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			return new OutputGroup(this)
 			{
 				Name = OutputName,
-				IsCurrent = SlideContainer.ActiveSlideContent == this,
 				Configurations = _outputProcessors
 					.Where(processor => processor.ReadyForOutput)
 					.SelectMany(processor => processor.GetOutputConfigurations())
@@ -89,7 +88,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			public override IList<OutputConfiguration> GetOutputConfigurations()
 			{
-				return new[] { new OutputConfiguration(StarAppOutputType.CNATabA, OutputName, 1) };
+				return new[] { new OutputConfiguration(StarAppOutputType.CNATabA, OutputName, 1, OutputControl.SlideContainer.ActiveSlideContent == OutputControl && OutputControl.tabbedControlGroupData.SelectedTabPageIndex == 0) };
 			}
 
 			public override OutputDataPackage GetOutputData()
@@ -143,7 +142,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			public override IList<OutputConfiguration> GetOutputConfigurations()
 			{
-				return new[] { new OutputConfiguration(StarAppOutputType.CNATabB, OutputName, 1) };
+				return new[] { new OutputConfiguration(StarAppOutputType.CNATabB, OutputName, 1, OutputControl.SlideContainer.ActiveSlideContent == OutputControl && OutputControl.tabbedControlGroupData.SelectedTabPageIndex == 1) };
 			}
 
 			public override OutputDataPackage GetOutputData()

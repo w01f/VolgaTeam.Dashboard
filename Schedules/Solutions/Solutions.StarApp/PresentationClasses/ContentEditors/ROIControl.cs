@@ -200,23 +200,21 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			var outputConfigurations = new List<OutputConfiguration>();
 
-			foreach (var roiControl in _tabPages
-				.OfType<IROITabPageContainer>()
-				.Where(container => container.ContentControl != null)
-				.Select(container => container.ContentControl)
-				.Where(contentControl => contentControl.ReadyForOutput)
-				.ToList())
+			foreach (var tabPage in _tabPages)
 			{
+				var roiControl = ((IROITabPageContainer)tabPage).ContentControl;
+				if (roiControl == null || !roiControl.ReadyForOutput) continue;
+
 				outputConfigurations.Add(new OutputConfiguration(
 					roiControl.OutputType,
 					roiControl.OutputName,
-					roiControl.SlidesCount));
+					roiControl.SlidesCount,
+					SlideContainer.ActiveSlideContent == this && xtraTabControl.SelectedTabPage == tabPage));
 			}
 
 			return new OutputGroup(this)
 			{
 				Name = OutputName,
-				IsCurrent = SlideContainer.ActiveSlideContent == this,
 				Configurations = outputConfigurations.ToArray()
 			};
 		}

@@ -433,13 +433,15 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 				{
 					SlideContainer = this,
 					SlideName = String.Format("{0} (line - item)",ControlName),
-					TableOutput = false
+					TableOutput = false,
+					IsCurrent = SlideContainer.SelectedSlideType == SlideType
 				},
 				new SummarySlideInfo
 				{
 					SlideContainer = this,
 					SlideName = String.Format("{0} (table - grid)",ControlName),
-					TableOutput = true
+					TableOutput = true,
+					IsCurrent = false
 				},
 			};
 		}

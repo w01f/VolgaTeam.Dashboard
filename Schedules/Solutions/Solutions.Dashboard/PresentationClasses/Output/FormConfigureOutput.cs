@@ -11,23 +11,20 @@ using DevExpress.Skins;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 
-namespace Asa.Solutions.StarApp.PresentationClasses.Output
+namespace Asa.Solutions.Dashboard.PresentationClasses.Output
 {
 	public partial class FormConfigureOutput : MetroForm
 	{
 		private bool _allowHandleEvents;
 
-		public FormConfigureOutput(IList<OutputGroup> outputGroups, PreviewGroup currentPreviewGroup)
+		public FormConfigureOutput(IList<DashboardSlideInfo> slideItems, PreviewGroup currentPreviewGroup)
 		{
 			InitializeComponent();
 
 			_allowHandleEvents = false;
 
-			var currentGroup = outputGroups.First(group => group.Configurations.Any(configuration => configuration.IsCurrent));
-			var currentConfiguration = currentGroup.Configurations.First(configuration => configuration.IsCurrent);
-
-			simpleLabelItemCurrentSlideGroupName.Text = String.Format("<size=+2><color=gray>{0}</color></size>", currentGroup.Name);
-			simpleLabelItemCurrentSlideName.Text = String.Format("<size=+2>{0}</size>", currentConfiguration.DisplayName);
+			var currentSlideInfo = slideItems.FirstOrDefault(slideInfo => slideInfo.IsCurrent) ?? slideItems.First();
+			simpleLabelItemCurrentSlideName.Text = String.Format("<size=+2>{0}</size>", currentSlideInfo.SlideName);
 
 			var imageSourcePath = currentPreviewGroup.PresentationSourcePath.Replace(Path.GetExtension(currentPreviewGroup.PresentationSourcePath), String.Empty);
 			if (Directory.Exists(imageSourcePath))
@@ -38,20 +35,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.Output
 			}
 
 			treeList.Nodes.Clear();
-			foreach (var outputGroup in outputGroups)
+			foreach (var slideInfo in slideItems)
 			{
-				var groupNode = treeList.AppendNode(new object[] { outputGroup.Name }, null);
-				groupNode.Tag = outputGroup;
+				var groupNode = treeList.AppendNode(new object[] { slideInfo.SlideName }, null);
+				groupNode.Tag = slideInfo;
 				groupNode.Checked = true;
-				foreach (var outputConfiguration in outputGroup.Configurations)
-				{
-					var configNode = treeList.AppendNode(new object[] { outputConfiguration.DisplayName }, groupNode);
-					configNode.Tag = outputConfiguration;
-					configNode.Checked = true;
-				}
-
-				var emptyNode = treeList.AppendNode(new object[] { String.Empty }, groupNode);
-				emptyNode.Checked = false;
 			}
 			treeList.ExpandAll();
 
@@ -67,44 +55,28 @@ namespace Asa.Solutions.StarApp.PresentationClasses.Output
 			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, scaleFactor);
 		}
 
-		private void OnFormClosed(object sender, FormClosedEventArgs e)
+		public IList<DashboardSlideInfo> GetSelectedSlideItems()
 		{
-			if (DialogResult != DialogResult.OK) return;
+			var selectedSlideItems = new List<DashboardSlideInfo>();
+
 			if (tabbedControlGroup.SelectedTabPageIndex == 0)
-				foreach (var groupNode in treeList.Nodes.OfType<TreeListNode>().ToList())
-				{
-					var outputGroup = (OutputGroup)groupNode.Tag;
-					outputGroup.Configurations = outputGroup.Configurations.Where(configuration => configuration.IsCurrent).ToArray();
-				}
+			{
+				var slideInfoItems = treeList.Nodes.OfType<TreeListNode>().Select(node => node.Tag).OfType<DashboardSlideInfo>().ToList();
+				selectedSlideItems.Add(slideInfoItems.FirstOrDefault(slideInfo => slideInfo.IsCurrent) ?? slideInfoItems.FirstOrDefault());
+			}
 			else
-				foreach (var groupNode in treeList.Nodes.OfType<TreeListNode>().ToList())
+				foreach (var node in treeList.Nodes.OfType<TreeListNode>().Where(node => node.Checked).ToList())
 				{
-					var outputGroup = (OutputGroup)groupNode.Tag;
-					if (groupNode.Nodes.Count > 0)
-						outputGroup.Configurations = groupNode.Nodes
-							.OfType<TreeListNode>()
-							.Where(n => n.Checked && n.Tag is OutputConfiguration)
-							.Select(n => (OutputConfiguration)n.Tag)
-							.ToArray();
-					else if (!groupNode.Checked)
-						outputGroup.Configurations = new OutputConfiguration[] { };
+					var slideInfo = (DashboardSlideInfo)node.Tag;
+					selectedSlideItems.Add(slideInfo);
 				}
+
+			return selectedSlideItems;
 		}
 
 		private void UpdateSlidesCount()
 		{
-			var slidesCount = treeList.Nodes
-				.OfType<TreeListNode>()
-				.Sum(n =>
-				{
-					if (n.Nodes.Count > 0)
-						return n.Nodes
-							.OfType<TreeListNode>()
-							.Where(childNode => childNode.Checked && childNode.Tag is OutputConfiguration)
-							.Sum(childNode => ((OutputConfiguration)childNode.Tag).SlidesCount);
-					return ((OutputGroup)n.Tag).Configurations.Sum(c => c.SlidesCount);
-				});
-
+			var slidesCount = treeList.Nodes.OfType<TreeListNode>().Count(node => node.Checked);
 			simpleLabelItemSlideCount.Text = String.Format("<color=gray>Estimated Slides: {0}</color>", slidesCount);
 		}
 
@@ -137,12 +109,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.Output
 			e.Handled = true;
 			DialogResult = DialogResult.OK;
 			Close();
-		}
-
-		private void OnCustomDrawNodeCell(object sender, CustomDrawNodeCellEventArgs e)
-		{
-			if (e.Node.Tag is OutputGroup)
-				e.Appearance.ForeColor = Color.Gray;
 		}
 
 		private void OnAfterCheckNode(object sender, NodeEventArgs e)

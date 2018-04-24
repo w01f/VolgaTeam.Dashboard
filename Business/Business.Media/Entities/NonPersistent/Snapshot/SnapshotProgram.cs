@@ -132,7 +132,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 
 		public void Dispose()
 		{
-			Logo.Dispose();
+			Logo?.Dispose();
 			Logo = null;
 
 			Parent = null;

@@ -89,8 +89,9 @@ namespace Asa.Common.Core.Objects.Images
 				.Match(encoded).Groups
 				.OfType<Capture>()
 				.ElementAtOrDefault(1)?.Value;
-			if (jsonContent == null) return null;
-			var imageSource = CloneHelper.Deserialize<ImageSource, ImageSource>(jsonContent);
+			if (jsonContent != null)
+				encoded = jsonContent;
+			var imageSource = CloneHelper.Deserialize<ImageSource, ImageSource>(encoded);
 			return imageSource;
 		}
 

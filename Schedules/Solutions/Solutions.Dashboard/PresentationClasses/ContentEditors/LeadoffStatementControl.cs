@@ -34,7 +34,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			memoEditC.EnableSelectAll();
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
-			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.DashboardInfo.LeadoffStatementLists.Headers);
+			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.DashboardInfo.LeadoffStatementLists.Headers.Select(item => item.Value).ToArray());
 
 			pictureEditSplash.Image = SlideContainer.DashboardInfo.LeadoffStatementSplashLogo;
 

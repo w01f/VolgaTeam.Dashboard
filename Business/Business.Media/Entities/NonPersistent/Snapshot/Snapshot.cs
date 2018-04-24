@@ -134,7 +134,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 
 			ActiveWeeks.Clear();
 
-			Logo.Dispose();
+			Logo?.Dispose();
 			Logo = null;
 
 			ContractSettings = null;

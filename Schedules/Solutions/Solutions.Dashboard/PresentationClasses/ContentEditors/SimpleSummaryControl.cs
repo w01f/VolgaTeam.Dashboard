@@ -39,7 +39,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			spinEditTotal.EnableSelectAll();
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
-			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.DashboardInfo.SimpleSummaryLists.Headers);
+			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.DashboardInfo.SimpleSummaryLists.Headers.Select(item => item.Value).ToArray());
 			if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
 				comboBoxEditSlideHeader.SelectedIndex = 0;
 

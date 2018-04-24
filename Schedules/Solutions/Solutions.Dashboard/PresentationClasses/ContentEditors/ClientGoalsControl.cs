@@ -34,7 +34,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			comboBoxEditGoal5.EnableSelectAll();
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
-			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Headers);
+			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Headers.Select(item => item.Value).ToArray());
 
 			comboBoxEditGoal1.Properties.Items.Clear();
 			comboBoxEditGoal1.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Goals);

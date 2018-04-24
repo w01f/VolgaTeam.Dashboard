@@ -172,7 +172,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			Spots.ForEach(s => s.Dispose());
 			Spots.Clear();
 
-			Logo.Dispose();
+			Logo?.Dispose();
 			Logo = null;
 
 			Parent = null;

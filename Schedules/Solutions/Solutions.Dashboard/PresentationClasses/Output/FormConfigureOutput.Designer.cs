@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.components = new System.ComponentModel.Container();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.hyperLinkEditAddSingleSlide = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.buttonXContinue = new DevComponents.DotNetBar.ButtonX();
@@ -195,7 +196,6 @@
 			this.pictureEditCurrentSlidePreview.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.pictureEditCurrentSlidePreview.Properties.Appearance.Options.UseBackColor = true;
 			this.pictureEditCurrentSlidePreview.Properties.Appearance.Options.UseForeColor = true;
-			this.pictureEditCurrentSlidePreview.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditCurrentSlidePreview.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditCurrentSlidePreview.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
 			this.pictureEditCurrentSlidePreview.Properties.ZoomAccelerationFactor = 1D;
@@ -584,6 +584,7 @@
 			this.Controls.Add(this.layoutControl);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;

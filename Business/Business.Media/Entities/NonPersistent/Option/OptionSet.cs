@@ -195,7 +195,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Option
 			Programs.ForEach(p => p.Dispose());
 			Programs.Clear();
 
-			Logo.Dispose();
+			Logo?.Dispose();
 			Logo = null;
 
 			ContractSettings = null;

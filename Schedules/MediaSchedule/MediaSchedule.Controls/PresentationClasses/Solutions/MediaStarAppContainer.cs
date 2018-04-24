@@ -61,7 +61,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				outputGroups.ForEach(outputGroup => outputGroup.OutputContainer.GenerateOutput(outputGroup.Configurations));
+				outputGroups.Where(outputGroup => outputGroup.Configurations.Any()).ForEach(outputGroup => outputGroup.OutputContainer.GenerateOutput(outputGroup.Configurations));
 				FormProgress.CloseProgress();
 			});
 		}
@@ -75,7 +75,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				var previewGroups = outputGroups.SelectMany(g => g.OutputContainer.GeneratePreview(g.Configurations)).ToList();
+				var previewGroups = outputGroups.Where(outputGroup=>outputGroup.Configurations.Any()).SelectMany(g => g.OutputContainer.GeneratePreview(g.Configurations)).ToList();
 				var pdfFileName = Path.Combine(
 					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
 					String.Format("{0}-{1:MM-dd-yy-hmmss}.pdf", SolutionInfo.ToggleTitle, DateTime.Now));
@@ -97,7 +97,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
-			var previewGroups = outputGroups.SelectMany(g => g.OutputContainer.GeneratePreview(g.Configurations)).ToList();
+			var previewGroups = outputGroups.Where(outputGroup => outputGroup.Configurations.Any()).SelectMany(g => g.OutputContainer.GeneratePreview(g.Configurations)).ToList();
 			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 
@@ -129,7 +129,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Solution...");
 			FormProgress.ShowProgress();
-			var previewGroups = outputGroups.SelectMany(g => g.OutputContainer.GeneratePreview(g.Configurations)).ToList();
+			var previewGroups = outputGroups.Where(outputGroup => outputGroup.Configurations.Any()).SelectMany(g => g.OutputContainer.GeneratePreview(g.Configurations)).ToList();
 			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 

@@ -60,7 +60,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Option
 
 		public void Dispose()
 		{
-			Logo.Dispose();
+			Logo?.Dispose();
 			Logo = null;
 
 			Parent = null;

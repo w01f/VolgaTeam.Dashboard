@@ -223,7 +223,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			DataSource = new DataTable(ProgramDataTableName);
 			var table = DataSource;
 
-
 			var column = new DataColumn(ProgramIndexDataColumnName, typeof(int));
 			table.Columns.Add(column);
 			column = new DataColumn(ProgramLogoImageDataColumnName, typeof(Image));

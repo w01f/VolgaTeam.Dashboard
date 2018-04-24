@@ -33,7 +33,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			comboBoxEditSlideHeader.EnableSelectAll();
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
-			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.DashboardInfo.TargetCustomersLists.Headers);
+			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.DashboardInfo.TargetCustomersLists.Headers.Select(item => item.Value).ToArray());
 
 			checkedListBoxControlTargetDemo.Items.Clear();
 			checkedListBoxControlTargetDemo.Items.AddRange(SlideContainer.DashboardInfo.TargetCustomersLists.Demos.ToArray());

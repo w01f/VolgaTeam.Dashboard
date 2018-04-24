@@ -36,7 +36,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			comboBoxEditDecisionMaker.EnableSelectAll();
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
-			comboBoxEditSlideHeader.Properties.Items.AddRange(slideContainer.DashboardInfo.CoverLists.Headers);
+			comboBoxEditSlideHeader.Properties.Items.AddRange(slideContainer.DashboardInfo.CoverLists.Headers.Select(item=>item.Value).ToArray());
 
 			_users.Clear();
 			_users.AddRange(slideContainer.DashboardInfo.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name));

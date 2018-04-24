@@ -99,7 +99,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				memoEditSubheader1.EditValue as String :
 				null;
 
-			SlideContainer.EditedContent.CoverState.Calendar1 = checkEditCalendar1.Checked && dateEditCalendar1.EditValue != null && (DateTime?)dateEditCalendar1.EditValue != _defaultDate ?
+			SlideContainer.EditedContent.CoverState.Calendar1 = checkEditCalendar1.Checked ?
 				(DateTime?)dateEditCalendar1.EditValue :
 				null;
 
@@ -154,6 +154,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		private void OnCalendar1ToggleCheckedChanged(object sender, EventArgs e)
 		{
 			layoutControlItemCalendar1Value.Enabled = checkEditCalendar1.Checked;
+			OnEditValueChanged(sender, e);
 		}
 
 		private void OnCombo1EditValueChanged(object sender, EventArgs e)

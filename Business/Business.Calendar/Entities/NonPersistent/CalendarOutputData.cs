@@ -160,8 +160,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 
 		public virtual void Dispose()
 		{
-			if (Logo != null)
-				Logo.Dispose();
+			Logo?.Dispose();
 			Logo = null;
 
 			Notes.ForEach(n => n.Dispose());

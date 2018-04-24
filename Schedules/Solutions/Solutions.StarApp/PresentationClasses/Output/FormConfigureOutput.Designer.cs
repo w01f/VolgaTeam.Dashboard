@@ -199,7 +199,6 @@
 			this.pictureEditCurrentSlidePreview.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.pictureEditCurrentSlidePreview.Properties.Appearance.Options.UseBackColor = true;
 			this.pictureEditCurrentSlidePreview.Properties.Appearance.Options.UseForeColor = true;
-			this.pictureEditCurrentSlidePreview.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditCurrentSlidePreview.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditCurrentSlidePreview.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
 			this.pictureEditCurrentSlidePreview.Properties.ZoomAccelerationFactor = 1D;

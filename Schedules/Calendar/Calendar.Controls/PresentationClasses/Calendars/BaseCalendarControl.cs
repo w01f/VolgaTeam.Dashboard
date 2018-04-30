@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Calendar.Configuration;
@@ -8,6 +9,7 @@ using Asa.Business.Calendar.Entities.NonPersistent;
 using Asa.Business.Calendar.Interfaces;
 using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Business.Common.Interfaces;
+using Asa.Calendar.Controls.PresentationClasses.Output;
 using Asa.Common.Core.Objects.Output;
 using Asa.Common.GUI.ToolForms;
 using DevComponents.DotNetBar;
@@ -16,6 +18,10 @@ using DevExpress.XtraEditors.Controls;
 using Asa.Calendar.Controls.PresentationClasses.SlideInfo;
 using Asa.Calendar.Controls.PresentationClasses.Views;
 using Asa.Calendar.Controls.PresentationClasses.Views.MonthView;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.OfficeInterops;
+using Asa.Common.GUI.OutputSelector;
+using Asa.Common.GUI.Preview;
 using Asa.Schedules.Common.Controls.ContentEditors.Controls;
 using DevExpress.XtraLayout.Utils;
 
@@ -23,7 +29,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 {
 	[ToolboxItem(false)]
 	//public abstract partial class BaseCalendarControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo> : UserControl
-	public abstract partial class BaseCalendarControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo> : BasePartitionEditControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo>, 
+	public abstract partial class BaseCalendarControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo> : BasePartitionEditControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo>,
 		ICalendarControl
 		where TPartitionContet : BaseSchedulePartitionContent<TSchedule, TScheduleSettings>, ICalendarContent
 		where TSchedule : ISchedule<TScheduleSettings>
@@ -32,6 +38,8 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 	{
 		protected abstract Form FormMain { get; }
 		protected abstract RibbonControl Ribbon { get; }
+		protected abstract PowerPointProcessor PowerPointProcessor { get; }
+		protected abstract Color? AccentColor { get; }
 
 		#region ICalendarControl Members
 		public bool AllowToSave { get; set; }
@@ -123,14 +131,14 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		public void AssignCloseActiveEditorsonOutSideClick(Control control)
 		{
 			if (control.GetType() == typeof(TextEdit) ||
-			    control.GetType() == typeof(MemoEdit) ||
-			    control.GetType() == typeof(ComboBoxEdit) ||
-			    control.GetType() == typeof(LookUpEdit) ||
-			    control.GetType() == typeof(DateEdit) ||
-			    control.GetType() == typeof(CheckedListBoxControl) ||
-			    control.GetType() == typeof(SpinEdit) ||
-			    control.GetType() == typeof(CheckEdit) ||
-			    control.GetType() == typeof(ImageListBoxControl))
+				control.GetType() == typeof(MemoEdit) ||
+				control.GetType() == typeof(ComboBoxEdit) ||
+				control.GetType() == typeof(LookUpEdit) ||
+				control.GetType() == typeof(DateEdit) ||
+				control.GetType() == typeof(CheckedListBoxControl) ||
+				control.GetType() == typeof(SpinEdit) ||
+				control.GetType() == typeof(CheckEdit) ||
+				control.GetType() == typeof(ImageListBoxControl))
 				return;
 			control.Click += CloseActiveEditorsonOutSideClick;
 			foreach (Control childControl in control.Controls)
@@ -195,6 +203,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		protected abstract void EmailSlides(IEnumerable<CalendarOutputData> outputData);
 		protected abstract void PreviewSlides(IEnumerable<CalendarOutputData> outputData);
 		protected abstract void OutputPdfSlides(IEnumerable<CalendarOutputData> outputData);
+		protected abstract IList<PreviewGroup> GeneratePreview(IList<CaledarMonthOutputItem> outputItems);
 
 		public abstract void UpdateDataManagementAndOutputFunctions();
 
@@ -210,24 +219,32 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			foreach (var month in ActiveCalendarSection.Months)
 				month.OutputData.PrepareNotes();
 			if (ActiveCalendarSection.Months.Count > 1)
-				using (var form = new FormSelectOutputItems())
+			{
+				var monthOutputItems = ActiveCalendarSection.Months
+					.Select(month => new CaledarMonthOutputItem(month) { IsCurrent = currentMonth == month })
+					.ToList();
+
+				var previewGroup = monthOutputItems
+					.Where(outputItem => outputItem.IsCurrent)
+					.SelectMany(outputItem => GeneratePreview(new[] { outputItem }))
+					.First();
+
+				using (var form = new FormConfigureOutput<CaledarMonthOutputItem>(monthOutputItems, previewGroup))
 				{
-					form.Text = "Select Months";
-					foreach (var month in ActiveCalendarSection.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
-					{
-						var item = new CheckedListBoxItem(month, month.OutputData.MonthText);
-						form.checkedListBoxControlOutputItems.Items.Add(item);
-						if (month == currentMonth)
-							form.buttonXSelectCurrent.Tag = item;
-					}
-					form.checkedListBoxControlOutputItems.CheckAll();
+					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditClearAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditClearAll.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+
 					if (form.ShowDialog() == DialogResult.OK)
-						selectedMonths.AddRange(form.checkedListBoxControlOutputItems.Items.
-							OfType<CheckedListBoxItem>().
-							Where(ci => ci.CheckState == CheckState.Checked).
-							Select(ci => ci.Value).
-							OfType<CalendarMonth>());
+						selectedMonths.AddRange(form.GetSelectedItems().Select(outputItem => outputItem.CalendarMonth));
 				}
+			}
 			else
 				selectedMonths.AddRange(ActiveCalendarSection.Months);
 			if (!selectedMonths.Any()) return;
@@ -241,24 +258,32 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			foreach (var month in ActiveCalendarSection.Months)
 				month.OutputData.PrepareNotes();
 			if (ActiveCalendarSection.Months.Count > 1)
-				using (var form = new FormSelectOutputItems())
+			{
+				var monthOutputItems = ActiveCalendarSection.Months
+					.Select(month => new CaledarMonthOutputItem(month) { IsCurrent = currentMonth == month })
+					.ToList();
+
+				var previewGroup = monthOutputItems
+					.Where(outputItem => outputItem.IsCurrent)
+					.SelectMany(outputItem => GeneratePreview(new[] { outputItem }))
+					.First();
+
+				using (var form = new FormConfigureOutput<CaledarMonthOutputItem>(monthOutputItems, previewGroup))
 				{
-					form.Text = "Select Months";
-					foreach (var month in ActiveCalendarSection.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
-					{
-						var item = new CheckedListBoxItem(month, month.OutputData.MonthText);
-						form.checkedListBoxControlOutputItems.Items.Add(item);
-						if (month == currentMonth)
-							form.buttonXSelectCurrent.Tag = item;
-					}
-					form.checkedListBoxControlOutputItems.CheckAll();
+					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditClearAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditClearAll.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+
 					if (form.ShowDialog() == DialogResult.OK)
-						selectedMonths.AddRange(form.checkedListBoxControlOutputItems.Items.
-							OfType<CheckedListBoxItem>().
-							Where(ci => ci.CheckState == CheckState.Checked).
-							Select(ci => ci.Value).
-							OfType<CalendarMonth>());
+						selectedMonths.AddRange(form.GetSelectedItems().Select(outputItem => outputItem.CalendarMonth));
 				}
+			}
 			else
 				selectedMonths.AddRange(ActiveCalendarSection.Months);
 			if (!selectedMonths.Any()) return;
@@ -272,24 +297,32 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			foreach (var month in ActiveCalendarSection.Months)
 				month.OutputData.PrepareNotes();
 			if (ActiveCalendarSection.Months.Count > 1)
-				using (var form = new FormSelectOutputItems())
+			{
+				var monthOutputItems = ActiveCalendarSection.Months
+					.Select(month => new CaledarMonthOutputItem(month) { IsCurrent = currentMonth == month })
+					.ToList();
+
+				var previewGroup = monthOutputItems
+					.Where(outputItem => outputItem.IsCurrent)
+					.SelectMany(outputItem => GeneratePreview(new[] { outputItem }))
+					.First();
+
+				using (var form = new FormConfigureOutput<CaledarMonthOutputItem>(monthOutputItems, previewGroup))
 				{
-					form.Text = "Select Months";
-					foreach (var month in ActiveCalendarSection.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
-					{
-						var item = new CheckedListBoxItem(month, month.OutputData.MonthText);
-						form.checkedListBoxControlOutputItems.Items.Add(item);
-						if (month == currentMonth)
-							form.buttonXSelectCurrent.Tag = item;
-					}
-					form.checkedListBoxControlOutputItems.CheckAll();
+					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditClearAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditClearAll.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+
 					if (form.ShowDialog() == DialogResult.OK)
-						selectedMonths.AddRange(form.checkedListBoxControlOutputItems.Items.
-							OfType<CheckedListBoxItem>().
-							Where(ci => ci.CheckState == CheckState.Checked).
-							Select(ci => ci.Value).
-							OfType<CalendarMonth>());
+						selectedMonths.AddRange(form.GetSelectedItems().Select(outputItem => outputItem.CalendarMonth));
 				}
+			}
 			else
 				selectedMonths.AddRange(ActiveCalendarSection.Months);
 			if (!selectedMonths.Any()) return;
@@ -303,24 +336,32 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			foreach (var month in ActiveCalendarSection.Months)
 				month.OutputData.PrepareNotes();
 			if (ActiveCalendarSection.Months.Count > 1)
-				using (var form = new FormSelectOutputItems())
+			{
+				var monthOutputItems = ActiveCalendarSection.Months
+					.Select(month => new CaledarMonthOutputItem(month) { IsCurrent = currentMonth == month })
+					.ToList();
+
+				var previewGroup = monthOutputItems
+					.Where(outputItem => outputItem.IsCurrent)
+					.SelectMany(outputItem => GeneratePreview(new[] { outputItem }))
+					.First();
+
+				using (var form = new FormConfigureOutput<CaledarMonthOutputItem>(monthOutputItems, previewGroup))
 				{
-					form.Text = "Select Months";
-					foreach (var month in ActiveCalendarSection.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
-					{
-						var item = new CheckedListBoxItem(month, month.OutputData.MonthText);
-						form.checkedListBoxControlOutputItems.Items.Add(item);
-						if (month == currentMonth)
-							form.buttonXSelectCurrent.Tag = item;
-					}
-					form.checkedListBoxControlOutputItems.CheckAll();
+					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditClearAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditClearAll.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+
 					if (form.ShowDialog() == DialogResult.OK)
-						selectedMonths.AddRange(form.checkedListBoxControlOutputItems.Items.
-							OfType<CheckedListBoxItem>().
-							Where(ci => ci.CheckState == CheckState.Checked).
-							Select(ci => ci.Value).
-							OfType<CalendarMonth>());
+						selectedMonths.AddRange(form.GetSelectedItems().Select(outputItem => outputItem.CalendarMonth));
 				}
+			}
 			else
 				selectedMonths.AddRange(ActiveCalendarSection.Months);
 			if (!selectedMonths.Any()) return;

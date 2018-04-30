@@ -534,7 +534,10 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			{
 				outputConfigurations.Add(new OutputConfiguration(
 					OptionSetOutputType.Program,
-					_data.Programs.Count / ProgramsPerSlide + (_data.Programs.Count % ProgramsPerSlide > 0 ? 1 : 0)));
+					_data.Programs.Count / ProgramsPerSlide + (_data.Programs.Count % ProgramsPerSlide > 0 ? 1 : 0))
+				{
+					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this
+				});
 				if (_data.DigitalInfo.Records.Any())
 					outputConfigurations.Add(new OutputConfiguration(
 						OptionSetOutputType.ProgramAndDigital,

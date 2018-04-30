@@ -446,7 +446,7 @@ namespace Asa.Media.Controls.InteropClasses
 			catch { }
 		}
 
-		public void PrepareCalendarEmail(string fileName, CalendarOutputData[] monthOutputData)
+		public void PrepareCalendarPreview(string fileName, CalendarOutputData[] monthOutputData)
 		{
 			PreparePresentation(fileName, presentation => AppendCalendar(monthOutputData, presentation));
 		}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -15,6 +16,8 @@ using Asa.Common.Core.Objects.Output;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Calendar.Controls.PresentationClasses.Calendars;
+using Asa.Calendar.Controls.PresentationClasses.Output;
+using Asa.Common.Core.OfficeInterops;
 using Asa.Media.Controls.BusinessClasses.Managers;
 
 namespace Asa.Media.Controls.PresentationClasses.Calendar
@@ -24,9 +27,9 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		protected abstract bool IsContentChanged { get; }
 
 		protected MediaSchedule Schedule => BusinessObjects.Instance.ScheduleManager.ActiveSchedule;
-
 		protected override Form FormMain => Controller.Instance.FormMain;
-
+		protected override PowerPointProcessor PowerPointProcessor => BusinessObjects.Instance.PowerPointManager.Processor;
+		protected override Color? AccentColor => BusinessObjects.Instance.FormStyleManager.Style.AccentColor;
 		public override CalendarSettings CalendarSettings => MediaMetaData.Instance.SettingsManager.BroadcastCalendarSettings;
 
 		#region BaseContentEditControl Override
@@ -137,7 +140,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 						Name = outputItem.MonthText,
 						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 					};
-					BusinessObjects.Instance.PowerPointManager.Processor.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+					BusinessObjects.Instance.PowerPointManager.Processor.PrepareCalendarPreview(previewGroup.PresentationSourcePath, new[] { outputItem });
 					previewGroups.Add(previewGroup);
 				}
 				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", Schedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
@@ -151,6 +154,28 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 				Enabled = true;
 				FormProgress.CloseProgress();
 			});
+		}
+
+		protected override IList<PreviewGroup> GeneratePreview(IList<CaledarMonthOutputItem> outputItems)
+		{
+			var previewGroups = new List<PreviewGroup>();
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Calendar for Preview...");
+			FormProgress.ShowProgress(FormMain);
+			Enabled = false;
+			foreach (var outputItem in outputItems)
+			{
+				var previewGroup = new PreviewGroup
+				{
+					Name = outputItem.DisplayName,
+					PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				};
+				BusinessObjects.Instance.PowerPointManager.Processor.PrepareCalendarPreview(previewGroup.PresentationSourcePath, new[] { outputItem.CalendarMonth.OutputData });
+				previewGroups.Add(previewGroup);
+			}
+			FormProgress.CloseProgress();
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
+
+			return previewGroups;
 		}
 
 		protected override void PreviewSlides(IEnumerable<CalendarOutputData> outputData)
@@ -167,7 +192,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 					Name = outputItem.MonthText,
 					PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 				};
-				BusinessObjects.Instance.PowerPointManager.Processor.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+				BusinessObjects.Instance.PowerPointManager.Processor.PrepareCalendarPreview(previewGroup.PresentationSourcePath, new[] { outputItem });
 				previewGroups.Add(previewGroup);
 			}
 			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
@@ -207,7 +232,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 					Name = outputItem.MonthText,
 					PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 				};
-				BusinessObjects.Instance.PowerPointManager.Processor.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+				BusinessObjects.Instance.PowerPointManager.Processor.PrepareCalendarPreview(previewGroup.PresentationSourcePath, new[] { outputItem });
 				previewGroups.Add(previewGroup);
 			}
 			Enabled = true;

@@ -1,11 +1,13 @@
 ﻿using System;
 using Asa.Business.Media.Configuration;
+using Asa.Common.GUI.OutputSelector;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Output
 {
-	public class ScheduleSectionOutputItem
+	public class ScheduleSectionOutputItem : ISlideItem
 	{
 		public ScheduleSectionOutputType OutputType { get; set; }
+		public bool IsCurrent { get; set; }
 		public int SlidesCount { get; set; }
 
 		public string DisplayName
@@ -28,6 +30,12 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Output
 						throw new ArgumentOutOfRangeException("Undefined output type");
 				}
 			}
+		}
+
+		public ISlideItem[] SlideItems
+		{
+			get => new ISlideItem[] { };
+			set { }
 		}
 	}
 }

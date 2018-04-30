@@ -9,6 +9,7 @@ using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
+using Asa.Common.GUI.OutputSelector;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
@@ -504,14 +505,36 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		private IEnumerable<ScheduleSectionOutputType> SelectedOutputOptions()
 		{
-			var availableOptions = GetAvailableOutputItems();
-			using (var form = new FormConfigureOutput(SectionData.Name, availableOptions))
+			var availableOptions = GetAvailableOutputItems().ToList();
+
+			if (availableOptions.Any())
 			{
-				if (form.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
+				FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+				FormProgress.ShowProgress();
+				var previewGroup = availableOptions
+					.Where(outputItem => outputItem.IsCurrent)
+					.SelectMany(outputItem => GeneratePreview(new[] { outputItem.OutputType }))
+					.First();
+				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
+				FormProgress.CloseProgress();
+
+				using (var form = new FormConfigureOutput<ScheduleSectionOutputItem>(availableOptions, previewGroup))
 				{
-					return form.GetSelectedOutputTypes();
+					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue
+						? BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue
+						? BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditClearAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditClearAll.Text, BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue
+						? BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value.ToHex()
+						: "blue");
+
+					if (form.ShowDialog() == DialogResult.OK)
+						return form.GetSelectedItems().Select(outputItem => outputItem.OutputType);
 				}
 			}
+
 			return new ScheduleSectionOutputType[] { };
 		}
 

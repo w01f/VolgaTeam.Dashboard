@@ -15,6 +15,7 @@ using Asa.Business.Online.Dictionaries;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
+using Asa.Common.GUI.OutputSelector;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Themes;
 using Asa.Common.GUI.ToolForms;
@@ -750,11 +751,29 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 					.ToList();
 			if (availableOutputGroups.Any())
 			{
-				using (var form = new FormConfigureOutput(availableOutputGroups))
-				{
+				FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+				FormProgress.ShowProgress();
+				var previewGroup = availableOutputGroups
+					.Where(group => group.IsCurrent)
+					.SelectMany(group => group.OutputContainer.GeneratePreview(group.Configurations.Where(configuration => configuration.IsCurrent).Take(1).ToList()))
+					.First();
+				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
+				FormProgress.CloseProgress();
 
-					if (form.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
-						outputGroups.AddRange(availableOutputGroups);
+				using (var form = new FormConfigureOutput<OutputGroup>(availableOutputGroups, previewGroup))
+				{
+					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue
+						? BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue
+						? BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditClearAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditClearAll.Text, BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue
+						? BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value.ToHex()
+						: "blue");
+
+					if (form.ShowDialog() == DialogResult.OK)
+						outputGroups.AddRange(form.GetSelectedItems());
 					else
 						availableOutputGroups.ForEach(g => g.Dispose());
 				}

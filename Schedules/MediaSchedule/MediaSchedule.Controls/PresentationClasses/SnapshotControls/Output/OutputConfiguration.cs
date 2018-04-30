@@ -1,11 +1,13 @@
 ﻿using System;
 using Asa.Business.Media.Configuration;
+using Asa.Common.GUI.OutputSelector;
 
 namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 {
-	public class OutputConfiguration
+	public class OutputConfiguration: ISlideItem
 	{
 		public SnapshotOutputType OutputType { get; }
+		public bool IsCurrent { get; set; }
 		public int SlidesCount { get; }
 
 		public string DisplayName
@@ -28,6 +30,12 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 						throw new ArgumentOutOfRangeException("Undefined output type");
 				}
 			}
+		}
+
+		public ISlideItem[] SlideItems
+		{
+			get => new ISlideItem[] { };
+			set { }
 		}
 
 		public OutputConfiguration(SnapshotOutputType outputType, int slidesCount)

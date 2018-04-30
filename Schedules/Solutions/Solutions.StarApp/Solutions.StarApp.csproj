@@ -303,22 +303,12 @@
     <Compile Include="PresentationClasses\ImageEdit\ShareControlImageEditorHelper.cs" />
     <Compile Include="PresentationClasses\ImageEdit\StarAppCommonControlImageEditorHelper.cs" />
     <Compile Include="PresentationClasses\IStarAppShareContentControl.cs" />
-    <Compile Include="PresentationClasses\Output\FormConfigureOutput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Output\FormConfigureOutput.Designer.cs">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\Output\IOutputItem.cs" />
     <Compile Include="PresentationClasses\Output\IStarAppSlideContainer.cs" />
     <Compile Include="PresentationClasses\Output\IStarAppSlide.cs" />
     <Compile Include="PresentationClasses\Output\OutputConfiguration.cs" />
     <Compile Include="PresentationClasses\Output\OutputDataPackage.cs" />
     <Compile Include="PresentationClasses\Output\OutputGroup.cs" />
     <Compile Include="PresentationClasses\Output\OutputImageInfo.cs" />
-    <Compile Include="PresentationClasses\Output\OutputItemsTree.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="PresentationClasses\Output\StarAppOutputType.cs" />
     <Compile Include="PresentationClasses\Output\StarSlideOuputData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -433,9 +423,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ImageEdit\FormPreviewImage.resx">
       <DependentUpon>FormPreviewImage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\Output\FormConfigureOutput.resx">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

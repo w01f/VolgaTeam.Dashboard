@@ -155,7 +155,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		{
 			return new OutputGroup(this)
 			{
-				Name = OutputName,
+				DisplayName = OutputName,
 				IsCurrent = TabControl.SelectedTabPage == this,
 				Configurations = _optionsControl.GetOutputConfigurations().Union(_digitalInfoControl.GetOutputConfigurations()).ToArray()
 			};

@@ -563,7 +563,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				var x = viewInfo.ColumnsInfo[column].Bounds.X;
 				var width = viewInfo.ColumnsInfo[column].Bounds.Width;
 				const string spotTotalTitle = "Totals: ";
-				var titleWidth = (Int32) (50 * Utilities.GetScaleFactor(CreateGraphics().DpiX).Width);
+				var titleWidth = (Int32)(50 * Utilities.GetScaleFactor(CreateGraphics().DpiX).Width);
 				var size = e.Appearance.CalcTextSize(e.Cache, spotTotalTitle, titleWidth);
 				var textWidth = Convert.ToInt32(size.Width) + 1;
 				var textRect = new Rectangle(x + width - titleWidth, e.Bounds.Y, textWidth, e.Bounds.Height);
@@ -731,6 +731,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				outputOptions.Add(new ScheduleSectionOutputItem
 				{
 					OutputType = ScheduleSectionOutputType.Program,
+					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
 					SlidesCount = GetSlidesCount(false)
 				});
 				if (_sectionContainer.SectionData.DigitalInfo.Records.Any())

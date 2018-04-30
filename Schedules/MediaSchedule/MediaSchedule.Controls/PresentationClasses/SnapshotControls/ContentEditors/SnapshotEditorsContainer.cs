@@ -155,7 +155,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		{
 			return new OutputGroup(this)
 			{
-				Name = OutputName,
+				DisplayName = OutputName,
 				IsCurrent = TabControl.SelectedTabPage == this,
 				Configurations = _snapshotControl.GetOutputConfigurations().Union(_digitalInfoControl.GetOutputConfigurations()).ToArray()
 			};

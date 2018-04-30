@@ -53,6 +53,7 @@
     <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="ImageListView_noWPF, Version=11.0.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ImageListView.11.0.8\lib\net35\ImageListView_noWPF.dll</HintPath>
       <Private>True</Private>
@@ -125,6 +126,17 @@
     </Compile>
     <Compile Include="OutputColors\OutputColorSelector.Designer.cs">
       <DependentUpon>OutputColorSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OutputSelector\FormConfigureOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OutputSelector\FormConfigureOutput.Designer.cs">
+      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OutputSelector\IOutputItem.cs" />
+    <Compile Include="OutputSelector\ISlideItem.cs" />
+    <Compile Include="OutputSelector\OutputItemsTreeList.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Preview\PreviewGroup.cs" />
     <Compile Include="Preview\PreviewGroupControl.cs">
@@ -253,12 +265,6 @@
     <Compile Include="ToolForms\FormProgress.Designer.cs">
       <DependentUpon>FormProgress.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormSelectOutputItems.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormSelectOutputItems.Designer.cs">
-      <DependentUpon>FormSelectOutputItems.cs</DependentUpon>
-    </Compile>
     <Compile Include="ToolForms\FormDownloadProgress.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -290,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OutputColors\OutputColorSelector.resx">
       <DependentUpon>OutputColorSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutputSelector\FormConfigureOutput.resx">
+      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Preview\PreviewGroupControl.resx">
       <DependentUpon>PreviewGroupControl.cs</DependentUpon>
@@ -351,9 +360,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormSelectOutputItems.resx">
-      <DependentUpon>FormSelectOutputItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormDownloadProgress.resx">
       <DependentUpon>FormDownloadProgress.cs</DependentUpon>

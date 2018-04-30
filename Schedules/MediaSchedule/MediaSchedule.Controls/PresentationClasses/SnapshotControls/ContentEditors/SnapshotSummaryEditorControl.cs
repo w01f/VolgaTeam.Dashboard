@@ -206,7 +206,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		{
 			return new OutputGroup(this)
 			{
-				Name = OutputName,
+				DisplayName = OutputName,
 				IsCurrent = TabControl.SelectedTabPage == this,
 				Configurations = GetOutputConfigurations().ToArray()
 			};
@@ -219,7 +219,10 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 				outputConfigurations.Add(new OutputConfiguration(
 					SnapshotOutputType.Summary,
 					Data.Parent.Snapshots.Count / ProgramsPerSlide + (Data.Parent.Snapshots.Count % ProgramsPerSlide > 0 ? 1 : 0)
-					));
+					)
+				{
+					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this
+				});
 			return outputConfigurations;
 		}
 

@@ -394,6 +394,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				new[] { new ScheduleSectionOutputItem
 				{
 					OutputType = ScheduleSectionOutputType.Summary,
+					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
 					SlidesCount = SlidesCount
 				} } :
 				new ScheduleSectionOutputItem[] { };

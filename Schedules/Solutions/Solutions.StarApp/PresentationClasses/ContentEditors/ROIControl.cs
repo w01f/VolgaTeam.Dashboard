@@ -214,7 +214,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			return new OutputGroup(this)
 			{
-				Name = OutputName,
+				DisplayName = OutputName,
+				IsCurrent = SlideContainer.ActiveSlideContent == this,
 				Configurations = outputConfigurations.ToArray()
 			};
 		}

@@ -211,7 +211,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		{
 			return new OutputGroup(this)
 			{
-				Name = OutputName,
+				DisplayName = OutputName,
 				IsCurrent = TabControl.SelectedTabPage == this,
 				Configurations = GetOutputConfigurations().ToArray()
 			};
@@ -250,7 +250,10 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			if (Data.Enabled && Data.Parent.Options.Any(s => s.Programs.Any()))
 				outputConfigurations.Add(new OutputConfiguration(
 					OptionSetOutputType.Summary,
-					Data.Parent.Options.Count / ProgramsPerSlide + (Data.Parent.Options.Count % ProgramsPerSlide > 0 ? 1 : 0)));
+					Data.Parent.Options.Count / ProgramsPerSlide + (Data.Parent.Options.Count % ProgramsPerSlide > 0 ? 1 : 0))
+				{
+					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this
+				});
 			return outputConfigurations;
 		}
 

@@ -1,7 +1,7 @@
-﻿namespace Asa.Solutions.StarApp.PresentationClasses.Output
+﻿namespace Asa.Common.GUI.OutputSelector
 {
-    partial class FormConfigureOutput
-    {
+    partial class FormConfigureOutput<TOutputItem>
+	{
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -35,7 +35,7 @@
 			this.buttonXClose = new DevComponents.DotNetBar.ButtonX();
 			this.pictureEditCurrentSlidePreview = new DevExpress.XtraEditors.PictureEdit();
 			this.hyperLinkEditSelectAll = new DevExpress.XtraEditors.HyperLinkEdit();
-			this.treeList = new Asa.Solutions.StarApp.PresentationClasses.Output.OutputItemsTree();
+			this.treeList = new OutputItemsTreeList();
 			this.treeListColumnName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
 			this.hyperLinkEditClearAll = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -619,7 +619,6 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Slide Output Options";
-			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
@@ -657,7 +656,7 @@
 		private DevExpress.XtraEditors.StyleController styleController;
 		private DevExpress.XtraLayout.LayoutControl layoutControl;
 	    private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnName;
-		private OutputItemsTree treeList;
+		private OutputItemsTreeList treeList;
 		public DevComponents.DotNetBar.ButtonX buttonXContinue;
 		private DevComponents.DotNetBar.ButtonX buttonXClose;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;

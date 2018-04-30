@@ -8,26 +8,37 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Preview;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.Skins;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 
-namespace Asa.Solutions.StarApp.PresentationClasses.Output
+namespace Asa.Common.GUI.OutputSelector
 {
-	public partial class FormConfigureOutput : MetroForm
+	public partial class FormConfigureOutput<TOutputItem> : MetroForm where TOutputItem : class, IOutputItem
 	{
 		private bool _allowHandleEvents;
 
-		public FormConfigureOutput(IList<OutputGroup> outputGroups, PreviewGroup currentPreviewGroup)
+		public FormConfigureOutput(IList<TOutputItem> outputItems, PreviewGroup currentPreviewGroup)
 		{
 			InitializeComponent();
 
 			_allowHandleEvents = false;
 
-			var currentGroup = outputGroups.First(group => group.Configurations.Any(configuration => configuration.IsCurrent));
-			var currentConfiguration = currentGroup.Configurations.First(configuration => configuration.IsCurrent);
+			var currentGroup = outputItems.FirstOrDefault(item => item.IsCurrent && item.SlideItems.Any(subItem => subItem.IsCurrent));
+			var currentSubItem = currentGroup != null ?
+				currentGroup.SlideItems.OfType<IOutputItem>().First(configuration => configuration.IsCurrent) :
+				outputItems.OfType<IOutputItem>().FirstOrDefault(item => item.IsCurrent) ?? outputItems.OfType<IOutputItem>().First();
 
-			simpleLabelItemCurrentSlideGroupName.Text = String.Format("<size=+2><color=gray>{0}</color></size>", currentGroup.Name);
-			simpleLabelItemCurrentSlideName.Text = String.Format("<size=+2>{0}</size>", currentConfiguration.DisplayName);
+			if (currentGroup != null)
+			{
+				simpleLabelItemCurrentSlideGroupName.Text =
+					String.Format("<size=+2><color=gray>{0}</color></size>", currentGroup.DisplayName);
+			}
+			else
+			{
+				simpleLabelItemCurrentSlideGroupName.Visibility = LayoutVisibility.Never;
+			}
+			simpleLabelItemCurrentSlideName.Text = String.Format("<size=+2>{0}</size>", currentSubItem.DisplayName);
 
 			var imageSourcePath = currentPreviewGroup.PresentationSourcePath.Replace(Path.GetExtension(currentPreviewGroup.PresentationSourcePath), String.Empty);
 			if (Directory.Exists(imageSourcePath))
@@ -38,20 +49,21 @@ namespace Asa.Solutions.StarApp.PresentationClasses.Output
 			}
 
 			treeList.Nodes.Clear();
-			foreach (var outputGroup in outputGroups)
+			foreach (var outputItem in outputItems)
 			{
-				var groupNode = treeList.AppendNode(new object[] { outputGroup.Name }, null);
-				groupNode.Tag = outputGroup;
-				groupNode.Checked = true;
-				foreach (var outputConfiguration in outputGroup.Configurations)
+				var itemNode = treeList.AppendNode(new object[] { outputItem.DisplayName }, null);
+				itemNode.Tag = outputItem;
+				itemNode.Checked = true;
+
+				foreach (var subItem in outputItem.SlideItems)
 				{
-					var configNode = treeList.AppendNode(new object[] { outputConfiguration.DisplayName }, groupNode);
-					configNode.Tag = outputConfiguration;
-					configNode.Checked = true;
+					var subItemNode = treeList.AppendNode(new object[] { subItem.DisplayName }, itemNode);
+					subItemNode.Tag = subItem;
+					subItemNode.Checked = true;
 				}
 
-				var emptyNode = treeList.AppendNode(new object[] { String.Empty }, groupNode);
-				emptyNode.Checked = false;
+				var separatorNode = treeList.AppendNode(new object[] { String.Empty }, null);
+				separatorNode.Checked = false;
 			}
 			treeList.ExpandAll();
 
@@ -67,42 +79,67 @@ namespace Asa.Solutions.StarApp.PresentationClasses.Output
 			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, scaleFactor);
 		}
 
-		private void OnFormClosed(object sender, FormClosedEventArgs e)
+		public IList<TOutputItem> GetSelectedItems()
 		{
-			if (DialogResult != DialogResult.OK) return;
+			var selectedItems = new List<TOutputItem>();
+
 			if (tabbedControlGroup.SelectedTabPageIndex == 0)
+			{
 				foreach (var groupNode in treeList.Nodes.OfType<TreeListNode>().ToList())
 				{
-					var outputGroup = (OutputGroup)groupNode.Tag;
-					outputGroup.Configurations = outputGroup.Configurations.Where(configuration => configuration.IsCurrent).ToArray();
+					var outputItem = groupNode.Tag as TOutputItem;
+					if (outputItem == null) continue;
+					if (!outputItem.IsCurrent) continue;
+					if (groupNode.Nodes.Count > 0)
+					{
+						var slideItems = outputItem.SlideItems.Where(slideItem => slideItem.IsCurrent).ToArray();
+						outputItem.SlideItems = slideItems;
+					}
+					selectedItems.Add(outputItem);
 				}
+				if (!selectedItems.Any())
+					selectedItems.Add(treeList.Nodes.OfType<TreeListNode>().Select(node => node.Tag).OfType<TOutputItem>().FirstOrDefault());
+			}
 			else
 				foreach (var groupNode in treeList.Nodes.OfType<TreeListNode>().ToList())
 				{
-					var outputGroup = (OutputGroup)groupNode.Tag;
+					var outputItem = groupNode.Tag as TOutputItem;
+					if (outputItem == null) continue;
 					if (groupNode.Nodes.Count > 0)
-						outputGroup.Configurations = groupNode.Nodes
+					{
+						var slideItems = groupNode.Nodes
 							.OfType<TreeListNode>()
-							.Where(n => n.Checked && n.Tag is OutputConfiguration)
-							.Select(n => (OutputConfiguration)n.Tag)
+							.Where(n => n.Checked)
+							.Select(n => n.Tag)
+							.OfType<ISlideItem>()
 							.ToArray();
-					else if (!groupNode.Checked)
-						outputGroup.Configurations = new OutputConfiguration[] { };
+						outputItem.SlideItems = slideItems;
+						if (outputItem.SlideItems.Any())
+							selectedItems.Add(outputItem);
+					}
+					else if (groupNode.Checked)
+					{
+						selectedItems.Add(outputItem);
+					}
 				}
+
+			return selectedItems;
 		}
 
 		private void UpdateSlidesCount()
 		{
 			var slidesCount = treeList.Nodes
 				.OfType<TreeListNode>()
-				.Sum(n =>
+				.Sum(itemNode =>
 				{
-					if (n.Nodes.Count > 0)
-						return n.Nodes
+					if (itemNode.Nodes.Count > 0)
+						return itemNode.Nodes
 							.OfType<TreeListNode>()
-							.Where(childNode => childNode.Checked && childNode.Tag is OutputConfiguration)
-							.Sum(childNode => ((OutputConfiguration)childNode.Tag).SlidesCount);
-					return ((OutputGroup)n.Tag).Configurations.Sum(c => c.SlidesCount);
+							.Where(subItemNodeNode => subItemNodeNode.Checked && subItemNodeNode.Tag is ISlideItem)
+							.Sum(childNode => ((ISlideItem)childNode.Tag).SlidesCount);
+					if (itemNode.Checked && itemNode.Tag is ISlideItem item)
+						return item.SlidesCount;
+					return 0;
 				});
 
 			simpleLabelItemSlideCount.Text = String.Format("<color=gray>Estimated Slides: {0}</color>", slidesCount);
@@ -141,7 +178,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.Output
 
 		private void OnCustomDrawNodeCell(object sender, CustomDrawNodeCellEventArgs e)
 		{
-			if (e.Node.Tag is OutputGroup)
+			if (e.Node.Tag is IOutputItem item && item.SlideItems.Any())
 				e.Appearance.ForeColor = Color.Gray;
 		}
 

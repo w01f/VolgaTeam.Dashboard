@@ -68,6 +68,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 					new ScheduleSectionOutputItem
 					{
 						OutputType = ScheduleSectionOutputType.DigitalOneSheet,
+						IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
 						SlidesCount = BaseDigitalInfoOneSheetOutputModel.SlideCount
 					},
 					new ScheduleSectionOutputItem

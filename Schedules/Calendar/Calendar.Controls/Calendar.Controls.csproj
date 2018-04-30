@@ -107,6 +107,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PresentationClasses\Output\CaledarMonthOutputItem.cs" />
     <Compile Include="PresentationClasses\Calendars\BaseCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

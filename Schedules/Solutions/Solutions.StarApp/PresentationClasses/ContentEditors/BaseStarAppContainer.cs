@@ -9,10 +9,11 @@ using Asa.Business.Solutions.StarApp.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
+using Asa.Common.GUI.OutputSelector;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
-using DevExpress.XtraTab;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
+using DevExpress.XtraTab;
 using DevExpress.XtraEditors;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
@@ -50,11 +51,16 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		}
 
 		#region GUI Processing
-		public override void InitControl()
+
+		public override void InitControl(bool showSplash)
 		{
-			FormProgress.SetTitle("Loading data...");
-			FormProgress.ShowProgress();
-			Application.DoEvents();
+			if (showSplash)
+			{
+				FormProgress.SetTitle("Loading data...");
+				FormProgress.ShowProgress();
+				Application.DoEvents();
+			}
+
 			_slides.Add(new StarAppTabPageContainerControl<CleanslateControl>(this));
 			Application.DoEvents();
 			_slides.Add(new StarAppTabPageContainerControl<CoverControl>(this));
@@ -91,8 +97,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			xtraTabControl.SelectedPageChanged += OnSelectedSlideChanged;
 			xtraTabControl.SelectedPageChanging += OnSelectedSlideChanging;
 
-			FormProgress.CloseProgress();
-			Application.DoEvents();
+			if (showSplash)
+			{
+				FormProgress.CloseProgress();
+				Application.DoEvents();
+			}
 		}
 
 		private void OnSelectedSlideChanging(object sender, TabPageChangingEventArgs e)
@@ -195,7 +204,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				Utilities.ActivateForm(MainForm.Handle, MainForm.WindowState == FormWindowState.Maximized, false);
 				FormProgress.CloseProgress();
 
-				using (var form = new FormConfigureOutput(availableOutputGroups, previewGroup))
+				using (var form = new FormConfigureOutput<OutputGroup>(availableOutputGroups, previewGroup))
 				{
 					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, AccentColor.HasValue
 						? AccentColor.Value.ToHex()
@@ -208,7 +217,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						: "blue");
 
 					if (form.ShowDialog() == DialogResult.OK)
-						outputGroups.AddRange(availableOutputGroups);
+						outputGroups.AddRange(form.GetSelectedItems());
 					else
 						availableOutputGroups.ForEach(g => g.Dispose());
 				}

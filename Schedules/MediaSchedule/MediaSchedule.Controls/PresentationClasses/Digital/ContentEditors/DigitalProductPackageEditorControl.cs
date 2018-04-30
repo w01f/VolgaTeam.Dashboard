@@ -12,6 +12,7 @@ using Asa.Business.Online.Enums;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
+using Asa.Common.GUI.OutputSelector;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.Digital.Output;
@@ -31,10 +32,10 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 {
 	[ToolboxItem(false)]
 	//public partial class DigitalProductPackageEditorControl:UserControl,
-	public partial class DigitalProductPackageEditorControl : XtraTabPage, 
-		IDigitalEditor, 
+	public partial class DigitalProductPackageEditorControl : XtraTabPage,
+		IDigitalEditor,
 		IDigitalOutputContainer,
-		IDigitalOutputItem, 
+		IDigitalOutputItem,
 		IWebPackageOutput
 	{
 		private bool _allowApplyValues;
@@ -364,8 +365,15 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		#endregion
 
 		#region Output Stuff
-		public string SlideName => Text;
+		public string DisplayName => Text;
 		public SlideType SlideType => SlideType.DigitalProductPackage;
+		public bool IsCurrent => TabControl != null && TabControl.SelectedTabPage == this;
+		public ISlideItem[] SlideItems
+		{
+			get => new ISlideItem[] { };
+			set { }
+		}
+
 		public Theme SelectedTheme
 		{
 			get
@@ -470,10 +478,11 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		{
 			return new OutputGroup
 			{
-				Name = SlideName,
+				DisplayName = DisplayName,
+				IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
 				OutputItems = _container.EditedContent.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)) ?
-					new List<IDigitalOutputItem> { this } :
-					new List<IDigitalOutputItem>()
+					new IDigitalOutputItem[] { this } :
+					new IDigitalOutputItem[] { }
 			};
 		}
 

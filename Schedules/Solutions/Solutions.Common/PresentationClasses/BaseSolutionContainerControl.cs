@@ -62,7 +62,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 			if (SolutionEditors.Any() && !ContentUpdateInfo.ChangeInfo.WholeScheduleChanged)
 				return;
 			SolutionEditors.ForEach(se => se.LoadData());
-			ShowActiveEditor();
+			ShowActiveEditor(false);
 		}
 
 		protected override void ApplyChanges()
@@ -78,14 +78,14 @@ namespace Asa.Solutions.Common.PresentationClasses
 		#endregion
 
 		#region Solution Content
-		private void ShowActiveEditor()
+		private void ShowActiveEditor(bool showSplash)
 		{
 			if (SelectedSolutionToggle == null)
 				return;
 			if (ActiveSolutionEditor == null)
 			{
 				var newEditor = CreateSolutionEditor(SelectedSolutionToggle.SolutionInfo);
-				ConfigureSolutionEditor(newEditor);
+				ConfigureSolutionEditor(newEditor, showSplash);
 				SolutionEditors.Add(newEditor);
 				newEditor.LoadData();
 			}
@@ -97,9 +97,9 @@ namespace Asa.Solutions.Common.PresentationClasses
 
 		protected abstract ISolutionEditor CreateSolutionEditor(BaseSolutionInfo solutionInfo);
 
-		private void ConfigureSolutionEditor(ISolutionEditor editor)
+		private void ConfigureSolutionEditor(ISolutionEditor editor, bool showSplash)
 		{
-			editor.InitControl();
+			editor.InitControl(showSplash);
 			editor.DataChanged += OnEditorDataChanged;
 			editor.SlideTypeChanged += OnSelectedSlideChanged;
 			editor.OutputStatusChanged += OnEditorOutputStatusChanged;
@@ -160,7 +160,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 			if (!_allowToHandleEvents) return;
 			var solutionToggle = (SolutionToggle)sender;
 			if (!solutionToggle.Checked) return;
-			ShowActiveEditor();
+			ShowActiveEditor(true);
 		}
 
 		private void OnResize(object sender, EventArgs e)

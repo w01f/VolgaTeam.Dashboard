@@ -215,12 +215,6 @@
     <Compile Include="PresentationClasses\Digital\DigitalInfo\BaseDigitalInfoSettingsControl.Designer.cs">
       <DependentUpon>BaseDigitalInfoSettingsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\Digital\Output\FormConfigureOutput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Digital\Output\FormConfigureOutput.Designer.cs">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\Digital\Output\IDigitalOutputContainer.cs" />
     <Compile Include="PresentationClasses\Digital\Output\OutputGroup.cs" />
     <Compile Include="PresentationClasses\Digital\Settings\DigitalStandalonePackageSettingsControl.cs">
@@ -282,12 +276,6 @@
       <DependentUpon>FormOptionSetName.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\OptionsControls\ContentEditors\OptionsSetOpenEventArgs.cs" />
-    <Compile Include="PresentationClasses\OptionsControls\Output\FormConfigureOutput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OptionsControls\Output\FormConfigureOutput.Designer.cs">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\OptionsControls\Output\FormOutputSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -366,12 +354,6 @@
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryProductItemControl.Designer.cs">
       <DependentUpon>SectionSummaryProductItemControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Output\FormConfigureOutput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Output\FormConfigureOutput.Designer.cs">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\Output\ISectionOutputControl.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionEditorType.cs" />
@@ -522,12 +504,6 @@
     </Compile>
     <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotEditorType.cs" />
     <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotOpenEventArgs.cs" />
-    <Compile Include="PresentationClasses\SnapshotControls\Output\FormConfigureOutput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\SnapshotControls\Output\FormConfigureOutput.Designer.cs">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\SnapshotControls\Output\FormOutputSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -672,9 +648,6 @@
     <EmbeddedResource Include="PresentationClasses\Digital\DigitalInfo\BaseDigitalInfoSettingsControl.resx">
       <DependentUpon>BaseDigitalInfoSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\Digital\Output\FormConfigureOutput.resx">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Digital\Settings\DigitalStandalonePackageSettingsControl.resx">
       <DependentUpon>DigitalStandalonePackageSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -695,9 +668,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OptionsControls\ContentEditors\FormOptionSetName.resx">
       <DependentUpon>FormOptionSetName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OptionsControls\Output\FormConfigureOutput.resx">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OptionsControls\Output\FormOutputSettings.resx">
       <DependentUpon>FormOutputSettings.cs</DependentUpon>
@@ -731,9 +701,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryProductItemControl.resx">
       <DependentUpon>SectionSummaryProductItemControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\Output\FormConfigureOutput.resx">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\Output\FormOutputSettings.resx">
       <DependentUpon>FormOutputSettings.cs</DependentUpon>
@@ -792,9 +759,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotEditorsContainer.resx">
       <DependentUpon>SnapshotEditorsContainer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\SnapshotControls\Output\FormConfigureOutput.resx">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\SnapshotControls\Output\FormOutputSettings.resx">
       <DependentUpon>FormOutputSettings.cs</DependentUpon>

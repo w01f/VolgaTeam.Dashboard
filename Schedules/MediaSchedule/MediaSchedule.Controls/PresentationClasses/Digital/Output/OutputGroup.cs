@@ -1,12 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Linq;
+using Asa.Common.GUI.OutputSelector;
 using Asa.Online.Controls.PresentationClasses.Products;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital.Output
 {
-	public class OutputGroup
+	public class OutputGroup : IOutputItem
 	{
-		public string Name { get; set; }
-		public bool AlwaysShowChildren { get; set; }
-		public IList<IDigitalOutputItem> OutputItems { get; set; }
+		public string DisplayName { get; set; }
+		public bool IsCurrent { get; set; }
+		public IDigitalOutputItem[] OutputItems { get; set; }
+
+		public ISlideItem[] SlideItems
+		{
+			get => OutputItems;
+			set => OutputItems = value.OfType<IDigitalOutputItem>().ToArray();
+		}
 	}
 }

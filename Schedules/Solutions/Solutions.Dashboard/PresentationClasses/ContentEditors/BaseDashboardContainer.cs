@@ -9,6 +9,7 @@ using Asa.Business.Solutions.Dashboard.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
+using Asa.Common.GUI.OutputSelector;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
 using Asa.Solutions.Dashboard.PresentationClasses.Output;
@@ -60,7 +61,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		}
 
 		#region GUI Processing
-		public override void InitControl()
+		public override void InitControl(bool showSplash)
 		{
 			_slides.Add(new CleanslateControl(this));
 			_slides.Add(new CoverControl(this));
@@ -149,7 +150,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 				Utilities.ActivateForm(MainForm.Handle, MainForm.WindowState == FormWindowState.Maximized, false);
 				FormProgress.CloseProgress();
 
-				using (var form = new FormConfigureOutput(availableSlideInfos, previewGroup))
+				using (var form = new FormConfigureOutput<DashboardSlideInfo>(availableSlideInfos, previewGroup))
 				{
 					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, AccentColor.HasValue
 						? AccentColor.Value.ToHex()
@@ -162,7 +163,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 						: "blue");
 
 					if (form.ShowDialog() == DialogResult.OK)
-						selectedSlideInfos.AddRange(form.GetSelectedSlideItems());
+						selectedSlideInfos.AddRange(form.GetSelectedItems());
 				}
 			}
 

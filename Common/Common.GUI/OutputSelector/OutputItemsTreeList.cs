@@ -1,11 +1,12 @@
 ﻿using DevExpress.XtraTreeList;
 using System.Drawing;
+using System.Linq;
 using DevExpress.XtraTreeList.Nodes;
 using DevExpress.XtraTreeList.ViewInfo;
 
-namespace Asa.Solutions.StarApp.PresentationClasses.Output
+namespace Asa.Common.GUI.OutputSelector
 {
-	class OutputItemsTree : TreeList
+	public class OutputItemsTreeList : TreeList
 	{
 		protected override TreeListViewInfo CreateViewInfo()
 		{
@@ -15,13 +16,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.Output
 		protected override CheckNodeEventArgs RaiseBeforeCheckNode(TreeListNode node, System.Windows.Forms.CheckState prevState, System.Windows.Forms.CheckState state)
 		{
 			var e = base.RaiseBeforeCheckNode(node, prevState, state);
-			e.CanCheck = CanCheckNode(e.Node);
+			e.CanCheck = IsCheckNode(e.Node);
 			return e;
 		}
 
 		protected override void RaiseCustomDrawNodeCheckBox(CustomDrawNodeCheckBoxEventArgs e)
 		{
-			var canCheckNode = CanCheckNode(e.Node);
+			var canCheckNode = IsCheckNode(e.Node);
 			if (canCheckNode)
 				return;
 			e.ObjectArgs.State = DevExpress.Utils.Drawing.ObjectState.Disabled;
@@ -30,9 +31,19 @@ namespace Asa.Solutions.StarApp.PresentationClasses.Output
 			base.RaiseCustomDrawNodeCheckBox(e);
 		}
 
-		public bool CanCheckNode(TreeListNode node)
+		public bool IsCheckNode(TreeListNode node)
 		{
-			return node.Tag is OutputConfiguration;
+			return !IsEmptyNode(node) && !IsGroupNode(node);
+		}
+
+		public bool IsGroupNode(TreeListNode node)
+		{
+			return node.Tag is IOutputItem item && item.SlideItems.Any();
+		}
+
+		public bool IsEmptyNode(TreeListNode node)
+		{
+			return node.Tag == null;
 		}
 	}
 
@@ -43,7 +54,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.Output
 		protected override Point GetDataBoundsLocation(TreeListNode node, int top)
 		{
 			var result = base.GetDataBoundsLocation(node, top);
-			if (!((OutputItemsTree)TreeList).CanCheckNode(node))
+			if (!((OutputItemsTreeList)TreeList).IsCheckNode(node))
 				result.X -= RC.CheckBoxSize.Width;
 			if (Size.Empty != RC.SelectImageSize && -1 == node.SelectImageIndex)
 				result.X -= RC.SelectImageSize.Width;
@@ -55,7 +66,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.Output
 		protected override void CalcStateImage(RowInfo ri)
 		{
 			base.CalcStateImage(ri);
-			if (Size.Empty != RC.StateImageSize && !((OutputItemsTree)TreeList).CanCheckNode(ri.Node))
+			if (Size.Empty != RC.StateImageSize && !((OutputItemsTreeList)TreeList).IsCheckNode(ri.Node))
 				ri.StateImageLocation.X -= RC.CheckBoxSize.Width;
 			if (Size.Empty != RC.StateImageSize && -1 == ri.Node.StateImageIndex)
 				ri.StateImageLocation.X -= RC.StateImageSize.Width;

@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Asa.Common.GUI.OutputSelector;
 using Asa.Common.GUI.Preview;
 
 namespace Asa.Online.Controls.PresentationClasses.Products
 {
-	public interface IDigitalOutputItem
+	public interface IDigitalOutputItem : ISlideItem
 	{
-		string SlideName { get; }
-		int SlidesCount { get; }
 		void GenerateOutput();
 		PreviewGroup GeneratePreview();
 	}

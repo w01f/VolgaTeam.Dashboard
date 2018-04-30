@@ -9,6 +9,7 @@ using Asa.Business.Online.Enums;
 using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
+using Asa.Common.GUI.OutputSelector;
 using Asa.Common.GUI.Preview;
 using Asa.Online.Controls.InteropClasses;
 using Asa.Online.Controls.PresentationClasses.Summary;
@@ -629,9 +630,15 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 		}
 
 		#region Output Staff
-		public string SlideName => Product.Name;
+		public string DisplayName => Product.Name;
+		public bool IsCurrent => TabControl != null && TabControl.SelectedTabPage == this;
 		public int SlidesCount => 1;
-
+		public ISlideItem[] SlideItems
+		{
+			get => new ISlideItem[] { };
+			set { }
+		}
+		
 		public void GenerateOutput()
 		{
 			_container.PowerPointProcessor.AppendOneSheets(new[] { Product }, _container.SelectedTheme);

@@ -281,9 +281,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			LoadData();
 			return new OutputGroup
 			{
-				Name = "Planners",
-				AlwaysShowChildren = true,
-				OutputItems = xtraTabControlProducts.TabPages.OfType<IDigitalOutputItem>().ToList()
+				DisplayName = "Planners",
+				IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
+				OutputItems = xtraTabControlProducts.TabPages.OfType<IDigitalOutputItem>().ToArray()
 			};
 		}
 		#endregion

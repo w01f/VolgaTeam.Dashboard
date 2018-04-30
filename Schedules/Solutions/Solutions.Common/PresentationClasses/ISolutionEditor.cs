@@ -10,7 +10,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 		SlideType SelectedSlideType { get; }
 		string HelpKey { get; }
 		bool ReadyForOutput { get; }
-		void InitControl();
+		void InitControl(bool showSplash);
 		void ShowEditor();
 		void ShowHomeSlide();
 		void LoadData();

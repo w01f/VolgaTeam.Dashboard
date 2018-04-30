@@ -66,7 +66,10 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			{
 				outputConfigurations.Add(new OutputConfiguration(
 					OptionSetOutputType.Digital,
-					BaseDigitalInfoOneSheetOutputModel.SlideCount));
+					BaseDigitalInfoOneSheetOutputModel.SlideCount)
+				{
+					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this
+				});
 				outputConfigurations.Add(new OutputConfiguration(
 					OptionSetOutputType.DigitalStrategy,
 					BaseDigitalInfoOneSheetOutputModel.SlideCount));

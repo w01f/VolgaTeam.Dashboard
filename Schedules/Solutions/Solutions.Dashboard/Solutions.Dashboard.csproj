@@ -131,12 +131,6 @@
       <DependentUpon>TargetCustomersControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Output\DashboardSlideInfo.cs" />
-    <Compile Include="PresentationClasses\Output\FormConfigureOutput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Output\FormConfigureOutput.Designer.cs">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\Output\IClientGoalsOutputData.cs" />
     <Compile Include="PresentationClasses\Output\ICoverOutputData.cs" />
     <Compile Include="PresentationClasses\Output\IDashboardSlide.cs" />
@@ -184,9 +178,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\TargetCustomersControl.resx">
       <DependentUpon>TargetCustomersControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\Output\FormConfigureOutput.resx">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

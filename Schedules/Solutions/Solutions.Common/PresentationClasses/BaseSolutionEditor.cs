@@ -28,7 +28,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 		}
 
 		#region GUI Methods
-		public abstract void InitControl();
+		public abstract void InitControl(bool showSplash);
 
 		public virtual void ShowEditor()
 		{

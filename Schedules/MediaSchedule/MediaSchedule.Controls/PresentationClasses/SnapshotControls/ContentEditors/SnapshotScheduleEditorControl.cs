@@ -545,7 +545,10 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			{
 				outputConfigurations.Add(new OutputConfiguration(
 					SnapshotOutputType.Program,
-					_data.Programs.Count / GetProgramsPerSlide(false) + (_data.Programs.Count % GetProgramsPerSlide(false) > 0 ? 1 : 0)));
+					_data.Programs.Count / GetProgramsPerSlide(false) + (_data.Programs.Count % GetProgramsPerSlide(false) > 0 ? 1 : 0))
+				{
+					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this
+				});
 				if (_data.DigitalInfo.Records.Any())
 					outputConfigurations.Add(new OutputConfiguration(
 						SnapshotOutputType.ProgramAndDigital,

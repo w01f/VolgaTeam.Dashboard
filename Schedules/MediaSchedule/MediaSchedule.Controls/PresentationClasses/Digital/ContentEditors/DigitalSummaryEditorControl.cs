@@ -9,6 +9,7 @@ using Asa.Business.Online.Dictionaries;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
+using Asa.Common.GUI.OutputSelector;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.Digital.Output;
@@ -24,10 +25,10 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 {
 	[ToolboxItem(false)]
 	//public partial class DigitalSummaryEditorControl : UserControl,
-	public partial class DigitalSummaryEditorControl : XtraTabPage, 
-		IDigitalEditor, 
-		IDigitalSummaryContainerControl, 
-		IDigitalOutputContainer, 
+	public partial class DigitalSummaryEditorControl : XtraTabPage,
+		IDigitalEditor,
+		IDigitalSummaryContainerControl,
+		IDigitalOutputContainer,
 		IDigitalOutputItem
 	{
 		private bool _allowToSave;
@@ -63,7 +64,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			_summaryControls.AddRange(_container.EditedContent.DigitalProducts.Select(product =>
 			{
 				var summaryControl = new DigitalProductSummaryControl();
-				summaryControl.Height = (Int32) (summaryControl.Height * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height);
+				summaryControl.Height = (Int32)(summaryControl.Height * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height);
 				summaryControl.LoadData(product);
 				return summaryControl;
 			}));
@@ -140,6 +141,12 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		#region Output
 		public List<Dictionary<string, string>> OutputReplacementsLists { get; set; }
 		public SlideType SlideType => SlideType.DigitalSummary;
+		public bool IsCurrent => TabControl != null && TabControl.SelectedTabPage == this;
+		public ISlideItem[] SlideItems
+		{
+			get => new ISlideItem[] { };
+			set { }
+		}
 		public Theme SelectedTheme
 		{
 			get
@@ -148,7 +155,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(selectedTheme) || String.IsNullOrEmpty(selectedTheme));
 			}
 		}
-		public string SlideName => Text;
+		public string DisplayName => Text;
 		public int SlidesCount => _summaryControls.Count / RowsPerSlide + (_summaryControls.Count % RowsPerSlide > 0 ? 1 : 0);
 		private static int RowsPerSlide => 7;
 
@@ -202,10 +209,11 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		{
 			return new OutputGroup
 			{
-				Name = SlideName,
+				DisplayName = DisplayName,
+				IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
 				OutputItems = _container.EditedContent.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)) ?
-					new List<IDigitalOutputItem> { this } :
-					new List<IDigitalOutputItem>()
+					new IDigitalOutputItem[] { this } :
+					new IDigitalOutputItem[] { }
 			};
 		}
 

@@ -152,10 +152,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			var slideHeader = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.SlideHeader?.Value ?? ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault)?.Value;
 
-			var combo1 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo1;
-			var combo2 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo2;
-			var combo3 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo3;
-			var combo4 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo4;
+			var combo1 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo1 ??
+						 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo1Items.FirstOrDefault(item => item.IsDefault);
+			var combo2 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo2 ??
+						 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo2Items.FirstOrDefault(item => item.IsDefault);
+			var combo3 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo3 ??
+						 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo3Items.FirstOrDefault(item => item.IsDefault);
+			var combo4 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo4 ??
+						 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo4Items.FirstOrDefault(item => item.IsDefault);
 
 			var subheader1 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Subheader1 ??
 							 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBSubHeader1DefaultValue;
@@ -213,15 +217,16 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11B-1.pptx");
 
-				textDataItems.Add("CP11BSubHeader1".ToUpper(), combo2.ToString());
 				if (!String.IsNullOrWhiteSpace(subheader1))
 					textDataItems.Add("CP11BSubHeader2".ToUpper(), subheader1);
 
-				textDataItems.Add("CP11BSubHeader3".ToUpper(), combo3.ToString());
+				if (combo3 != null)
+					textDataItems.Add("CP11BSubHeader3".ToUpper(), combo3.ToString());
 				if (!String.IsNullOrWhiteSpace(subheader2))
 					textDataItems.Add("CP11BSubHeader4".ToUpper(), subheader2);
 
-				textDataItems.Add("CP11BSubHeader5".ToUpper(), combo4.ToString());
+				if (combo4 != null)
+					textDataItems.Add("CP11BSubHeader5".ToUpper(), combo4.ToString());
 				if (!String.IsNullOrWhiteSpace(subheader3))
 					textDataItems.Add("CP11BSubHeader6".ToUpper(), subheader3);
 			}

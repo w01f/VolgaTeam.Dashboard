@@ -9,6 +9,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Output
 		public ScheduleSectionOutputType OutputType { get; set; }
 		public bool IsCurrent { get; set; }
 		public int SlidesCount { get; set; }
+		public bool SelectedForOutput { get; set; } = true;
 
 		public string DisplayName
 		{

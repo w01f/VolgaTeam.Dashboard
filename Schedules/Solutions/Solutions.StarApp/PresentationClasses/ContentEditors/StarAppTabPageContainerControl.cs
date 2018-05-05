@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using Asa.Common.GUI.ToolForms;
 using DevExpress.XtraTab;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors

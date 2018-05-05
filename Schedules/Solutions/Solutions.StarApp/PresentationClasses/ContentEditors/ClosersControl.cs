@@ -17,7 +17,7 @@ using DevExpress.XtraTab;
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	[ToolboxItem(false)]
-	public sealed partial class ClosersControl : StarAppControl
+	public sealed partial class ClosersControl : StarAppControl, IMultiTabsControl
 	{
 		private readonly List<XtraTabPage> _tabPages = new List<XtraTabPage>();
 
@@ -138,6 +138,18 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			_dataChanged = true;
 			SlideContainer.RaiseDataChanged();
+		}
+
+		public void LoadAllTabPages()
+		{
+			foreach (var tabPageContainer in _tabPages
+				.OfType<IClosersTabPageContainer>()
+				.ToList())
+			{
+				if (tabPageContainer.ContentControl == null)
+					tabPageContainer.LoadContent();
+				tabPageContainer.ContentControl?.LoadData();
+			}
 		}
 
 		private void OnEditValueChanged(object sender, EventArgs e)

@@ -404,6 +404,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		public string DisplayName => Text;
 		public SlideType SlideType => SlideType.DigitalStandalonePackage;
 		public bool IsCurrent => TabControl != null && TabControl.SelectedTabPage == this;
+		public bool SelectedForOutput { get; set; } = true;
 		public ISlideItem[] SlideItems
 		{
 			get => new ISlideItem[] { };

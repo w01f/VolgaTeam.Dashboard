@@ -633,6 +633,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 		public string DisplayName => Product.Name;
 		public bool IsCurrent => TabControl != null && TabControl.SelectedTabPage == this;
 		public int SlidesCount => 1;
+		public bool SelectedForOutput { get; set; } = true;
 		public ISlideItem[] SlideItems
 		{
 			get => new ISlideItem[] { };

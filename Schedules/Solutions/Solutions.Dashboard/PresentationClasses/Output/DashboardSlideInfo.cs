@@ -11,6 +11,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.Output
 
 		public string DisplayName => SlideName;
 		public int SlidesCount => 1;
+		public bool SelectedForOutput { get; set; } = true;
 		public ISlideItem[] SlideItems
 		{
 			get => new ISlideItem[] { };

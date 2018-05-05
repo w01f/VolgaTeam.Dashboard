@@ -24,6 +24,8 @@ namespace Asa.Business.Media.Configuration
 
 		public string SalesRep { get; set; }
 
+		public string SelectedStarOutputItemsEncoded { get; set; }
+
 		public MediaSettingsManager()
 		{
 			BroadcastCalendarSettings = new CalendarSettings();
@@ -52,6 +54,9 @@ namespace Asa.Business.Media.Configuration
 			node = document.SelectSingleNode(@"/Settings/SalesRep");
 			if (node != null)
 				SalesRep = node.InnerText;
+			node = document.SelectSingleNode(@"/Settings/SelectedStarOutputItemsEncoded");
+			if (node != null)
+				SelectedStarOutputItemsEncoded = node.InnerText;
 			node = document.SelectSingleNode(@"/Settings/ApplyThemeForAllSlideTypes");
 			if (node != null)
 			{
@@ -71,6 +76,8 @@ namespace Asa.Business.Media.Configuration
 			xml.AppendLine(@"<BroadcastCalendarSettings>" + BroadcastCalendarSettings.Serialize() + @"</BroadcastCalendarSettings>");
 			if (!String.IsNullOrEmpty(SalesRep))
 				xml.AppendLine(@"<SalesRep>" + SalesRep.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SalesRep>");
+			if (!String.IsNullOrEmpty(SelectedStarOutputItemsEncoded))
+				xml.AppendLine(@"<SelectedStarOutputItemsEncoded>" + SelectedStarOutputItemsEncoded.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SelectedStarOutputItemsEncoded>");
 			xml.AppendLine(@"<ApplyThemeForAllSlideTypes>" + ApplyThemeForAllSlideTypes + @"</ApplyThemeForAllSlideTypes>");
 			xml.AppendLine(_themeSaveHelper.Serialize());
 			xml.AppendLine(@"</Settings>");

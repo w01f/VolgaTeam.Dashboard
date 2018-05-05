@@ -5,39 +5,32 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
+using Asa.Common.GUI.OutputSelector;
 using Asa.Common.GUI.Preview;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.Skins;
-using DevExpress.XtraLayout.Utils;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 
-namespace Asa.Common.GUI.OutputSelector
+namespace Asa.Solutions.StarApp.PresentationClasses.Output
 {
-	public partial class FormConfigureOutput<TOutputItem> : MetroForm where TOutputItem : class, IOutputItem
+	public partial class FormConfigureOutput : MetroForm
 	{
 		private bool _allowHandleEvents;
 
-		public FormConfigureOutput(IList<TOutputItem> outputItems, PreviewGroup currentPreviewGroup)
+		public EventHandler<LoadAllEventArgs> LoadAllRequested;
+
+		public FormConfigureOutput(IList<OutputGroup> outputItems, PreviewGroup currentPreviewGroup, bool allSlidesLoaded)
 		{
 			InitializeComponent();
 
 			_allowHandleEvents = false;
 
-			var currentGroup = outputItems.FirstOrDefault(item => item.IsCurrent && item.SlideItems.Any(subItem => subItem.IsCurrent));
-			var currentSubItem = currentGroup != null ?
-				currentGroup.SlideItems.OfType<IOutputItem>().First(configuration => configuration.IsCurrent) :
-				outputItems.OfType<IOutputItem>().FirstOrDefault(item => item.IsCurrent) ?? outputItems.OfType<IOutputItem>().First();
+			var currentGroup = outputItems.First(item => item.IsCurrent && item.SlideItems.Any(subItem => subItem.IsCurrent));
+			var currentSubItem = currentGroup.SlideItems.OfType<IOutputItem>().First(configuration => configuration.IsCurrent);
 
-			if (currentGroup != null)
-			{
-				simpleLabelItemCurrentSlideGroupName.Text =
-					String.Format("<size=+2><color=gray>{0}</color></size>", currentGroup.DisplayName);
-			}
-			else
-			{
-				simpleLabelItemCurrentSlideGroupName.Visibility = LayoutVisibility.Never;
-			}
+			simpleLabelItemCurrentSlideGroupName.Text = String.Format("<size=+2><color=gray>{0}</color></size>", currentGroup.DisplayName);
 			simpleLabelItemCurrentSlideName.Text = String.Format("<size=+2>{0}</size>", currentSubItem.DisplayName);
 
 			var imageSourcePath = currentPreviewGroup.PresentationSourcePath.Replace(Path.GetExtension(currentPreviewGroup.PresentationSourcePath), String.Empty);
@@ -69,6 +62,8 @@ namespace Asa.Common.GUI.OutputSelector
 
 			UpdateSlidesCount();
 
+			layoutControlItemShowAll.Enabled = !allSlidesLoaded;
+
 			_allowHandleEvents = true;
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
@@ -79,15 +74,15 @@ namespace Asa.Common.GUI.OutputSelector
 			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, scaleFactor);
 		}
 
-		public IList<TOutputItem> GetSelectedItems()
+		public Tuple<List<OutputGroup>, bool> GetSelectedItems()
 		{
-			var selectedItems = new List<TOutputItem>();
+			var selectedItems = new List<OutputGroup>();
 
 			if (tabbedControlGroup.SelectedTabPageIndex == 0)
 			{
 				foreach (var groupNode in treeList.Nodes.OfType<TreeListNode>().ToList())
 				{
-					var outputItem = groupNode.Tag as TOutputItem;
+					var outputItem = groupNode.Tag as OutputGroup;
 					if (outputItem == null) continue;
 					if (!outputItem.IsCurrent) continue;
 					if (groupNode.Nodes.Count > 0)
@@ -98,12 +93,12 @@ namespace Asa.Common.GUI.OutputSelector
 					selectedItems.Add(outputItem);
 				}
 				if (!selectedItems.Any())
-					selectedItems.Add(treeList.Nodes.OfType<TreeListNode>().Select(node => node.Tag).OfType<TOutputItem>().FirstOrDefault());
+					selectedItems.Add(treeList.Nodes.OfType<TreeListNode>().Select(node => node.Tag).OfType<OutputGroup>().FirstOrDefault());
 			}
 			else
 				foreach (var groupNode in treeList.Nodes.OfType<TreeListNode>().ToList())
 				{
-					var outputItem = groupNode.Tag as TOutputItem;
+					var outputItem = groupNode.Tag as OutputGroup;
 					if (outputItem == null) continue;
 					if (groupNode.Nodes.Count > 0)
 					{
@@ -123,7 +118,7 @@ namespace Asa.Common.GUI.OutputSelector
 					}
 				}
 
-			return selectedItems;
+			return Tuple.Create(selectedItems, tabbedControlGroup.SelectedTabPageIndex == 1);
 		}
 
 		private void UpdateSlidesCount()
@@ -169,7 +164,7 @@ namespace Asa.Common.GUI.OutputSelector
 			_allowHandleEvents = true;
 		}
 
-		private void OnAddSingleSlideClick(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
+		private void OnAddSingleSlideClick(object sender, OpenLinkEventArgs e)
 		{
 			e.Handled = true;
 			DialogResult = DialogResult.OK;
@@ -189,7 +184,7 @@ namespace Asa.Common.GUI.OutputSelector
 			UpdateSlidesCount();
 		}
 
-		private void OnSelectAllClick(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
+		private void OnSelectAllClick(object sender, OpenLinkEventArgs e)
 		{
 			e.Handled = true;
 
@@ -199,7 +194,7 @@ namespace Asa.Common.GUI.OutputSelector
 			UpdateSlidesCount();
 		}
 
-		private void OnClearAllClick(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
+		private void OnClearAllClick(object sender, OpenLinkEventArgs e)
 		{
 			e.Handled = true;
 
@@ -207,6 +202,43 @@ namespace Asa.Common.GUI.OutputSelector
 				UncheckWithDecendants(treeNode);
 
 			UpdateSlidesCount();
+		}
+
+		private void OnShowAllClick(object sender, OpenLinkEventArgs e)
+		{
+			e.Handled = true;
+
+			var loadAllEventArgs = new LoadAllEventArgs();
+
+			LoadAllRequested?.Invoke(sender, loadAllEventArgs);
+
+			_allowHandleEvents = false;
+
+			treeList.Nodes.Clear();
+			foreach (var outputItem in loadAllEventArgs.OutputItems)
+			{
+				var itemNode = treeList.AppendNode(new object[] { outputItem.DisplayName }, null);
+				itemNode.Tag = outputItem;
+				itemNode.Checked = true;
+
+				foreach (var subItem in outputItem.SlideItems)
+				{
+					var subItemNode = treeList.AppendNode(new object[] { subItem.DisplayName }, itemNode);
+					subItemNode.Tag = subItem;
+					subItemNode.Checked = true;
+				}
+
+				var separatorNode = treeList.AppendNode(new object[] { String.Empty }, null);
+				separatorNode.Checked = false;
+			}
+			treeList.ExpandAll();
+
+			UpdateSlidesCount();
+
+			_allowHandleEvents = true;
+
+			layoutControlItemShowAll.Enabled = hyperLinkEditLoadAll.Enabled = false;
+			hyperLinkEditLoadAll.Text = "<color=gray>Show All</color>";
 		}
 	}
 }

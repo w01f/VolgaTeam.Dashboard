@@ -9,6 +9,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 		public SnapshotOutputType OutputType { get; }
 		public bool IsCurrent { get; set; }
 		public int SlidesCount { get; }
+		public bool SelectedForOutput { get; set; } = true;
 
 		public string DisplayName
 		{

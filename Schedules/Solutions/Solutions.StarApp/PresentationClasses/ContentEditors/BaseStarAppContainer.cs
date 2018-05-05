@@ -9,7 +9,6 @@ using Asa.Business.Solutions.StarApp.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
-using Asa.Common.GUI.OutputSelector;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
@@ -181,17 +180,43 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public abstract Theme GetSelectedTheme(SlideType slideType);
 
+		private List<StarAppOutputType> _selectedOutputItems;
+		public List<StarAppOutputType> SelectedOutputItems
+		{
+			get
+			{
+				if (_selectedOutputItems == null)
+				{
+					_selectedOutputItems = new List<StarAppOutputType>();
+					if (!String.IsNullOrWhiteSpace(SettingsContainer.SelectedStarOutputItemsEncoded))
+						_selectedOutputItems.AddRange(SettingsContainer.SelectedStarOutputItemsEncoded.Split(';').Select(item => (StarAppOutputType)Int32.Parse(item)));
+				}
+				return _selectedOutputItems;
+			}
+		}
+
+
 		protected IList<OutputGroup> GetOutputConfiguration()
 		{
 			var outputGroups = new List<OutputGroup>();
 
-			var availableOutputGroups = _slides
+			var allSlides = _slides
 				.OfType<IStarAppTabPageContainer>()
-				.Where(container => container.ContentControl != null)
+				.ToList();
+
+			var allSlidesLoaded = allSlides.All(slide => slide.ContentControl != null);
+
+			var availableOutputGroups = allSlides
+				.Where(slide => slide.ContentControl != null)
 				.Select(container => container.ContentControl)
 				.Where(control => control.ReadyForOutput)
 				.Select(control => control.GetOutputGroup())
 				.ToList();
+
+			if (SelectedOutputItems.Any())
+				foreach (var outputGroup in availableOutputGroups)
+					foreach (var configuration in outputGroup.Configurations)
+						configuration.SelectedForOutput = SelectedOutputItems.Contains(configuration.OutputType);
 
 			if (availableOutputGroups.Any())
 			{
@@ -204,9 +229,44 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				Utilities.ActivateForm(MainForm.Handle, MainForm.WindowState == FormWindowState.Maximized, false);
 				FormProgress.CloseProgress();
 
-				using (var form = new FormConfigureOutput<OutputGroup>(availableOutputGroups, previewGroup))
+				using (var form = new FormConfigureOutput(availableOutputGroups, previewGroup, allSlidesLoaded))
 				{
+					if (!allSlidesLoaded)
+					{
+						form.LoadAllRequested += (o, e) =>
+						{
+							FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Slides...");
+							FormProgress.ShowProgress(form);
+
+							foreach (var tabPageContainer in allSlides.Where(slide => slide.ContentControl == null).ToList())
+							{
+								tabPageContainer.LoadContent();
+								if (tabPageContainer.ContentControl is IMultiTabsControl multiTabsControl)
+									multiTabsControl.LoadAllTabPages();
+							}
+
+							Utilities.ActivateForm(form.Handle, false, false);
+							FormProgress.CloseProgress();
+
+							var outputItems = allSlides
+								.Where(slide => slide.ContentControl != null)
+								.Select(container => container.ContentControl)
+								.Where(control => control.ReadyForOutput)
+								.Select(control => control.GetOutputGroup())
+								.ToList();
+							if (SelectedOutputItems.Any())
+								foreach (var outputGroup in outputItems)
+									foreach (var configuration in outputGroup.Configurations)
+										configuration.SelectedForOutput = SelectedOutputItems.Contains(configuration.OutputType);
+
+							e.OutputItems.AddRange(outputItems);
+						};
+					}
+
 					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, AccentColor.HasValue
+						? AccentColor.Value.ToHex()
+						: "blue");
+					form.hyperLinkEditLoadAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditLoadAll.Text, allSlidesLoaded ? "gray" : AccentColor.HasValue
 						? AccentColor.Value.ToHex()
 						: "blue");
 					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, AccentColor.HasValue
@@ -217,7 +277,19 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						: "blue");
 
 					if (form.ShowDialog() == DialogResult.OK)
-						outputGroups.AddRange(form.GetSelectedItems());
+					{
+						var result = form.GetSelectedItems();
+						outputGroups.AddRange(result.Item1);
+
+						if (result.Item2)
+						{
+							SelectedOutputItems.Clear();
+							SelectedOutputItems.AddRange(result.Item1.SelectMany(group => group.Configurations).Select(configuration => configuration.OutputType));
+							SettingsContainer.SelectedStarOutputItemsEncoded =
+								String.Join(";", SelectedOutputItems.Select(item => (Int32)item).ToArray());
+							SettingsContainer.SaveSettings();
+						}
+					}
 					else
 						availableOutputGroups.ForEach(g => g.Dispose());
 				}

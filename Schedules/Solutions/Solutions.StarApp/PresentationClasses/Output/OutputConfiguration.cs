@@ -7,6 +7,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.Output
 		public StarAppOutputType OutputType { get; }
 		public string DisplayName { get; }
 		public int SlidesCount { get; }
+		public bool SelectedForOutput { get; set; } = true;
 		public bool IsCurrent { get; set; }
 
 		public ISlideItem[] SlideItems

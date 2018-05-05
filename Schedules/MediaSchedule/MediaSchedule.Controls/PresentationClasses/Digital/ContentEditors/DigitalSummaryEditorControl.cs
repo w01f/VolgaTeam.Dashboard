@@ -142,6 +142,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		public List<Dictionary<string, string>> OutputReplacementsLists { get; set; }
 		public SlideType SlideType => SlideType.DigitalSummary;
 		public bool IsCurrent => TabControl != null && TabControl.SelectedTabPage == this;
+		public bool SelectedForOutput { get; set; } = true;
 		public ISlideItem[] SlideItems
 		{
 			get => new ISlideItem[] { };

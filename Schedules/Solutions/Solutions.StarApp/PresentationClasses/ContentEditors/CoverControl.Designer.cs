@@ -37,7 +37,6 @@
 			DevExpress.XtraLayout.RowDefinition rowDefinition2 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition3 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition4 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition5 = new DevExpress.XtraLayout.RowDefinition();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.checkEditAddAsPageOne = new DevExpress.XtraEditors.CheckEdit();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
@@ -60,12 +59,12 @@
 			this.layoutControlGroupCombo1 = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemCombo1 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.simpleLabelItemCombo1Description1 = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemAddAsPageOne = new DevExpress.XtraLayout.LayoutControlItem();
 			this.panelLogoRight = new System.Windows.Forms.Panel();
 			this.pictureEditLogoRight = new DevExpress.XtraEditors.PictureEdit();
 			this.panelLogoBottom = new System.Windows.Forms.Panel();
 			this.pictureEditLogoFooter = new DevExpress.XtraEditors.PictureEdit();
+			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
 			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAddAsPageOne.Properties)).BeginInit();
@@ -91,12 +90,12 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupCombo1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCombo1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemCombo1Description1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemAddAsPageOne)).BeginInit();
 			this.panelLogoRight.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).BeginInit();
 			this.panelLogoBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -167,7 +166,7 @@
 			// dateEditCalendar1
 			// 
 			this.dateEditCalendar1.EditValue = null;
-			this.dateEditCalendar1.Location = new System.Drawing.Point(110, 445);
+			this.dateEditCalendar1.Location = new System.Drawing.Point(110, 444);
 			this.dateEditCalendar1.Name = "dateEditCalendar1";
 			this.dateEditCalendar1.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditCalendar1.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -196,7 +195,7 @@
 			this.memoEditSubheader1.Location = new System.Drawing.Point(292, 149);
 			this.memoEditSubheader1.Name = "memoEditSubheader1";
 			this.memoEditSubheader1.Properties.NullText = "Type here";
-			this.memoEditSubheader1.Size = new System.Drawing.Size(324, 221);
+			this.memoEditSubheader1.Size = new System.Drawing.Size(324, 220);
 			this.memoEditSubheader1.StyleController = this.layoutControl;
 			this.memoEditSubheader1.TabIndex = 3;
 			this.memoEditSubheader1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -214,7 +213,7 @@
 			this.pictureEditClipart1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditClipart1.Properties.ShowMenu = false;
 			this.pictureEditClipart1.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditClipart1.Size = new System.Drawing.Size(173, 221);
+			this.pictureEditClipart1.Size = new System.Drawing.Size(173, 220);
 			this.pictureEditClipart1.StyleController = this.layoutControl;
 			this.pictureEditClipart1.TabIndex = 1;
 			this.pictureEditClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -242,7 +241,7 @@
 			// 
 			// checkEditCalendar1
 			// 
-			this.checkEditCalendar1.Location = new System.Drawing.Point(85, 447);
+			this.checkEditCalendar1.Location = new System.Drawing.Point(85, 446);
 			this.checkEditCalendar1.Name = "checkEditCalendar1";
 			this.checkEditCalendar1.Properties.Caption = "";
 			this.checkEditCalendar1.Size = new System.Drawing.Size(21, 19);
@@ -252,7 +251,7 @@
 			// 
 			// comboBoxEditCombo1
 			// 
-			this.comboBoxEditCombo1.Location = new System.Drawing.Point(85, 581);
+			this.comboBoxEditCombo1.Location = new System.Drawing.Point(85, 542);
 			this.comboBoxEditCombo1.Name = "comboBoxEditCombo1";
 			this.comboBoxEditCombo1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -363,16 +362,13 @@
 			rowDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
 			rowDefinition3.Height = 30D;
 			rowDefinition3.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition4.Height = 15D;
+			rowDefinition4.Height = 30D;
 			rowDefinition4.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition5.Height = 15D;
-			rowDefinition5.SizeType = System.Windows.Forms.SizeType.Percent;
 			this.layoutControlGroupTabA.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition1,
             rowDefinition2,
             rowDefinition3,
-            rowDefinition4,
-            rowDefinition5});
+            rowDefinition4});
 			this.layoutControlGroupTabA.Size = new System.Drawing.Size(535, 592);
 			this.layoutControlGroupTabA.Text = "Tab A";
 			// 
@@ -382,7 +378,7 @@
 			this.layoutControlItemClipart1.Location = new System.Drawing.Point(0, 30);
 			this.layoutControlItemClipart1.Name = "layoutControlItemClipart1";
 			this.layoutControlItemClipart1.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemClipart1.Size = new System.Drawing.Size(177, 225);
+			this.layoutControlItemClipart1.Size = new System.Drawing.Size(177, 224);
 			this.layoutControlItemClipart1.Text = "Clipart 1";
 			this.layoutControlItemClipart1.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemClipart1.TextVisible = false;
@@ -396,7 +392,7 @@
 			this.layoutControlItemSubheader1.Name = "layoutControlItemSubheader1";
 			this.layoutControlItemSubheader1.OptionsTableLayoutItem.ColumnIndex = 2;
 			this.layoutControlItemSubheader1.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemSubheader1.Size = new System.Drawing.Size(328, 225);
+			this.layoutControlItemSubheader1.Size = new System.Drawing.Size(328, 224);
 			this.layoutControlItemSubheader1.Text = "Subheader 1";
 			this.layoutControlItemSubheader1.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemSubheader1.TextVisible = false;
@@ -408,7 +404,7 @@
 			this.layoutControlGroupCalendar.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemCalendar1Toggle,
             this.layoutControlItemCalendar1Value});
-			this.layoutControlGroupCalendar.Location = new System.Drawing.Point(0, 255);
+			this.layoutControlGroupCalendar.Location = new System.Drawing.Point(0, 254);
 			this.layoutControlGroupCalendar.Name = "layoutControlGroupCalendar";
 			this.layoutControlGroupCalendar.OptionsTableLayoutItem.RowIndex = 2;
 			this.layoutControlGroupCalendar.Size = new System.Drawing.Size(177, 169);
@@ -452,11 +448,11 @@
             this.layoutControlItemCombo1,
             this.simpleLabelItemCombo1Description1,
             this.emptySpaceItem2});
-			this.layoutControlGroupCombo1.Location = new System.Drawing.Point(0, 424);
+			this.layoutControlGroupCombo1.Location = new System.Drawing.Point(0, 423);
 			this.layoutControlGroupCombo1.Name = "layoutControlGroupCombo1";
 			this.layoutControlGroupCombo1.OptionsTableLayoutItem.ColumnSpan = 3;
 			this.layoutControlGroupCombo1.OptionsTableLayoutItem.RowIndex = 3;
-			this.layoutControlGroupCombo1.Size = new System.Drawing.Size(535, 84);
+			this.layoutControlGroupCombo1.Size = new System.Drawing.Size(535, 169);
 			this.layoutControlGroupCombo1.Text = "Combo 1";
 			this.layoutControlGroupCombo1.TextVisible = false;
 			// 
@@ -465,7 +461,7 @@
 			this.layoutControlItemCombo1.Control = this.comboBoxEditCombo1;
 			this.layoutControlItemCombo1.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemCombo1.FillControlToClientArea = false;
-			this.layoutControlItemCombo1.Location = new System.Drawing.Point(0, 38);
+			this.layoutControlItemCombo1.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemCombo1.Name = "layoutControlItemCombo1";
 			this.layoutControlItemCombo1.OptionsTableLayoutItem.ColumnSpan = 3;
 			this.layoutControlItemCombo1.OptionsTableLayoutItem.RowIndex = 3;
@@ -482,21 +478,13 @@
 			this.simpleLabelItemCombo1Description1.AppearanceItemCaption.Options.UseTextOptions = true;
 			this.simpleLabelItemCombo1Description1.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.simpleLabelItemCombo1Description1.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
-			this.simpleLabelItemCombo1Description1.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.simpleLabelItemCombo1Description1.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
 			this.simpleLabelItemCombo1Description1.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.simpleLabelItemCombo1Description1.Location = new System.Drawing.Point(0, 64);
+			this.simpleLabelItemCombo1Description1.Location = new System.Drawing.Point(0, 36);
 			this.simpleLabelItemCombo1Description1.Name = "simpleLabelItemCombo1Description1";
-			this.simpleLabelItemCombo1Description1.Size = new System.Drawing.Size(535, 20);
+			this.simpleLabelItemCombo1Description1.Size = new System.Drawing.Size(535, 133);
 			this.simpleLabelItemCombo1Description1.Text = " ";
 			this.simpleLabelItemCombo1Description1.TextSize = new System.Drawing.Size(0, 16);
-			// 
-			// emptySpaceItem2
-			// 
-			this.emptySpaceItem2.AllowHotTrack = false;
-			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
-			this.emptySpaceItem2.Name = "emptySpaceItem2";
-			this.emptySpaceItem2.Size = new System.Drawing.Size(535, 38);
-			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemAddAsPageOne
 			// 
@@ -570,6 +558,17 @@
 			this.pictureEditLogoFooter.Size = new System.Drawing.Size(641, 80);
 			this.pictureEditLogoFooter.TabIndex = 1;
 			// 
+			// emptySpaceItem2
+			// 
+			this.emptySpaceItem2.AllowHotTrack = false;
+			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 26);
+			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 10);
+			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem2.Name = "emptySpaceItem2";
+			this.emptySpaceItem2.Size = new System.Drawing.Size(535, 10);
+			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+			// 
 			// CoverControl
 			// 
 			this.Controls.Add(this.layoutControl);
@@ -606,12 +605,12 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupCombo1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCombo1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemCombo1Description1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemAddAsPageOne)).EndInit();
 			this.panelLogoRight.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).EndInit();
 			this.panelLogoBottom.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

@@ -16,15 +16,14 @@ namespace Asa.Common.GUI.Slides
 			_slideMasters.AddRange(slideMasters);
 		}
 
-		public override Image GetThumbnail(object key, Size size, UseEmbeddedThumbnails useEmbeddedThumbnails, bool useExifOrientation,
-			bool useWIC)
+		public override Image GetThumbnail(object key, Size size, UseEmbeddedThumbnails useEmbeddedThumbnails, bool useExifOrientation)
 		{
 			var guid = (Guid) key;
 			return _slideMasters.Where(i => i.Identifier == guid).Select(i => (Image)i.BrowseLogo.Clone()).FirstOrDefault();
 		}
 
 		public override string GetUniqueIdentifier(object key, Size size, UseEmbeddedThumbnails useEmbeddedThumbnails,
-			bool useExifOrientation, bool useWIC)
+			bool useExifOrientation)
 		{
 			var guid = (Guid)key;
 			return guid.ToString();
@@ -36,7 +35,7 @@ namespace Asa.Common.GUI.Slides
 			return _slideMasters.Where(i => i.Identifier == guid).Select(i => i.LogoFile.LocalPath).FirstOrDefault();
 		}
 
-		public override Utility.Tuple<ColumnType, string, object>[] GetDetails(Object key, bool useWIC)
+		public override Utility.Tuple<ColumnType, string, object>[] GetDetails(Object key)
 		{
 			return null;
 		}

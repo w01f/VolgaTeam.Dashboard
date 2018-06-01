@@ -16,15 +16,15 @@ namespace Asa.Common.GUI.ImageGallery
 			_imageSources.AddRange(imageSources);
 		}
 
-		public override Image GetThumbnail(object key, Size size, UseEmbeddedThumbnails useEmbeddedThumbnails, bool useExifOrientation,
-			bool useWIC)
+		public override Image GetThumbnail(Object key, Size size, UseEmbeddedThumbnails useEmbeddedThumbnails, Boolean useExifOrientation)
 		{
-			var guid = (Guid) key;
+			var guid = (Guid)key;
 			return _imageSources.Where(i => i.Identifier == guid).Select(i => (Image)i.TinyImage.Clone()).FirstOrDefault();
+
 		}
 
-		public override string GetUniqueIdentifier(object key, Size size, UseEmbeddedThumbnails useEmbeddedThumbnails,
-			bool useExifOrientation, bool useWIC)
+		public override String GetUniqueIdentifier(Object key, Size size, UseEmbeddedThumbnails useEmbeddedThumbnails,
+			Boolean useExifOrientation)
 		{
 			var guid = (Guid)key;
 			return guid.ToString();
@@ -36,7 +36,7 @@ namespace Asa.Common.GUI.ImageGallery
 			return _imageSources.Where(i => i.Identifier == guid).Select(i => i.FileName).FirstOrDefault();
 		}
 
-		public override Utility.Tuple<ColumnType, string, object>[] GetDetails(Object key, bool useWIC)
+		public override Utility.Tuple<ColumnType, String, Object>[] GetDetails(Object key)
 		{
 			return null;
 		}

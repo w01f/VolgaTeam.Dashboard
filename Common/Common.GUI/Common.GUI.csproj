@@ -54,9 +54,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="ImageListView_noWPF, Version=11.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ImageListView.11.0.8\lib\net35\ImageListView_noWPF.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="ImageListView">
+      <HintPath>..\..\packages\ImageListView.11.1.0\lib\net35\ImageListView.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -68,6 +67,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WPFThumbnailExtractor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ImageListView.11.1.0\lib\net35\WPFThumbnailExtractor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ComboBoxListEdit.cs">
@@ -369,9 +371,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
     <None Include="Resources\FloaterHide.png" />
   </ItemGroup>
   <ItemGroup>

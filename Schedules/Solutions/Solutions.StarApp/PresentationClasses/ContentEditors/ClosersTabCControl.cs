@@ -592,38 +592,38 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11C-12.pptx");
 
-				textDataItems.Add("CP11CCombo1".ToUpper(), combo1.ToString());
-				textDataItems.Add("CP11CCombo1LinkText1".ToUpper(), String.Join("        ", combo1.Email, combo1.Phone));
+				textDataItems.Add("CP11CCombo1".ToUpper(), combo1?.ToString());
+				textDataItems.Add("CP11CCombo1LinkText1".ToUpper(), String.Join("        ", combo1?.Email, combo1?.Phone));
 
-				textDataItems.Add("CP11CCombo2".ToUpper(), combo2.ToString());
-				textDataItems.Add("CP11CCombo2LinkText2".ToUpper(), String.Join("        ", combo2.Email, combo2.Phone));
+				textDataItems.Add("CP11CCombo2".ToUpper(), combo2?.ToString());
+				textDataItems.Add("CP11CCombo2LinkText2".ToUpper(), String.Join("        ", combo2?.Email, combo2?.Phone));
 
-				textDataItems.Add("CP11CCombo3".ToUpper(), combo3.ToString());
-				textDataItems.Add("CP11CCombo3LinkText3".ToUpper(), String.Join("        ", combo3.Email, combo3.Phone));
+				textDataItems.Add("CP11CCombo3".ToUpper(), combo3?.ToString());
+				textDataItems.Add("CP11CCombo3LinkText3".ToUpper(), String.Join("        ", combo3?.Email, combo3?.Phone));
 
-				textDataItems.Add("CP11CCombo4".ToUpper(), combo4.ToString());
-				textDataItems.Add("CP11CCombo4LinkText4".ToUpper(), String.Join("        ", combo4.Email, combo4.Phone));
+				textDataItems.Add("CP11CCombo4".ToUpper(), combo4?.ToString());
+				textDataItems.Add("CP11CCombo4LinkText4".ToUpper(), String.Join("        ", combo4?.Email, combo4?.Phone));
 
-				textDataItems.Add("CP11CCombo5".ToUpper(), combo5.ToString());
-				textDataItems.Add("CP11CCombo5LinkText5".ToUpper(), String.Join("        ", combo5.Email, combo5.Phone));
+				textDataItems.Add("CP11CCombo5".ToUpper(), combo5?.ToString());
+				textDataItems.Add("CP11CCombo5LinkText5".ToUpper(), String.Join("        ", combo5?.Email, combo5?.Phone));
 
-				textDataItems.Add("CP11CCombo6".ToUpper(), combo6.ToString());
-				textDataItems.Add("CP11CCombo6LinkText6".ToUpper(), String.Join("        ", combo6.Email, combo6.Phone));
+				textDataItems.Add("CP11CCombo6".ToUpper(), combo6?.ToString());
+				textDataItems.Add("CP11CCombo6LinkText6".ToUpper(), String.Join("        ", combo6?.Email, combo6?.Phone));
 
-				textDataItems.Add("CP11CCombo7".ToUpper(), combo7.ToString());
-				textDataItems.Add("CP11CCombo7LinkText7".ToUpper(), String.Join("        ", combo7.Email, combo7.Phone));
+				textDataItems.Add("CP11CCombo7".ToUpper(), combo7?.ToString());
+				textDataItems.Add("CP11CCombo7LinkText7".ToUpper(), String.Join("        ", combo7?.Email, combo7?.Phone));
 
-				textDataItems.Add("CP11CCombo8".ToUpper(), combo8.ToString());
-				textDataItems.Add("CP11CCombo8LinkText8".ToUpper(), String.Join("        ", combo8.Email, combo8.Phone));
+				textDataItems.Add("CP11CCombo8".ToUpper(), combo8?.ToString());
+				textDataItems.Add("CP11CCombo8LinkText8".ToUpper(), String.Join("        ", combo8?.Email, combo8?.Phone));
 
-				textDataItems.Add("CP11CCombo9".ToUpper(), combo9.ToString());
-				textDataItems.Add("CP11CCombo9LinkText9".ToUpper(), String.Join("        ", combo9.Email, combo9.Phone));
+				textDataItems.Add("CP11CCombo9".ToUpper(), combo9?.ToString());
+				textDataItems.Add("CP11CCombo9LinkText9".ToUpper(), String.Join("        ", combo9?.Email, combo9?.Phone));
 
-				textDataItems.Add("CP11CCombo10".ToUpper(), combo10.ToString());
-				textDataItems.Add("CP11CCombo10LinkText10".ToUpper(), String.Join("        ", combo10.Email, combo10.Phone));
+				textDataItems.Add("CP11CCombo10".ToUpper(), combo10?.ToString());
+				textDataItems.Add("CP11CCombo10LinkText10".ToUpper(), String.Join("        ", combo10?.Email, combo10?.Phone));
 
-				textDataItems.Add("CP11CCombo11".ToUpper(), combo11.ToString());
-				textDataItems.Add("CP11CCombo11LinkText11".ToUpper(), String.Join("        ", combo11.Email, combo11.Phone));
+				textDataItems.Add("CP11CCombo11".ToUpper(), combo11?.ToString());
+				textDataItems.Add("CP11CCombo11LinkText11".ToUpper(), String.Join("        ", combo11?.Email, combo11?.Phone));
 			}
 			outputDataPackage.TextItems = textDataItems;
 

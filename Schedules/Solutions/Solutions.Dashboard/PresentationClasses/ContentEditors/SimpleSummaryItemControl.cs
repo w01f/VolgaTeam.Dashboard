@@ -11,7 +11,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 	[ToolboxItem(false)]
 	public partial class SimpleSummaryItemControl : UserControl
 	{
-		private bool _allowToSave;
+		private bool _allowToSave = true;
 		private readonly SimpleSummaryItemContainer _parent;
 		private int _itemNumber;
 
@@ -56,7 +56,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		public int ItemNumber
 		{
-			get { return _itemNumber; }
+			get => _itemNumber;
 			set
 			{
 				_itemNumber = value;

@@ -582,38 +582,35 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-12.pptx");
 
-				textDataItems.Add("CP11ACombo1".ToUpper(), combo1.ToString());
-				textDataItems.Add("CP11ACombo1LinkText1".ToUpper(), String.Join("        ", combo1.Email, combo1.Phone));
+				textDataItems.Add("CP11ACombo2".ToUpper(), combo2?.ToString());
+				textDataItems.Add("CP11ACombo2LinkText2".ToUpper(), String.Join("        ", combo2?.Email, combo2?.Phone));
 
-				textDataItems.Add("CP11ACombo2".ToUpper(), combo2.ToString());
-				textDataItems.Add("CP11ACombo2LinkText2".ToUpper(), String.Join("        ", combo2.Email, combo2.Phone));
+				textDataItems.Add("CP11ACombo3".ToUpper(), combo3?.ToString());
+				textDataItems.Add("CP11ACombo3LinkText3".ToUpper(), String.Join("        ", combo3?.Email, combo3?.Phone));
 
-				textDataItems.Add("CP11ACombo3".ToUpper(), combo3.ToString());
-				textDataItems.Add("CP11ACombo3LinkText3".ToUpper(), String.Join("        ", combo3.Email, combo3.Phone));
+				textDataItems.Add("CP11ACombo4".ToUpper(), combo4?.ToString());
+				textDataItems.Add("CP11ACombo4LinkText4".ToUpper(), String.Join("        ", combo4?.Email, combo4?.Phone));
 
-				textDataItems.Add("CP11ACombo4".ToUpper(), combo4.ToString());
-				textDataItems.Add("CP11ACombo4LinkText4".ToUpper(), String.Join("        ", combo4.Email, combo4.Phone));
+				textDataItems.Add("CP11ACombo5".ToUpper(), combo5?.ToString());
+				textDataItems.Add("CP11ACombo5LinkText5".ToUpper(), String.Join("        ", combo5?.Email, combo5?.Phone));
 
-				textDataItems.Add("CP11ACombo5".ToUpper(), combo5.ToString());
-				textDataItems.Add("CP11ACombo5LinkText5".ToUpper(), String.Join("        ", combo5.Email, combo5.Phone));
+				textDataItems.Add("CP11ACombo6".ToUpper(), combo6?.ToString());
+				textDataItems.Add("CP11ACombo6LinkText6".ToUpper(), String.Join("        ", combo6?.Email, combo6?.Phone));
 
-				textDataItems.Add("CP11ACombo6".ToUpper(), combo6.ToString());
-				textDataItems.Add("CP11ACombo6LinkText6".ToUpper(), String.Join("        ", combo6.Email, combo6.Phone));
+				textDataItems.Add("CP11ACombo7".ToUpper(), combo7?.ToString());
+				textDataItems.Add("CP11ACombo7LinkText7".ToUpper(), String.Join("        ", combo7?.Email, combo7?.Phone));
 
-				textDataItems.Add("CP11ACombo7".ToUpper(), combo7.ToString());
-				textDataItems.Add("CP11ACombo7LinkText7".ToUpper(), String.Join("        ", combo7.Email, combo7.Phone));
+				textDataItems.Add("CP11ACombo8".ToUpper(), combo8?.ToString());
+				textDataItems.Add("CP11ACombo8LinkText8".ToUpper(), String.Join("        ", combo8?.Email, combo8?.Phone));
 
-				textDataItems.Add("CP11ACombo8".ToUpper(), combo8.ToString());
-				textDataItems.Add("CP11ACombo8LinkText8".ToUpper(), String.Join("        ", combo8.Email, combo8.Phone));
+				textDataItems.Add("CP11ACombo9".ToUpper(), combo9?.ToString());
+				textDataItems.Add("CP11ACombo9LinkText9".ToUpper(), String.Join("        ", combo9?.Email, combo9?.Phone));
 
-				textDataItems.Add("CP11ACombo9".ToUpper(), combo9.ToString());
-				textDataItems.Add("CP11ACombo9LinkText9".ToUpper(), String.Join("        ", combo9.Email, combo9.Phone));
+				textDataItems.Add("CP11ACombo10".ToUpper(), combo10?.ToString());
+				textDataItems.Add("CP11ACombo10LinkText10".ToUpper(), String.Join("        ", combo10?.Email, combo10?.Phone));
 
-				textDataItems.Add("CP11ACombo10".ToUpper(), combo10.ToString());
-				textDataItems.Add("CP11ACombo10LinkText10".ToUpper(), String.Join("        ", combo10.Email, combo10.Phone));
-
-				textDataItems.Add("CP11ACombo11".ToUpper(), combo11.ToString());
-				textDataItems.Add("CP11ACombo11LinkText11".ToUpper(), String.Join("        ", combo11.Email, combo11.Phone));
+				textDataItems.Add("CP11ACombo11".ToUpper(), combo11?.ToString());
+				textDataItems.Add("CP11ACombo11LinkText11".ToUpper(), String.Join("        ", combo11?.Email, combo11?.Phone));
 			}
 			outputDataPackage.TextItems = textDataItems;
 

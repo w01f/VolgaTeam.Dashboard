@@ -480,6 +480,9 @@ namespace Asa.Media.Single
 
 			AppManager.Instance.ActivateMainForm(WindowState == FormWindowState.Maximized);
 
+			BusinessObjects.Instance.IdleManager.LinkToApplication(this);
+			BusinessObjects.Instance.IdleManager.BeforeCloseOnTimerExpired += OnCloseOnIdleTimerExpired;
+
 			using (var formStart = new FormStart())
 			{
 				formStart.buttonXOpen.Enabled = BusinessObjects.Instance.ScheduleManager.GetScheduleList<MediaScheduleModel>().Any() ||
@@ -500,9 +503,6 @@ namespace Asa.Media.Single
 					ribbonControl.Enabled = true;
 					if (BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.EditMode == ScheduleEditMode.Regular)
 						Controller.Instance.CheckPowerPointRunning();
-
-					BusinessObjects.Instance.IdleManager.LinkToApplication(this);
-					BusinessObjects.Instance.IdleManager.BeforeCloseOnTimerExpired += OnCloseOnIdleTimerExpired;
 				}
 				else
 					Close();
@@ -563,6 +563,7 @@ namespace Asa.Media.Single
 
 		private void OnCloseOnIdleTimerExpired(Object sender, EventArgs e)
 		{
+			if (!_processAppClosing) return;
 			_processAppClosing = false;
 			if (BusinessObjects.Instance.IdleManager.SaveOnClose)
 			{

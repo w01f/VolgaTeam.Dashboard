@@ -60,30 +60,66 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				Application.DoEvents();
 			}
 
-			_slides.Add(new StarAppTabPageContainerControl<CleanslateControl>(this));
-			Application.DoEvents();
-			_slides.Add(new StarAppTabPageContainerControl<CoverControl>(this));
-			Application.DoEvents();
-			_slides.Add(new StarAppTabPageContainerControl<CNAControl>(this));
-			Application.DoEvents();
-			_slides.Add(new StarAppTabPageContainerControl<FishingControl>(this));
-			Application.DoEvents();
-			_slides.Add(new StarAppTabPageContainerControl<CustomerControl>(this));
-			Application.DoEvents();
-			_slides.Add(new StarAppTabPageContainerControl<ShareControl>(this));
-			Application.DoEvents();
-			_slides.Add(new StarAppTabPageContainerControl<ROIControl>(this));
-			Application.DoEvents();
-			_slides.Add(new StarAppTabPageContainerControl<MarketControl>(this));
-			Application.DoEvents();
-			_slides.Add(new StarAppTabPageContainerControl<VideoControl>(this));
-			Application.DoEvents();
-			_slides.Add(new StarAppTabPageContainerControl<AudienceControl>(this));
-			Application.DoEvents();
-			_slides.Add(new StarAppTabPageContainerControl<SolutionControl>(this));
-			Application.DoEvents();
-			_slides.Add(new StarAppTabPageContainerControl<ClosersControl>(this));
-			Application.DoEvents();
+			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab0Title))
+			{
+				_slides.Add(new StarAppTabPageContainerControl<CleanslateControl>(this));
+				Application.DoEvents();
+			}
+			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab1Title))
+			{
+				_slides.Add(new StarAppTabPageContainerControl<CoverControl>(this));
+				Application.DoEvents();
+			}
+			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab2Title))
+			{
+				_slides.Add(new StarAppTabPageContainerControl<CNAControl>(this));
+				Application.DoEvents();
+			}
+			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab3Title))
+			{
+				_slides.Add(new StarAppTabPageContainerControl<FishingControl>(this));
+				Application.DoEvents();
+			}
+			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab4Title))
+			{
+				_slides.Add(new StarAppTabPageContainerControl<CustomerControl>(this));
+				Application.DoEvents();
+			}
+			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab5Title))
+			{
+				_slides.Add(new StarAppTabPageContainerControl<ShareControl>(this));
+				Application.DoEvents();
+			}
+			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab6Title))
+			{
+				_slides.Add(new StarAppTabPageContainerControl<ROIControl>(this));
+				Application.DoEvents();
+			}
+			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab7Title))
+			{
+				_slides.Add(new StarAppTabPageContainerControl<MarketControl>(this));
+				Application.DoEvents();
+			}
+			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab8Title))
+			{
+				_slides.Add(new StarAppTabPageContainerControl<VideoControl>(this));
+				Application.DoEvents();
+			}
+			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab9Title))
+			{
+				_slides.Add(new StarAppTabPageContainerControl<AudienceControl>(this));
+				Application.DoEvents();
+			}
+			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab10Title))
+			{
+				_slides.Add(new StarAppTabPageContainerControl<SolutionControl>(this));
+				Application.DoEvents();
+			}
+			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab11Title))
+			{
+				_slides.Add(new StarAppTabPageContainerControl<ClosersControl>(this));
+				Application.DoEvents();
+			}
 
 			xtraTabControl.TabPages.AddRange(_slides.OfType<XtraTabPage>().ToArray());
 			Application.DoEvents();

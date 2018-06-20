@@ -52,19 +52,21 @@
 			this.tabbedControlGroupData = new DevExpress.XtraLayout.TabbedControlGroup();
 			this.layoutControlGroupTabA = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemSubheader1 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlGroupCalendar = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemCalendar1Toggle = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemCalendar1Value = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlGroupCombo1 = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemCombo1 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.simpleLabelItemCombo1Description1 = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlGroupSubheader1 = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemSubheader1 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemAddAsPageOne = new DevExpress.XtraLayout.LayoutControlItem();
 			this.panelLogoRight = new System.Windows.Forms.Panel();
 			this.pictureEditLogoRight = new DevExpress.XtraEditors.PictureEdit();
 			this.panelLogoBottom = new System.Windows.Forms.Panel();
 			this.pictureEditLogoFooter = new DevExpress.XtraEditors.PictureEdit();
-			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAddAsPageOne.Properties)).BeginInit();
@@ -83,19 +85,21 @@
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupData)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSubheader1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupCalendar)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCalendar1Toggle)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCalendar1Value)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupCombo1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCombo1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemCombo1Description1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSubheader1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSubheader1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemAddAsPageOne)).BeginInit();
 			this.panelLogoRight.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).BeginInit();
 			this.panelLogoBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -340,9 +344,9 @@
 			// 
 			this.layoutControlGroupTabA.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemClipart1,
-            this.layoutControlItemSubheader1,
             this.layoutControlGroupCalendar,
-            this.layoutControlGroupCombo1});
+            this.layoutControlGroupCombo1,
+            this.layoutControlGroupSubheader1});
 			this.layoutControlGroupTabA.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabA.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabA.Name = "layoutControlGroupTabA";
@@ -382,21 +386,6 @@
 			this.layoutControlItemClipart1.Text = "Clipart 1";
 			this.layoutControlItemClipart1.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemClipart1.TextVisible = false;
-			// 
-			// layoutControlItemSubheader1
-			// 
-			this.layoutControlItemSubheader1.Control = this.memoEditSubheader1;
-			this.layoutControlItemSubheader1.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-			this.layoutControlItemSubheader1.FillControlToClientArea = false;
-			this.layoutControlItemSubheader1.Location = new System.Drawing.Point(207, 30);
-			this.layoutControlItemSubheader1.Name = "layoutControlItemSubheader1";
-			this.layoutControlItemSubheader1.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.layoutControlItemSubheader1.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemSubheader1.Size = new System.Drawing.Size(328, 224);
-			this.layoutControlItemSubheader1.Text = "Subheader 1";
-			this.layoutControlItemSubheader1.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemSubheader1.TextVisible = false;
-			this.layoutControlItemSubheader1.TrimClientAreaToControl = false;
 			// 
 			// layoutControlGroupCalendar
 			// 
@@ -486,6 +475,45 @@
 			this.simpleLabelItemCombo1Description1.Text = " ";
 			this.simpleLabelItemCombo1Description1.TextSize = new System.Drawing.Size(0, 16);
 			// 
+			// emptySpaceItem2
+			// 
+			this.emptySpaceItem2.AllowHotTrack = false;
+			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 26);
+			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 10);
+			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem2.Name = "emptySpaceItem2";
+			this.emptySpaceItem2.Size = new System.Drawing.Size(535, 10);
+			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlGroupSubheader1
+			// 
+			this.layoutControlGroupSubheader1.GroupBordersVisible = false;
+			this.layoutControlGroupSubheader1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemSubheader1});
+			this.layoutControlGroupSubheader1.Location = new System.Drawing.Point(207, 30);
+			this.layoutControlGroupSubheader1.Name = "layoutControlGroupSubheader1";
+			this.layoutControlGroupSubheader1.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.layoutControlGroupSubheader1.OptionsTableLayoutItem.RowIndex = 1;
+			this.layoutControlGroupSubheader1.Size = new System.Drawing.Size(328, 224);
+			this.layoutControlGroupSubheader1.Text = "Subheader 1";
+			this.layoutControlGroupSubheader1.TextVisible = false;
+			// 
+			// layoutControlItemSubheader1
+			// 
+			this.layoutControlItemSubheader1.Control = this.memoEditSubheader1;
+			this.layoutControlItemSubheader1.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemSubheader1.FillControlToClientArea = false;
+			this.layoutControlItemSubheader1.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemSubheader1.Name = "layoutControlItemSubheader1";
+			this.layoutControlItemSubheader1.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.layoutControlItemSubheader1.OptionsTableLayoutItem.RowIndex = 1;
+			this.layoutControlItemSubheader1.Size = new System.Drawing.Size(328, 224);
+			this.layoutControlItemSubheader1.Text = "Subheader 1";
+			this.layoutControlItemSubheader1.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemSubheader1.TextVisible = false;
+			this.layoutControlItemSubheader1.TrimClientAreaToControl = false;
+			// 
 			// layoutControlItemAddAsPageOne
 			// 
 			this.layoutControlItemAddAsPageOne.Control = this.checkEditAddAsPageOne;
@@ -558,17 +586,6 @@
 			this.pictureEditLogoFooter.Size = new System.Drawing.Size(641, 80);
 			this.pictureEditLogoFooter.TabIndex = 1;
 			// 
-			// emptySpaceItem2
-			// 
-			this.emptySpaceItem2.AllowHotTrack = false;
-			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 26);
-			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 10);
-			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem2.Name = "emptySpaceItem2";
-			this.emptySpaceItem2.Size = new System.Drawing.Size(535, 10);
-			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-			// 
 			// CoverControl
 			// 
 			this.Controls.Add(this.layoutControl);
@@ -598,19 +615,21 @@
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupData)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSubheader1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupCalendar)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCalendar1Toggle)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCalendar1Value)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupCombo1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCombo1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemCombo1Description1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSubheader1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSubheader1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemAddAsPageOne)).EndInit();
 			this.panelLogoRight.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).EndInit();
 			this.panelLogoBottom.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -645,5 +664,7 @@
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupCombo1;
 		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemCombo1Description1;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupSubheader1;
+		private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
 	}
 }

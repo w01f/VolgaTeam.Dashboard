@@ -78,7 +78,8 @@ namespace CommandCentral.BusinessClasses.DataConvertors.StarAppData
 									var listDataItem = new ListDataItem
 									{
 										Value = rowValue,
-										IsDefault = String.Equals(row[1]?.ToString().Trim(), "D", StringComparison.OrdinalIgnoreCase)
+										IsDefault = String.Equals(row[1]?.ToString().Trim(), "D", StringComparison.OrdinalIgnoreCase),
+										IsPlaceholder = String.Equals(row[1]?.ToString().Trim(), "PH", StringComparison.OrdinalIgnoreCase)
 									};
 									dictionaryConfiguration.ListItems.Add(listDataItem);
 								}
@@ -109,6 +110,7 @@ namespace CommandCentral.BusinessClasses.DataConvertors.StarAppData
 					xml.Append(String.Format("<{0} ", dictionaryConfiguration.OutputNodeName));
 					xml.Append("Value = \"" + slideHeader.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 					xml.Append("IsDefault = \"" + slideHeader.IsDefault + "\" ");
+					xml.Append("IsPlaceholder = \"" + slideHeader.IsPlaceholder + "\" ");
 					xml.AppendLine(@"/>");
 				}
 			}

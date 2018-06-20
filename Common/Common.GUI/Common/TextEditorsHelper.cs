@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Repository;
@@ -10,23 +11,39 @@ namespace Asa.Common.GUI.Common
 		private static bool _enter;
 		private static bool _needToPerformSelectionMode;
 
-		public static void EnableSelectAll(this BaseEdit editor)
+		public static BaseEdit EnableSelectAll(this BaseEdit editor)
 		{
 			editor.MouseUp += OnMouseUpForSelect;
 			editor.MouseDown += OnMouseDown;
 			editor.Enter += OnEnterForSelect;
+			return editor;
 		}
 
-		public static void EnableSelectAll(this RepositoryItem editor)
+		public static RepositoryItem EnableSelectAll(this RepositoryItem editor)
 		{
 			editor.MouseUp += OnMouseUpForSelect;
 			editor.MouseDown += OnMouseDown;
 			editor.Enter += OnEnterForSelect;
+			return editor;
 		}
 
-		public static void DisableSelectAll(this TextEdit editor)
+		public static TextEdit DisableSelectAll(this TextEdit editor)
 		{
 			editor.Enter += OnEnterForReset;
+			return editor;
+		}
+
+		public static BaseEdit RaiseNullValueIfEditorEmpty(this BaseEdit editor)
+		{
+			editor.EditValueChanged += OnEmptyEditorEditValueChanged;
+			return editor;
+		}
+		
+		public static BaseEdit RaiseChangePlaceholderColor(this BaseEdit editor)
+		{
+			editor.Properties.Appearance.ForeColor = Color.Gray;
+			editor.EditValueChanged += OnPlaceholderColorEditValueChanged;
+			return editor;
 		}
 
 		private static void OnEnterForSelect(object sender, EventArgs e)
@@ -56,6 +73,22 @@ namespace Asa.Common.GUI.Common
 		private static void ResetEnterFlag()
 		{
 			_enter = false;
+		}
+
+		private static void OnEmptyEditorEditValueChanged(object sender, EventArgs e)
+		{
+			if (!(sender is BaseEdit editor)) return;
+			if (editor.EditValue is String value && String.IsNullOrEmpty(value))
+				editor.EditValue = null;
+		}
+
+		private static void OnPlaceholderColorEditValueChanged(object sender, EventArgs e)
+		{
+			if (!(sender is BaseEdit editor)) return;
+			if (editor.EditValue == null || editor.EditValue is String value && String.IsNullOrEmpty(value))
+				editor.Properties.Appearance.ForeColor = Color.Gray;
+			else
+				editor.Properties.Appearance.Reset();
 		}
 	}
 }

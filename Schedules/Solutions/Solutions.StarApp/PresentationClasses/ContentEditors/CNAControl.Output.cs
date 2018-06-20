@@ -169,11 +169,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				}
 
 				var slideHeader = OutputControl.SlideContainer.EditedContent.CNAState.TabB.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.CNAConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault)?.Value;
-				var combo1 = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.Combo1 ?? OutputControl.SlideContainer.StarInfo.ClientGoalsLists.Goals.ElementAtOrDefault(0))?.ToString();
-				var combo2 = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.Combo2 ?? OutputControl.SlideContainer.StarInfo.ClientGoalsLists.Goals.ElementAtOrDefault(1))?.ToString();
-				var combo3 = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.Combo3 ?? OutputControl.SlideContainer.StarInfo.ClientGoalsLists.Goals.ElementAtOrDefault(2))?.ToString();
-				var combo4 = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.Combo4 ?? OutputControl.SlideContainer.StarInfo.ClientGoalsLists.Goals.ElementAtOrDefault(3))?.ToString();
-				var combo5 = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.Combo5 ?? OutputControl.SlideContainer.StarInfo.ClientGoalsLists.Goals.ElementAtOrDefault(4))?.ToString();
+				var combo1 = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.Combo1 ?? OutputControl.SlideContainer.StarInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0))?.Value;
+				var combo2 = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.Combo2 ?? OutputControl.SlideContainer.StarInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(1))?.Value;
+				var combo3 = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.Combo3 ?? OutputControl.SlideContainer.StarInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(2))?.Value;
+				var combo4 = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.Combo4 ?? OutputControl.SlideContainer.StarInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(3))?.Value;
+				var combo5 = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.Combo5 ?? OutputControl.SlideContainer.StarInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(4))?.Value;
 
 				if (!String.IsNullOrWhiteSpace(combo1) &&
 					!String.IsNullOrWhiteSpace(combo2) &&

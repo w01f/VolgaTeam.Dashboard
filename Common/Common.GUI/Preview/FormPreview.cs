@@ -48,7 +48,6 @@ namespace Asa.Common.GUI.Preview
 			xtraTabControlGroups.ShowTabHeader = GroupControls.Count > 1 ? DefaultBoolean.True : DefaultBoolean.False;
 		}
 
-
 		#region Form GUI Event Habdlers
 		private void FormPreview_Shown(object sender, EventArgs e)
 		{

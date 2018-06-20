@@ -91,18 +91,6 @@
 			this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemCancel = new DevExpress.XtraLayout.LayoutControlItem();
 			this.tabbedControlGroup = new DevExpress.XtraLayout.TabbedControlGroup();
-			this.layoutControlGroupMainData = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.layoutControlGroupMainDataButtons = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.layoutControlItemMainDataButtonUsers = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemMainDataButtonCover = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemMainDataButtonLeadoffStatements = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemMainDataButtonClientGoals = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemMainDataButtonTargetCustomers = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemMainDataButtonSummary = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemMainDataButtonTV = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemMainDataButtonRadio = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemMainDataButtonOnline = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemMainDataButtonSDSearch = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlGroupStarAppData = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlGroupStarAppDataButtons = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover = new DevExpress.XtraLayout.LayoutControlItem();
@@ -116,6 +104,18 @@
 			this.layoutControlItemStarAppDataButtonAudience = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemStarAppDataButtonSolution = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemStarAppDataButtonClosers = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlGroupMainData = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlGroupMainDataButtons = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemMainDataButtonUsers = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonCover = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonLeadoffStatements = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonClientGoals = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonTargetCustomers = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonSummary = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonTV = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonRadio = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonOnline = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonSDSearch = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemOutputFolders = new DevExpress.XtraLayout.LayoutControlItem();
 			this.simpleLabelItemOutputFoldersTitle = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -135,18 +135,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCancel)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupMainData)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupMainDataButtons)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonUsers)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonCover)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonLeadoffStatements)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonClientGoals)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonTargetCustomers)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonSummary)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonTV)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonRadio)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonOnline)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonSDSearch)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupStarAppData)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupStarAppDataButtons)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover)).BeginInit();
@@ -160,6 +148,18 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonAudience)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonSolution)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonClosers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupMainData)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupMainDataButtons)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonUsers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonCover)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonLeadoffStatements)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonClientGoals)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonTargetCustomers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonSummary)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonTV)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonRadio)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonOnline)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonSDSearch)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOutputFolders)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemOutputFoldersTitle)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
@@ -240,7 +240,7 @@
 			this.buttonXOutputFoldersAdd.Name = "buttonXOutputFoldersAdd";
 			this.buttonXOutputFoldersAdd.Size = new System.Drawing.Size(116, 36);
 			this.buttonXOutputFoldersAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXOutputFoldersAdd.TabIndex = 12;
+			this.buttonXOutputFoldersAdd.TabIndex = 11;
 			this.buttonXOutputFoldersAdd.Text = "Add Path";
 			this.buttonXOutputFoldersAdd.TextColor = System.Drawing.Color.Black;
 			this.buttonXOutputFoldersAdd.Click += new System.EventHandler(this.OnOutputFoldersAddClick);
@@ -260,7 +260,7 @@
 			this.gridControlOutputFolders.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEditOutputFoldersPath});
 			this.gridControlOutputFolders.Size = new System.Drawing.Size(438, 127);
-			this.gridControlOutputFolders.TabIndex = 13;
+			this.gridControlOutputFolders.TabIndex = 12;
 			this.gridControlOutputFolders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewOutputFolders});
 			// 
@@ -333,7 +333,7 @@
 			this.buttonXMainDataButtonUsers.Name = "buttonXMainDataButtonUsers";
 			this.buttonXMainDataButtonUsers.Size = new System.Drawing.Size(115, 31);
 			this.buttonXMainDataButtonUsers.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXMainDataButtonUsers.TabIndex = 1;
+			this.buttonXMainDataButtonUsers.TabIndex = 0;
 			this.buttonXMainDataButtonUsers.Text = "Users";
 			this.buttonXMainDataButtonUsers.TextColor = System.Drawing.Color.Black;
 			this.buttonXMainDataButtonUsers.Click += new System.EventHandler(this.OnUsersButtonClick);
@@ -348,7 +348,7 @@
 			this.buttonXClose.Name = "buttonXClose";
 			this.buttonXClose.Size = new System.Drawing.Size(116, 36);
 			this.buttonXClose.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXClose.TabIndex = 15;
+			this.buttonXClose.TabIndex = 14;
 			this.buttonXClose.Text = "Cancel";
 			this.buttonXClose.TextColor = System.Drawing.Color.Black;
 			this.buttonXClose.Click += new System.EventHandler(this.OnFormCloseClick);
@@ -362,7 +362,7 @@
 			this.buttonXContinue.Name = "buttonXContinue";
 			this.buttonXContinue.Size = new System.Drawing.Size(116, 36);
 			this.buttonXContinue.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXContinue.TabIndex = 14;
+			this.buttonXContinue.TabIndex = 13;
 			this.buttonXContinue.Text = "Update ALL";
 			this.buttonXContinue.TextColor = System.Drawing.Color.Black;
 			this.buttonXContinue.Click += new System.EventHandler(this.OnUpdateAllClick);
@@ -376,7 +376,7 @@
 			this.buttonXMainDataButtonCover.Name = "buttonXMainDataButtonCover";
 			this.buttonXMainDataButtonCover.Size = new System.Drawing.Size(115, 31);
 			this.buttonXMainDataButtonCover.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXMainDataButtonCover.TabIndex = 1;
+			this.buttonXMainDataButtonCover.TabIndex = 2;
 			this.buttonXMainDataButtonCover.Text = "Cover";
 			this.buttonXMainDataButtonCover.TextColor = System.Drawing.Color.Black;
 			this.buttonXMainDataButtonCover.Click += new System.EventHandler(this.OnCoverButtonClick);
@@ -390,7 +390,7 @@
 			this.buttonXMainDataButtonLeadoffStatements.Name = "buttonXMainDataButtonLeadoffStatements";
 			this.buttonXMainDataButtonLeadoffStatements.Size = new System.Drawing.Size(116, 31);
 			this.buttonXMainDataButtonLeadoffStatements.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXMainDataButtonLeadoffStatements.TabIndex = 1;
+			this.buttonXMainDataButtonLeadoffStatements.TabIndex = 3;
 			this.buttonXMainDataButtonLeadoffStatements.Text = "Intro";
 			this.buttonXMainDataButtonLeadoffStatements.TextColor = System.Drawing.Color.Black;
 			this.buttonXMainDataButtonLeadoffStatements.Click += new System.EventHandler(this.OnLeadoffStatementsButtonClick);
@@ -404,7 +404,7 @@
 			this.buttonXMainDataButtonClientGoals.Name = "buttonXMainDataButtonClientGoals";
 			this.buttonXMainDataButtonClientGoals.Size = new System.Drawing.Size(115, 32);
 			this.buttonXMainDataButtonClientGoals.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXMainDataButtonClientGoals.TabIndex = 1;
+			this.buttonXMainDataButtonClientGoals.TabIndex = 4;
 			this.buttonXMainDataButtonClientGoals.Text = "CNA";
 			this.buttonXMainDataButtonClientGoals.TextColor = System.Drawing.Color.Black;
 			this.buttonXMainDataButtonClientGoals.Click += new System.EventHandler(this.OnClientGoalsButtonClick);
@@ -418,7 +418,7 @@
 			this.buttonXMainDataButtonTargetCustomers.Name = "buttonXMainDataButtonTargetCustomers";
 			this.buttonXMainDataButtonTargetCustomers.Size = new System.Drawing.Size(115, 32);
 			this.buttonXMainDataButtonTargetCustomers.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXMainDataButtonTargetCustomers.TabIndex = 1;
+			this.buttonXMainDataButtonTargetCustomers.TabIndex = 5;
 			this.buttonXMainDataButtonTargetCustomers.Text = "Tgt Customer";
 			this.buttonXMainDataButtonTargetCustomers.TextColor = System.Drawing.Color.Black;
 			this.buttonXMainDataButtonTargetCustomers.Click += new System.EventHandler(this.OnTargetCustomersButtonClick);
@@ -432,7 +432,7 @@
 			this.buttonXMainDataButtonSummary.Name = "buttonXMainDataButtonSummary";
 			this.buttonXMainDataButtonSummary.Size = new System.Drawing.Size(116, 32);
 			this.buttonXMainDataButtonSummary.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXMainDataButtonSummary.TabIndex = 1;
+			this.buttonXMainDataButtonSummary.TabIndex = 6;
 			this.buttonXMainDataButtonSummary.Text = "Summary";
 			this.buttonXMainDataButtonSummary.TextColor = System.Drawing.Color.Black;
 			this.buttonXMainDataButtonSummary.Click += new System.EventHandler(this.OnClosingSummaryButtonClick);
@@ -446,7 +446,7 @@
 			this.buttonXMainDataButtonTV.Name = "buttonXMainDataButtonTV";
 			this.buttonXMainDataButtonTV.Size = new System.Drawing.Size(115, 32);
 			this.buttonXMainDataButtonTV.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXMainDataButtonTV.TabIndex = 1;
+			this.buttonXMainDataButtonTV.TabIndex = 7;
 			this.buttonXMainDataButtonTV.Text = "TV";
 			this.buttonXMainDataButtonTV.TextColor = System.Drawing.Color.Black;
 			this.buttonXMainDataButtonTV.Click += new System.EventHandler(this.OnTVDataButtonClick);
@@ -460,7 +460,7 @@
 			this.buttonXMainDataButtonRadio.Name = "buttonXMainDataButtonRadio";
 			this.buttonXMainDataButtonRadio.Size = new System.Drawing.Size(115, 32);
 			this.buttonXMainDataButtonRadio.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXMainDataButtonRadio.TabIndex = 1;
+			this.buttonXMainDataButtonRadio.TabIndex = 8;
 			this.buttonXMainDataButtonRadio.Text = "Radio";
 			this.buttonXMainDataButtonRadio.TextColor = System.Drawing.Color.Black;
 			this.buttonXMainDataButtonRadio.Click += new System.EventHandler(this.OnRadioDataButtonClick);
@@ -474,7 +474,7 @@
 			this.buttonXMainDataButtonOnline.Name = "buttonXMainDataButtonOnline";
 			this.buttonXMainDataButtonOnline.Size = new System.Drawing.Size(116, 32);
 			this.buttonXMainDataButtonOnline.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXMainDataButtonOnline.TabIndex = 1;
+			this.buttonXMainDataButtonOnline.TabIndex = 9;
 			this.buttonXMainDataButtonOnline.Text = "Digital";
 			this.buttonXMainDataButtonOnline.TextColor = System.Drawing.Color.Black;
 			this.buttonXMainDataButtonOnline.Click += new System.EventHandler(this.OnOnlineDataButtonClick);
@@ -488,7 +488,7 @@
 			this.buttonXMainDataButtonSDSearch.Name = "buttonXMainDataButtonSDSearch";
 			this.buttonXMainDataButtonSDSearch.Size = new System.Drawing.Size(115, 32);
 			this.buttonXMainDataButtonSDSearch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXMainDataButtonSDSearch.TabIndex = 1;
+			this.buttonXMainDataButtonSDSearch.TabIndex = 10;
 			this.buttonXMainDataButtonSDSearch.Text = "SDSearch";
 			this.buttonXMainDataButtonSDSearch.TextColor = System.Drawing.Color.Black;
 			this.buttonXMainDataButtonSDSearch.Click += new System.EventHandler(this.OnSalesLibrariesDataButtonClick);
@@ -502,7 +502,7 @@
 			this.buttonXStarAppDataCover.Name = "buttonXStarAppDataCover";
 			this.buttonXStarAppDataCover.Size = new System.Drawing.Size(115, 31);
 			this.buttonXStarAppDataCover.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXStarAppDataCover.TabIndex = 0;
+			this.buttonXStarAppDataCover.TabIndex = 1;
 			this.buttonXStarAppDataCover.Text = "1. Cover";
 			this.buttonXStarAppDataCover.TextColor = System.Drawing.Color.Black;
 			this.buttonXStarAppDataCover.Click += new System.EventHandler(this.OnStarAppDataCoverClick);
@@ -516,7 +516,7 @@
 			this.buttonXStarAppDataCNA.Name = "buttonXStarAppDataCNA";
 			this.buttonXStarAppDataCNA.Size = new System.Drawing.Size(115, 31);
 			this.buttonXStarAppDataCNA.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXStarAppDataCNA.TabIndex = 2;
+			this.buttonXStarAppDataCNA.TabIndex = 1;
 			this.buttonXStarAppDataCNA.Text = "2. CNA";
 			this.buttonXStarAppDataCNA.TextColor = System.Drawing.Color.Black;
 			this.buttonXStarAppDataCNA.Click += new System.EventHandler(this.OnStarAppDataCNAClick);
@@ -530,7 +530,7 @@
 			this.buttonXStarAppDataFishing.Name = "buttonXStarAppDataFishing";
 			this.buttonXStarAppDataFishing.Size = new System.Drawing.Size(116, 31);
 			this.buttonXStarAppDataFishing.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXStarAppDataFishing.TabIndex = 3;
+			this.buttonXStarAppDataFishing.TabIndex = 1;
 			this.buttonXStarAppDataFishing.Text = "3. FISH-ing";
 			this.buttonXStarAppDataFishing.TextColor = System.Drawing.Color.Black;
 			this.buttonXStarAppDataFishing.Click += new System.EventHandler(this.OnStarAppDataFishingClick);
@@ -544,7 +544,7 @@
 			this.buttonXStarAppDataCustomer.Name = "buttonXStarAppDataCustomer";
 			this.buttonXStarAppDataCustomer.Size = new System.Drawing.Size(115, 32);
 			this.buttonXStarAppDataCustomer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXStarAppDataCustomer.TabIndex = 4;
+			this.buttonXStarAppDataCustomer.TabIndex = 1;
 			this.buttonXStarAppDataCustomer.Text = "4. Customer";
 			this.buttonXStarAppDataCustomer.TextColor = System.Drawing.Color.Black;
 			this.buttonXStarAppDataCustomer.Click += new System.EventHandler(this.OnStarAppDataCustomerClick);
@@ -558,7 +558,7 @@
 			this.buttonXStarAppDataShare.Name = "buttonXStarAppDataShare";
 			this.buttonXStarAppDataShare.Size = new System.Drawing.Size(115, 32);
 			this.buttonXStarAppDataShare.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXStarAppDataShare.TabIndex = 5;
+			this.buttonXStarAppDataShare.TabIndex = 1;
 			this.buttonXStarAppDataShare.Text = "5. Share";
 			this.buttonXStarAppDataShare.TextColor = System.Drawing.Color.Black;
 			this.buttonXStarAppDataShare.Click += new System.EventHandler(this.OnStarAppDataShareClick);
@@ -572,7 +572,7 @@
 			this.buttonXStarAppDataROI.Name = "buttonXStarAppDataROI";
 			this.buttonXStarAppDataROI.Size = new System.Drawing.Size(116, 32);
 			this.buttonXStarAppDataROI.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXStarAppDataROI.TabIndex = 6;
+			this.buttonXStarAppDataROI.TabIndex = 1;
 			this.buttonXStarAppDataROI.Text = "6. ROI";
 			this.buttonXStarAppDataROI.TextColor = System.Drawing.Color.Black;
 			this.buttonXStarAppDataROI.Click += new System.EventHandler(this.OnStarAppDataROIClick);
@@ -586,7 +586,7 @@
 			this.buttonXStarAppDataMarket.Name = "buttonXStarAppDataMarket";
 			this.buttonXStarAppDataMarket.Size = new System.Drawing.Size(115, 32);
 			this.buttonXStarAppDataMarket.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXStarAppDataMarket.TabIndex = 7;
+			this.buttonXStarAppDataMarket.TabIndex = 1;
 			this.buttonXStarAppDataMarket.Text = "7. Market";
 			this.buttonXStarAppDataMarket.TextColor = System.Drawing.Color.Black;
 			this.buttonXStarAppDataMarket.Click += new System.EventHandler(this.OnStarAppDataMarketClick);
@@ -600,7 +600,7 @@
 			this.buttonXStarAppDataVideo.Name = "buttonXStarAppDataVideo";
 			this.buttonXStarAppDataVideo.Size = new System.Drawing.Size(115, 32);
 			this.buttonXStarAppDataVideo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXStarAppDataVideo.TabIndex = 8;
+			this.buttonXStarAppDataVideo.TabIndex = 1;
 			this.buttonXStarAppDataVideo.Text = "8. Video";
 			this.buttonXStarAppDataVideo.TextColor = System.Drawing.Color.Black;
 			this.buttonXStarAppDataVideo.Click += new System.EventHandler(this.OnStarAppDataVideoClick);
@@ -614,7 +614,7 @@
 			this.buttonXStarAppDataAudience.Name = "buttonXStarAppDataAudience";
 			this.buttonXStarAppDataAudience.Size = new System.Drawing.Size(116, 32);
 			this.buttonXStarAppDataAudience.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXStarAppDataAudience.TabIndex = 9;
+			this.buttonXStarAppDataAudience.TabIndex = 1;
 			this.buttonXStarAppDataAudience.Text = "9. Audience";
 			this.buttonXStarAppDataAudience.TextColor = System.Drawing.Color.Black;
 			this.buttonXStarAppDataAudience.Click += new System.EventHandler(this.OnStarAppDataAudienceClick);
@@ -628,7 +628,7 @@
 			this.buttonXStarAppDataSolution.Name = "buttonXStarAppDataSolution";
 			this.buttonXStarAppDataSolution.Size = new System.Drawing.Size(115, 32);
 			this.buttonXStarAppDataSolution.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXStarAppDataSolution.TabIndex = 10;
+			this.buttonXStarAppDataSolution.TabIndex = 1;
 			this.buttonXStarAppDataSolution.Text = "10. Solution";
 			this.buttonXStarAppDataSolution.TextColor = System.Drawing.Color.Black;
 			this.buttonXStarAppDataSolution.Click += new System.EventHandler(this.OnStarAppDataSolutionClick);
@@ -642,7 +642,7 @@
 			this.buttonXStarAppDataClosers.Name = "buttonXStarAppDataClosers";
 			this.buttonXStarAppDataClosers.Size = new System.Drawing.Size(115, 32);
 			this.buttonXStarAppDataClosers.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXStarAppDataClosers.TabIndex = 11;
+			this.buttonXStarAppDataClosers.TabIndex = 1;
 			this.buttonXStarAppDataClosers.Text = "11. Closers";
 			this.buttonXStarAppDataClosers.TextColor = System.Drawing.Color.Black;
 			this.buttonXStarAppDataClosers.Click += new System.EventHandler(this.OnStarAppDataClosersClick);
@@ -722,222 +722,13 @@
 			this.tabbedControlGroup.AppearanceTabPage.PageClient.Options.UseFont = true;
 			this.tabbedControlGroup.Location = new System.Drawing.Point(0, 0);
 			this.tabbedControlGroup.Name = "tabbedControlGroup";
-			this.tabbedControlGroup.SelectedTabPage = this.layoutControlGroupStarAppData;
-			this.tabbedControlGroup.SelectedTabPageIndex = 1;
+			this.tabbedControlGroup.SelectedTabPage = this.layoutControlGroupMainData;
+			this.tabbedControlGroup.SelectedTabPageIndex = 0;
 			this.tabbedControlGroup.Size = new System.Drawing.Size(442, 293);
 			this.tabbedControlGroup.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroupMainData,
             this.layoutControlGroupStarAppData});
 			this.tabbedControlGroup.Text = "Tabs";
-			// 
-			// layoutControlGroupMainData
-			// 
-			this.layoutControlGroupMainData.CustomizationFormText = "Main Data";
-			this.layoutControlGroupMainData.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlGroupMainDataButtons});
-			this.layoutControlGroupMainData.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlGroupMainData.Name = "layoutControlGroupMainData";
-			this.layoutControlGroupMainData.Size = new System.Drawing.Size(418, 243);
-			this.layoutControlGroupMainData.Text = "Data Files";
-			// 
-			// layoutControlGroupMainDataButtons
-			// 
-			this.layoutControlGroupMainDataButtons.GroupBordersVisible = false;
-			this.layoutControlGroupMainDataButtons.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItemMainDataButtonUsers,
-            this.layoutControlItemMainDataButtonCover,
-            this.layoutControlItemMainDataButtonLeadoffStatements,
-            this.layoutControlItemMainDataButtonClientGoals,
-            this.layoutControlItemMainDataButtonTargetCustomers,
-            this.layoutControlItemMainDataButtonSummary,
-            this.layoutControlItemMainDataButtonTV,
-            this.layoutControlItemMainDataButtonRadio,
-            this.layoutControlItemMainDataButtonOnline,
-            this.layoutControlItemMainDataButtonSDSearch});
-			this.layoutControlGroupMainDataButtons.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
-			this.layoutControlGroupMainDataButtons.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlGroupMainDataButtons.Name = "layoutControlGroupMainDataButtons";
-			columnDefinition6.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition6.Width = 33.333333333333336D;
-			columnDefinition7.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition7.Width = 30D;
-			columnDefinition8.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition8.Width = 33.333333333333336D;
-			columnDefinition9.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition9.Width = 30D;
-			columnDefinition10.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition10.Width = 33.333333333333336D;
-			this.layoutControlGroupMainDataButtons.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition6,
-            columnDefinition7,
-            columnDefinition8,
-            columnDefinition9,
-            columnDefinition10});
-			rowDefinition9.Height = 10D;
-			rowDefinition9.SizeType = System.Windows.Forms.SizeType.Absolute;
-			rowDefinition10.Height = 25D;
-			rowDefinition10.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition11.Height = 30D;
-			rowDefinition11.SizeType = System.Windows.Forms.SizeType.Absolute;
-			rowDefinition12.Height = 25D;
-			rowDefinition12.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition13.Height = 30D;
-			rowDefinition13.SizeType = System.Windows.Forms.SizeType.Absolute;
-			rowDefinition14.Height = 25D;
-			rowDefinition14.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition15.Height = 30D;
-			rowDefinition15.SizeType = System.Windows.Forms.SizeType.Absolute;
-			rowDefinition16.Height = 25D;
-			rowDefinition16.SizeType = System.Windows.Forms.SizeType.Percent;
-			this.layoutControlGroupMainDataButtons.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition9,
-            rowDefinition10,
-            rowDefinition11,
-            rowDefinition12,
-            rowDefinition13,
-            rowDefinition14,
-            rowDefinition15,
-            rowDefinition16});
-			this.layoutControlGroupMainDataButtons.Size = new System.Drawing.Size(418, 243);
-			this.layoutControlGroupMainDataButtons.Text = "Buttons";
-			this.layoutControlGroupMainDataButtons.TextVisible = false;
-			// 
-			// layoutControlItemMainDataButtonUsers
-			// 
-			this.layoutControlItemMainDataButtonUsers.Control = this.buttonXMainDataButtonUsers;
-			this.layoutControlItemMainDataButtonUsers.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonUsers.FillControlToClientArea = false;
-			this.layoutControlItemMainDataButtonUsers.Location = new System.Drawing.Point(0, 10);
-			this.layoutControlItemMainDataButtonUsers.Name = "layoutControlItemMainDataButtonUsers";
-			this.layoutControlItemMainDataButtonUsers.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemMainDataButtonUsers.Size = new System.Drawing.Size(119, 35);
-			this.layoutControlItemMainDataButtonUsers.Text = "Users";
-			this.layoutControlItemMainDataButtonUsers.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemMainDataButtonUsers.TextVisible = false;
-			this.layoutControlItemMainDataButtonUsers.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemMainDataButtonCover
-			// 
-			this.layoutControlItemMainDataButtonCover.Control = this.buttonXMainDataButtonCover;
-			this.layoutControlItemMainDataButtonCover.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonCover.Location = new System.Drawing.Point(149, 10);
-			this.layoutControlItemMainDataButtonCover.Name = "layoutControlItemMainDataButtonCover";
-			this.layoutControlItemMainDataButtonCover.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.layoutControlItemMainDataButtonCover.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemMainDataButtonCover.Size = new System.Drawing.Size(119, 35);
-			this.layoutControlItemMainDataButtonCover.Text = "Cover";
-			this.layoutControlItemMainDataButtonCover.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemMainDataButtonCover.TextVisible = false;
-			this.layoutControlItemMainDataButtonCover.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemMainDataButtonLeadoffStatements
-			// 
-			this.layoutControlItemMainDataButtonLeadoffStatements.Control = this.buttonXMainDataButtonLeadoffStatements;
-			this.layoutControlItemMainDataButtonLeadoffStatements.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonLeadoffStatements.Location = new System.Drawing.Point(298, 10);
-			this.layoutControlItemMainDataButtonLeadoffStatements.Name = "layoutControlItemMainDataButtonLeadoffStatements";
-			this.layoutControlItemMainDataButtonLeadoffStatements.OptionsTableLayoutItem.ColumnIndex = 4;
-			this.layoutControlItemMainDataButtonLeadoffStatements.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemMainDataButtonLeadoffStatements.Size = new System.Drawing.Size(120, 35);
-			this.layoutControlItemMainDataButtonLeadoffStatements.Text = "Leadoff Statements";
-			this.layoutControlItemMainDataButtonLeadoffStatements.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemMainDataButtonLeadoffStatements.TextVisible = false;
-			this.layoutControlItemMainDataButtonLeadoffStatements.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemMainDataButtonClientGoals
-			// 
-			this.layoutControlItemMainDataButtonClientGoals.Control = this.buttonXMainDataButtonClientGoals;
-			this.layoutControlItemMainDataButtonClientGoals.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonClientGoals.Location = new System.Drawing.Point(0, 75);
-			this.layoutControlItemMainDataButtonClientGoals.Name = "layoutControlItemMainDataButtonClientGoals";
-			this.layoutControlItemMainDataButtonClientGoals.OptionsTableLayoutItem.RowIndex = 3;
-			this.layoutControlItemMainDataButtonClientGoals.Size = new System.Drawing.Size(119, 36);
-			this.layoutControlItemMainDataButtonClientGoals.Text = "Client Goals";
-			this.layoutControlItemMainDataButtonClientGoals.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemMainDataButtonClientGoals.TextVisible = false;
-			this.layoutControlItemMainDataButtonClientGoals.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemMainDataButtonTargetCustomers
-			// 
-			this.layoutControlItemMainDataButtonTargetCustomers.Control = this.buttonXMainDataButtonTargetCustomers;
-			this.layoutControlItemMainDataButtonTargetCustomers.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonTargetCustomers.Location = new System.Drawing.Point(149, 75);
-			this.layoutControlItemMainDataButtonTargetCustomers.Name = "layoutControlItemMainDataButtonTargetCustomers";
-			this.layoutControlItemMainDataButtonTargetCustomers.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.layoutControlItemMainDataButtonTargetCustomers.OptionsTableLayoutItem.RowIndex = 3;
-			this.layoutControlItemMainDataButtonTargetCustomers.Size = new System.Drawing.Size(119, 36);
-			this.layoutControlItemMainDataButtonTargetCustomers.Text = "Target Customers";
-			this.layoutControlItemMainDataButtonTargetCustomers.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemMainDataButtonTargetCustomers.TextVisible = false;
-			this.layoutControlItemMainDataButtonTargetCustomers.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemMainDataButtonSummary
-			// 
-			this.layoutControlItemMainDataButtonSummary.Control = this.buttonXMainDataButtonSummary;
-			this.layoutControlItemMainDataButtonSummary.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonSummary.Location = new System.Drawing.Point(298, 75);
-			this.layoutControlItemMainDataButtonSummary.Name = "layoutControlItemMainDataButtonSummary";
-			this.layoutControlItemMainDataButtonSummary.OptionsTableLayoutItem.ColumnIndex = 4;
-			this.layoutControlItemMainDataButtonSummary.OptionsTableLayoutItem.RowIndex = 3;
-			this.layoutControlItemMainDataButtonSummary.Size = new System.Drawing.Size(120, 36);
-			this.layoutControlItemMainDataButtonSummary.Text = "Summary";
-			this.layoutControlItemMainDataButtonSummary.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemMainDataButtonSummary.TextVisible = false;
-			this.layoutControlItemMainDataButtonSummary.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemMainDataButtonTV
-			// 
-			this.layoutControlItemMainDataButtonTV.Control = this.buttonXMainDataButtonTV;
-			this.layoutControlItemMainDataButtonTV.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonTV.Location = new System.Drawing.Point(0, 141);
-			this.layoutControlItemMainDataButtonTV.Name = "layoutControlItemMainDataButtonTV";
-			this.layoutControlItemMainDataButtonTV.OptionsTableLayoutItem.RowIndex = 5;
-			this.layoutControlItemMainDataButtonTV.Size = new System.Drawing.Size(119, 36);
-			this.layoutControlItemMainDataButtonTV.Text = "TV";
-			this.layoutControlItemMainDataButtonTV.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemMainDataButtonTV.TextVisible = false;
-			this.layoutControlItemMainDataButtonTV.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemMainDataButtonRadio
-			// 
-			this.layoutControlItemMainDataButtonRadio.Control = this.buttonXMainDataButtonRadio;
-			this.layoutControlItemMainDataButtonRadio.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonRadio.Location = new System.Drawing.Point(149, 141);
-			this.layoutControlItemMainDataButtonRadio.Name = "layoutControlItemMainDataButtonRadio";
-			this.layoutControlItemMainDataButtonRadio.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.layoutControlItemMainDataButtonRadio.OptionsTableLayoutItem.RowIndex = 5;
-			this.layoutControlItemMainDataButtonRadio.Size = new System.Drawing.Size(119, 36);
-			this.layoutControlItemMainDataButtonRadio.Text = "Radio";
-			this.layoutControlItemMainDataButtonRadio.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemMainDataButtonRadio.TextVisible = false;
-			this.layoutControlItemMainDataButtonRadio.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemMainDataButtonOnline
-			// 
-			this.layoutControlItemMainDataButtonOnline.Control = this.buttonXMainDataButtonOnline;
-			this.layoutControlItemMainDataButtonOnline.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonOnline.Location = new System.Drawing.Point(298, 141);
-			this.layoutControlItemMainDataButtonOnline.Name = "layoutControlItemMainDataButtonOnline";
-			this.layoutControlItemMainDataButtonOnline.OptionsTableLayoutItem.ColumnIndex = 4;
-			this.layoutControlItemMainDataButtonOnline.OptionsTableLayoutItem.RowIndex = 5;
-			this.layoutControlItemMainDataButtonOnline.Size = new System.Drawing.Size(120, 36);
-			this.layoutControlItemMainDataButtonOnline.Text = "Online";
-			this.layoutControlItemMainDataButtonOnline.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemMainDataButtonOnline.TextVisible = false;
-			this.layoutControlItemMainDataButtonOnline.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemMainDataButtonSDSearch
-			// 
-			this.layoutControlItemMainDataButtonSDSearch.Control = this.buttonXMainDataButtonSDSearch;
-			this.layoutControlItemMainDataButtonSDSearch.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonSDSearch.Location = new System.Drawing.Point(0, 207);
-			this.layoutControlItemMainDataButtonSDSearch.Name = "layoutControlItemMainDataButtonSDSearch";
-			this.layoutControlItemMainDataButtonSDSearch.OptionsTableLayoutItem.RowIndex = 7;
-			this.layoutControlItemMainDataButtonSDSearch.Size = new System.Drawing.Size(119, 36);
-			this.layoutControlItemMainDataButtonSDSearch.Text = "SDSearch";
-			this.layoutControlItemMainDataButtonSDSearch.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemMainDataButtonSDSearch.TextVisible = false;
-			this.layoutControlItemMainDataButtonSDSearch.TrimClientAreaToControl = false;
 			// 
 			// layoutControlGroupStarAppData
 			// 
@@ -968,47 +759,47 @@
 			this.layoutControlGroupStarAppDataButtons.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupStarAppDataButtons.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupStarAppDataButtons.Name = "layoutControlGroupStarAppDataButtons";
-			columnDefinition1.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition1.Width = 33.333333333333336D;
-			columnDefinition2.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition2.Width = 30D;
-			columnDefinition3.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition3.Width = 33.333333333333336D;
-			columnDefinition4.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition4.Width = 30D;
-			columnDefinition5.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition5.Width = 33.333333333333336D;
+			columnDefinition6.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition6.Width = 33.333333333333336D;
+			columnDefinition7.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition7.Width = 30D;
+			columnDefinition8.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition8.Width = 33.333333333333336D;
+			columnDefinition9.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition9.Width = 30D;
+			columnDefinition10.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition10.Width = 33.333333333333336D;
 			this.layoutControlGroupStarAppDataButtons.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition1,
-            columnDefinition2,
-            columnDefinition3,
-            columnDefinition4,
-            columnDefinition5});
-			rowDefinition1.Height = 10D;
-			rowDefinition1.SizeType = System.Windows.Forms.SizeType.Absolute;
-			rowDefinition2.Height = 25D;
-			rowDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition3.Height = 30D;
-			rowDefinition3.SizeType = System.Windows.Forms.SizeType.Absolute;
-			rowDefinition4.Height = 25D;
-			rowDefinition4.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition5.Height = 30D;
-			rowDefinition5.SizeType = System.Windows.Forms.SizeType.Absolute;
-			rowDefinition6.Height = 25D;
-			rowDefinition6.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition7.Height = 30D;
-			rowDefinition7.SizeType = System.Windows.Forms.SizeType.Absolute;
-			rowDefinition8.Height = 25D;
-			rowDefinition8.SizeType = System.Windows.Forms.SizeType.Percent;
+            columnDefinition6,
+            columnDefinition7,
+            columnDefinition8,
+            columnDefinition9,
+            columnDefinition10});
+			rowDefinition9.Height = 10D;
+			rowDefinition9.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition10.Height = 25D;
+			rowDefinition10.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition11.Height = 30D;
+			rowDefinition11.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition12.Height = 25D;
+			rowDefinition12.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition13.Height = 30D;
+			rowDefinition13.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition14.Height = 25D;
+			rowDefinition14.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition15.Height = 30D;
+			rowDefinition15.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition16.Height = 25D;
+			rowDefinition16.SizeType = System.Windows.Forms.SizeType.Percent;
 			this.layoutControlGroupStarAppDataButtons.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition1,
-            rowDefinition2,
-            rowDefinition3,
-            rowDefinition4,
-            rowDefinition5,
-            rowDefinition6,
-            rowDefinition7,
-            rowDefinition8});
+            rowDefinition9,
+            rowDefinition10,
+            rowDefinition11,
+            rowDefinition12,
+            rowDefinition13,
+            rowDefinition14,
+            rowDefinition15,
+            rowDefinition16});
 			this.layoutControlGroupStarAppDataButtons.Size = new System.Drawing.Size(418, 243);
 			this.layoutControlGroupStarAppDataButtons.Text = "Buttons";
 			this.layoutControlGroupStarAppDataButtons.TextVisible = false;
@@ -1176,6 +967,215 @@
 			this.layoutControlItemStarAppDataButtonClosers.TextVisible = false;
 			this.layoutControlItemStarAppDataButtonClosers.TrimClientAreaToControl = false;
 			// 
+			// layoutControlGroupMainData
+			// 
+			this.layoutControlGroupMainData.CustomizationFormText = "Main Data";
+			this.layoutControlGroupMainData.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlGroupMainDataButtons});
+			this.layoutControlGroupMainData.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupMainData.Name = "layoutControlGroupMainData";
+			this.layoutControlGroupMainData.Size = new System.Drawing.Size(418, 243);
+			this.layoutControlGroupMainData.Text = "Data Files";
+			// 
+			// layoutControlGroupMainDataButtons
+			// 
+			this.layoutControlGroupMainDataButtons.GroupBordersVisible = false;
+			this.layoutControlGroupMainDataButtons.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemMainDataButtonUsers,
+            this.layoutControlItemMainDataButtonCover,
+            this.layoutControlItemMainDataButtonLeadoffStatements,
+            this.layoutControlItemMainDataButtonClientGoals,
+            this.layoutControlItemMainDataButtonTargetCustomers,
+            this.layoutControlItemMainDataButtonSummary,
+            this.layoutControlItemMainDataButtonTV,
+            this.layoutControlItemMainDataButtonRadio,
+            this.layoutControlItemMainDataButtonOnline,
+            this.layoutControlItemMainDataButtonSDSearch});
+			this.layoutControlGroupMainDataButtons.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
+			this.layoutControlGroupMainDataButtons.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupMainDataButtons.Name = "layoutControlGroupMainDataButtons";
+			columnDefinition1.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition1.Width = 33.333333333333336D;
+			columnDefinition2.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition2.Width = 30D;
+			columnDefinition3.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition3.Width = 33.333333333333336D;
+			columnDefinition4.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition4.Width = 30D;
+			columnDefinition5.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition5.Width = 33.333333333333336D;
+			this.layoutControlGroupMainDataButtons.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
+            columnDefinition1,
+            columnDefinition2,
+            columnDefinition3,
+            columnDefinition4,
+            columnDefinition5});
+			rowDefinition1.Height = 10D;
+			rowDefinition1.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition2.Height = 25D;
+			rowDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition3.Height = 30D;
+			rowDefinition3.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition4.Height = 25D;
+			rowDefinition4.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition5.Height = 30D;
+			rowDefinition5.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition6.Height = 25D;
+			rowDefinition6.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition7.Height = 30D;
+			rowDefinition7.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition8.Height = 25D;
+			rowDefinition8.SizeType = System.Windows.Forms.SizeType.Percent;
+			this.layoutControlGroupMainDataButtons.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
+            rowDefinition1,
+            rowDefinition2,
+            rowDefinition3,
+            rowDefinition4,
+            rowDefinition5,
+            rowDefinition6,
+            rowDefinition7,
+            rowDefinition8});
+			this.layoutControlGroupMainDataButtons.Size = new System.Drawing.Size(418, 243);
+			this.layoutControlGroupMainDataButtons.Text = "Buttons";
+			this.layoutControlGroupMainDataButtons.TextVisible = false;
+			// 
+			// layoutControlItemMainDataButtonUsers
+			// 
+			this.layoutControlItemMainDataButtonUsers.Control = this.buttonXMainDataButtonUsers;
+			this.layoutControlItemMainDataButtonUsers.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonUsers.FillControlToClientArea = false;
+			this.layoutControlItemMainDataButtonUsers.Location = new System.Drawing.Point(0, 10);
+			this.layoutControlItemMainDataButtonUsers.Name = "layoutControlItemMainDataButtonUsers";
+			this.layoutControlItemMainDataButtonUsers.OptionsTableLayoutItem.RowIndex = 1;
+			this.layoutControlItemMainDataButtonUsers.Size = new System.Drawing.Size(119, 35);
+			this.layoutControlItemMainDataButtonUsers.Text = "Users";
+			this.layoutControlItemMainDataButtonUsers.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonUsers.TextVisible = false;
+			this.layoutControlItemMainDataButtonUsers.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonCover
+			// 
+			this.layoutControlItemMainDataButtonCover.Control = this.buttonXMainDataButtonCover;
+			this.layoutControlItemMainDataButtonCover.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonCover.Location = new System.Drawing.Point(149, 10);
+			this.layoutControlItemMainDataButtonCover.Name = "layoutControlItemMainDataButtonCover";
+			this.layoutControlItemMainDataButtonCover.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.layoutControlItemMainDataButtonCover.OptionsTableLayoutItem.RowIndex = 1;
+			this.layoutControlItemMainDataButtonCover.Size = new System.Drawing.Size(119, 35);
+			this.layoutControlItemMainDataButtonCover.Text = "Cover";
+			this.layoutControlItemMainDataButtonCover.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonCover.TextVisible = false;
+			this.layoutControlItemMainDataButtonCover.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonLeadoffStatements
+			// 
+			this.layoutControlItemMainDataButtonLeadoffStatements.Control = this.buttonXMainDataButtonLeadoffStatements;
+			this.layoutControlItemMainDataButtonLeadoffStatements.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonLeadoffStatements.Location = new System.Drawing.Point(298, 10);
+			this.layoutControlItemMainDataButtonLeadoffStatements.Name = "layoutControlItemMainDataButtonLeadoffStatements";
+			this.layoutControlItemMainDataButtonLeadoffStatements.OptionsTableLayoutItem.ColumnIndex = 4;
+			this.layoutControlItemMainDataButtonLeadoffStatements.OptionsTableLayoutItem.RowIndex = 1;
+			this.layoutControlItemMainDataButtonLeadoffStatements.Size = new System.Drawing.Size(120, 35);
+			this.layoutControlItemMainDataButtonLeadoffStatements.Text = "Leadoff Statements";
+			this.layoutControlItemMainDataButtonLeadoffStatements.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonLeadoffStatements.TextVisible = false;
+			this.layoutControlItemMainDataButtonLeadoffStatements.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonClientGoals
+			// 
+			this.layoutControlItemMainDataButtonClientGoals.Control = this.buttonXMainDataButtonClientGoals;
+			this.layoutControlItemMainDataButtonClientGoals.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonClientGoals.Location = new System.Drawing.Point(0, 75);
+			this.layoutControlItemMainDataButtonClientGoals.Name = "layoutControlItemMainDataButtonClientGoals";
+			this.layoutControlItemMainDataButtonClientGoals.OptionsTableLayoutItem.RowIndex = 3;
+			this.layoutControlItemMainDataButtonClientGoals.Size = new System.Drawing.Size(119, 36);
+			this.layoutControlItemMainDataButtonClientGoals.Text = "Client Goals";
+			this.layoutControlItemMainDataButtonClientGoals.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonClientGoals.TextVisible = false;
+			this.layoutControlItemMainDataButtonClientGoals.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonTargetCustomers
+			// 
+			this.layoutControlItemMainDataButtonTargetCustomers.Control = this.buttonXMainDataButtonTargetCustomers;
+			this.layoutControlItemMainDataButtonTargetCustomers.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonTargetCustomers.Location = new System.Drawing.Point(149, 75);
+			this.layoutControlItemMainDataButtonTargetCustomers.Name = "layoutControlItemMainDataButtonTargetCustomers";
+			this.layoutControlItemMainDataButtonTargetCustomers.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.layoutControlItemMainDataButtonTargetCustomers.OptionsTableLayoutItem.RowIndex = 3;
+			this.layoutControlItemMainDataButtonTargetCustomers.Size = new System.Drawing.Size(119, 36);
+			this.layoutControlItemMainDataButtonTargetCustomers.Text = "Target Customers";
+			this.layoutControlItemMainDataButtonTargetCustomers.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonTargetCustomers.TextVisible = false;
+			this.layoutControlItemMainDataButtonTargetCustomers.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonSummary
+			// 
+			this.layoutControlItemMainDataButtonSummary.Control = this.buttonXMainDataButtonSummary;
+			this.layoutControlItemMainDataButtonSummary.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonSummary.Location = new System.Drawing.Point(298, 75);
+			this.layoutControlItemMainDataButtonSummary.Name = "layoutControlItemMainDataButtonSummary";
+			this.layoutControlItemMainDataButtonSummary.OptionsTableLayoutItem.ColumnIndex = 4;
+			this.layoutControlItemMainDataButtonSummary.OptionsTableLayoutItem.RowIndex = 3;
+			this.layoutControlItemMainDataButtonSummary.Size = new System.Drawing.Size(120, 36);
+			this.layoutControlItemMainDataButtonSummary.Text = "Summary";
+			this.layoutControlItemMainDataButtonSummary.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonSummary.TextVisible = false;
+			this.layoutControlItemMainDataButtonSummary.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonTV
+			// 
+			this.layoutControlItemMainDataButtonTV.Control = this.buttonXMainDataButtonTV;
+			this.layoutControlItemMainDataButtonTV.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonTV.Location = new System.Drawing.Point(0, 141);
+			this.layoutControlItemMainDataButtonTV.Name = "layoutControlItemMainDataButtonTV";
+			this.layoutControlItemMainDataButtonTV.OptionsTableLayoutItem.RowIndex = 5;
+			this.layoutControlItemMainDataButtonTV.Size = new System.Drawing.Size(119, 36);
+			this.layoutControlItemMainDataButtonTV.Text = "TV";
+			this.layoutControlItemMainDataButtonTV.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonTV.TextVisible = false;
+			this.layoutControlItemMainDataButtonTV.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonRadio
+			// 
+			this.layoutControlItemMainDataButtonRadio.Control = this.buttonXMainDataButtonRadio;
+			this.layoutControlItemMainDataButtonRadio.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonRadio.Location = new System.Drawing.Point(149, 141);
+			this.layoutControlItemMainDataButtonRadio.Name = "layoutControlItemMainDataButtonRadio";
+			this.layoutControlItemMainDataButtonRadio.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.layoutControlItemMainDataButtonRadio.OptionsTableLayoutItem.RowIndex = 5;
+			this.layoutControlItemMainDataButtonRadio.Size = new System.Drawing.Size(119, 36);
+			this.layoutControlItemMainDataButtonRadio.Text = "Radio";
+			this.layoutControlItemMainDataButtonRadio.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonRadio.TextVisible = false;
+			this.layoutControlItemMainDataButtonRadio.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonOnline
+			// 
+			this.layoutControlItemMainDataButtonOnline.Control = this.buttonXMainDataButtonOnline;
+			this.layoutControlItemMainDataButtonOnline.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonOnline.Location = new System.Drawing.Point(298, 141);
+			this.layoutControlItemMainDataButtonOnline.Name = "layoutControlItemMainDataButtonOnline";
+			this.layoutControlItemMainDataButtonOnline.OptionsTableLayoutItem.ColumnIndex = 4;
+			this.layoutControlItemMainDataButtonOnline.OptionsTableLayoutItem.RowIndex = 5;
+			this.layoutControlItemMainDataButtonOnline.Size = new System.Drawing.Size(120, 36);
+			this.layoutControlItemMainDataButtonOnline.Text = "Online";
+			this.layoutControlItemMainDataButtonOnline.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonOnline.TextVisible = false;
+			this.layoutControlItemMainDataButtonOnline.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonSDSearch
+			// 
+			this.layoutControlItemMainDataButtonSDSearch.Control = this.buttonXMainDataButtonSDSearch;
+			this.layoutControlItemMainDataButtonSDSearch.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonSDSearch.Location = new System.Drawing.Point(0, 207);
+			this.layoutControlItemMainDataButtonSDSearch.Name = "layoutControlItemMainDataButtonSDSearch";
+			this.layoutControlItemMainDataButtonSDSearch.OptionsTableLayoutItem.RowIndex = 7;
+			this.layoutControlItemMainDataButtonSDSearch.Size = new System.Drawing.Size(119, 36);
+			this.layoutControlItemMainDataButtonSDSearch.Text = "SDSearch";
+			this.layoutControlItemMainDataButtonSDSearch.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonSDSearch.TextVisible = false;
+			this.layoutControlItemMainDataButtonSDSearch.TrimClientAreaToControl = false;
+			// 
 			// layoutControlItemOutputFolders
 			// 
 			this.layoutControlItemOutputFolders.Control = this.gridControlOutputFolders;
@@ -1284,6 +1284,7 @@
 			this.Controls.Add(this.layoutControl);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.MaximizeBox = false;
@@ -1303,18 +1304,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCancel)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupMainData)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupMainDataButtons)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonUsers)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonCover)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonLeadoffStatements)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonClientGoals)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonTargetCustomers)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonSummary)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonTV)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonRadio)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonOnline)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonSDSearch)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupStarAppData)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupStarAppDataButtons)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover)).EndInit();
@@ -1328,6 +1317,18 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonAudience)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonSolution)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonClosers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupMainData)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupMainDataButtons)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonUsers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonCover)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonLeadoffStatements)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonClientGoals)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonTargetCustomers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonSummary)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonTV)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonRadio)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonOnline)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonSDSearch)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOutputFolders)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemOutputFoldersTitle)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();

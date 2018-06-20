@@ -22,11 +22,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			Resize += OnResize;
 
-			comboBoxEditSlideHeader.EnableSelectAll();
-			memoEditTabASubheader1.EnableSelectAll();
-			memoEditTabBSubheader1.EnableSelectAll();
-			memoEditTabCSubheader1.EnableSelectAll();
-			memoEditTabDSubheader1.EnableSelectAll();
+			comboBoxEditSlideHeader.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			memoEditTabASubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			memoEditTabBSubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			memoEditTabCSubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			memoEditTabDSubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 
 			layoutControlGroupTabA.Text = SlideContainer.StarInfo.Titles.Tab8SubATitle;
 			layoutControlGroupTabB.Text = SlideContainer.StarInfo.Titles.Tab8SubBTitle;
@@ -45,6 +45,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			pictureEditTabDClipart1.Image = SlideContainer.StarInfo.Tab8SubDClipart1Image;
 			pictureEditTabDClipart1.Properties.PictureAlignment =
 				SlideContainer.StarInfo.VideoConfiguration.PartDClipart1Configuration.Alignment;
+
+			memoEditTabASubheader1.Properties.NullText = SlideContainer.StarInfo.VideoConfiguration.PartASubHeader1Placeholder ?? memoEditTabASubheader1.Properties.NullText;
+			memoEditTabBSubheader1.Properties.NullText = SlideContainer.StarInfo.VideoConfiguration.PartBSubHeader1Placeholder ?? memoEditTabBSubheader1.Properties.NullText;
+			memoEditTabCSubheader1.Properties.NullText = SlideContainer.StarInfo.VideoConfiguration.PartCSubHeader1Placeholder ?? memoEditTabCSubheader1.Properties.NullText;
+			memoEditTabDSubheader1.Properties.NullText = SlideContainer.StarInfo.VideoConfiguration.PartDSubHeader1Placeholder ?? memoEditTabDSubheader1.Properties.NullText;
 
 			ImageEditorHelper.AssignImageEditors(new[]{
 				pictureEditTabAClipart1,
@@ -163,46 +168,74 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab8SubAFooterLogo;
 
 					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.VideoConfiguration.HeadersPartBItems);
+					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.VideoConfiguration.HeadersPartBItems.Where(item => !item.IsPlaceholder).ToArray());
 					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.VideoState.TabA.SlideHeader ??
-						SlideContainer.StarInfo.VideoConfiguration.HeadersPartAItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+						SlideContainer.StarInfo.VideoConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault);
+					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.VideoConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+						"Select or type";
 					break;
 				case 1:
 					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab8SubBRightLogo;
 					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab8SubBFooterLogo;
 
 					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.VideoConfiguration.HeadersPartBItems);
+					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.VideoConfiguration.HeadersPartBItems.Where(item => !item.IsPlaceholder).ToArray());
 					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.VideoState.TabB.SlideHeader ??
-						SlideContainer.StarInfo.VideoConfiguration.HeadersPartBItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+						SlideContainer.StarInfo.VideoConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault);
+					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.VideoConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+						"Select or type";
 					break;
 				case 2:
 					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab8SubCRightLogo;
 					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab8SubCFooterLogo;
 
 					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.VideoConfiguration.HeadersPartCItems);
+					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.VideoConfiguration.HeadersPartCItems.Where(item => !item.IsPlaceholder).ToArray());
 					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.VideoState.TabC.SlideHeader ??
-						SlideContainer.StarInfo.VideoConfiguration.HeadersPartCItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+						SlideContainer.StarInfo.VideoConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault);
+					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.VideoConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+						"Select or type";
 					break;
 				case 3:
 					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab8SubDRightLogo;
 					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab8SubDFooterLogo;
 
 					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.VideoConfiguration.HeadersPartDItems);
+					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.VideoConfiguration.HeadersPartDItems.Where(item => !item.IsPlaceholder).ToArray());
 					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.VideoState.TabD.SlideHeader ??
-						SlideContainer.StarInfo.VideoConfiguration.HeadersPartDItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+						SlideContainer.StarInfo.VideoConfiguration.HeadersPartDItems.FirstOrDefault(h => h.IsDefault);
+					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.VideoConfiguration.HeadersPartDItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+						"Select or type";
 					break;
 			}
 			_allowToSave = true;
 		}
 
-		private void EditValueChanged(object sender, EventArgs e)
+		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
 			_dataChanged = true;
 			SlideContainer.RaiseDataChanged();
+		}
+
+		private void OnTabASubheader1EditValueChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void OnTabBSubheader1EditValueChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void OnTabCSubheader1EditValueChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void OnTabDSubheader1EditValueChanged(object sender, EventArgs e)
+		{
+
 		}
 
 		private void OnSelectedPageChanging(object sender, LayoutTabPageChangingEventArgs e)

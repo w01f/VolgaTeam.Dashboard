@@ -22,11 +22,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			Resize += OnResize;
 
-			comboBoxEditSlideHeader.EnableSelectAll();
-			memoEditTabASubheader1.EnableSelectAll();
-			textEditTabBSubheader1.EnableSelectAll();
-			memoEditTabBSubheader2.EnableSelectAll();
-			comboBoxEditTabCCombo1.EnableSelectAll();
+			comboBoxEditSlideHeader.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			memoEditTabASubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabBSubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			memoEditTabBSubheader2.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabCCombo1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 
 			layoutControlGroupTabA.Text = SlideContainer.StarInfo.Titles.Tab7SubATitle;
 			layoutControlGroupTabB.Text = SlideContainer.StarInfo.Titles.Tab7SubBTitle;
@@ -76,7 +76,15 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				pictureEditTabCClipart4,
 			});
 
-			comboBoxEditTabCCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.MarketConfiguration.PartCCombo1Items);
+			memoEditTabASubheader1.Properties.NullText = SlideContainer.StarInfo.MarketConfiguration.PartASubHeader1Placeholder ?? memoEditTabASubheader1.Properties.NullText;
+
+			textEditTabBSubheader1.Properties.NullText = SlideContainer.StarInfo.MarketConfiguration.PartBSubHeader1Placeholder ?? textEditTabBSubheader1.Properties.NullText;
+			memoEditTabBSubheader2.Properties.NullText = SlideContainer.StarInfo.MarketConfiguration.PartBSubHeader2Placeholder ?? memoEditTabBSubheader2.Properties.NullText;
+
+			comboBoxEditTabCCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.MarketConfiguration.PartCCombo1Items.Where(item => !item.IsPlaceholder).ToArray());
+			comboBoxEditTabCCombo1.Properties.NullText =
+				SlideContainer.StarInfo.MarketConfiguration.PartCCombo1Items.FirstOrDefault(item => item.IsPlaceholder)?.Value ??
+				comboBoxEditTabCCombo1.Properties.NullText;
 
 			_outputProcessors.AddRange(OutputProcessor.GetOutputProcessors(this));
 
@@ -209,27 +217,33 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab7SubAFooterLogo;
 
 					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.MarketConfiguration.HeadersPartAItems);
+					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.MarketConfiguration.HeadersPartAItems.Where(item => !item.IsPlaceholder).ToArray());
 					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.MarketState.TabA.SlideHeader ??
-						SlideContainer.StarInfo.MarketConfiguration.HeadersPartAItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+						SlideContainer.StarInfo.MarketConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault);
+					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.MarketConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+						"Select or type";
 					break;
 				case 1:
 					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab7SubBRightLogo;
 					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab7SubBFooterLogo;
 
 					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.MarketConfiguration.HeadersPartBItems);
+					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.MarketConfiguration.HeadersPartBItems.Where(item => !item.IsPlaceholder).ToArray());
 					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.MarketState.TabB.SlideHeader ??
-						SlideContainer.StarInfo.MarketConfiguration.HeadersPartBItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+						SlideContainer.StarInfo.MarketConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault);
+					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.MarketConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+						"Select or type";
 					break;
 				case 2:
 					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab7SubCRightLogo;
 					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab7SubCFooterLogo;
 
 					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.MarketConfiguration.HeadersPartCItems);
+					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.MarketConfiguration.HeadersPartCItems.Where(item => !item.IsPlaceholder).ToArray());
 					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.MarketState.TabC.SlideHeader ??
-						SlideContainer.StarInfo.MarketConfiguration.HeadersPartCItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+						SlideContainer.StarInfo.MarketConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault);
+					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.MarketConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+						"Select or type";
 					break;
 			}
 			_allowToSave = true;

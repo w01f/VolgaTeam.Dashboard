@@ -170,10 +170,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				}
 
 				var slideHeader = OutputControl.SlideContainer.EditedContent.FishingState.TabB.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault)?.Value;
-				var combo1 = (OutputControl.SlideContainer.EditedContent.FishingState.TabB.Combo1 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.ElementAtOrDefault(0))?.ToString();
-				var combo2 = (OutputControl.SlideContainer.EditedContent.FishingState.TabB.Combo2 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.ElementAtOrDefault(1))?.ToString();
-				var combo3 = (OutputControl.SlideContainer.EditedContent.FishingState.TabB.Combo3 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.ElementAtOrDefault(2))?.ToString();
-				var combo4 = (OutputControl.SlideContainer.EditedContent.FishingState.TabB.Combo4 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.ElementAtOrDefault(3))?.ToString();
+				var combo1 = (OutputControl.SlideContainer.EditedContent.FishingState.TabB.Combo1 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0))?.Value;
+				var combo2 = (OutputControl.SlideContainer.EditedContent.FishingState.TabB.Combo2 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(1))?.Value;
+				var combo3 = (OutputControl.SlideContainer.EditedContent.FishingState.TabB.Combo3 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(2))?.Value;
+				var combo4 = (OutputControl.SlideContainer.EditedContent.FishingState.TabB.Combo4 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(3))?.Value;
 
 				if (!String.IsNullOrWhiteSpace(combo1) &&
 					!String.IsNullOrWhiteSpace(combo2) &&

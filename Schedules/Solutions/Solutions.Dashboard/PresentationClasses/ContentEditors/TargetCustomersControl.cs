@@ -33,16 +33,16 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			comboBoxEditSlideHeader.EnableSelectAll();
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
-			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.DashboardInfo.TargetCustomersLists.Headers.Select(item => item.Value).ToArray());
+			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.DashboardInfo.TargetCustomersLists.Headers.Where(item => !item.IsPlaceholder).Select(item => item.Value).ToArray());
 
 			checkedListBoxControlTargetDemo.Items.Clear();
-			checkedListBoxControlTargetDemo.Items.AddRange(SlideContainer.DashboardInfo.TargetCustomersLists.Demos.ToArray());
+			checkedListBoxControlTargetDemo.Items.AddRange(SlideContainer.DashboardInfo.TargetCustomersLists.Demos.Where(item => !item.IsPlaceholder).ToArray());
 
 			checkedListBoxControlHouseholdIncome.Items.Clear();
-			checkedListBoxControlHouseholdIncome.Items.AddRange(SlideContainer.DashboardInfo.TargetCustomersLists.HHIs.ToArray());
+			checkedListBoxControlHouseholdIncome.Items.AddRange(SlideContainer.DashboardInfo.TargetCustomersLists.HHIs.Where(item => !item.IsPlaceholder).ToArray());
 
 			checkedListBoxControlGeographicResidence.Items.Clear();
-			checkedListBoxControlGeographicResidence.Items.AddRange(SlideContainer.DashboardInfo.TargetCustomersLists.Geographies.ToArray());
+			checkedListBoxControlGeographicResidence.Items.AddRange(SlideContainer.DashboardInfo.TargetCustomersLists.Geographies.Where(item => !item.IsPlaceholder).ToArray());
 
 			pictureEditSplash.Image = SlideContainer.DashboardInfo.TargeCustomersSplashLogo;
 

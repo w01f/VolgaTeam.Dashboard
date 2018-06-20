@@ -32,9 +32,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			Resize += OnResize;
 
-			comboBoxEditSlideHeader.EnableSelectAll();
-			memoEditSubheader1.EnableSelectAll();
-			comboBoxEditCombo1.EnableSelectAll();
+			comboBoxEditSlideHeader.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			memoEditSubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditCombo1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 
 			layoutControlGroupTabA.Text = SlideContainer.StarInfo.Titles.Tab1SubATitle;
 
@@ -45,6 +45,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ImageEditorHelper.AssignImageEditors(new[]{
 				pictureEditClipart1
 			});
+
+			memoEditSubheader1.Properties.NullText = SlideContainer.StarInfo.CoverConfiguration.SubHeader1Placeholder ?? memoEditSubheader1.Properties.NullText;
 
 			_usersByStation.AddRange(SlideContainer.StarInfo.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name));
 			comboBoxEditCombo1.Properties.Items.AddRange(_usersByStation);
@@ -122,10 +124,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab1SubAFooterLogo;
 
 					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems);
+					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.Where(item => !item.IsPlaceholder).ToArray());
 
 					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.CoverState.SlideHeader ??
-						SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+						SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => h.IsDefault);
+					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+						"Select or type";
 					break;
 			}
 			_allowToSave = true;
@@ -284,8 +288,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			var outputDataPackage = GetOutputData();
 			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 			SlideContainer.PowerPointProcessor.PrepareStarCommonSlide(outputDataPackage, tempFileName);
-			return new[] { new PreviewGroup { Name = OutputName, PresentationSourcePath = tempFileName } };
+			return new[] { new PreviewGroup { Name = OutputName, PresentationSourcePath = tempFileName, InsertOnTop = outputDataPackage.AddAsFirtsPage } };
 		}
 		#endregion
+
+
 	}
 }

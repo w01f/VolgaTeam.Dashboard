@@ -21,8 +21,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			InitializeComponent();
 
-			memoEditTabCSubheader1.EnableSelectAll();
-			memoEditTabCSubheader2.EnableSelectAll();
+			memoEditTabCSubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			memoEditTabCSubheader2.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			Application.DoEvents();
 
 			pictureEditTabCClipart1.Image = ClosersContentContainer.SlideContainer.StarInfo.Tab11SubCClipart1Image;
@@ -38,6 +38,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			});
 
 			Application.DoEvents();
+
+			memoEditTabCSubheader1.Properties.NullText = ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartCSubHeader1Placeholder ?? memoEditTabCSubheader1.Properties.NullText;
+			memoEditTabCSubheader2.Properties.NullText = ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartCSubHeader2Placeholder ?? memoEditTabCSubheader2.Properties.NullText;
 
 			_usersByStation.AddRange(ClosersContentContainer.SlideContainer.StarInfo.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name));
 			comboBoxEditTabCCombo1.Properties.Items.AddRange(_usersByStation);

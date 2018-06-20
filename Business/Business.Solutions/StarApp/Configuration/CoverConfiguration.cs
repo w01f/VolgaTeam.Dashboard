@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml;
 
 namespace Asa.Business.Solutions.StarApp.Configuration
@@ -10,6 +9,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public List<ListDataItem> HeaderPartAItems { get; }
 		public ClipartConfiguration PartAClipart1Configuration { get; private set; }
 		public string SubHeader1DefaultValue { get; private set; }
+		public string SubHeader1Placeholder { get; private set; }
 
 		public CoverConfiguration()
 		{
@@ -28,17 +28,18 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				if (node == null) return;
 				foreach (XmlNode childNode in node.ChildNodes)
 				{
+					var item = ListDataItem.FromXml(childNode);
 					switch (childNode.Name)
 					{
 						case "CP01AHeader":
-							{
-								var item = ListDataItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									HeaderPartAItems.Add(item);
-							}
+							if (!String.IsNullOrEmpty(item.Value))
+								HeaderPartAItems.Add(item);
 							break;
 						case "CP01ASubheader1":
-							SubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							if (item.IsPlaceholder)
+								SubHeader1Placeholder = item.Value;
+							else
+								SubHeader1DefaultValue = item.Value;
 							break;
 					}
 				}

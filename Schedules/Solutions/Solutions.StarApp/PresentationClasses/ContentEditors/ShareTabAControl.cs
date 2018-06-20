@@ -19,17 +19,17 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			InitializeComponent();
 
-			comboBoxEditTabACombo1.EnableSelectAll();
-			comboBoxEditTabACombo2.EnableSelectAll();
-			comboBoxEditTabACombo3.EnableSelectAll();
-			comboBoxEditTabACombo4.EnableSelectAll();
-			textEditTabASubheader1.EnableSelectAll();
+			comboBoxEditTabACombo1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabACombo2.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabACombo3.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabACombo4.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabASubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			spinEditTabASubheader2.EnableSelectAll();
-			textEditTabASubheader3.EnableSelectAll();
-			textEditTabASubheader4.EnableSelectAll();
-			textEditTabASubheader5.EnableSelectAll();
-			textEditTabASubheader6.EnableSelectAll();
-			textEditTabASubheader7.EnableSelectAll();
+			textEditTabASubheader3.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabASubheader4.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabASubheader5.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabASubheader6.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabASubheader7.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			Application.DoEvents();
 
 			pictureEditTabAClipart1.Image = ShareContentContainer.SlideContainer.StarInfo.Tab5SubAClipart1Image;
@@ -50,10 +50,29 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			Application.DoEvents();
 
-			comboBoxEditTabACombo1.Properties.Items.AddRange(ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartACombo1Items);
-			comboBoxEditTabACombo2.Properties.Items.AddRange(ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartACombo2Items);
-			comboBoxEditTabACombo3.Properties.Items.AddRange(ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartACombo3Items);
-			comboBoxEditTabACombo4.Properties.Items.AddRange(ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartACombo4Items);
+			textEditTabASubheader1.Properties.NullText = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartASubHeader1Placeholder ?? textEditTabASubheader1.Properties.NullText;
+			textEditTabASubheader3.Properties.NullText = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartASubHeader3Placeholder ?? textEditTabASubheader3.Properties.NullText;
+			textEditTabASubheader4.Properties.NullText = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartASubHeader4Placeholder ?? textEditTabASubheader4.Properties.NullText;
+			textEditTabASubheader5.Properties.NullText = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartASubHeader5Placeholder ?? textEditTabASubheader5.Properties.NullText;
+			textEditTabASubheader6.Properties.NullText = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartASubHeader6Placeholder ?? textEditTabASubheader6.Properties.NullText;
+			textEditTabASubheader7.Properties.NullText = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartASubHeader7Placeholder ?? textEditTabASubheader7.Properties.NullText;
+
+			comboBoxEditTabACombo1.Properties.Items.AddRange(ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartACombo1Items.Where(item => !item.IsPlaceholder).ToArray());
+			comboBoxEditTabACombo1.Properties.NullText =
+				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartACombo1Items.FirstOrDefault(item => item.IsPlaceholder)?.Value ??
+				comboBoxEditTabACombo1.Properties.NullText;
+			comboBoxEditTabACombo2.Properties.Items.AddRange(ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartACombo2Items.Where(item => !item.IsPlaceholder).ToArray());
+			comboBoxEditTabACombo2.Properties.NullText =
+				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartACombo2Items.FirstOrDefault(item => item.IsPlaceholder)?.Value ??
+				comboBoxEditTabACombo2.Properties.NullText;
+			comboBoxEditTabACombo3.Properties.Items.AddRange(ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartACombo3Items.Where(item => !item.IsPlaceholder).ToArray());
+			comboBoxEditTabACombo3.Properties.NullText =
+				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartACombo3Items.FirstOrDefault(item => item.IsPlaceholder)?.Value ??
+				comboBoxEditTabACombo3.Properties.NullText;
+			comboBoxEditTabACombo4.Properties.Items.AddRange(ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartACombo4Items.Where(item => !item.IsPlaceholder).ToArray());
+			comboBoxEditTabACombo4.Properties.NullText =
+				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartACombo4Items.FirstOrDefault(item => item.IsPlaceholder)?.Value ??
+				comboBoxEditTabACombo4.Properties.NullText;
 			Application.DoEvents();
 		}
 

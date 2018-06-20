@@ -19,13 +19,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			InitializeComponent();
 
-			comboBoxEditTabBCombo1.EnableSelectAll();
-			comboBoxEditTabBCombo2.EnableSelectAll();
-			comboBoxEditTabBCombo3.EnableSelectAll();
-			comboBoxEditTabBCombo4.EnableSelectAll();
-			memoEditTabBSubheader1.EnableSelectAll();
-			memoEditTabBSubheader2.EnableSelectAll();
-			memoEditTabBSubheader3.EnableSelectAll();
+			comboBoxEditTabBCombo1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor(); 
+			comboBoxEditTabBCombo2.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabBCombo3.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabBCombo4.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			memoEditTabBSubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			memoEditTabBSubheader2.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			memoEditTabBSubheader3.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			Application.DoEvents();
 
 			pictureEditTabBClipart1.Image = ClosersContentContainer.SlideContainer.StarInfo.Tab11SubBClipart1Image;
@@ -41,11 +41,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			});
 
 			Application.DoEvents();
+			memoEditTabBSubheader1.Properties.NullText = ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBSubHeader1Placeholder ?? memoEditTabBSubheader1.Properties.NullText;
+			memoEditTabBSubheader2.Properties.NullText = ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBSubHeader2Placeholder ?? memoEditTabBSubheader2.Properties.NullText;
+			memoEditTabBSubheader3.Properties.NullText = ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBSubHeader3Placeholder ?? memoEditTabBSubheader3.Properties.NullText;
 
-			comboBoxEditTabBCombo1.Properties.Items.AddRange(ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo1Items);
-			comboBoxEditTabBCombo2.Properties.Items.AddRange(ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo2Items);
-			comboBoxEditTabBCombo3.Properties.Items.AddRange(ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo3Items);
-			comboBoxEditTabBCombo4.Properties.Items.AddRange(ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo4Items);
+			comboBoxEditTabBCombo1.Properties.Items.AddRange(ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo1Items.Where(item => !item.IsPlaceholder).ToArray());
+			comboBoxEditTabBCombo1.Properties.NullText =
+				ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo1Items.FirstOrDefault(item => item.IsPlaceholder)?.Value ??
+				comboBoxEditTabBCombo1.Properties.NullText;
+			comboBoxEditTabBCombo2.Properties.Items.AddRange(ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo2Items.Where(item => !item.IsPlaceholder).ToArray());
+			comboBoxEditTabBCombo2.Properties.NullText =
+				ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo2Items.FirstOrDefault(item => item.IsPlaceholder)?.Value ??
+				comboBoxEditTabBCombo2.Properties.NullText;
+			comboBoxEditTabBCombo3.Properties.Items.AddRange(ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo3Items.Where(item => !item.IsPlaceholder).ToArray());
+			comboBoxEditTabBCombo3.Properties.NullText =
+				ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo3Items.FirstOrDefault(item => item.IsPlaceholder)?.Value ??
+				comboBoxEditTabBCombo3.Properties.NullText;
+			comboBoxEditTabBCombo4.Properties.Items.AddRange(ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo4Items.Where(item => !item.IsPlaceholder).ToArray());
+			comboBoxEditTabBCombo4.Properties.NullText =
+				ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo4Items.FirstOrDefault(item => item.IsPlaceholder)?.Value ??
+				comboBoxEditTabBCombo4.Properties.NullText;
 			Application.DoEvents();
 		}
 

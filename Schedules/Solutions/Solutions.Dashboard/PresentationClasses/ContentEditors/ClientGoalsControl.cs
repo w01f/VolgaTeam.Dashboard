@@ -37,19 +37,19 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Headers.Select(item => item.Value).ToArray());
 
 			comboBoxEditGoal1.Properties.Items.Clear();
-			comboBoxEditGoal1.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Goals);
+			comboBoxEditGoal1.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Goals.Where(item => !item.IsPlaceholder).ToArray());
 
 			comboBoxEditGoal2.Properties.Items.Clear();
-			comboBoxEditGoal2.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Goals);
+			comboBoxEditGoal2.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Goals.Where(item => !item.IsPlaceholder).ToArray());
 
 			comboBoxEditGoal3.Properties.Items.Clear();
-			comboBoxEditGoal3.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Goals);
+			comboBoxEditGoal3.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Goals.Where(item => !item.IsPlaceholder).ToArray());
 
 			comboBoxEditGoal4.Properties.Items.Clear();
-			comboBoxEditGoal4.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Goals);
+			comboBoxEditGoal4.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Goals.Where(item => !item.IsPlaceholder).ToArray());
 
 			comboBoxEditGoal5.Properties.Items.Clear();
-			comboBoxEditGoal5.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Goals);
+			comboBoxEditGoal5.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Goals.Where(item => !item.IsPlaceholder).ToArray());
 
 			pictureEditSplash.Image = SlideContainer.DashboardInfo.ClientGoalsSplashLogo;
 

@@ -4,6 +4,7 @@
 	{
 		public string Value { get; set; }
 		public bool IsDefault { get; set; }
+		public bool IsPlaceholder { get; set; }
 		public int DefaultOrder { get; set; }
 
 		public ListDataItem()

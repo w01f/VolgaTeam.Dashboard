@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml;
 
 namespace Asa.Business.Solutions.StarApp.Configuration
@@ -10,6 +9,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public List<ListDataItem> HeadersPartAItems { get; set; }
 		public string PartASubHeader1DefaultValue { get; private set; }
 		public string PartASubHeader2DefaultValue { get; private set; }
+		public string PartASubHeader1Placeholder { get; private set; }
+		public string PartASubHeader2Placeholder { get; private set; }
 		public ClipartConfiguration PartAClipart1Configuration { get; private set; }
 
 		public List<ListDataItem> HeadersPartBItems { get; set; }
@@ -37,20 +38,24 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				if (node == null) return;
 				foreach (XmlNode childNode in node.ChildNodes)
 				{
+					var item = ListDataItem.FromXml(childNode);
 					switch (childNode.Name)
 					{
 						case "CP02AHeader":
-							{
-								var item = ListDataItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									HeadersPartAItems.Add(item);
-							}
+							if (!String.IsNullOrEmpty(item.Value))
+								HeadersPartAItems.Add(item);
 							break;
 						case "CP02ASubheader1":
-							PartASubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							if (item.IsPlaceholder)
+								PartASubHeader1Placeholder = item.Value;
+							else
+								PartASubHeader1DefaultValue = item.Value;
 							break;
 						case "CP02ASubheader2":
-							PartASubHeader2DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							if (item.IsPlaceholder)
+								PartASubHeader2Placeholder = item.Value;
+							else
+								PartASubHeader2DefaultValue = item.Value;
 							break;
 					}
 				}
@@ -67,14 +72,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				if (node == null) return;
 				foreach (XmlNode childNode in node.ChildNodes)
 				{
+					var item = ListDataItem.FromXml(childNode);
 					switch (childNode.Name)
 					{
 						case "CP02BHeader":
-							{
-								var item = ListDataItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									HeadersPartBItems.Add(item);
-							}
+							if (!String.IsNullOrEmpty(item.Value))
+								HeadersPartBItems.Add(item);
 							break;
 					}
 				}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Xml;
 
 namespace Asa.Business.Solutions.StarApp.Configuration
@@ -7,12 +8,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 	{
 		public string Value { get; set; }
 		public bool IsDefault { get; set; }
-
-		public ListDataItem()
-		{
-			Value = string.Empty;
-			IsDefault = false;
-		}
+		public bool IsPlaceholder { get; set; }
 
 		public override string ToString()
 		{
@@ -22,7 +18,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public static ListDataItem FromXml(XmlNode node)
 		{
 			var listDataItem = new ListDataItem();
-			foreach (XmlAttribute attribute in node.Attributes)
+			var attributes = node.Attributes?.OfType<XmlAttribute>().ToArray() ?? new XmlAttribute[] { };
+			foreach (var attribute in attributes)
 			{
 				switch (attribute.Name)
 				{
@@ -30,8 +27,16 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 						listDataItem.Value = attribute.Value;
 						break;
 					case "IsDefault":
-						if (Boolean.TryParse(attribute.Value, out var temp))
-							listDataItem.IsDefault = temp;
+						{
+							if (Boolean.TryParse(attribute.Value, out var temp))
+								listDataItem.IsDefault = temp;
+						}
+						break;
+					case "IsPlaceholder":
+						{
+							if (Boolean.TryParse(attribute.Value, out var temp))
+								listDataItem.IsPlaceholder = temp;
+						}
 						break;
 				}
 			}

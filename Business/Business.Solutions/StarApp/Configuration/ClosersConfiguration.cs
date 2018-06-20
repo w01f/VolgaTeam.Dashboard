@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml;
 
 namespace Asa.Business.Solutions.StarApp.Configuration
@@ -11,6 +10,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public ClipartConfiguration PartAClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartAClipart2Configuration { get; private set; }
 		public string PartASubHeader1DefaultValue { get; private set; }
+		public string PartASubHeader1Placeholder { get; private set; }
 
 		public List<ListDataItem> HeadersPartBItems { get; set; }
 		public ClipartConfiguration PartBClipart1Configuration { get; private set; }
@@ -22,12 +22,17 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public string PartBSubHeader1DefaultValue { get; private set; }
 		public string PartBSubHeader2DefaultValue { get; private set; }
 		public string PartBSubHeader3DefaultValue { get; private set; }
+		public string PartBSubHeader1Placeholder { get; private set; }
+		public string PartBSubHeader2Placeholder { get; private set; }
+		public string PartBSubHeader3Placeholder { get; private set; }
 
 		public List<ListDataItem> HeadersPartCItems { get; set; }
 		public ClipartConfiguration PartCClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartCClipart2Configuration { get; private set; }
 		public string PartCSubHeader1DefaultValue { get; private set; }
 		public string PartCSubHeader2DefaultValue { get; private set; }
+		public string PartCSubHeader1Placeholder { get; private set; }
+		public string PartCSubHeader2Placeholder { get; private set; }
 
 		public ClosersConfiguration()
 		{
@@ -59,17 +64,18 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				if (node == null) return;
 				foreach (XmlNode childNode in node.ChildNodes)
 				{
+					var item = ListDataItem.FromXml(childNode);
 					switch (childNode.Name)
 					{
 						case "CP11AHeader":
-							{
-								var item = ListDataItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									HeadersPartAItems.Add(item);
-							}
+							if (!String.IsNullOrEmpty(item.Value))
+								HeadersPartAItems.Add(item);
 							break;
 						case "CP11ASubheader1":
-							PartASubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							if (item.IsPlaceholder)
+								PartASubHeader1Placeholder = item.Value;
+							else
+								PartASubHeader1DefaultValue = item.Value;
 							break;
 					}
 				}
@@ -87,51 +93,46 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				if (node == null) return;
 				foreach (XmlNode childNode in node.ChildNodes)
 				{
+					var item = ListDataItem.FromXml(childNode);
 					switch (childNode.Name)
 					{
 						case "CP11BHeader":
-							{
-								var item = ListDataItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									HeadersPartBItems.Add(item);
-							}
+							if (!String.IsNullOrEmpty(item.Value))
+								HeadersPartBItems.Add(item);
 							break;
 						case "CP11BCombo0":
-							{
-								var item = ListDataItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									PartBCombo1Items.Add(item);
-							}
+							if (!String.IsNullOrEmpty(item.Value))
+								PartBCombo1Items.Add(item);
 							break;
 						case "CP11BCombo1":
-							{
-								var item = ListDataItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									PartBCombo2Items.Add(item);
-							}
+							if (!String.IsNullOrEmpty(item.Value))
+								PartBCombo2Items.Add(item);
 							break;
 						case "CP11BCombo2":
-							{
-								var item = ListDataItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									PartBCombo3Items.Add(item);
-							}
+							if (!String.IsNullOrEmpty(item.Value))
+								PartBCombo3Items.Add(item);
 							break;
 						case "CP11BCombo3":
-							{
-								var item = ListDataItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									PartBCombo4Items.Add(item);
-							}
+							if (!String.IsNullOrEmpty(item.Value))
+								PartBCombo4Items.Add(item);
 							break;
 						case "CP11BSubheader1":
-							PartBSubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							if (item.IsPlaceholder)
+								PartBSubHeader1Placeholder = item.Value;
+							else
+								PartBSubHeader1DefaultValue = item.Value;
 							break;
 						case "CP11BSubheader2":
-							PartBSubHeader2DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							if (item.IsPlaceholder)
+								PartBSubHeader2Placeholder = item.Value;
+							else
+								PartBSubHeader2DefaultValue = item.Value;
 							break;
 						case "CP11BSubheader3":
-							PartBSubHeader3DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							if (item.IsPlaceholder)
+								PartBSubHeader3Placeholder = item.Value;
+							else
+								PartBSubHeader3DefaultValue = item.Value;
 							break;
 					}
 				}
@@ -149,20 +150,24 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				if (node == null) return;
 				foreach (XmlNode childNode in node.ChildNodes)
 				{
+					var item = ListDataItem.FromXml(childNode);
 					switch (childNode.Name)
 					{
 						case "CP11CHeader":
-							{
-								var item = ListDataItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									HeadersPartCItems.Add(item);
-							}
+							if (!String.IsNullOrEmpty(item.Value))
+								HeadersPartCItems.Add(item);
 							break;
 						case "CP11CSubheader1":
-							PartCSubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							if (item.IsPlaceholder)
+								PartCSubHeader1Placeholder = item.Value;
+							else
+								PartCSubHeader1DefaultValue = item.Value;
 							break;
 						case "CP11CSubheader2":
-							PartCSubHeader2DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							if (item.IsPlaceholder)
+								PartCSubHeader2Placeholder = item.Value;
+							else
+								PartCSubHeader2DefaultValue = item.Value;
 							break;
 					}
 				}

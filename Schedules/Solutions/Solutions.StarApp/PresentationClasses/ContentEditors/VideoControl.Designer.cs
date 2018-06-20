@@ -184,7 +184,7 @@
 			this.memoEditTabCSubheader1.Size = new System.Drawing.Size(262, 262);
 			this.memoEditTabCSubheader1.StyleController = this.layoutControl;
 			this.memoEditTabCSubheader1.TabIndex = 1;
-			this.memoEditTabCSubheader1.EditValueChanged += new System.EventHandler(this.EditValueChanged);
+			this.memoEditTabCSubheader1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabCClipart1
 			// 
@@ -201,7 +201,7 @@
 			this.pictureEditTabCClipart1.Size = new System.Drawing.Size(235, 262);
 			this.pictureEditTabCClipart1.StyleController = this.layoutControl;
 			this.pictureEditTabCClipart1.TabIndex = 1;
-			this.pictureEditTabCClipart1.EditValueChanged += new System.EventHandler(this.EditValueChanged);
+			this.pictureEditTabCClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabAClipart1
 			// 
@@ -218,7 +218,7 @@
 			this.pictureEditTabAClipart1.Size = new System.Drawing.Size(294, 305);
 			this.pictureEditTabAClipart1.StyleController = this.layoutControl;
 			this.pictureEditTabAClipart1.TabIndex = 1;
-			this.pictureEditTabAClipart1.EditValueChanged += new System.EventHandler(this.EditValueChanged);
+			this.pictureEditTabAClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// memoEditTabASubheader1
 			// 
@@ -228,7 +228,7 @@
 			this.memoEditTabASubheader1.Size = new System.Drawing.Size(528, 193);
 			this.memoEditTabASubheader1.StyleController = this.layoutControl;
 			this.memoEditTabASubheader1.TabIndex = 2;
-			this.memoEditTabASubheader1.EditValueChanged += new System.EventHandler(this.EditValueChanged);
+			this.memoEditTabASubheader1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// comboBoxEditSlideHeader
 			// 
@@ -249,7 +249,7 @@
 			this.comboBoxEditSlideHeader.Size = new System.Drawing.Size(356, 22);
 			this.comboBoxEditSlideHeader.StyleController = this.layoutControl;
 			this.comboBoxEditSlideHeader.TabIndex = 0;
-			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.EditValueChanged);
+			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// memoEditTabBSubheader1
 			// 
@@ -259,7 +259,7 @@
 			this.memoEditTabBSubheader1.Size = new System.Drawing.Size(528, 193);
 			this.memoEditTabBSubheader1.StyleController = this.layoutControl;
 			this.memoEditTabBSubheader1.TabIndex = 1;
-			this.memoEditTabBSubheader1.EditValueChanged += new System.EventHandler(this.EditValueChanged);
+			this.memoEditTabBSubheader1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabBClipart1
 			// 
@@ -276,7 +276,7 @@
 			this.pictureEditTabBClipart1.Size = new System.Drawing.Size(294, 305);
 			this.pictureEditTabBClipart1.StyleController = this.layoutControl;
 			this.pictureEditTabBClipart1.TabIndex = 1;
-			this.pictureEditTabBClipart1.EditValueChanged += new System.EventHandler(this.EditValueChanged);
+			this.pictureEditTabBClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabDClipart1
 			// 
@@ -293,7 +293,7 @@
 			this.pictureEditTabDClipart1.Size = new System.Drawing.Size(235, 262);
 			this.pictureEditTabDClipart1.StyleController = this.layoutControl;
 			this.pictureEditTabDClipart1.TabIndex = 1;
-			this.pictureEditTabDClipart1.EditValueChanged += new System.EventHandler(this.EditValueChanged);
+			this.pictureEditTabDClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// memoEditTabDSubheader1
 			// 
@@ -303,7 +303,7 @@
 			this.memoEditTabDSubheader1.Size = new System.Drawing.Size(262, 262);
 			this.memoEditTabDSubheader1.StyleController = this.layoutControl;
 			this.memoEditTabDSubheader1.TabIndex = 1;
-			this.memoEditTabDSubheader1.EditValueChanged += new System.EventHandler(this.EditValueChanged);
+			this.memoEditTabDSubheader1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// layoutControlGroupRoot
 			// 

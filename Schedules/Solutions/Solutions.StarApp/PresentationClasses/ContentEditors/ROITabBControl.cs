@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -19,31 +18,31 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			InitializeComponent();
 
-			textEditTabBSubheader1.EnableSelectAll();
+			textEditTabBSubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			spinEditTabBSubheader2.EnableSelectAll();
-			textEditTabBSubheader3.EnableSelectAll();
-			textEditTabBSubheader4.EnableSelectAll();
-			spinEditTabBSubheader5.EnableSelectAll();
-			textEditTabBSubheader6.EnableSelectAll();
-			textEditTabBSubheader7.EnableSelectAll();
+			textEditTabBSubheader3.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabBSubheader4.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			spinEditTabBSubheader5.EnableSelectAll(); 
+			textEditTabBSubheader6.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabBSubheader7.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			spinEditTabBSubheader8.EnableSelectAll();
-			textEditTabBSubheader9.EnableSelectAll();
-			textEditTabBSubheader10.EnableSelectAll();
+			textEditTabBSubheader9.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabBSubheader10.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			spinEditTabBSubheader11.EnableSelectAll();
-			textEditTabBSubheader12.EnableSelectAll();
-			textEditTabBSubheader13.EnableSelectAll();
-			textEditTabBSubheader14.EnableSelectAll();
-			textEditTabBSubheader15.EnableSelectAll();
-			textEditTabBSubheader16.EnableSelectAll();
-			spinEditTabBSubheader17.EnableSelectAll();
-			textEditTabBSubheader18.EnableSelectAll();
-			textEditTabBSubheader19.EnableSelectAll();
-			textEditTabBSubheader20.EnableSelectAll();
-			textEditTabBSubheader21.EnableSelectAll();
-			textEditTabBSubheader22.EnableSelectAll();
-			textEditTabBSubheader23.EnableSelectAll();
+			textEditTabBSubheader12.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabBSubheader13.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabBSubheader14.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabBSubheader15.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabBSubheader16.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			spinEditTabBSubheader17.EnableSelectAll(); 
+			textEditTabBSubheader18.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabBSubheader19.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabBSubheader20.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabBSubheader21.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabBSubheader22.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			textEditTabBSubheader23.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			spinEditTabBSubheader24.EnableSelectAll();
-			textEditTabBSubheader25.EnableSelectAll();
+			textEditTabBSubheader25.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			Application.DoEvents();
 
 			pictureEditTabBClipart1.Image = ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart1Image;
@@ -55,6 +54,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			pictureEditTabBClipart3.Image = ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart3Image;
 			pictureEditTabBClipart3.Properties.PictureAlignment =
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBClipart3Configuration.Alignment;
+
+			textEditTabBSubheader1.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader1Placeholder ?? textEditTabBSubheader1.Properties.NullText;
+			textEditTabBSubheader3.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader3Placeholder ?? textEditTabBSubheader3.Properties.NullText;
+			textEditTabBSubheader4.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader4Placeholder ?? textEditTabBSubheader4.Properties.NullText;
+			textEditTabBSubheader6.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader6Placeholder ?? textEditTabBSubheader6.Properties.NullText;
+			textEditTabBSubheader7.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader7Placeholder ?? textEditTabBSubheader7.Properties.NullText;
+			textEditTabBSubheader9.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader9Placeholder ?? textEditTabBSubheader9.Properties.NullText;
+			textEditTabBSubheader10.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader10Placeholder ?? textEditTabBSubheader10.Properties.NullText;
+			textEditTabBSubheader12.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader12Placeholder ?? textEditTabBSubheader12.Properties.NullText;
+			textEditTabBSubheader13.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader13Placeholder ?? textEditTabBSubheader13.Properties.NullText;
+			textEditTabBSubheader14.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader14Placeholder ?? textEditTabBSubheader14.Properties.NullText;
+			textEditTabBSubheader15.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader15Placeholder ?? textEditTabBSubheader15.Properties.NullText;
+			textEditTabBSubheader16.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader16Placeholder ?? textEditTabBSubheader16.Properties.NullText;
+			textEditTabBSubheader18.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader18Placeholder ?? textEditTabBSubheader18.Properties.NullText;
+			textEditTabBSubheader19.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader19Placeholder ?? textEditTabBSubheader19.Properties.NullText;
+			textEditTabBSubheader20.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader20Placeholder ?? textEditTabBSubheader20.Properties.NullText;
+			textEditTabBSubheader21.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader21Placeholder ?? textEditTabBSubheader21.Properties.NullText;
+			textEditTabBSubheader22.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader22Placeholder ?? textEditTabBSubheader22.Properties.NullText;
+			textEditTabBSubheader23.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader23Placeholder ?? textEditTabBSubheader23.Properties.NullText;
+			textEditTabBSubheader25.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader25Placeholder ?? textEditTabBSubheader25.Properties.NullText;
 
 			ImageEditorHelper.AssignImageEditors(new[]{
 				pictureEditTabBClipart1,

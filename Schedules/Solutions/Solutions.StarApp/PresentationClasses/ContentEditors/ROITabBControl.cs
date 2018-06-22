@@ -22,7 +22,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			spinEditTabBSubheader2.EnableSelectAll();
 			textEditTabBSubheader3.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			textEditTabBSubheader4.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
-			spinEditTabBSubheader5.EnableSelectAll(); 
+			spinEditTabBSubheader5.EnableSelectAll();
 			textEditTabBSubheader6.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			textEditTabBSubheader7.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			spinEditTabBSubheader8.EnableSelectAll();
@@ -34,7 +34,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			textEditTabBSubheader14.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			textEditTabBSubheader15.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			textEditTabBSubheader16.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
-			spinEditTabBSubheader17.EnableSelectAll(); 
+			spinEditTabBSubheader17.EnableSelectAll();
 			textEditTabBSubheader18.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			textEditTabBSubheader19.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			textEditTabBSubheader20.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
@@ -196,79 +196,79 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader25Toggle = checkEditTabBSubheader25.Checked;
 
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader1 = textEditTabBSubheader1.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader1DefaultValue ?
-				textEditTabBSubheader1.EditValue as String :
+				textEditTabBSubheader1.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader2 = (decimal?)spinEditTabBSubheader2.EditValue != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader2DefaultValue ?
 				(decimal?)spinEditTabBSubheader2.EditValue :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader3 = textEditTabBSubheader3.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader3DefaultValue ?
-				textEditTabBSubheader3.EditValue as String :
+				textEditTabBSubheader3.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader4 = textEditTabBSubheader4.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader4DefaultValue ?
-				textEditTabBSubheader4.EditValue as String :
+				textEditTabBSubheader4.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader5 = (decimal?)spinEditTabBSubheader5.EditValue != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader5DefaultValue ?
 				(decimal?)spinEditTabBSubheader5.EditValue :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader6 = textEditTabBSubheader6.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader6DefaultValue ?
-				textEditTabBSubheader6.EditValue as String :
+				textEditTabBSubheader6.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader7 = textEditTabBSubheader7.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader7DefaultValue ?
-				textEditTabBSubheader7.EditValue as String :
+				textEditTabBSubheader7.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader8 = (decimal?)spinEditTabBSubheader8.EditValue != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader8DefaultValue ?
 				(decimal?)spinEditTabBSubheader8.EditValue :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader9 = textEditTabBSubheader9.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader9DefaultValue ?
-				textEditTabBSubheader9.EditValue as String :
+				textEditTabBSubheader9.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader10 = textEditTabBSubheader10.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader10DefaultValue ?
-				textEditTabBSubheader10.EditValue as String :
+				textEditTabBSubheader10.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader11 = (decimal?)spinEditTabBSubheader11.EditValue != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader11DefaultValue ?
 				(decimal?)spinEditTabBSubheader11.EditValue :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader12 = textEditTabBSubheader12.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader12DefaultValue ?
-				textEditTabBSubheader12.EditValue as String :
+				textEditTabBSubheader12.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader13 = textEditTabBSubheader13.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader13DefaultValue ?
-				textEditTabBSubheader13.EditValue as String :
+				textEditTabBSubheader13.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader14 = textEditTabBSubheader14.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader14DefaultValue ?
-				textEditTabBSubheader14.EditValue as String :
+				textEditTabBSubheader14.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader15 = textEditTabBSubheader15.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader15DefaultValue ?
-				textEditTabBSubheader15.EditValue as String :
+				textEditTabBSubheader15.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader16 = textEditTabBSubheader16.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader16DefaultValue ?
-				textEditTabBSubheader16.EditValue as String :
+				textEditTabBSubheader16.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader17 = (decimal?)spinEditTabBSubheader17.EditValue != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader17DefaultValue ?
 				(decimal?)spinEditTabBSubheader17.EditValue :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader18 = textEditTabBSubheader18.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader18DefaultValue ?
-				textEditTabBSubheader18.EditValue as String :
+				textEditTabBSubheader18.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader19 = textEditTabBSubheader19.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader19DefaultValue ?
-				textEditTabBSubheader19.EditValue as String :
+				textEditTabBSubheader19.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader20 = textEditTabBSubheader20.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader20DefaultValue ?
-				textEditTabBSubheader20.EditValue as String :
+				textEditTabBSubheader20.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader21 = textEditTabBSubheader21.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader21DefaultValue ?
-				textEditTabBSubheader21.EditValue as String :
+				textEditTabBSubheader21.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader22 = textEditTabBSubheader22.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader22DefaultValue ?
-				textEditTabBSubheader22.EditValue as String :
+				textEditTabBSubheader22.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader23 = textEditTabBSubheader23.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader23DefaultValue ?
-				textEditTabBSubheader23.EditValue as String :
+				textEditTabBSubheader23.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader24 = (decimal?)spinEditTabBSubheader24.EditValue != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader24DefaultValue ?
 				(decimal?)spinEditTabBSubheader24.EditValue :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Subheader25 = textEditTabBSubheader25.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader25DefaultValue ?
-				textEditTabBSubheader25.EditValue as String :
+				textEditTabBSubheader25.EditValue as String ?? String.Empty :
 				null;
 
 			_dataChanged = false;
@@ -440,8 +440,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			outputDataPackage.TextItems = GetOutputDataTextItems();
 
-			outputDataPackage.TextItems.Add("CP06BHEADER", ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.SlideHeader?.Value ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault)?.Value);
-			outputDataPackage.TextItems.Add("HEADER", ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.SlideHeader?.Value ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault)?.Value);
+			var slideHeader = (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.SlideHeader ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault))?.Value;
+			outputDataPackage.TextItems.Add("CP06BHEADER", slideHeader);
+			outputDataPackage.TextItems.Add("HEADER", slideHeader);
 
 			return outputDataPackage;
 		}

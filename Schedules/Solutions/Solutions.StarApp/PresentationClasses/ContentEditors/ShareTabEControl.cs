@@ -164,47 +164,47 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader4Toggle = checkEditTabESubheader4.Checked;
 
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Combo1 = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartECombo1Items.FirstOrDefault(h => h.IsDefault) != comboBoxEditTabECombo1.EditValue ?
-				comboBoxEditTabECombo1.EditValue as ListDataItem ?? (comboBoxEditTabECombo1.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditTabECombo1.EditValue } : null) :
+				comboBoxEditTabECombo1.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabECombo1.EditValue as String } :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Combo2 = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartECombo2Items.FirstOrDefault(h => h.IsDefault) != comboBoxEditTabECombo2.EditValue ?
-				comboBoxEditTabECombo2.EditValue as ListDataItem ?? (comboBoxEditTabECombo2.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditTabECombo2.EditValue } : null) :
+				comboBoxEditTabECombo2.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabECombo2.EditValue as String } :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Combo3 = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartECombo3Items.FirstOrDefault(h => h.IsDefault) != comboBoxEditTabECombo3.EditValue ?
-				comboBoxEditTabECombo3.EditValue as ListDataItem ?? (comboBoxEditTabECombo3.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditTabECombo3.EditValue } : null) :
+				comboBoxEditTabECombo3.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabECombo3.EditValue as String } :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Combo4 = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartECombo4Items.FirstOrDefault(h => h.IsDefault) != comboBoxEditTabECombo4.EditValue ?
-				comboBoxEditTabECombo4.EditValue as ListDataItem ?? (comboBoxEditTabECombo4.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditTabECombo4.EditValue } : null) :
+				comboBoxEditTabECombo4.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabECombo4.EditValue as String } :
 				null;
 
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader1 = textEditTabESubheader1.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader1DefaultValue ?
-				textEditTabESubheader1.EditValue as String :
+				textEditTabESubheader1.EditValue as String ?? String.Empty :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader2 = textEditTabESubheader2.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader2DefaultValue ?
-				textEditTabESubheader2.EditValue as String :
+				textEditTabESubheader2.EditValue as String ?? String.Empty :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader3 = textEditTabESubheader3.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader3DefaultValue ?
-				textEditTabESubheader3.EditValue as String :
+				textEditTabESubheader3.EditValue as String ?? String.Empty :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader4 = textEditTabESubheader4.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader4DefaultValue ?
-				textEditTabESubheader4.EditValue as String :
+				textEditTabESubheader4.EditValue as String ?? String.Empty :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader5 = textEditTabESubheader5.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader5DefaultValue ?
-				textEditTabESubheader5.EditValue as String :
+				textEditTabESubheader5.EditValue as String ?? String.Empty :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader6 = textEditTabESubheader6.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader6DefaultValue ?
-				textEditTabESubheader6.EditValue as String :
+				textEditTabESubheader6.EditValue as String ?? String.Empty :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader7 = (decimal?)spinEditTabESubheader7.EditValue != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader7DefaultValue ?
 				(decimal?)spinEditTabESubheader7.EditValue :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader8 = textEditTabESubheader8.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader8DefaultValue ?
-				textEditTabESubheader8.EditValue as String :
+				textEditTabESubheader8.EditValue as String ?? String.Empty :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader9 = textEditTabESubheader9.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader9DefaultValue ?
-				textEditTabESubheader9.EditValue as String :
+				textEditTabESubheader9.EditValue as String ?? String.Empty :
 				null;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.Subheader10 = textEditTabESubheader10.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartESubHeader10DefaultValue ?
-				textEditTabESubheader10.EditValue as String :
+				textEditTabESubheader10.EditValue as String ?? String.Empty :
 				null;
 
 			_dataChanged = false;
@@ -366,8 +366,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			outputDataPackage.TextItems = GetOutputDataTextItems();
 
-			outputDataPackage.TextItems.Add("CP05EHEADER", ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.SlideHeader?.Value ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.HeadersPartEItems.FirstOrDefault(h => h.IsDefault)?.Value);
-			outputDataPackage.TextItems.Add("HEADER", ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.SlideHeader?.Value ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.HeadersPartEItems.FirstOrDefault(h => h.IsDefault)?.Value);
+			var slideHeader = (ShareContentContainer.SlideContainer.EditedContent.ShareState.TabE.SlideHeader ?? ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.HeadersPartEItems.FirstOrDefault(h => h.IsDefault))?.Value;
+			outputDataPackage.TextItems.Add("CP05EHEADER", slideHeader);
+			outputDataPackage.TextItems.Add("HEADER", slideHeader);
 
 			return outputDataPackage;
 		}

@@ -19,7 +19,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			InitializeComponent();
 
-			comboBoxEditTabBCombo1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor(); 
+			comboBoxEditTabBCombo1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			comboBoxEditTabBCombo2.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			comboBoxEditTabBCombo3.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			comboBoxEditTabBCombo4.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
@@ -105,26 +105,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				null;
 
 			ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo1 = ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo1Items.FirstOrDefault(h => h.IsDefault) != comboBoxEditTabBCombo1.EditValue ?
-				comboBoxEditTabBCombo1.EditValue as ListDataItem ?? (comboBoxEditTabBCombo1.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditTabBCombo1.EditValue } : null) :
+				comboBoxEditTabBCombo1.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabBCombo1.EditValue as String } :
 				null;
 			ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo2 = ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo2Items.FirstOrDefault(h => h.IsDefault) != comboBoxEditTabBCombo2.EditValue ?
-				comboBoxEditTabBCombo2.EditValue as ListDataItem ?? (comboBoxEditTabBCombo2.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditTabBCombo2.EditValue } : null) :
+				comboBoxEditTabBCombo2.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabBCombo2.EditValue as String } :
 				null;
 			ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo3 = ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo3Items.FirstOrDefault(h => h.IsDefault) != comboBoxEditTabBCombo3.EditValue ?
-				comboBoxEditTabBCombo3.EditValue as ListDataItem ?? (comboBoxEditTabBCombo3.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditTabBCombo3.EditValue } : null) :
+				comboBoxEditTabBCombo3.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabBCombo3.EditValue as String } :
 				null;
 			ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo4 = ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo4Items.FirstOrDefault(h => h.IsDefault) != comboBoxEditTabBCombo4.EditValue ?
-				comboBoxEditTabBCombo4.EditValue as ListDataItem ?? (comboBoxEditTabBCombo4.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditTabBCombo4.EditValue } : null) :
+				comboBoxEditTabBCombo4.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabBCombo4.EditValue as String } :
 				null;
 
 			ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Subheader1 = memoEditTabBSubheader1.EditValue as String != ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBSubHeader1DefaultValue ?
-				memoEditTabBSubheader1.EditValue as String :
+				memoEditTabBSubheader1.EditValue as String ?? String.Empty :
 				null;
 			ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Subheader2 = memoEditTabBSubheader2.EditValue as String != ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBSubHeader2DefaultValue ?
-				memoEditTabBSubheader2.EditValue as String :
+				memoEditTabBSubheader2.EditValue as String ?? String.Empty :
 				null;
 			ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Subheader3 = memoEditTabBSubheader3.EditValue as String != ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBSubHeader3DefaultValue ?
-				memoEditTabBSubheader3.EditValue as String :
+				memoEditTabBSubheader3.EditValue as String ?? String.Empty :
 				null;
 
 			_dataChanged = false;
@@ -163,18 +163,29 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				outputDataPackage.ClipartItems.Add("CP11BCLIPART2", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart2.Width, clipart2.Height) });
 			}
 
-			var textDataItems = new Dictionary<string, string>();
+			var slideHeader = (ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.SlideHeader ?? ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault))?.Value;
 
-			var slideHeader = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.SlideHeader?.Value ?? ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault)?.Value;
-
-			var combo1 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo1 ??
-						 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo1Items.FirstOrDefault(item => item.IsDefault);
-			var combo2 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo2 ??
-						 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo2Items.FirstOrDefault(item => item.IsDefault);
-			var combo3 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo3 ??
-						 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo3Items.FirstOrDefault(item => item.IsDefault);
-			var combo4 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo4 ??
-						 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo4Items.FirstOrDefault(item => item.IsDefault);
+			var optionalComboItemKeys = new[]
+			{
+				"CP11BSubHeader1",
+				"CP11BSubHeader3",
+				"CP11BSubHeader5"
+			};
+			var optionalComboItemValues = new List<string>();
+			var combo1 = (ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo1 ??
+						 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo1Items.FirstOrDefault(item => item.IsDefault))?.Value;
+			var combo2 = (ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo2 ??
+						 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo2Items.FirstOrDefault(item => item.IsDefault))?.Value;
+			if (!String.IsNullOrWhiteSpace(combo2))
+				optionalComboItemValues.Add(combo2);
+			var combo3 = (ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo3 ??
+						 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo3Items.FirstOrDefault(item => item.IsDefault))?.Value;
+			if (!String.IsNullOrWhiteSpace(combo3))
+				optionalComboItemValues.Add(combo3);
+			var combo4 = (ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo4 ??
+						 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo4Items.FirstOrDefault(item => item.IsDefault))?.Value;
+			if (!String.IsNullOrWhiteSpace(combo4))
+				optionalComboItemValues.Add(combo4);
 
 			var subheader1 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Subheader1 ??
 							 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBSubHeader1DefaultValue;
@@ -183,69 +194,32 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			var subheader3 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Subheader3 ??
 							 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBSubHeader3DefaultValue;
 
-			textDataItems.Add("CP11BHEADER".ToUpper(), slideHeader);
-			textDataItems.Add("HEADER".ToUpper(), slideHeader);
+			outputDataPackage.TextItems.Add("CP11BHEADER".ToUpper(), slideHeader);
+			outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
 
-			if (combo1 != null)
-				textDataItems.Add("CP11BCombo1".ToUpper(), combo1.ToString());
+			outputDataPackage.TextItems.Add("CP11BCombo1".ToUpper(), combo1);
+			outputDataPackage.TextItems.Add("CP11BSubHeader2".ToUpper(), subheader1);
+			outputDataPackage.TextItems.Add("CP11BSubHeader4".ToUpper(), subheader2);
+			outputDataPackage.TextItems.Add("CP11BSubHeader6".ToUpper(), subheader3);
 
-			if (combo2 != null &&
-				combo3 != null &&
-				combo4 != null)
+			switch (optionalComboItemValues.Count)
 			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11B-1.pptx");
-
-				textDataItems.Add("CP11BSubHeader1".ToUpper(), combo2.ToString());
-				if (!String.IsNullOrWhiteSpace(subheader1))
-					textDataItems.Add("CP11BSubHeader2".ToUpper(), subheader1);
-
-				textDataItems.Add("CP11BSubHeader3".ToUpper(), combo3.ToString());
-				if (!String.IsNullOrWhiteSpace(subheader2))
-					textDataItems.Add("CP11BSubHeader4".ToUpper(), subheader2);
-
-				textDataItems.Add("CP11BSubHeader5".ToUpper(), combo4.ToString());
-				if (!String.IsNullOrWhiteSpace(subheader3))
-					textDataItems.Add("CP11BSubHeader6".ToUpper(), subheader3);
+				case 1:
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11B-3.pptx");
+					break;
+				case 2:
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11B-2.pptx");
+					break;
+				case 3:
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11B-1.pptx");
+					break;
+				default:
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11B-3.pptx");
+					break;
 			}
-			else if (combo2 != null &&
-					 combo3 != null)
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11B-2.pptx");
 
-				textDataItems.Add("CP11BSubHeader1".ToUpper(), combo2.ToString());
-				if (!String.IsNullOrWhiteSpace(subheader1))
-					textDataItems.Add("CP11BSubHeader2".ToUpper(), subheader1);
-
-				textDataItems.Add("CP11BSubHeader3".ToUpper(), combo3.ToString());
-				if (!String.IsNullOrWhiteSpace(subheader2))
-					textDataItems.Add("CP11BSubHeader4".ToUpper(), subheader2);
-			}
-			else if (combo2 != null)
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11B-3.pptx");
-
-				textDataItems.Add("CP11BSubHeader1".ToUpper(), combo2.ToString());
-				if (!String.IsNullOrWhiteSpace(subheader1))
-					textDataItems.Add("CP11BSubHeader2".ToUpper(), subheader1);
-			}
-			else
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11B-1.pptx");
-
-				if (!String.IsNullOrWhiteSpace(subheader1))
-					textDataItems.Add("CP11BSubHeader2".ToUpper(), subheader1);
-
-				if (combo3 != null)
-					textDataItems.Add("CP11BSubHeader3".ToUpper(), combo3.ToString());
-				if (!String.IsNullOrWhiteSpace(subheader2))
-					textDataItems.Add("CP11BSubHeader4".ToUpper(), subheader2);
-
-				if (combo4 != null)
-					textDataItems.Add("CP11BSubHeader5".ToUpper(), combo4.ToString());
-				if (!String.IsNullOrWhiteSpace(subheader3))
-					textDataItems.Add("CP11BSubHeader6".ToUpper(), subheader3);
-			}
-			outputDataPackage.TextItems = textDataItems;
+			for (var i = 0; i < optionalComboItemKeys.Length; i++)
+				outputDataPackage.TextItems.Add(optionalComboItemKeys[i].ToUpper(), optionalComboItemValues.ElementAtOrDefault(i) ?? String.Empty);
 
 			return outputDataPackage;
 		}

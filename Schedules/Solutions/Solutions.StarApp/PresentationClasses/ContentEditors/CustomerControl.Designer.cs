@@ -29,29 +29,37 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition1 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition2 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition3 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition4 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition8 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition9 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition10 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition11 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition12 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition5 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition6 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition7 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition13 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition14 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition15 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition16 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition17 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition8 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition18 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition19 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition20 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition21 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition22 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition23 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition1 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition1 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition2 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition3 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition4 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition5 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition4 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition5 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition6 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition6 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition7 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition8 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition9 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition10 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition7 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition11 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition12 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition13 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition14 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition15 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition16 = new DevExpress.XtraLayout.RowDefinition();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.pictureEditTabBClipart2 = new DevExpress.XtraEditors.PictureEdit();
@@ -92,6 +100,7 @@
 			this.pictureEditLogoRight = new DevExpress.XtraEditors.PictureEdit();
 			this.panelLogoBottom = new System.Windows.Forms.Panel();
 			this.pictureEditLogoFooter = new DevExpress.XtraEditors.PictureEdit();
+			this.layoutControlGroupTabACombos = new DevExpress.XtraLayout.LayoutControlGroup();
 			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
@@ -134,6 +143,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).BeginInit();
 			this.panelLogoBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabACombos)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -283,7 +293,7 @@
 			this.pictureEditTabAClipart1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditTabAClipart1.Properties.ShowMenu = false;
 			this.pictureEditTabAClipart1.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabAClipart1.Size = new System.Drawing.Size(197, 261);
+			this.pictureEditTabAClipart1.Size = new System.Drawing.Size(197, 247);
 			this.pictureEditTabAClipart1.StyleController = this.layoutControl;
 			this.pictureEditTabAClipart1.TabIndex = 1;
 			this.pictureEditTabAClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -291,7 +301,7 @@
 			// pictureEditTabAClipart2
 			// 
 			this.pictureEditTabAClipart2.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabAClipart2.Location = new System.Drawing.Point(85, 444);
+			this.pictureEditTabAClipart2.Location = new System.Drawing.Point(85, 430);
 			this.pictureEditTabAClipart2.Name = "pictureEditTabAClipart2";
 			this.pictureEditTabAClipart2.Properties.AllowFocused = false;
 			this.pictureEditTabAClipart2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -300,14 +310,14 @@
 			this.pictureEditTabAClipart2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditTabAClipart2.Properties.ShowMenu = false;
 			this.pictureEditTabAClipart2.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabAClipart2.Size = new System.Drawing.Size(197, 263);
+			this.pictureEditTabAClipart2.Size = new System.Drawing.Size(197, 247);
 			this.pictureEditTabAClipart2.StyleController = this.layoutControl;
 			this.pictureEditTabAClipart2.TabIndex = 1;
 			this.pictureEditTabAClipart2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// comboBoxEditTabACombo2
 			// 
-			this.comboBoxEditTabACombo2.Location = new System.Drawing.Point(316, 289);
+			this.comboBoxEditTabACombo2.Location = new System.Drawing.Point(316, 317);
 			this.comboBoxEditTabACombo2.Name = "comboBoxEditTabACombo2";
 			this.comboBoxEditTabACombo2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -319,7 +329,7 @@
 			// 
 			// comboBoxEditTabACombo4
 			// 
-			this.comboBoxEditTabACombo4.Location = new System.Drawing.Point(316, 569);
+			this.comboBoxEditTabACombo4.Location = new System.Drawing.Point(316, 655);
 			this.comboBoxEditTabACombo4.Name = "comboBoxEditTabACombo4";
 			this.comboBoxEditTabACombo4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -343,7 +353,7 @@
 			// 
 			// comboBoxEditTabACombo3
 			// 
-			this.comboBoxEditTabACombo3.Location = new System.Drawing.Point(316, 429);
+			this.comboBoxEditTabACombo3.Location = new System.Drawing.Point(316, 486);
 			this.comboBoxEditTabACombo3.Name = "comboBoxEditTabACombo3";
 			this.comboBoxEditTabACombo3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -468,39 +478,36 @@
 			this.layoutControlGroupTabA.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabAClipart1,
             this.layoutControlItemTabAClipart2,
-            this.layoutControlItemTabACombo2,
-            this.layoutControlItemTabACombo4,
-            this.layoutControlItemTabACombo1,
-            this.layoutControlItemTabACombo3});
+            this.layoutControlGroupTabACombos});
 			this.layoutControlGroupTabA.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabA.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabA.Name = "layoutControlGroupTabA";
-			columnDefinition1.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition1.Width = 40D;
-			columnDefinition2.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition2.Width = 30D;
-			columnDefinition3.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition3.Width = 60D;
+			columnDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition2.Width = 40D;
+			columnDefinition3.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition3.Width = 30D;
+			columnDefinition4.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition4.Width = 60D;
 			this.layoutControlGroupTabA.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition1,
             columnDefinition2,
-            columnDefinition3});
-			rowDefinition1.Height = 30D;
-			rowDefinition1.SizeType = System.Windows.Forms.SizeType.Absolute;
-			rowDefinition2.Height = 25D;
-			rowDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition3.Height = 25D;
-			rowDefinition3.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition4.Height = 25D;
-			rowDefinition4.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition5.Height = 25D;
-			rowDefinition5.SizeType = System.Windows.Forms.SizeType.Percent;
+            columnDefinition3,
+            columnDefinition4});
+			rowDefinition8.Height = 30D;
+			rowDefinition8.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition9.Height = 50D;
+			rowDefinition9.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition10.Height = 30D;
+			rowDefinition10.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition11.Height = 50D;
+			rowDefinition11.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition12.Height = 30D;
+			rowDefinition12.SizeType = System.Windows.Forms.SizeType.Absolute;
 			this.layoutControlGroupTabA.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition1,
-            rowDefinition2,
-            rowDefinition3,
-            rowDefinition4,
-            rowDefinition5});
+            rowDefinition8,
+            rowDefinition9,
+            rowDefinition10,
+            rowDefinition11,
+            rowDefinition12});
 			this.layoutControlGroupTabA.Size = new System.Drawing.Size(532, 592);
 			this.layoutControlGroupTabA.Text = "Tab A";
 			// 
@@ -512,9 +519,7 @@
 			this.layoutControlItemTabAClipart1.Location = new System.Drawing.Point(0, 30);
 			this.layoutControlItemTabAClipart1.Name = "layoutControlItemTabAClipart1";
 			this.layoutControlItemTabAClipart1.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemTabAClipart1.OptionsTableLayoutItem.RowSpan = 2;
-			this.layoutControlItemTabAClipart1.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 17);
-			this.layoutControlItemTabAClipart1.Size = new System.Drawing.Size(201, 280);
+			this.layoutControlItemTabAClipart1.Size = new System.Drawing.Size(201, 251);
 			this.layoutControlItemTabAClipart1.Text = "Clipart 1";
 			this.layoutControlItemTabAClipart1.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabAClipart1.TextVisible = false;
@@ -525,12 +530,10 @@
 			this.layoutControlItemTabAClipart2.Control = this.pictureEditTabAClipart2;
 			this.layoutControlItemTabAClipart2.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemTabAClipart2.CustomizationFormText = "Clipart 2";
-			this.layoutControlItemTabAClipart2.Location = new System.Drawing.Point(0, 310);
+			this.layoutControlItemTabAClipart2.Location = new System.Drawing.Point(0, 311);
 			this.layoutControlItemTabAClipart2.Name = "layoutControlItemTabAClipart2";
 			this.layoutControlItemTabAClipart2.OptionsTableLayoutItem.RowIndex = 3;
-			this.layoutControlItemTabAClipart2.OptionsTableLayoutItem.RowSpan = 2;
-			this.layoutControlItemTabAClipart2.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 17, 2);
-			this.layoutControlItemTabAClipart2.Size = new System.Drawing.Size(201, 282);
+			this.layoutControlItemTabAClipart2.Size = new System.Drawing.Size(201, 251);
 			this.layoutControlItemTabAClipart2.Text = "Clipart 2";
 			this.layoutControlItemTabAClipart2.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabAClipart2.TextVisible = false;
@@ -540,11 +543,10 @@
 			// 
 			this.layoutControlItemTabACombo2.Control = this.comboBoxEditTabACombo2;
 			this.layoutControlItemTabACombo2.CustomizationFormText = "Combo 2";
-			this.layoutControlItemTabACombo2.Location = new System.Drawing.Point(231, 170);
+			this.layoutControlItemTabACombo2.Location = new System.Drawing.Point(0, 168);
 			this.layoutControlItemTabACombo2.Name = "layoutControlItemTabACombo2";
-			this.layoutControlItemTabACombo2.OptionsTableLayoutItem.ColumnIndex = 2;
 			this.layoutControlItemTabACombo2.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlItemTabACombo2.Size = new System.Drawing.Size(301, 140);
+			this.layoutControlItemTabACombo2.Size = new System.Drawing.Size(301, 26);
 			this.layoutControlItemTabACombo2.Text = "Combo 2";
 			this.layoutControlItemTabACombo2.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabACombo2.TextVisible = false;
@@ -554,11 +556,10 @@
 			// 
 			this.layoutControlItemTabACombo4.Control = this.comboBoxEditTabACombo4;
 			this.layoutControlItemTabACombo4.CustomizationFormText = "Combo 4";
-			this.layoutControlItemTabACombo4.Location = new System.Drawing.Point(231, 450);
+			this.layoutControlItemTabACombo4.Location = new System.Drawing.Point(0, 506);
 			this.layoutControlItemTabACombo4.Name = "layoutControlItemTabACombo4";
-			this.layoutControlItemTabACombo4.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.layoutControlItemTabACombo4.OptionsTableLayoutItem.RowIndex = 4;
-			this.layoutControlItemTabACombo4.Size = new System.Drawing.Size(301, 142);
+			this.layoutControlItemTabACombo4.OptionsTableLayoutItem.RowIndex = 6;
+			this.layoutControlItemTabACombo4.Size = new System.Drawing.Size(301, 26);
 			this.layoutControlItemTabACombo4.Text = "Combo 4";
 			this.layoutControlItemTabACombo4.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabACombo4.TextVisible = false;
@@ -568,11 +569,9 @@
 			// 
 			this.layoutControlItemTabACombo1.Control = this.comboBoxEditTabACombo1;
 			this.layoutControlItemTabACombo1.CustomizationFormText = "Combo 1";
-			this.layoutControlItemTabACombo1.Location = new System.Drawing.Point(231, 30);
+			this.layoutControlItemTabACombo1.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemTabACombo1.Name = "layoutControlItemTabACombo1";
-			this.layoutControlItemTabACombo1.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.layoutControlItemTabACombo1.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemTabACombo1.Size = new System.Drawing.Size(301, 140);
+			this.layoutControlItemTabACombo1.Size = new System.Drawing.Size(301, 26);
 			this.layoutControlItemTabACombo1.Text = "Combo 1";
 			this.layoutControlItemTabACombo1.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabACombo1.TextVisible = false;
@@ -582,11 +581,10 @@
 			// 
 			this.layoutControlItemTabACombo3.Control = this.comboBoxEditTabACombo3;
 			this.layoutControlItemTabACombo3.CustomizationFormText = "Combo 3";
-			this.layoutControlItemTabACombo3.Location = new System.Drawing.Point(231, 310);
+			this.layoutControlItemTabACombo3.Location = new System.Drawing.Point(0, 337);
 			this.layoutControlItemTabACombo3.Name = "layoutControlItemTabACombo3";
-			this.layoutControlItemTabACombo3.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.layoutControlItemTabACombo3.OptionsTableLayoutItem.RowIndex = 3;
-			this.layoutControlItemTabACombo3.Size = new System.Drawing.Size(301, 140);
+			this.layoutControlItemTabACombo3.OptionsTableLayoutItem.RowIndex = 4;
+			this.layoutControlItemTabACombo3.Size = new System.Drawing.Size(301, 26);
 			this.layoutControlItemTabACombo3.Text = "Combo 3";
 			this.layoutControlItemTabACombo3.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabACombo3.TextVisible = false;
@@ -603,32 +601,32 @@
 			this.layoutControlGroupTabB.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabB.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabB.Name = "layoutControlGroupTabB";
-			columnDefinition4.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition4.Width = 60D;
-			columnDefinition5.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition5.Width = 30D;
-			columnDefinition6.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition6.Width = 40D;
+			columnDefinition5.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition5.Width = 60D;
+			columnDefinition6.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition6.Width = 30D;
+			columnDefinition7.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition7.Width = 40D;
 			this.layoutControlGroupTabB.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition4,
             columnDefinition5,
-            columnDefinition6});
-			rowDefinition6.Height = 30D;
-			rowDefinition6.SizeType = System.Windows.Forms.SizeType.Absolute;
-			rowDefinition7.Height = 35D;
-			rowDefinition7.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition8.Height = 30D;
-			rowDefinition8.SizeType = System.Windows.Forms.SizeType.Absolute;
-			rowDefinition9.Height = 35D;
-			rowDefinition9.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition10.Height = 30D;
-			rowDefinition10.SizeType = System.Windows.Forms.SizeType.Percent;
+            columnDefinition6,
+            columnDefinition7});
+			rowDefinition13.Height = 30D;
+			rowDefinition13.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition14.Height = 35D;
+			rowDefinition14.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition15.Height = 30D;
+			rowDefinition15.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition16.Height = 35D;
+			rowDefinition16.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition17.Height = 30D;
+			rowDefinition17.SizeType = System.Windows.Forms.SizeType.Percent;
 			this.layoutControlGroupTabB.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition6,
-            rowDefinition7,
-            rowDefinition8,
-            rowDefinition9,
-            rowDefinition10});
+            rowDefinition13,
+            rowDefinition14,
+            rowDefinition15,
+            rowDefinition16,
+            rowDefinition17});
 			this.layoutControlGroupTabB.Size = new System.Drawing.Size(532, 592);
 			this.layoutControlGroupTabB.Text = "Tab B";
 			// 
@@ -698,29 +696,29 @@
 			this.layoutControlGroupTabC.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabC.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabC.Name = "layoutControlGroupTabC";
-			columnDefinition7.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition7.Width = 100D;
+			columnDefinition8.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition8.Width = 100D;
 			this.layoutControlGroupTabC.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition7});
-			rowDefinition11.Height = 30D;
-			rowDefinition11.SizeType = System.Windows.Forms.SizeType.Absolute;
-			rowDefinition12.Height = 33D;
-			rowDefinition12.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition13.Height = 60D;
-			rowDefinition13.SizeType = System.Windows.Forms.SizeType.Absolute;
-			rowDefinition14.Height = 33D;
-			rowDefinition14.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition15.Height = 60D;
-			rowDefinition15.SizeType = System.Windows.Forms.SizeType.Absolute;
-			rowDefinition16.Height = 34D;
-			rowDefinition16.SizeType = System.Windows.Forms.SizeType.Percent;
+            columnDefinition8});
+			rowDefinition18.Height = 30D;
+			rowDefinition18.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition19.Height = 33D;
+			rowDefinition19.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition20.Height = 60D;
+			rowDefinition20.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition21.Height = 33D;
+			rowDefinition21.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition22.Height = 60D;
+			rowDefinition22.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition23.Height = 34D;
+			rowDefinition23.SizeType = System.Windows.Forms.SizeType.Percent;
 			this.layoutControlGroupTabC.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition11,
-            rowDefinition12,
-            rowDefinition13,
-            rowDefinition14,
-            rowDefinition15,
-            rowDefinition16});
+            rowDefinition18,
+            rowDefinition19,
+            rowDefinition20,
+            rowDefinition21,
+            rowDefinition22,
+            rowDefinition23});
 			this.layoutControlGroupTabC.Size = new System.Drawing.Size(532, 592);
 			this.layoutControlGroupTabC.Text = "Tab C";
 			// 
@@ -825,6 +823,50 @@
 			this.pictureEditLogoFooter.Size = new System.Drawing.Size(638, 80);
 			this.pictureEditLogoFooter.TabIndex = 1;
 			// 
+			// layoutControlGroupTabACombos
+			// 
+			this.layoutControlGroupTabACombos.GroupBordersVisible = false;
+			this.layoutControlGroupTabACombos.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemTabACombo1,
+            this.layoutControlItemTabACombo2,
+            this.layoutControlItemTabACombo3,
+            this.layoutControlItemTabACombo4});
+			this.layoutControlGroupTabACombos.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
+			this.layoutControlGroupTabACombos.Location = new System.Drawing.Point(231, 30);
+			this.layoutControlGroupTabACombos.Name = "layoutControlGroupTabACombos";
+			columnDefinition1.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition1.Width = 100D;
+			this.layoutControlGroupTabACombos.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
+            columnDefinition1});
+			rowDefinition1.Height = 26D;
+			rowDefinition1.SizeType = System.Windows.Forms.SizeType.AutoSize;
+			rowDefinition2.Height = 33.333333333333336D;
+			rowDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition3.Height = 26D;
+			rowDefinition3.SizeType = System.Windows.Forms.SizeType.AutoSize;
+			rowDefinition4.Height = 33.333333333333336D;
+			rowDefinition4.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition5.Height = 26D;
+			rowDefinition5.SizeType = System.Windows.Forms.SizeType.AutoSize;
+			rowDefinition6.Height = 33.333333333333336D;
+			rowDefinition6.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition7.Height = 26D;
+			rowDefinition7.SizeType = System.Windows.Forms.SizeType.AutoSize;
+			this.layoutControlGroupTabACombos.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
+            rowDefinition1,
+            rowDefinition2,
+            rowDefinition3,
+            rowDefinition4,
+            rowDefinition5,
+            rowDefinition6,
+            rowDefinition7});
+			this.layoutControlGroupTabACombos.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.layoutControlGroupTabACombos.OptionsTableLayoutItem.RowIndex = 1;
+			this.layoutControlGroupTabACombos.OptionsTableLayoutItem.RowSpan = 3;
+			this.layoutControlGroupTabACombos.Size = new System.Drawing.Size(301, 532);
+			this.layoutControlGroupTabACombos.Text = "Combos";
+			this.layoutControlGroupTabACombos.TextVisible = false;
+			// 
 			// CustomerControl
 			// 
 			this.BackColor = System.Drawing.Color.White;
@@ -879,6 +921,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).EndInit();
 			this.panelLogoBottom.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabACombos)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -925,5 +968,6 @@
 		protected DevExpress.XtraEditors.PictureEdit pictureEditLogoRight;
 		private System.Windows.Forms.Panel panelLogoBottom;
 		private DevExpress.XtraEditors.PictureEdit pictureEditLogoFooter;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabACombos;
 	}
 }

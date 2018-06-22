@@ -128,7 +128,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				case 0:
 					SlideContainer.EditedContent.FishingState.TabA.SlideHeader = SlideContainer.StarInfo.FishingConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
 					SlideContainer.EditedContent.FishingState.TabA.Clipart1 = pictureEditTabAClipart1.Image != SlideContainer.StarInfo.Tab4SubAClipart1Image ?
@@ -136,15 +136,15 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						null;
 
 					SlideContainer.EditedContent.FishingState.TabA.Subheader1 = memoEditTabASubheader1.EditValue as String != SlideContainer.StarInfo.FishingConfiguration.PartASubHeader1DefaultValue ?
-						memoEditTabASubheader1.EditValue as String :
+						memoEditTabASubheader1.EditValue as String ?? String.Empty:
 						null;
 					SlideContainer.EditedContent.FishingState.TabA.Subheader2 = memoEditTabASubheader2.EditValue as String != SlideContainer.StarInfo.FishingConfiguration.PartASubHeader2DefaultValue ?
-						memoEditTabASubheader2.EditValue as String :
+						memoEditTabASubheader2.EditValue as String ?? String.Empty :
 						null;
 					break;
 				case 1:
 					SlideContainer.EditedContent.FishingState.TabB.SlideHeader = SlideContainer.StarInfo.FishingConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
 					SlideContainer.EditedContent.FishingState.TabB.Clipart1 = pictureEditTabBClipart1.Image != SlideContainer.StarInfo.Tab4SubBClipart1Image ?
@@ -169,17 +169,17 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					break;
 				case 2:
 					SlideContainer.EditedContent.FishingState.TabC.SlideHeader = SlideContainer.StarInfo.FishingConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
 					SlideContainer.EditedContent.FishingState.TabC.Subheader1 = memoEditTabCSubheader1.EditValue as String != SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader1DefaultValue ?
-						memoEditTabCSubheader1.EditValue as String :
+						memoEditTabCSubheader1.EditValue as String ?? String.Empty :
 						null;
 					SlideContainer.EditedContent.FishingState.TabC.Subheader2 = memoEditTabCSubheader2.EditValue as String != SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader2DefaultValue ?
-						memoEditTabCSubheader2.EditValue as String :
+						memoEditTabCSubheader2.EditValue as String ?? String.Empty :
 						null;
 					SlideContainer.EditedContent.FishingState.TabC.Subheader3 = memoEditTabCSubheader3.EditValue as String != SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader3DefaultValue ?
-						memoEditTabCSubheader3.EditValue as String :
+						memoEditTabCSubheader3.EditValue as String ?? String.Empty :
 						null;
 					break;
 			}

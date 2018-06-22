@@ -57,7 +57,7 @@ namespace Asa.Solutions.StarApp.InteropClasses
 								else
 								{
 									if (dataPackage.TextItems.ContainsKey(tagName.ToUpper()))
-										shape.TextFrame.TextRange.Text = dataPackage.TextItems[tagName.ToUpper()];
+										shape.TextFrame.TextRange.Text = dataPackage.TextItems[tagName.ToUpper()] ?? String.Empty;
 									else
 										shape.Visible = MsoTriState.msoFalse;
 								}

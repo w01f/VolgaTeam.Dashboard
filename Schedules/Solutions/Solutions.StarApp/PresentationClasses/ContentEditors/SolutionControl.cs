@@ -125,7 +125,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				case 0:
 					SlideContainer.EditedContent.SolutionState.TabA.SlideHeader = SlideContainer.StarInfo.SolutionConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
 					SlideContainer.EditedContent.SolutionState.TabA.Clipart1 = pictureEditTabAClipart1.Image != SlideContainer.StarInfo.Tab10SubAClipart1Image ?
@@ -133,12 +133,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						null;
 
 					SlideContainer.EditedContent.SolutionState.TabA.Subheader1 = memoEditTabASubheader1.EditValue as String != SlideContainer.StarInfo.SolutionConfiguration.PartASubHeader1DefaultValue ?
-						memoEditTabASubheader1.EditValue as String :
+						memoEditTabASubheader1.EditValue as String ?? String.Empty :
 						null;
 					break;
 				case 1:
 					SlideContainer.EditedContent.SolutionState.TabB.SlideHeader = SlideContainer.StarInfo.SolutionConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
 					SlideContainer.EditedContent.SolutionState.TabB.Clipart1 = pictureEditTabBClipart1.Image != SlideContainer.StarInfo.Tab10SubBClipart1Image ?
@@ -152,12 +152,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						null;
 
 					SlideContainer.EditedContent.SolutionState.TabB.Subheader1 = memoEditTabBSubheader1.EditValue as String != SlideContainer.StarInfo.SolutionConfiguration.PartBSubHeader1DefaultValue ?
-						memoEditTabBSubheader1.EditValue as String :
+						memoEditTabBSubheader1.EditValue as String ?? String.Empty :
 						null;
 					break;
 				case 2:
 					SlideContainer.EditedContent.SolutionState.TabC.SlideHeader = SlideContainer.StarInfo.SolutionConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
 					SlideContainer.EditedContent.SolutionState.TabC.Clipart1 = pictureEditTabCClipart1.Image != SlideContainer.StarInfo.Tab10SubCClipart1Image ?
@@ -168,15 +168,15 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						null;
 
 					SlideContainer.EditedContent.SolutionState.TabC.Subheader1 = memoEditTabCSubheader1.EditValue as String != SlideContainer.StarInfo.SolutionConfiguration.PartCSubHeader1DefaultValue ?
-						memoEditTabCSubheader1.EditValue as String :
+						memoEditTabCSubheader1.EditValue as String ?? String.Empty :
 						null;
 					SlideContainer.EditedContent.SolutionState.TabC.Subheader2 = memoEditTabCSubheader2.EditValue as String != SlideContainer.StarInfo.SolutionConfiguration.PartCSubHeader2DefaultValue ?
-						memoEditTabCSubheader2.EditValue as String :
+						memoEditTabCSubheader2.EditValue as String ?? String.Empty :
 						null;
 					break;
 				case 3:
 					SlideContainer.EditedContent.SolutionState.TabD.SlideHeader = SlideContainer.StarInfo.SolutionConfiguration.HeadersPartDItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
 					SlideContainer.EditedContent.SolutionState.TabD.Clipart1 = pictureEditTabDClipart1.Image != SlideContainer.StarInfo.Tab10SubDClipart1Image ?
@@ -184,7 +184,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						null;
 
 					SlideContainer.EditedContent.SolutionState.TabD.Subheader1 = memoEditTabDSubheader1.EditValue as String != SlideContainer.StarInfo.SolutionConfiguration.PartDSubHeader1DefaultValue ?
-						memoEditTabDSubheader1.EditValue as String :
+						memoEditTabDSubheader1.EditValue as String ?? String.Empty :
 						null;
 					break;
 			}

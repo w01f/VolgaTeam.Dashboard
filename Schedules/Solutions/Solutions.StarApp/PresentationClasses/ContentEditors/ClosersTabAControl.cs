@@ -22,6 +22,17 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			InitializeComponent();
 
 			memoEditTabASubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabACombo1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabACombo2.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabACombo3.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabACombo4.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabACombo5.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabACombo6.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabACombo7.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabACombo8.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabACombo9.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabACombo10.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabACombo11.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			Application.DoEvents();
 
 			pictureEditTabAClipart1.Image = ClosersContentContainer.SlideContainer.StarInfo.Tab11SubAClipart1Image;
@@ -96,7 +107,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				null;
 
 			ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Subheader1 = memoEditTabASubheader1.EditValue as String != ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartASubHeader1DefaultValue ?
-				memoEditTabASubheader1.EditValue as String :
+				memoEditTabASubheader1.EditValue as String ?? String.Empty :
 				null;
 
 			ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo1 =
@@ -259,362 +270,80 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				outputDataPackage.ClipartItems.Add("CP11ACLIPART2", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart2.Width, clipart2.Height) });
 			}
 
-			var textDataItems = new Dictionary<string, string>();
-
-			var slideHeader = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.SlideHeader?.Value ?? ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault)?.Value;
-			var subheader1 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Subheader1 ??
+			var slideHeader = (ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.SlideHeader ?? ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault))?.Value;
+			var subHeader1 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Subheader1 ??
 							 ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartASubHeader1DefaultValue;
 
-			var combo1 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo1;
-			var combo2 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo2;
-			var combo3 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo3;
-			var combo4 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo4;
-			var combo5 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo5;
-			var combo6 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo6;
-			var combo7 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo7;
-			var combo8 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo8;
-			var combo9 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo9;
-			var combo10 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo10;
-			var combo11 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo11;
+			var activeUsers = new[]
+				{
+					ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo1,
+					ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo2,
+					ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo3,
+					ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo4,
+					ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo5,
+					ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo6,
+					ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo7,
+					ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo8,
+					ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo9,
+					ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo10,
+					ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabA.Combo11,
+				}.Where(user => !String.IsNullOrWhiteSpace(user?.ToString()))
+				.ToList();
 
-			textDataItems.Add("CP11AHEADER".ToUpper(), slideHeader);
-			textDataItems.Add("HEADER".ToUpper(), slideHeader);
-
-			if (!String.IsNullOrWhiteSpace(subheader1))
-				textDataItems.Add("CP11ASubHeader1".ToUpper(), subheader1);
-
-			if (combo1 != null &&
-				combo2 != null &&
-				combo3 != null &&
-				combo4 != null &&
-				combo5 != null &&
-				combo6 != null &&
-				combo7 != null &&
-				combo8 != null &&
-				combo9 != null &&
-				combo10 != null &&
-				combo11 != null)
+			switch (activeUsers.Count)
 			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-12.pptx");
+				case 1:
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-22.pptx");
+					break;
+				case 2:
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-21.pptx");
+					break;
+				case 3:
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-20.pptx");
+					break;
+				case 4:
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-19.pptx");
+					break;
+				case 5:
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-18.pptx");
+					break;
+				case 6:
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-17.pptx");
+					break;
+				case 7:
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-16.pptx");
+					break;
+				case 8:
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-15.pptx");
+					break;
+				case 9:
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-14.pptx");
+					break;
+				case 10:
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-13.pptx");
+					break;
+				case 11:
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-12.pptx");
+					break;
+				default:
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-22.pptx");
+					break;
 
-				textDataItems.Add("CP11ACombo1".ToUpper(), combo1.ToString());
-				textDataItems.Add("CP11ACombo1LinkText1".ToUpper(), String.Join("        ", combo1.Email, combo1.Phone));
-
-				textDataItems.Add("CP11ACombo2".ToUpper(), combo2.ToString());
-				textDataItems.Add("CP11ACombo2LinkText2".ToUpper(), String.Join("        ", combo2.Email, combo2.Phone));
-
-				textDataItems.Add("CP11ACombo3".ToUpper(), combo3.ToString());
-				textDataItems.Add("CP11ACombo3LinkText3".ToUpper(), String.Join("        ", combo3.Email, combo3.Phone));
-
-				textDataItems.Add("CP11ACombo4".ToUpper(), combo4.ToString());
-				textDataItems.Add("CP11ACombo4LinkText4".ToUpper(), String.Join("        ", combo4.Email, combo4.Phone));
-
-				textDataItems.Add("CP11ACombo5".ToUpper(), combo5.ToString());
-				textDataItems.Add("CP11ACombo5LinkText5".ToUpper(), String.Join("        ", combo5.Email, combo5.Phone));
-
-				textDataItems.Add("CP11ACombo6".ToUpper(), combo6.ToString());
-				textDataItems.Add("CP11ACombo6LinkText6".ToUpper(), String.Join("        ", combo6.Email, combo6.Phone));
-
-				textDataItems.Add("CP11ACombo7".ToUpper(), combo7.ToString());
-				textDataItems.Add("CP11ACombo7LinkText7".ToUpper(), String.Join("        ", combo7.Email, combo7.Phone));
-
-				textDataItems.Add("CP11ACombo8".ToUpper(), combo8.ToString());
-				textDataItems.Add("CP11ACombo8LinkText8".ToUpper(), String.Join("        ", combo8.Email, combo8.Phone));
-
-				textDataItems.Add("CP11ACombo9".ToUpper(), combo9.ToString());
-				textDataItems.Add("CP11ACombo9LinkText9".ToUpper(), String.Join("        ", combo9.Email, combo9.Phone));
-
-				textDataItems.Add("CP11ACombo10".ToUpper(), combo10.ToString());
-				textDataItems.Add("CP11ACombo10LinkText10".ToUpper(), String.Join("        ", combo10.Email, combo10.Phone));
-
-				textDataItems.Add("CP11ACombo11".ToUpper(), combo11.ToString());
-				textDataItems.Add("CP11ACombo11LinkText11".ToUpper(), String.Join("        ", combo11.Email, combo11.Phone));
 			}
-			else if (combo1 != null &&
-				combo2 != null &&
-				combo3 != null &&
-				combo4 != null &&
-				combo5 != null &&
-				combo6 != null &&
-				combo7 != null &&
-				combo8 != null &&
-				combo9 != null &&
-				combo10 != null)
+
+			outputDataPackage.TextItems.Add("CP11AHEADER".ToUpper(), slideHeader);
+			outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
+			outputDataPackage.TextItems.Add("CP11ASubHeader1".ToUpper(), subHeader1);
+
+			for (var i = 0; i < 11; i++)
 			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-13.pptx");
-
-				textDataItems.Add("CP11ACombo1".ToUpper(), combo1.ToString());
-				textDataItems.Add("CP11ACombo1LinkText1".ToUpper(), String.Join("        ", combo1.Email, combo1.Phone));
-
-				textDataItems.Add("CP11ACombo2".ToUpper(), combo2.ToString());
-				textDataItems.Add("CP11ACombo2LinkText2".ToUpper(), String.Join("        ", combo2.Email, combo2.Phone));
-
-				textDataItems.Add("CP11ACombo3".ToUpper(), combo3.ToString());
-				textDataItems.Add("CP11ACombo3LinkText3".ToUpper(), String.Join("        ", combo3.Email, combo3.Phone));
-
-				textDataItems.Add("CP11ACombo4".ToUpper(), combo4.ToString());
-				textDataItems.Add("CP11ACombo4LinkText4".ToUpper(), String.Join("        ", combo4.Email, combo4.Phone));
-
-				textDataItems.Add("CP11ACombo5".ToUpper(), combo5.ToString());
-				textDataItems.Add("CP11ACombo5LinkText5".ToUpper(), String.Join("        ", combo5.Email, combo5.Phone));
-
-				textDataItems.Add("CP11ACombo6".ToUpper(), combo6.ToString());
-				textDataItems.Add("CP11ACombo6LinkText6".ToUpper(), String.Join("        ", combo6.Email, combo6.Phone));
-
-				textDataItems.Add("CP11ACombo7".ToUpper(), combo7.ToString());
-				textDataItems.Add("CP11ACombo7LinkText7".ToUpper(), String.Join("        ", combo7.Email, combo7.Phone));
-
-				textDataItems.Add("CP11ACombo8".ToUpper(), combo8.ToString());
-				textDataItems.Add("CP11ACombo8LinkText8".ToUpper(), String.Join("        ", combo8.Email, combo8.Phone));
-
-				textDataItems.Add("CP11ACombo9".ToUpper(), combo9.ToString());
-				textDataItems.Add("CP11ACombo9LinkText9".ToUpper(), String.Join("        ", combo9.Email, combo9.Phone));
-
-				textDataItems.Add("CP11ACombo10".ToUpper(), combo10.ToString());
-				textDataItems.Add("CP11ACombo10LinkText10".ToUpper(), String.Join("        ", combo10.Email, combo10.Phone));
+				var user = activeUsers.ElementAtOrDefault(i);
+				if (user != null)
+				{
+					outputDataPackage.TextItems.Add(String.Format("CP11ACombo{0}", i + 1).ToUpper(), user.ToString());
+					outputDataPackage.TextItems.Add(String.Format("CP11ACombo{0}LinkText{0}", i + 1).ToUpper(), String.Join("        ", user.Email, user.Phone));
+				}
 			}
-			else if (combo1 != null &&
-				combo2 != null &&
-				combo3 != null &&
-				combo4 != null &&
-				combo5 != null &&
-				combo6 != null &&
-				combo7 != null &&
-				combo8 != null &&
-				combo9 != null)
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-14.pptx");
-
-				textDataItems.Add("CP11ACombo1".ToUpper(), combo1.ToString());
-				textDataItems.Add("CP11ACombo1LinkText1".ToUpper(), String.Join("        ", combo1.Email, combo1.Phone));
-
-				textDataItems.Add("CP11ACombo2".ToUpper(), combo2.ToString());
-				textDataItems.Add("CP11ACombo2LinkText2".ToUpper(), String.Join("        ", combo2.Email, combo2.Phone));
-
-				textDataItems.Add("CP11ACombo3".ToUpper(), combo3.ToString());
-				textDataItems.Add("CP11ACombo3LinkText3".ToUpper(), String.Join("        ", combo3.Email, combo3.Phone));
-
-				textDataItems.Add("CP11ACombo4".ToUpper(), combo4.ToString());
-				textDataItems.Add("CP11ACombo4LinkText4".ToUpper(), String.Join("        ", combo4.Email, combo4.Phone));
-
-				textDataItems.Add("CP11ACombo5".ToUpper(), combo5.ToString());
-				textDataItems.Add("CP11ACombo5LinkText5".ToUpper(), String.Join("        ", combo5.Email, combo5.Phone));
-
-				textDataItems.Add("CP11ACombo6".ToUpper(), combo6.ToString());
-				textDataItems.Add("CP11ACombo6LinkText6".ToUpper(), String.Join("        ", combo6.Email, combo6.Phone));
-
-				textDataItems.Add("CP11ACombo7".ToUpper(), combo7.ToString());
-				textDataItems.Add("CP11ACombo7LinkText7".ToUpper(), String.Join("        ", combo7.Email, combo7.Phone));
-
-				textDataItems.Add("CP11ACombo8".ToUpper(), combo8.ToString());
-				textDataItems.Add("CP11ACombo8LinkText8".ToUpper(), String.Join("        ", combo8.Email, combo8.Phone));
-
-				textDataItems.Add("CP11ACombo9".ToUpper(), combo9.ToString());
-				textDataItems.Add("CP11ACombo9LinkText9".ToUpper(), String.Join("        ", combo9.Email, combo9.Phone));
-			}
-			else if (combo1 != null &&
-					 combo2 != null &&
-					 combo3 != null &&
-					 combo4 != null &&
-					 combo5 != null &&
-					 combo6 != null &&
-					 combo7 != null &&
-					 combo8 != null)
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-15.pptx");
-
-				textDataItems.Add("CP11ACombo1".ToUpper(), combo1.ToString());
-				textDataItems.Add("CP11ACombo1LinkText1".ToUpper(), String.Join("        ", combo1.Email, combo1.Phone));
-
-				textDataItems.Add("CP11ACombo2".ToUpper(), combo2.ToString());
-				textDataItems.Add("CP11ACombo2LinkText2".ToUpper(), String.Join("        ", combo2.Email, combo2.Phone));
-
-				textDataItems.Add("CP11ACombo3".ToUpper(), combo3.ToString());
-				textDataItems.Add("CP11ACombo3LinkText3".ToUpper(), String.Join("        ", combo3.Email, combo3.Phone));
-
-				textDataItems.Add("CP11ACombo4".ToUpper(), combo4.ToString());
-				textDataItems.Add("CP11ACombo4LinkText4".ToUpper(), String.Join("        ", combo4.Email, combo4.Phone));
-
-				textDataItems.Add("CP11ACombo5".ToUpper(), combo5.ToString());
-				textDataItems.Add("CP11ACombo5LinkText5".ToUpper(), String.Join("        ", combo5.Email, combo5.Phone));
-
-				textDataItems.Add("CP11ACombo6".ToUpper(), combo6.ToString());
-				textDataItems.Add("CP11ACombo6LinkText6".ToUpper(), String.Join("        ", combo6.Email, combo6.Phone));
-
-				textDataItems.Add("CP11ACombo7".ToUpper(), combo7.ToString());
-				textDataItems.Add("CP11ACombo7LinkText7".ToUpper(), String.Join("        ", combo7.Email, combo7.Phone));
-
-				textDataItems.Add("CP11ACombo8".ToUpper(), combo8.ToString());
-				textDataItems.Add("CP11ACombo8LinkText8".ToUpper(), String.Join("        ", combo8.Email, combo8.Phone));
-			}
-			else if (combo1 != null &&
-					 combo2 != null &&
-					 combo3 != null &&
-					 combo4 != null &&
-					 combo5 != null &&
-					 combo6 != null &&
-					 combo7 != null)
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-16.pptx");
-
-				textDataItems.Add("CP11ACombo1".ToUpper(), combo1.ToString());
-				textDataItems.Add("CP11ACombo1LinkText1".ToUpper(), String.Join("        ", combo1.Email, combo1.Phone));
-
-				textDataItems.Add("CP11ACombo2".ToUpper(), combo2.ToString());
-				textDataItems.Add("CP11ACombo2LinkText2".ToUpper(), String.Join("        ", combo2.Email, combo2.Phone));
-
-				textDataItems.Add("CP11ACombo3".ToUpper(), combo3.ToString());
-				textDataItems.Add("CP11ACombo3LinkText3".ToUpper(), String.Join("        ", combo3.Email, combo3.Phone));
-
-				textDataItems.Add("CP11ACombo4".ToUpper(), combo4.ToString());
-				textDataItems.Add("CP11ACombo4LinkText4".ToUpper(), String.Join("        ", combo4.Email, combo4.Phone));
-
-				textDataItems.Add("CP11ACombo5".ToUpper(), combo5.ToString());
-				textDataItems.Add("CP11ACombo5LinkText5".ToUpper(), String.Join("        ", combo5.Email, combo5.Phone));
-
-				textDataItems.Add("CP11ACombo6".ToUpper(), combo6.ToString());
-				textDataItems.Add("CP11ACombo6LinkText6".ToUpper(), String.Join("        ", combo6.Email, combo6.Phone));
-
-				textDataItems.Add("CP11ACombo7".ToUpper(), combo7.ToString());
-				textDataItems.Add("CP11ACombo7LinkText7".ToUpper(), String.Join("        ", combo7.Email, combo7.Phone));
-			}
-			else if (combo1 != null &&
-					 combo2 != null &&
-					 combo3 != null &&
-					 combo4 != null &&
-					 combo5 != null &&
-					 combo6 != null)
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-17.pptx");
-
-				textDataItems.Add("CP11ACombo1".ToUpper(), combo1.ToString());
-				textDataItems.Add("CP11ACombo1LinkText1".ToUpper(), String.Join("        ", combo1.Email, combo1.Phone));
-
-				textDataItems.Add("CP11ACombo2".ToUpper(), combo2.ToString());
-				textDataItems.Add("CP11ACombo2LinkText2".ToUpper(), String.Join("        ", combo2.Email, combo2.Phone));
-
-				textDataItems.Add("CP11ACombo3".ToUpper(), combo3.ToString());
-				textDataItems.Add("CP11ACombo3LinkText3".ToUpper(), String.Join("        ", combo3.Email, combo3.Phone));
-
-				textDataItems.Add("CP11ACombo4".ToUpper(), combo4.ToString());
-				textDataItems.Add("CP11ACombo4LinkText4".ToUpper(), String.Join("        ", combo4.Email, combo4.Phone));
-
-				textDataItems.Add("CP11ACombo5".ToUpper(), combo5.ToString());
-				textDataItems.Add("CP11ACombo5LinkText5".ToUpper(), String.Join("        ", combo5.Email, combo5.Phone));
-
-				textDataItems.Add("CP11ACombo6".ToUpper(), combo6.ToString());
-				textDataItems.Add("CP11ACombo6LinkText6".ToUpper(), String.Join("        ", combo6.Email, combo6.Phone));
-			}
-			else if (combo1 != null &&
-					 combo2 != null &&
-					 combo3 != null &&
-					 combo4 != null &&
-					 combo5 != null)
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-18.pptx");
-
-				textDataItems.Add("CP11ACombo1".ToUpper(), combo1.ToString());
-				textDataItems.Add("CP11ACombo1LinkText1".ToUpper(), String.Join("        ", combo1.Email, combo1.Phone));
-
-				textDataItems.Add("CP11ACombo2".ToUpper(), combo2.ToString());
-				textDataItems.Add("CP11ACombo2LinkText2".ToUpper(), String.Join("        ", combo2.Email, combo2.Phone));
-
-				textDataItems.Add("CP11ACombo3".ToUpper(), combo3.ToString());
-				textDataItems.Add("CP11ACombo3LinkText3".ToUpper(), String.Join("        ", combo3.Email, combo3.Phone));
-
-				textDataItems.Add("CP11ACombo4".ToUpper(), combo4.ToString());
-				textDataItems.Add("CP11ACombo4LinkText4".ToUpper(), String.Join("        ", combo4.Email, combo4.Phone));
-
-				textDataItems.Add("CP11ACombo5".ToUpper(), combo5.ToString());
-				textDataItems.Add("CP11ACombo5LinkText5".ToUpper(), String.Join("        ", combo5.Email, combo5.Phone));
-			}
-			else if (combo1 != null &&
-					 combo2 != null &&
-					 combo3 != null &&
-					 combo4 != null)
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-19.pptx");
-
-				textDataItems.Add("CP11ACombo1".ToUpper(), combo1.ToString());
-				textDataItems.Add("CP11ACombo1LinkText1".ToUpper(), String.Join("        ", combo1.Email, combo1.Phone));
-
-				textDataItems.Add("CP11ACombo2".ToUpper(), combo2.ToString());
-				textDataItems.Add("CP11ACombo2LinkText2".ToUpper(), String.Join("        ", combo2.Email, combo2.Phone));
-
-				textDataItems.Add("CP11ACombo3".ToUpper(), combo3.ToString());
-				textDataItems.Add("CP11ACombo3LinkText3".ToUpper(), String.Join("        ", combo3.Email, combo3.Phone));
-
-				textDataItems.Add("CP11ACombo4".ToUpper(), combo4.ToString());
-				textDataItems.Add("CP11ACombo4LinkText4".ToUpper(), String.Join("        ", combo4.Email, combo4.Phone));
-			}
-			else if (combo1 != null &&
-					 combo2 != null &&
-					 combo3 != null)
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-20.pptx");
-
-				textDataItems.Add("CP11ACombo1".ToUpper(), combo1.ToString());
-				textDataItems.Add("CP11ACombo1LinkText1".ToUpper(), String.Join("        ", combo1.Email, combo1.Phone));
-
-				textDataItems.Add("CP11ACombo2".ToUpper(), combo2.ToString());
-				textDataItems.Add("CP11ACombo2LinkText2".ToUpper(), String.Join("        ", combo2.Email, combo2.Phone));
-
-				textDataItems.Add("CP11ACombo3".ToUpper(), combo3.ToString());
-				textDataItems.Add("CP11ACombo3LinkText3".ToUpper(), String.Join("        ", combo3.Email, combo3.Phone));
-			}
-			else if (combo1 != null &&
-					 combo2 != null)
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-21.pptx");
-
-				textDataItems.Add("CP11ACombo1".ToUpper(), combo1.ToString());
-				textDataItems.Add("CP11ACombo1LinkText1".ToUpper(), String.Join("        ", combo1.Email, combo1.Phone));
-
-				textDataItems.Add("CP11ACombo2".ToUpper(), combo2.ToString());
-				textDataItems.Add("CP11ACombo2LinkText2".ToUpper(), String.Join("        ", combo2.Email, combo2.Phone));
-			}
-			else if (combo1 != null)
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-22.pptx");
-
-				textDataItems.Add("CP11ACombo1".ToUpper(), combo1.ToString());
-				textDataItems.Add("CP11ACombo1LinkText1".ToUpper(), String.Join("        ", combo1.Email, combo1.Phone));
-			}
-			else
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarClosersFile("CP11A-12.pptx");
-
-				textDataItems.Add("CP11ACombo2".ToUpper(), combo2?.ToString());
-				textDataItems.Add("CP11ACombo2LinkText2".ToUpper(), String.Join("        ", combo2?.Email, combo2?.Phone));
-
-				textDataItems.Add("CP11ACombo3".ToUpper(), combo3?.ToString());
-				textDataItems.Add("CP11ACombo3LinkText3".ToUpper(), String.Join("        ", combo3?.Email, combo3?.Phone));
-
-				textDataItems.Add("CP11ACombo4".ToUpper(), combo4?.ToString());
-				textDataItems.Add("CP11ACombo4LinkText4".ToUpper(), String.Join("        ", combo4?.Email, combo4?.Phone));
-
-				textDataItems.Add("CP11ACombo5".ToUpper(), combo5?.ToString());
-				textDataItems.Add("CP11ACombo5LinkText5".ToUpper(), String.Join("        ", combo5?.Email, combo5?.Phone));
-
-				textDataItems.Add("CP11ACombo6".ToUpper(), combo6?.ToString());
-				textDataItems.Add("CP11ACombo6LinkText6".ToUpper(), String.Join("        ", combo6?.Email, combo6?.Phone));
-
-				textDataItems.Add("CP11ACombo7".ToUpper(), combo7?.ToString());
-				textDataItems.Add("CP11ACombo7LinkText7".ToUpper(), String.Join("        ", combo7?.Email, combo7?.Phone));
-
-				textDataItems.Add("CP11ACombo8".ToUpper(), combo8?.ToString());
-				textDataItems.Add("CP11ACombo8LinkText8".ToUpper(), String.Join("        ", combo8?.Email, combo8?.Phone));
-
-				textDataItems.Add("CP11ACombo9".ToUpper(), combo9?.ToString());
-				textDataItems.Add("CP11ACombo9LinkText9".ToUpper(), String.Join("        ", combo9?.Email, combo9?.Phone));
-
-				textDataItems.Add("CP11ACombo10".ToUpper(), combo10?.ToString());
-				textDataItems.Add("CP11ACombo10LinkText10".ToUpper(), String.Join("        ", combo10?.Email, combo10?.Phone));
-
-				textDataItems.Add("CP11ACombo11".ToUpper(), combo11?.ToString());
-				textDataItems.Add("CP11ACombo11LinkText11".ToUpper(), String.Join("        ", combo11?.Email, combo11?.Phone));
-			}
-			outputDataPackage.TextItems = textDataItems;
 
 			return outputDataPackage;
 		}

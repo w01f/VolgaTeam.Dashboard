@@ -108,15 +108,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP08ACLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.VideoState.TabA.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault)?.Value;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.VideoState.TabA.SlideHeader ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				var subHeader1 = OutputControl.SlideContainer.EditedContent.VideoState.TabA.Subheader1 ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.PartASubHeader1DefaultValue;
 
 				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarVideoFile("CP08A-1.pptx");
 
 				outputDataPackage.TextItems.Add("CP08AHEADER".ToUpper(), slideHeader);
 				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-				if (!String.IsNullOrWhiteSpace(subHeader1))
-					outputDataPackage.TextItems.Add("CP08ASubheader1".ToUpper(), subHeader1);
+				outputDataPackage.TextItems.Add("CP08ASubheader1".ToUpper(), subHeader1);
 
 				return outputDataPackage;
 			}
@@ -149,15 +148,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP08BCLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.VideoState.TabB.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault)?.Value;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.VideoState.TabB.SlideHeader ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				var subHeader1 = OutputControl.SlideContainer.EditedContent.VideoState.TabB.Subheader1 ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.PartBSubHeader1DefaultValue;
 
 				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarVideoFile("CP08B-1.pptx");
 
 				outputDataPackage.TextItems.Add("CP08BHEADER".ToUpper(), slideHeader);
 				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-				if (!String.IsNullOrWhiteSpace(subHeader1))
-					outputDataPackage.TextItems.Add("CP08BSubheader1".ToUpper(), subHeader1);
+				outputDataPackage.TextItems.Add("CP08BSubheader1".ToUpper(), subHeader1);
 
 				return outputDataPackage;
 			}
@@ -190,15 +188,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP08CCLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.VideoState.TabC.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault)?.Value;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.VideoState.TabC.SlideHeader ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				var subHeader1 = OutputControl.SlideContainer.EditedContent.VideoState.TabC.Subheader1 ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.PartCSubHeader1DefaultValue;
 
 				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarVideoFile(!String.IsNullOrEmpty(subHeader1) ? "CP08C-1.pptx" : "CP08C-2.pptx");
 
 				outputDataPackage.TextItems.Add("CP08CHEADER".ToUpper(), slideHeader);
 				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-				if (!String.IsNullOrWhiteSpace(subHeader1))
-					outputDataPackage.TextItems.Add("CP08CSubheader1".ToUpper(), subHeader1);
+				outputDataPackage.TextItems.Add("CP08CSubheader1".ToUpper(), subHeader1);
 
 				return outputDataPackage;
 			}
@@ -231,15 +228,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP08DCLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.VideoState.TabD.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.HeadersPartDItems.FirstOrDefault(h => h.IsDefault)?.Value;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.VideoState.TabD.SlideHeader ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.HeadersPartDItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				var subHeader1 = OutputControl.SlideContainer.EditedContent.VideoState.TabD.Subheader1 ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.PartDSubHeader1DefaultValue;
 
 				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarVideoFile(!String.IsNullOrEmpty(subHeader1) ? "CP08D-1.pptx" : "CP08D-2.pptx");
 
 				outputDataPackage.TextItems.Add("CP08DHEADER".ToUpper(), slideHeader);
 				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-				if (!String.IsNullOrWhiteSpace(subHeader1))
-					outputDataPackage.TextItems.Add("CP08DSubheader1".ToUpper(), subHeader1);
+				outputDataPackage.TextItems.Add("CP08DSubheader1".ToUpper(), subHeader1);
 
 				return outputDataPackage;
 			}

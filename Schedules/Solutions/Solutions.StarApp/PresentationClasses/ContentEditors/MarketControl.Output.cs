@@ -107,7 +107,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP07ACLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.MarketState.TabA.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.MarketConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault)?.Value;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.MarketState.TabA.SlideHeader ?? OutputControl.SlideContainer.StarInfo.MarketConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				var subHeader1 = OutputControl.SlideContainer.EditedContent.MarketState.TabA.Subheader1 ?? OutputControl.SlideContainer.StarInfo.MarketConfiguration.PartASubHeader1DefaultValue;
 
 				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarMarketFile(clipart != null ? "CP07A-1.pptx" : "CP07A-2.pptx");
@@ -179,37 +179,35 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP07BCLIPART5", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart5.Width, clipart5.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.MarketState.TabB.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.MarketConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault)?.Value;
-				var subheader1 = OutputControl.SlideContainer.EditedContent.MarketState.TabB.Subheader1 ?? OutputControl.SlideContainer.StarInfo.MarketConfiguration.PartBSubHeader1DefaultValue;
-				var subheader2 = OutputControl.SlideContainer.EditedContent.MarketState.TabB.Subheader2 ?? OutputControl.SlideContainer.StarInfo.MarketConfiguration.PartBSubHeader2DefaultValue;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.MarketState.TabB.SlideHeader ?? OutputControl.SlideContainer.StarInfo.MarketConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault))?.Value;
+				var subHeader1 = OutputControl.SlideContainer.EditedContent.MarketState.TabB.Subheader1 ?? OutputControl.SlideContainer.StarInfo.MarketConfiguration.PartBSubHeader1DefaultValue;
+				var subHeader2 = OutputControl.SlideContainer.EditedContent.MarketState.TabB.Subheader2 ?? OutputControl.SlideContainer.StarInfo.MarketConfiguration.PartBSubHeader2DefaultValue;
 
 				outputDataPackage.TextItems.Add("CP07BHEADER".ToUpper(), slideHeader);
 				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-				if (!String.IsNullOrWhiteSpace(subheader1))
-					outputDataPackage.TextItems.Add("CP07BSubHeader1".ToUpper(), subheader1);
-				if (!String.IsNullOrWhiteSpace(subheader2))
-					outputDataPackage.TextItems.Add("CP07BSubHeader2".ToUpper(), subheader2);
+				outputDataPackage.TextItems.Add("CP07BSubHeader1".ToUpper(), subHeader1);
+				outputDataPackage.TextItems.Add("CP07BSubHeader2".ToUpper(), subHeader2);
 
 				if (clipart1 != null &&
 					clipart2 != null &&
 					clipart3 != null &&
 					clipart4 != null &&
 					clipart5 != null)
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarMarketFile(!String.IsNullOrWhiteSpace(subheader1) && !String.IsNullOrWhiteSpace(subheader2) ? "CP07B-1.pptx" : (!String.IsNullOrWhiteSpace(subheader1) ? "CP07B-6.pptx" : (!String.IsNullOrWhiteSpace(subheader2) ? "CP07B-11.pptx" : "CP07B-16.pptx")));
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarMarketFile(!String.IsNullOrWhiteSpace(subHeader1) && !String.IsNullOrWhiteSpace(subHeader2) ? "CP07B-1.pptx" : (!String.IsNullOrWhiteSpace(subHeader1) ? "CP07B-6.pptx" : (!String.IsNullOrWhiteSpace(subHeader2) ? "CP07B-11.pptx" : "CP07B-16.pptx")));
 				else if (clipart1 != null &&
 						 clipart2 != null &&
 						 clipart3 != null &&
 						 clipart4 != null)
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarMarketFile(!String.IsNullOrWhiteSpace(subheader1) && !String.IsNullOrWhiteSpace(subheader2) ? "CP07B-2.pptx" : (!String.IsNullOrWhiteSpace(subheader1) ? "CP07B-7.pptx" : (!String.IsNullOrWhiteSpace(subheader2) ? "CP07B-12.pptx" : "CP07B-17.pptx")));
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarMarketFile(!String.IsNullOrWhiteSpace(subHeader1) && !String.IsNullOrWhiteSpace(subHeader2) ? "CP07B-2.pptx" : (!String.IsNullOrWhiteSpace(subHeader1) ? "CP07B-7.pptx" : (!String.IsNullOrWhiteSpace(subHeader2) ? "CP07B-12.pptx" : "CP07B-17.pptx")));
 				else if (clipart1 != null &&
 						 clipart2 != null &&
 						 clipart3 != null)
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarMarketFile(!String.IsNullOrWhiteSpace(subheader1) && !String.IsNullOrWhiteSpace(subheader2) ? "CP07B-3.pptx" : (!String.IsNullOrWhiteSpace(subheader1) ? "CP07B-8.pptx" : (!String.IsNullOrWhiteSpace(subheader2) ? "CP07B-13.pptx" : "CP07B-18.pptx")));
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarMarketFile(!String.IsNullOrWhiteSpace(subHeader1) && !String.IsNullOrWhiteSpace(subHeader2) ? "CP07B-3.pptx" : (!String.IsNullOrWhiteSpace(subHeader1) ? "CP07B-8.pptx" : (!String.IsNullOrWhiteSpace(subHeader2) ? "CP07B-13.pptx" : "CP07B-18.pptx")));
 				else if (clipart1 != null &&
 						 clipart2 != null)
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarMarketFile(!String.IsNullOrWhiteSpace(subheader1) && !String.IsNullOrWhiteSpace(subheader2) ? "CP07B-4.pptx" : (!String.IsNullOrWhiteSpace(subheader1) ? "CP07B-9.pptx" : (!String.IsNullOrWhiteSpace(subheader2) ? "CP07B-14.pptx" : "CP07B-19.pptx")));
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarMarketFile(!String.IsNullOrWhiteSpace(subHeader1) && !String.IsNullOrWhiteSpace(subHeader2) ? "CP07B-4.pptx" : (!String.IsNullOrWhiteSpace(subHeader1) ? "CP07B-9.pptx" : (!String.IsNullOrWhiteSpace(subHeader2) ? "CP07B-14.pptx" : "CP07B-19.pptx")));
 				else if (clipart1 != null)
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarMarketFile(!String.IsNullOrWhiteSpace(subheader1) && !String.IsNullOrWhiteSpace(subheader2) ? "CP07B-5.pptx" : (!String.IsNullOrWhiteSpace(subheader1) ? "CP07B-10.pptx" : (!String.IsNullOrWhiteSpace(subheader2) ? "CP07B-15.pptx" : "CP07B-20.pptx")));
+					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarMarketFile(!String.IsNullOrWhiteSpace(subHeader1) && !String.IsNullOrWhiteSpace(subHeader2) ? "CP07B-5.pptx" : (!String.IsNullOrWhiteSpace(subHeader1) ? "CP07B-10.pptx" : (!String.IsNullOrWhiteSpace(subHeader2) ? "CP07B-15.pptx" : "CP07B-20.pptx")));
 
 				return outputDataPackage;
 			}
@@ -266,13 +264,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP07CCLIPART4", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart4.Width, clipart4.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.MarketState.TabC.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.MarketConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault)?.Value;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.MarketState.TabC.SlideHeader ?? OutputControl.SlideContainer.StarInfo.MarketConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				var combo1 = (OutputControl.SlideContainer.EditedContent.MarketState.TabC.Combo1 ?? OutputControl.SlideContainer.StarInfo.MarketConfiguration.PartCCombo1Items.FirstOrDefault(h => h.IsDefault))?.Value;
 
 				outputDataPackage.TextItems.Add("CP07CHEADER".ToUpper(), slideHeader);
 				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-				if (!String.IsNullOrWhiteSpace(combo1))
-					outputDataPackage.TextItems.Add("CP07CCombo1".ToUpper(), combo1);
+				outputDataPackage.TextItems.Add("CP07CCombo1".ToUpper(), combo1);
 
 				if (clipart1 != null &&
 					clipart2 != null &&

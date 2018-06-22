@@ -73,17 +73,17 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				case 0:
 					SlideContainer.EditedContent.ClosersState.TabA.SlideHeader = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 					break;
 				case 1:
 					SlideContainer.EditedContent.ClosersState.TabB.SlideHeader = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 					break;
 				case 2:
 					SlideContainer.EditedContent.ClosersState.TabC.SlideHeader = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 					break;
 			}
@@ -239,6 +239,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				var tabPage = _tabPages
 					.OfType<IClosersTabPageContainer>()
+					.Where(container => container.ContentControl != null)
 					.Select(container => container.ContentControl)
 					.First(contentControl => contentControl.OutputType == configuration.OutputType);
 				previewGroups.Add(tabPage.GeneratePreview());

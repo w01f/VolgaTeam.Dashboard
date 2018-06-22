@@ -103,7 +103,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				case 0:
 					SlideContainer.EditedContent.VideoState.TabA.SlideHeader = SlideContainer.StarInfo.VideoConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
 					SlideContainer.EditedContent.VideoState.TabA.Clipart1 = pictureEditTabAClipart1.Image != SlideContainer.StarInfo.Tab8SubAClipart1Image ?
@@ -111,12 +111,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						null;
 
 					SlideContainer.EditedContent.VideoState.TabA.Subheader1 = memoEditTabASubheader1.EditValue as String != SlideContainer.StarInfo.VideoConfiguration.PartASubHeader1DefaultValue ?
-						memoEditTabASubheader1.EditValue as String :
+						memoEditTabASubheader1.EditValue as String ?? String.Empty :
 						null;
 					break;
 				case 1:
 					SlideContainer.EditedContent.VideoState.TabB.SlideHeader = SlideContainer.StarInfo.VideoConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
 					SlideContainer.EditedContent.VideoState.TabB.Clipart1 = pictureEditTabBClipart1.Image != SlideContainer.StarInfo.Tab8SubBClipart1Image ?
@@ -124,12 +124,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						null;
 
 					SlideContainer.EditedContent.VideoState.TabB.Subheader1 = memoEditTabBSubheader1.EditValue as String != SlideContainer.StarInfo.VideoConfiguration.PartBSubHeader1DefaultValue ?
-						memoEditTabBSubheader1.EditValue as String :
+						memoEditTabBSubheader1.EditValue as String ?? String.Empty :
 						null;
 					break;
 				case 2:
 					SlideContainer.EditedContent.VideoState.TabC.SlideHeader = SlideContainer.StarInfo.VideoConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
 					SlideContainer.EditedContent.VideoState.TabC.Clipart1 = pictureEditTabCClipart1.Image != SlideContainer.StarInfo.Tab8SubCClipart1Image ?
@@ -137,12 +137,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						null;
 
 					SlideContainer.EditedContent.VideoState.TabC.Subheader1 = memoEditTabCSubheader1.EditValue as String != SlideContainer.StarInfo.VideoConfiguration.PartCSubHeader1DefaultValue ?
-						memoEditTabCSubheader1.EditValue as String :
+						memoEditTabCSubheader1.EditValue as String ?? String.Empty :
 						null;
 					break;
 				case 3:
 					SlideContainer.EditedContent.VideoState.TabD.SlideHeader = SlideContainer.StarInfo.VideoConfiguration.HeadersPartDItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
 					SlideContainer.EditedContent.VideoState.TabD.Clipart1 = pictureEditTabDClipart1.Image != SlideContainer.StarInfo.Tab8SubDClipart1Image ?
@@ -150,7 +150,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						null;
 
 					SlideContainer.EditedContent.VideoState.TabD.Subheader1 = memoEditTabDSubheader1.EditValue as String != SlideContainer.StarInfo.VideoConfiguration.PartDSubHeader1DefaultValue ?
-						memoEditTabDSubheader1.EditValue as String :
+						memoEditTabDSubheader1.EditValue as String ?? String.Empty :
 						null;
 					break;
 			}

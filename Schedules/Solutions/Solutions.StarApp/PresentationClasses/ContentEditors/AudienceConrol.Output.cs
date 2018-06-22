@@ -116,27 +116,39 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				}
 
 				var slideHeader = OutputControl.SlideContainer.EditedContent.AudienceState.TabA.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault)?.Value;
+				outputDataPackage.TextItems.Add("CP09AHEADER".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
+
+				var textItemKeys = new[]
+				{
+					"CP09ASubheader1",
+					"CP09ASubheader2"
+				};
+
+				var textItemValues = new List<string>();
 				var subHeader1 = OutputControl.SlideContainer.EditedContent.AudienceState.TabA.Subheader1 ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.PartASubHeader1DefaultValue;
+				if (!String.IsNullOrWhiteSpace(subHeader1))
+					textItemValues.Add(subHeader1);
+
 				var subHeader2 = OutputControl.SlideContainer.EditedContent.AudienceState.TabA.Subheader2 ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.PartASubHeader2DefaultValue;
+				if (!String.IsNullOrWhiteSpace(subHeader2))
+					textItemValues.Add(subHeader2);
 
-				if (!String.IsNullOrWhiteSpace(subHeader1) &&
-					!String.IsNullOrWhiteSpace(subHeader2))
+				switch (textItemValues.Count)
 				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarAudienceFile(clipart1 != null ? "CP09A-1.pptx" : "CP09A-3.pptx");
-
-					outputDataPackage.TextItems.Add("CP09AHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP09ASubheader1".ToUpper(), subHeader1);
-					outputDataPackage.TextItems.Add("CP09ASubheader2".ToUpper(), subHeader2);
+					case 1:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarAudienceFile(clipart1 != null ? "CP09A-2.pptx" : "CP09A-4.pptx");
+						break;
+					case 2:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarAudienceFile(clipart1 != null ? "CP09A-1.pptx" : "CP09A-3.pptx");
+						break;
+					default:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarAudienceFile(clipart1 != null ? "CP09A-2.pptx" : "CP09A-4.pptx");
+						break;
 				}
-				else if (!String.IsNullOrWhiteSpace(subHeader1))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarAudienceFile(clipart1 != null ? "CP09A-2.pptx" : "CP09A-4.pptx");
 
-					outputDataPackage.TextItems.Add("CP09AHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP09ASubheader1".ToUpper(), subHeader1);
-				}
+				for (int i = 0; i < textItemKeys.Length; i++)
+					outputDataPackage.TextItems.Add(textItemKeys[i].ToUpper(), textItemValues.ElementAtOrDefault(i) ?? String.Empty);
 
 				return outputDataPackage;
 			}
@@ -186,28 +198,29 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP09BCLIPART3", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart3.Width, clipart3.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.AudienceState.TabB.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault)?.Value;
-				var subheader1 = OutputControl.SlideContainer.EditedContent.AudienceState.TabB.Subheader1 ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader1DefaultValue;
-				var subheader2 = OutputControl.SlideContainer.EditedContent.AudienceState.TabB.Subheader2 ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader2DefaultValue;
-				var subheader3 = OutputControl.SlideContainer.EditedContent.AudienceState.TabB.Subheader3 ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader3DefaultValue;
-				var subheader4 = OutputControl.SlideContainer.EditedContent.AudienceState.TabB.Subheader4 ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader4DefaultValue;
-				var subheader5 = OutputControl.SlideContainer.EditedContent.AudienceState.TabB.Subheader5 ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader5DefaultValue;
-				var subheader6 = OutputControl.SlideContainer.EditedContent.AudienceState.TabB.Subheader6 ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader6DefaultValue;
-
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.AudienceState.TabB.SlideHeader ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				outputDataPackage.TextItems.Add("CP09BHEADER".ToUpper(), slideHeader);
 				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-				if (!String.IsNullOrWhiteSpace(subheader1))
-					outputDataPackage.TextItems.Add("CP09BSubHeader1".ToUpper(), subheader1);
-				if (!String.IsNullOrWhiteSpace(subheader2))
-					outputDataPackage.TextItems.Add("CP09BSubHeader2".ToUpper(), subheader2);
-				if (!String.IsNullOrWhiteSpace(subheader3))
-					outputDataPackage.TextItems.Add("CP09BSubHeader3".ToUpper(), subheader3);
-				if (!String.IsNullOrWhiteSpace(subheader4))
-					outputDataPackage.TextItems.Add("CP09BSubHeader4".ToUpper(), subheader4);
-				if (!String.IsNullOrWhiteSpace(subheader5))
-					outputDataPackage.TextItems.Add("CP09BSubHeader5".ToUpper(), subheader5);
-				if (!String.IsNullOrWhiteSpace(subheader6))
-					outputDataPackage.TextItems.Add("CP09BSubHeader6".ToUpper(), subheader6);
+
+				var subHeader1 = OutputControl.SlideContainer.EditedContent.AudienceState.TabB.Subheader1 ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader1DefaultValue;
+				var subHeader2 = OutputControl.SlideContainer.EditedContent.AudienceState.TabB.Subheader2 ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader2DefaultValue;
+				var subHeader3 = OutputControl.SlideContainer.EditedContent.AudienceState.TabB.Subheader3 ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader3DefaultValue;
+				var subHeader4 = OutputControl.SlideContainer.EditedContent.AudienceState.TabB.Subheader4 ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader4DefaultValue;
+				var subHeader5 = OutputControl.SlideContainer.EditedContent.AudienceState.TabB.Subheader5 ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader5DefaultValue;
+				var subHeader6 = OutputControl.SlideContainer.EditedContent.AudienceState.TabB.Subheader6 ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader6DefaultValue;
+
+				if (!String.IsNullOrWhiteSpace(subHeader1))
+					outputDataPackage.TextItems.Add("CP09BSubHeader1".ToUpper(), subHeader1);
+				if (!String.IsNullOrWhiteSpace(subHeader2))
+					outputDataPackage.TextItems.Add("CP09BSubHeader2".ToUpper(), subHeader2);
+				if (!String.IsNullOrWhiteSpace(subHeader3))
+					outputDataPackage.TextItems.Add("CP09BSubHeader3".ToUpper(), subHeader3);
+				if (!String.IsNullOrWhiteSpace(subHeader4))
+					outputDataPackage.TextItems.Add("CP09BSubHeader4".ToUpper(), subHeader4);
+				if (!String.IsNullOrWhiteSpace(subHeader5))
+					outputDataPackage.TextItems.Add("CP09BSubHeader5".ToUpper(), subHeader5);
+				if (!String.IsNullOrWhiteSpace(subHeader6))
+					outputDataPackage.TextItems.Add("CP09BSubHeader6".ToUpper(), subHeader6);
 
 				return outputDataPackage;
 			}
@@ -264,13 +277,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP09CCLIPART4", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart4.Width, clipart4.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.AudienceState.TabC.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault)?.Value;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.AudienceState.TabC.SlideHeader ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				var combo1 = (OutputControl.SlideContainer.EditedContent.AudienceState.TabC.Combo1 ?? OutputControl.SlideContainer.StarInfo.AudienceConfiguration.PartCCombo1Items.FirstOrDefault(h => h.IsDefault))?.Value;
 
 				outputDataPackage.TextItems.Add("CP09CHEADER".ToUpper(), slideHeader);
 				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-				if (!String.IsNullOrWhiteSpace(combo1))
-					outputDataPackage.TextItems.Add("CP09CCombo1".ToUpper(), combo1);
+				outputDataPackage.TextItems.Add("CP09CCombo1".ToUpper(), combo1);
 
 				if (clipart1 != null &&
 					clipart2 != null &&

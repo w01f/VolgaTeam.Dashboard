@@ -108,15 +108,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP10ACLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.SolutionState.TabA.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.SolutionConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault)?.Value;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.SolutionState.TabA.SlideHeader ?? OutputControl.SlideContainer.StarInfo.SolutionConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				var subHeader1 = OutputControl.SlideContainer.EditedContent.SolutionState.TabA.Subheader1 ?? OutputControl.SlideContainer.StarInfo.SolutionConfiguration.PartASubHeader1DefaultValue;
 
 				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarSolutionFile("CP10A-1.pptx");
 
 				outputDataPackage.TextItems.Add("CP10AHEADER".ToUpper(), slideHeader);
 				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-				if (!String.IsNullOrWhiteSpace(subHeader1))
-					outputDataPackage.TextItems.Add("CP10ASubheader1".ToUpper(), subHeader1);
+				outputDataPackage.TextItems.Add("CP10ASubheader1".ToUpper(), subHeader1);
 
 				return outputDataPackage;
 			}
@@ -165,13 +164,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP10BCLIPART3", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart3.Width, clipart3.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.SolutionState.TabB.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.SolutionConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault)?.Value;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.SolutionState.TabB.SlideHeader ?? OutputControl.SlideContainer.StarInfo.SolutionConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				var subHeader1 = OutputControl.SlideContainer.EditedContent.SolutionState.TabB.Subheader1 ?? OutputControl.SlideContainer.StarInfo.SolutionConfiguration.PartBSubHeader1DefaultValue;
 
 				outputDataPackage.TextItems.Add("CP10BHEADER".ToUpper(), slideHeader);
 				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-				if (!String.IsNullOrWhiteSpace(subHeader1))
-					outputDataPackage.TextItems.Add("CP10BSubheader1".ToUpper(), subHeader1);
+				outputDataPackage.TextItems.Add("CP10BSubheader1".ToUpper(), subHeader1);
 
 				if (clipart1 != null &&
 				   clipart2 != null &&
@@ -222,53 +220,31 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP10CCLIPART2", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart2.Width, clipart2.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.SolutionState.TabC.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.SolutionConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault)?.Value;
-				var subHeader1 = OutputControl.SlideContainer.EditedContent.SolutionState.TabC.Subheader1 ?? OutputControl.SlideContainer.StarInfo.SolutionConfiguration.PartCSubHeader1DefaultValue;
-				var subHeader2 = OutputControl.SlideContainer.EditedContent.SolutionState.TabC.Subheader2 ?? OutputControl.SlideContainer.StarInfo.SolutionConfiguration.PartCSubHeader2DefaultValue;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.SolutionState.TabC.SlideHeader ?? OutputControl.SlideContainer.StarInfo.SolutionConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault))?.Value;
+
+				var subHeaders = new[]
+					{
+						OutputControl.SlideContainer.EditedContent.SolutionState.TabC.Subheader1 ?? OutputControl.SlideContainer.StarInfo.SolutionConfiguration.PartCSubHeader1DefaultValue,
+						OutputControl.SlideContainer.EditedContent.SolutionState.TabC.Subheader2 ?? OutputControl.SlideContainer.StarInfo.SolutionConfiguration.PartCSubHeader2DefaultValue
+					}.Where(item => !String.IsNullOrWhiteSpace(item))
+							.ToList();
 
 				outputDataPackage.TextItems.Add("CP10CHEADER".ToUpper(), slideHeader);
 				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("CP10CSubheader1".ToUpper(), subHeaders.ElementAtOrDefault(0));
+				outputDataPackage.TextItems.Add("CP10CSubheader2".ToUpper(), subHeaders.ElementAtOrDefault(1));
 
 				if (clipart1 != null &&
 					clipart2 != null)
-				{
-					if (!String.IsNullOrWhiteSpace(subHeader1) &&
-						!String.IsNullOrWhiteSpace(subHeader2))
-					{
-						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarSolutionFile("CP10C-1.pptx");
-						outputDataPackage.TextItems.Add("CP10CSubheader1".ToUpper(), subHeader1);
-						outputDataPackage.TextItems.Add("CP10CSubheader2".ToUpper(), subHeader2);
-					}
-					else
-					{
-						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarSolutionFile("CP10C-2.pptx");
-						outputDataPackage.TextItems.Add("CP10CSubheader1".ToUpper(), subHeader1);
-					}
-				}
+					outputDataPackage.TemplateName = subHeaders.Count > 1 ?
+						MasterWizardManager.Instance.SelectedWizard.GetStarSolutionFile("CP10C-1.pptx") :
+						MasterWizardManager.Instance.SelectedWizard.GetStarSolutionFile("CP10C-2.pptx");
 				else if (clipart1 != null)
-				{
-					if (!String.IsNullOrWhiteSpace(subHeader1) &&
-						!String.IsNullOrWhiteSpace(subHeader2))
-					{
-						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarSolutionFile("CP10C-3.pptx");
-						outputDataPackage.TextItems.Add("CP10CSubheader1".ToUpper(), subHeader1);
-						outputDataPackage.TextItems.Add("CP10CSubheader2".ToUpper(), subHeader2);
-					}
-					else
-					{
-						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarSolutionFile("CP10C-4.pptx");
-						outputDataPackage.TextItems.Add("CP10CSubheader1".ToUpper(), subHeader1);
-					}
-				}
+					outputDataPackage.TemplateName = subHeaders.Count > 1 ?
+						MasterWizardManager.Instance.SelectedWizard.GetStarSolutionFile("CP10C-3.pptx") :
+						MasterWizardManager.Instance.SelectedWizard.GetStarSolutionFile("CP10C-4.pptx");
 				else
-				{
 					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarSolutionFile("CP10C-5.pptx");
-					if (!String.IsNullOrWhiteSpace(subHeader1))
-						outputDataPackage.TextItems.Add("CP10CSubheader1".ToUpper(), subHeader1);
-					if (!String.IsNullOrWhiteSpace(subHeader2))
-						outputDataPackage.TextItems.Add("CP10CSubheader2".ToUpper(), subHeader2);
-				}
-
 				return outputDataPackage;
 			}
 		}
@@ -300,15 +276,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP10DCLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.SolutionState.TabD.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.SolutionConfiguration.HeadersPartDItems.FirstOrDefault(h => h.IsDefault)?.Value;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.SolutionState.TabD.SlideHeader ?? OutputControl.SlideContainer.StarInfo.SolutionConfiguration.HeadersPartDItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				var subHeader1 = OutputControl.SlideContainer.EditedContent.SolutionState.TabD.Subheader1 ?? OutputControl.SlideContainer.StarInfo.SolutionConfiguration.PartDSubHeader1DefaultValue;
 
 				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarSolutionFile("CP10D-1.pptx");
 
 				outputDataPackage.TextItems.Add("CP10DHEADER".ToUpper(), slideHeader);
 				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-				if (!String.IsNullOrWhiteSpace(subHeader1))
-					outputDataPackage.TextItems.Add("CP10DSubheader1".ToUpper(), subHeader1);
+				outputDataPackage.TextItems.Add("CP10DSubheader1".ToUpper(), subHeader1);
 
 				return outputDataPackage;
 			}

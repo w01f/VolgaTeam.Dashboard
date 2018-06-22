@@ -168,49 +168,49 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.Formula3Toggle = checkEditTabCFormula3.Checked;
 
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.Subheader1 = textEditTabCSubheader1.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartCSubHeader1DefaultValue ?
-				textEditTabCSubheader1.EditValue as String :
+				textEditTabCSubheader1.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.Subheader2 = (decimal?)spinEditTabCSubheader2.EditValue != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartCSubHeader2DefaultValue ?
 				(decimal?)spinEditTabCSubheader2.EditValue :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.Subheader3 = textEditTabCSubheader3.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartCSubHeader3DefaultValue ?
-				textEditTabCSubheader3.EditValue as String :
+				textEditTabCSubheader3.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.Subheader4 = (decimal?)spinEditTabCSubheader4.EditValue != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartCSubHeader4DefaultValue ?
 				(decimal?)spinEditTabCSubheader4.EditValue :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.Subheader5 = textEditTabCSubheader5.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartCSubHeader5DefaultValue ?
-				textEditTabCSubheader5.EditValue as String :
+				textEditTabCSubheader5.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.Subheader6 = textEditTabCSubheader6.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartCSubHeader6DefaultValue ?
-				textEditTabCSubheader6.EditValue as String :
+				textEditTabCSubheader6.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.Subheader7 = (decimal?)spinEditTabCSubheader7.EditValue != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartCSubHeader7DefaultValue ?
 				(decimal?)spinEditTabCSubheader7.EditValue :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.Subheader8 = textEditTabCSubheader8.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartCSubHeader8DefaultValue ?
-				textEditTabCSubheader8.EditValue as String :
+				textEditTabCSubheader8.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.Subheader9 = textEditTabCSubheader9.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartCSubHeader9DefaultValue ?
-				textEditTabCSubheader9.EditValue as String :
+				textEditTabCSubheader9.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.Subheader10 = textEditTabCSubheader10.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartCSubHeader10DefaultValue ?
-				textEditTabCSubheader10.EditValue as String :
+				textEditTabCSubheader10.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.Subheader11 = textEditTabCSubheader11.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartCSubHeader11DefaultValue ?
-				textEditTabCSubheader11.EditValue as String :
+				textEditTabCSubheader11.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.Subheader12 = textEditTabCSubheader12.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartCSubHeader12DefaultValue ?
-				textEditTabCSubheader12.EditValue as String :
+				textEditTabCSubheader12.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.Subheader13 = (decimal?)spinEditTabCSubheader13.EditValue != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartCSubHeader13DefaultValue ?
 				(decimal?)spinEditTabCSubheader13.EditValue :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.Subheader14 = textEditTabCSubheader14.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartCSubHeader14DefaultValue ?
-				textEditTabCSubheader14.EditValue as String :
+				textEditTabCSubheader14.EditValue as String ?? String.Empty :
 				null;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.Subheader15 = textEditTabCSubheader15.EditValue as String != ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartCSubHeader15DefaultValue ?
-				textEditTabCSubheader15.EditValue as String :
+				textEditTabCSubheader15.EditValue as String ?? String.Empty :
 				null;
 
 			_dataChanged = false;
@@ -394,8 +394,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			outputDataPackage.TextItems = GetOutputDataTextItems();
 
-			outputDataPackage.TextItems.Add("CP06CHEADER", ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.SlideHeader?.Value ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault)?.Value);
-			outputDataPackage.TextItems.Add("HEADER", ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.SlideHeader?.Value ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault)?.Value);
+			var slideHaeder = (ROIContentContainer.SlideContainer.EditedContent.ROIState.TabC.SlideHeader ?? ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault))?.Value;
+			outputDataPackage.TextItems.Add("CP06CHEADER", slideHaeder);
+			outputDataPackage.TextItems.Add("HEADER", slideHaeder);
 
 			return outputDataPackage;
 		}

@@ -115,56 +115,42 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP04ACLIPART2", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart2.Width, clipart2.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.CustomerState.TabA.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault)?.Value;
-				var combo1 = (OutputControl.SlideContainer.EditedContent.CustomerState.TabA.Combo1 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0))?.Value;
-				var combo2 = (OutputControl.SlideContainer.EditedContent.CustomerState.TabA.Combo2 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(1))?.Value;
-				var combo3 = (OutputControl.SlideContainer.EditedContent.CustomerState.TabA.Combo3 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(2))?.Value;
-				var combo4 = (OutputControl.SlideContainer.EditedContent.CustomerState.TabA.Combo4 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(3))?.Value;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.CustomerState.TabA.SlideHeader ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault))?.Value;
+				var combos = new[]
+					{
+						(OutputControl.SlideContainer.EditedContent.CustomerState.TabA.Combo1 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0))?.Value,
+						(OutputControl.SlideContainer.EditedContent.CustomerState.TabA.Combo2 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(1))?.Value,
+						(OutputControl.SlideContainer.EditedContent.CustomerState.TabA.Combo3 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(2))?.Value,
+						(OutputControl.SlideContainer.EditedContent.CustomerState.TabA.Combo4 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(3))?.Value,
+					}
+					.Where(item => !String.IsNullOrWhiteSpace(item))
+					.ToList();
 
-				if (!String.IsNullOrWhiteSpace(combo1) &&
-					!String.IsNullOrWhiteSpace(combo2) &&
-					!String.IsNullOrWhiteSpace(combo3) &&
-					!String.IsNullOrWhiteSpace(combo4))
+				switch (combos.Count)
 				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile(clipart1 != null && clipart2 != null ? "CP04A-4.pptx" : (clipart1 != null ? "CP04A-8.pptx" : "CP04A-9.pptx"));
-
-					outputDataPackage.TextItems.Add("CP04AHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP04ACombo1".ToUpper(), combo1);
-					outputDataPackage.TextItems.Add("CP04ACombo2".ToUpper(), combo2);
-					outputDataPackage.TextItems.Add("CP04ACombo3".ToUpper(), combo3);
-					outputDataPackage.TextItems.Add("CP04ACombo4".ToUpper(), combo4);
+					case 1:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile(clipart1 != null && clipart2 != null ? "CP04A-1.pptx" : (clipart1 != null ? "CP04A-5.pptx" : "CP04A-12.pptx"));
+						break;
+					case 2:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile(clipart1 != null && clipart2 != null ? "CP04A-2.pptx" : (clipart1 != null ? "CP04A-6.pptx" : "CP04A-11.pptx"));
+						break;
+					case 3:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile(clipart1 != null && clipart2 != null ? "CP04A-3.pptx" : (clipart1 != null ? "CP04A-7.pptx" : "CP04A-10.pptx"));
+						break;
+					case 4:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile(clipart1 != null && clipart2 != null ? "CP04A-4.pptx" : (clipart1 != null ? "CP04A-8.pptx" : "CP04A-9.pptx"));
+						break;
+					default:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile(clipart1 != null && clipart2 != null ? "CP04A-1.pptx" : (clipart1 != null ? "CP04A-5.pptx" : "CP04A-12.pptx"));
+						break;
 				}
-				else if (!String.IsNullOrWhiteSpace(combo1) &&
-						 !String.IsNullOrWhiteSpace(combo2) &&
-						 !String.IsNullOrWhiteSpace(combo3))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile(clipart1 != null && clipart2 != null ? "CP04A-3.pptx" : (clipart1 != null ? "CP04A-7.pptx" : "CP04A-10.pptx"));
 
-					outputDataPackage.TextItems.Add("CP04AHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP04ACombo1".ToUpper(), combo1);
-					outputDataPackage.TextItems.Add("CP04ACombo2".ToUpper(), combo2);
-					outputDataPackage.TextItems.Add("CP04ACombo3".ToUpper(), combo3);
-				}
-				else if (!String.IsNullOrWhiteSpace(combo1) &&
-						 !String.IsNullOrWhiteSpace(combo2))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile(clipart1 != null && clipart2 != null ? "CP04A-2.pptx" : (clipart1 != null ? "CP04A-6.pptx" : "CP04A-11.pptx"));
-
-					outputDataPackage.TextItems.Add("CP04AHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP04ACombo1".ToUpper(), combo1);
-					outputDataPackage.TextItems.Add("CP04ACombo2".ToUpper(), combo2);
-				}
-				else if (!String.IsNullOrWhiteSpace(combo1))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile(clipart1 != null && clipart2 != null ? "CP04A-1.pptx" : (clipart1 != null ? "CP04A-5.pptx" : "CP04A-12.pptx"));
-
-					outputDataPackage.TextItems.Add("CP04AHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP04ACombo1".ToUpper(), combo1);
-				}
+				outputDataPackage.TextItems.Add("CP04AHEADER".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("CP04ACombo1".ToUpper(), combos.ElementAtOrDefault(0));
+				outputDataPackage.TextItems.Add("CP04ACombo2".ToUpper(), combos.ElementAtOrDefault(1));
+				outputDataPackage.TextItems.Add("CP04ACombo3".ToUpper(), combos.ElementAtOrDefault(2));
+				outputDataPackage.TextItems.Add("CP04ACombo4".ToUpper(), combos.ElementAtOrDefault(3));
 
 				return outputDataPackage;
 			}
@@ -205,28 +191,32 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP04BCLIPART2", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart2.Width, clipart2.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.CustomerState.TabB.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault)?.Value;
-				var subHeader1 = OutputControl.SlideContainer.EditedContent.CustomerState.TabB.Subheader1 ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.PartBSubHeader1DefaultValue;
-				var subHeader2 = OutputControl.SlideContainer.EditedContent.CustomerState.TabB.Subheader2 ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.PartBSubHeader2DefaultValue;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.CustomerState.TabB.SlideHeader ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault))?.Value;
+				var subHeaders = new[]
+					{
+						OutputControl.SlideContainer.EditedContent.CustomerState.TabB.Subheader1 ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.PartBSubHeader1DefaultValue,
+						OutputControl.SlideContainer.EditedContent.CustomerState.TabB.Subheader2 ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.PartBSubHeader2DefaultValue
+					}
+					.Where(item => !String.IsNullOrWhiteSpace(item))
+					.ToList();
 
-				if (!String.IsNullOrWhiteSpace(subHeader1) &&
-					!String.IsNullOrWhiteSpace(subHeader2))
+				switch (subHeaders.Count)
 				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile(clipart1 != null && clipart2 != null ? "CP04B-1.pptx" : (clipart1 != null ? "CP04B-3.pptx" : "CP04B-5.pptx"));
-
-					outputDataPackage.TextItems.Add("CP04BHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP04BSubheader1".ToUpper(), subHeader1);
-					outputDataPackage.TextItems.Add("CP04BSubheader2".ToUpper(), subHeader2);
+					case 1:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile(clipart1 != null && clipart2 != null ? "CP04B-2.pptx" : (clipart1 != null ? "CP04B-4.pptx" : "CP04B-6.pptx"));
+						break;
+					case 2:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile(clipart1 != null && clipart2 != null ? "CP04B-1.pptx" : (clipart1 != null ? "CP04B-3.pptx" : "CP04B-5.pptx"));
+						break;
+					default:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile(clipart1 != null && clipart2 != null ? "CP04B-2.pptx" : (clipart1 != null ? "CP04B-4.pptx" : "CP04B-6.pptx"));
+						break;
 				}
-				else if (!String.IsNullOrWhiteSpace(subHeader1))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile(clipart1 != null && clipart2 != null ? "CP04B-2.pptx" : (clipart1 != null ? "CP04B-4.pptx" : "CP04B-6.pptx"));
 
-					outputDataPackage.TextItems.Add("CP04BHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP04BSubheader1".ToUpper(), subHeader1);
-				}
+				outputDataPackage.TextItems.Add("CP04BHEADER".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("CP04BSubheader1".ToUpper(), subHeaders.ElementAtOrDefault(0));
+				outputDataPackage.TextItems.Add("CP04BSubheader2".ToUpper(), subHeaders.ElementAtOrDefault(1));
 
 				return outputDataPackage;
 			}
@@ -251,41 +241,37 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 				outputDataPackage.Theme = OutputControl.SelectedTheme;
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.CustomerState.TabC.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault)?.Value;
-				var subHeader1 = OutputControl.SlideContainer.EditedContent.CustomerState.TabC.Subheader1 ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader1DefaultValue;
-				var subHeader2 = OutputControl.SlideContainer.EditedContent.CustomerState.TabC.Subheader2 ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader2DefaultValue;
-				var subHeader3 = OutputControl.SlideContainer.EditedContent.CustomerState.TabC.Subheader3 ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader3DefaultValue;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.CustomerState.TabC.SlideHeader ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault))?.Value;
+				var subHeaders = new[]
+					{
+						OutputControl.SlideContainer.EditedContent.CustomerState.TabC.Subheader1 ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader1DefaultValue,
+						OutputControl.SlideContainer.EditedContent.CustomerState.TabC.Subheader2 ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader2DefaultValue,
+						OutputControl.SlideContainer.EditedContent.CustomerState.TabC.Subheader3 ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader3DefaultValue
+					}
+					.Where(item => !String.IsNullOrWhiteSpace(item))
+					.ToList();
 
-				if (!String.IsNullOrWhiteSpace(subHeader1) &&
-					!String.IsNullOrWhiteSpace(subHeader2) &&
-					!String.IsNullOrWhiteSpace(subHeader3))
+				switch (subHeaders.Count)
 				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile("CP04C-3.pptx");
-
-					outputDataPackage.TextItems.Add("CP04CHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP04CSubheader1".ToUpper(), subHeader1);
-					outputDataPackage.TextItems.Add("CP04CSubheader2".ToUpper(), subHeader2);
-					outputDataPackage.TextItems.Add("CP04CSubheader3".ToUpper(), subHeader3);
+					case 1:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile("CP04C-1.pptx");
+						break;
+					case 2:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile("CP04C-2.pptx");
+						break;
+					case 3:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile("CP04C-3.pptx");
+						break;
+					default:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile("CP04C-1.pptx");
+						break;
 				}
-				else if (!String.IsNullOrWhiteSpace(subHeader1) &&
-						 !String.IsNullOrWhiteSpace(subHeader2))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile("CP04C-2.pptx");
 
-					outputDataPackage.TextItems.Add("CP04CHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP04CSubheader1".ToUpper(), subHeader1);
-					outputDataPackage.TextItems.Add("CP04CSubheader2".ToUpper(), subHeader2);
-				}
-				else if (!String.IsNullOrWhiteSpace(subHeader1))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCustomerFile("CP04C-1.pptx");
-
-					outputDataPackage.TextItems.Add("CP04CHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP04CSubheader1".ToUpper(), subHeader1);
-				}
+				outputDataPackage.TextItems.Add("CP04CHEADER".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("CP04CSubheader1".ToUpper(), subHeaders.ElementAtOrDefault(0));
+				outputDataPackage.TextItems.Add("CP04CSubheader2".ToUpper(), subHeaders.ElementAtOrDefault(1));
+				outputDataPackage.TextItems.Add("CP04CSubheader3".ToUpper(), subHeaders.ElementAtOrDefault(2));
 
 				return outputDataPackage;
 			}

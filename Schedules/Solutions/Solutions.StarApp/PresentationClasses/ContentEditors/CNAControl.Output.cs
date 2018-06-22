@@ -106,28 +106,40 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP02ACLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.CNAState.TabA.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.CNAConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault)?.Value;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.CNAState.TabA.SlideHeader ?? OutputControl.SlideContainer.StarInfo.CNAConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault))?.Value;
+				outputDataPackage.TextItems.Add("CP02AHEADER".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
+
+				var textItemKeys = new[]
+				{
+					"CP02ASubheader1",
+					"CP02ASubheader2"
+				};
+
+				var textItemValues = new List<string>();
 				var subHeader1 = OutputControl.SlideContainer.EditedContent.CNAState.TabA.Subheader1 ?? OutputControl.SlideContainer.StarInfo.CNAConfiguration.PartASubHeader1DefaultValue;
+				if (!String.IsNullOrWhiteSpace(subHeader1))
+					textItemValues.Add(subHeader1);
+
 				var subHeader2 = OutputControl.SlideContainer.EditedContent.CNAState.TabA.Subheader2 ?? OutputControl.SlideContainer.StarInfo.CNAConfiguration.PartASubHeader2DefaultValue;
+				if (!String.IsNullOrWhiteSpace(subHeader2))
+					textItemValues.Add(subHeader2);
 
-				if (!String.IsNullOrWhiteSpace(subHeader1) &&
-					!String.IsNullOrWhiteSpace(subHeader2))
+				switch (textItemValues.Count)
 				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCNAFile("CP02A-2.pptx");
-
-					outputDataPackage.TextItems.Add("CP02AHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP02ASubheader1".ToUpper(), subHeader1);
-					outputDataPackage.TextItems.Add("CP02ASubheader2".ToUpper(), subHeader2);
+					case 1:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCNAFile("CP02A-1.pptx");
+						break;
+					case 2:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCNAFile("CP02A-2.pptx");
+						break;
+					default:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCNAFile("CP02A-1.pptx");
+						break;
 				}
-				else if (!String.IsNullOrWhiteSpace(subHeader1))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCNAFile("CP02A-1.pptx");
 
-					outputDataPackage.TextItems.Add("CP02AHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP02ASubheader1".ToUpper(), subHeader1);
-				}
+				for (int i = 0; i < textItemKeys.Length; i++)
+					outputDataPackage.TextItems.Add(textItemKeys[i].ToUpper(), textItemValues.ElementAtOrDefault(i)??String.Empty);
 
 				return outputDataPackage;
 			}
@@ -168,73 +180,64 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP02BCLIPART2", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart2.Width, clipart2.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.CNAState.TabB.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.CNAConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault)?.Value;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.SlideHeader ?? OutputControl.SlideContainer.StarInfo.CNAConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault))?.Value;
+				outputDataPackage.TextItems.Add("CP02BHEADER".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
+
+				var comboItemKeys = new[]
+				{
+					"CP02BCombo1",
+					"CP02BCombo2",
+					"CP02BCombo3",
+					"CP02BCombo4",
+					"CP02BCombo5"
+				};
+
+				var comboItemValues = new List<string>();
 				var combo1 = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.Combo1 ?? OutputControl.SlideContainer.StarInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0))?.Value;
+				if (!String.IsNullOrWhiteSpace(combo1))
+					comboItemValues.Add(combo1);
+
 				var combo2 = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.Combo2 ?? OutputControl.SlideContainer.StarInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(1))?.Value;
+				if (!String.IsNullOrWhiteSpace(combo2))
+					comboItemValues.Add(combo2);
+
 				var combo3 = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.Combo3 ?? OutputControl.SlideContainer.StarInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(2))?.Value;
+				if (!String.IsNullOrWhiteSpace(combo3))
+					comboItemValues.Add(combo3);
+
 				var combo4 = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.Combo4 ?? OutputControl.SlideContainer.StarInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(3))?.Value;
+				if (!String.IsNullOrWhiteSpace(combo4))
+					comboItemValues.Add(combo4);
+
 				var combo5 = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.Combo5 ?? OutputControl.SlideContainer.StarInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(4))?.Value;
+				if (!String.IsNullOrWhiteSpace(combo5))
+					comboItemValues.Add(combo5);
 
-				if (!String.IsNullOrWhiteSpace(combo1) &&
-					!String.IsNullOrWhiteSpace(combo2) &&
-					!String.IsNullOrWhiteSpace(combo3) &&
-					!String.IsNullOrWhiteSpace(combo4) &&
-					!String.IsNullOrWhiteSpace(combo5))
+				switch (comboItemValues.Count)
 				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCNAFile(clipart2 != null ? "CP02B-5.pptx" : "CP02B-10.pptx");
-
-					outputDataPackage.TextItems.Add("CP02BHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP02BCombo1".ToUpper(), combo1);
-					outputDataPackage.TextItems.Add("CP02BCombo2".ToUpper(), combo2);
-					outputDataPackage.TextItems.Add("CP02BCombo3".ToUpper(), combo3);
-					outputDataPackage.TextItems.Add("CP02BCombo4".ToUpper(), combo4);
-					outputDataPackage.TextItems.Add("CP02BCombo5".ToUpper(), combo5);
+					case 1:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCNAFile(clipart2 != null ? "CP02B-1.pptx" : "CP02B-6.pptx");
+						break;
+					case 2:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCNAFile(clipart2 != null ? "CP02B-2.pptx" : "CP02B-7.pptx");
+						break;
+					case 3:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCNAFile(clipart2 != null ? "CP02B-3.pptx" : "CP02B-8.pptx");
+						break;
+					case 4:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCNAFile(clipart2 != null ? "CP02B-4.pptx" : "CP02B-9.pptx");
+						break;
+					case 5:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCNAFile(clipart2 != null ? "CP02B-5.pptx" : "CP02B-10.pptx");
+						break;
+					default:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCNAFile("CP02A-1.pptx");
+						break;
 				}
-				else if (!String.IsNullOrWhiteSpace(combo1) &&
-						 !String.IsNullOrWhiteSpace(combo2) &&
-						 !String.IsNullOrWhiteSpace(combo3) &&
-						 !String.IsNullOrWhiteSpace(combo4))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCNAFile(clipart2 != null ? "CP02B-4.pptx" : "CP02B-9.pptx");
 
-					outputDataPackage.TextItems.Add("CP02BHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP02BCombo1".ToUpper(), combo1);
-					outputDataPackage.TextItems.Add("CP02BCombo2".ToUpper(), combo2);
-					outputDataPackage.TextItems.Add("CP02BCombo3".ToUpper(), combo3);
-					outputDataPackage.TextItems.Add("CP02BCombo4".ToUpper(), combo4);
-				}
-				else if (!String.IsNullOrWhiteSpace(combo1) &&
-						 !String.IsNullOrWhiteSpace(combo2) &&
-						 !String.IsNullOrWhiteSpace(combo3))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCNAFile(clipart2 != null ? "CP02B-3.pptx" : "CP02B-8.pptx");
-
-					outputDataPackage.TextItems.Add("CP02BHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP02BCombo1".ToUpper(), combo1);
-					outputDataPackage.TextItems.Add("CP02BCombo2".ToUpper(), combo2);
-					outputDataPackage.TextItems.Add("CP02BCombo3".ToUpper(), combo3);
-				}
-				else if (!String.IsNullOrWhiteSpace(combo1) &&
-						 !String.IsNullOrWhiteSpace(combo2))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCNAFile(clipart2 != null ? "CP02B-2.pptx" : "CP02B-7.pptx");
-
-					outputDataPackage.TextItems.Add("CP02BHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP02BCombo1".ToUpper(), combo1);
-					outputDataPackage.TextItems.Add("CP02BCombo2".ToUpper(), combo2);
-				}
-				else if (!String.IsNullOrWhiteSpace(combo1))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCNAFile(clipart2 != null ? "CP02B-1.pptx" : "CP02B-6.pptx");
-
-					outputDataPackage.TextItems.Add("CP02BHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP02BCombo1".ToUpper(), combo1);
-				}
+				for (int i = 0; i < comboItemKeys.Length; i++)
+					outputDataPackage.TextItems.Add(comboItemKeys[i].ToUpper(), comboItemValues.ElementAtOrDefault(i) ?? String.Empty);
 
 				return outputDataPackage;
 			}

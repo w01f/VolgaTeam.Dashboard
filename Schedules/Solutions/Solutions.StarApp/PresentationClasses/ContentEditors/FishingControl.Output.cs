@@ -107,28 +107,32 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP03ACLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.FishingState.TabA.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault)?.Value;
-				var subHeader1 = OutputControl.SlideContainer.EditedContent.FishingState.TabA.Subheader1 ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.PartASubHeader1DefaultValue;
-				var subHeader2 = OutputControl.SlideContainer.EditedContent.FishingState.TabA.Subheader2 ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.PartASubHeader2DefaultValue;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.FishingState.TabA.SlideHeader ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault))?.Value;
+				var subHeaders = new[]
+					{
+						OutputControl.SlideContainer.EditedContent.FishingState.TabA.Subheader1 ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.PartASubHeader1DefaultValue,
+						OutputControl.SlideContainer.EditedContent.FishingState.TabA.Subheader2 ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.PartASubHeader2DefaultValue
+					}
+					.Where(item => !String.IsNullOrWhiteSpace(item))
+					.ToList();
 
-				if (!String.IsNullOrWhiteSpace(subHeader1) &&
-					!String.IsNullOrWhiteSpace(subHeader2))
+				switch (subHeaders.Count)
 				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile("CP03A-2.pptx");
-
-					outputDataPackage.TextItems.Add("CP03AHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP03ASubheader1".ToUpper(), subHeader1);
-					outputDataPackage.TextItems.Add("CP03ASubheader2".ToUpper(), subHeader2);
+					case 1:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile("CP03A-1.pptx");
+						break;
+					case 2:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile("CP03A-2.pptx");
+						break;
+					default:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile("CP03A-1.pptx");
+						break;
 				}
-				else if (!String.IsNullOrWhiteSpace(subHeader1))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile("CP03A-1.pptx");
 
-					outputDataPackage.TextItems.Add("CP03AHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP03ASubheader1".ToUpper(), subHeader1);
-				}
+				outputDataPackage.TextItems.Add("CP03AHEADER".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("CP03ASubheader1".ToUpper(), subHeaders.ElementAtOrDefault(0));
+				outputDataPackage.TextItems.Add("CP03ASubheader2".ToUpper(), subHeaders.ElementAtOrDefault(1));
 
 				return outputDataPackage;
 			}
@@ -169,56 +173,42 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					outputDataPackage.ClipartItems.Add("CP03BCLIPART2", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart2.Width, clipart2.Height) });
 				}
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.FishingState.TabB.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault)?.Value;
-				var combo1 = (OutputControl.SlideContainer.EditedContent.FishingState.TabB.Combo1 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0))?.Value;
-				var combo2 = (OutputControl.SlideContainer.EditedContent.FishingState.TabB.Combo2 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(1))?.Value;
-				var combo3 = (OutputControl.SlideContainer.EditedContent.FishingState.TabB.Combo3 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(2))?.Value;
-				var combo4 = (OutputControl.SlideContainer.EditedContent.FishingState.TabB.Combo4 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(3))?.Value;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.FishingState.TabB.SlideHeader ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault))?.Value;
+				var combos = new[]
+					{
+						(OutputControl.SlideContainer.EditedContent.FishingState.TabB.Combo1 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0))?.Value,
+						(OutputControl.SlideContainer.EditedContent.FishingState.TabB.Combo2 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(1))?.Value,
+						(OutputControl.SlideContainer.EditedContent.FishingState.TabB.Combo3 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(2))?.Value,
+						(OutputControl.SlideContainer.EditedContent.FishingState.TabB.Combo4 ?? OutputControl.SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(3))?.Value,
+					}
+					.Where(item => !String.IsNullOrWhiteSpace(item))
+					.ToList();
 
-				if (!String.IsNullOrWhiteSpace(combo1) &&
-					!String.IsNullOrWhiteSpace(combo2) &&
-					!String.IsNullOrWhiteSpace(combo3) &&
-					!String.IsNullOrWhiteSpace(combo4))
+				switch (combos.Count)
 				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile(clipart1 != null && clipart2 != null ? "CP03B-4.pptx" : (clipart1 != null ? "CP03B-8.pptx" : "CP03B-9.pptx"));
-
-					outputDataPackage.TextItems.Add("CP03BHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP03BCombo1".ToUpper(), combo1);
-					outputDataPackage.TextItems.Add("CP03BCombo2".ToUpper(), combo2);
-					outputDataPackage.TextItems.Add("CP03BCombo3".ToUpper(), combo3);
-					outputDataPackage.TextItems.Add("CP03BCombo4".ToUpper(), combo4);
+					case 1:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile(clipart1 != null && clipart2 != null ? "CP03B-1.pptx" : (clipart1 != null ? "CP03B-5.pptx" : "CP03B-12.pptx"));
+						break;
+					case 2:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile(clipart1 != null && clipart2 != null ? "CP03B-2.pptx" : (clipart1 != null ? "CP03B-6.pptx" : "CP03B-11.pptx"));
+						break;
+					case 3:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile(clipart1 != null && clipart2 != null ? "CP03B-3.pptx" : (clipart1 != null ? "CP03B-7.pptx" : "CP03B-10.pptx"));
+						break;
+					case 4:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile(clipart1 != null && clipart2 != null ? "CP03B-4.pptx" : (clipart1 != null ? "CP03B-8.pptx" : "CP03B-9.pptx"));
+						break;
+					default:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile(clipart1 != null && clipart2 != null ? "CP03B-1.pptx" : (clipart1 != null ? "CP03B-5.pptx" : "CP03B-12.pptx"));
+						break;
 				}
-				else if (!String.IsNullOrWhiteSpace(combo1) &&
-						 !String.IsNullOrWhiteSpace(combo2) &&
-						 !String.IsNullOrWhiteSpace(combo3))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile(clipart1 != null && clipart2 != null ? "CP03B-3.pptx" : (clipart1 != null ? "CP03B-7.pptx" : "CP03B-10.pptx"));
 
-					outputDataPackage.TextItems.Add("CP03BHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP03BCombo1".ToUpper(), combo1);
-					outputDataPackage.TextItems.Add("CP03BCombo2".ToUpper(), combo2);
-					outputDataPackage.TextItems.Add("CP03BCombo3".ToUpper(), combo3);
-				}
-				else if (!String.IsNullOrWhiteSpace(combo1) &&
-						 !String.IsNullOrWhiteSpace(combo2))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile(clipart1 != null && clipart2 != null ? "CP03B-2.pptx" : (clipart1 != null ? "CP03B-6.pptx" : "CP03B-11.pptx"));
-
-					outputDataPackage.TextItems.Add("CP03BHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP03BCombo1".ToUpper(), combo1);
-					outputDataPackage.TextItems.Add("CP03BCombo2".ToUpper(), combo2);
-				}
-				else if (!String.IsNullOrWhiteSpace(combo1))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile(clipart1 != null && clipart2 != null ? "CP03B-1.pptx" : (clipart1 != null ? "CP03B-5.pptx" : "CP03B-12.pptx"));
-
-					outputDataPackage.TextItems.Add("CP03BHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP03BCombo1".ToUpper(), combo1);
-				}
+				outputDataPackage.TextItems.Add("CP03BHEADER".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("CP03BCombo1".ToUpper(), combos.ElementAtOrDefault(0));
+				outputDataPackage.TextItems.Add("CP03BCombo2".ToUpper(), combos.ElementAtOrDefault(1));
+				outputDataPackage.TextItems.Add("CP03BCombo3".ToUpper(), combos.ElementAtOrDefault(2));
+				outputDataPackage.TextItems.Add("CP03BCombo4".ToUpper(), combos.ElementAtOrDefault(3));
 
 				return outputDataPackage;
 			}
@@ -243,41 +233,37 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 				outputDataPackage.Theme = OutputControl.SelectedTheme;
 
-				var slideHeader = OutputControl.SlideContainer.EditedContent.FishingState.TabC.SlideHeader?.Value ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault)?.Value;
-				var subHeader1 = OutputControl.SlideContainer.EditedContent.FishingState.TabC.Subheader1 ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader1DefaultValue;
-				var subHeader2 = OutputControl.SlideContainer.EditedContent.FishingState.TabC.Subheader2 ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader2DefaultValue;
-				var subHeader3 = OutputControl.SlideContainer.EditedContent.FishingState.TabC.Subheader3 ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader3DefaultValue;
+				var slideHeader = (OutputControl.SlideContainer.EditedContent.FishingState.TabC.SlideHeader ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault))?.Value;
+				var subHeaders = new[]
+					{
+						OutputControl.SlideContainer.EditedContent.FishingState.TabC.Subheader1 ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader1DefaultValue,
+						OutputControl.SlideContainer.EditedContent.FishingState.TabC.Subheader2 ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader2DefaultValue,
+						OutputControl.SlideContainer.EditedContent.FishingState.TabC.Subheader3 ?? OutputControl.SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader3DefaultValue
+					}
+					.Where(item => !String.IsNullOrWhiteSpace(item))
+					.ToList();
 
-				if (!String.IsNullOrWhiteSpace(subHeader1) &&
-					!String.IsNullOrWhiteSpace(subHeader2) &&
-					!String.IsNullOrWhiteSpace(subHeader3))
+				switch (subHeaders.Count)
 				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile("CP03C-3.pptx");
-
-					outputDataPackage.TextItems.Add("CP03CHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP03CSubheader1".ToUpper(), subHeader1);
-					outputDataPackage.TextItems.Add("CP03CSubheader2".ToUpper(), subHeader2);
-					outputDataPackage.TextItems.Add("CP03CSubheader3".ToUpper(), subHeader3);
+					case 1:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile("CP03C-1.pptx");
+						break;
+					case 2:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile("CP03C-2.pptx");
+						break;
+					case 3:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile("CP03C-3.pptx");
+						break;
+					default:
+						outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile("CP03C-1.pptx");
+						break;
 				}
-				else if (!String.IsNullOrWhiteSpace(subHeader1) &&
-						 !String.IsNullOrWhiteSpace(subHeader2))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile("CP03C-2.pptx");
 
-					outputDataPackage.TextItems.Add("CP03CHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP03CSubheader1".ToUpper(), subHeader1);
-					outputDataPackage.TextItems.Add("CP03CSubheader2".ToUpper(), subHeader2);
-				}
-				else if (!String.IsNullOrWhiteSpace(subHeader1))
-				{
-					outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarFishingFile("CP03C-1.pptx");
-
-					outputDataPackage.TextItems.Add("CP03CHEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
-					outputDataPackage.TextItems.Add("CP03CSubheader1".ToUpper(), subHeader1);
-				}
+				outputDataPackage.TextItems.Add("CP03CHEADER".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("HEADER".ToUpper(), slideHeader);
+				outputDataPackage.TextItems.Add("CP03CSubheader1".ToUpper(), subHeaders.ElementAtOrDefault(0));
+				outputDataPackage.TextItems.Add("CP03CSubheader2".ToUpper(), subHeaders.ElementAtOrDefault(1));
+				outputDataPackage.TextItems.Add("CP03CSubheader3".ToUpper(), subHeaders.ElementAtOrDefault(2));
 
 				return outputDataPackage;
 			}

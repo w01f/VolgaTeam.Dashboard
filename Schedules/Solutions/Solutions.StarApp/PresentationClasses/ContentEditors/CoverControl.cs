@@ -88,7 +88,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			if (!_dataChanged) return;
 
 			SlideContainer.EditedContent.CoverState.SlideHeader = SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-				comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+				comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 				null;
 
 			SlideContainer.EditedContent.CoverState.AddAsPageOne = checkEditAddAsPageOne.Checked;
@@ -98,7 +98,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				null;
 
 			SlideContainer.EditedContent.CoverState.Subheader1 = memoEditSubheader1.EditValue as String != SlideContainer.StarInfo.CoverConfiguration.SubHeader1DefaultValue ?
-				memoEditSubheader1.EditValue as String :
+				memoEditSubheader1.EditValue as String ?? String.Empty:
 				null;
 
 			SlideContainer.EditedContent.CoverState.Calendar1 = checkEditCalendar1.Checked ?
@@ -201,7 +201,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				outputDataPackage.ClipartItems.Add("CP01ACLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
 			}
 
-			var slideHeader = SlideContainer.EditedContent.CoverState.SlideHeader?.Value ?? SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => h.IsDefault)?.Value;
+			var slideHeader = (SlideContainer.EditedContent.CoverState.SlideHeader ?? SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => h.IsDefault))?.Value;
 			var subHeader1 = SlideContainer.EditedContent.CoverState.Subheader1 ?? SlideContainer.StarInfo.CoverConfiguration.SubHeader1DefaultValue;
 			var calendar1 = SlideContainer.EditedContent.CoverState.Calendar1;
 			var combo1 = SlideContainer.EditedContent.CoverState.Combo1 ?? _usersByStation.FirstOrDefault();
@@ -291,7 +291,5 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			return new[] { new PreviewGroup { Name = OutputName, PresentationSourcePath = tempFileName, InsertOnTop = outputDataPackage.AddAsFirtsPage } };
 		}
 		#endregion
-
-
 	}
 }

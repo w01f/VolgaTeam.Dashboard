@@ -78,14 +78,14 @@ namespace Asa.Common.GUI.Common
 		private static void OnEmptyEditorEditValueChanged(object sender, EventArgs e)
 		{
 			if (!(sender is BaseEdit editor)) return;
-			if (editor.EditValue is String value && String.IsNullOrEmpty(value))
+			if (String.IsNullOrEmpty(editor.EditValue?.ToString()))
 				editor.EditValue = null;
 		}
 
 		private static void OnPlaceholderColorEditValueChanged(object sender, EventArgs e)
 		{
 			if (!(sender is BaseEdit editor)) return;
-			if (editor.EditValue == null || editor.EditValue is String value && String.IsNullOrEmpty(value))
+			if (String.IsNullOrEmpty(editor.EditValue?.ToString()))
 				editor.Properties.Appearance.ForeColor = Color.Gray;
 			else
 				editor.Properties.Appearance.Reset();

@@ -32,6 +32,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			memoEditTabBSubheader4.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			memoEditTabBSubheader5.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			memoEditTabBSubheader6.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditTabCCombo1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			Application.DoEvents();
 
 			layoutControlGroupTabA.Text = SlideContainer.StarInfo.Titles.Tab9SubATitle;
@@ -159,7 +160,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				case 0:
 					SlideContainer.EditedContent.AudienceState.TabA.SlideHeader = SlideContainer.StarInfo.AudienceConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
 					SlideContainer.EditedContent.AudienceState.TabA.Clipart1 = pictureEditTabAClipart1.Image != SlideContainer.StarInfo.Tab9SubAClipart1Image ?
@@ -170,15 +171,15 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						null;
 
 					SlideContainer.EditedContent.AudienceState.TabA.Subheader1 = memoEditTabASubheader1.EditValue as String != SlideContainer.StarInfo.AudienceConfiguration.PartASubHeader1DefaultValue ?
-						memoEditTabASubheader1.EditValue as String :
+						memoEditTabASubheader1.EditValue as String ?? String.Empty :
 						null;
 					SlideContainer.EditedContent.AudienceState.TabA.Subheader2 = memoEditTabASubheader2.EditValue as String != SlideContainer.StarInfo.AudienceConfiguration.PartASubHeader2DefaultValue ?
-						memoEditTabASubheader2.EditValue as String :
+						memoEditTabASubheader2.EditValue as String ?? String.Empty :
 						null;
 					break;
 				case 1:
 					SlideContainer.EditedContent.AudienceState.TabB.SlideHeader = SlideContainer.StarInfo.AudienceConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
 					SlideContainer.EditedContent.AudienceState.TabB.Clipart1 = pictureEditTabBClipart1.Image != SlideContainer.StarInfo.Tab9SubBClipart1Image ?
@@ -192,27 +193,27 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						null;
 
 					SlideContainer.EditedContent.AudienceState.TabB.Subheader1 = textEditTabBSubheader1.EditValue as String != SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader1DefaultValue ?
-						textEditTabBSubheader1.EditValue as String :
+						textEditTabBSubheader1.EditValue as String ?? String.Empty :
 						null;
 					SlideContainer.EditedContent.AudienceState.TabB.Subheader2 = textEditTabBSubheader2.EditValue as String != SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader2DefaultValue ?
-						textEditTabBSubheader2.EditValue as String :
+						textEditTabBSubheader2.EditValue as String ?? String.Empty :
 						null;
 					SlideContainer.EditedContent.AudienceState.TabB.Subheader3 = textEditTabBSubheader3.EditValue as String != SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader3DefaultValue ?
-						textEditTabBSubheader3.EditValue as String :
+						textEditTabBSubheader3.EditValue as String ?? String.Empty :
 						null;
 					SlideContainer.EditedContent.AudienceState.TabB.Subheader4 = memoEditTabBSubheader4.EditValue as String != SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader4DefaultValue ?
-						memoEditTabBSubheader4.EditValue as String :
+						memoEditTabBSubheader4.EditValue as String ?? String.Empty :
 						null;
 					SlideContainer.EditedContent.AudienceState.TabB.Subheader5 = memoEditTabBSubheader4.EditValue as String != SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader5DefaultValue ?
-						memoEditTabBSubheader5.EditValue as String :
+						memoEditTabBSubheader5.EditValue as String ?? String.Empty :
 						null;
 					SlideContainer.EditedContent.AudienceState.TabB.Subheader6 = memoEditTabBSubheader4.EditValue as String != SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader6DefaultValue ?
-						memoEditTabBSubheader6.EditValue as String :
+						memoEditTabBSubheader6.EditValue as String ?? String.Empty :
 						null;
 					break;
 				case 2:
 					SlideContainer.EditedContent.AudienceState.TabC.SlideHeader = SlideContainer.StarInfo.AudienceConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
 					SlideContainer.EditedContent.AudienceState.TabC.Clipart1 = pictureEditTabCClipart1.Image != SlideContainer.StarInfo.Tab9SubCClipart1Image ?

@@ -72,8 +72,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			checkEditAddAsPageOne.Checked = SlideContainer.EditedContent.CoverState.AddAsPageOne;
 
-			dateEditCalendar1.EditValue = SlideContainer.EditedContent.CoverState.Calendar1 ?? _defaultDate;
-			checkEditCalendar1.Checked = dateEditCalendar1.EditValue != null;
+			dateEditCalendar1.EditValue = SlideContainer.EditedContent.CoverState.Calendar1 != DateTime.MinValue ? SlideContainer.EditedContent.CoverState.Calendar1 ?? _defaultDate : _defaultDate;
+			checkEditCalendar1.Checked = SlideContainer.EditedContent.CoverState.Calendar1 != DateTime.MinValue;
 
 			comboBoxEditCombo1.EditValue = SlideContainer.EditedContent.CoverState.Combo1 ??
 				_usersByStation.FirstOrDefault();
@@ -98,12 +98,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				null;
 
 			SlideContainer.EditedContent.CoverState.Subheader1 = memoEditSubheader1.EditValue as String != SlideContainer.StarInfo.CoverConfiguration.SubHeader1DefaultValue ?
-				memoEditSubheader1.EditValue as String ?? String.Empty:
+				memoEditSubheader1.EditValue as String ?? String.Empty :
 				null;
 
 			SlideContainer.EditedContent.CoverState.Calendar1 = checkEditCalendar1.Checked ?
-				(DateTime?)dateEditCalendar1.EditValue :
-				null;
+				((DateTime?)dateEditCalendar1.EditValue == _defaultDate ? null : (DateTime?)dateEditCalendar1.EditValue) :
+				DateTime.MinValue;
 
 			SlideContainer.EditedContent.CoverState.Combo1 = _usersByStation.FirstOrDefault() != comboBoxEditCombo1.EditValue as User ?
 				comboBoxEditCombo1.EditValue as User ?? (comboBoxEditCombo1.EditValue is String ? new User { FirstName = (String)comboBoxEditCombo1.EditValue } : null) :
@@ -203,7 +203,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			var slideHeader = (SlideContainer.EditedContent.CoverState.SlideHeader ?? SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => h.IsDefault))?.Value;
 			var subHeader1 = SlideContainer.EditedContent.CoverState.Subheader1 ?? SlideContainer.StarInfo.CoverConfiguration.SubHeader1DefaultValue;
-			var calendar1 = SlideContainer.EditedContent.CoverState.Calendar1;
+			var calendar1 = SlideContainer.EditedContent.CoverState.Calendar1 != DateTime.MinValue ? SlideContainer.EditedContent.CoverState.Calendar1 ?? _defaultDate : (DateTime?)null;
 			var combo1 = SlideContainer.EditedContent.CoverState.Combo1 ?? _usersByStation.FirstOrDefault();
 
 			if (!String.IsNullOrWhiteSpace(slideHeader) &&

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
+using Asa.Common.Core.Configuration;
+using Asa.Common.Core.Objects.FormStyle;
 
 namespace Asa.Common.GUI.ToolForms
 {
@@ -10,6 +13,16 @@ namespace Asa.Common.GUI.ToolForms
 		private FormDownloadProgress()
 		{
 			InitializeComponent();
+
+			var styleSettings = new StartFormStyleConfiguration();
+			styleSettings.Load(Path.Combine(ResourceManager.Instance.AppRootFolderPath, "sync_color.xml"));
+
+			BackColor = styleSettings.SyncBorderColor ?? BackColor;
+			panelMain.BackColor = styleSettings.SyncBackColor ?? panelMain.BackColor;
+			laTitle.ForeColor = laDetails.ForeColor = styleSettings.SyncTextColor ?? laTitle.ForeColor;
+			circularProgress.ProgressColor = styleSettings.SyncCircleColor ?? circularProgress.ProgressColor;
+			circularProgress.ProgressBarType = (DevComponents.DotNetBar.eCircularProgressType)((styleSettings.SyncCircleStyle ?? 2) - 1);
+			circularProgress.AnimationSpeed = styleSettings.SyncCircleSpeed ?? 150;
 		}
 
 		public static void ShowProgress(Form parent)

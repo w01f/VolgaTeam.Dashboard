@@ -31,7 +31,6 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDownloadProgress));
 			this.laTitle = new System.Windows.Forms.Label();
-			this.panelEx = new DevComponents.DotNetBar.PanelEx();
 			this.laDetails = new System.Windows.Forms.Label();
 			this.circularProgress = new DevComponents.DotNetBar.Controls.CircularProgress();
 			this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -39,8 +38,9 @@
 			this.toolStripMenuItemShowProgress = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripMenuItemKillApp = new System.Windows.Forms.ToolStripMenuItem();
-			this.panelEx.SuspendLayout();
+			this.panelMain = new System.Windows.Forms.Panel();
 			this.contextMenuStrip.SuspendLayout();
+			this.panelMain.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// laTitle
@@ -58,28 +58,6 @@
 			this.laTitle.Text = "Test...";
 			this.laTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.laTitle.UseMnemonic = false;
-			// 
-			// panelEx
-			// 
-			this.panelEx.CanvasColor = System.Drawing.SystemColors.Control;
-			this.panelEx.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.panelEx.Controls.Add(this.laTitle);
-			this.panelEx.Controls.Add(this.laDetails);
-			this.panelEx.Controls.Add(this.circularProgress);
-			this.panelEx.Cursor = System.Windows.Forms.Cursors.Arrow;
-			this.panelEx.DisabledBackColor = System.Drawing.Color.Empty;
-			this.panelEx.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panelEx.Location = new System.Drawing.Point(1, 1);
-			this.panelEx.Name = "panelEx";
-			this.panelEx.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.panelEx.Size = new System.Drawing.Size(308, 32);
-			this.panelEx.Style.BackColor1.Color = System.Drawing.Color.ForestGreen;
-			this.panelEx.Style.BackColor2.Color = System.Drawing.Color.ForestGreen;
-			this.panelEx.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-			this.panelEx.Style.BorderColor.Color = System.Drawing.Color.LightGray;
-			this.panelEx.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-			this.panelEx.Style.GradientAngle = 90;
-			this.panelEx.TabIndex = 4;
 			// 
 			// laDetails
 			// 
@@ -148,6 +126,19 @@
 			this.toolStripMenuItemKillApp.Size = new System.Drawing.Size(169, 22);
 			this.toolStripMenuItemKillApp.Text = "Kill {0}";
 			// 
+			// panelMain
+			// 
+			this.panelMain.BackColor = System.Drawing.Color.ForestGreen;
+			this.panelMain.Controls.Add(this.laTitle);
+			this.panelMain.Controls.Add(this.laDetails);
+			this.panelMain.Controls.Add(this.circularProgress);
+			this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panelMain.Location = new System.Drawing.Point(1, 1);
+			this.panelMain.Name = "panelMain";
+			this.panelMain.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.panelMain.Size = new System.Drawing.Size(308, 32);
+			this.panelMain.TabIndex = 8;
+			// 
 			// FormDownloadProgress
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -155,7 +146,7 @@
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(310, 34);
 			this.ControlBox = false;
-			this.Controls.Add(this.panelEx);
+			this.Controls.Add(this.panelMain);
 			this.Cursor = System.Windows.Forms.Cursors.Arrow;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "FormDownloadProgress";
@@ -166,8 +157,8 @@
 			this.Text = "ProgressForm";
 			this.TopMost = true;
 			this.Shown += new System.EventHandler(this.OnFormShown);
-			this.panelEx.ResumeLayout(false);
 			this.contextMenuStrip.ResumeLayout(false);
+			this.panelMain.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -175,7 +166,6 @@
         #endregion
 
 		public System.Windows.Forms.Label laTitle;
-        protected DevComponents.DotNetBar.PanelEx panelEx;
 		public System.Windows.Forms.Label laDetails;
 		private System.Windows.Forms.NotifyIcon notifyIcon;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
@@ -183,5 +173,6 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemKillApp;
 		private DevComponents.DotNetBar.Controls.CircularProgress circularProgress;
-    }
+		private System.Windows.Forms.Panel panelMain;
+	}
 }

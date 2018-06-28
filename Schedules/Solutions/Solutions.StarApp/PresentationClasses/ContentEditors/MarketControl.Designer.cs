@@ -417,6 +417,7 @@
 			this.pictureEditTabAClipart1.Name = "pictureEditTabAClipart1";
 			this.pictureEditTabAClipart1.Properties.AllowFocused = false;
 			this.pictureEditTabAClipart1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.pictureEditTabAClipart1.Properties.ExportMode = DevExpress.XtraEditors.Repository.ExportMode.Value;
 			this.pictureEditTabAClipart1.Properties.NullText = " ";
 			this.pictureEditTabAClipart1.Properties.ReadOnly = true;
 			this.pictureEditTabAClipart1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;

@@ -215,7 +215,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
 				outputDataPackage.TextItems.Add("CP01ASubheader1".ToUpper(), subHeader1);
-				outputDataPackage.TextItems.Add("CP01ACalendar1".ToUpper(), calendar1.Value.ToString("MM/dd/yyyy"));
+				outputDataPackage.TextItems.Add("CP01ACalendar1".ToUpper(), calendar1.Value.ToString("MMMM d, yyyy"));
 				outputDataPackage.TextItems.Add("CP01ACombo1".ToUpper(), combo1.ToString());
 				outputDataPackage.TextItems.Add("CP01ACombo1b".ToUpper(), String.Join("     ", combo1.Email, combo1.Phone));
 			}
@@ -226,7 +226,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCoverFile(clipart != null ? "CP01A-2.pptx" : "CP01A-9.pptx");
 
 				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
-				outputDataPackage.TextItems.Add("CP01ACalendar1".ToUpper(), calendar1.Value.ToString("MM/dd/yyyy"));
+				outputDataPackage.TextItems.Add("CP01ACalendar1".ToUpper(), calendar1.Value.ToString("MMMM d, yyyy"));
 				outputDataPackage.TextItems.Add("CP01ACombo1".ToUpper(), combo1.ToString());
 				outputDataPackage.TextItems.Add("CP01ACombo1b".ToUpper(), String.Join("     ", combo1.Email, combo1.Phone));
 			}
@@ -238,7 +238,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
 				outputDataPackage.TextItems.Add("CP01ASubheader1".ToUpper(), subHeader1);
-				outputDataPackage.TextItems.Add("CP01ACalendar1".ToUpper(), calendar1.Value.ToString("MM/dd/yyyy"));
+				outputDataPackage.TextItems.Add("CP01ACalendar1".ToUpper(), calendar1.Value.ToString("MMMM d, yyyy"));
 			}
 			else if (!String.IsNullOrWhiteSpace(slideHeader) &&
 					 !String.IsNullOrWhiteSpace(subHeader1) &&
@@ -265,7 +265,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCoverFile(clipart != null ? "CP01A-5.pptx" : "CP01A-12.pptx");
 
 				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
-				outputDataPackage.TextItems.Add("CP01ACalendar1".ToUpper(), calendar1.Value.ToString("MM/dd/yyyy"));
+				outputDataPackage.TextItems.Add("CP01ACalendar1".ToUpper(), calendar1.Value.ToString("MMMM d, yyyy"));
 			}
 			else if (!String.IsNullOrWhiteSpace(slideHeader))
 			{

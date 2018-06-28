@@ -66,7 +66,6 @@
 			this.pictureEditLogoRight = new DevExpress.XtraEditors.PictureEdit();
 			this.panelLogoBottom = new System.Windows.Forms.Panel();
 			this.pictureEditLogoFooter = new DevExpress.XtraEditors.PictureEdit();
-			this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAddAsPageOne.Properties)).BeginInit();
@@ -99,7 +98,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).BeginInit();
 			this.panelLogoBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -629,7 +627,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).EndInit();
 			this.panelLogoBottom.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -665,6 +662,5 @@
 		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemCombo1Description1;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupSubheader1;
-		private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
 	}
 }

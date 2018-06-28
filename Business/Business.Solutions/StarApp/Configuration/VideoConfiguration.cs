@@ -59,7 +59,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							if (!String.IsNullOrEmpty(item.Value))
 								HeadersPartAItems.Add(item);
 							break;
-						case "CP08ASubHeader1":
+						case "CP08ASubheader1":
 							if (item.IsPlaceholder)
 								PartASubHeader1Placeholder = item.Value;
 							else

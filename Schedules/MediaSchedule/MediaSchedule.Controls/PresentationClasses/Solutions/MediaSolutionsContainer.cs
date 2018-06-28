@@ -6,6 +6,7 @@ using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Common.Helpers;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.Objects.FormStyle;
 using Asa.Common.GUI.Themes;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Solutions.Common.PresentationClasses;
@@ -23,6 +24,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		public override ButtonItem ButtonPdf => Controller.Instance.MenuOutputPdfButton;
 		public override ButtonItem ButtonPreview => Controller.Instance.SolutionsPreview;
 		public override ButtonItem ButtonEmail => Controller.Instance.MenuEmailButton;
+		public override MainFormStyleConfiguration StyleConfiguration => BusinessObjects.Instance.FormStyleManager.Style;
 
 		public override void InitControl()
 		{

@@ -61,14 +61,28 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ISolutionEditor.cs" />
-    <Compile Include="PresentationClasses\SolutionToggle.cs">
+    <Compile Include="PresentationClasses\ISolutionToggle.cs" />
+    <Compile Include="PresentationClasses\SolutionButtonToggle.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PresentationClasses\SolutionImageToggle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SolutionToggleHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PresentationClasses\BaseSolutionContainerControl.resx">
       <DependentUpon>BaseSolutionContainerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +97,10 @@
     <ProjectReference Include="..\..\..\Common\Common.Core\Common.Core.csproj">
       <Project>{ADEB2DFE-615C-4D0C-A283-A155B55E443D}</Project>
       <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\Common.GUI\Common.GUI.csproj">
+      <Project>{A97255F0-74B3-4C03-B623-EC0E37E80A3C}</Project>
+      <Name>Common.GUI</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Common\Common.Controls\Common.Controls.csproj">
       <Project>{18F20EB4-6552-4F0A-AB13-D417A2D53CD4}</Project>

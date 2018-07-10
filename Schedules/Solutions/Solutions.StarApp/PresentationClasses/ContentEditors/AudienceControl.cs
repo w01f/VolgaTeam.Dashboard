@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
@@ -40,45 +41,24 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			layoutControlGroupTabC.Text = SlideContainer.StarInfo.Titles.Tab9SubCTitle;
 			Application.DoEvents();
 
-			pictureEditTabAClipart1.Image = SlideContainer.StarInfo.Tab9SubAClipart1Image;
-			pictureEditTabAClipart1.Properties.PictureAlignment =
-				SlideContainer.StarInfo.AudienceConfiguration.PartAClipart1Configuration.Alignment;
-			pictureEditTabAClipart2.Image = SlideContainer.StarInfo.Tab9SubAClipart2Image;
-			pictureEditTabAClipart2.Properties.PictureAlignment =
-				SlideContainer.StarInfo.AudienceConfiguration.PartAClipart2Configuration.Alignment;
-			pictureEditTabBClipart1.Image = SlideContainer.StarInfo.Tab9SubBClipart1Image;
-			pictureEditTabBClipart1.Properties.PictureAlignment =
-				SlideContainer.StarInfo.AudienceConfiguration.PartBClipart1Configuration.Alignment;
-			pictureEditTabBClipart2.Image = SlideContainer.StarInfo.Tab9SubBClipart2Image;
-			pictureEditTabBClipart2.Properties.PictureAlignment =
-				SlideContainer.StarInfo.AudienceConfiguration.PartBClipart2Configuration.Alignment;
-			pictureEditTabBClipart3.Image = SlideContainer.StarInfo.Tab9SubBClipart3Image;
-			pictureEditTabBClipart3.Properties.PictureAlignment =
-				SlideContainer.StarInfo.AudienceConfiguration.PartBClipart3Configuration.Alignment;
-			pictureEditTabCClipart1.Image = SlideContainer.StarInfo.Tab9SubCClipart1Image;
-			pictureEditTabCClipart1.Properties.PictureAlignment =
-				SlideContainer.StarInfo.AudienceConfiguration.PartCClipart1Configuration.Alignment;
-			pictureEditTabCClipart2.Image = SlideContainer.StarInfo.Tab9SubCClipart2Image;
-			pictureEditTabCClipart2.Properties.PictureAlignment =
-				SlideContainer.StarInfo.AudienceConfiguration.PartCClipart2Configuration.Alignment;
-			pictureEditTabCClipart3.Image = SlideContainer.StarInfo.Tab9SubCClipart3Image;
-			pictureEditTabCClipart3.Properties.PictureAlignment =
-				SlideContainer.StarInfo.AudienceConfiguration.PartCClipart3Configuration.Alignment;
-			pictureEditTabCClipart4.Image = SlideContainer.StarInfo.Tab9SubCClipart4Image;
-			pictureEditTabCClipart4.Properties.PictureAlignment =
-				SlideContainer.StarInfo.AudienceConfiguration.PartCClipart4Configuration.Alignment;
-
-			ImageEditorHelper.AssignImageEditors(new[]{
-				pictureEditTabAClipart1,
-				pictureEditTabAClipart2,
-				pictureEditTabBClipart1,
-				pictureEditTabBClipart2,
-				pictureEditTabBClipart3,
-				pictureEditTabCClipart1,
-				pictureEditTabCClipart2,
-				pictureEditTabCClipart3,
-				pictureEditTabCClipart4,
-			});
+			clipartEditContainerTabA1.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab9SubAClipart1Image), SlideContainer.StarInfo.AudienceConfiguration.PartAClipart1Configuration, this);
+			clipartEditContainerTabA1.EditValueChanged += OnEditValueChanged;
+			clipartEditContainerTabA2.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab9SubAClipart2Image), SlideContainer.StarInfo.AudienceConfiguration.PartAClipart2Configuration, this);
+			clipartEditContainerTabA2.EditValueChanged += OnEditValueChanged;
+			clipartEditContainerTabB1.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab9SubBClipart1Image), SlideContainer.StarInfo.AudienceConfiguration.PartBClipart1Configuration, this);
+			clipartEditContainerTabB1.EditValueChanged += OnEditValueChanged;
+			clipartEditContainerTabB2.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab9SubBClipart2Image), SlideContainer.StarInfo.AudienceConfiguration.PartBClipart2Configuration, this);
+			clipartEditContainerTabB2.EditValueChanged += OnEditValueChanged;
+			clipartEditContainerTabB3.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab9SubBClipart3Image), SlideContainer.StarInfo.AudienceConfiguration.PartBClipart3Configuration, this);
+			clipartEditContainerTabB3.EditValueChanged += OnEditValueChanged;
+			clipartEditContainerTabC1.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab9SubCClipart1Image), SlideContainer.StarInfo.AudienceConfiguration.PartCClipart1Configuration, this);
+			clipartEditContainerTabC1.EditValueChanged += OnEditValueChanged;
+			clipartEditContainerTabC2.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab9SubCClipart2Image), SlideContainer.StarInfo.AudienceConfiguration.PartCClipart2Configuration, this);
+			clipartEditContainerTabC2.EditValueChanged += OnEditValueChanged;
+			clipartEditContainerTabC3.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab9SubCClipart3Image), SlideContainer.StarInfo.AudienceConfiguration.PartCClipart3Configuration, this);
+			clipartEditContainerTabC3.EditValueChanged += OnEditValueChanged;
+			clipartEditContainerTabC4.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab9SubCClipart4Image), SlideContainer.StarInfo.AudienceConfiguration.PartCClipart4Configuration, this);
+			clipartEditContainerTabC4.EditValueChanged += OnEditValueChanged;
 
 			Application.DoEvents();
 			memoEditTabASubheader1.Properties.NullText = SlideContainer.StarInfo.AudienceConfiguration.PartASubHeader1Placeholder ?? memoEditTabASubheader1.Properties.NullText;
@@ -109,21 +89,16 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			_allowToSave = false;
 
-			pictureEditTabAClipart1.Image = SlideContainer.EditedContent.AudienceState.TabA.Clipart1 ??
-				pictureEditTabAClipart1.Image;
-			pictureEditTabAClipart2.Image = SlideContainer.EditedContent.AudienceState.TabA.Clipart2 ??
-				pictureEditTabAClipart2.Image;
+			clipartEditContainerTabA1.LoadData(SlideContainer.EditedContent.AudienceState.TabA.Clipart1);
+			clipartEditContainerTabA2.LoadData(SlideContainer.EditedContent.AudienceState.TabA.Clipart2);
 			memoEditTabASubheader1.EditValue = SlideContainer.EditedContent.AudienceState.TabA.Subheader1 ??
 				SlideContainer.StarInfo.AudienceConfiguration.PartASubHeader1DefaultValue;
 			memoEditTabASubheader2.EditValue = SlideContainer.EditedContent.AudienceState.TabA.Subheader2 ??
 				SlideContainer.StarInfo.AudienceConfiguration.PartASubHeader2DefaultValue;
 
-			pictureEditTabBClipart1.Image = SlideContainer.EditedContent.AudienceState.TabB.Clipart1 ??
-											pictureEditTabBClipart1.Image;
-			pictureEditTabBClipart2.Image = SlideContainer.EditedContent.AudienceState.TabB.Clipart2 ??
-											pictureEditTabBClipart2.Image;
-			pictureEditTabBClipart3.Image = SlideContainer.EditedContent.AudienceState.TabB.Clipart3 ??
-											pictureEditTabBClipart3.Image;
+			clipartEditContainerTabB1.LoadData(SlideContainer.EditedContent.AudienceState.TabB.Clipart1);
+			clipartEditContainerTabB2.LoadData(SlideContainer.EditedContent.AudienceState.TabB.Clipart2);
+			clipartEditContainerTabB3.LoadData(SlideContainer.EditedContent.AudienceState.TabB.Clipart3);
 			textEditTabBSubheader1.EditValue = SlideContainer.EditedContent.AudienceState.TabB.Subheader1 ??
 				SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader1DefaultValue;
 			textEditTabBSubheader2.EditValue = SlideContainer.EditedContent.AudienceState.TabB.Subheader2 ??
@@ -137,14 +112,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			memoEditTabBSubheader6.EditValue = SlideContainer.EditedContent.AudienceState.TabB.Subheader6 ??
 				SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader6DefaultValue;
 
-			pictureEditTabCClipart1.Image = SlideContainer.EditedContent.AudienceState.TabC.Clipart1 ??
-											pictureEditTabCClipart1.Image;
-			pictureEditTabCClipart2.Image = SlideContainer.EditedContent.AudienceState.TabC.Clipart2 ??
-											pictureEditTabCClipart2.Image;
-			pictureEditTabCClipart3.Image = SlideContainer.EditedContent.AudienceState.TabC.Clipart3 ??
-											pictureEditTabCClipart3.Image;
-			pictureEditTabCClipart4.Image = SlideContainer.EditedContent.AudienceState.TabC.Clipart4 ??
-											pictureEditTabCClipart4.Image;
+			clipartEditContainerTabC1.LoadData(SlideContainer.EditedContent.AudienceState.TabC.Clipart1);
+			clipartEditContainerTabC2.LoadData(SlideContainer.EditedContent.AudienceState.TabC.Clipart2);
+			clipartEditContainerTabC3.LoadData(SlideContainer.EditedContent.AudienceState.TabC.Clipart3);
+			clipartEditContainerTabC1.LoadData(SlideContainer.EditedContent.AudienceState.TabC.Clipart4);
 			comboBoxEditTabCCombo1.EditValue = SlideContainer.EditedContent.AudienceState.TabC.Combo1 ??
 				SlideContainer.StarInfo.AudienceConfiguration.PartCCombo1Items.FirstOrDefault(item => item.IsDefault);
 
@@ -163,12 +134,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
-					SlideContainer.EditedContent.AudienceState.TabA.Clipart1 = pictureEditTabAClipart1.Image != SlideContainer.StarInfo.Tab9SubAClipart1Image ?
-						pictureEditTabAClipart1.Image :
-						null;
-					SlideContainer.EditedContent.AudienceState.TabA.Clipart2 = pictureEditTabAClipart2.Image != SlideContainer.StarInfo.Tab9SubAClipart2Image ?
-						pictureEditTabAClipart2.Image :
-						null;
+					SlideContainer.EditedContent.AudienceState.TabA.Clipart1 = clipartEditContainerTabA1.GetActiveClipartObject();
+					SlideContainer.EditedContent.AudienceState.TabA.Clipart2 = clipartEditContainerTabA2.GetActiveClipartObject();
 
 					SlideContainer.EditedContent.AudienceState.TabA.Subheader1 = memoEditTabASubheader1.EditValue as String != SlideContainer.StarInfo.AudienceConfiguration.PartASubHeader1DefaultValue ?
 						memoEditTabASubheader1.EditValue as String ?? String.Empty :
@@ -182,15 +149,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
-					SlideContainer.EditedContent.AudienceState.TabB.Clipart1 = pictureEditTabBClipart1.Image != SlideContainer.StarInfo.Tab9SubBClipart1Image ?
-						pictureEditTabBClipart1.Image :
-						null;
-					SlideContainer.EditedContent.AudienceState.TabB.Clipart2 = pictureEditTabBClipart2.Image != SlideContainer.StarInfo.Tab9SubBClipart2Image ?
-						pictureEditTabBClipart2.Image :
-						null;
-					SlideContainer.EditedContent.AudienceState.TabB.Clipart3 = pictureEditTabBClipart3.Image != SlideContainer.StarInfo.Tab9SubBClipart3Image ?
-						pictureEditTabBClipart3.Image :
-						null;
+					SlideContainer.EditedContent.AudienceState.TabB.Clipart1 = clipartEditContainerTabB1.GetActiveClipartObject();
+					SlideContainer.EditedContent.AudienceState.TabB.Clipart2 = clipartEditContainerTabB2.GetActiveClipartObject();
+					SlideContainer.EditedContent.AudienceState.TabB.Clipart3 = clipartEditContainerTabB3.GetActiveClipartObject();
 
 					SlideContainer.EditedContent.AudienceState.TabB.Subheader1 = textEditTabBSubheader1.EditValue as String != SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader1DefaultValue ?
 						textEditTabBSubheader1.EditValue as String ?? String.Empty :
@@ -216,18 +177,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
-					SlideContainer.EditedContent.AudienceState.TabC.Clipart1 = pictureEditTabCClipart1.Image != SlideContainer.StarInfo.Tab9SubCClipart1Image ?
-						pictureEditTabCClipart1.Image :
-						null;
-					SlideContainer.EditedContent.AudienceState.TabC.Clipart2 = pictureEditTabCClipart2.Image != SlideContainer.StarInfo.Tab9SubCClipart2Image ?
-						pictureEditTabCClipart2.Image :
-						null;
-					SlideContainer.EditedContent.AudienceState.TabC.Clipart3 = pictureEditTabCClipart3.Image != SlideContainer.StarInfo.Tab9SubCClipart3Image ?
-						pictureEditTabCClipart3.Image :
-						null;
-					SlideContainer.EditedContent.AudienceState.TabC.Clipart4 = pictureEditTabCClipart4.Image != SlideContainer.StarInfo.Tab9SubCClipart4Image ?
-						pictureEditTabCClipart4.Image :
-						null;
+					SlideContainer.EditedContent.AudienceState.TabC.Clipart1 = clipartEditContainerTabC1.GetActiveClipartObject();
+					SlideContainer.EditedContent.AudienceState.TabC.Clipart2 = clipartEditContainerTabC2.GetActiveClipartObject();
+					SlideContainer.EditedContent.AudienceState.TabC.Clipart3 = clipartEditContainerTabC3.GetActiveClipartObject();
+					SlideContainer.EditedContent.AudienceState.TabC.Clipart4 = clipartEditContainerTabC4.GetActiveClipartObject();
 
 					SlideContainer.EditedContent.AudienceState.TabC.Combo1 = SlideContainer.StarInfo.AudienceConfiguration.PartCCombo1Items.FirstOrDefault(h => h.IsDefault) != comboBoxEditTabCCombo1.EditValue ?
 						comboBoxEditTabCCombo1.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabCCombo1.EditValue as String } :

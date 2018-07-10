@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Preview;
 using Asa.Solutions.StarApp.InteropClasses;
@@ -99,21 +99,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 				outputDataPackage.Theme = OutputControl.SelectedTheme;
 
-				var clipart1 = OutputControl.SlideContainer.EditedContent.CustomerState.TabA.Clipart1 ?? OutputControl.SlideContainer.StarInfo.Tab4SubAClipart1Image;
+				var clipart1 = OutputControl.SlideContainer.EditedContent.CustomerState.TabA.Clipart1 ?? ImageClipartObject.FromImage(OutputControl.SlideContainer.StarInfo.Tab4SubAClipart1Image);
 				if (clipart1 != null)
-				{
-					var fileName = Path.GetTempFileName();
-					clipart1.Save(fileName);
-					outputDataPackage.ClipartItems.Add("CP04ACLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart1.Width, clipart1.Height) });
-				}
+					outputDataPackage.ClipartItems.Add("CP04ACLIPART1", clipart1);
 
-				var clipart2 = OutputControl.SlideContainer.EditedContent.CustomerState.TabA.Clipart2 ?? OutputControl.SlideContainer.StarInfo.Tab4SubAClipart2Image;
+				var clipart2 = OutputControl.SlideContainer.EditedContent.CustomerState.TabA.Clipart2 ?? ImageClipartObject.FromImage(OutputControl.SlideContainer.StarInfo.Tab4SubAClipart2Image);
 				if (clipart2 != null)
-				{
-					var fileName = Path.GetTempFileName();
-					clipart2.Save(fileName);
-					outputDataPackage.ClipartItems.Add("CP04ACLIPART2", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart2.Width, clipart2.Height) });
-				}
+					outputDataPackage.ClipartItems.Add("CP04ACLIPART2", clipart2);
 
 				var slideHeader = (OutputControl.SlideContainer.EditedContent.CustomerState.TabA.SlideHeader ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				var combos = new[]
@@ -175,21 +167,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 				outputDataPackage.Theme = OutputControl.SelectedTheme;
 
-				var clipart1 = OutputControl.SlideContainer.EditedContent.CustomerState.TabB.Clipart1 ?? OutputControl.SlideContainer.StarInfo.Tab4SubBClipart1Image;
+				var clipart1 = OutputControl.SlideContainer.EditedContent.CustomerState.TabB.Clipart1 ?? ImageClipartObject.FromImage(OutputControl.SlideContainer.StarInfo.Tab4SubBClipart1Image);
 				if (clipart1 != null)
-				{
-					var fileName = Path.GetTempFileName();
-					clipart1.Save(fileName);
-					outputDataPackage.ClipartItems.Add("CP04BCLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart1.Width, clipart1.Height) });
-				}
+					outputDataPackage.ClipartItems.Add("CP04BCLIPART1", clipart1);
 
-				var clipart2 = OutputControl.SlideContainer.EditedContent.CustomerState.TabB.Clipart2 ?? OutputControl.SlideContainer.StarInfo.Tab4SubBClipart2Image;
+				var clipart2 = OutputControl.SlideContainer.EditedContent.CustomerState.TabB.Clipart2 ?? ImageClipartObject.FromImage(OutputControl.SlideContainer.StarInfo.Tab4SubBClipart2Image);
 				if (clipart2 != null)
-				{
-					var fileName = Path.GetTempFileName();
-					clipart2.Save(fileName);
-					outputDataPackage.ClipartItems.Add("CP04BCLIPART2", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart2.Width, clipart2.Height) });
-				}
+					outputDataPackage.ClipartItems.Add("CP04BCLIPART2", clipart2);
 
 				var slideHeader = (OutputControl.SlideContainer.EditedContent.CustomerState.TabB.SlideHeader ?? OutputControl.SlideContainer.StarInfo.CustomerConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				var subHeaders = new[]

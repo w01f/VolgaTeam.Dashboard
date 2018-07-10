@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Asa.Browser.Controls.BusinessClasses.Helpers
+namespace Asa.Common.Core.Helpers
 {
 	public static class FileFormatHelper
 	{
@@ -126,6 +126,11 @@ namespace Asa.Browser.Controls.BusinessClasses.Helpers
 				default:
 					return false;
 			}
+		}
+
+		public static bool IsImageFile(string filePath)
+		{
+			return IsPngFile(filePath) || IsJpegFile(filePath);
 		}
 
 		public static bool IsMp3File(string filePath)

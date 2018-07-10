@@ -18,6 +18,7 @@ namespace Asa.Business.Common.Entities.Persistent
 		[Required]
 		public string Name { get; set; }
 		public string SettingsEncoded { get; set; }
+		public string ResourcesEncoded { get; set; }
 		#endregion
 
 		#region Nonpersistent Properties
@@ -38,6 +39,7 @@ namespace Asa.Business.Common.Entities.Persistent
 		{
 			target.Name = Name;
 			target.SettingsEncoded = SettingsEncoded;
+			target.ResourcesEncoded = ResourcesEncoded;
 		}
 
 		public abstract void ApplySettingsChanges<TChangeInfo>(TChangeInfo changeInfo)
@@ -62,6 +64,7 @@ namespace Asa.Business.Common.Entities.Persistent
 			template.Name = name;
 			template.Date = DateTime.Now;
 			template.ScheduleSettingsContent = SettingsEncoded;
+			template.ScheduleResourcesContent = ResourcesEncoded;
 			template.PartitionTemplates.AddRange(GetPartitionTemplates());
 
 			return template;
@@ -71,6 +74,7 @@ namespace Asa.Business.Common.Entities.Persistent
 		{
 			Name = sourceTemplate.Name;
 			SettingsEncoded = sourceTemplate.ScheduleSettingsContent;
+			ResourcesEncoded = sourceTemplate.ScheduleResourcesContent;
 		}
 
 		protected abstract IEnumerable<SchedulePartitionTemplate> GetPartitionTemplates();

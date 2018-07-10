@@ -456,7 +456,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			using (var formPreview = new FormPreview(
 				Controller.Instance.FormMain,
 				BusinessObjects.Instance.PowerPointManager.Processor,
-				BusinessObjects.Instance.HelpManager,
 				Controller.Instance.ShowFloater,
 				Controller.Instance.CheckPowerPointRunning))
 			{

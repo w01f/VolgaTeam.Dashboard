@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
@@ -28,17 +28,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			memoEditTabBSubheader3.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			Application.DoEvents();
 
-			pictureEditTabBClipart1.Image = ClosersContentContainer.SlideContainer.StarInfo.Tab11SubBClipart1Image;
-			pictureEditTabBClipart1.Properties.PictureAlignment =
-				ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBClipart1Configuration.Alignment;
-			pictureEditTabBClipart2.Image = ClosersContentContainer.SlideContainer.StarInfo.Tab11SubBClipart2Image;
-			pictureEditTabBClipart2.Properties.PictureAlignment =
-				ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBClipart2Configuration.Alignment;
-
-			ImageEditorHelper.AssignImageEditors(new[]{
-				pictureEditTabBClipart1,
-				pictureEditTabBClipart2,
-			});
+			clipartEditContainer1.Init(ImageClipartObject.FromImage(ClosersContentContainer.SlideContainer.StarInfo.Tab11SubBClipart1Image), ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBClipart1Configuration, ClosersContentContainer);
+			clipartEditContainer1.EditValueChanged += OnEditValueChanged;
+			clipartEditContainer2.Init(ImageClipartObject.FromImage(ClosersContentContainer.SlideContainer.StarInfo.Tab11SubBClipart2Image), ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBClipart2Configuration, ClosersContentContainer);
+			clipartEditContainer2.EditValueChanged += OnEditValueChanged;
 
 			Application.DoEvents();
 			memoEditTabBSubheader1.Properties.NullText = ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBSubHeader1Placeholder ?? memoEditTabBSubheader1.Properties.NullText;
@@ -68,10 +61,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			_allowToSave = false;
 
-			pictureEditTabBClipart1.Image = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Clipart1 ??
-				pictureEditTabBClipart1.Image;
-			pictureEditTabBClipart2.Image = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Clipart2 ??
-				pictureEditTabBClipart2.Image;
+			clipartEditContainer1.LoadData(ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Clipart1);
+			clipartEditContainer2.LoadData(ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Clipart2);
 
 			comboBoxEditTabBCombo1.EditValue = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo1 ??
 				ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo1Items.FirstOrDefault(item => item.IsDefault);
@@ -97,12 +88,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			if (!_dataChanged) return;
 
-			ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Clipart1 = pictureEditTabBClipart1.Image != ClosersContentContainer.SlideContainer.StarInfo.Tab11SubBClipart1Image ?
-				pictureEditTabBClipart1.Image :
-				null;
-			ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Clipart2 = pictureEditTabBClipart2.Image != ClosersContentContainer.SlideContainer.StarInfo.Tab11SubBClipart2Image ?
-				pictureEditTabBClipart2.Image :
-				null;
+			ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Clipart1 = clipartEditContainer1.GetActiveClipartObject();
+			ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Clipart2 = clipartEditContainer2.GetActiveClipartObject();
 
 			ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Combo1 = ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo1Items.FirstOrDefault(h => h.IsDefault) != comboBoxEditTabBCombo1.EditValue ?
 				comboBoxEditTabBCombo1.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabBCombo1.EditValue as String } :
@@ -147,21 +134,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			outputDataPackage.Theme = ClosersContentContainer.SelectedTheme;
 
-			var clipart1 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Clipart1 ?? ClosersContentContainer.SlideContainer.StarInfo.Tab11SubBClipart1Image;
+			var clipart1 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Clipart1 ?? ImageClipartObject.FromImage(ClosersContentContainer.SlideContainer.StarInfo.Tab11SubBClipart1Image);
 			if (clipart1 != null)
-			{
-				var fileName = Path.GetTempFileName();
-				clipart1.Save(fileName);
-				outputDataPackage.ClipartItems.Add("CP11BCLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart1.Width, clipart1.Height) });
-			}
+				outputDataPackage.ClipartItems.Add("CP11BCLIPART1", clipart1);
 
-			var clipart2 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Clipart2 ?? ClosersContentContainer.SlideContainer.StarInfo.Tab11SubBClipart2Image;
+			var clipart2 = ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.Clipart2 ?? ImageClipartObject.FromImage(ClosersContentContainer.SlideContainer.StarInfo.Tab11SubBClipart2Image);
 			if (clipart2 != null)
-			{
-				var fileName = Path.GetTempFileName();
-				clipart2.Save(fileName);
-				outputDataPackage.ClipartItems.Add("CP11BCLIPART2", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart2.Width, clipart2.Height) });
-			}
+				outputDataPackage.ClipartItems.Add("CP11BCLIPART2", clipart2);
 
 			var slideHeader = (ClosersContentContainer.SlideContainer.EditedContent.ClosersState.TabB.SlideHeader ?? ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault))?.Value;
 

@@ -1,4 +1,5 @@
 ﻿using Asa.Business.Common.Entities.NonPersistent.Schedule;
+using Asa.Business.Common.Entities.NonPersistent.ScheduleResources;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 
 namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
@@ -6,6 +7,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 	public abstract class StarAppContent : BaseSolutionContent
 	{
 		public abstract BaseScheduleSettings ScheduleSettings { get; }
+		public abstract BaseScheduleResourceContainer ScheduleResources { get; }
 
 		public CoverState CoverState { get; }
 		public CNAState CNAState { get; }

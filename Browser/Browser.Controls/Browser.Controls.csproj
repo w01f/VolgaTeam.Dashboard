@@ -71,9 +71,6 @@
     <Compile Include="BusinessClasses\Events\NewPageEventArgs.cs" />
     <Compile Include="BusinessClasses\Helpers\ExtensionsManager.cs" />
     <Compile Include="BusinessClasses\Helpers\ExternalBrowserManager.cs" />
-    <Compile Include="BusinessClasses\Helpers\FileFormatHelper.cs" />
-    <Compile Include="BusinessClasses\Helpers\UrlParseHelper.cs" />
-    <Compile Include="BusinessClasses\Helpers\YouTubeHelper.cs" />
     <Compile Include="BusinessClasses\Interfaces\IPrintableContent.cs" />
     <Compile Include="BusinessClasses\Objects\FileLinks\AppLinkData.cs" />
     <Compile Include="BusinessClasses\Objects\FileLinks\BaseLinkData.cs" />
@@ -130,7 +127,7 @@
     <Compile Include="Controls\WebPage\WebKitPage.Extensions.YouTube.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="InteropClasses\SaleslIbraryPowerPointExtensions.cs" />
+    <Compile Include="InteropClasses\SalesLibraryPowerPointExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

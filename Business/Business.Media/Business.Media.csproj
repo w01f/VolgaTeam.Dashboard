@@ -82,6 +82,7 @@
     <Compile Include="Entities\NonPersistent\Option\OptionsContent.cs" />
     <Compile Include="Entities\NonPersistent\Option\OptionSet.cs" />
     <Compile Include="Entities\NonPersistent\Option\OptionSummary.cs" />
+    <Compile Include="Entities\NonPersistent\ScheduleResources\MediaScheduleResourceContainer.cs" />
     <Compile Include="Entities\NonPersistent\Schedule\Daypart.cs" />
     <Compile Include="Entities\NonPersistent\Schedule\Demo.cs" />
     <Compile Include="Entities\NonPersistent\Schedule\MediaScheduleModel.cs" />

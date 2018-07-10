@@ -11,6 +11,7 @@ using Asa.Business.Common.Interfaces;
 using Asa.Business.Media.Contexts;
 using Asa.Business.Media.Entities.NonPersistent.Option;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
+using Asa.Business.Media.Entities.NonPersistent.ScheduleResources;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Entities.NonPersistent.Snapshot;
 using Asa.Business.Media.Enums;
@@ -32,7 +33,6 @@ namespace Asa.Business.Media.Entities.Persistent
 
 		#region Nonpersistent Properties
 		private MediaScheduleSettings _settings;
-
 		[NotMapped, JsonIgnore]
 		public MediaScheduleSettings Settings
 		{
@@ -46,9 +46,28 @@ namespace Asa.Business.Media.Entities.Persistent
 			{
 				if (_settings == null || _settings != value)
 				{
-					if (_settings != null)
-						_settings.Dispose();
+					_settings?.Dispose();
 					_settings = value;
+				}
+			}
+		}
+
+		private MediaScheduleResourceContainer _resourceContainer;
+		[NotMapped, JsonIgnore]
+		public MediaScheduleResourceContainer ResourceContainer
+		{
+			get
+			{
+				if (_resourceContainer == null)
+					_resourceContainer = SettingsContainer.CreateInstance<MediaScheduleResourceContainer>(this, ResourcesEncoded);
+				return _resourceContainer;
+			}
+			set
+			{
+				if (_resourceContainer == null || _resourceContainer != value)
+				{
+					_resourceContainer?.Dispose();
+					_resourceContainer = value;
 				}
 			}
 		}
@@ -56,12 +75,9 @@ namespace Asa.Business.Media.Entities.Persistent
 		[NotMapped, JsonIgnore]
 		public ProgramScheduleContent ProgramSchedule
 		{
-			get
-			{
-				return Settings.SelectedSpotType == SpotType.Week ?
-						(ProgramScheduleContent)GetSchedulePartitionContent<WeeklyScheduleContent>(SchedulePartitionType.WeeklySchedule) :
-						GetSchedulePartitionContent<MonthlyScheduleContent>(SchedulePartitionType.MonthlySchedule);
-			}
+			get => Settings.SelectedSpotType == SpotType.Week ?
+				(ProgramScheduleContent)GetSchedulePartitionContent<WeeklyScheduleContent>(SchedulePartitionType.WeeklySchedule) :
+				GetSchedulePartitionContent<MonthlyScheduleContent>(SchedulePartitionType.MonthlySchedule);
 			set
 			{
 				if (Settings.SelectedSpotType == SpotType.Week)
@@ -74,15 +90,15 @@ namespace Asa.Business.Media.Entities.Persistent
 		[NotMapped, JsonIgnore]
 		public SnapshotContent SnapshotContent
 		{
-			get { return GetSchedulePartitionContent<SnapshotContent>(SchedulePartitionType.Snapshots); }
-			set { ApplySchedulePartitionContent(SchedulePartitionType.Snapshots, value); }
+			get => GetSchedulePartitionContent<SnapshotContent>(SchedulePartitionType.Snapshots);
+			set => ApplySchedulePartitionContent(SchedulePartitionType.Snapshots, value);
 		}
 
 		[NotMapped, JsonIgnore]
 		public OptionsContent OptionsContent
 		{
-			get { return GetSchedulePartitionContent<OptionsContent>(SchedulePartitionType.Options); }
-			set { ApplySchedulePartitionContent(SchedulePartitionType.Options, value); }
+			get => GetSchedulePartitionContent<OptionsContent>(SchedulePartitionType.Options);
+			set => ApplySchedulePartitionContent(SchedulePartitionType.Options, value);
 		}
 		#endregion
 
@@ -90,8 +106,8 @@ namespace Asa.Business.Media.Entities.Persistent
 		[NotMapped, JsonIgnore]
 		public DigitalProductsContent DigitalProductsContent
 		{
-			get { return GetSchedulePartitionContent<DigitalProductsContent>(SchedulePartitionType.DigitalProducts); }
-			set { ApplySchedulePartitionContent(SchedulePartitionType.DigitalProducts, value); }
+			get => GetSchedulePartitionContent<DigitalProductsContent>(SchedulePartitionType.DigitalProducts);
+			set => ApplySchedulePartitionContent(SchedulePartitionType.DigitalProducts, value);
 		}
 		#endregion
 
@@ -110,6 +126,8 @@ namespace Asa.Business.Media.Entities.Persistent
 		{
 			foreach (var mediaPartition in Partitions.ToList())
 				mediaPartition.Save(context, mediaPartition, false);
+			foreach (var mediaSolution in Solutions.ToList())
+				mediaSolution.Save(context, mediaSolution, false);
 			base.Save(context, current, withCommit);
 		}
 
@@ -117,6 +135,8 @@ namespace Asa.Business.Media.Entities.Persistent
 		{
 			foreach (var schedulePartition in Partitions.ToList())
 				schedulePartition.Delete(context);
+			foreach (var solution in Solutions.ToList())
+				solution.Delete(context);
 			base.Delete(context);
 		}
 
@@ -131,6 +151,13 @@ namespace Asa.Business.Media.Entities.Persistent
 				targetPartition.Schedule = mediaTarget;
 				mediaTarget.Partitions.Add(targetPartition);
 			}
+			foreach (var solution in Solutions.ToList())
+			{
+				var targetSolution = (MediaSolution)Activator.CreateInstance(solution.GetType());
+				solution.CloneData(targetSolution);
+				targetSolution.Schedule = mediaTarget;
+				mediaTarget.Solutions.Add(targetSolution);
+			}
 		}
 
 		public override void ResetParent() { }
@@ -138,6 +165,7 @@ namespace Asa.Business.Media.Entities.Persistent
 		public override void BeforeSave()
 		{
 			SettingsEncoded = Settings.Serialize();
+			ResourcesEncoded = ResourceContainer.Serialize();
 			foreach (var schedulePartition in Partitions.ToList())
 				schedulePartition.BeforeSave();
 			foreach (var scheduleSolution in Solutions.ToList())

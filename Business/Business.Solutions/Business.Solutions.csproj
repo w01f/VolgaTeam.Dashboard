@@ -53,6 +53,12 @@
   <ItemGroup>
     <Compile Include="Common\Entities\NonPersistent\BaseSolutionContent.cs" />
     <Compile Include="Common\Entities\NonPersistent\BaseSolutionInfo.cs" />
+    <Compile Include="Common\Entities\NonPersistent\ClipartObject.cs" />
+    <Compile Include="Common\Entities\NonPersistent\VideoClipartObject.cs" />
+    <Compile Include="Common\Entities\NonPersistent\VideoResourceItem.cs" />
+    <Compile Include="Common\Entities\NonPersistent\YoutubeClipartObject.cs" />
+    <Compile Include="Common\Entities\NonPersistent\ImageClipartObject.cs" />
+    <Compile Include="Common\Enums\ClipartObjectType.cs" />
     <Compile Include="Common\Enums\SolutionType.cs" />
     <Compile Include="Common\Helpers\SolutionsManager.cs" />
     <Compile Include="Common\Interfaces\IScheduleSolution.cs" />

@@ -7,6 +7,7 @@ using Asa.Browser.Controls.BusinessClasses.Objects.LinkViewContent;
 using Asa.Browser.Controls.InteropClasses;
 using Asa.Browser.Controls.ToolForms;
 using Asa.Common.GUI.Floater;
+using Asa.Common.GUI.Interop;
 using Asa.Common.GUI.ToolForms;
 using EO.WebBrowser;
 

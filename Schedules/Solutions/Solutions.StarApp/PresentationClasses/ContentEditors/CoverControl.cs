@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using Asa.Business.Solutions.Common.Dictionaries;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
@@ -38,13 +38,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			layoutControlGroupTabA.Text = SlideContainer.StarInfo.Titles.Tab1SubATitle;
 
-			pictureEditClipart1.Image = SlideContainer.StarInfo.Tab1SubAClipart1Image;
-			pictureEditClipart1.Properties.PictureAlignment =
-				SlideContainer.StarInfo.CoverConfiguration.PartAClipart1Configuration.Alignment;
-
-			ImageEditorHelper.AssignImageEditors(new[]{
-				pictureEditClipart1
-			});
+			clipartEditContainer1.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab1SubAClipart1Image), SlideContainer.StarInfo.CoverConfiguration.PartAClipart1Configuration, this);
+			clipartEditContainer1.EditValueChanged += OnEditValueChanged;
 
 			memoEditSubheader1.Properties.NullText = SlideContainer.StarInfo.CoverConfiguration.SubHeader1Placeholder ?? memoEditSubheader1.Properties.NullText;
 
@@ -64,8 +59,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			_allowToSave = false;
 
-			pictureEditClipart1.Image = SlideContainer.EditedContent.CoverState.Clipart1 ??
-				pictureEditClipart1.Image;
+			clipartEditContainer1.LoadData(SlideContainer.EditedContent.CoverState.Clipart1);
 
 			memoEditSubheader1.EditValue = SlideContainer.EditedContent.CoverState.Subheader1 ??
 				SlideContainer.StarInfo.CoverConfiguration.SubHeader1DefaultValue;
@@ -93,9 +87,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			SlideContainer.EditedContent.CoverState.AddAsPageOne = checkEditAddAsPageOne.Checked;
 
-			SlideContainer.EditedContent.CoverState.Clipart1 = pictureEditClipart1.Image != SlideContainer.StarInfo.Tab1SubAClipart1Image ?
-				pictureEditClipart1.Image :
-				null;
+			SlideContainer.EditedContent.CoverState.Clipart1 = clipartEditContainer1.GetActiveClipartObject();
 
 			SlideContainer.EditedContent.CoverState.Subheader1 = memoEditSubheader1.EditValue as String != SlideContainer.StarInfo.CoverConfiguration.SubHeader1DefaultValue ?
 				memoEditSubheader1.EditValue as String ?? String.Empty :
@@ -193,13 +185,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			outputDataPackage.Theme = SelectedTheme;
 			outputDataPackage.AddAsFirtsPage = SlideContainer.EditedContent.CoverState.AddAsPageOne;
 
-			var clipart = SlideContainer.EditedContent.CoverState.Clipart1 ?? SlideContainer.StarInfo.Tab1SubAClipart1Image;
+			var clipart = SlideContainer.EditedContent.CoverState.Clipart1 ?? ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab1SubAClipart1Image);
 			if (clipart != null)
-			{
-				var fileName = Path.GetTempFileName();
-				clipart.Save(fileName);
-				outputDataPackage.ClipartItems.Add("CP01ACLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
-			}
+				outputDataPackage.ClipartItems.Add("CP01ACLIPART1", clipart);
 
 			var slideHeader = (SlideContainer.EditedContent.CoverState.SlideHeader ?? SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => h.IsDefault))?.Value;
 			var subHeader1 = SlideContainer.EditedContent.CoverState.Subheader1 ?? SlideContainer.StarInfo.CoverConfiguration.SubHeader1DefaultValue;

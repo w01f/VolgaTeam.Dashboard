@@ -13,6 +13,7 @@ namespace Asa.Business.Common.Entities.NonPersistent.ScheduleTemplates
 		public string Advertiser { get; set; }
 		public DateTime Date { get; set; }
 		public string ScheduleSettingsContent { get; set; }
+		public string ScheduleResourcesContent { get; set; }
 		public List<SchedulePartitionTemplate> PartitionTemplates { get; private set; }
 
 		public ScheduleTemplate()

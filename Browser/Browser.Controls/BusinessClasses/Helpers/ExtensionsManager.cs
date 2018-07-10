@@ -4,6 +4,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using Asa.Browser.Controls.BusinessClasses.Objects.FileLinks;
 using Asa.Browser.Controls.BusinessClasses.Objects.LinkViewContent;
+using Asa.Common.Core.Helpers;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Common.GUI.ToolForms;
 using EO.WebBrowser;

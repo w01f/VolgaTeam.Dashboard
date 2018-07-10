@@ -66,6 +66,8 @@
     <Compile Include="Contexts\ScheduleContext.cs" />
     <Compile Include="Contexts\ScheduleManager.cs" />
     <Compile Include="Contexts\SqLiteContext.cs" />
+    <Compile Include="Entities\NonPersistent\ScheduleResources\BaseResourceItem.cs" />
+    <Compile Include="Entities\NonPersistent\ScheduleResources\BaseScheduleResourceContainer.cs" />
     <Compile Include="Enums\ScheduleEditMode.cs" />
     <Compile Include="Helpers\PartitionContentChangedEventArgs.cs" />
     <Compile Include="Helpers\ScheduleDatesChangedEventArgs.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Helpers\ScheduleTemplatesManager.cs" />
     <Compile Include="Entities\NonPersistent\Schedule\BaseScheduleSolutionContent.cs" />
     <Compile Include="Entities\Persistent\BaseScheduleSolution.cs" />
+    <Compile Include="Interfaces\IBaseScheduleResourceContainer.cs" />
     <Compile Include="Interfaces\IBaseScheduleSettings.cs" />
     <Compile Include="Entities\NonPersistent\Schedule\ShortScheduleModel.cs" />
     <Compile Include="Entities\NonPersistent\Summary\BaseSummarySettings.cs" />
@@ -138,6 +141,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Schema\Schedule\Version3\sequense.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Schema\Schedule\Version4\schedule.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Schema\Schedule\Version4\sequense.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

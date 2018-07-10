@@ -25,14 +25,12 @@ namespace Asa.Common.GUI.Preview
 		public FormPreview(
 			Form parentForm,
 			PowerPointProcessor powerPointProcessor,
-			HelpManager helpManager,
 			Action<Action, Action> showFloater,
 			Func<Action, bool> checkPowerPoint)
 		{
 			InitializeComponent();
 			_parentForm = parentForm;
 			_powerPointProcessor = powerPointProcessor;
-			_helpManager = helpManager;
 			_showFloater = showFloater;
 			_checkPowerPoint = checkPowerPoint;
 			GroupControls = new List<PreviewGroupControl>();
@@ -85,16 +83,6 @@ namespace Asa.Common.GUI.Preview
 			else
 				_checkPowerPoint(null);
 			DialogResult = DialogResult.OK;
-		}
-
-		private void barLargeButtonItemHelp_ItemClick(object sender, ItemClickEventArgs e)
-		{
-			_helpManager.OpenHelpLink("preview");
-		}
-
-		private void barLargeButtonItemExit_ItemClick(object sender, ItemClickEventArgs e)
-		{
-			Close();
 		}
 		#endregion
 	}

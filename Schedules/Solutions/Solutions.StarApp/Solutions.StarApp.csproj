@@ -41,6 +41,15 @@
     <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EO.Base, Version=18.1.75.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EO.WebBrowser.18.1.75\lib\EO.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.WebBrowser, Version=18.1.75.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EO.WebBrowser.18.1.75\lib\EO.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.WebEngine, Version=18.1.75.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EO.WebBrowser.18.1.75\lib\EO.WebEngine.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -60,7 +69,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\VideoResourceHelper.cs" />
     <Compile Include="InteropClasses\StarCommonHelper.cs" />
+    <Compile Include="PresentationClasses\ClipartEdit\ClipartEditContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ClipartEdit\ClipartEditContainer.Designer.cs">
+      <DependentUpon>ClipartEditContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ClipartEdit\FormPreviewYouTube.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ClipartEdit\FormPreviewYouTube.Designer.cs">
+      <DependentUpon>FormPreviewYouTube.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ClipartEdit\FormYouTubeInsert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ClipartEdit\FormYouTubeInsert.Designer.cs">
+      <DependentUpon>FormYouTubeInsert.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\AudienceConrol.Output.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -110,6 +138,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\IMultiTabsControl.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\IScheduleResourceHolder.cs" />
     <Compile Include="PresentationClasses\ContentEditors\MarketControl.Output.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -119,19 +148,18 @@
     <Compile Include="PresentationClasses\ContentEditors\VideoControl.Output.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ImageEdit\FormFavoritesOpen.cs">
+    <Compile Include="PresentationClasses\ClipartEdit\FormFavoritesOpen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ImageEdit\FormFavoritesOpen.Designer.cs">
+    <Compile Include="PresentationClasses\ClipartEdit\FormFavoritesOpen.Designer.cs">
       <DependentUpon>FormFavoritesOpen.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ImageEdit\FormPreviewImage.cs">
+    <Compile Include="PresentationClasses\ClipartEdit\FormPreviewImage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ImageEdit\FormPreviewImage.Designer.cs">
+    <Compile Include="PresentationClasses\ClipartEdit\FormPreviewImage.Designer.cs">
       <DependentUpon>FormPreviewImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ImageEdit\ImageEditorHelper.cs" />
     <Compile Include="PresentationClasses\ContentEditors\IROITabPageContainer.cs" />
     <Compile Include="PresentationClasses\ContentEditors\IClosersTabPageContainer.cs" />
     <Compile Include="PresentationClasses\ContentEditors\IShareTabPageContainer.cs" />
@@ -298,11 +326,6 @@
     <Compile Include="PresentationClasses\ContentEditors\StarAppControl.Designer.cs">
       <DependentUpon>StarAppControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ImageEdit\ImageEditorSettings.cs" />
-    <Compile Include="PresentationClasses\ImageEdit\ClosersControlImageEditorHelper.cs" />
-    <Compile Include="PresentationClasses\ImageEdit\ROIControlImageEditorHelper.cs" />
-    <Compile Include="PresentationClasses\ImageEdit\ShareControlImageEditorHelper.cs" />
-    <Compile Include="PresentationClasses\ImageEdit\StarAppCommonControlImageEditorHelper.cs" />
     <Compile Include="PresentationClasses\IStarAppShareContentControl.cs" />
     <Compile Include="PresentationClasses\Output\FormConfigureOutput.cs">
       <SubType>Form</SubType>
@@ -316,7 +339,6 @@
     <Compile Include="PresentationClasses\Output\OutputConfiguration.cs" />
     <Compile Include="PresentationClasses\Output\OutputDataPackage.cs" />
     <Compile Include="PresentationClasses\Output\OutputGroup.cs" />
-    <Compile Include="PresentationClasses\Output\OutputImageInfo.cs" />
     <Compile Include="PresentationClasses\Output\StarAppOutputType.cs" />
     <Compile Include="PresentationClasses\Output\StarSlideOuputData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -327,6 +349,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PresentationClasses\ClipartEdit\ClipartEditContainer.resx">
+      <DependentUpon>ClipartEditContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ClipartEdit\FormPreviewYouTube.resx">
+      <DependentUpon>FormPreviewYouTube.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ClipartEdit\FormYouTubeInsert.resx">
+      <DependentUpon>FormYouTubeInsert.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\BaseStarAppContainer.resx">
       <DependentUpon>BaseStarAppContainer.cs</DependentUpon>
     </EmbeddedResource>
@@ -426,10 +457,10 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\StarAppControl.resx">
       <DependentUpon>StarAppControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ImageEdit\FormFavoritesOpen.resx">
+    <EmbeddedResource Include="PresentationClasses\ClipartEdit\FormFavoritesOpen.resx">
       <DependentUpon>FormFavoritesOpen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ImageEdit\FormPreviewImage.resx">
+    <EmbeddedResource Include="PresentationClasses\ClipartEdit\FormPreviewImage.resx">
       <DependentUpon>FormPreviewImage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Output\FormConfigureOutput.resx">
@@ -441,6 +472,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\ButtonCalendar.png" />
   </ItemGroup>
   <ItemGroup>
@@ -493,6 +525,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ButtonArrowRight.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

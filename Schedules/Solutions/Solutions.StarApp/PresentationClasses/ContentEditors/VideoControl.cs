@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
@@ -33,30 +34,19 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			layoutControlGroupTabC.Text = SlideContainer.StarInfo.Titles.Tab8SubCTitle;
 			layoutControlGroupTabD.Text = SlideContainer.StarInfo.Titles.Tab8SubDTitle;
 
-			pictureEditTabAClipart1.Image = SlideContainer.StarInfo.Tab8SubAClipart1Image;
-			pictureEditTabAClipart1.Properties.PictureAlignment =
-				SlideContainer.StarInfo.VideoConfiguration.PartAClipart1Configuration.Alignment;
-			pictureEditTabBClipart1.Image = SlideContainer.StarInfo.Tab8SubBClipart1Image;
-			pictureEditTabBClipart1.Properties.PictureAlignment =
-				SlideContainer.StarInfo.VideoConfiguration.PartBClipart1Configuration.Alignment;
-			pictureEditTabCClipart1.Image = SlideContainer.StarInfo.Tab8SubCClipart1Image;
-			pictureEditTabCClipart1.Properties.PictureAlignment =
-				SlideContainer.StarInfo.VideoConfiguration.PartCClipart1Configuration.Alignment;
-			pictureEditTabDClipart1.Image = SlideContainer.StarInfo.Tab8SubDClipart1Image;
-			pictureEditTabDClipart1.Properties.PictureAlignment =
-				SlideContainer.StarInfo.VideoConfiguration.PartDClipart1Configuration.Alignment;
+			clipartEditContainerTabA1.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab8SubAClipart1Image), SlideContainer.StarInfo.VideoConfiguration.PartAClipart1Configuration, this);
+			clipartEditContainerTabA1.EditValueChanged += OnEditValueChanged;
+			clipartEditContainerTabB1.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab8SubBClipart1Image), SlideContainer.StarInfo.VideoConfiguration.PartBClipart1Configuration, this);
+			clipartEditContainerTabB1.EditValueChanged += OnEditValueChanged;
+			clipartEditContainerTabC1.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab8SubCClipart1Image), SlideContainer.StarInfo.VideoConfiguration.PartCClipart1Configuration, this);
+			clipartEditContainerTabC1.EditValueChanged += OnEditValueChanged;
+			clipartEditContainerTabD1.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab8SubDClipart1Image), SlideContainer.StarInfo.VideoConfiguration.PartDClipart1Configuration, this);
+			clipartEditContainerTabD1.EditValueChanged += OnEditValueChanged;
 
 			memoEditTabASubheader1.Properties.NullText = SlideContainer.StarInfo.VideoConfiguration.PartASubHeader1Placeholder ?? memoEditTabASubheader1.Properties.NullText;
 			memoEditTabBSubheader1.Properties.NullText = SlideContainer.StarInfo.VideoConfiguration.PartBSubHeader1Placeholder ?? memoEditTabBSubheader1.Properties.NullText;
 			memoEditTabCSubheader1.Properties.NullText = SlideContainer.StarInfo.VideoConfiguration.PartCSubHeader1Placeholder ?? memoEditTabCSubheader1.Properties.NullText;
 			memoEditTabDSubheader1.Properties.NullText = SlideContainer.StarInfo.VideoConfiguration.PartDSubHeader1Placeholder ?? memoEditTabDSubheader1.Properties.NullText;
-
-			ImageEditorHelper.AssignImageEditors(new[]{
-				pictureEditTabAClipart1,
-				pictureEditTabBClipart1,
-				pictureEditTabCClipart1,
-				pictureEditTabDClipart1,
-			});
 
 			_outputProcessors.AddRange(OutputProcessor.GetOutputProcessors(this));
 
@@ -71,23 +61,19 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			_allowToSave = false;
 
-			pictureEditTabAClipart1.Image = SlideContainer.EditedContent.VideoState.TabA.Clipart1 ??
-				pictureEditTabAClipart1.Image;
+			clipartEditContainerTabA1.LoadData(SlideContainer.EditedContent.VideoState.TabA.Clipart1);
 			memoEditTabASubheader1.EditValue = SlideContainer.EditedContent.VideoState.TabA.Subheader1 ??
 				SlideContainer.StarInfo.VideoConfiguration.PartASubHeader1DefaultValue;
 
-			pictureEditTabBClipart1.Image = SlideContainer.EditedContent.VideoState.TabB.Clipart1 ??
-				pictureEditTabBClipart1.Image;
+			clipartEditContainerTabB1.LoadData(SlideContainer.EditedContent.VideoState.TabB.Clipart1);
 			memoEditTabBSubheader1.EditValue = SlideContainer.EditedContent.VideoState.TabB.Subheader1 ??
 				SlideContainer.StarInfo.VideoConfiguration.PartBSubHeader1DefaultValue;
 
-			pictureEditTabCClipart1.Image = SlideContainer.EditedContent.VideoState.TabC.Clipart1 ??
-				pictureEditTabCClipart1.Image;
+			clipartEditContainerTabC1.LoadData(SlideContainer.EditedContent.VideoState.TabC.Clipart1);
 			memoEditTabCSubheader1.EditValue = SlideContainer.EditedContent.VideoState.TabC.Subheader1 ??
 				SlideContainer.StarInfo.VideoConfiguration.PartCSubHeader1DefaultValue;
 
-			pictureEditTabDClipart1.Image = SlideContainer.EditedContent.VideoState.TabD.Clipart1 ??
-				pictureEditTabDClipart1.Image;
+			clipartEditContainerTabD1.LoadData(SlideContainer.EditedContent.VideoState.TabD.Clipart1);
 			memoEditTabDSubheader1.EditValue = SlideContainer.EditedContent.VideoState.TabD.Subheader1 ??
 				SlideContainer.StarInfo.VideoConfiguration.PartDSubHeader1DefaultValue;
 
@@ -106,9 +92,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
-					SlideContainer.EditedContent.VideoState.TabA.Clipart1 = pictureEditTabAClipart1.Image != SlideContainer.StarInfo.Tab8SubAClipart1Image ?
-						pictureEditTabAClipart1.Image :
-						null;
+					SlideContainer.EditedContent.VideoState.TabA.Clipart1 = clipartEditContainerTabA1.GetActiveClipartObject();
 
 					SlideContainer.EditedContent.VideoState.TabA.Subheader1 = memoEditTabASubheader1.EditValue as String != SlideContainer.StarInfo.VideoConfiguration.PartASubHeader1DefaultValue ?
 						memoEditTabASubheader1.EditValue as String ?? String.Empty :
@@ -119,9 +103,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
-					SlideContainer.EditedContent.VideoState.TabB.Clipart1 = pictureEditTabBClipart1.Image != SlideContainer.StarInfo.Tab8SubBClipart1Image ?
-						pictureEditTabBClipart1.Image :
-						null;
+					SlideContainer.EditedContent.VideoState.TabB.Clipart1 = clipartEditContainerTabB1.GetActiveClipartObject();
 
 					SlideContainer.EditedContent.VideoState.TabB.Subheader1 = memoEditTabBSubheader1.EditValue as String != SlideContainer.StarInfo.VideoConfiguration.PartBSubHeader1DefaultValue ?
 						memoEditTabBSubheader1.EditValue as String ?? String.Empty :
@@ -132,9 +114,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
-					SlideContainer.EditedContent.VideoState.TabC.Clipart1 = pictureEditTabCClipart1.Image != SlideContainer.StarInfo.Tab8SubCClipart1Image ?
-						pictureEditTabCClipart1.Image :
-						null;
+					SlideContainer.EditedContent.VideoState.TabC.Clipart1 = clipartEditContainerTabC1.GetActiveClipartObject();
 
 					SlideContainer.EditedContent.VideoState.TabC.Subheader1 = memoEditTabCSubheader1.EditValue as String != SlideContainer.StarInfo.VideoConfiguration.PartCSubHeader1DefaultValue ?
 						memoEditTabCSubheader1.EditValue as String ?? String.Empty :
@@ -145,9 +125,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
-					SlideContainer.EditedContent.VideoState.TabD.Clipart1 = pictureEditTabDClipart1.Image != SlideContainer.StarInfo.Tab8SubDClipart1Image ?
-						pictureEditTabDClipart1.Image :
-						null;
+					SlideContainer.EditedContent.VideoState.TabD.Clipart1 = clipartEditContainerTabD1.GetActiveClipartObject();
 
 					SlideContainer.EditedContent.VideoState.TabD.Subheader1 = memoEditTabDSubheader1.EditValue as String != SlideContainer.StarInfo.VideoConfiguration.PartDSubHeader1DefaultValue ?
 						memoEditTabDSubheader1.EditValue as String ?? String.Empty :
@@ -216,26 +194,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			if (!_allowToSave) return;
 			_dataChanged = true;
 			SlideContainer.RaiseDataChanged();
-		}
-
-		private void OnTabASubheader1EditValueChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void OnTabBSubheader1EditValueChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void OnTabCSubheader1EditValueChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void OnTabDSubheader1EditValueChanged(object sender, EventArgs e)
-		{
-
 		}
 
 		private void OnSelectedPageChanging(object sender, LayoutTabPageChangingEventArgs e)

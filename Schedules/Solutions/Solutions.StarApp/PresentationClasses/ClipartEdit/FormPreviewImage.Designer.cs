@@ -1,4 +1,4 @@
-﻿namespace Asa.Solutions.StarApp.PresentationClasses.ImageEdit
+﻿namespace Asa.Solutions.StarApp.PresentationClasses.ClipartEdit
 {
 	partial class FormPreviewImage
 	{
@@ -132,6 +132,7 @@
 			this.Controls.Add(this.layoutControl);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ForeColor = System.Drawing.Color.Black;
 			this.MinimizeBox = false;
 			this.Name = "FormPreviewImage";
 			this.ShowIcon = false;

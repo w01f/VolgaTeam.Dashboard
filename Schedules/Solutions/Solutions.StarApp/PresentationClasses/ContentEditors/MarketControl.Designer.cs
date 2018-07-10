@@ -68,90 +68,79 @@
 			DevExpress.XtraLayout.RowDefinition rowDefinition20 = new DevExpress.XtraLayout.RowDefinition();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
-			this.pictureEditTabCClipart4 = new DevExpress.XtraEditors.PictureEdit();
-			this.pictureEditTabCClipart3 = new DevExpress.XtraEditors.PictureEdit();
-			this.pictureEditTabCClipart2 = new DevExpress.XtraEditors.PictureEdit();
-			this.pictureEditTabCClipart1 = new DevExpress.XtraEditors.PictureEdit();
 			this.comboBoxEditTabCCombo1 = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.memoEditTabBSubheader2 = new DevExpress.XtraEditors.MemoEdit();
-			this.pictureEditTabBClipart5 = new DevExpress.XtraEditors.PictureEdit();
-			this.pictureEditTabBClipart4 = new DevExpress.XtraEditors.PictureEdit();
-			this.pictureEditTabBClipart3 = new DevExpress.XtraEditors.PictureEdit();
-			this.pictureEditTabBClipart2 = new DevExpress.XtraEditors.PictureEdit();
-			this.pictureEditTabBClipart1 = new DevExpress.XtraEditors.PictureEdit();
 			this.memoEditTabASubheader1 = new DevExpress.XtraEditors.MemoEdit();
-			this.pictureEditTabAClipart1 = new DevExpress.XtraEditors.PictureEdit();
 			this.comboBoxEditSlideHeader = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.textEditTabBSubheader1 = new DevExpress.XtraEditors.TextEdit();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.tabbedControlGroupData = new DevExpress.XtraLayout.TabbedControlGroup();
 			this.layoutControlGroupTabA = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.layoutControlItemTabAClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemTabASubheader1 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlGroupTabB = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemTabBSubheader1 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemTabBClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemTabBClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemTabBClipart3 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemTabBClipart4 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemTabBClipart5 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemTabBSubheader2 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlGroupTabC = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemTabCCombo1 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemTabCClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemTabCClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemTabCClipart3 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemTabCClipart4 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemSlideHeader = new DevExpress.XtraLayout.LayoutControlItem();
 			this.panelLogoRight = new System.Windows.Forms.Panel();
 			this.pictureEditLogoRight = new DevExpress.XtraEditors.PictureEdit();
 			this.panelLogoBottom = new System.Windows.Forms.Panel();
 			this.pictureEditLogoFooter = new DevExpress.XtraEditors.PictureEdit();
-			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).BeginInit();
+			this.clipartEditContainerTabA1 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.layoutControlItemTabAClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.clipartEditContainerTabB1 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.layoutControlItemTabBClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.clipartEditContainerTabB2 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.layoutControlItemTabBClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.clipartEditContainerTabB3 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.layoutControlItemTabBClipart3 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.clipartEditContainerTabB4 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.layoutControlItemTabBClipart4 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.clipartEditContainerTabB5 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.layoutControlItemTabBClipart5 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.clipartEditContainerTabC1 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.layoutControlItemTabCClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.clipartEditContainerTabC2 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.layoutControlItemTabCClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.clipartEditContainerTabC3 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.layoutControlItemTabCClipart3 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.clipartEditContainerTabC4 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.layoutControlItemTabCClipart4 = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabCClipart4.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabCClipart3.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabCClipart2.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabCClipart1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditTabCCombo1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditTabBSubheader2.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart5.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart4.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart3.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart2.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditTabASubheader1.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabAClipart1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabBSubheader1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupData)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAClipart1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabASubheader1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabB)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBSubheader1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart4)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart5)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBSubheader2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabC)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCCombo1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCClipart1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCClipart2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCClipart3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCClipart4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlideHeader)).BeginInit();
 			this.panelLogoRight.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).BeginInit();
 			this.panelLogoBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAClipart1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart4)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCClipart1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCClipart2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCClipart3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCClipart4)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -185,26 +174,26 @@
 			this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
 			this.layoutControl.BackColor = System.Drawing.Color.White;
-			this.layoutControl.Controls.Add(this.pictureEditTabCClipart4);
-			this.layoutControl.Controls.Add(this.pictureEditTabCClipart3);
-			this.layoutControl.Controls.Add(this.pictureEditTabCClipart2);
-			this.layoutControl.Controls.Add(this.pictureEditTabCClipart1);
+			this.layoutControl.Controls.Add(this.clipartEditContainerTabC4);
+			this.layoutControl.Controls.Add(this.clipartEditContainerTabC3);
+			this.layoutControl.Controls.Add(this.clipartEditContainerTabC2);
+			this.layoutControl.Controls.Add(this.clipartEditContainerTabC1);
+			this.layoutControl.Controls.Add(this.clipartEditContainerTabB5);
+			this.layoutControl.Controls.Add(this.clipartEditContainerTabB4);
+			this.layoutControl.Controls.Add(this.clipartEditContainerTabB3);
+			this.layoutControl.Controls.Add(this.clipartEditContainerTabB2);
+			this.layoutControl.Controls.Add(this.clipartEditContainerTabB1);
+			this.layoutControl.Controls.Add(this.clipartEditContainerTabA1);
 			this.layoutControl.Controls.Add(this.comboBoxEditTabCCombo1);
 			this.layoutControl.Controls.Add(this.memoEditTabBSubheader2);
-			this.layoutControl.Controls.Add(this.pictureEditTabBClipart5);
-			this.layoutControl.Controls.Add(this.pictureEditTabBClipart4);
-			this.layoutControl.Controls.Add(this.pictureEditTabBClipart3);
-			this.layoutControl.Controls.Add(this.pictureEditTabBClipart2);
-			this.layoutControl.Controls.Add(this.pictureEditTabBClipart1);
 			this.layoutControl.Controls.Add(this.memoEditTabASubheader1);
-			this.layoutControl.Controls.Add(this.pictureEditTabAClipart1);
 			this.layoutControl.Controls.Add(this.comboBoxEditSlideHeader);
 			this.layoutControl.Controls.Add(this.textEditTabBSubheader1);
 			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutControl.ForeColor = System.Drawing.Color.Black;
 			this.layoutControl.Location = new System.Drawing.Point(0, 0);
 			this.layoutControl.Name = "layoutControl";
-			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 384, 250, 350);
+			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 385, 250, 350);
 			this.layoutControl.OptionsFocus.ActivateSelectedControlOnGotFocus = false;
 			this.layoutControl.OptionsFocus.AllowFocusGroups = false;
 			this.layoutControl.OptionsFocus.AllowFocusReadonlyEditors = false;
@@ -214,74 +203,6 @@
 			this.layoutControl.StyleController = this.styleController;
 			this.layoutControl.TabIndex = 69;
 			this.layoutControl.Text = "layoutControl1";
-			// 
-			// pictureEditTabCClipart4
-			// 
-			this.pictureEditTabCClipart4.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabCClipart4.Location = new System.Drawing.Point(505, 295);
-			this.pictureEditTabCClipart4.Name = "pictureEditTabCClipart4";
-			this.pictureEditTabCClipart4.Properties.AllowFocused = false;
-			this.pictureEditTabCClipart4.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditTabCClipart4.Properties.NullText = " ";
-			this.pictureEditTabCClipart4.Properties.ReadOnly = true;
-			this.pictureEditTabCClipart4.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditTabCClipart4.Properties.ShowMenu = false;
-			this.pictureEditTabCClipart4.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabCClipart4.Size = new System.Drawing.Size(108, 188);
-			this.pictureEditTabCClipart4.StyleController = this.layoutControl;
-			this.pictureEditTabCClipart4.TabIndex = 1;
-			this.pictureEditTabCClipart4.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
-			// 
-			// pictureEditTabCClipart3
-			// 
-			this.pictureEditTabCClipart3.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabCClipart3.Location = new System.Drawing.Point(365, 391);
-			this.pictureEditTabCClipart3.Name = "pictureEditTabCClipart3";
-			this.pictureEditTabCClipart3.Properties.AllowFocused = false;
-			this.pictureEditTabCClipart3.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditTabCClipart3.Properties.NullText = " ";
-			this.pictureEditTabCClipart3.Properties.ReadOnly = true;
-			this.pictureEditTabCClipart3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditTabCClipart3.Properties.ShowMenu = false;
-			this.pictureEditTabCClipart3.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabCClipart3.Size = new System.Drawing.Size(106, 188);
-			this.pictureEditTabCClipart3.StyleController = this.layoutControl;
-			this.pictureEditTabCClipart3.TabIndex = 1;
-			this.pictureEditTabCClipart3.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
-			// 
-			// pictureEditTabCClipart2
-			// 
-			this.pictureEditTabCClipart2.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabCClipart2.Location = new System.Drawing.Point(225, 487);
-			this.pictureEditTabCClipart2.Name = "pictureEditTabCClipart2";
-			this.pictureEditTabCClipart2.Properties.AllowFocused = false;
-			this.pictureEditTabCClipart2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditTabCClipart2.Properties.NullText = " ";
-			this.pictureEditTabCClipart2.Properties.ReadOnly = true;
-			this.pictureEditTabCClipart2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditTabCClipart2.Properties.ShowMenu = false;
-			this.pictureEditTabCClipart2.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabCClipart2.Size = new System.Drawing.Size(106, 190);
-			this.pictureEditTabCClipart2.StyleController = this.layoutControl;
-			this.pictureEditTabCClipart2.TabIndex = 1;
-			this.pictureEditTabCClipart2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
-			// 
-			// pictureEditTabCClipart1
-			// 
-			this.pictureEditTabCClipart1.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabCClipart1.Location = new System.Drawing.Point(85, 199);
-			this.pictureEditTabCClipart1.Name = "pictureEditTabCClipart1";
-			this.pictureEditTabCClipart1.Properties.AllowFocused = false;
-			this.pictureEditTabCClipart1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditTabCClipart1.Properties.NullText = " ";
-			this.pictureEditTabCClipart1.Properties.ReadOnly = true;
-			this.pictureEditTabCClipart1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditTabCClipart1.Properties.ShowMenu = false;
-			this.pictureEditTabCClipart1.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabCClipart1.Size = new System.Drawing.Size(106, 188);
-			this.pictureEditTabCClipart1.StyleController = this.layoutControl;
-			this.pictureEditTabCClipart1.TabIndex = 1;
-			this.pictureEditTabCClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// comboBoxEditTabCCombo1
 			// 
@@ -315,91 +236,6 @@
 			this.memoEditTabBSubheader2.TabIndex = 1;
 			this.memoEditTabBSubheader2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
-			// pictureEditTabBClipart5
-			// 
-			this.pictureEditTabBClipart5.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabBClipart5.Location = new System.Drawing.Point(496, 410);
-			this.pictureEditTabBClipart5.Name = "pictureEditTabBClipart5";
-			this.pictureEditTabBClipart5.Properties.AllowFocused = false;
-			this.pictureEditTabBClipart5.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditTabBClipart5.Properties.NullText = " ";
-			this.pictureEditTabBClipart5.Properties.ReadOnly = true;
-			this.pictureEditTabBClipart5.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditTabBClipart5.Properties.ShowMenu = false;
-			this.pictureEditTabBClipart5.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabBClipart5.Size = new System.Drawing.Size(87, 141);
-			this.pictureEditTabBClipart5.StyleController = this.layoutControl;
-			this.pictureEditTabBClipart5.TabIndex = 1;
-			this.pictureEditTabBClipart5.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
-			// 
-			// pictureEditTabBClipart4
-			// 
-			this.pictureEditTabBClipart4.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabBClipart4.Location = new System.Drawing.Point(386, 410);
-			this.pictureEditTabBClipart4.Name = "pictureEditTabBClipart4";
-			this.pictureEditTabBClipart4.Properties.AllowFocused = false;
-			this.pictureEditTabBClipart4.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditTabBClipart4.Properties.NullText = " ";
-			this.pictureEditTabBClipart4.Properties.ReadOnly = true;
-			this.pictureEditTabBClipart4.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditTabBClipart4.Properties.ShowMenu = false;
-			this.pictureEditTabBClipart4.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabBClipart4.Size = new System.Drawing.Size(86, 141);
-			this.pictureEditTabBClipart4.StyleController = this.layoutControl;
-			this.pictureEditTabBClipart4.TabIndex = 1;
-			this.pictureEditTabBClipart4.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
-			// 
-			// pictureEditTabBClipart3
-			// 
-			this.pictureEditTabBClipart3.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabBClipart3.Location = new System.Drawing.Point(496, 245);
-			this.pictureEditTabBClipart3.Name = "pictureEditTabBClipart3";
-			this.pictureEditTabBClipart3.Properties.AllowFocused = false;
-			this.pictureEditTabBClipart3.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditTabBClipart3.Properties.NullText = " ";
-			this.pictureEditTabBClipart3.Properties.ReadOnly = true;
-			this.pictureEditTabBClipart3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditTabBClipart3.Properties.ShowMenu = false;
-			this.pictureEditTabBClipart3.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabBClipart3.Size = new System.Drawing.Size(87, 141);
-			this.pictureEditTabBClipart3.StyleController = this.layoutControl;
-			this.pictureEditTabBClipart3.TabIndex = 1;
-			this.pictureEditTabBClipart3.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
-			// 
-			// pictureEditTabBClipart2
-			// 
-			this.pictureEditTabBClipart2.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabBClipart2.Location = new System.Drawing.Point(386, 245);
-			this.pictureEditTabBClipart2.Name = "pictureEditTabBClipart2";
-			this.pictureEditTabBClipart2.Properties.AllowFocused = false;
-			this.pictureEditTabBClipart2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditTabBClipart2.Properties.NullText = " ";
-			this.pictureEditTabBClipart2.Properties.ReadOnly = true;
-			this.pictureEditTabBClipart2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditTabBClipart2.Properties.ShowMenu = false;
-			this.pictureEditTabBClipart2.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabBClipart2.Size = new System.Drawing.Size(86, 141);
-			this.pictureEditTabBClipart2.StyleController = this.layoutControl;
-			this.pictureEditTabBClipart2.TabIndex = 1;
-			this.pictureEditTabBClipart2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
-			// 
-			// pictureEditTabBClipart1
-			// 
-			this.pictureEditTabBClipart1.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabBClipart1.Location = new System.Drawing.Point(115, 245);
-			this.pictureEditTabBClipart1.Name = "pictureEditTabBClipart1";
-			this.pictureEditTabBClipart1.Properties.AllowFocused = false;
-			this.pictureEditTabBClipart1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditTabBClipart1.Properties.NullText = " ";
-			this.pictureEditTabBClipart1.Properties.ReadOnly = true;
-			this.pictureEditTabBClipart1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditTabBClipart1.Properties.ShowMenu = false;
-			this.pictureEditTabBClipart1.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabBClipart1.Size = new System.Drawing.Size(177, 306);
-			this.pictureEditTabBClipart1.StyleController = this.layoutControl;
-			this.pictureEditTabBClipart1.TabIndex = 1;
-			this.pictureEditTabBClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
-			// 
 			// memoEditTabASubheader1
 			// 
 			this.memoEditTabASubheader1.Location = new System.Drawing.Point(366, 149);
@@ -407,26 +243,8 @@
 			this.memoEditTabASubheader1.Properties.NullText = "Type here";
 			this.memoEditTabASubheader1.Size = new System.Drawing.Size(247, 528);
 			this.memoEditTabASubheader1.StyleController = this.layoutControl;
-			this.memoEditTabASubheader1.TabIndex = 2;
+			this.memoEditTabASubheader1.TabIndex = 3;
 			this.memoEditTabASubheader1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
-			// 
-			// pictureEditTabAClipart1
-			// 
-			this.pictureEditTabAClipart1.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabAClipart1.Location = new System.Drawing.Point(85, 149);
-			this.pictureEditTabAClipart1.Name = "pictureEditTabAClipart1";
-			this.pictureEditTabAClipart1.Properties.AllowFocused = false;
-			this.pictureEditTabAClipart1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditTabAClipart1.Properties.ExportMode = DevExpress.XtraEditors.Repository.ExportMode.Value;
-			this.pictureEditTabAClipart1.Properties.NullText = " ";
-			this.pictureEditTabAClipart1.Properties.ReadOnly = true;
-			this.pictureEditTabAClipart1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditTabAClipart1.Properties.ShowMenu = false;
-			this.pictureEditTabAClipart1.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabAClipart1.Size = new System.Drawing.Size(247, 528);
-			this.pictureEditTabAClipart1.StyleController = this.layoutControl;
-			this.pictureEditTabAClipart1.TabIndex = 1;
-			this.pictureEditTabAClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// comboBoxEditSlideHeader
 			// 
@@ -523,8 +341,8 @@
 			// layoutControlGroupTabA
 			// 
 			this.layoutControlGroupTabA.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItemTabAClipart1,
-            this.layoutControlItemTabASubheader1});
+            this.layoutControlItemTabASubheader1,
+            this.layoutControlItemTabAClipart1});
 			this.layoutControlGroupTabA.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabA.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabA.Name = "layoutControlGroupTabA";
@@ -551,20 +369,6 @@
 			this.layoutControlGroupTabA.Size = new System.Drawing.Size(532, 592);
 			this.layoutControlGroupTabA.Text = "Tab A";
 			// 
-			// layoutControlItemTabAClipart1
-			// 
-			this.layoutControlItemTabAClipart1.Control = this.pictureEditTabAClipart1;
-			this.layoutControlItemTabAClipart1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemTabAClipart1.FillControlToClientArea = false;
-			this.layoutControlItemTabAClipart1.Location = new System.Drawing.Point(0, 30);
-			this.layoutControlItemTabAClipart1.Name = "layoutControlItemTabAClipart1";
-			this.layoutControlItemTabAClipart1.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemTabAClipart1.Size = new System.Drawing.Size(251, 532);
-			this.layoutControlItemTabAClipart1.Text = "Clipart 1";
-			this.layoutControlItemTabAClipart1.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemTabAClipart1.TextVisible = false;
-			this.layoutControlItemTabAClipart1.TrimClientAreaToControl = false;
-			// 
 			// layoutControlItemTabASubheader1
 			// 
 			this.layoutControlItemTabASubheader1.Control = this.memoEditTabASubheader1;
@@ -584,12 +388,12 @@
 			// 
 			this.layoutControlGroupTabB.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabBSubheader1,
+            this.layoutControlItemTabBSubheader2,
             this.layoutControlItemTabBClipart1,
             this.layoutControlItemTabBClipart2,
             this.layoutControlItemTabBClipart3,
             this.layoutControlItemTabBClipart4,
-            this.layoutControlItemTabBClipart5,
-            this.layoutControlItemTabBSubheader2});
+            this.layoutControlItemTabBClipart5});
 			this.layoutControlGroupTabB.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabB.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabB.Name = "layoutControlGroupTabB";
@@ -658,82 +462,6 @@
 			this.layoutControlItemTabBSubheader1.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabBSubheader1.TextVisible = false;
 			this.layoutControlItemTabBSubheader1.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemTabBClipart1
-			// 
-			this.layoutControlItemTabBClipart1.Control = this.pictureEditTabBClipart1;
-			this.layoutControlItemTabBClipart1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemTabBClipart1.FillControlToClientArea = false;
-			this.layoutControlItemTabBClipart1.Location = new System.Drawing.Point(30, 126);
-			this.layoutControlItemTabBClipart1.Name = "layoutControlItemTabBClipart1";
-			this.layoutControlItemTabBClipart1.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabBClipart1.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlItemTabBClipart1.OptionsTableLayoutItem.RowSpan = 3;
-			this.layoutControlItemTabBClipart1.Size = new System.Drawing.Size(181, 310);
-			this.layoutControlItemTabBClipart1.Text = "Clipart 1";
-			this.layoutControlItemTabBClipart1.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemTabBClipart1.TextVisible = false;
-			this.layoutControlItemTabBClipart1.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemTabBClipart2
-			// 
-			this.layoutControlItemTabBClipart2.Control = this.pictureEditTabBClipart2;
-			this.layoutControlItemTabBClipart2.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemTabBClipart2.FillControlToClientArea = false;
-			this.layoutControlItemTabBClipart2.Location = new System.Drawing.Point(301, 126);
-			this.layoutControlItemTabBClipart2.Name = "layoutControlItemTabBClipart2";
-			this.layoutControlItemTabBClipart2.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlItemTabBClipart2.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlItemTabBClipart2.Size = new System.Drawing.Size(90, 145);
-			this.layoutControlItemTabBClipart2.Text = "Clipart 2";
-			this.layoutControlItemTabBClipart2.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemTabBClipart2.TextVisible = false;
-			this.layoutControlItemTabBClipart2.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemTabBClipart3
-			// 
-			this.layoutControlItemTabBClipart3.Control = this.pictureEditTabBClipart3;
-			this.layoutControlItemTabBClipart3.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemTabBClipart3.FillControlToClientArea = false;
-			this.layoutControlItemTabBClipart3.Location = new System.Drawing.Point(411, 126);
-			this.layoutControlItemTabBClipart3.Name = "layoutControlItemTabBClipart3";
-			this.layoutControlItemTabBClipart3.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabBClipart3.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlItemTabBClipart3.Size = new System.Drawing.Size(91, 145);
-			this.layoutControlItemTabBClipart3.Text = "Clipart 3";
-			this.layoutControlItemTabBClipart3.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemTabBClipart3.TextVisible = false;
-			this.layoutControlItemTabBClipart3.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemTabBClipart4
-			// 
-			this.layoutControlItemTabBClipart4.Control = this.pictureEditTabBClipart4;
-			this.layoutControlItemTabBClipart4.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemTabBClipart4.FillControlToClientArea = false;
-			this.layoutControlItemTabBClipart4.Location = new System.Drawing.Point(301, 291);
-			this.layoutControlItemTabBClipart4.Name = "layoutControlItemTabBClipart4";
-			this.layoutControlItemTabBClipart4.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlItemTabBClipart4.OptionsTableLayoutItem.RowIndex = 4;
-			this.layoutControlItemTabBClipart4.Size = new System.Drawing.Size(90, 145);
-			this.layoutControlItemTabBClipart4.Text = "Clipart 4";
-			this.layoutControlItemTabBClipart4.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemTabBClipart4.TextVisible = false;
-			this.layoutControlItemTabBClipart4.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemTabBClipart5
-			// 
-			this.layoutControlItemTabBClipart5.Control = this.pictureEditTabBClipart5;
-			this.layoutControlItemTabBClipart5.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemTabBClipart5.FillControlToClientArea = false;
-			this.layoutControlItemTabBClipart5.Location = new System.Drawing.Point(411, 291);
-			this.layoutControlItemTabBClipart5.Name = "layoutControlItemTabBClipart5";
-			this.layoutControlItemTabBClipart5.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabBClipart5.OptionsTableLayoutItem.RowIndex = 4;
-			this.layoutControlItemTabBClipart5.Size = new System.Drawing.Size(91, 145);
-			this.layoutControlItemTabBClipart5.Text = "Clipart 5";
-			this.layoutControlItemTabBClipart5.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemTabBClipart5.TextVisible = false;
-			this.layoutControlItemTabBClipart5.TrimClientAreaToControl = false;
 			// 
 			// layoutControlItemTabBSubheader2
 			// 
@@ -829,69 +557,6 @@
 			this.layoutControlItemTabCCombo1.TextVisible = false;
 			this.layoutControlItemTabCCombo1.TrimClientAreaToControl = false;
 			// 
-			// layoutControlItemTabCClipart1
-			// 
-			this.layoutControlItemTabCClipart1.Control = this.pictureEditTabCClipart1;
-			this.layoutControlItemTabCClipart1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemTabCClipart1.FillControlToClientArea = false;
-			this.layoutControlItemTabCClipart1.Location = new System.Drawing.Point(0, 80);
-			this.layoutControlItemTabCClipart1.Name = "layoutControlItemTabCClipart1";
-			this.layoutControlItemTabCClipart1.OptionsTableLayoutItem.RowIndex = 3;
-			this.layoutControlItemTabCClipart1.OptionsTableLayoutItem.RowSpan = 2;
-			this.layoutControlItemTabCClipart1.Size = new System.Drawing.Size(110, 192);
-			this.layoutControlItemTabCClipart1.Text = "Clipart 1";
-			this.layoutControlItemTabCClipart1.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemTabCClipart1.TextVisible = false;
-			this.layoutControlItemTabCClipart1.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemTabCClipart2
-			// 
-			this.layoutControlItemTabCClipart2.Control = this.pictureEditTabCClipart2;
-			this.layoutControlItemTabCClipart2.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemTabCClipart2.FillControlToClientArea = false;
-			this.layoutControlItemTabCClipart2.Location = new System.Drawing.Point(140, 368);
-			this.layoutControlItemTabCClipart2.Name = "layoutControlItemTabCClipart2";
-			this.layoutControlItemTabCClipart2.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.layoutControlItemTabCClipart2.OptionsTableLayoutItem.RowIndex = 6;
-			this.layoutControlItemTabCClipart2.OptionsTableLayoutItem.RowSpan = 2;
-			this.layoutControlItemTabCClipart2.Size = new System.Drawing.Size(110, 194);
-			this.layoutControlItemTabCClipart2.Text = "Clipart 2";
-			this.layoutControlItemTabCClipart2.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemTabCClipart2.TextVisible = false;
-			this.layoutControlItemTabCClipart2.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemTabCClipart3
-			// 
-			this.layoutControlItemTabCClipart3.Control = this.pictureEditTabCClipart3;
-			this.layoutControlItemTabCClipart3.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemTabCClipart3.FillControlToClientArea = false;
-			this.layoutControlItemTabCClipart3.Location = new System.Drawing.Point(280, 272);
-			this.layoutControlItemTabCClipart3.Name = "layoutControlItemTabCClipart3";
-			this.layoutControlItemTabCClipart3.OptionsTableLayoutItem.ColumnIndex = 4;
-			this.layoutControlItemTabCClipart3.OptionsTableLayoutItem.RowIndex = 5;
-			this.layoutControlItemTabCClipart3.OptionsTableLayoutItem.RowSpan = 2;
-			this.layoutControlItemTabCClipart3.Size = new System.Drawing.Size(110, 192);
-			this.layoutControlItemTabCClipart3.Text = "Clipart 3";
-			this.layoutControlItemTabCClipart3.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemTabCClipart3.TextVisible = false;
-			this.layoutControlItemTabCClipart3.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemTabCClipart4
-			// 
-			this.layoutControlItemTabCClipart4.Control = this.pictureEditTabCClipart4;
-			this.layoutControlItemTabCClipart4.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemTabCClipart4.FillControlToClientArea = false;
-			this.layoutControlItemTabCClipart4.Location = new System.Drawing.Point(420, 176);
-			this.layoutControlItemTabCClipart4.Name = "layoutControlItemTabCClipart4";
-			this.layoutControlItemTabCClipart4.OptionsTableLayoutItem.ColumnIndex = 6;
-			this.layoutControlItemTabCClipart4.OptionsTableLayoutItem.RowIndex = 4;
-			this.layoutControlItemTabCClipart4.OptionsTableLayoutItem.RowSpan = 2;
-			this.layoutControlItemTabCClipart4.Size = new System.Drawing.Size(112, 192);
-			this.layoutControlItemTabCClipart4.Text = "Clipart 4";
-			this.layoutControlItemTabCClipart4.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemTabCClipart4.TextVisible = false;
-			this.layoutControlItemTabCClipart4.TrimClientAreaToControl = false;
-			// 
 			// layoutControlItemSlideHeader
 			// 
 			this.layoutControlItemSlideHeader.Control = this.comboBoxEditSlideHeader;
@@ -967,6 +632,259 @@
 			this.pictureEditLogoFooter.Size = new System.Drawing.Size(638, 80);
 			this.pictureEditLogoFooter.TabIndex = 1;
 			// 
+			// clipartEditContainerTabA1
+			// 
+			this.clipartEditContainerTabA1.AllowDrop = true;
+			this.clipartEditContainerTabA1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clipartEditContainerTabA1.Location = new System.Drawing.Point(85, 149);
+			this.clipartEditContainerTabA1.Name = "clipartEditContainerTabA1";
+			this.clipartEditContainerTabA1.Size = new System.Drawing.Size(247, 528);
+			this.clipartEditContainerTabA1.TabIndex = 2;
+			// 
+			// layoutControlItemTabAClipart1
+			// 
+			this.layoutControlItemTabAClipart1.Control = this.clipartEditContainerTabA1;
+			this.layoutControlItemTabAClipart1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemTabAClipart1.FillControlToClientArea = false;
+			this.layoutControlItemTabAClipart1.Location = new System.Drawing.Point(0, 30);
+			this.layoutControlItemTabAClipart1.Name = "layoutControlItemTabAClipart1";
+			this.layoutControlItemTabAClipart1.OptionsTableLayoutItem.RowIndex = 1;
+			this.layoutControlItemTabAClipart1.Size = new System.Drawing.Size(251, 532);
+			this.layoutControlItemTabAClipart1.Text = "Clipart 1";
+			this.layoutControlItemTabAClipart1.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemTabAClipart1.TextVisible = false;
+			this.layoutControlItemTabAClipart1.TrimClientAreaToControl = false;
+			// 
+			// clipartEditContainerTabB1
+			// 
+			this.clipartEditContainerTabB1.AllowDrop = true;
+			this.clipartEditContainerTabB1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clipartEditContainerTabB1.Location = new System.Drawing.Point(115, 245);
+			this.clipartEditContainerTabB1.Name = "clipartEditContainerTabB1";
+			this.clipartEditContainerTabB1.Size = new System.Drawing.Size(177, 306);
+			this.clipartEditContainerTabB1.TabIndex = 1;
+			// 
+			// layoutControlItemTabBClipart1
+			// 
+			this.layoutControlItemTabBClipart1.Control = this.clipartEditContainerTabB1;
+			this.layoutControlItemTabBClipart1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemTabBClipart1.FillControlToClientArea = false;
+			this.layoutControlItemTabBClipart1.Location = new System.Drawing.Point(30, 126);
+			this.layoutControlItemTabBClipart1.MinSize = new System.Drawing.Size(10, 24);
+			this.layoutControlItemTabBClipart1.Name = "layoutControlItemTabBClipart1";
+			this.layoutControlItemTabBClipart1.OptionsTableLayoutItem.ColumnIndex = 1;
+			this.layoutControlItemTabBClipart1.OptionsTableLayoutItem.RowIndex = 2;
+			this.layoutControlItemTabBClipart1.OptionsTableLayoutItem.RowSpan = 3;
+			this.layoutControlItemTabBClipart1.Size = new System.Drawing.Size(181, 310);
+			this.layoutControlItemTabBClipart1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemTabBClipart1.Text = "Clipart 1";
+			this.layoutControlItemTabBClipart1.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemTabBClipart1.TextVisible = false;
+			this.layoutControlItemTabBClipart1.TrimClientAreaToControl = false;
+			// 
+			// clipartEditContainerTabB2
+			// 
+			this.clipartEditContainerTabB2.AllowDrop = true;
+			this.clipartEditContainerTabB2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clipartEditContainerTabB2.Location = new System.Drawing.Point(386, 245);
+			this.clipartEditContainerTabB2.Name = "clipartEditContainerTabB2";
+			this.clipartEditContainerTabB2.Size = new System.Drawing.Size(86, 141);
+			this.clipartEditContainerTabB2.TabIndex = 1;
+			// 
+			// layoutControlItemTabBClipart2
+			// 
+			this.layoutControlItemTabBClipart2.Control = this.clipartEditContainerTabB2;
+			this.layoutControlItemTabBClipart2.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemTabBClipart2.FillControlToClientArea = false;
+			this.layoutControlItemTabBClipart2.Location = new System.Drawing.Point(301, 126);
+			this.layoutControlItemTabBClipart2.MinSize = new System.Drawing.Size(10, 24);
+			this.layoutControlItemTabBClipart2.Name = "layoutControlItemTabBClipart2";
+			this.layoutControlItemTabBClipart2.OptionsTableLayoutItem.ColumnIndex = 3;
+			this.layoutControlItemTabBClipart2.OptionsTableLayoutItem.RowIndex = 2;
+			this.layoutControlItemTabBClipart2.Size = new System.Drawing.Size(90, 145);
+			this.layoutControlItemTabBClipart2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemTabBClipart2.Text = "Clipart 2";
+			this.layoutControlItemTabBClipart2.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemTabBClipart2.TextVisible = false;
+			this.layoutControlItemTabBClipart2.TrimClientAreaToControl = false;
+			// 
+			// clipartEditContainerTabB3
+			// 
+			this.clipartEditContainerTabB3.AllowDrop = true;
+			this.clipartEditContainerTabB3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clipartEditContainerTabB3.Location = new System.Drawing.Point(496, 245);
+			this.clipartEditContainerTabB3.Name = "clipartEditContainerTabB3";
+			this.clipartEditContainerTabB3.Size = new System.Drawing.Size(87, 141);
+			this.clipartEditContainerTabB3.TabIndex = 1;
+			// 
+			// layoutControlItemTabBClipart3
+			// 
+			this.layoutControlItemTabBClipart3.Control = this.clipartEditContainerTabB3;
+			this.layoutControlItemTabBClipart3.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemTabBClipart3.FillControlToClientArea = false;
+			this.layoutControlItemTabBClipart3.Location = new System.Drawing.Point(411, 126);
+			this.layoutControlItemTabBClipart3.MinSize = new System.Drawing.Size(10, 24);
+			this.layoutControlItemTabBClipart3.Name = "layoutControlItemTabBClipart3";
+			this.layoutControlItemTabBClipart3.OptionsTableLayoutItem.ColumnIndex = 5;
+			this.layoutControlItemTabBClipart3.OptionsTableLayoutItem.RowIndex = 2;
+			this.layoutControlItemTabBClipart3.Size = new System.Drawing.Size(91, 145);
+			this.layoutControlItemTabBClipart3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemTabBClipart3.Text = "Clipart 3";
+			this.layoutControlItemTabBClipart3.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemTabBClipart3.TextVisible = false;
+			this.layoutControlItemTabBClipart3.TrimClientAreaToControl = false;
+			// 
+			// clipartEditContainerTabB4
+			// 
+			this.clipartEditContainerTabB4.AllowDrop = true;
+			this.clipartEditContainerTabB4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clipartEditContainerTabB4.Location = new System.Drawing.Point(386, 410);
+			this.clipartEditContainerTabB4.Name = "clipartEditContainerTabB4";
+			this.clipartEditContainerTabB4.Size = new System.Drawing.Size(86, 141);
+			this.clipartEditContainerTabB4.TabIndex = 1;
+			// 
+			// layoutControlItemTabBClipart4
+			// 
+			this.layoutControlItemTabBClipart4.Control = this.clipartEditContainerTabB4;
+			this.layoutControlItemTabBClipart4.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemTabBClipart4.FillControlToClientArea = false;
+			this.layoutControlItemTabBClipart4.Location = new System.Drawing.Point(301, 291);
+			this.layoutControlItemTabBClipart4.MinSize = new System.Drawing.Size(10, 24);
+			this.layoutControlItemTabBClipart4.Name = "layoutControlItemTabBClipart4";
+			this.layoutControlItemTabBClipart4.OptionsTableLayoutItem.ColumnIndex = 3;
+			this.layoutControlItemTabBClipart4.OptionsTableLayoutItem.RowIndex = 4;
+			this.layoutControlItemTabBClipart4.Size = new System.Drawing.Size(90, 145);
+			this.layoutControlItemTabBClipart4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemTabBClipart4.Text = "Clipart 4";
+			this.layoutControlItemTabBClipart4.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemTabBClipart4.TextVisible = false;
+			this.layoutControlItemTabBClipart4.TrimClientAreaToControl = false;
+			// 
+			// clipartEditContainerTabB5
+			// 
+			this.clipartEditContainerTabB5.AllowDrop = true;
+			this.clipartEditContainerTabB5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clipartEditContainerTabB5.Location = new System.Drawing.Point(496, 410);
+			this.clipartEditContainerTabB5.Name = "clipartEditContainerTabB5";
+			this.clipartEditContainerTabB5.Size = new System.Drawing.Size(87, 141);
+			this.clipartEditContainerTabB5.TabIndex = 1;
+			// 
+			// layoutControlItemTabBClipart5
+			// 
+			this.layoutControlItemTabBClipart5.Control = this.clipartEditContainerTabB5;
+			this.layoutControlItemTabBClipart5.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemTabBClipart5.FillControlToClientArea = false;
+			this.layoutControlItemTabBClipart5.Location = new System.Drawing.Point(411, 291);
+			this.layoutControlItemTabBClipart5.MinSize = new System.Drawing.Size(10, 24);
+			this.layoutControlItemTabBClipart5.Name = "layoutControlItemTabBClipart5";
+			this.layoutControlItemTabBClipart5.OptionsTableLayoutItem.ColumnIndex = 5;
+			this.layoutControlItemTabBClipart5.OptionsTableLayoutItem.RowIndex = 4;
+			this.layoutControlItemTabBClipart5.Size = new System.Drawing.Size(91, 145);
+			this.layoutControlItemTabBClipart5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemTabBClipart5.Text = "Clipart 5";
+			this.layoutControlItemTabBClipart5.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemTabBClipart5.TextVisible = false;
+			this.layoutControlItemTabBClipart5.TrimClientAreaToControl = false;
+			// 
+			// clipartEditContainerTabC1
+			// 
+			this.clipartEditContainerTabC1.AllowDrop = true;
+			this.clipartEditContainerTabC1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clipartEditContainerTabC1.Location = new System.Drawing.Point(85, 199);
+			this.clipartEditContainerTabC1.Name = "clipartEditContainerTabC1";
+			this.clipartEditContainerTabC1.Size = new System.Drawing.Size(106, 188);
+			this.clipartEditContainerTabC1.TabIndex = 1;
+			// 
+			// layoutControlItemTabCClipart1
+			// 
+			this.layoutControlItemTabCClipart1.Control = this.clipartEditContainerTabC1;
+			this.layoutControlItemTabCClipart1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemTabCClipart1.FillControlToClientArea = false;
+			this.layoutControlItemTabCClipart1.Location = new System.Drawing.Point(0, 80);
+			this.layoutControlItemTabCClipart1.Name = "layoutControlItemTabCClipart1";
+			this.layoutControlItemTabCClipart1.OptionsTableLayoutItem.RowIndex = 3;
+			this.layoutControlItemTabCClipart1.OptionsTableLayoutItem.RowSpan = 2;
+			this.layoutControlItemTabCClipart1.Size = new System.Drawing.Size(110, 192);
+			this.layoutControlItemTabCClipart1.Text = "Clipart 1";
+			this.layoutControlItemTabCClipart1.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemTabCClipart1.TextVisible = false;
+			this.layoutControlItemTabCClipart1.TrimClientAreaToControl = false;
+			// 
+			// clipartEditContainerTabC2
+			// 
+			this.clipartEditContainerTabC2.AllowDrop = true;
+			this.clipartEditContainerTabC2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clipartEditContainerTabC2.Location = new System.Drawing.Point(225, 487);
+			this.clipartEditContainerTabC2.Name = "clipartEditContainerTabC2";
+			this.clipartEditContainerTabC2.Size = new System.Drawing.Size(106, 190);
+			this.clipartEditContainerTabC2.TabIndex = 11;
+			// 
+			// layoutControlItemTabCClipart2
+			// 
+			this.layoutControlItemTabCClipart2.Control = this.clipartEditContainerTabC2;
+			this.layoutControlItemTabCClipart2.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemTabCClipart2.FillControlToClientArea = false;
+			this.layoutControlItemTabCClipart2.Location = new System.Drawing.Point(140, 368);
+			this.layoutControlItemTabCClipart2.Name = "layoutControlItemTabCClipart2";
+			this.layoutControlItemTabCClipart2.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.layoutControlItemTabCClipart2.OptionsTableLayoutItem.RowIndex = 6;
+			this.layoutControlItemTabCClipart2.OptionsTableLayoutItem.RowSpan = 2;
+			this.layoutControlItemTabCClipart2.Size = new System.Drawing.Size(110, 194);
+			this.layoutControlItemTabCClipart2.Text = "Clipart 2";
+			this.layoutControlItemTabCClipart2.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemTabCClipart2.TextVisible = false;
+			this.layoutControlItemTabCClipart2.TrimClientAreaToControl = false;
+			// 
+			// clipartEditContainerTabC3
+			// 
+			this.clipartEditContainerTabC3.AllowDrop = true;
+			this.clipartEditContainerTabC3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clipartEditContainerTabC3.Location = new System.Drawing.Point(365, 391);
+			this.clipartEditContainerTabC3.Name = "clipartEditContainerTabC3";
+			this.clipartEditContainerTabC3.Size = new System.Drawing.Size(106, 188);
+			this.clipartEditContainerTabC3.TabIndex = 12;
+			// 
+			// layoutControlItemTabCClipart3
+			// 
+			this.layoutControlItemTabCClipart3.Control = this.clipartEditContainerTabC3;
+			this.layoutControlItemTabCClipart3.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemTabCClipart3.FillControlToClientArea = false;
+			this.layoutControlItemTabCClipart3.Location = new System.Drawing.Point(280, 272);
+			this.layoutControlItemTabCClipart3.Name = "layoutControlItemTabCClipart3";
+			this.layoutControlItemTabCClipart3.OptionsTableLayoutItem.ColumnIndex = 4;
+			this.layoutControlItemTabCClipart3.OptionsTableLayoutItem.RowIndex = 5;
+			this.layoutControlItemTabCClipart3.OptionsTableLayoutItem.RowSpan = 2;
+			this.layoutControlItemTabCClipart3.Size = new System.Drawing.Size(110, 192);
+			this.layoutControlItemTabCClipart3.Text = "Clipart 3";
+			this.layoutControlItemTabCClipart3.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemTabCClipart3.TextVisible = false;
+			this.layoutControlItemTabCClipart3.TrimClientAreaToControl = false;
+			// 
+			// clipartEditContainerTabC4
+			// 
+			this.clipartEditContainerTabC4.AllowDrop = true;
+			this.clipartEditContainerTabC4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clipartEditContainerTabC4.Location = new System.Drawing.Point(505, 295);
+			this.clipartEditContainerTabC4.Name = "clipartEditContainerTabC4";
+			this.clipartEditContainerTabC4.Size = new System.Drawing.Size(108, 188);
+			this.clipartEditContainerTabC4.TabIndex = 13;
+			// 
+			// layoutControlItemTabCClipart4
+			// 
+			this.layoutControlItemTabCClipart4.Control = this.clipartEditContainerTabC4;
+			this.layoutControlItemTabCClipart4.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemTabCClipart4.FillControlToClientArea = false;
+			this.layoutControlItemTabCClipart4.Location = new System.Drawing.Point(420, 176);
+			this.layoutControlItemTabCClipart4.Name = "layoutControlItemTabCClipart4";
+			this.layoutControlItemTabCClipart4.OptionsTableLayoutItem.ColumnIndex = 6;
+			this.layoutControlItemTabCClipart4.OptionsTableLayoutItem.RowIndex = 4;
+			this.layoutControlItemTabCClipart4.OptionsTableLayoutItem.RowSpan = 2;
+			this.layoutControlItemTabCClipart4.Size = new System.Drawing.Size(112, 192);
+			this.layoutControlItemTabCClipart4.Text = "Clipart 4";
+			this.layoutControlItemTabCClipart4.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemTabCClipart4.TextVisible = false;
+			this.layoutControlItemTabCClipart4.TrimClientAreaToControl = false;
+			// 
 			// MarketControl
 			// 
 			this.BackColor = System.Drawing.Color.White;
@@ -979,50 +897,39 @@
 			this.Controls.SetChildIndex(this.panelLogoRight, 0);
 			this.Controls.SetChildIndex(this.panelLogoBottom, 0);
 			this.Controls.SetChildIndex(this.layoutControl, 0);
-			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabCClipart4.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabCClipart3.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabCClipart2.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabCClipart1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditTabCCombo1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditTabBSubheader2.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart5.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart4.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart3.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart2.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditTabASubheader1.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabAClipart1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditTabBSubheader1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupData)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAClipart1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabASubheader1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabB)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBSubheader1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart4)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart5)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBSubheader2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabC)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCCombo1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCClipart1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCClipart2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCClipart3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCClipart4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlideHeader)).EndInit();
 			this.panelLogoRight.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).EndInit();
 			this.panelLogoBottom.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAClipart1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart4)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCClipart1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCClipart2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCClipart3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCClipart4)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1039,37 +946,37 @@
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabA;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabB;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabC;
-		private DevExpress.XtraEditors.PictureEdit pictureEditTabAClipart1;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabAClipart1;
 		private DevExpress.XtraEditors.MemoEdit memoEditTabASubheader1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabASubheader1;
 		private DevExpress.XtraEditors.TextEdit textEditTabBSubheader1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabBSubheader1;
-		private DevExpress.XtraEditors.PictureEdit pictureEditTabBClipart5;
-		private DevExpress.XtraEditors.PictureEdit pictureEditTabBClipart4;
-		private DevExpress.XtraEditors.PictureEdit pictureEditTabBClipart3;
-		private DevExpress.XtraEditors.PictureEdit pictureEditTabBClipart2;
-		private DevExpress.XtraEditors.PictureEdit pictureEditTabBClipart1;
+		private DevExpress.XtraEditors.MemoEdit memoEditTabBSubheader2;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabBSubheader2;
+		protected DevExpress.XtraEditors.ComboBoxEdit comboBoxEditTabCCombo1;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabCCombo1;
+		private System.Windows.Forms.Panel panelLogoRight;
+		protected DevExpress.XtraEditors.PictureEdit pictureEditLogoRight;
+		private System.Windows.Forms.Panel panelLogoBottom;
+		private DevExpress.XtraEditors.PictureEdit pictureEditLogoFooter;
+		private ClipartEdit.ClipartEditContainer clipartEditContainerTabC4;
+		private ClipartEdit.ClipartEditContainer clipartEditContainerTabC3;
+		private ClipartEdit.ClipartEditContainer clipartEditContainerTabC2;
+		private ClipartEdit.ClipartEditContainer clipartEditContainerTabC1;
+		private ClipartEdit.ClipartEditContainer clipartEditContainerTabB5;
+		private ClipartEdit.ClipartEditContainer clipartEditContainerTabB4;
+		private ClipartEdit.ClipartEditContainer clipartEditContainerTabB3;
+		private ClipartEdit.ClipartEditContainer clipartEditContainerTabB2;
+		private ClipartEdit.ClipartEditContainer clipartEditContainerTabB1;
+		private ClipartEdit.ClipartEditContainer clipartEditContainerTabA1;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabAClipart1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabBClipart1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabBClipart2;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabBClipart3;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabBClipart4;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabBClipart5;
-		private DevExpress.XtraEditors.MemoEdit memoEditTabBSubheader2;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabBSubheader2;
-		private DevExpress.XtraEditors.PictureEdit pictureEditTabCClipart4;
-		private DevExpress.XtraEditors.PictureEdit pictureEditTabCClipart3;
-		private DevExpress.XtraEditors.PictureEdit pictureEditTabCClipart2;
-		private DevExpress.XtraEditors.PictureEdit pictureEditTabCClipart1;
-		protected DevExpress.XtraEditors.ComboBoxEdit comboBoxEditTabCCombo1;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabCCombo1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabCClipart1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabCClipart2;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabCClipart3;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabCClipart4;
-		private System.Windows.Forms.Panel panelLogoRight;
-		protected DevExpress.XtraEditors.PictureEdit pictureEditLogoRight;
-		private System.Windows.Forms.Panel panelLogoBottom;
-		private DevExpress.XtraEditors.PictureEdit pictureEditLogoFooter;
 	}
 }

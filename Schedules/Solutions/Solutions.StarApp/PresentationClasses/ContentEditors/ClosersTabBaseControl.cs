@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.GUI.Preview;
-using Asa.Solutions.StarApp.PresentationClasses.ImageEdit;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
@@ -14,7 +11,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		protected bool _dataChanged;
 
 		protected ClosersControl ClosersContentContainer { get; }
-		protected ClosersControlImageEditorHelper ImageEditorHelper { get; }
 
 		public virtual StarAppOutputType OutputType { get; }
 		public virtual string OutputName { get; }
@@ -23,7 +19,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public ClosersTabBaseControl()
 		{
 			InitializeComponent();
-			ImageEditorHelper = new ClosersControlImageEditorHelper(this);
 		}
 
 		public ClosersTabBaseControl(ClosersControl closersContentContainer) : this()

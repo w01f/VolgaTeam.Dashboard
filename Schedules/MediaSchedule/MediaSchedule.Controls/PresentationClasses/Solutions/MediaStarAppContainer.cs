@@ -106,7 +106,6 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			using (var formPreview = new FormPreview(
 				Controller.Instance.FormMain,
 				PowerPointProcessor,
-				BusinessObjects.Instance.HelpManager,
 				Controller.Instance.ShowFloater,
 				Controller.Instance.CheckPowerPointRunning))
 			{

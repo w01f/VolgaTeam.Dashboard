@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
@@ -37,21 +38,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			layoutControlGroupTabB.Text = SlideContainer.StarInfo.Titles.Tab3SubBTitle;
 			layoutControlGroupTabC.Text = SlideContainer.StarInfo.Titles.Tab3SubCTitle;
 
-			pictureEditTabAClipart1.Image = SlideContainer.StarInfo.Tab3SubAClipart1Image;
-			pictureEditTabAClipart1.Properties.PictureAlignment =
-				SlideContainer.StarInfo.FishingConfiguration.PartAClipart1Configuration.Alignment;
-			pictureEditTabBClipart1.Image = SlideContainer.StarInfo.Tab3SubBClipart1Image;
-			pictureEditTabBClipart1.Properties.PictureAlignment =
-				SlideContainer.StarInfo.FishingConfiguration.PartBClipart1Configuration.Alignment;
-			pictureEditTabBClipart2.Image = SlideContainer.StarInfo.Tab3SubBClipart2Image;
-			pictureEditTabBClipart2.Properties.PictureAlignment =
-				SlideContainer.StarInfo.FishingConfiguration.PartBClipart2Configuration.Alignment;
-
-			ImageEditorHelper.AssignImageEditors(new[]{
-				pictureEditTabAClipart1,
-				pictureEditTabBClipart1,
-				pictureEditTabBClipart2,
-			});
+			clipartEditContainerTabA1.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab3SubAClipart1Image), SlideContainer.StarInfo.FishingConfiguration.PartAClipart1Configuration, this);
+			clipartEditContainerTabA1.EditValueChanged += OnEditValueChanged;
+			clipartEditContainerTabB1.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab3SubBClipart1Image), SlideContainer.StarInfo.FishingConfiguration.PartBClipart1Configuration, this);
+			clipartEditContainerTabB1.EditValueChanged += OnEditValueChanged;
+			clipartEditContainerTabB2.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab3SubBClipart2Image), SlideContainer.StarInfo.FishingConfiguration.PartBClipart2Configuration, this);
+			clipartEditContainerTabB2.EditValueChanged += OnEditValueChanged;
 
 			memoEditTabASubheader1.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.PartASubHeader1Placeholder ?? memoEditTabASubheader1.Properties.NullText;
 			memoEditTabASubheader2.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.PartASubHeader2Placeholder ?? memoEditTabASubheader2.Properties.NullText;
@@ -89,17 +81,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			_allowToSave = false;
 
-			pictureEditTabAClipart1.Image = SlideContainer.EditedContent.FishingState.TabA.Clipart1 ??
-				pictureEditTabAClipart1.Image;
+			clipartEditContainerTabA1.LoadData(SlideContainer.EditedContent.FishingState.TabA.Clipart1);
 			memoEditTabASubheader1.EditValue = SlideContainer.EditedContent.FishingState.TabA.Subheader1 ??
 				SlideContainer.StarInfo.FishingConfiguration.PartASubHeader1DefaultValue;
 			memoEditTabASubheader2.EditValue = SlideContainer.EditedContent.FishingState.TabA.Subheader2 ??
 				SlideContainer.StarInfo.FishingConfiguration.PartASubHeader2DefaultValue;
 
-			pictureEditTabBClipart1.Image = SlideContainer.EditedContent.FishingState.TabB.Clipart1 ??
-				pictureEditTabBClipart1.Image;
-			pictureEditTabBClipart2.Image = SlideContainer.EditedContent.FishingState.TabB.Clipart2 ??
-				pictureEditTabBClipart2.Image;
+			clipartEditContainerTabB1.LoadData(SlideContainer.EditedContent.FishingState.TabB.Clipart1);
+			clipartEditContainerTabB2.LoadData(SlideContainer.EditedContent.FishingState.TabB.Clipart2);
 			comboBoxEditTabBCombo1.EditValue = SlideContainer.EditedContent.FishingState.TabB.Combo1 ??
 				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0);
 			comboBoxEditTabBCombo2.EditValue = SlideContainer.EditedContent.FishingState.TabB.Combo2 ??
@@ -131,12 +120,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
-					SlideContainer.EditedContent.FishingState.TabA.Clipart1 = pictureEditTabAClipart1.Image != SlideContainer.StarInfo.Tab4SubAClipart1Image ?
-						pictureEditTabAClipart1.Image :
-						null;
+					SlideContainer.EditedContent.FishingState.TabA.Clipart1 = clipartEditContainerTabA1.GetActiveClipartObject();
 
 					SlideContainer.EditedContent.FishingState.TabA.Subheader1 = memoEditTabASubheader1.EditValue as String != SlideContainer.StarInfo.FishingConfiguration.PartASubHeader1DefaultValue ?
-						memoEditTabASubheader1.EditValue as String ?? String.Empty:
+						memoEditTabASubheader1.EditValue as String ?? String.Empty :
 						null;
 					SlideContainer.EditedContent.FishingState.TabA.Subheader2 = memoEditTabASubheader2.EditValue as String != SlideContainer.StarInfo.FishingConfiguration.PartASubHeader2DefaultValue ?
 						memoEditTabASubheader2.EditValue as String ?? String.Empty :
@@ -147,12 +134,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
-					SlideContainer.EditedContent.FishingState.TabB.Clipart1 = pictureEditTabBClipart1.Image != SlideContainer.StarInfo.Tab4SubBClipart1Image ?
-						pictureEditTabBClipart1.Image :
-						null;
-					SlideContainer.EditedContent.FishingState.TabB.Clipart2 = pictureEditTabBClipart2.Image != SlideContainer.StarInfo.Tab4SubBClipart2Image ?
-						pictureEditTabBClipart2.Image :
-						null;
+					SlideContainer.EditedContent.FishingState.TabB.Clipart1 = clipartEditContainerTabB1.GetActiveClipartObject();
+					SlideContainer.EditedContent.FishingState.TabB.Clipart2 = clipartEditContainerTabB2.GetActiveClipartObject();
 
 					SlideContainer.EditedContent.FishingState.TabB.Combo1 = SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0) != comboBoxEditTabBCombo1.EditValue ?
 						comboBoxEditTabBCombo1.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabBCombo1.EditValue as String } :

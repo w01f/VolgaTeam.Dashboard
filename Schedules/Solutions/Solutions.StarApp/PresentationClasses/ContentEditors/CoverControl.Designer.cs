@@ -42,7 +42,6 @@
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.dateEditCalendar1 = new DevExpress.XtraEditors.DateEdit();
 			this.memoEditSubheader1 = new DevExpress.XtraEditors.MemoEdit();
-			this.pictureEditClipart1 = new DevExpress.XtraEditors.PictureEdit();
 			this.comboBoxEditSlideHeader = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.checkEditCalendar1 = new DevExpress.XtraEditors.CheckEdit();
 			this.comboBoxEditCombo1 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -51,7 +50,6 @@
 			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.tabbedControlGroupData = new DevExpress.XtraLayout.TabbedControlGroup();
 			this.layoutControlGroupTabA = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.layoutControlItemClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlGroupCalendar = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemCalendar1Toggle = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemCalendar1Value = new DevExpress.XtraLayout.LayoutControlItem();
@@ -66,7 +64,8 @@
 			this.pictureEditLogoRight = new DevExpress.XtraEditors.PictureEdit();
 			this.panelLogoBottom = new System.Windows.Forms.Panel();
 			this.pictureEditLogoFooter = new DevExpress.XtraEditors.PictureEdit();
-			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).BeginInit();
+			this.clipartEditContainer1 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.layoutControlItemClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAddAsPageOne.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
@@ -74,7 +73,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.dateEditCalendar1.Properties.CalendarTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditCalendar1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditSubheader1.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditClipart1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditCalendar1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditCombo1.Properties)).BeginInit();
@@ -83,7 +81,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupData)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupCalendar)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCalendar1Toggle)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCalendar1Value)).BeginInit();
@@ -98,6 +95,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).BeginInit();
 			this.panelLogoBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -143,9 +141,9 @@
 			this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
 			this.layoutControl.BackColor = System.Drawing.Color.White;
+			this.layoutControl.Controls.Add(this.clipartEditContainer1);
 			this.layoutControl.Controls.Add(this.dateEditCalendar1);
 			this.layoutControl.Controls.Add(this.memoEditSubheader1);
-			this.layoutControl.Controls.Add(this.pictureEditClipart1);
 			this.layoutControl.Controls.Add(this.checkEditAddAsPageOne);
 			this.layoutControl.Controls.Add(this.comboBoxEditSlideHeader);
 			this.layoutControl.Controls.Add(this.checkEditCalendar1);
@@ -201,24 +199,6 @@
 			this.memoEditSubheader1.StyleController = this.layoutControl;
 			this.memoEditSubheader1.TabIndex = 3;
 			this.memoEditSubheader1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
-			// 
-			// pictureEditClipart1
-			// 
-			this.pictureEditClipart1.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditClipart1.Location = new System.Drawing.Point(85, 149);
-			this.pictureEditClipart1.Name = "pictureEditClipart1";
-			this.pictureEditClipart1.Properties.AllowFocused = false;
-			this.pictureEditClipart1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditClipart1.Properties.NullText = " ";
-			this.pictureEditClipart1.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
-			this.pictureEditClipart1.Properties.ReadOnly = true;
-			this.pictureEditClipart1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditClipart1.Properties.ShowMenu = false;
-			this.pictureEditClipart1.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditClipart1.Size = new System.Drawing.Size(173, 220);
-			this.pictureEditClipart1.StyleController = this.layoutControl;
-			this.pictureEditClipart1.TabIndex = 1;
-			this.pictureEditClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// comboBoxEditSlideHeader
 			// 
@@ -341,10 +321,10 @@
 			// layoutControlGroupTabA
 			// 
 			this.layoutControlGroupTabA.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItemClipart1,
             this.layoutControlGroupCalendar,
             this.layoutControlGroupCombo1,
-            this.layoutControlGroupSubheader1});
+            this.layoutControlGroupSubheader1,
+            this.layoutControlItemClipart1});
 			this.layoutControlGroupTabA.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabA.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabA.Name = "layoutControlGroupTabA";
@@ -373,17 +353,6 @@
             rowDefinition4});
 			this.layoutControlGroupTabA.Size = new System.Drawing.Size(535, 592);
 			this.layoutControlGroupTabA.Text = "Tab A";
-			// 
-			// layoutControlItemClipart1
-			// 
-			this.layoutControlItemClipart1.Control = this.pictureEditClipart1;
-			this.layoutControlItemClipart1.Location = new System.Drawing.Point(0, 30);
-			this.layoutControlItemClipart1.Name = "layoutControlItemClipart1";
-			this.layoutControlItemClipart1.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemClipart1.Size = new System.Drawing.Size(177, 224);
-			this.layoutControlItemClipart1.Text = "Clipart 1";
-			this.layoutControlItemClipart1.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemClipart1.TextVisible = false;
 			// 
 			// layoutControlGroupCalendar
 			// 
@@ -584,6 +553,29 @@
 			this.pictureEditLogoFooter.Size = new System.Drawing.Size(641, 80);
 			this.pictureEditLogoFooter.TabIndex = 1;
 			// 
+			// clipartEditContainer1
+			// 
+			this.clipartEditContainer1.AllowDrop = true;
+			this.clipartEditContainer1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clipartEditContainer1.Location = new System.Drawing.Point(85, 149);
+			this.clipartEditContainer1.Name = "clipartEditContainer1";
+			this.clipartEditContainer1.Size = new System.Drawing.Size(173, 220);
+			this.clipartEditContainer1.TabIndex = 7;
+			// 
+			// layoutControlItemClipart1
+			// 
+			this.layoutControlItemClipart1.Control = this.clipartEditContainer1;
+			this.layoutControlItemClipart1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemClipart1.FillControlToClientArea = false;
+			this.layoutControlItemClipart1.Location = new System.Drawing.Point(0, 30);
+			this.layoutControlItemClipart1.Name = "layoutControlItemClipart1";
+			this.layoutControlItemClipart1.OptionsTableLayoutItem.RowIndex = 1;
+			this.layoutControlItemClipart1.Size = new System.Drawing.Size(177, 224);
+			this.layoutControlItemClipart1.Text = "Clipart 1";
+			this.layoutControlItemClipart1.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemClipart1.TextVisible = false;
+			this.layoutControlItemClipart1.TrimClientAreaToControl = false;
+			// 
 			// CoverControl
 			// 
 			this.Controls.Add(this.layoutControl);
@@ -595,7 +587,6 @@
 			this.Controls.SetChildIndex(this.panelLogoBottom, 0);
 			this.Controls.SetChildIndex(this.layoutControl, 0);
 			this.Controls.SetChildIndex(this.labelFocusFake, 0);
-			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAddAsPageOne.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
@@ -603,7 +594,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.dateEditCalendar1.Properties.CalendarTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditCalendar1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditSubheader1.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditClipart1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditCalendar1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditCombo1.Properties)).EndInit();
@@ -612,7 +602,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupData)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupCalendar)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCalendar1Toggle)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCalendar1Value)).EndInit();
@@ -627,6 +616,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).EndInit();
 			this.panelLogoBottom.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -644,8 +634,6 @@
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabA;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemAddAsPageOne;
 		private DevExpress.XtraEditors.MemoEdit memoEditSubheader1;
-		protected DevExpress.XtraEditors.PictureEdit pictureEditClipart1;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemClipart1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemSubheader1;
 		private DevExpress.XtraEditors.DateEdit dateEditCalendar1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemCalendar1Value;
@@ -662,5 +650,7 @@
 		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemCombo1Description1;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupSubheader1;
+		private ClipartEdit.ClipartEditContainer clipartEditContainer1;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemClipart1;
 	}
 }

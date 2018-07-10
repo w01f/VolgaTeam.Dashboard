@@ -98,6 +98,7 @@
     <Compile Include="Helpers\CloneHelper.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\FavoriteImagesManager.cs" />
+    <Compile Include="Helpers\FileFormatHelper.cs" />
     <Compile Include="Helpers\FileStorageManager.cs" />
     <Compile Include="Helpers\ClipboardHelper.cs" />
     <Compile Include="Helpers\GalleryManager.cs" />
@@ -117,8 +118,10 @@
     <Compile Include="Helpers\RibbonTabPageManager.cs" />
     <Compile Include="Helpers\ThemeManager.cs" />
     <Compile Include="Helpers\ThemeSaveHelper.cs" />
+    <Compile Include="Helpers\UrlParseHelper.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Helpers\WinAPIHelper.cs" />
+    <Compile Include="Helpers\YouTubeHelper.cs" />
     <Compile Include="Helpers\ZipHelper.cs" />
     <Compile Include="Interfaces\IJsonCloneable.cs" />
     <Compile Include="Interfaces\IJsonCloneSource.cs" />
@@ -161,6 +164,7 @@
     <Compile Include="Objects\Themes\SlideApprovedThemeInfo.cs" />
     <Compile Include="Objects\Themes\Theme.cs" />
     <Compile Include="Objects\Themes\ThemeEventArgs.cs" />
+    <Compile Include="Objects\VideoInfo\FFMpegData.cs" />
     <Compile Include="OfficeInterops\ExcelHelper.cs" />
     <Compile Include="OfficeInterops\MessageFilter.cs" />
     <Compile Include="OfficeInterops\OutlookHelper.cs" />

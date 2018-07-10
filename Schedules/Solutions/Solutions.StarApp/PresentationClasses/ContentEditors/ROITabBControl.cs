@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
@@ -45,15 +45,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			textEditTabBSubheader25.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			Application.DoEvents();
 
-			pictureEditTabBClipart1.Image = ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart1Image;
-			pictureEditTabBClipart1.Properties.PictureAlignment =
-				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBClipart1Configuration.Alignment;
-			pictureEditTabBClipart2.Image = ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart2Image;
-			pictureEditTabBClipart2.Properties.PictureAlignment =
-				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBClipart2Configuration.Alignment;
-			pictureEditTabBClipart3.Image = ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart3Image;
-			pictureEditTabBClipart3.Properties.PictureAlignment =
-				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBClipart3Configuration.Alignment;
+			clipartEditContainer1.Init(ImageClipartObject.FromImage(ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart1Image), ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBClipart1Configuration, ROIContentContainer);
+			clipartEditContainer1.EditValueChanged += OnEditValueChanged;
+			clipartEditContainer2.Init(ImageClipartObject.FromImage(ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart2Image), ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBClipart2Configuration, ROIContentContainer);
+			clipartEditContainer2.EditValueChanged += OnEditValueChanged;
+			clipartEditContainer3.Init(ImageClipartObject.FromImage(ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart3Image), ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBClipart3Configuration, ROIContentContainer);
+			clipartEditContainer3.EditValueChanged += OnEditValueChanged;
 
 			textEditTabBSubheader1.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader1Placeholder ?? textEditTabBSubheader1.Properties.NullText;
 			textEditTabBSubheader3.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader3Placeholder ?? textEditTabBSubheader3.Properties.NullText;
@@ -74,13 +71,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			textEditTabBSubheader22.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader22Placeholder ?? textEditTabBSubheader22.Properties.NullText;
 			textEditTabBSubheader23.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader23Placeholder ?? textEditTabBSubheader23.Properties.NullText;
 			textEditTabBSubheader25.Properties.NullText = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartBSubHeader25Placeholder ?? textEditTabBSubheader25.Properties.NullText;
-
-			ImageEditorHelper.AssignImageEditors(new[]{
-				pictureEditTabBClipart1,
-				pictureEditTabBClipart2,
-				pictureEditTabBClipart3,
-			});
-
 			Application.DoEvents();
 		}
 
@@ -88,12 +78,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			_allowToSave = false;
 
-			pictureEditTabBClipart1.Image = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart1 ??
-				pictureEditTabBClipart1.Image;
-			pictureEditTabBClipart2.Image = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart2 ??
-				pictureEditTabBClipart2.Image;
-			pictureEditTabBClipart3.Image = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart3 ??
-				pictureEditTabBClipart3.Image;
+			clipartEditContainer1.LoadData(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart1);
+			clipartEditContainer2.LoadData(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart2);
+			clipartEditContainer3.LoadData(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart3);
 
 			checkEditTabBGroup1.Checked = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Group1Toggle;
 			checkEditTabBGroup2.Checked = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Group2Toggle;
@@ -171,15 +158,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			if (!_dataChanged) return;
 
-			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart1 = pictureEditTabBClipart1.Image != ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart1Image ?
-				pictureEditTabBClipart1.Image :
-				null;
-			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart2 = pictureEditTabBClipart2.Image != ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart2Image ?
-				pictureEditTabBClipart2.Image :
-				null;
-			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart3 = pictureEditTabBClipart3.Image != ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart3Image ?
-				pictureEditTabBClipart3.Image :
-				null;
+			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart1 = clipartEditContainer1.GetActiveClipartObject();
+			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart2 = clipartEditContainer2.GetActiveClipartObject();
+			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart3 = clipartEditContainer3.GetActiveClipartObject();
 
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Group1Toggle = checkEditTabBGroup1.Checked;
 			ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Group2Toggle = checkEditTabBGroup2.Checked;
@@ -414,29 +395,17 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarROIFile("CP06B-1.pptx");
 			outputDataPackage.Theme = ROIContentContainer.SelectedTheme;
 
-			var clipart1 = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart1 ?? ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart1Image;
+			var clipart1 = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart1 ?? ImageClipartObject.FromImage(ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart1Image);
 			if (clipart1 != null)
-			{
-				var fileName = Path.GetTempFileName();
-				clipart1.Save(fileName);
-				outputDataPackage.ClipartItems.Add("CP06BCLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart1.Width, clipart1.Height) });
-			}
+				outputDataPackage.ClipartItems.Add("CP06BCLIPART1", clipart1);
 
-			var clipart2 = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart2 ?? ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart2Image;
+			var clipart2 = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart2 ?? ImageClipartObject.FromImage(ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart2Image);
 			if (clipart2 != null)
-			{
-				var fileName = Path.GetTempFileName();
-				clipart2.Save(fileName);
-				outputDataPackage.ClipartItems.Add("CP06BCLIPART2", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart2.Width, clipart2.Height) });
-			}
+				outputDataPackage.ClipartItems.Add("CP06BCLIPART2", clipart2);
 
-			var clipart3 = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart3 ?? ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart3Image;
+			var clipart3 = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabB.Clipart3 ?? ImageClipartObject.FromImage(ROIContentContainer.SlideContainer.StarInfo.Tab6SubBClipart3Image);
 			if (clipart3 != null)
-			{
-				var fileName = Path.GetTempFileName();
-				clipart3.Save(fileName);
-				outputDataPackage.ClipartItems.Add("CP06BCLIPART3", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart3.Width, clipart3.Height) });
-			}
+				outputDataPackage.ClipartItems.Add("CP06BCLIPART3", clipart3);
 
 			outputDataPackage.TextItems = GetOutputDataTextItems();
 

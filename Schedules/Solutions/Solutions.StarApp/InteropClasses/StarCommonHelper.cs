@@ -1,12 +1,16 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
+using Asa.Business.Solutions.Common.Enums;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
+using Shapes = Microsoft.Office.Interop.PowerPoint.Shapes;
 
 namespace Asa.Solutions.StarApp.InteropClasses
 {
@@ -32,25 +36,8 @@ namespace Asa.Solutions.StarApp.InteropClasses
 								{
 									if (dataPackage.ClipartItems.ContainsKey(tagName.ToUpper()))
 									{
-										var imageInfo = dataPackage.ClipartItems[tagName.ToUpper()];
-										var fileName = imageInfo.FilePath;
-										if (!String.IsNullOrEmpty(fileName) && File.Exists(fileName))
-										{
-											var newShape = slide.Shapes.AddPicture(fileName, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top);
-
-											var originalWidth = imageInfo.Size.Width;
-											var originalHeight = imageInfo.Size.Height;
-											var percentWidth = shape.Width / originalWidth;
-											var percentHeight = shape.Height / originalHeight;
-											var percent = percentHeight < percentWidth ? percentHeight : percentWidth;
-											var newWidth = percent < 1 ? (int)(originalWidth * percent) : originalWidth;
-											var newHeight = percent < 1 ? (int)(originalHeight * percent) : originalHeight;
-
-											newShape.Top = shape.Top + (shape.Height - newHeight) / 2;
-											newShape.Left = shape.Left + (shape.Width - newWidth) / 2;
-											newShape.Width = newWidth;
-											newShape.Height = newHeight;
-										}
+										var clipartObject = dataPackage.ClipartItems[tagName.ToUpper()];
+										slide.Shapes.AddClipartObject(clipartObject, shape);
 									}
 									shape.Visible = MsoTriState.msoFalse;
 								}
@@ -84,6 +71,79 @@ namespace Asa.Solutions.StarApp.InteropClasses
 		public static void PrepareStarCommonSlide(this PowerPointProcessor target, OutputDataPackage dataPackage, string fileName)
 		{
 			target.PreparePresentation(fileName, presentation => target.AppendStarCommonSlide(dataPackage, presentation));
+		}
+
+		private static void AddClipartObject(this Shapes shapes, ClipartObject clipartObject, Shape shapeTemplate)
+		{
+			switch (clipartObject.Type)
+			{
+				case ClipartObjectType.Image:
+					{
+						var imageObject = (ImageClipartObject)clipartObject;
+						var fileName = Path.GetTempFileName();
+						imageObject.Image.Save(fileName);
+
+						var originalWidth = imageObject.Image.Width;
+						var originalHeight = imageObject.Image.Height;
+						var percentWidth = shapeTemplate.Width / originalWidth;
+						var percentHeight = shapeTemplate.Height / originalHeight;
+						var percent = new[] { 1, percentWidth, percentHeight }.Min();
+						var width = (Int32)(originalWidth * percent);
+						var height = (Int32)(originalHeight * percent);
+
+						shapes.AddPicture(fileName,
+							MsoTriState.msoFalse,
+							MsoTriState.msoCTrue,
+							shapeTemplate.Left + (shapeTemplate.Width - width) / 2,
+							shapeTemplate.Top + (shapeTemplate.Height - height) / 2,
+							width,
+							height);
+					}
+					break;
+
+				case ClipartObjectType.Video:
+					{
+						var videoClipartObject = (VideoClipartObject)clipartObject;
+
+						var originalWidth = videoClipartObject.Thumbnail.Width;
+						var originalHeight = videoClipartObject.Thumbnail.Height;
+						var percentWidth = shapeTemplate.Width / originalWidth;
+						var percentHeight = shapeTemplate.Height / originalHeight;
+						var percent = new[] { 1, percentWidth, percentHeight }.Min();
+						var width = (Int32)(originalWidth * percent);
+						var height = (Int32)(originalHeight * percent);
+
+						var shape = shapes.AddMediaObject2(videoClipartObject.SourceFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue,
+							shapeTemplate.Left + (shapeTemplate.Width - width) / 2,
+							shapeTemplate.Top + (shapeTemplate.Height - height) / 2,
+							width,
+							height);
+
+						var fileName = Path.GetTempFileName();
+						videoClipartObject.Thumbnail.Save(fileName);
+						shape.MediaFormat.SetDisplayPictureFromFile(fileName);
+					}
+					break;
+
+				case ClipartObjectType.YouTube:
+					{
+						var youTubeObject = (YouTubeClipartObject)clipartObject;
+
+						var width = (Int32)shapeTemplate.Width;
+						var height = (Int32)(shapeTemplate.Width * 9 / 16);
+
+						var youTubeTag = String.Format("<object><embed src='{0}' type='application/x-shockwave-flash'></embed></object>", youTubeObject.EmbeddedUrl);
+
+						shapes.AddMediaObjectFromEmbedTag(youTubeTag,
+							shapeTemplate.Left + (shapeTemplate.Width - width) / 2,
+							shapeTemplate.Top + (shapeTemplate.Height - height) / 2,
+							width,
+							height);
+					}
+					break;
+				default:
+					throw new ArgumentOutOfRangeException("Undefined clipart type found");
+			}
 		}
 	}
 }

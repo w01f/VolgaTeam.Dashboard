@@ -63,6 +63,16 @@ namespace Asa.Solutions.StarApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ButtonArrowRight {
+            get {
+                object obj = ResourceManager.GetObject("ButtonArrowRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ButtonCalendar {
             get {
                 object obj = ResourceManager.GetObject("ButtonCalendar", resourceCulture);

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
@@ -32,22 +32,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			textEditTabBSubheader8.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			Application.DoEvents();
 
-			pictureEditTabBClipart1.Image = ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart1Image;
-			pictureEditTabBClipart1.Properties.PictureAlignment =
-				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBClipart1Configuration.Alignment;
-			pictureEditTabBClipart2.Image = ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart2Image;
-			pictureEditTabBClipart2.Properties.PictureAlignment =
-				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBClipart2Configuration.Alignment;
-			pictureEditTabBClipart3.Image = ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart3Image;
-			pictureEditTabBClipart3.Properties.PictureAlignment =
-				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBClipart3Configuration.Alignment;
-
-			ImageEditorHelper.AssignImageEditors(new[]{
-				pictureEditTabBClipart1,
-				pictureEditTabBClipart2,
-				pictureEditTabBClipart3,
-			});
-
+			clipartEditContainer1.Init(ImageClipartObject.FromImage(ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart1Image), ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBClipart1Configuration, ShareContentContainer);
+			clipartEditContainer1.EditValueChanged += OnEditValueChanged;
+			clipartEditContainer2.Init(ImageClipartObject.FromImage(ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart2Image), ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBClipart2Configuration, ShareContentContainer);
+			clipartEditContainer2.EditValueChanged += OnEditValueChanged;
+			clipartEditContainer3.Init(ImageClipartObject.FromImage(ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart3Image), ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBClipart3Configuration, ShareContentContainer);
+			clipartEditContainer3.EditValueChanged += OnEditValueChanged;
 			Application.DoEvents();
 
 			textEditTabBSubheader1.Properties.NullText = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader1Placeholder ?? textEditTabBSubheader1.Properties.NullText;
@@ -72,12 +62,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			_allowToSave = false;
 
-			pictureEditTabBClipart1.Image = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart1 ??
-				pictureEditTabBClipart1.Image;
-			pictureEditTabBClipart2.Image = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart2 ??
-				pictureEditTabBClipart2.Image;
-			pictureEditTabBClipart3.Image = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart3 ??
-				pictureEditTabBClipart3.Image;
+			clipartEditContainer1.LoadData(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart1);
+			clipartEditContainer2.LoadData(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart2);
+			clipartEditContainer3.LoadData(ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart3);
 
 			checkEditTabBGroup1.Checked = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Group1Toggle;
 			checkEditTabBGroup2.Checked = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Group2Toggle;
@@ -120,15 +107,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			if (!_dataChanged) return;
 
-			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart1 = pictureEditTabBClipart1.Image != ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart1Image ?
-				pictureEditTabBClipart1.Image :
-				null;
-			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart2 = pictureEditTabBClipart2.Image != ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart2Image ?
-				pictureEditTabBClipart2.Image :
-				null;
-			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart3 = pictureEditTabBClipart3.Image != ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart3Image ?
-				pictureEditTabBClipart3.Image :
-				null;
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart1 = clipartEditContainer1.GetActiveClipartObject();
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart2 = clipartEditContainer2.GetActiveClipartObject();
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart3 = clipartEditContainer3.GetActiveClipartObject();
 
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Group1Toggle = checkEditTabBGroup1.Checked;
 			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Group2Toggle = checkEditTabBGroup2.Checked;
@@ -275,29 +256,17 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarShareFile("CP05B-1.pptx");
 			outputDataPackage.Theme = ShareContentContainer.SelectedTheme;
 
-			var clipart1 = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart1 ?? ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart1Image;
+			var clipart1 = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart1 ?? ImageClipartObject.FromImage(ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart1Image);
 			if (clipart1 != null)
-			{
-				var fileName = Path.GetTempFileName();
-				clipart1.Save(fileName);
-				outputDataPackage.ClipartItems.Add("CP05BCLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart1.Width, clipart1.Height) });
-			}
+				outputDataPackage.ClipartItems.Add("CP05BCLIPART1", clipart1);
 
-			var clipart2 = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart2 ?? ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart2Image;
+			var clipart2 = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart2 ?? ImageClipartObject.FromImage(ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart2Image);
 			if (clipart2 != null)
-			{
-				var fileName = Path.GetTempFileName();
-				clipart2.Save(fileName);
-				outputDataPackage.ClipartItems.Add("CP05BCLIPART2", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart2.Width, clipart2.Height) });
-			}
+				outputDataPackage.ClipartItems.Add("CP05BCLIPART2", clipart2);
 
-			var clipart3 = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart3 ?? ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart3Image;
+			var clipart3 = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart3 ?? ImageClipartObject.FromImage(ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart3Image);
 			if (clipart3 != null)
-			{
-				var fileName = Path.GetTempFileName();
-				clipart3.Save(fileName);
-				outputDataPackage.ClipartItems.Add("CP05BCLIPART3", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart3.Width, clipart3.Height) });
-			}
+				outputDataPackage.ClipartItems.Add("CP05BCLIPART3", clipart3);
 
 			outputDataPackage.TextItems = GetOutputDataTextItems();
 

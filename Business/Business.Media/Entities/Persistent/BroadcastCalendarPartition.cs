@@ -21,7 +21,7 @@ namespace Asa.Business.Media.Entities.Persistent
 					_content = SettingsContainer.CreateInstance<BroadcastCalendar>(this, ContentEncoded);
 				return _content;
 			}
-			set { _content = value; }
+			set => _content = value;
 		}
 		#endregion
 

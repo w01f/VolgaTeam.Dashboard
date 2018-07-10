@@ -5,7 +5,7 @@ using Asa.Common.Core.Objects.Images;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.Skins;
 
-namespace Asa.Solutions.StarApp.PresentationClasses.ImageEdit
+namespace Asa.Solutions.StarApp.PresentationClasses.ClipartEdit
 {
 	public partial class FormFavoritesOpen : MetroForm
 	{

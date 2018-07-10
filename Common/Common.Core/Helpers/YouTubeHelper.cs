@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Asa.Browser.Controls.BusinessClasses.Helpers
+namespace Asa.Common.Core.Helpers
 {
-	static class YouTubeHelper
+	public static class YouTubeHelper
 	{
 		public static bool IsUrlYouTubeWatch(string targetUrl)
 		{

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Preview;
 using Asa.Solutions.StarApp.InteropClasses;
@@ -98,13 +98,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 				outputDataPackage.Theme = OutputControl.SelectedTheme;
 
-				var clipart = OutputControl.SlideContainer.EditedContent.CNAState.TabA.Clipart1 ?? OutputControl.SlideContainer.StarInfo.Tab2SubAClipart1Image;
+				var clipart = OutputControl.SlideContainer.EditedContent.CNAState.TabA.Clipart1 ?? ImageClipartObject.FromImage(OutputControl.SlideContainer.StarInfo.Tab2SubAClipart1Image);
 				if (clipart != null)
-				{
-					var fileName = Path.GetTempFileName();
-					clipart.Save(fileName);
-					outputDataPackage.ClipartItems.Add("CP02ACLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
-				}
+					outputDataPackage.ClipartItems.Add("CP02ACLIPART1", clipart);
 
 				var slideHeader = (OutputControl.SlideContainer.EditedContent.CNAState.TabA.SlideHeader ?? OutputControl.SlideContainer.StarInfo.CNAConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				outputDataPackage.TextItems.Add("CP02AHEADER".ToUpper(), slideHeader);
@@ -139,7 +135,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				}
 
 				for (int i = 0; i < textItemKeys.Length; i++)
-					outputDataPackage.TextItems.Add(textItemKeys[i].ToUpper(), textItemValues.ElementAtOrDefault(i)??String.Empty);
+					outputDataPackage.TextItems.Add(textItemKeys[i].ToUpper(), textItemValues.ElementAtOrDefault(i) ?? String.Empty);
 
 				return outputDataPackage;
 			}
@@ -164,21 +160,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 				outputDataPackage.Theme = OutputControl.SelectedTheme;
 
-				var clipart1 = OutputControl.SlideContainer.EditedContent.CNAState.TabB.Clipart1 ?? OutputControl.SlideContainer.StarInfo.Tab2SubBClipart1Image;
+				var clipart1 = OutputControl.SlideContainer.EditedContent.CNAState.TabB.Clipart1 ?? ImageClipartObject.FromImage(OutputControl.SlideContainer.StarInfo.Tab2SubBClipart1Image);
 				if (clipart1 != null)
-				{
-					var fileName = Path.GetTempFileName();
-					clipart1.Save(fileName);
-					outputDataPackage.ClipartItems.Add("CP02BCLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart1.Width, clipart1.Height) });
-				}
+					outputDataPackage.ClipartItems.Add("CP02BCLIPART1", clipart1);
 
-				var clipart2 = OutputControl.SlideContainer.EditedContent.CNAState.TabB.Clipart2 ?? OutputControl.SlideContainer.StarInfo.Tab2SubBClipart2Image;
+				var clipart2 = OutputControl.SlideContainer.EditedContent.CNAState.TabB.Clipart2 ?? ImageClipartObject.FromImage(OutputControl.SlideContainer.StarInfo.Tab2SubBClipart2Image);
 				if (clipart2 != null)
-				{
-					var fileName = Path.GetTempFileName();
-					clipart2.Save(fileName);
-					outputDataPackage.ClipartItems.Add("CP02BCLIPART2", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart2.Width, clipart2.Height) });
-				}
+					outputDataPackage.ClipartItems.Add("CP02BCLIPART2", clipart2);
 
 				var slideHeader = (OutputControl.SlideContainer.EditedContent.CNAState.TabB.SlideHeader ?? OutputControl.SlideContainer.StarInfo.CNAConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				outputDataPackage.TextItems.Add("CP02BHEADER".ToUpper(), slideHeader);

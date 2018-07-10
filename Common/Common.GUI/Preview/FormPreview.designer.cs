@@ -32,17 +32,9 @@
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem3 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
 			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
 			this.barOperations = new DevExpress.XtraBars.Bar();
 			this.barLargeButtonItemOutput = new DevExpress.XtraBars.BarLargeButtonItem();
-			this.barLargeButtonItemHelp = new DevExpress.XtraBars.BarLargeButtonItem();
-			this.barLargeButtonItemExit = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -74,9 +66,7 @@
 			this.barManager.DockControls.Add(this.barDockControlRight);
 			this.barManager.Form = this;
 			this.barManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barLargeButtonItemOutput,
-            this.barLargeButtonItemHelp,
-            this.barLargeButtonItemExit});
+            this.barLargeButtonItemOutput});
 			this.barManager.MaxItemId = 16;
 			// 
 			// barOperations
@@ -87,9 +77,7 @@
 			this.barOperations.DockRow = 0;
 			this.barOperations.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
 			this.barOperations.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barLargeButtonItemOutput, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barLargeButtonItemHelp, DevExpress.XtraBars.BarItemPaintStyle.Standard),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemExit)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barLargeButtonItemOutput, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
 			this.barOperations.OptionsBar.AllowQuickCustomization = false;
 			this.barOperations.OptionsBar.DisableClose = true;
 			this.barOperations.OptionsBar.DisableCustomization = true;
@@ -114,36 +102,6 @@
 			superToolTip1.Items.Add(toolTipItem1);
 			this.barLargeButtonItemOutput.SuperTip = superToolTip1;
 			this.barLargeButtonItemOutput.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemOutput_ItemClick);
-			// 
-			// barLargeButtonItemHelp
-			// 
-			this.barLargeButtonItemHelp.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-			this.barLargeButtonItemHelp.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-			this.barLargeButtonItemHelp.Id = 6;
-			this.barLargeButtonItemHelp.ImageOptions.Image = global::Asa.Common.GUI.Properties.Resources.Help;
-			this.barLargeButtonItemHelp.Name = "barLargeButtonItemHelp";
-			toolTipTitleItem2.Text = "HELP";
-			toolTipItem2.LeftIndent = 6;
-			toolTipItem2.Text = "Learn more about how to preview your schedules";
-			superToolTip2.Items.Add(toolTipTitleItem2);
-			superToolTip2.Items.Add(toolTipItem2);
-			this.barLargeButtonItemHelp.SuperTip = superToolTip2;
-			this.barLargeButtonItemHelp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemHelp_ItemClick);
-			// 
-			// barLargeButtonItemExit
-			// 
-			this.barLargeButtonItemExit.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-			this.barLargeButtonItemExit.Caption = "Exit";
-			this.barLargeButtonItemExit.Id = 15;
-			this.barLargeButtonItemExit.ImageOptions.Image = global::Asa.Common.GUI.Properties.Resources.Exit;
-			this.barLargeButtonItemExit.Name = "barLargeButtonItemExit";
-			toolTipTitleItem3.Text = "EXIT";
-			toolTipItem3.LeftIndent = 6;
-			toolTipItem3.Text = "Close this Window ";
-			superToolTip3.Items.Add(toolTipTitleItem3);
-			superToolTip3.Items.Add(toolTipItem3);
-			this.barLargeButtonItemExit.SuperTip = superToolTip3;
-			this.barLargeButtonItemExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemExit_ItemClick);
 			// 
 			// barDockControlTop
 			// 
@@ -212,7 +170,7 @@
 			// 
 			// layoutControl
 			// 
-	        this.layoutControl.AllowCustomization = false;
+			this.layoutControl.AllowCustomization = false;
 			this.layoutControl.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControl.Appearance.Control.Options.UseFont = true;
 			this.layoutControl.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -288,6 +246,7 @@
 			this.Controls.Add(this.barDockControlTop);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ForeColor = System.Drawing.Color.Black;
 			this.Name = "FormPreview";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
@@ -315,8 +274,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemOutput;
-		private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemHelp;
-		private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemExit;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControlGroups;
 		private DevExpress.XtraLayout.LayoutControl layoutControl;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;

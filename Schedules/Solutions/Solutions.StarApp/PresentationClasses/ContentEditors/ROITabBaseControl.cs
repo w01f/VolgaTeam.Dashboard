@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.GUI.Preview;
-using Asa.Solutions.StarApp.PresentationClasses.ImageEdit;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
@@ -14,7 +13,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		protected bool _dataChanged;
 
 		protected ROIControl ROIContentContainer { get; }
-		protected ROIControlImageEditorHelper ImageEditorHelper { get; }
 
 		public virtual StarAppOutputType OutputType { get; }
 		public virtual string OutputName { get; }
@@ -24,7 +22,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		protected ROITabBaseControl()
 		{
 			InitializeComponent();
-			ImageEditorHelper = new ROIControlImageEditorHelper(this);
 		}
 
 		protected ROITabBaseControl(ROIControl shareContentContainer) : this()

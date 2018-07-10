@@ -1,5 +1,5 @@
-﻿using System.Drawing;
-using Asa.Business.Solutions.Common.Dictionaries;
+﻿using Asa.Business.Solutions.Common.Dictionaries;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.StarApp.Configuration;
 
 namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
@@ -20,8 +20,8 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public class TabAState
 		{
 			public ListDataItem SlideHeader { get; set; }
-			public Image Clipart1 { get; set; }
-			public Image Clipart2 { get; set; }
+			public ClipartObject Clipart1 { get; set; }
+			public ClipartObject Clipart2 { get; set; }
 			public string Subheader1 { get; set; }
 			public User Combo1 { get; set; }
 			public User Combo2 { get; set; }
@@ -39,8 +39,8 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public class TabBState
 		{
 			public ListDataItem SlideHeader { get; set; }
-			public Image Clipart1 { get; set; }
-			public Image Clipart2 { get; set; }
+			public ClipartObject Clipart1 { get; set; }
+			public ClipartObject Clipart2 { get; set; }
 			public string Subheader1 { get; set; }
 			public string Subheader2 { get; set; }
 			public string Subheader3 { get; set; }
@@ -53,8 +53,8 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public class TabCState
 		{
 			public ListDataItem SlideHeader { get; set; }
-			public Image Clipart1 { get; set; }
-			public Image Clipart2 { get; set; }
+			public ClipartObject Clipart1 { get; set; }
+			public ClipartObject Clipart2 { get; set; }
 			public string Subheader1 { get; set; }
 			public string Subheader2 { get; set; }
 			public User Combo1 { get; set; }

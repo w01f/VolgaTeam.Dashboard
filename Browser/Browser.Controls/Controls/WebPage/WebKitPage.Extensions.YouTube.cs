@@ -1,4 +1,4 @@
-﻿using Asa.Browser.Controls.BusinessClasses.Helpers;
+﻿using Asa.Common.Core.Helpers;
 
 namespace Asa.Browser.Controls.Controls.WebPage
 {

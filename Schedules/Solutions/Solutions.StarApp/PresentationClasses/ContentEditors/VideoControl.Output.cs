@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Preview;
 using Asa.Solutions.StarApp.InteropClasses;
@@ -100,13 +100,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 				outputDataPackage.Theme = OutputControl.SelectedTheme;
 
-				var clipart = OutputControl.SlideContainer.EditedContent.VideoState.TabA.Clipart1 ?? OutputControl.SlideContainer.StarInfo.Tab8SubAClipart1Image;
+				var clipart = OutputControl.SlideContainer.EditedContent.VideoState.TabA.Clipart1 ?? ImageClipartObject.FromImage(OutputControl.SlideContainer.StarInfo.Tab8SubAClipart1Image);
 				if (clipart != null)
-				{
-					var fileName = Path.GetTempFileName();
-					clipart.Save(fileName);
-					outputDataPackage.ClipartItems.Add("CP08ACLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
-				}
+					outputDataPackage.ClipartItems.Add("CP08ACLIPART1", clipart);
 
 				var slideHeader = (OutputControl.SlideContainer.EditedContent.VideoState.TabA.SlideHeader ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				var subHeader1 = OutputControl.SlideContainer.EditedContent.VideoState.TabA.Subheader1 ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.PartASubHeader1DefaultValue;
@@ -140,13 +136,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 				outputDataPackage.Theme = OutputControl.SelectedTheme;
 
-				var clipart = OutputControl.SlideContainer.EditedContent.VideoState.TabB.Clipart1 ?? OutputControl.SlideContainer.StarInfo.Tab8SubBClipart1Image;
+				var clipart = OutputControl.SlideContainer.EditedContent.VideoState.TabB.Clipart1 ?? ImageClipartObject.FromImage(OutputControl.SlideContainer.StarInfo.Tab8SubBClipart1Image);
 				if (clipart != null)
-				{
-					var fileName = Path.GetTempFileName();
-					clipart.Save(fileName);
-					outputDataPackage.ClipartItems.Add("CP08BCLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
-				}
+					outputDataPackage.ClipartItems.Add("CP08BCLIPART1", clipart);
 
 				var slideHeader = (OutputControl.SlideContainer.EditedContent.VideoState.TabB.SlideHeader ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				var subHeader1 = OutputControl.SlideContainer.EditedContent.VideoState.TabB.Subheader1 ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.PartBSubHeader1DefaultValue;
@@ -180,13 +172,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 				outputDataPackage.Theme = OutputControl.SelectedTheme;
 
-				var clipart = OutputControl.SlideContainer.EditedContent.VideoState.TabC.Clipart1 ?? OutputControl.SlideContainer.StarInfo.Tab8SubCClipart1Image;
+				var clipart = OutputControl.SlideContainer.EditedContent.VideoState.TabC.Clipart1 ?? ImageClipartObject.FromImage(OutputControl.SlideContainer.StarInfo.Tab8SubCClipart1Image);
 				if (clipart != null)
-				{
-					var fileName = Path.GetTempFileName();
-					clipart.Save(fileName);
-					outputDataPackage.ClipartItems.Add("CP08CCLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
-				}
+					outputDataPackage.ClipartItems.Add("CP08CCLIPART1", clipart);
 
 				var slideHeader = (OutputControl.SlideContainer.EditedContent.VideoState.TabC.SlideHeader ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				var subHeader1 = OutputControl.SlideContainer.EditedContent.VideoState.TabC.Subheader1 ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.PartCSubHeader1DefaultValue;
@@ -220,13 +208,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 				outputDataPackage.Theme = OutputControl.SelectedTheme;
 
-				var clipart = OutputControl.SlideContainer.EditedContent.VideoState.TabD.Clipart1 ?? OutputControl.SlideContainer.StarInfo.Tab8SubDClipart1Image;
+				var clipart = OutputControl.SlideContainer.EditedContent.VideoState.TabD.Clipart1 ?? ImageClipartObject.FromImage(OutputControl.SlideContainer.StarInfo.Tab8SubDClipart1Image);
 				if (clipart != null)
-				{
-					var fileName = Path.GetTempFileName();
-					clipart.Save(fileName);
-					outputDataPackage.ClipartItems.Add("CP08DCLIPART1", new OutputImageInfo { FilePath = fileName, Size = new Size(clipart.Width, clipart.Height) });
-				}
+					outputDataPackage.ClipartItems.Add("CP08DCLIPART1", clipart);
 
 				var slideHeader = (OutputControl.SlideContainer.EditedContent.VideoState.TabD.SlideHeader ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.HeadersPartDItems.FirstOrDefault(h => h.IsDefault))?.Value;
 				var subHeader1 = OutputControl.SlideContainer.EditedContent.VideoState.TabD.Subheader1 ?? OutputControl.SlideContainer.StarInfo.VideoConfiguration.PartDSubHeader1DefaultValue;

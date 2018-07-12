@@ -33,9 +33,19 @@
     <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.12, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EO.Base, Version=18.1.75.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EO.WebBrowser.18.1.75\lib\EO.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.WebBrowser, Version=18.1.75.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EO.WebBrowser.18.1.75\lib\EO.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.WebEngine, Version=18.1.75.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EO.WebBrowser.18.1.75\lib\EO.WebEngine.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -51,6 +61,8 @@
     <Compile Include="Common\HomeButtonStatusChangedEventArgs.cs" />
     <Compile Include="Common\OutputStatusChangedEventArgs.cs" />
     <Compile Include="Common\SelectedSlideTypeChanged.cs" />
+    <Compile Include="Helpers\VideoResourceHelper.cs" />
+    <Compile Include="InteropClasses\SolutionCommonHelper.cs" />
     <Compile Include="PresentationClasses\BaseSolutionContainerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -60,8 +72,40 @@
     <Compile Include="PresentationClasses\BaseSolutionEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PresentationClasses\ClipartEdit\ClipartEditContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ClipartEdit\ClipartEditContainer.Designer.cs">
+      <DependentUpon>ClipartEditContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ClipartEdit\FormFavoritesOpen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ClipartEdit\FormFavoritesOpen.Designer.cs">
+      <DependentUpon>FormFavoritesOpen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ClipartEdit\FormPreviewImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ClipartEdit\FormPreviewImage.Designer.cs">
+      <DependentUpon>FormPreviewImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ClipartEdit\FormPreviewYouTube.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ClipartEdit\FormPreviewYouTube.Designer.cs">
+      <DependentUpon>FormPreviewYouTube.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ClipartEdit\FormYouTubeInsert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ClipartEdit\FormYouTubeInsert.Designer.cs">
+      <DependentUpon>FormYouTubeInsert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\IScheduleResourceHolder.cs" />
     <Compile Include="PresentationClasses\ISolutionEditor.cs" />
     <Compile Include="PresentationClasses\ISolutionToggle.cs" />
+    <Compile Include="PresentationClasses\Output\OutputDataPackage.cs" />
     <Compile Include="PresentationClasses\SolutionButtonToggle.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -79,6 +123,21 @@
   <ItemGroup>
     <EmbeddedResource Include="PresentationClasses\BaseSolutionContainerControl.resx">
       <DependentUpon>BaseSolutionContainerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ClipartEdit\ClipartEditContainer.resx">
+      <DependentUpon>ClipartEditContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ClipartEdit\FormFavoritesOpen.resx">
+      <DependentUpon>FormFavoritesOpen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ClipartEdit\FormPreviewImage.resx">
+      <DependentUpon>FormPreviewImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ClipartEdit\FormPreviewYouTube.resx">
+      <DependentUpon>FormPreviewYouTube.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ClipartEdit\FormYouTubeInsert.resx">
+      <DependentUpon>FormYouTubeInsert.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -106,6 +165,41 @@
       <Project>{18F20EB4-6552-4F0A-AB13-D417A2D53CD4}</Project>
       <Name>Common.Controls</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ButtonArrowRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.PowerPoint">
+      <Guid>{91493440-5A91-11CF-8700-00AA0060263B}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>12</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

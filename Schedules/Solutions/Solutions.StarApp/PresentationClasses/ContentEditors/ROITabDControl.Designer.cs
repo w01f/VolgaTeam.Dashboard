@@ -1,4 +1,6 @@
-﻿namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
+﻿using Asa.Solutions.Common.PresentationClasses.ClipartEdit;
+
+namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	partial class ROITabDControl
 	{
@@ -266,11 +268,11 @@
 			this.layoutControlGroupTabD = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlGroupTabDScroll = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemTabD = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainer1 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainer1 = new ClipartEditContainer();
 			this.layoutControlItemClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainer2 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainer2 = new ClipartEditContainer();
 			this.layoutControlItemClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainer3 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainer3 = new ClipartEditContainer();
 			this.layoutControlItemClipart3 = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
@@ -3096,9 +3098,9 @@
 		private DevExpress.XtraEditors.SpinEdit spinEditTabDSubheader10;
 		private DevExpress.XtraEditors.SpinEdit spinEditTabDSubheader12;
 		private DevExpress.XtraEditors.SpinEdit spinEditTabDSubheader15;
-		private ClipartEdit.ClipartEditContainer clipartEditContainer3;
-		private ClipartEdit.ClipartEditContainer clipartEditContainer2;
-		private ClipartEdit.ClipartEditContainer clipartEditContainer1;
+		private ClipartEditContainer clipartEditContainer3;
+		private ClipartEditContainer clipartEditContainer2;
+		private ClipartEditContainer clipartEditContainer1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemClipart1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemClipart2;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemClipart3;

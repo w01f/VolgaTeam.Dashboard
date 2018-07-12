@@ -1,5 +1,5 @@
-﻿using Asa.Business.Solutions.Common.Entities.NonPersistent;
-using Asa.Business.Solutions.StarApp.Configuration;
+﻿using Asa.Business.Solutions.Common.Configuration;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
 
 namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 {

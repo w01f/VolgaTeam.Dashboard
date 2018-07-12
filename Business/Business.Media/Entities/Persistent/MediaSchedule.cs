@@ -294,6 +294,9 @@ namespace Asa.Business.Media.Entities.Persistent
 				case SolutionType.StarApp:
 					scheduleSolution = new MediaStarAppSolution();
 					break;
+				case SolutionType.Shift:
+					scheduleSolution = new MediaShiftSolution();
+					break;
 				default:
 					throw new ArgumentOutOfRangeException("Undefined schedule solution type");
 			}

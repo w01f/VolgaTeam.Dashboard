@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Xml;
+using Asa.Business.Solutions.Common.Configuration;
 
 namespace Asa.Business.Solutions.StarApp.Configuration
 {

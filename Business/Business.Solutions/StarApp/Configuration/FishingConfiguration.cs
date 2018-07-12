@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
+using Asa.Business.Solutions.Common.Configuration;
 
 namespace Asa.Business.Solutions.StarApp.Configuration
 {

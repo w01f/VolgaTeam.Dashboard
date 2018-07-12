@@ -1,4 +1,6 @@
-﻿namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
+﻿using Asa.Solutions.Common.PresentationClasses.ClipartEdit;
+
+namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	sealed partial class SolutionControl
 	{
@@ -85,19 +87,19 @@
 			this.pictureEditLogoRight = new DevExpress.XtraEditors.PictureEdit();
 			this.panelLogoBottom = new System.Windows.Forms.Panel();
 			this.pictureEditLogoFooter = new DevExpress.XtraEditors.PictureEdit();
-			this.clipartEditContainerTabA1 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainerTabA1 = new ClipartEditContainer();
 			this.layoutControlItemTabAClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainerTabB1 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainerTabB1 = new ClipartEditContainer();
 			this.layoutControlItemTabBClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainerTabB2 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainerTabB2 = new ClipartEditContainer();
 			this.layoutControlItemTabBClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainerTabB3 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainerTabB3 = new ClipartEditContainer();
 			this.layoutControlItemTabBClipart3 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainerTabC1 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainerTabC1 = new ClipartEditContainer();
 			this.layoutControlItemTabCClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainerTabC2 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainerTabC2 = new ClipartEditContainer();
 			this.layoutControlItemTabCClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainerTabD1 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainerTabD1 = new ClipartEditContainer();
 			this.layoutControlItemTabDClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
@@ -869,13 +871,13 @@
 		private DevExpress.XtraEditors.MemoEdit memoEditTabDSubheader1;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabD;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabDSubheader1;
-		private ClipartEdit.ClipartEditContainer clipartEditContainerTabD1;
-		private ClipartEdit.ClipartEditContainer clipartEditContainerTabC2;
-		private ClipartEdit.ClipartEditContainer clipartEditContainerTabC1;
-		private ClipartEdit.ClipartEditContainer clipartEditContainerTabB3;
-		private ClipartEdit.ClipartEditContainer clipartEditContainerTabB2;
-		private ClipartEdit.ClipartEditContainer clipartEditContainerTabB1;
-		private ClipartEdit.ClipartEditContainer clipartEditContainerTabA1;
+		private ClipartEditContainer clipartEditContainerTabD1;
+		private ClipartEditContainer clipartEditContainerTabC2;
+		private ClipartEditContainer clipartEditContainerTabC1;
+		private ClipartEditContainer clipartEditContainerTabB3;
+		private ClipartEditContainer clipartEditContainerTabB2;
+		private ClipartEditContainer clipartEditContainerTabB1;
+		private ClipartEditContainer clipartEditContainerTabA1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabAClipart1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabBClipart1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabBClipart2;

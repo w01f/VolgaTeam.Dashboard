@@ -6,6 +6,7 @@ using Asa.Business.Common.Entities.NonPersistent.ScheduleResources;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Preview;
+using Asa.Solutions.Common.PresentationClasses;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors

@@ -64,6 +64,8 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 					return new MediaDashboardContainer(solutionInfo);
 				case SolutionType.StarApp:
 					return new MediaStarAppContainer(solutionInfo);
+				case SolutionType.Shift:
+					return new MediaShiftContainer(solutionInfo);
 				default:
 					throw new NotImplementedException("Solution type is not implemented");
 			}

@@ -81,9 +81,14 @@
     <Compile Include="Dashboard\Entities\NonPersistent\SimpleSummaryState.cs" />
     <Compile Include="Dashboard\Entities\NonPersistent\TargetCustomersState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shift\Configuration\IShiftSettingsContainer.cs" />
+    <Compile Include="Shift\Configuration\ResourceManager.cs" />
+    <Compile Include="Shift\Configuration\TitlesConfiguration.cs" />
+    <Compile Include="Shift\Entities\NonPersistent\ShiftSolutionInfo.cs" />
+    <Compile Include="Shift\Entities\NonPersistent\ShiftContent.cs" />
     <Compile Include="StarApp\Configuration\IStarAppSettingsContainer.cs" />
     <Compile Include="StarApp\Configuration\ResourceManager.cs" />
-    <Compile Include="StarApp\Configuration\ClipartConfiguration.cs" />
+    <Compile Include="Common\Configuration\ClipartConfiguration.cs" />
     <Compile Include="StarApp\Configuration\TitlesConfiguration.cs" />
     <Compile Include="StarApp\Configuration\ClosersConfiguration.cs" />
     <Compile Include="StarApp\Configuration\SolutionConfiguration.cs" />
@@ -96,7 +101,7 @@
     <Compile Include="StarApp\Configuration\ShareConfiguration.cs" />
     <Compile Include="StarApp\Configuration\CustomerConfiguration.cs" />
     <Compile Include="StarApp\Configuration\FishingConfiguration.cs" />
-    <Compile Include="StarApp\Configuration\ListDataItem.cs" />
+    <Compile Include="Common\Configuration\ListDataItem.cs" />
     <Compile Include="StarApp\Entities\NonPersistent\VideoState.cs" />
     <Compile Include="StarApp\Entities\NonPersistent\SolutionState.cs" />
     <Compile Include="StarApp\Entities\NonPersistent\ShareState.cs" />
@@ -125,6 +130,7 @@
       <Name>Business.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

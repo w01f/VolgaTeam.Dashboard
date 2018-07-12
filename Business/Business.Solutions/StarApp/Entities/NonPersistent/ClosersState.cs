@@ -1,6 +1,6 @@
-﻿using Asa.Business.Solutions.Common.Dictionaries;
+﻿using Asa.Business.Solutions.Common.Configuration;
+using Asa.Business.Solutions.Common.Dictionaries;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
-using Asa.Business.Solutions.StarApp.Configuration;
 
 namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Xml;
-using Asa.Business.Solutions.StarApp.Configuration;
+using Asa.Business.Solutions.Common.Configuration;
 using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Business.Solutions.Common.Dictionaries

@@ -5,7 +5,8 @@ using System.Linq;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Preview;
-using Asa.Solutions.StarApp.InteropClasses;
+using Asa.Solutions.Common.InteropClasses;
+using Asa.Solutions.Common.PresentationClasses.Output;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors

@@ -25,6 +25,7 @@ namespace Asa.Business.Media.Configuration
 		public string SalesRep { get; set; }
 
 		public string SelectedStarOutputItemsEncoded { get; set; }
+		public string SelectedShiftOutputItemsEncoded { get; set; }
 
 		public MediaSettingsManager()
 		{
@@ -57,6 +58,9 @@ namespace Asa.Business.Media.Configuration
 			node = document.SelectSingleNode(@"/Settings/SelectedStarOutputItemsEncoded");
 			if (node != null)
 				SelectedStarOutputItemsEncoded = node.InnerText;
+			node = document.SelectSingleNode(@"/Settings/SelectedShiftOutputItemsEncoded");
+			if (node != null)
+				SelectedShiftOutputItemsEncoded = node.InnerText;
 			node = document.SelectSingleNode(@"/Settings/ApplyThemeForAllSlideTypes");
 			if (node != null)
 			{
@@ -78,6 +82,8 @@ namespace Asa.Business.Media.Configuration
 				xml.AppendLine(@"<SalesRep>" + SalesRep.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SalesRep>");
 			if (!String.IsNullOrEmpty(SelectedStarOutputItemsEncoded))
 				xml.AppendLine(@"<SelectedStarOutputItemsEncoded>" + SelectedStarOutputItemsEncoded.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SelectedStarOutputItemsEncoded>");
+			if (!String.IsNullOrEmpty(SelectedShiftOutputItemsEncoded))
+				xml.AppendLine(@"<SelectedShiftOutputItemsEncoded>" + SelectedShiftOutputItemsEncoded.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SelectedShiftOutputItemsEncoded>");
 			xml.AppendLine(@"<ApplyThemeForAllSlideTypes>" + ApplyThemeForAllSlideTypes + @"</ApplyThemeForAllSlideTypes>");
 			xml.AppendLine(_themeSaveHelper.Serialize());
 			xml.AppendLine(@"</Settings>");

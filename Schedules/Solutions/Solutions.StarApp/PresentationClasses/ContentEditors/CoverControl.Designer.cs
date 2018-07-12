@@ -1,4 +1,6 @@
-﻿namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
+﻿using Asa.Solutions.Common.PresentationClasses.ClipartEdit;
+
+namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	sealed partial class CoverControl
 	{
@@ -64,7 +66,7 @@
 			this.pictureEditLogoRight = new DevExpress.XtraEditors.PictureEdit();
 			this.panelLogoBottom = new System.Windows.Forms.Panel();
 			this.pictureEditLogoFooter = new DevExpress.XtraEditors.PictureEdit();
-			this.clipartEditContainer1 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainer1 = new ClipartEditContainer();
 			this.layoutControlItemClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAddAsPageOne.Properties)).BeginInit();
@@ -650,7 +652,7 @@
 		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemCombo1Description1;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupSubheader1;
-		private ClipartEdit.ClipartEditContainer clipartEditContainer1;
+		private ClipartEditContainer clipartEditContainer1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemClipart1;
 	}
 }

@@ -62,5 +62,18 @@
 		StarAppSolution = 411,
 		StarAppClosers = 412,
 		#endregion
+
+		#region Shift
+		ShiftCleanslate = 501,
+		ShiftStarters = 502,
+		ShiftCNA = 503,
+		ShiftMarket = 504,
+		ShiftNeedsSolutions = 505,
+		ShiftCBC = 506,
+		ShiftIntegratedSolution = 507,
+		ShiftInvestemnt = 508,
+		ShiftClosers = 509,
+		ShiftSupportMaterials = 510,
+		#endregion
 	}
 }

@@ -15,7 +15,6 @@ namespace Asa.Common.GUI.Preview
 	public partial class FormPreview : MetroForm
 	{
 		private readonly PowerPointProcessor _powerPointProcessor;
-		private readonly HelpManager _helpManager;
 		private readonly Form _parentForm;
 		private readonly Action<Action, Action> _showFloater;
 		private readonly Func<Action, bool> _checkPowerPoint;

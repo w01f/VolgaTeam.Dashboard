@@ -583,6 +583,9 @@
     <Compile Include="PresentationClasses\ScheduleControls\Settings\CustomSummaryInfoControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PresentationClasses\Solutions\MediaShiftContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\Solutions\MediaStarAppContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1099,6 +1102,10 @@
     <ProjectReference Include="..\..\Solutions\Solutions.Dashboard\Solutions.Dashboard.csproj">
       <Project>{9399d618-8c42-483c-8b87-3bd111b07b88}</Project>
       <Name>Solutions.Dashboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Solutions\Solutions.Shift\Solutions.Shift.csproj">
+      <Project>{797751E2-D656-457B-8ADC-7D2A20295752}</Project>
+      <Name>Solutions.Shift</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Solutions\Solutions.StarApp\Solutions.StarApp.csproj">
       <Project>{d3c4fe3f-d410-4fdf-abfe-4359487db9db}</Project>

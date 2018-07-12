@@ -1,4 +1,6 @@
-﻿namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
+﻿using Asa.Solutions.Common.PresentationClasses.ClipartEdit;
+
+namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	sealed partial class AudienceControl
 	{
@@ -119,23 +121,23 @@
 			this.pictureEditLogoRight = new DevExpress.XtraEditors.PictureEdit();
 			this.panelLogoBottom = new System.Windows.Forms.Panel();
 			this.pictureEditLogoFooter = new DevExpress.XtraEditors.PictureEdit();
-			this.clipartEditContainerTabA1 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainerTabA1 = new ClipartEditContainer();
 			this.layoutControlItemTabAClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainerTabA2 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainerTabA2 = new ClipartEditContainer();
 			this.layoutControlItemTabAClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainerTabB1 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
-			this.clipartEditContainerTabB2 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
-			this.clipartEditContainerTabB3 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainerTabB1 = new ClipartEditContainer();
+			this.clipartEditContainerTabB2 = new ClipartEditContainer();
+			this.clipartEditContainerTabB3 = new ClipartEditContainer();
 			this.layoutControlItemTabBClipart3 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemTabBClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemTabBClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainerTabC1 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainerTabC1 = new ClipartEditContainer();
 			this.layoutControlItemTabCClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainerTabC2 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainerTabC2 = new ClipartEditContainer();
 			this.layoutControlItemTabCClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainerTabC3 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainerTabC3 = new ClipartEditContainer();
 			this.layoutControlItemTabCClipart3 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainerTabC4 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainerTabC4 = new ClipartEditContainer();
 			this.layoutControlItemTabCClipart4 = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
@@ -1267,20 +1269,20 @@
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabBSubheader4;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabBSubheader5;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabBSubheader6;
-		private ClipartEdit.ClipartEditContainer clipartEditContainerTabB1;
-		private ClipartEdit.ClipartEditContainer clipartEditContainerTabB2;
-		private ClipartEdit.ClipartEditContainer clipartEditContainerTabB3;
-		private ClipartEdit.ClipartEditContainer clipartEditContainerTabA2;
-		private ClipartEdit.ClipartEditContainer clipartEditContainerTabA1;
+		private ClipartEditContainer clipartEditContainerTabB1;
+		private ClipartEditContainer clipartEditContainerTabB2;
+		private ClipartEditContainer clipartEditContainerTabB3;
+		private ClipartEditContainer clipartEditContainerTabA2;
+		private ClipartEditContainer clipartEditContainerTabA1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabBClipart1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabBClipart2;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabBClipart3;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabAClipart1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabAClipart2;
-		private ClipartEdit.ClipartEditContainer clipartEditContainerTabC4;
-		private ClipartEdit.ClipartEditContainer clipartEditContainerTabC3;
-		private ClipartEdit.ClipartEditContainer clipartEditContainerTabC2;
-		private ClipartEdit.ClipartEditContainer clipartEditContainerTabC1;
+		private ClipartEditContainer clipartEditContainerTabC4;
+		private ClipartEditContainer clipartEditContainerTabC3;
+		private ClipartEditContainer clipartEditContainerTabC2;
+		private ClipartEditContainer clipartEditContainerTabC1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabCClipart1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabCClipart2;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabCClipart3;

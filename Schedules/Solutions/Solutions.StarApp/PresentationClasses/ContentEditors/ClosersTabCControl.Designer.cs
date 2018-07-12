@@ -1,4 +1,6 @@
-﻿namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
+﻿using Asa.Solutions.Common.PresentationClasses.ClipartEdit;
+
+namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	partial class ClosersTabCControl
 	{
@@ -118,9 +120,9 @@
 			this.memoEditTabCSubheader1 = new DevExpress.XtraEditors.MemoEdit();
 			this.layoutControlItemTabCSubheader2 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.memoEditTabCSubheader2 = new DevExpress.XtraEditors.MemoEdit();
-			this.clipartEditContainer1 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainer1 = new ClipartEditContainer();
 			this.layoutControlItemClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainer2 = new Asa.Solutions.StarApp.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.clipartEditContainer2 = new ClipartEditContainer();
 			this.layoutControlItemClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
@@ -1358,8 +1360,8 @@
 		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTabCCombo1Description1;
 		private DevExpress.XtraEditors.MemoEdit memoEditTabCSubheader2;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabCSubheader2;
-		private ClipartEdit.ClipartEditContainer clipartEditContainer2;
-		private ClipartEdit.ClipartEditContainer clipartEditContainer1;
+		private ClipartEditContainer clipartEditContainer2;
+		private ClipartEditContainer clipartEditContainer1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemClipart1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemClipart2;
 	}

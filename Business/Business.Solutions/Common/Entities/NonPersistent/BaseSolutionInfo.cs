@@ -2,6 +2,7 @@
 using System.Xml;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Dashboard.Entities.NonPersistent;
+using Asa.Business.Solutions.Shift.Entities.NonPersistent;
 using Asa.Business.Solutions.StarApp.Entities.NonPersistent;
 using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Helpers;
@@ -45,6 +46,9 @@ namespace Asa.Business.Solutions.Common.Entities.NonPersistent
 					break;
 				case "starapp":
 					solutionInfo = new StarAppSolutionInfo();
+					break;
+				case "shift_1":
+					solutionInfo = new ShiftSolutionInfo();
 					break;
 				default:
 					throw new ArgumentOutOfRangeException("Solution Type is undefined");

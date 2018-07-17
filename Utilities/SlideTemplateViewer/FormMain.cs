@@ -63,9 +63,6 @@ namespace Asa.SlideTemplateViewer
 				AppManager.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemSlidesPowerPoint.Image;
 			buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
 
-			buttonItemSlidesPreview.Image = AppManager.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemSlidesPreview.Image;
-			buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
-
 			buttonItemApplicationMenuSlideSettings.Image = AppManager.Instance.ImageResourcesManager.MainMenuSlideSettingsImage ??
 												 buttonItemApplicationMenuSlideSettings.Image;
 			buttonItemApplicationMenuHelp.Image = AppManager.Instance.ImageResourcesManager.MainMenuHelpImage ??

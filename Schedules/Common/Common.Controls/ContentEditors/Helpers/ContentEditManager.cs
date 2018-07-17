@@ -142,18 +142,18 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Helpers
 			_controller.ActiveOutputControl.OutputPowerPoint();
 		}
 
+		public static void OutputPowerPointAll()
+		{
+			if (!(_controller.ActiveOutputControl is IMultipleSlidesOutputControl multipleSlidesOutputControl)) return;
+			SaveSchedule(true);
+			multipleSlidesOutputControl.OutputPowerPointAll();
+		}
+
 		public static void OutputPdf()
 		{
 			if (_controller.ActiveOutputControl == null) return;
 			SaveSchedule(true);
 			_controller.ActiveOutputControl.OutputPdf();
-		}
-
-		public static void Preview()
-		{
-			if (_controller.ActiveOutputControl == null) return;
-			SaveSchedule(true);
-			_controller.ActiveOutputControl.Preview();
 		}
 
 		public static void Email()

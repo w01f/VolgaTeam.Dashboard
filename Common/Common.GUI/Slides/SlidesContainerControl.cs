@@ -13,7 +13,6 @@ namespace Asa.Common.GUI.Slides
 		private SlideManager _slideManager;
 
 		public event EventHandler<SlideMasterEventArgs> SlideOutput;
-		public event EventHandler<SlideMasterEventArgs> SlidePreview;
 
 		public SlideMaster SelectedSlide
 		{
@@ -41,7 +40,6 @@ namespace Asa.Common.GUI.Slides
 					group,
 					_slideManager.Slides.Where(s => s.Group.Equals(group) && s.Format == SlideSettingsManager.Instance.SlideSettings.Format));
 				groupPage.SlideOutput += OnSlideOutput;
-				groupPage.SlidePreview += OnSlidePreview;
 				xtraTabControlSlides.TabPages.Add(groupPage);
 			}
 		}
@@ -49,11 +47,6 @@ namespace Asa.Common.GUI.Slides
 		private void OnSlideOutput(object sender, SlideMasterEventArgs e)
 		{
 			SlideOutput?.Invoke(sender, e);
-		}
-
-		private void OnSlidePreview(object sender, SlideMasterEventArgs e)
-		{
-			SlidePreview?.Invoke(sender, e);
 		}
 	}
 }

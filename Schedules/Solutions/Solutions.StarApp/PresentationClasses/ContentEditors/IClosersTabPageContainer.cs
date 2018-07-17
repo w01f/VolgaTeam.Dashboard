@@ -1,7 +1,8 @@
 ﻿namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
-	interface IClosersTabPageContainer
+	public interface IClosersTabPageContainer
 	{
+		ClosersControl ParentControl { get; }
 		ClosersTabBaseControl ContentControl { get; }
 		void LoadContent();
 	}

@@ -14,10 +14,10 @@ using Theme = Asa.Common.Core.Objects.Themes.Theme;
 
 namespace Asa.Media.Controls.InteropClasses
 {
-	public partial class MediaSchedulePowerPointProcessor
+	public static partial class MediaSchedulePowerPointExtensions
 	{
 		#region OneSheet
-		public void AppendDigitalOneSheet(StandaloneDigitalInfoOneSheetOutputModel dataModel, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
+		public static void AppendDigitalOneSheet(this PowerPointProcessor target, StandaloneDigitalInfoOneSheetOutputModel dataModel, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
 		{
 			try
 			{
@@ -27,7 +27,7 @@ namespace Asa.Media.Controls.InteropClasses
 					var copyOfReplacementList = new Dictionary<string, string>(dataModel.ReplacementsList);
 					var presentationTemplatePath = dataModel.TemplateFilePath;
 					if (!File.Exists(presentationTemplatePath)) return;
-					var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = target.PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					var taggedSlide = presentation.Slides.Count > 0 ? presentation.Slides[1] : null;
 
 					var logoShapes = new List<Shape>();
@@ -116,7 +116,7 @@ namespace Asa.Media.Controls.InteropClasses
 						}
 
 						if (dataModel.ContractSettings.IsConfigured)
-							FillContractInfo(design, dataModel.ContractSettings, BusinessObjects.Instance.OutputManager.ContractTemplateFolder);
+							target.FillContractInfo(design, dataModel.ContractSettings, BusinessObjects.Instance.OutputManager.ContractTemplateFolder);
 
 						newSlide.Design = design;
 					}
@@ -126,9 +126,9 @@ namespace Asa.Media.Controls.InteropClasses
 							presentation.ApplyTheme(selectedTheme.GetThemePath());
 
 						if (dataModel.ContractSettings.IsConfigured)
-							FillContractInfo(taggedSlide, dataModel.ContractSettings, BusinessObjects.Instance.OutputManager.ContractTemplateFolder);
+							target.FillContractInfo(taggedSlide, dataModel.ContractSettings, BusinessObjects.Instance.OutputManager.ContractTemplateFolder);
 					}
-					AppendSlide(presentation, 1, destinationPresentation);
+					target.AppendSlide(presentation, 1, destinationPresentation);
 					presentation.Close();
 				});
 				thread.Start();
@@ -144,14 +144,14 @@ namespace Asa.Media.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareDigitalOneSheetEmail(string fileName, StandaloneDigitalInfoOneSheetOutputModel page, Theme selectedTheme, bool pasteToSlideMaster)
+		public static void PrepareDigitalOneSheetEmail(this PowerPointProcessor target, string fileName, StandaloneDigitalInfoOneSheetOutputModel page, Theme selectedTheme, bool pasteToSlideMaster)
 		{
-			PreparePresentation(fileName, presentation => AppendDigitalOneSheet(page, selectedTheme, pasteToSlideMaster, presentation));
+			target.PreparePresentation(fileName, presentation => target.AppendDigitalOneSheet(page, selectedTheme, pasteToSlideMaster, presentation));
 		}
 		#endregion
 
 		#region Strategy
-		public void AppendStrategy(DigitalInfoStrategyOutputModel source, Theme theme, Presentation destinationPresentation = null)
+		public static void AppendStrategy(this PowerPointProcessor target, DigitalInfoStrategyOutputModel source, Theme theme, Presentation destinationPresentation = null)
 		{
 			try
 			{
@@ -162,7 +162,7 @@ namespace Asa.Media.Controls.InteropClasses
 					if (!File.Exists(presentationTemplatePath)) return;
 
 					MessageFilter.Register();
-					var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = target.PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					foreach (Slide slide in presentation.Slides)
 					{
 						foreach (Shape shape in slide.Shapes)
@@ -211,7 +211,7 @@ namespace Asa.Media.Controls.InteropClasses
 					}
 					if (theme != null)
 						presentation.ApplyTheme(theme.GetThemePath());
-					AppendSlide(presentation, -1, destinationPresentation);
+					target.AppendSlide(presentation, -1, destinationPresentation);
 					presentation.Close();
 				});
 				thread.Start();
@@ -228,9 +228,9 @@ namespace Asa.Media.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareStrategyEmail(string fileName, DigitalInfoStrategyOutputModel dataModel, Theme selectedTheme)
+		public static void PrepareStrategyEmail(this PowerPointProcessor target, string fileName, DigitalInfoStrategyOutputModel dataModel, Theme selectedTheme)
 		{
-			PreparePresentation(fileName, presentation => AppendStrategy(dataModel, selectedTheme, presentation));
+			target.PreparePresentation(fileName, presentation => target.AppendStrategy(dataModel, selectedTheme, presentation));
 		}
 		#endregion
 	}

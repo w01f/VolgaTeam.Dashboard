@@ -9,13 +9,11 @@ using Asa.Business.Online.Dictionaries;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
-using Asa.Common.GUI.OutputSelector;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.Digital.Output;
 using Asa.Media.Controls.PresentationClasses.Digital.Settings;
 using Asa.Online.Controls.InteropClasses;
-using Asa.Online.Controls.PresentationClasses.Products;
 using Asa.Online.Controls.PresentationClasses.Summary;
 using DevExpress.Skins;
 using DevExpress.XtraTab;
@@ -28,8 +26,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 	public partial class DigitalSummaryEditorControl : XtraTabPage,
 		IDigitalEditor,
 		IDigitalSummaryContainerControl,
-		IDigitalOutputContainer,
-		IDigitalOutputItem
+		IDigitalOutputContainer
 	{
 		private bool _allowToSave;
 		private bool _needToReload;
@@ -141,13 +138,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		#region Output
 		public List<Dictionary<string, string>> OutputReplacementsLists { get; set; }
 		public SlideType SlideType => SlideType.DigitalSummary;
-		public bool IsCurrent => TabControl != null && TabControl.SelectedTabPage == this;
-		public bool SelectedForOutput { get; set; } = true;
-		public ISlideItem[] SlideItems
-		{
-			get => new ISlideItem[] { };
-			set { }
-		}
+
 		public Theme SelectedTheme
 		{
 			get
@@ -156,8 +147,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(selectedTheme) || String.IsNullOrEmpty(selectedTheme));
 			}
 		}
-		public string DisplayName => Text;
-		public int SlidesCount => _summaryControls.Count / RowsPerSlide + (_summaryControls.Count % RowsPerSlide > 0 ? 1 : 0);
+
 		private static int RowsPerSlide => 7;
 
 		public void PopulateReplacementsList()
@@ -208,37 +198,35 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		public OutputGroup GetOutputGroup()
 		{
-			return new OutputGroup
-			{
-				DisplayName = DisplayName,
-				IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
-				OutputItems = _container.EditedContent.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)) ?
-					new IDigitalOutputItem[] { this } :
-					new IDigitalOutputItem[] { }
-			};
-		}
-
-		public void GenerateOutput()
-		{
-			PopulateReplacementsList();
-			BusinessObjects.Instance.PowerPointManager.Processor.AppendDigitalSummary(this);
-		}
-
-		public PreviewGroup GetPreviewGroup()
-		{
-			return new PreviewGroup
+			var outputGroup = new OutputGroup
 			{
 				Name = Text,
-				PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				IsCurrent = TabControl != null && TabControl.SelectedTabPage == this
 			};
-		}
 
-		public PreviewGroup GeneratePreview()
-		{
-			var previewGroup = GetPreviewGroup();
-			PopulateReplacementsList();
-			BusinessObjects.Instance.PowerPointManager.Processor.PrepareDigitalSummaryEmail(previewGroup.PresentationSourcePath, this);
-			return previewGroup;
+			if (_container.EditedContent.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)))
+				outputGroup.Items = new List<OutputItem>(new[]
+				{
+					new OutputItem
+					{
+						Name = Text,
+						PresentationSourcePath =
+							Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName())),
+						SlidesCount = _summaryControls.Count / RowsPerSlide + (_summaryControls.Count % RowsPerSlide > 0 ? 1 : 0),
+						IsCurrent = true,
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							PopulateReplacementsList();
+							processor.AppendDigitalSummary(this, destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, filePath) =>
+						{
+							PopulateReplacementsList();
+							processor.PrepareDigitalSummaryEmail(filePath, this);
+						}
+					}
+				});
+			return outputGroup;
 		}
 		#endregion
 	}

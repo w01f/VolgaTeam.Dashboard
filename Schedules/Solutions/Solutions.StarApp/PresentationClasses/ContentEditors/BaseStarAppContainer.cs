@@ -7,11 +7,10 @@ using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Business.Solutions.StarApp.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
-using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
+using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
-using Asa.Solutions.StarApp.PresentationClasses.Output;
 using DevExpress.XtraTab;
 using DevExpress.XtraEditors;
 
@@ -145,11 +144,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			var tabPageContainer = e.Page as IStarAppTabPageContainer;
 			if (tabPageContainer?.ContentControl != null) return;
+			xtraTabControl.Enabled = false;
 			FormProgress.SetTitle("Loading data...");
 			FormProgress.ShowProgress();
 			Application.DoEvents();
 			tabPageContainer?.LoadContent();
 			tabPageContainer?.ContentControl?.LoadData();
+			xtraTabControl.Enabled = true;
 			FormProgress.CloseProgress();
 			Application.DoEvents();
 		}
@@ -216,121 +217,60 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public abstract Theme GetSelectedTheme(SlideType slideType);
 
-		private List<StarAppOutputType> _selectedOutputItems;
-		public List<StarAppOutputType> SelectedOutputItems
+		protected IList<OutputItem> GetOutputItems(bool onlyCurrentSlide)
 		{
-			get
+			var selectedOutputItems = new List<OutputItem>();
+
+			var availableOutputGroups = new List<OutputGroup>();
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Slides...");
+			FormProgress.ShowProgress(MainForm);
+			if (onlyCurrentSlide)
 			{
-				if (_selectedOutputItems == null)
-				{
-					_selectedOutputItems = new List<StarAppOutputType>();
-					if (!String.IsNullOrWhiteSpace(SettingsContainer.SelectedStarOutputItemsEncoded))
-						_selectedOutputItems.AddRange(SettingsContainer.SelectedStarOutputItemsEncoded.Split(';').Select(item => (StarAppOutputType)Int32.Parse(item)));
-				}
-				return _selectedOutputItems;
+				if (ActiveSlideContent != null)
+					availableOutputGroups.Add(ActiveSlideContent.GetOutputGroup());
 			}
-		}
-
-
-		protected IList<OutputGroup> GetOutputConfiguration()
-		{
-			var outputGroups = new List<OutputGroup>();
-
-			var allSlides = _slides
-				.OfType<IStarAppTabPageContainer>()
-				.ToList();
-
-			var allSlidesLoaded = allSlides.All(slide => slide.ContentControl != null);
-
-			var availableOutputGroups = allSlides
-				.Where(slide => slide.ContentControl != null)
-				.Select(container => container.ContentControl)
-				.Where(control => control.ReadyForOutput)
-				.Select(control => control.GetOutputGroup())
-				.ToList();
-
-			if (SelectedOutputItems.Any())
-				foreach (var outputGroup in availableOutputGroups)
-					foreach (var configuration in outputGroup.Configurations)
-						configuration.SelectedForOutput = SelectedOutputItems.Contains(configuration.OutputType);
-
-			if (availableOutputGroups.Any())
+			else
 			{
-				FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-				FormProgress.ShowProgress();
-				var previewGroup = availableOutputGroups
-					.Where(group => group.Configurations.Any(configuration => configuration.IsCurrent))
-					.SelectMany(g => g.OutputContainer.GeneratePreview(g.Configurations.Where(configuration => configuration.IsCurrent).ToList()))
-					.First();
-				Utilities.ActivateForm(MainForm.Handle, MainForm.WindowState == FormWindowState.Maximized, false);
-				FormProgress.CloseProgress();
+				var allSlides = _slides
+					.OfType<IStarAppTabPageContainer>()
+					.ToList();
 
-				using (var form = new FormConfigureOutput(availableOutputGroups, previewGroup, allSlidesLoaded))
+				foreach (var tabPageContainer in allSlides.Where(slide => slide.ContentControl == null).ToList())
 				{
-					if (!allSlidesLoaded)
+					tabPageContainer.LoadContent();
+					if (tabPageContainer.ContentControl is IMultiTabsControl multiTabsControl)
 					{
-						form.LoadAllRequested += (o, e) =>
-						{
-							FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Slides...");
-							FormProgress.ShowProgress(form);
-
-							foreach (var tabPageContainer in allSlides.Where(slide => slide.ContentControl == null).ToList())
-							{
-								tabPageContainer.LoadContent();
-								if (tabPageContainer.ContentControl is IMultiTabsControl multiTabsControl)
-									multiTabsControl.LoadAllTabPages();
-							}
-
-							Utilities.ActivateForm(form.Handle, false, false);
-							FormProgress.CloseProgress();
-
-							var outputItems = allSlides
-								.Where(slide => slide.ContentControl != null)
-								.Select(container => container.ContentControl)
-								.Where(control => control.ReadyForOutput)
-								.Select(control => control.GetOutputGroup())
-								.ToList();
-							if (SelectedOutputItems.Any())
-								foreach (var outputGroup in outputItems)
-									foreach (var configuration in outputGroup.Configurations)
-										configuration.SelectedForOutput = SelectedOutputItems.Contains(configuration.OutputType);
-
-							e.OutputItems.AddRange(outputItems);
-						};
+						multiTabsControl.LoadAllTabPages();
+						Application.DoEvents();
 					}
+				}
 
-					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditLoadAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditLoadAll.Text, allSlidesLoaded ? "gray" : AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditClearAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditClearAll.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-
-					if (form.ShowDialog() == DialogResult.OK)
-					{
-						var result = form.GetSelectedItems();
-						outputGroups.AddRange(result.Item1);
-
-						if (result.Item2)
-						{
-							SelectedOutputItems.Clear();
-							SelectedOutputItems.AddRange(result.Item1.SelectMany(group => group.Configurations).Select(configuration => configuration.OutputType));
-							SettingsContainer.SelectedStarOutputItemsEncoded =
-								String.Join(";", SelectedOutputItems.Select(item => (Int32)item).ToArray());
-							SettingsContainer.SaveSettings();
-						}
-					}
-					else
-						availableOutputGroups.ForEach(g => g.Dispose());
+				var contentControls = allSlides
+					.Select(container => container.ContentControl)
+					.Where(control => control.ReadyForOutput)
+					.ToList();
+				foreach (var contentControl in contentControls)
+				{
+					availableOutputGroups.Add(contentControl.GetOutputGroup());
+					Application.DoEvents();
 				}
 			}
-			return outputGroups;
+			FormProgress.CloseProgress();
+
+			if (!availableOutputGroups.Any())
+				return selectedOutputItems;
+
+			using (var form = new FormPreview(
+				MainForm,
+				PowerPointProcessor))
+			{
+				form.LoadGroups(availableOutputGroups);
+				if (form.ShowDialog() == DialogResult.OK)
+					selectedOutputItems.AddRange(form.GetSelectedItems());
+			}
+
+			return selectedOutputItems;
 		}
 		#endregion
 	}

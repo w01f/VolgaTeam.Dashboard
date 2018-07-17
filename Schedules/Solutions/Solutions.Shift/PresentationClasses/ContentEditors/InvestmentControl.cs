@@ -13,7 +13,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 	public sealed partial class InvestmentControl : BaseShiftControl
 	{
 		public override SlideType SlideType => SlideType.ShiftInvestemnt;
-		public override string OutputName => SlideContainer.ShiftInfo.Titles.Tab7Title;
 
 		public InvestmentControl(BaseShiftContainer slideContainer) : base(slideContainer)
 		{

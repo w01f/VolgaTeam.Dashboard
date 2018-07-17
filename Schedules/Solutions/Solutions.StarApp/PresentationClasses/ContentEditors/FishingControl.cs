@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
@@ -8,6 +9,7 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using DevExpress.Skins;
 using DevExpress.XtraLayout;
+using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -15,7 +17,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 	public sealed partial class FishingControl : StarAppControl
 	{
 		public override SlideType SlideType => SlideType.StarAppFishing;
-		public override string OutputName => SlideContainer.StarInfo.Titles.Tab3Title;
 
 		public FishingControl(BaseStarAppContainer slideContainer) : base(slideContainer)
 		{
@@ -24,49 +25,77 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			Resize += OnResize;
 
 			comboBoxEditSlideHeader.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
-			memoEditTabASubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
-			memoEditTabASubheader2.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
-			comboBoxEditTabBCombo1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
-			comboBoxEditTabBCombo2.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
-			comboBoxEditTabBCombo3.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
-			comboBoxEditTabBCombo4.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
-			memoEditTabCSubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
-			memoEditTabCSubheader2.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
-			memoEditTabCSubheader3.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 
-			layoutControlGroupTabA.Text = SlideContainer.StarInfo.Titles.Tab3SubATitle;
-			layoutControlGroupTabB.Text = SlideContainer.StarInfo.Titles.Tab3SubBTitle;
-			layoutControlGroupTabC.Text = SlideContainer.StarInfo.Titles.Tab3SubCTitle;
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab3SubATitle))
+			{
+				layoutControlGroupTabA.Text = SlideContainer.StarInfo.Titles.Tab3SubATitle;
 
-			clipartEditContainerTabA1.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab3SubAClipart1Image), SlideContainer.StarInfo.FishingConfiguration.PartAClipart1Configuration, this);
-			clipartEditContainerTabA1.EditValueChanged += OnEditValueChanged;
-			clipartEditContainerTabB1.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab3SubBClipart1Image), SlideContainer.StarInfo.FishingConfiguration.PartBClipart1Configuration, this);
-			clipartEditContainerTabB1.EditValueChanged += OnEditValueChanged;
-			clipartEditContainerTabB2.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab3SubBClipart2Image), SlideContainer.StarInfo.FishingConfiguration.PartBClipart2Configuration, this);
-			clipartEditContainerTabB2.EditValueChanged += OnEditValueChanged;
+				memoEditTabASubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+				memoEditTabASubheader2.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 
-			memoEditTabASubheader1.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.PartASubHeader1Placeholder ?? memoEditTabASubheader1.Properties.NullText;
-			memoEditTabASubheader2.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.PartASubHeader2Placeholder ?? memoEditTabASubheader2.Properties.NullText;
-			memoEditTabCSubheader1.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader1Placeholder ?? memoEditTabCSubheader1.Properties.NullText;
-			memoEditTabCSubheader2.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader2Placeholder ?? memoEditTabCSubheader2.Properties.NullText;
-			memoEditTabCSubheader3.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader3Placeholder ?? memoEditTabCSubheader3.Properties.NullText;
+				memoEditTabASubheader1.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.PartASubHeader1Placeholder ?? memoEditTabASubheader1.Properties.NullText;
+				memoEditTabASubheader2.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.PartASubHeader2Placeholder ?? memoEditTabASubheader2.Properties.NullText;
 
-			comboBoxEditTabBCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(item => !item.IsPlaceholder).ToArray());
-			comboBoxEditTabBCombo1.Properties.NullText =
-				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(item => item.IsPlaceholder).ElementAtOrDefault(0)?.Value ??
-				comboBoxEditTabBCombo1.Properties.NullText;
-			comboBoxEditTabBCombo2.Properties.Items.AddRange(SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(item => !item.IsPlaceholder).ToArray());
-			comboBoxEditTabBCombo2.Properties.NullText =
-				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(item => item.IsPlaceholder).ElementAtOrDefault(1)?.Value ??
-				comboBoxEditTabBCombo2.Properties.NullText;
-			comboBoxEditTabBCombo3.Properties.Items.AddRange(SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(item => !item.IsPlaceholder).ToArray());
-			comboBoxEditTabBCombo3.Properties.NullText =
-				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(item => item.IsPlaceholder).ElementAtOrDefault(2)?.Value ??
-				comboBoxEditTabBCombo3.Properties.NullText;
-			comboBoxEditTabBCombo4.Properties.Items.AddRange(SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(item => !item.IsPlaceholder).ToArray());
-			comboBoxEditTabBCombo4.Properties.NullText =
-				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(item => item.IsPlaceholder).ElementAtOrDefault(3)?.Value ??
-				comboBoxEditTabBCombo4.Properties.NullText;
+				clipartEditContainerTabA1.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab3SubAClipart1Image), SlideContainer.StarInfo.FishingConfiguration.PartAClipart1Configuration, this);
+				clipartEditContainerTabA1.EditValueChanged += OnEditValueChanged;
+
+				Application.DoEvents();
+			}
+			else
+				layoutControlGroupTabA.Visibility = LayoutVisibility.Never;
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab3SubBTitle))
+			{
+				layoutControlGroupTabB.Text = SlideContainer.StarInfo.Titles.Tab3SubBTitle;
+
+				comboBoxEditTabBCombo1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+				comboBoxEditTabBCombo2.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+				comboBoxEditTabBCombo3.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+				comboBoxEditTabBCombo4.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+
+				comboBoxEditTabBCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(item => !item.IsPlaceholder).ToArray());
+				comboBoxEditTabBCombo1.Properties.NullText =
+					SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(item => item.IsPlaceholder).ElementAtOrDefault(0)?.Value ??
+					comboBoxEditTabBCombo1.Properties.NullText;
+				comboBoxEditTabBCombo2.Properties.Items.AddRange(SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(item => !item.IsPlaceholder).ToArray());
+				comboBoxEditTabBCombo2.Properties.NullText =
+					SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(item => item.IsPlaceholder).ElementAtOrDefault(1)?.Value ??
+					comboBoxEditTabBCombo2.Properties.NullText;
+				comboBoxEditTabBCombo3.Properties.Items.AddRange(SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(item => !item.IsPlaceholder).ToArray());
+				comboBoxEditTabBCombo3.Properties.NullText =
+					SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(item => item.IsPlaceholder).ElementAtOrDefault(2)?.Value ??
+					comboBoxEditTabBCombo3.Properties.NullText;
+				comboBoxEditTabBCombo4.Properties.Items.AddRange(SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(item => !item.IsPlaceholder).ToArray());
+				comboBoxEditTabBCombo4.Properties.NullText =
+					SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(item => item.IsPlaceholder).ElementAtOrDefault(3)?.Value ??
+					comboBoxEditTabBCombo4.Properties.NullText;
+
+				clipartEditContainerTabB1.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab3SubBClipart1Image), SlideContainer.StarInfo.FishingConfiguration.PartBClipart1Configuration, this);
+				clipartEditContainerTabB1.EditValueChanged += OnEditValueChanged;
+				clipartEditContainerTabB2.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab3SubBClipart2Image), SlideContainer.StarInfo.FishingConfiguration.PartBClipart2Configuration, this);
+				clipartEditContainerTabB2.EditValueChanged += OnEditValueChanged;
+
+				Application.DoEvents();
+			}
+			else
+				layoutControlGroupTabB.Visibility = LayoutVisibility.Never;
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab3SubCTitle))
+			{
+				layoutControlGroupTabC.Text = SlideContainer.StarInfo.Titles.Tab3SubCTitle;
+
+				memoEditTabCSubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+				memoEditTabCSubheader2.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+				memoEditTabCSubheader3.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+
+				memoEditTabCSubheader1.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader1Placeholder ?? memoEditTabCSubheader1.Properties.NullText;
+				memoEditTabCSubheader2.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader2Placeholder ?? memoEditTabCSubheader2.Properties.NullText;
+				memoEditTabCSubheader3.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader3Placeholder ?? memoEditTabCSubheader3.Properties.NullText;
+
+				Application.DoEvents();
+			}
+			else
+				layoutControlGroupTabC.Visibility = LayoutVisibility.Never;
 
 			_outputProcessors.AddRange(OutputProcessor.GetOutputProcessors(this));
 
@@ -81,29 +110,42 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			_allowToSave = false;
 
-			clipartEditContainerTabA1.LoadData(SlideContainer.EditedContent.FishingState.TabA.Clipart1);
-			memoEditTabASubheader1.EditValue = SlideContainer.EditedContent.FishingState.TabA.Subheader1 ??
-				SlideContainer.StarInfo.FishingConfiguration.PartASubHeader1DefaultValue;
-			memoEditTabASubheader2.EditValue = SlideContainer.EditedContent.FishingState.TabA.Subheader2 ??
-				SlideContainer.StarInfo.FishingConfiguration.PartASubHeader2DefaultValue;
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab3SubATitle))
+			{
+				clipartEditContainerTabA1.LoadData(SlideContainer.EditedContent.FishingState.TabA.Clipart1);
+				memoEditTabASubheader1.EditValue = SlideContainer.EditedContent.FishingState.TabA.Subheader1 ??
+												   SlideContainer.StarInfo.FishingConfiguration.PartASubHeader1DefaultValue;
+				memoEditTabASubheader2.EditValue = SlideContainer.EditedContent.FishingState.TabA.Subheader2 ??
+												   SlideContainer.StarInfo.FishingConfiguration.PartASubHeader2DefaultValue;
+			}
 
-			clipartEditContainerTabB1.LoadData(SlideContainer.EditedContent.FishingState.TabB.Clipart1);
-			clipartEditContainerTabB2.LoadData(SlideContainer.EditedContent.FishingState.TabB.Clipart2);
-			comboBoxEditTabBCombo1.EditValue = SlideContainer.EditedContent.FishingState.TabB.Combo1 ??
-				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0);
-			comboBoxEditTabBCombo2.EditValue = SlideContainer.EditedContent.FishingState.TabB.Combo2 ??
-				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(1);
-			comboBoxEditTabBCombo3.EditValue = SlideContainer.EditedContent.FishingState.TabB.Combo3 ??
-				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(2);
-			comboBoxEditTabBCombo4.EditValue = SlideContainer.EditedContent.FishingState.TabB.Combo4 ??
-				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(3);
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab3SubBTitle))
+			{
+				clipartEditContainerTabB1.LoadData(SlideContainer.EditedContent.FishingState.TabB.Clipart1);
+				clipartEditContainerTabB2.LoadData(SlideContainer.EditedContent.FishingState.TabB.Clipart2);
+				comboBoxEditTabBCombo1.EditValue = SlideContainer.EditedContent.FishingState.TabB.Combo1 ??
+												   SlideContainer.StarInfo.TargetCustomersLists.CombinedList
+													   .Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0);
+				comboBoxEditTabBCombo2.EditValue = SlideContainer.EditedContent.FishingState.TabB.Combo2 ??
+												   SlideContainer.StarInfo.TargetCustomersLists.CombinedList
+													   .Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(1);
+				comboBoxEditTabBCombo3.EditValue = SlideContainer.EditedContent.FishingState.TabB.Combo3 ??
+												   SlideContainer.StarInfo.TargetCustomersLists.CombinedList
+													   .Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(2);
+				comboBoxEditTabBCombo4.EditValue = SlideContainer.EditedContent.FishingState.TabB.Combo4 ??
+												   SlideContainer.StarInfo.TargetCustomersLists.CombinedList
+													   .Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(3);
+			}
 
-			memoEditTabCSubheader1.EditValue = SlideContainer.EditedContent.FishingState.TabC.Subheader1 ??
-				SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader1DefaultValue;
-			memoEditTabCSubheader2.EditValue = SlideContainer.EditedContent.FishingState.TabC.Subheader2 ??
-				SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader2DefaultValue;
-			memoEditTabCSubheader3.EditValue = SlideContainer.EditedContent.FishingState.TabC.Subheader3 ??
-				SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader3DefaultValue;
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab3SubCTitle))
+			{
+				memoEditTabCSubheader1.EditValue = SlideContainer.EditedContent.FishingState.TabC.Subheader1 ??
+												   SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader1DefaultValue;
+				memoEditTabCSubheader2.EditValue = SlideContainer.EditedContent.FishingState.TabC.Subheader2 ??
+												   SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader2DefaultValue;
+				memoEditTabCSubheader3.EditValue = SlideContainer.EditedContent.FishingState.TabC.Subheader3 ??
+												   SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader3DefaultValue;
+			}
 
 			_allowToSave = true;
 
@@ -113,58 +155,59 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public override void ApplyChanges()
 		{
 			if (!_dataChanged) return;
-			switch (tabbedControlGroupData.SelectedTabPageIndex)
+
+			if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabA)
 			{
-				case 0:
-					SlideContainer.EditedContent.FishingState.TabA.SlideHeader = SlideContainer.StarInfo.FishingConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
+				SlideContainer.EditedContent.FishingState.TabA.SlideHeader = SlideContainer.StarInfo.FishingConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
+					comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
+					null;
+
+				SlideContainer.EditedContent.FishingState.TabA.Clipart1 = clipartEditContainerTabA1.GetActiveClipartObject();
+
+				SlideContainer.EditedContent.FishingState.TabA.Subheader1 = memoEditTabASubheader1.EditValue as String != SlideContainer.StarInfo.FishingConfiguration.PartASubHeader1DefaultValue ?
+					memoEditTabASubheader1.EditValue as String ?? String.Empty :
+					null;
+				SlideContainer.EditedContent.FishingState.TabA.Subheader2 = memoEditTabASubheader2.EditValue as String != SlideContainer.StarInfo.FishingConfiguration.PartASubHeader2DefaultValue ?
+					memoEditTabASubheader2.EditValue as String ?? String.Empty :
+					null;
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabB)
+			{
+				SlideContainer.EditedContent.FishingState.TabB.SlideHeader = SlideContainer.StarInfo.FishingConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
 						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
 						null;
 
-					SlideContainer.EditedContent.FishingState.TabA.Clipart1 = clipartEditContainerTabA1.GetActiveClipartObject();
+				SlideContainer.EditedContent.FishingState.TabB.Clipart1 = clipartEditContainerTabB1.GetActiveClipartObject();
+				SlideContainer.EditedContent.FishingState.TabB.Clipart2 = clipartEditContainerTabB2.GetActiveClipartObject();
 
-					SlideContainer.EditedContent.FishingState.TabA.Subheader1 = memoEditTabASubheader1.EditValue as String != SlideContainer.StarInfo.FishingConfiguration.PartASubHeader1DefaultValue ?
-						memoEditTabASubheader1.EditValue as String ?? String.Empty :
-						null;
-					SlideContainer.EditedContent.FishingState.TabA.Subheader2 = memoEditTabASubheader2.EditValue as String != SlideContainer.StarInfo.FishingConfiguration.PartASubHeader2DefaultValue ?
-						memoEditTabASubheader2.EditValue as String ?? String.Empty :
-						null;
-					break;
-				case 1:
-					SlideContainer.EditedContent.FishingState.TabB.SlideHeader = SlideContainer.StarInfo.FishingConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
-						null;
+				SlideContainer.EditedContent.FishingState.TabB.Combo1 = SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0) != comboBoxEditTabBCombo1.EditValue ?
+					comboBoxEditTabBCombo1.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabBCombo1.EditValue as String } :
+					null;
+				SlideContainer.EditedContent.FishingState.TabB.Combo2 = SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(1) != comboBoxEditTabBCombo2.EditValue ?
+					comboBoxEditTabBCombo2.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabBCombo2.EditValue as String } :
+					null;
+				SlideContainer.EditedContent.FishingState.TabB.Combo3 = SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(2) != comboBoxEditTabBCombo3.EditValue ?
+					comboBoxEditTabBCombo3.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabBCombo3.EditValue as String } :
+					null;
+				SlideContainer.EditedContent.FishingState.TabB.Combo4 = SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(3) != comboBoxEditTabBCombo4.EditValue ?
+					comboBoxEditTabBCombo4.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabBCombo4.EditValue as String } :
+					null;
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabC)
+			{
+				SlideContainer.EditedContent.FishingState.TabC.SlideHeader = SlideContainer.StarInfo.FishingConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
+					comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
+					null;
 
-					SlideContainer.EditedContent.FishingState.TabB.Clipart1 = clipartEditContainerTabB1.GetActiveClipartObject();
-					SlideContainer.EditedContent.FishingState.TabB.Clipart2 = clipartEditContainerTabB2.GetActiveClipartObject();
-
-					SlideContainer.EditedContent.FishingState.TabB.Combo1 = SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0) != comboBoxEditTabBCombo1.EditValue ?
-						comboBoxEditTabBCombo1.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabBCombo1.EditValue as String } :
-						null;
-					SlideContainer.EditedContent.FishingState.TabB.Combo2 = SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(1) != comboBoxEditTabBCombo2.EditValue ?
-						comboBoxEditTabBCombo2.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabBCombo2.EditValue as String } :
-						null;
-					SlideContainer.EditedContent.FishingState.TabB.Combo3 = SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(2) != comboBoxEditTabBCombo3.EditValue ?
-						comboBoxEditTabBCombo3.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabBCombo3.EditValue as String } :
-						null;
-					SlideContainer.EditedContent.FishingState.TabB.Combo4 = SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(3) != comboBoxEditTabBCombo4.EditValue ?
-						comboBoxEditTabBCombo4.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabBCombo4.EditValue as String } :
-						null;
-					break;
-				case 2:
-					SlideContainer.EditedContent.FishingState.TabC.SlideHeader = SlideContainer.StarInfo.FishingConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
-						null;
-
-					SlideContainer.EditedContent.FishingState.TabC.Subheader1 = memoEditTabCSubheader1.EditValue as String != SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader1DefaultValue ?
-						memoEditTabCSubheader1.EditValue as String ?? String.Empty :
-						null;
-					SlideContainer.EditedContent.FishingState.TabC.Subheader2 = memoEditTabCSubheader2.EditValue as String != SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader2DefaultValue ?
-						memoEditTabCSubheader2.EditValue as String ?? String.Empty :
-						null;
-					SlideContainer.EditedContent.FishingState.TabC.Subheader3 = memoEditTabCSubheader3.EditValue as String != SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader3DefaultValue ?
-						memoEditTabCSubheader3.EditValue as String ?? String.Empty :
-						null;
-					break;
+				SlideContainer.EditedContent.FishingState.TabC.Subheader1 = memoEditTabCSubheader1.EditValue as String != SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader1DefaultValue ?
+					memoEditTabCSubheader1.EditValue as String ?? String.Empty :
+					null;
+				SlideContainer.EditedContent.FishingState.TabC.Subheader2 = memoEditTabCSubheader2.EditValue as String != SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader2DefaultValue ?
+					memoEditTabCSubheader2.EditValue as String ?? String.Empty :
+					null;
+				SlideContainer.EditedContent.FishingState.TabC.Subheader3 = memoEditTabCSubheader3.EditValue as String != SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader3DefaultValue ?
+					memoEditTabCSubheader3.EditValue as String ?? String.Empty :
+					null;
 			}
 
 			_dataChanged = false;

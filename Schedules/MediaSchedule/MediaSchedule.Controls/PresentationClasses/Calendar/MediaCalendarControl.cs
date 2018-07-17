@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Calendar.Configuration;
-using Asa.Business.Calendar.Entities.NonPersistent;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Calendar;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
@@ -19,6 +18,7 @@ using Asa.Calendar.Controls.PresentationClasses.Calendars;
 using Asa.Calendar.Controls.PresentationClasses.Output;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Media.Controls.BusinessClasses.Managers;
+using Asa.Media.Controls.InteropClasses;
 
 namespace Asa.Media.Controls.PresentationClasses.Calendar
 {
@@ -110,66 +110,39 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			UpdateDataManagementAndOutputFunctions();
 		}
 
-		protected override void OutpuPowerPointSlides(IEnumerable<CalendarOutputData> outputData)
+		protected override IList<OutputGroup> GeneratePreviewData(IList<CaledarMonthOutputItem> monthItems)
 		{
-			if (outputData == null) return;
-			FormProgress.SetTitle(outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
-			FormProgress.ShowOutputProgress();
-			Controller.Instance.ShowFloater(() =>
-			{
-				Enabled = false;
-				BusinessObjects.Instance.PowerPointManager.Processor.AppendCalendar(outputData.ToArray());
-				Enabled = true;
-				FormProgress.CloseProgress();
-			});
-		}
-
-		protected override void OutputPdfSlides(IEnumerable<CalendarOutputData> outputData)
-		{
-			if (outputData == null) return;
-			var previewGroups = new List<PreviewGroup>();
-			FormProgress.SetTitle(outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
-			FormProgress.ShowOutputProgress();
-			Controller.Instance.ShowFloater(() =>
-			{
-				Enabled = false;
-				foreach (var outputItem in outputData)
-				{
-					var previewGroup = new PreviewGroup
-					{
-						Name = outputItem.MonthText,
-						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-					};
-					BusinessObjects.Instance.PowerPointManager.Processor.PrepareCalendarPreview(previewGroup.PresentationSourcePath, new[] { outputItem });
-					previewGroups.Add(previewGroup);
-				}
-				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", Schedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-				BusinessObjects.Instance.PowerPointManager.Processor.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
-				if (File.Exists(pdfFileName))
-					try
-					{
-						Process.Start(pdfFileName);
-					}
-					catch { }
-				Enabled = true;
-				FormProgress.CloseProgress();
-			});
-		}
-
-		protected override IList<PreviewGroup> GeneratePreview(IList<CaledarMonthOutputItem> outputItems)
-		{
-			var previewGroups = new List<PreviewGroup>();
+			var previewGroups = new List<OutputGroup>();
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Calendar for Preview...");
 			FormProgress.ShowProgress(FormMain);
 			Enabled = false;
-			foreach (var outputItem in outputItems)
+			foreach (var monthOutputItem in monthItems)
 			{
-				var previewGroup = new PreviewGroup
+				var tempPresentationPath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
+					Path.GetFileName(Path.GetTempFileName()));
+				var previewGroup = new OutputGroup
 				{
-					Name = outputItem.DisplayName,
-					PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+					Name = monthOutputItem.DisplayName,
+					IsCurrent = monthOutputItem.IsCurrent,
+					Items = new List<OutputItem>(new[]
+					{
+						new OutputItem
+						{
+							Name = monthOutputItem.DisplayName,
+							PresentationSourcePath = tempPresentationPath,
+							SlidesCount = 1,
+							IsCurrent = true,
+							SlideGeneratingAction = (processor,destinationPresentation) =>
+							{
+								processor.AppendCalendar(monthOutputItem.CalendarMonth.OutputData,destinationPresentation);
+							},
+							PreviewGeneratingAction = (processor, filePath) =>
+							{
+								processor.PrepareCalendarPreview(filePath,monthOutputItem.CalendarMonth.OutputData);
+							}
+						}
+					})
 				};
-				BusinessObjects.Instance.PowerPointManager.Processor.PrepareCalendarPreview(previewGroup.PresentationSourcePath, new[] { outputItem.CalendarMonth.OutputData });
 				previewGroups.Add(previewGroup);
 			}
 			FormProgress.CloseProgress();
@@ -178,76 +151,88 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			return previewGroups;
 		}
 
-		protected override void PreviewSlides(IEnumerable<CalendarOutputData> outputData)
+		protected override void OutpuPowerPointSlides(IList<OutputItem> outputItems)
 		{
-			if (outputData == null) return;
-			var previewGroups = new List<PreviewGroup>();
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Calendar for Preview...");
-			FormProgress.ShowProgress(FormMain);
-			Enabled = false;
-			foreach (var outputItem in outputData)
+			FormProgress.SetTitle(outputItems.Count == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
+			FormProgress.ShowOutputProgress();
+			Controller.Instance.ShowFloater(() =>
 			{
-				var previewGroup = new PreviewGroup
-				{
-					Name = outputItem.MonthText,
-					PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-				};
-				BusinessObjects.Instance.PowerPointManager.Processor.PrepareCalendarPreview(previewGroup.PresentationSourcePath, new[] { outputItem });
-				previewGroups.Add(previewGroup);
-			}
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-			Enabled = true;
-			FormProgress.CloseProgress();
-			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formPreview = new FormPreview(
-				Controller.Instance.FormMain,
-				BusinessObjects.Instance.PowerPointManager.Processor,
-				Controller.Instance.ShowFloater,
-				Controller.Instance.CheckPowerPointRunning))
-			{
-				formPreview.Text = "Preview this Calendar";
-				formPreview.LoadGroups(previewGroups);
-				RegistryHelper.MainFormHandle = formPreview.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				var previewResult = formPreview.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-				if (previewResult != DialogResult.OK)
-					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-			}
+				Enabled = false;
+
+				foreach (var outputItem in outputItems)
+					outputItem.SlideGeneratingAction?.Invoke(PowerPointProcessor, null);
+
+				Enabled = true;
+				FormProgress.CloseProgress();
+			});
 		}
 
-		protected override void EmailSlides(IEnumerable<CalendarOutputData> outputData)
+		protected override void OutputPdfSlides(IList<OutputItem> outputItems)
 		{
-			if (outputData == null) return;
-			var previewGroups = new List<PreviewGroup>();
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Calendar for Email...");
-			FormProgress.ShowProgress(FormMain);
-			Enabled = false;
-			foreach (var outputItem in outputData)
+			FormProgress.SetTitle(outputItems.Count == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
+			FormProgress.ShowOutputProgress();
+			Controller.Instance.ShowFloater(() =>
 			{
-				var previewGroup = new PreviewGroup
-				{
-					Name = outputItem.MonthText,
-					PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-				};
-				BusinessObjects.Instance.PowerPointManager.Processor.PrepareCalendarPreview(previewGroup.PresentationSourcePath, new[] { outputItem });
-				previewGroups.Add(previewGroup);
-			}
-			Enabled = true;
-			FormProgress.CloseProgress();
+				Enabled = false;
 
-			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(BusinessObjects.Instance.PowerPointManager.Processor, BusinessObjects.Instance.HelpManager))
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1:MM-dd-yy-hmmss}.pdf", Schedule.Name, DateTime.Now));
+				PowerPointProcessor.BuildPdf(pdfFileName, presentation =>
+				{
+					foreach (var outputItem in outputItems)
+						outputItem.SlideGeneratingAction?.Invoke(PowerPointProcessor, presentation);
+				});
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+
+				Enabled = true;
+				FormProgress.CloseProgress();
+			});
+		}
+
+		protected override void EmailSlides(IList<OutputItem> outputItems)
+		{
+			using (var form = new FormEmailFileName())
 			{
-				formEmail.Text = "Email this Calendar";
-				formEmail.LoadGroups(previewGroups);
-				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-				RegistryHelper.MainFormHandle = formEmail.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				formEmail.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+				if (form.ShowDialog() == DialogResult.OK)
+				{
+					FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Email...");
+					FormProgress.ShowProgress();
+					Controller.Instance.ShowFloater(() =>
+					{
+						var emailFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1:MM-dd-yy-hmmss}.pdf", Schedule.Name, DateTime.Now));
+						var defaultItem = outputItems.First();
+						BusinessObjects.Instance.PowerPointManager.Processor.PreparePresentation(emailFileName, presentation =>
+						{
+							foreach (var outputItem in outputItems)
+								outputItem.SlideGeneratingAction?.Invoke(BusinessObjects.Instance.PowerPointManager.Processor, presentation);
+						});
+
+						var emailFile = Path.Combine(
+							Path.GetFullPath(defaultItem.PresentationSourcePath)
+								.Replace(Path.GetFileName(defaultItem.PresentationSourcePath), string.Empty),
+							form.FileName + ".pptx");
+						File.Copy(emailFileName, emailFile, true);
+
+						FormProgress.CloseProgress();
+
+						try
+						{
+							if (OutlookHelper.Instance.Open())
+							{
+								OutlookHelper.Instance.CreateMessage("Advertising Schedule", emailFile);
+								OutlookHelper.Instance.Close();
+							}
+							else
+								PopupMessageHelper.Instance.ShowWarning("Cannot open Outlook");
+							File.Delete(emailFile);
+						}
+						catch { }
+					});
+				}
 			}
 		}
 		#endregion

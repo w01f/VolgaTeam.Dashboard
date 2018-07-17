@@ -84,6 +84,7 @@
     <Compile Include="ContentEditors\Interfaces\IContentControl.cs" />
     <Compile Include="ContentEditors\Interfaces\IContentController.cs" />
     <Compile Include="ContentEditors\Interfaces\IContentEditControl.cs" />
+    <Compile Include="ContentEditors\Interfaces\IMultipleSlidesOutputControl.cs" />
     <Compile Include="ContentEditors\Interfaces\IOutputControl.cs" />
     <Compile Include="ContentEditors\Interfaces\IThemeManagementControl.cs" />
     <Compile Include="ContentEditors\Objects\ContentEditorRelation.cs" />

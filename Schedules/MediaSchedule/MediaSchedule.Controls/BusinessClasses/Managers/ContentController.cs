@@ -224,22 +224,22 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			ContentEditManager<MediaScheduleChangeInfo>.EditOutputSettings();
 		}
 
-		public void OnOutputPowerPoint(object sender, EventArgs e)
+		public void OnOutputPowerPointCurrent(object sender, EventArgs e)
 		{
 			if (Controller.Instance.CheckPowerPointRunning())
 				ContentEditManager<MediaScheduleChangeInfo>.OutputPowerPoint();
+		}
+
+		public void OnOutputPowerPointAll(object sender, EventArgs e)
+		{
+			if (Controller.Instance.CheckPowerPointRunning())
+				ContentEditManager<MediaScheduleChangeInfo>.OutputPowerPointAll();
 		}
 
 		public void OnOutputPdf(object sender, EventArgs e)
 		{
 			if (Controller.Instance.CheckPowerPointRunning())
 				ContentEditManager<MediaScheduleChangeInfo>.OutputPdf();
-		}
-
-		public void OnPreview(object sender, EventArgs e)
-		{
-			if (Controller.Instance.CheckPowerPointRunning())
-				ContentEditManager<MediaScheduleChangeInfo>.Preview();
 		}
 
 		public void OnEmail(object sender, EventArgs e)

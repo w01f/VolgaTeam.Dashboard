@@ -208,26 +208,26 @@ namespace Asa.Dashboard.TabHomeForms
 
 		public void Preview()
 		{
-			SaveChanges();
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress();
-			var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			AppManager.Instance.PowerPointManager.Processor.PrepareClientGoals(tempFileName);
-			Utilities.ActivateForm(FormMain.Instance.Handle, false, false);
-			FormProgress.CloseProgress();
-			if (!File.Exists(tempFileName)) return;
-			using (var formPreview = new FormPreview(FormMain.Instance, AppManager.Instance.PowerPointManager.Processor, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, AppManager.Instance.CheckPowerPointRunning))
-			{
-				formPreview.Text = "Preview Slides";
-				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-				RegistryHelper.MainFormHandle = formPreview.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				var previewResult = formPreview.ShowDialog();
-				RegistryHelper.MaximizeMainForm = false;
-				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-				if (previewResult != DialogResult.OK)
-					AppManager.Instance.ActivateMainForm();
-			}
+			//SaveChanges();
+			//FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			//FormProgress.ShowProgress();
+			//var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			//AppManager.Instance.PowerPointManager.Processor.PrepareClientGoals(tempFileName);
+			//Utilities.ActivateForm(FormMain.Instance.Handle, false, false);
+			//FormProgress.CloseProgress();
+			//if (!File.Exists(tempFileName)) return;
+			//using (var formPreview = new FormPreview(FormMain.Instance, AppManager.Instance.PowerPointManager.Processor, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, AppManager.Instance.CheckPowerPointRunning))
+			//{
+			//	formPreview.Text = "Preview Slides";
+			//	formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+			//	RegistryHelper.MainFormHandle = formPreview.Handle;
+			//	RegistryHelper.MaximizeMainForm = false;
+			//	var previewResult = formPreview.ShowDialog();
+			//	RegistryHelper.MaximizeMainForm = false;
+			//	RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+			//	if (previewResult != DialogResult.OK)
+			//		AppManager.Instance.ActivateMainForm();
+			//}
 		}
 
 		public void UpdateOutputState()

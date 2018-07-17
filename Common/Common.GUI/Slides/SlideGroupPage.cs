@@ -18,7 +18,6 @@ namespace Asa.Common.GUI.Slides
 		private ImageListView.HitInfo _menuHitInfo;
 
 		public event EventHandler<SlideMasterEventArgs> SlideOutput;
-		public event EventHandler<SlideMasterEventArgs> SlidePreview;
 
 		public SlideMaster SelectedSlide
 		{
@@ -75,7 +74,7 @@ namespace Asa.Common.GUI.Slides
 		{
 			slidesListView.ClearSelection();
 			e.Item.Selected = true;
-			SlidePreview?.Invoke(this, new SlideMasterEventArgs { SlideMaster = (SlideMaster)e.Item.Tag });
+			SlideOutput?.Invoke(this, new SlideMasterEventArgs { SlideMaster = (SlideMaster)e.Item.Tag });
 		}
 
 		private void slidesListView_ItemHover(object sender, ItemHoverEventArgs e)
@@ -128,12 +127,6 @@ namespace Asa.Common.GUI.Slides
 		{
 			var slideMaster = (SlideMaster)slidesListView.Items[_menuHitInfo.ItemIndex].Tag;
 			SlideOutput?.Invoke(this, new SlideMasterEventArgs { SlideMaster = slideMaster });
-		}
-
-		private void toolStripMenuItemPreview_Click(object sender, System.EventArgs e)
-		{
-			var slideMaster = (SlideMaster)slidesListView.Items[_menuHitInfo.ItemIndex].Tag;
-			SlidePreview?.Invoke(this, new SlideMasterEventArgs { SlideMaster = slideMaster });
 		}
 	}
 }

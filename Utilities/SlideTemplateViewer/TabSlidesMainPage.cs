@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Slides;
@@ -48,45 +50,66 @@ namespace Asa.SlideTemplateViewer
 			_slideContainer.BackColor = BackColor;
 			_slideContainer.InitSlides(AppManager.Instance.SlideManager);
 			_slideContainer.SlideOutput += (o, e) => GenerateOutput(e.SlideMaster);
-			_slideContainer.SlidePreview += (o, e) => GeneratePreview(e.SlideMaster);
 			pnMain.Controls.Add(_slideContainer);
 			_slideContainer.BringToFront();
+		}
+
+		private IList<OutputItem> GetOutputItems(SlideMaster slideMaster = null)
+		{
+			var selectedSlideMaster = slideMaster ?? _slideContainer.SelectedSlide;
+			var defaultOutputGroup = new OutputGroup
+			{
+				Name = "Preview",
+				IsCurrent = true,
+				Items = new List<OutputItem>(new[]
+				{
+					new OutputItem
+					{
+						Name = "Preview",
+						IsCurrent = true,
+						SlidesCount = 1,
+						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
+							Path.GetFileName(Path.GetTempFileName())),
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							processor.AppendSlideMaster(selectedSlideMaster.GetMasterPath(),destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							processor.PreparePresentation(presentationSourcePath, presentation => processor.AppendSlideMaster(selectedSlideMaster.GetMasterPath(), presentation));
+						}
+					}
+				})
+			};
+
+			var selectedOutputItems = new List<OutputItem>();
+			using (var form = new FormPreview(
+				FormMain.Instance,
+				AppManager.Instance.PowerPointManager.Processor))
+			{
+				form.LoadGroups(new[] { defaultOutputGroup });
+				if (form.ShowDialog() == DialogResult.OK)
+					selectedOutputItems.AddRange(form.GetSelectedItems());
+			}
+
+			return selectedOutputItems;
 		}
 
 		private void GenerateOutput(SlideMaster slideMaster)
 		{
 			if (!AppManager.Instance.CheckPowerPointRunning()) return;
+
+			var outputItems = GetOutputItems(slideMaster);
+			if (!outputItems.Any()) return;
+
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			FormProgress.ShowOutputProgress();
 			AppManager.Instance.ShowFloater(() =>
 			{
-				AppManager.Instance.PowerPointManager.Processor.AppendSlideMaster(slideMaster.GetMasterPath());
+				foreach (var outputItem in outputItems)
+					outputItem.SlideGeneratingAction?.Invoke(AppManager.Instance.PowerPointManager.Processor, null);
 				FormProgress.CloseProgress();
 			});
-		}
-
-		private void GeneratePreview(SlideMaster slideMaster)
-		{
-			if (!AppManager.Instance.CheckPowerPointRunning()) return;
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress(FormMain.Instance);
-			var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			AppManager.Instance.PowerPointManager.Processor.PreparePresentation(tempFileName, presentation => AppManager.Instance.PowerPointManager.Processor.AppendSlideMaster(slideMaster.GetMasterPath(), presentation));
-			Utilities.ActivateForm(FormMain.Instance.Handle, false, false);
-			FormProgress.CloseProgress();
-			if (!File.Exists(tempFileName)) return;
-			using (var formPreview = new FormPreview(FormMain.Instance, AppManager.Instance.PowerPointManager.Processor, AppManager.Instance.ShowFloater,AppManager.Instance.CheckPowerPointRunning))
-			{
-				formPreview.Text = "Preview Slides";
-				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-				RegistryHelper.MainFormHandle = formPreview.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				var previewResult = formPreview.ShowDialog();
-				RegistryHelper.MaximizeMainForm = false;
-				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-				if (previewResult != DialogResult.OK)
-					AppManager.Instance.ActivateMainForm();
-			}
 		}
 
 		public void buttonItemSlidesPowerPoint_Click(object sender, EventArgs e)
@@ -94,13 +117,6 @@ namespace Asa.SlideTemplateViewer
 			var slideMaster = _slideContainer.SelectedSlide;
 			if (slideMaster == null) return;
 			GenerateOutput(slideMaster);
-		}
-
-		public void buttonItemSlidesPreview_Click(object sender, EventArgs e)
-		{
-			var slideMaster = _slideContainer.SelectedSlide;
-			if (slideMaster == null) return;
-			GeneratePreview(slideMaster);
 		}
 	}
 }

@@ -1,11 +1,9 @@
-﻿using Asa.Common.GUI.OutputSelector;
-using Asa.Common.GUI.Preview;
+﻿using Asa.Common.GUI.Preview;
 
 namespace Asa.Online.Controls.PresentationClasses.Products
 {
-	public interface IDigitalOutputItem : ISlideItem
+	public interface IDigitalOutputItem
 	{
-		void GenerateOutput();
-		PreviewGroup GeneratePreview();
+		OutputItem GeneratePreviewData();
 	}
 }

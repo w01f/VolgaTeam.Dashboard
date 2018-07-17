@@ -6,35 +6,36 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	public partial class ShareTabPageContainerControl<TShareTabControl> : XtraTabPage, IShareTabPageContainer where TShareTabControl : ShareTabBaseControl
 	{
-		private readonly ShareControl _shareControl;
+		public ShareControl ParentControl { get; }
 		public ShareTabBaseControl ContentControl { get; private set; }
 		
 
 		public ShareTabPageContainerControl(ShareControl shareControl)
 		{
-			_shareControl = shareControl;
+			ParentControl = shareControl;
 			InitializeComponent();
 
 			if (typeof(ShareTabAControl) == typeof(TShareTabControl))
-				Text = _shareControl.SlideContainer.StarInfo.Titles.Tab5SubATitle;
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab5SubATitle;
 			else if (typeof(ShareTabBControl) == typeof(TShareTabControl))
-				Text = _shareControl.SlideContainer.StarInfo.Titles.Tab5SubBTitle;
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab5SubBTitle;
 			else if (typeof(ShareTabCControl) == typeof(TShareTabControl))
-				Text = _shareControl.SlideContainer.StarInfo.Titles.Tab5SubCTitle;
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab5SubCTitle;
 			else if (typeof(ShareTabDControl) == typeof(TShareTabControl))
-				Text = _shareControl.SlideContainer.StarInfo.Titles.Tab5SubDTitle;
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab5SubDTitle;
 			else if (typeof(ShareTabEControl) == typeof(TShareTabControl))
-				Text = _shareControl.SlideContainer.StarInfo.Titles.Tab5SubETitle;
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab5SubETitle;
 		}
 
 		public void LoadContent()
 		{
 			if (ContentControl != null) return;
+
 			Application.DoEvents();
-			ContentControl = (TShareTabControl)Activator.CreateInstance(typeof(TShareTabControl), _shareControl);
+			ContentControl = (TShareTabControl)Activator.CreateInstance(typeof(TShareTabControl), this);
 			ContentControl.Dock = DockStyle.Fill;
 			Controls.Add(ContentControl);
-			_shareControl.SlideContainer.AssignCloseActiveEditorsOnOutsideClick(ContentControl);
+			ParentControl.SlideContainer.AssignCloseActiveEditorsOnOutsideClick(ContentControl);
 			Application.DoEvents();
 		}
 	}

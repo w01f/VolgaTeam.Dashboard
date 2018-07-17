@@ -1,7 +1,8 @@
 ﻿namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
-	interface IShareTabPageContainer
+	public interface IShareTabPageContainer
 	{
+		ShareControl ParentControl { get; }
 		ShareTabBaseControl ContentControl { get; }
 		void LoadContent();
 	}

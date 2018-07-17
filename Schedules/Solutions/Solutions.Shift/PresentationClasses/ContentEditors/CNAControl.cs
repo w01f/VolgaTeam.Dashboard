@@ -13,7 +13,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 	public sealed partial class CNAControl : BaseShiftControl
 	{
 		public override SlideType SlideType => SlideType.ShiftCNA;
-		public override string OutputName => SlideContainer.ShiftInfo.Titles.Tab2Title;
 
 		public CNAControl(BaseShiftContainer slideContainer) : base(slideContainer)
 		{

@@ -10,6 +10,7 @@ using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.FormStyle;
 using Asa.Schedules.Common.Controls.ContentEditors.Controls;
+using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
 using Asa.Solutions.Common.Common;
 using DevComponents.DotNetBar;
 using DevExpress.Skins;
@@ -17,7 +18,7 @@ using DevExpress.Skins;
 namespace Asa.Solutions.Common.PresentationClasses
 {
 	//public abstract partial class BaseSolutionContainerControl<TChangeInfo> : UserControl where TChangeInfo : BaseScheduleChangeInfo
-	public abstract partial class BaseSolutionContainerControl<TChangeInfo> : BaseContentOutputControl<TChangeInfo> where TChangeInfo : BaseScheduleChangeInfo
+	public abstract partial class BaseSolutionContainerControl<TChangeInfo> : BaseContentOutputControl<TChangeInfo>, IMultipleSlidesOutputControl where TChangeInfo : BaseScheduleChangeInfo
 	{
 		private bool _allowToHandleEvents;
 		protected abstract SolutionsManager SolutionManager { get; }
@@ -29,7 +30,6 @@ namespace Asa.Solutions.Common.PresentationClasses
 		public abstract RibbonPanel PanelSolutions { get; }
 		public abstract ButtonItem ButtonPowerPoint { get; }
 		public abstract ButtonItem ButtonPdf { get; }
-		public abstract ButtonItem ButtonPreview { get; }
 		public abstract ButtonItem ButtonEmail { get; }
 
 		public abstract MainFormStyleConfiguration StyleConfiguration { get; }
@@ -187,23 +187,22 @@ namespace Asa.Solutions.Common.PresentationClasses
 		{
 			ButtonPowerPoint.Enabled =
 				ButtonPdf.Enabled =
-					ButtonPreview.Enabled =
 						ButtonEmail.Enabled = e.IsOutputEnabled;
 		}
 
 		public override void OutputPowerPoint()
 		{
-			ActiveSolutionEditor?.OutputPowerPoint();
+			ActiveSolutionEditor?.OutputPowerPointCurrent();
+		}
+
+		public override void OutputPowerPointAll()
+		{
+			ActiveSolutionEditor?.OutputPowerPointAll();
 		}
 
 		public override void OutputPdf()
 		{
 			ActiveSolutionEditor?.OutputPdf();
-		}
-
-		public override void Preview()
-		{
-			ActiveSolutionEditor?.Preview();
 		}
 
 		public override void Email()

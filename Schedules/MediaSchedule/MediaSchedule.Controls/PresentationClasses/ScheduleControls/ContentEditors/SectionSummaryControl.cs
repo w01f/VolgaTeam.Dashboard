@@ -388,32 +388,31 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Output Stuff
-		public IEnumerable<ScheduleSectionOutputItem> GetAvailableOutputItems()
+		public IList<OutputItem> GetOutputItems()
 		{
-			return Items.Any() ?
-				new[] { new ScheduleSectionOutputItem
-				{
-					OutputType = ScheduleSectionOutputType.Summary,
-					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
-					SlidesCount = SlidesCount
-				} } :
-				new ScheduleSectionOutputItem[] { };
-		}
+			var outputItems = new List<OutputItem>();
 
-		public void GenerateOutput()
-		{
-			BusinessObjects.Instance.PowerPointManager.Processor.AppendSummary(this, SummarySettings.TableOutput);
-		}
+			if (Items.Any())
+				outputItems.Add(
+					new OutputItem
+					{
+						Name = "Summary",
+						IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
+						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
+							Path.GetFileName(Path.GetTempFileName())),
+						SlidesCount = SlidesCount,
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							processor.AppendSummary(this, SummarySettings.TableOutput, destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							processor.PrepareSummaryEmail(presentationSourcePath, this, SummarySettings.TableOutput);
+						}
+					}
+				);
 
-		public PreviewGroup GeneratePreview()
-		{
-			var previewGroup = new PreviewGroup
-			{
-				Name = Text,
-				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-			};
-			BusinessObjects.Instance.PowerPointManager.Processor.PrepareSummaryEmail(previewGroup.PresentationSourcePath, this, SummarySettings.TableOutput);
-			return previewGroup;
+			return outputItems;
 		}
 		#endregion
 	}

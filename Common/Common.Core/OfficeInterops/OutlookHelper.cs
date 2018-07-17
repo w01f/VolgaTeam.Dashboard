@@ -66,7 +66,7 @@ namespace Asa.Common.Core.OfficeInterops
 				var mi = (MailItem)_outlookObject.CreateItem(OlItemType.olMailItem);
 				mi.Attachments.Add(attachmentPath, OlAttachmentType.olByValue, 1, Path.GetFileNameWithoutExtension(attachmentPath));
 				mi.Subject = subject;
-				mi.Display(true);
+				mi.Display(false);
 				var count = 100000;
 				handle = IntPtr.Zero;
 				while (handle == IntPtr.Zero && count > 0)
@@ -76,7 +76,7 @@ namespace Asa.Common.Core.OfficeInterops
 					System.Windows.Forms.Application.DoEvents();
 				}
 				if (handle != IntPtr.Zero)
-					Utilities.ActivateForm(handle, true, true);
+					Utilities.ActivateForm(handle, true, false);
 			}
 			catch (Exception e)
 			{

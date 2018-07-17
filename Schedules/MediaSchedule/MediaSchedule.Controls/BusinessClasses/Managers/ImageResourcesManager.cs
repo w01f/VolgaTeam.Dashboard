@@ -21,7 +21,6 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 
 		#region Common Ribbon Resources
 		public Image RibbonOutputImage { get; private set; }
-		public Image RibbonPreviewImage { get; private set; }
 		public Image RibbonSettingsImage { get; private set; }
 		#endregion
 
@@ -192,10 +191,6 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_output.png");
 			if (File.Exists(resourceFile))
 				RibbonOutputImage = Image.FromFile(resourceFile);
-
-			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_preview.png");
-			if (File.Exists(resourceFile))
-				RibbonPreviewImage = Image.FromFile(resourceFile);
 
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_settings.png");
 			if (File.Exists(resourceFile))

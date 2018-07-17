@@ -115,7 +115,6 @@
     <None Include="Resources\ApplicationMenuHelp.png" />
     <None Include="Resources\ApplicationMenuExit.png" />
     <None Include="Resources\AddSlidesLogo.png" />
-    <None Include="Resources\Preview.png" />
     <None Include="Resources\Output.png" />
   </ItemGroup>
   <ItemGroup>

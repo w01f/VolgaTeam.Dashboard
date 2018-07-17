@@ -15,6 +15,7 @@ using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.ImageGallery;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
+using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.Output;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings;
 using DevExpress.Utils;
@@ -202,30 +203,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 
 		private int ProgramsPerSlide => 6;
 
-		public OutputGroup GetOutputGroup()
-		{
-			return new OutputGroup(this)
-			{
-				DisplayName = OutputName,
-				IsCurrent = TabControl.SelectedTabPage == this,
-				Configurations = GetOutputConfigurations().ToArray()
-			};
-		}
-
-		public IList<OutputConfiguration> GetOutputConfigurations()
-		{
-			var outputConfigurations = new List<OutputConfiguration>();
-			if (Data.Parent.Snapshots.Any(s => s.Programs.Any()))
-				outputConfigurations.Add(new OutputConfiguration(
-					SnapshotOutputType.Summary,
-					Data.Parent.Snapshots.Count / ProgramsPerSlide + (Data.Parent.Snapshots.Count % ProgramsPerSlide > 0 ? 1 : 0)
-					)
-				{
-					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this
-				});
-			return outputConfigurations;
-		}
-
 		private string[][] GetLogos()
 		{
 			var logos = new List<string[]>();
@@ -369,31 +346,45 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			}
 		}
 
-		public void GenerateOutput(IList<OutputConfiguration> configurations)
+		public OutputGroup GetOutputGroup()
 		{
-			if (!configurations.Any()) return;
-			Logos = GetLogos();
-			PopulateReplacementsList();
-			BusinessObjects.Instance.PowerPointManager.Processor.AppendSnapshot(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-		}
-
-		public IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
-		{
-			var groupList = new List<PreviewGroup>();
-			if (!configurations.Any())
-				return groupList;
-
-			Logos = GetLogos();
-			PopulateReplacementsList();
-			var previewGroup = new PreviewGroup
+			return new OutputGroup
 			{
 				Name = OutputName,
-				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				IsCurrent = TabControl.SelectedTabPage == this,
+				Items = GetOutputItems()
 			};
-			BusinessObjects.Instance.PowerPointManager.Processor.PrepareSnapshotEmail(previewGroup.PresentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+		}
 
-			groupList.Add(previewGroup);
-			return groupList;
+		public IList<OutputItem> GetOutputItems()
+		{
+			var outputItems = new List<OutputItem>();
+
+			if (Data.Parent.Snapshots.Any(s => s.Programs.Any()))
+				outputItems.Add(
+					new OutputItem
+					{
+						Name = OutputName,
+						IsCurrent = true,
+						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
+							Path.GetFileName(Path.GetTempFileName())),
+						SlidesCount = Data.Parent.Snapshots.Count / ProgramsPerSlide + (Data.Parent.Snapshots.Count % ProgramsPerSlide > 0 ? 1 : 0),
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							Logos = GetLogos();
+							PopulateReplacementsList();
+							processor.AppendSnapshot(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster, destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							Logos = GetLogos();
+							PopulateReplacementsList();
+							processor.PrepareSnapshotEmail(presentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+						}
+					}
+				);
+
+			return outputItems;
 		}
 
 		internal abstract class OutputColumnInfo

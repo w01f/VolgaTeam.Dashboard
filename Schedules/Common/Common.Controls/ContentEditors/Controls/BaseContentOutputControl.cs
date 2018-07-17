@@ -16,8 +16,8 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Controls
 
 		public virtual void EditSettings() { throw new NotImplementedException(); }
 		public abstract void OutputPowerPoint();
+		public abstract void OutputPowerPointAll();
 		public abstract void OutputPdf();
-		public abstract void Preview();
 		public abstract void Email();
 
 		protected BaseContentOutputControl()

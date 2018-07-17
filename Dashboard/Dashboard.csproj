@@ -347,7 +347,6 @@
     <None Include="Resources\SlideClientGoals.png" />
     <None Include="Resources\SlideLeadoff.png" />
     <None Include="Resources\SlideCover.png" />
-    <None Include="Resources\Preview.png" />
     <None Include="Resources\DownArrow.png" />
     <None Include="Resources\UpArrow.png" />
     <None Include="Resources\DeleteButton.png" />

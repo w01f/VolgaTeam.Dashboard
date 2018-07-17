@@ -12,7 +12,6 @@ namespace Asa.SlideTemplateViewer
 
 		#region Common Ribbon Resources
 		public Image RibbonOutputImage { get; private set; }
-		public Image RibbonPreviewImage { get; private set; }
 		#endregion
 
 		#region Main Menu
@@ -46,10 +45,6 @@ namespace Asa.SlideTemplateViewer
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_output.png");
 			if (File.Exists(resourceFile))
 				RibbonOutputImage = Image.FromFile(resourceFile);
-
-			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_preview.png");
-			if (File.Exists(resourceFile))
-				RibbonPreviewImage = Image.FromFile(resourceFile);
 			#endregion
 
 			#region Main Menu

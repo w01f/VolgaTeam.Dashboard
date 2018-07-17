@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
-using Asa.Common.GUI.Preview;
-using Asa.Solutions.Common.InteropClasses;
 using Asa.Solutions.Common.PresentationClasses.Output;
-using Asa.Solutions.StarApp.PresentationClasses.Output;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	public partial class ClosersTabBControl : ClosersTabBaseControl
 	{
-		public ClosersTabBControl(ClosersControl shareContentContainer) : base(shareContentContainer)
+		public ClosersTabBControl(IClosersTabPageContainer shareContentContainer) : base(shareContentContainer)
 		{
 			InitializeComponent();
 
@@ -126,8 +122,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		}
 
 		#region Output
-		public override StarAppOutputType OutputType => StarAppOutputType.ClosersTabB;
-		public override String OutputName => ClosersContentContainer.SlideContainer.StarInfo.Titles.Tab11SubBTitle;
+		public override string OutputName => ClosersContentContainer.SlideContainer.StarInfo.Titles.Tab11SubBTitle;
 
 		protected override OutputDataPackage GetOutputData()
 		{
@@ -202,20 +197,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				outputDataPackage.TextItems.Add(optionalComboItemKeys[i].ToUpper(), optionalComboItemValues.ElementAtOrDefault(i) ?? String.Empty);
 
 			return outputDataPackage;
-		}
-
-		public override void GenerateOutput()
-		{
-			var outputDataPackage = GetOutputData();
-			ClosersContentContainer.SlideContainer.PowerPointProcessor.AppendStarCommonSlide(outputDataPackage);
-		}
-
-		public override PreviewGroup GeneratePreview()
-		{
-			var outputDataPackage = GetOutputData();
-			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			ClosersContentContainer.SlideContainer.PowerPointProcessor.PrepareStarCommonSlide(outputDataPackage, tempFileName);
-			return new PreviewGroup { Name = OutputName, PresentationSourcePath = tempFileName };
 		}
 		#endregion
 	}

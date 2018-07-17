@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Asa.Common.GUI.Preview;
+﻿using Asa.Common.GUI.Preview;
 
 namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Output
 {
@@ -7,7 +6,5 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Output
 	{
 		string OutputName { get; }
 		OutputGroup GetOutputGroup();
-		void GenerateOutput(IList<OutputConfiguration> configurations);
-		IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations);
 	}
 }

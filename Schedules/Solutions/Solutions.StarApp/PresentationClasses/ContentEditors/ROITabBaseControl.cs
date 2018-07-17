@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Common.Core.Configuration;
 using Asa.Common.GUI.Preview;
+using Asa.Solutions.Common.InteropClasses;
 using Asa.Solutions.Common.PresentationClasses.Output;
-using Asa.Solutions.StarApp.PresentationClasses.Output;
+using DevExpress.XtraTab;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -13,21 +16,21 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		protected bool _allowToSave;
 		protected bool _dataChanged;
 
-		protected ROIControl ROIContentContainer { get; }
+		protected IROITabPageContainer TabPageContainer { get; }
+		protected ROIControl ROIContentContainer => TabPageContainer.ParentControl;
 
-		public virtual StarAppOutputType OutputType { get; }
 		public virtual string OutputName { get; }
 		public int SlidesCount => 1;
-		public bool ReadyForOutput => GetOutputDataTextItems().Any();
+		public bool ReadyForOutput => !String.IsNullOrWhiteSpace(OutputName) && GetOutputDataTextItems().Any();
 
 		protected ROITabBaseControl()
 		{
 			InitializeComponent();
 		}
 
-		protected ROITabBaseControl(ROIControl shareContentContainer) : this()
+		protected ROITabBaseControl(IROITabPageContainer roiTabPageContainer) : this()
 		{
-			ROIContentContainer = shareContentContainer;
+			TabPageContainer = roiTabPageContainer;
 		}
 
 		public virtual void LoadData()
@@ -40,22 +43,33 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			throw new NotImplementedException();
 		}
 
+		public OutputItem GetOutputItem()
+		{
+			var outputData = GetOutputData();
+			return new OutputItem
+			{
+				Name = OutputName,
+				PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
+					Path.GetFileName(Path.GetTempFileName())),
+				SlidesCount = SlidesCount,
+				IsCurrent = ((XtraTabPage)TabPageContainer).TabControl?.SelectedTabPage == TabPageContainer,
+				SlideGeneratingAction = (processor, destinationPresentation) =>
+				{
+					processor.AppendStarCommonSlide(outputData, destinationPresentation);
+				},
+				PreviewGeneratingAction = (processor, presentationSourcePath) =>
+				{
+					processor.PrepareStarCommonSlide(presentationSourcePath, outputData);
+				}
+			};
+		}
+
 		protected virtual OutputDataPackage GetOutputData()
 		{
 			throw new NotImplementedException();
 		}
 
 		protected virtual Dictionary<string, string> GetOutputDataTextItems()
-		{
-			throw new NotImplementedException();
-		}
-
-		public virtual void GenerateOutput()
-		{
-			throw new NotImplementedException();
-		}
-
-		public virtual PreviewGroup GeneratePreview()
 		{
 			throw new NotImplementedException();
 		}

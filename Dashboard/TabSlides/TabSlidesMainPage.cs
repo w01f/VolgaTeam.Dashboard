@@ -55,7 +55,6 @@ namespace Asa.Dashboard.TabSlides
 			_slideContainer.BackColor = BackColor;
 			_slideContainer.InitSlides(SettingsManager.Instance.SlideManager);
 			_slideContainer.SlideOutput += (o, e) => GenerateOutput(e.SlideMaster);
-			_slideContainer.SlidePreview += (o, e) => GeneratePreview(e.SlideMaster);
 			pnMain.Controls.Add(_slideContainer);
 			_slideContainer.BringToFront();
 		}
@@ -72,42 +71,11 @@ namespace Asa.Dashboard.TabSlides
 			});
 		}
 
-		private void GeneratePreview(SlideMaster slideMaster)
-		{
-			if (!AppManager.Instance.CheckPowerPointRunning()) return;
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress();
-			var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			AppManager.Instance.PowerPointManager.Processor.PreparePresentation(tempFileName, presentation => AppManager.Instance.PowerPointManager.Processor.AppendSlideMaster(slideMaster.GetMasterPath(), presentation));
-			Utilities.ActivateForm(FormMain.Instance.Handle, false, false);
-			FormProgress.CloseProgress();
-			if (!File.Exists(tempFileName)) return;
-			using (var formPreview = new FormPreview(FormMain.Instance, AppManager.Instance.PowerPointManager.Processor, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, AppManager.Instance.CheckPowerPointRunning))
-			{
-				formPreview.Text = "Preview Slides";
-				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-				RegistryHelper.MainFormHandle = formPreview.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				var previewResult = formPreview.ShowDialog();
-				RegistryHelper.MaximizeMainForm = false;
-				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-				if (previewResult != DialogResult.OK)
-					AppManager.Instance.ActivateMainForm();
-			}
-		}
-
 		public void buttonItemSlidesPowerPoint_Click(object sender, EventArgs e)
 		{
 			var slideMaster = _slideContainer.SelectedSlide;
 			if (slideMaster == null) return;
 			GenerateOutput(slideMaster);
-		}
-
-		public void buttonItemSlidesPreview_Click(object sender, EventArgs e)
-		{
-			var slideMaster = _slideContainer.SelectedSlide;
-			if (slideMaster == null) return;
-			GeneratePreview(slideMaster);
 		}
 	}
 }

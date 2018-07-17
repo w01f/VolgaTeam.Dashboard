@@ -15,12 +15,6 @@ namespace Asa.Online.Controls.InteropClasses
 {
 	public static partial class OnlineSchedulePowerPointExtensions
 	{
-		public static void AppendOneSheets(this PowerPointProcessor target, DigitalProduct[] sources, Theme theme, Presentation destinationPresentation = null)
-		{
-			foreach (var source in sources)
-				target.AppendOneSheet(source, theme, destinationPresentation);
-		}
-
 		public static void AppendOneSheet(this PowerPointProcessor target, DigitalProduct source, Theme theme, Presentation destinationPresentation = null)
 		{
 			try
@@ -134,11 +128,6 @@ namespace Asa.Online.Controls.InteropClasses
 			{
 				MessageFilter.Revoke();
 			}
-		}
-
-		public static void PrepareScheduleEmails(this PowerPointProcessor target, string fileName, DigitalProduct[] products, Theme theme)
-		{
-			target.PreparePresentation(fileName, presentation => target.AppendOneSheets(products, theme, presentation));
 		}
 
 		public static void PrepareScheduleEmail(this PowerPointProcessor target, string fileName, DigitalProduct product, Theme theme)

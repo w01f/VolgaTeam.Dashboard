@@ -5,7 +5,6 @@
 		void EditSettings();
 		void OutputPowerPoint();
 		void OutputPdf();
-		void Preview();
 		void Email();
 	}
 }

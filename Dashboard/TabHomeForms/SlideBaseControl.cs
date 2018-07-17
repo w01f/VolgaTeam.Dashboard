@@ -47,7 +47,6 @@ namespace Asa.Dashboard.TabHomeForms
 		protected void SetOutputState(bool enable)
 		{
 			FormMain.Instance.buttonItemPowerPoint.Enabled = enable;
-			FormMain.Instance.buttonItemPreview.Enabled = enable;
 		}
 
 		protected void LoadThemes(SlideType slideType)

@@ -35,8 +35,6 @@ namespace Asa.SlideTemplateViewer
 			this.ribbonPanelSlides = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarSlidesPowerPoint = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemSlidesPowerPoint = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarSlidesPreview = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemSlidesPreview = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSlidesLogo = new DevComponents.DotNetBar.RibbonBar();
 			this.labelItemSlidesLogo = new DevComponents.DotNetBar.LabelItem();
 			this.applicationButtonApplicationMenu = new DevComponents.DotNetBar.ApplicationButton();
@@ -114,7 +112,6 @@ namespace Asa.SlideTemplateViewer
 			// 
 			this.ribbonPanelSlides.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesPowerPoint);
-			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesPreview);
 			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesLogo);
 			this.ribbonPanelSlides.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.ribbonPanelSlides.Location = new System.Drawing.Point(0, 54);
@@ -152,7 +149,7 @@ namespace Asa.SlideTemplateViewer
 			this.ribbonBarSlidesPowerPoint.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemSlidesPowerPoint});
 			this.ribbonBarSlidesPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesPowerPoint.Location = new System.Drawing.Point(298, 0);
+			this.ribbonBarSlidesPowerPoint.Location = new System.Drawing.Point(204, 0);
 			this.ribbonBarSlidesPowerPoint.Name = "ribbonBarSlidesPowerPoint";
 			this.ribbonBarSlidesPowerPoint.Size = new System.Drawing.Size(88, 100);
 			this.ribbonBarSlidesPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -173,46 +170,6 @@ namespace Asa.SlideTemplateViewer
 			this.buttonItemSlidesPowerPoint.Name = "buttonItemSlidesPowerPoint";
 			this.buttonItemSlidesPowerPoint.SubItemsExpandWidth = 14;
 			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Insert Slide", "", "Add this slide to my Presentation…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// ribbonBarSlidesPreview
-			// 
-			this.ribbonBarSlidesPreview.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesPreview.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesPreview.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSlidesPreview.ContainerControlProcessDialogKey = true;
-			this.ribbonBarSlidesPreview.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarSlidesPreview.DragDropSupport = true;
-			this.ribbonBarSlidesPreview.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSlidesPreview});
-			this.ribbonBarSlidesPreview.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesPreview.Location = new System.Drawing.Point(204, 0);
-			this.ribbonBarSlidesPreview.Name = "ribbonBarSlidesPreview";
-			this.ribbonBarSlidesPreview.Size = new System.Drawing.Size(94, 100);
-			this.ribbonBarSlidesPreview.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarSlidesPreview.TabIndex = 33;
-			this.ribbonBarSlidesPreview.Text = "Preview";
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesPreview.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesPreview.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemSlidesPreview
-			// 
-			this.buttonItemSlidesPreview.Image = global::Asa.SlideTemplateViewer.Properties.Resources.Preview;
-			this.buttonItemSlidesPreview.Name = "buttonItemSlidesPreview";
-			this.buttonItemSlidesPreview.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesPreview, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Preview", "", "View this slide before you add it to your presentation…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemSlidesPreview.Text = "buttonItem1";
 			// 
 			// ribbonBarSlidesLogo
 			// 
@@ -480,8 +437,6 @@ namespace Asa.SlideTemplateViewer
 		private DevComponents.DotNetBar.LabelItem labelItemSlidesLogo;
 		public DevComponents.DotNetBar.RibbonBar ribbonBarSlidesPowerPoint;
 		public DevComponents.DotNetBar.ButtonItem buttonItemSlidesPowerPoint;
-		private DevComponents.DotNetBar.RibbonBar ribbonBarSlidesPreview;
-		private DevComponents.DotNetBar.ButtonItem buttonItemSlidesPreview;
 		private DevComponents.DotNetBar.ButtonItem buttonItemQatFloater;
 		private DevComponents.DotNetBar.ButtonItem buttonItemQatHelp;
 		private DevComponents.DotNetBar.ApplicationButton applicationButtonApplicationMenu;

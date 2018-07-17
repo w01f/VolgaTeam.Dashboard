@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
@@ -9,7 +10,6 @@ using Asa.Business.Online.Enums;
 using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
-using Asa.Common.GUI.OutputSelector;
 using Asa.Common.GUI.Preview;
 using Asa.Online.Controls.InteropClasses;
 using Asa.Online.Controls.PresentationClasses.Summary;
@@ -630,30 +630,24 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 		}
 
 		#region Output Staff
-		public string DisplayName => Product.Name;
-		public bool IsCurrent => TabControl != null && TabControl.SelectedTabPage == this;
-		public int SlidesCount => 1;
-		public bool SelectedForOutput { get; set; } = true;
-		public ISlideItem[] SlideItems
+		public OutputItem GeneratePreviewData()
 		{
-			get => new ISlideItem[] { };
-			set { }
-		}
-		
-		public void GenerateOutput()
-		{
-			_container.PowerPointProcessor.AppendOneSheets(new[] { Product }, _container.SelectedTheme);
-		}
-
-		public PreviewGroup GeneratePreview()
-		{
-			var previewGroup = new PreviewGroup
+			return new OutputItem
 			{
 				Name = Product.Name,
-				PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				PresentationSourcePath =
+					Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName())),
+				SlidesCount = 1,
+				IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
+				SlideGeneratingAction = (processor, destinationPresentation) =>
+				{
+					processor.AppendOneSheet(Product, _container.SelectedTheme, destinationPresentation);
+				},
+				PreviewGeneratingAction = (processor, filePath) =>
+				{
+					processor.PrepareScheduleEmail(filePath, Product, _container.SelectedTheme);
+				}
 			};
-			_container.PowerPointProcessor.PrepareScheduleEmail(previewGroup.PresentationSourcePath, Product, _container.SelectedTheme);
-			return previewGroup;
 		}
 		#endregion
 	}

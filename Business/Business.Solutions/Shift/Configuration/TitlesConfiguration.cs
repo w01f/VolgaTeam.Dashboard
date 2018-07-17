@@ -115,6 +115,30 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public string Tab9SubITitle { get; private set; }
 		public string Tab9SubJTitle { get; private set; }
 
+		public string Tab10Title { get; private set; }
+		public string Tab10SubATitle { get; private set; }
+		public string Tab10SubBTitle { get; private set; }
+		public string Tab10SubCTitle { get; private set; }
+		public string Tab10SubDTitle { get; private set; }
+		public string Tab10SubETitle { get; private set; }
+		public string Tab10SubFTitle { get; private set; }
+		public string Tab10SubGTitle { get; private set; }
+		public string Tab10SubHTitle { get; private set; }
+		public string Tab10SubITitle { get; private set; }
+		public string Tab10SubJTitle { get; private set; }
+
+		public string Tab11Title { get; private set; }
+		public string Tab11SubATitle { get; private set; }
+		public string Tab11SubBTitle { get; private set; }
+		public string Tab11SubCTitle { get; private set; }
+		public string Tab11SubDTitle { get; private set; }
+		public string Tab11SubETitle { get; private set; }
+		public string Tab11SubFTitle { get; private set; }
+		public string Tab11SubGTitle { get; private set; }
+		public string Tab11SubHTitle { get; private set; }
+		public string Tab11SubITitle { get; private set; }
+		public string Tab11SubJTitle { get; private set; }
+
 		public void Load(StorageFile dataFile)
 		{
 			var document = new XmlDocument();
@@ -229,6 +253,30 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			Tab9SubHTitle = document.SelectSingleNode(@"//Settings/Tab_9/SubTab_H")?.InnerText;
 			Tab9SubITitle = document.SelectSingleNode(@"//Settings/Tab_9/SubTab_I")?.InnerText;
 			Tab9SubJTitle = document.SelectSingleNode(@"//Settings/Tab_9/SubTab_J")?.InnerText;
+
+			Tab10Title = document.SelectSingleNode(@"//Settings/Tab_10/Name")?.InnerText;
+			Tab10SubATitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_A")?.InnerText;
+			Tab10SubBTitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_B")?.InnerText;
+			Tab10SubCTitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_C")?.InnerText;
+			Tab10SubDTitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_D")?.InnerText;
+			Tab10SubETitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_E")?.InnerText;
+			Tab10SubFTitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_F")?.InnerText;
+			Tab10SubGTitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_G")?.InnerText;
+			Tab10SubHTitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_H")?.InnerText;
+			Tab10SubITitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_I")?.InnerText;
+			Tab10SubJTitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_J")?.InnerText;
+
+			Tab11Title = document.SelectSingleNode(@"//Settings/Tab_11/Name")?.InnerText;
+			Tab11SubATitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_A")?.InnerText;
+			Tab11SubBTitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_B")?.InnerText;
+			Tab11SubCTitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_C")?.InnerText;
+			Tab11SubDTitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_D")?.InnerText;
+			Tab11SubETitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_E")?.InnerText;
+			Tab11SubFTitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_F")?.InnerText;
+			Tab11SubGTitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_G")?.InnerText;
+			Tab11SubHTitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_H")?.InnerText;
+			Tab11SubITitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_I")?.InnerText;
+			Tab11SubJTitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_J")?.InnerText;
 		}
 	}
 }

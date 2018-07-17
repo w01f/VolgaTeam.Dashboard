@@ -11,16 +11,12 @@ using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Business.Common.Interfaces;
 using Asa.Calendar.Controls.PresentationClasses.Output;
 using Asa.Common.Core.Objects.Output;
-using Asa.Common.GUI.ToolForms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Controls;
 using Asa.Calendar.Controls.PresentationClasses.SlideInfo;
 using Asa.Calendar.Controls.PresentationClasses.Views;
 using Asa.Calendar.Controls.PresentationClasses.Views.MonthView;
-using Asa.Common.Core.Helpers;
 using Asa.Common.Core.OfficeInterops;
-using Asa.Common.GUI.OutputSelector;
 using Asa.Common.GUI.Preview;
 using Asa.Schedules.Common.Controls.ContentEditors.Controls;
 using DevExpress.XtraLayout.Utils;
@@ -199,11 +195,10 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		#endregion
 
 		#region Output Staff
-		protected abstract void OutpuPowerPointSlides(IEnumerable<CalendarOutputData> outputData);
-		protected abstract void EmailSlides(IEnumerable<CalendarOutputData> outputData);
-		protected abstract void PreviewSlides(IEnumerable<CalendarOutputData> outputData);
-		protected abstract void OutputPdfSlides(IEnumerable<CalendarOutputData> outputData);
-		protected abstract IList<PreviewGroup> GeneratePreview(IList<CaledarMonthOutputItem> outputItems);
+		protected abstract IList<OutputGroup> GeneratePreviewData(IList<CaledarMonthOutputItem> monthItems);
+		protected abstract void OutpuPowerPointSlides(IList<OutputItem> outputItems);
+		protected abstract void EmailSlides(IList<OutputItem> outputItems);
+		protected abstract void OutputPdfSlides(IList<OutputItem> outputItems);
 
 		public abstract void UpdateDataManagementAndOutputFunctions();
 
@@ -215,157 +210,90 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		public override void OutputPowerPoint()
 		{
 			var currentMonth = CalendarView.SelectedMonthData;
-			var selectedMonths = new List<CalendarMonth>();
 			foreach (var month in ActiveCalendarSection.Months)
 				month.OutputData.PrepareNotes();
-			if (ActiveCalendarSection.Months.Count > 1)
+
+			var monthOutputItems = ActiveCalendarSection.Months
+				.Select(month => new CaledarMonthOutputItem(month) { IsCurrent = currentMonth == month })
+				.ToList();
+			var selectedOutputItems = new List<OutputItem>();
+			var previewGroups = GeneratePreviewData(monthOutputItems);
+			if (previewGroups.Count > 1)
 			{
-				var monthOutputItems = ActiveCalendarSection.Months
-					.Select(month => new CaledarMonthOutputItem(month) { IsCurrent = currentMonth == month })
-					.ToList();
-
-				var previewGroup = monthOutputItems
-					.Where(outputItem => outputItem.IsCurrent)
-					.SelectMany(outputItem => GeneratePreview(new[] { outputItem }))
-					.First();
-
-				using (var form = new FormConfigureOutput<CaledarMonthOutputItem>(monthOutputItems, previewGroup))
+				using (var form = new FormPreview(
+					FormMain,
+					PowerPointProcessor))
 				{
-					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditClearAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditClearAll.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-
+					form.LoadGroups(previewGroups);
 					if (form.ShowDialog() == DialogResult.OK)
-						selectedMonths.AddRange(form.GetSelectedItems().Select(outputItem => outputItem.CalendarMonth));
+						selectedOutputItems.AddRange(form.GetSelectedItems());
 				}
 			}
 			else
-				selectedMonths.AddRange(ActiveCalendarSection.Months);
-			if (!selectedMonths.Any()) return;
-			OutpuPowerPointSlides(selectedMonths.Select(m => m.OutputData));
+				selectedOutputItems.AddRange(previewGroups.SelectMany(group => group.Items));
+			if (!selectedOutputItems.Any()) return;
+			OutpuPowerPointSlides(selectedOutputItems);
+		}
+
+		public override void OutputPowerPointAll()
+		{
+			OutputPowerPoint();
 		}
 
 		public override void OutputPdf()
 		{
 			var currentMonth = CalendarView.SelectedMonthData;
-			var selectedMonths = new List<CalendarMonth>();
 			foreach (var month in ActiveCalendarSection.Months)
 				month.OutputData.PrepareNotes();
-			if (ActiveCalendarSection.Months.Count > 1)
+
+			var monthOutputItems = ActiveCalendarSection.Months
+				.Select(month => new CaledarMonthOutputItem(month) { IsCurrent = currentMonth == month })
+				.ToList();
+			var selectedOutputItems = new List<OutputItem>();
+			var previewGroups = GeneratePreviewData(monthOutputItems);
+			if (previewGroups.Count > 1)
 			{
-				var monthOutputItems = ActiveCalendarSection.Months
-					.Select(month => new CaledarMonthOutputItem(month) { IsCurrent = currentMonth == month })
-					.ToList();
-
-				var previewGroup = monthOutputItems
-					.Where(outputItem => outputItem.IsCurrent)
-					.SelectMany(outputItem => GeneratePreview(new[] { outputItem }))
-					.First();
-
-				using (var form = new FormConfigureOutput<CaledarMonthOutputItem>(monthOutputItems, previewGroup))
+				using (var form = new FormPreview(
+					FormMain,
+					PowerPointProcessor))
 				{
-					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditClearAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditClearAll.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-
+					form.LoadGroups(previewGroups);
 					if (form.ShowDialog() == DialogResult.OK)
-						selectedMonths.AddRange(form.GetSelectedItems().Select(outputItem => outputItem.CalendarMonth));
+						selectedOutputItems.AddRange(form.GetSelectedItems());
 				}
 			}
 			else
-				selectedMonths.AddRange(ActiveCalendarSection.Months);
-			if (!selectedMonths.Any()) return;
-			OutputPdfSlides(selectedMonths.Select(m => m.OutputData));
-		}
-
-		public override void Preview()
-		{
-			var currentMonth = CalendarView.SelectedMonthData;
-			var selectedMonths = new List<CalendarMonth>();
-			foreach (var month in ActiveCalendarSection.Months)
-				month.OutputData.PrepareNotes();
-			if (ActiveCalendarSection.Months.Count > 1)
-			{
-				var monthOutputItems = ActiveCalendarSection.Months
-					.Select(month => new CaledarMonthOutputItem(month) { IsCurrent = currentMonth == month })
-					.ToList();
-
-				var previewGroup = monthOutputItems
-					.Where(outputItem => outputItem.IsCurrent)
-					.SelectMany(outputItem => GeneratePreview(new[] { outputItem }))
-					.First();
-
-				using (var form = new FormConfigureOutput<CaledarMonthOutputItem>(monthOutputItems, previewGroup))
-				{
-					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditClearAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditClearAll.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-
-					if (form.ShowDialog() == DialogResult.OK)
-						selectedMonths.AddRange(form.GetSelectedItems().Select(outputItem => outputItem.CalendarMonth));
-				}
-			}
-			else
-				selectedMonths.AddRange(ActiveCalendarSection.Months);
-			if (!selectedMonths.Any()) return;
-			PreviewSlides(selectedMonths.Select(m => m.OutputData));
+				selectedOutputItems.AddRange(previewGroups.SelectMany(group => group.Items));
+			if (!selectedOutputItems.Any()) return;
+			OutputPdfSlides(selectedOutputItems);
 		}
 
 		public override void Email()
 		{
 			var currentMonth = CalendarView.SelectedMonthData;
-			var selectedMonths = new List<CalendarMonth>();
 			foreach (var month in ActiveCalendarSection.Months)
 				month.OutputData.PrepareNotes();
-			if (ActiveCalendarSection.Months.Count > 1)
+
+			var monthOutputItems = ActiveCalendarSection.Months
+				.Select(month => new CaledarMonthOutputItem(month) { IsCurrent = currentMonth == month })
+				.ToList();
+			var selectedOutputItems = new List<OutputItem>();
+			var previewGroups = GeneratePreviewData(monthOutputItems);
+			if (previewGroups.Count > 1)
 			{
-				var monthOutputItems = ActiveCalendarSection.Months
-					.Select(month => new CaledarMonthOutputItem(month) { IsCurrent = currentMonth == month })
-					.ToList();
-
-				var previewGroup = monthOutputItems
-					.Where(outputItem => outputItem.IsCurrent)
-					.SelectMany(outputItem => GeneratePreview(new[] { outputItem }))
-					.First();
-
-				using (var form = new FormConfigureOutput<CaledarMonthOutputItem>(monthOutputItems, previewGroup))
+				using (var form = new FormPreview(
+					FormMain,
+					PowerPointProcessor))
 				{
-					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditClearAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditClearAll.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-
+					form.LoadGroups(previewGroups);
 					if (form.ShowDialog() == DialogResult.OK)
-						selectedMonths.AddRange(form.GetSelectedItems().Select(outputItem => outputItem.CalendarMonth));
+						selectedOutputItems.AddRange(form.GetSelectedItems());
 				}
 			}
 			else
-				selectedMonths.AddRange(ActiveCalendarSection.Months);
-			if (!selectedMonths.Any()) return;
-			EmailSlides(selectedMonths.Select(m => m.OutputData));
+				selectedOutputItems.AddRange(previewGroups.SelectMany(group => group.Items));
+			if (!selectedOutputItems.Any()) return;
+			EmailSlides(selectedOutputItems);
 		}
 		#endregion
 	}

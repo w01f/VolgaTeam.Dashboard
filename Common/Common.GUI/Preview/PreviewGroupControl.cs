@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
-using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraLayout.Utils;
+using Asa.Common.Core.OfficeInterops;
+using Asa.Common.GUI.ToolForms;
+using DevExpress.Utils;
 using DevExpress.XtraTab;
 
 namespace Asa.Common.GUI.Preview
@@ -14,86 +13,91 @@ namespace Asa.Common.GUI.Preview
 	//public partial class PreviewGroupControl : UserControl
 	public partial class PreviewGroupControl : XtraTabPage
 	{
-		private readonly List<Image> _previewImages = new List<Image>();
-		public PreviewGroup PreviewGroup { get; }
+		private readonly PowerPointProcessor _mainPowerPointProcessor;
+		private readonly Form _parentForm;
+		private readonly Form _previewForm;
 
-		public PreviewGroupControl(PreviewGroup previewGroup)
+		public OutputGroup OutputGroup { get; }
+
+		public event EventHandler<PreviewItemChangedEventArgs> PreviewItemChanged;
+
+		public PreviewItemControl SelectedPreviewControl => xtraTabControlItems.SelectedTabPage as PreviewItemControl;
+
+		public IList<OutputItem> OutputItems => xtraTabControlItems.TabPages
+			.OfType<PreviewItemControl>()
+			.Select(previewItemControl => previewItemControl.OutputItem)
+			.Where(previewItem => previewItem.Enabled)
+			.ToList();
+
+		public PreviewGroupControl(
+			OutputGroup outputGroup,
+			PowerPointProcessor mainPowerPointProcessor,
+			Form parentForm,
+			Form previewForm)
 		{
+			OutputGroup = outputGroup;
+			_mainPowerPointProcessor = mainPowerPointProcessor;
+			_parentForm = parentForm;
+			_previewForm = previewForm;
+
 			InitializeComponent();
-			PreviewGroup = previewGroup;
 
-			Text = PreviewGroup.Name;
-			simpleLabelItemSlideSize.Text = String.Format("<size=+2>{0} {1:#.##} x {2:#.##}</size>", SlideSettingsManager.Instance.SlideSettings.SlideSize.Orientation, SlideSettingsManager.Instance.SlideSettings.SlideSize.Width, SlideSettingsManager.Instance.SlideSettings.SlideSize.Height);
-			GetPreviewImages();
-			if (_previewImages.Any())
+			Text = OutputGroup.Name;
+
+			FormProgress.Init(_parentForm);
+
+			xtraTabControlItems.TabPages.AddRange(outputGroup.Items.Select(previewItem => new PreviewItemControl(previewItem)).ToArray());
+			xtraTabControlItems.ShowTabHeader = xtraTabControlItems.TabPages.Count > 1 ? DefaultBoolean.True : DefaultBoolean.False;
+			xtraTabControlItems.SelectedTabPage = xtraTabControlItems.TabPages
+				.OfType<PreviewItemControl>()
+				.FirstOrDefault(previewControl => previewControl.OutputItem.IsCurrent);
+			xtraTabControlItems.SelectedPageChanged += OnSelectedPreviewItemChanged;
+		}
+
+		public void LoadPreviewControl()
+		{
+			LoadPreviewControl(SelectedPreviewControl);
+		}
+
+		public void LoadPreviewControl(PreviewItemControl previewControl)
+		{
+			if (!(previewControl.IsLoaded || previewControl.OutputItem.PreviewGeneratingAction == null))
 			{
-				comboBoxEditSlides.SelectedIndexChanged -= comboBoxEditSlides_SelectedIndexChanged;
-				comboBoxEditSlides.Properties.Items.Clear();
-				for (var i = 1; i <= _previewImages.Count; i++)
-					comboBoxEditSlides.Properties.Items.Add(i.ToString());
+				Utilities.ActivateForm(_parentForm.Handle, _parentForm.WindowState == FormWindowState.Maximized, true);
+				Utilities.ActivateForm(_previewForm.Handle, _previewForm.WindowState == FormWindowState.Maximized, true);
+				FormProgress.ShowProgress("Loading Slide Preview...", () =>
+				{
+					previewControl.OutputItem.PreviewGeneratingAction(_mainPowerPointProcessor,
+						previewControl.OutputItem.PresentationSourcePath);
+					if (_previewForm.InvokeRequired)
+						_previewForm.BeginInvoke(new MethodInvoker(previewControl.Load));
+					else
+						previewControl.Load();
+				});
+				Utilities.ActivateForm(_parentForm.Handle, _parentForm.WindowState == FormWindowState.Maximized, false);
+				Utilities.ActivateForm(_previewForm.Handle, _previewForm.WindowState == FormWindowState.Maximized, false);
 			}
-			layoutControlGroupNavigation.Visibility = _previewImages.Count > 1 ? LayoutVisibility.Always : LayoutVisibility.Never;
-		}
 
-		public void Load()
-		{
-			if (!_previewImages.Any()) return;
-			comboBoxEditSlides.SelectedIndex = 0;
-			comboBoxEditSlides_SelectedIndexChanged(null, null);
-			comboBoxEditSlides.SelectedIndexChanged += comboBoxEditSlides_SelectedIndexChanged;
-		}
-
-		#region Other Event Handlers
-		private void comboBoxEditSlides_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			pictureEditPreview.BackColor = Color.WhiteSmoke;
-			pictureEditPreview.Image = _previewImages[comboBoxEditSlides.SelectedIndex];
-			simpleLabelItemSlideNumber.Text = String.Format("<size=+2>Slide {0} of {1}<>", (comboBoxEditSlides.SelectedIndex + 1), _previewImages.Count);
-		}
-
-		private void comboBoxEditSlides_ButtonClick(object sender, ButtonPressedEventArgs e)
-		{
-			if (e.Button.Index == 1)
-			{
-				int selectedIndex = comboBoxEditSlides.SelectedIndex + 1;
-				if (selectedIndex >= _previewImages.Count)
-					selectedIndex = 0;
-				comboBoxEditSlides.SelectedIndex = selectedIndex;
-			}
-			else if (e.Button.Index == 2)
-			{
-				int selectedIndex = comboBoxEditSlides.SelectedIndex - 1;
-				if (selectedIndex < 0)
-					selectedIndex = _previewImages.Count - 1;
-				comboBoxEditSlides.SelectedIndex = selectedIndex;
-			}
-		}
-		#endregion
-
-		#region Common Methods
-		private void GetPreviewImages()
-		{
-			var previewFolderPath = PreviewGroup.ImageSourcePath;
-			if (!Directory.Exists(previewFolderPath)) return;
-			_previewImages.Clear();
-			var previewImages = Directory.GetFiles(previewFolderPath, "*.png");
-			Array.Sort(previewImages, WinAPIHelper.StrCmpLogicalW);
-			for (int i = 0; i < previewImages.Length; i++)
-				_previewImages.Add(new Bitmap(previewImages[i], true));
+			PreviewItemChanged?.Invoke(
+				this,
+				new PreviewItemChangedEventArgs
+				{
+					OutputItem = previewControl.OutputItem
+				});
 		}
 
 		public void ClearPreviewImages()
 		{
-			try
-			{
-				pictureEditPreview.Image = null;
-				foreach (var image in _previewImages)
-					image.Dispose();
-				_previewImages.Clear();
-				PreviewGroup.ClearAssets();
-			}
-			catch { }
+			foreach (var previewItemControl in xtraTabControlItems.TabPages.OfType<PreviewItemControl>().ToList())
+				previewItemControl.ClearPreviewImages();
 		}
-		#endregion
+
+		private void OnSelectedPreviewItemChanged(object sender, TabPageChangedEventArgs e)
+		{
+			if (!(e.Page is PreviewItemControl previewControl)) return;
+			xtraTabControlItems.Enabled = false;
+			LoadPreviewControl(previewControl);
+			xtraTabControlItems.Enabled = true;
+		}
 	}
 }

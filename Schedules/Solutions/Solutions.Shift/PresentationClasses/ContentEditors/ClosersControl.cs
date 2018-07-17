@@ -13,7 +13,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 	public sealed partial class ClosersControl : BaseShiftControl
 	{
 		public override SlideType SlideType => SlideType.ShiftClosers;
-		public override string OutputName => SlideContainer.ShiftInfo.Titles.Tab8Title;
 
 		public ClosersControl(BaseShiftContainer slideContainer) : base(slideContainer)
 		{

@@ -6,31 +6,30 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	public partial class ClosersTabPageContainerControl<TClosersTabControl> : XtraTabPage, IClosersTabPageContainer where TClosersTabControl : ClosersTabBaseControl
 	{
-		private readonly ClosersControl _closersControl;
+		public ClosersControl ParentControl { get; }
 		public ClosersTabBaseControl ContentControl { get; private set; }
-		
 
 		public ClosersTabPageContainerControl(ClosersControl closersControl)
 		{
-			_closersControl = closersControl;
+			ParentControl = closersControl;
 			InitializeComponent();
 
 			if (typeof(ClosersTabAControl) == typeof(TClosersTabControl))
-				Text = _closersControl.SlideContainer.StarInfo.Titles.Tab11SubATitle;
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab11SubATitle;
 			else if (typeof(ClosersTabBControl) == typeof(TClosersTabControl))
-				Text = _closersControl.SlideContainer.StarInfo.Titles.Tab11SubBTitle;
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab11SubBTitle;
 			else if (typeof(ClosersTabCControl) == typeof(TClosersTabControl))
-				Text = _closersControl.SlideContainer.StarInfo.Titles.Tab11SubCTitle;
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab11SubCTitle;
 		}
 
 		public void LoadContent()
 		{
 			if (ContentControl != null) return;
 			Application.DoEvents();
-			ContentControl = (TClosersTabControl)Activator.CreateInstance(typeof(TClosersTabControl), _closersControl);
+			ContentControl = (TClosersTabControl)Activator.CreateInstance(typeof(TClosersTabControl), this);
 			ContentControl.Dock = DockStyle.Fill;
 			Controls.Add(ContentControl);
-			_closersControl.SlideContainer.AssignCloseActiveEditorsOnOutsideClick(ContentControl);
+			ParentControl.SlideContainer.AssignCloseActiveEditorsOnOutsideClick(ContentControl);
 			Application.DoEvents();
 		}
 	}

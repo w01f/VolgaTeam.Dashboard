@@ -61,7 +61,7 @@ namespace Asa.Common.Core.Helpers
 
 			try
 			{
-				if (!Processor.Connect(false))
+				if (!Processor.Connect())
 					return false;
 				return Processor.PowerPointObject.Presentations.Count > 1;
 			}

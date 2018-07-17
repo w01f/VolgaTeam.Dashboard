@@ -73,7 +73,6 @@ namespace Asa.Dashboard
 			ribbonPanelSlides.PerformLayout();
 
 			buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
-			buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
 
 			ribbonControl.SelectedRibbonTabItem = ribbonTabItemHome;
 			ribbonControl_SelectedRibbonTabChanged(ribbonControl, EventArgs.Empty);

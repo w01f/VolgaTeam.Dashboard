@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using Asa.Common.GUI.Preview;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Output
 {
 	public interface ISectionOutputControl
 	{
-		IEnumerable<ScheduleSectionOutputItem> GetAvailableOutputItems();
+		IList<OutputItem> GetOutputItems();
 	}
 }

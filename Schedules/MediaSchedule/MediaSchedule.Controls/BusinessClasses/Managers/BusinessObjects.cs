@@ -3,6 +3,7 @@ using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Contexts;
 using Asa.Business.Solutions.Common.Helpers;
 using Asa.Common.Core.Helpers;
+using Asa.Common.Core.OfficeInterops;
 using Asa.Common.GUI.RateCard;
 using Asa.Media.Controls.BusinessClasses.Output;
 using Asa.Media.Controls.InteropClasses;
@@ -31,7 +32,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public BrowserManager BrowserManager { get; }
 		public ApplicationIdleManager IdleManager { get; }
 
-		public PowerPointManager<MediaSchedulePowerPointProcessor> PowerPointManager { get; }
+		public PowerPointManager<PowerPointSingletonProcessor> PowerPointManager { get; }
 
 		private BusinessObjects()
 		{
@@ -44,7 +45,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			ThemeManager = new ThemeManager();
 			TextResourcesManager = new TextResourcesManager();
 			ImageResourcesManager = new ImageResourcesManager();
-			PowerPointManager = new PowerPointManager<MediaSchedulePowerPointProcessor>();
+			PowerPointManager = new PowerPointManager<PowerPointSingletonProcessor>();
 			BrowserManager = new BrowserManager();
 			IdleManager = new ApplicationIdleManager();
 		}

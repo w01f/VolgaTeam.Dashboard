@@ -13,7 +13,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 	public sealed partial class NeedsSolutionsControl : BaseShiftControl
 	{
 		public override SlideType SlideType => SlideType.ShiftNeedsSolutions;
-		public override string OutputName => SlideContainer.ShiftInfo.Titles.Tab4Title;
 
 		public NeedsSolutionsControl(BaseShiftContainer slideContainer) : base(slideContainer)
 		{

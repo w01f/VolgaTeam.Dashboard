@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.ScheduleResources;
@@ -43,19 +42,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		}
 
 		public virtual bool ReadyForOutput { get; }
-		public virtual string OutputName { get; }
 
 		public virtual OutputGroup GetOutputGroup()
-		{
-			throw new NotImplementedException();
-		}
-
-		public virtual void GenerateOutput(IList<OutputConfiguration> configurations)
-		{
-			throw new NotImplementedException();
-		}
-
-		public virtual IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
 		{
 			throw new NotImplementedException();
 		}

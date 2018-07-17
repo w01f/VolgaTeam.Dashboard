@@ -16,9 +16,9 @@ namespace Asa.Solutions.Common.PresentationClasses
 		void LoadData();
 		void SaveData();
 		void ApplyChanges();
-		void OutputPowerPoint();
+		void OutputPowerPointCurrent();
+		void OutputPowerPointAll();
 		void OutputPdf();
-		void Preview();
 		void Email();
 		event EventHandler<EventArgs> DataChanged;
 		event EventHandler<SelectedSlideTypeChanged> SlideTypeChanged;

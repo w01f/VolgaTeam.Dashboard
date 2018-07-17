@@ -13,7 +13,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 	public sealed partial class MarketControl : BaseShiftControl
 	{
 		public override SlideType SlideType => SlideType.ShiftMarket;
-		public override string OutputName => SlideContainer.ShiftInfo.Titles.Tab3Title;
 
 		public MarketControl(BaseShiftContainer slideContainer) : base(slideContainer)
 		{

@@ -6,33 +6,33 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	public partial class ROITabPageContainerControl<TROITabControl> : XtraTabPage, IROITabPageContainer where TROITabControl : ROITabBaseControl
 	{
-		private readonly ROIControl _roiControl;
+		public ROIControl ParentControl { get; }
 		public ROITabBaseControl ContentControl { get; private set; }
-		
+
 
 		public ROITabPageContainerControl(ROIControl roiControl)
 		{
-			_roiControl = roiControl;
+			ParentControl = roiControl;
 			InitializeComponent();
 
 			if (typeof(ROITabAControl) == typeof(TROITabControl))
-				Text = _roiControl.SlideContainer.StarInfo.Titles.Tab6SubATitle;
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab6SubATitle;
 			else if (typeof(ROITabBControl) == typeof(TROITabControl))
-				Text = _roiControl.SlideContainer.StarInfo.Titles.Tab6SubBTitle;
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab6SubBTitle;
 			else if (typeof(ROITabCControl) == typeof(TROITabControl))
-				Text = _roiControl.SlideContainer.StarInfo.Titles.Tab6SubCTitle;
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab6SubCTitle;
 			else if (typeof(ROITabDControl) == typeof(TROITabControl))
-				Text = _roiControl.SlideContainer.StarInfo.Titles.Tab6SubDTitle;
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab6SubDTitle;
 		}
 
 		public void LoadContent()
 		{
 			if (ContentControl != null) return;
 			Application.DoEvents();
-			ContentControl = (TROITabControl)Activator.CreateInstance(typeof(TROITabControl), _roiControl);
+			ContentControl = (TROITabControl)Activator.CreateInstance(typeof(TROITabControl), this);
 			ContentControl.Dock = DockStyle.Fill;
 			Controls.Add(ContentControl);
-			_roiControl.SlideContainer.AssignCloseActiveEditorsOnOutsideClick(ContentControl);
+			ParentControl.SlideContainer.AssignCloseActiveEditorsOnOutsideClick(ContentControl);
 			Application.DoEvents();
 		}
 	}

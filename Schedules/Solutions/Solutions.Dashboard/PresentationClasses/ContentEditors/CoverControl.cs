@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Dictionaries;
+using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
@@ -36,7 +37,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			comboBoxEditDecisionMaker.EnableSelectAll();
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
-			comboBoxEditSlideHeader.Properties.Items.AddRange(slideContainer.DashboardInfo.CoverLists.Headers.Select(item=>item.Value).ToArray());
+			comboBoxEditSlideHeader.Properties.Items.AddRange(slideContainer.DashboardInfo.CoverLists.Headers.Select(item => item.Value).ToArray());
 
 			_users.Clear();
 			_users.AddRange(slideContainer.DashboardInfo.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name));
@@ -260,29 +261,33 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public string Quote => simpleLabelItemSalesQuoteAuthor.CustomizationFormText
 							   + (char)13 + simpleLabelItemSalesQuoteValue.CustomizationFormText;
 
-		public IEnumerable<DashboardSlideInfo> GetSlideInfo()
+		public OutputGroup GetOutputData()
 		{
-			return new[]
+			return new OutputGroup
 			{
-				new DashboardSlideInfo
+				Name = ControlName,
+				IsCurrent = SlideContainer.SelectedSlideType == SlideType,
+				Items = new List<OutputItem>(new[]
 				{
-					SlideContainer = this,
-					SlideName = ControlName,
-					IsCurrent = SlideContainer.SelectedSlideType == SlideType
-				}
+					new OutputItem
+					{
+						Name = ControlName,
+						InsertOnTop = AddAsPageOne,
+						PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
+							Path.GetFileName(Path.GetTempFileName())),
+						SlidesCount = 1,
+						IsCurrent = true,
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							processor.AppendDashboardCover(this,destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							processor.PrepareDashboardCover(this, presentationSourcePath);
+						}
+					}
+				})
 			};
-		}
-
-		public void GenerateOutput(DashboardSlideInfo slideInfo)
-		{
-			SlideContainer.PowerPointProcessor.AppendDashboardCover(this);
-		}
-
-		public PreviewGroup GeneratePreview(DashboardSlideInfo slideInfo)
-		{
-			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			SlideContainer.PowerPointProcessor.PrepareDashboardCover(this, tempFileName);
-			return new PreviewGroup { Name = ControlName, PresentationSourcePath = tempFileName };
 		}
 		#endregion
 	}

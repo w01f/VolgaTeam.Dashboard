@@ -63,9 +63,9 @@ namespace Asa.Solutions.Common.PresentationClasses
 			OutputStatusChanged?.Invoke(this, new OutputStatusChangedEventArgs { IsOutputEnabled = ReadyForOutput });
 		}
 
-		public abstract void OutputPowerPoint();
+		public abstract void OutputPowerPointCurrent();
+		public abstract void OutputPowerPointAll();
 		public abstract void OutputPdf();
-		public abstract void Preview();
 		public abstract void Email();
 		#endregion
 	}

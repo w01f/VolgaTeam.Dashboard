@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using Asa.Business.Common.Dictionaries;
+using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Output;
@@ -425,39 +426,48 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			}
 		}
 
-		public IEnumerable<DashboardSlideInfo> GetSlideInfo()
+		public OutputGroup GetOutputData()
 		{
-			return new[]
+			return new OutputGroup
 			{
-				new SummarySlideInfo
+				Name = ControlName,
+				IsCurrent = SlideContainer.SelectedSlideType == SlideType,
+				Items = new List<OutputItem>(new[]
 				{
-					SlideContainer = this,
-					SlideName = String.Format("{0} (line - item)",ControlName),
-					TableOutput = false,
-					IsCurrent = SlideContainer.SelectedSlideType == SlideType
-				},
-				new SummarySlideInfo
-				{
-					SlideContainer = this,
-					SlideName = String.Format("{0} (table - grid)",ControlName),
-					TableOutput = true,
-					IsCurrent = false
-				},
+					new OutputItem
+					{
+						Name = String.Format("{0} (line - item)",ControlName),
+						PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
+							Path.GetFileName(Path.GetTempFileName())),
+						SlidesCount = 1,
+						IsCurrent = true,
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							processor.AppendSummary(this, false,destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							processor.PrepareSummaryEmail(presentationSourcePath,this,false);
+						}
+					},
+					new OutputItem
+					{
+						Name = String.Format("{0} (table - grid)",ControlName),
+						PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
+							Path.GetFileName(Path.GetTempFileName())),
+						SlidesCount = 1,
+						IsCurrent = false,
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							processor.AppendSummary(this, true,destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							processor.PrepareSummaryEmail(presentationSourcePath,this,true );
+						}
+					}
+				})
 			};
-		}
-
-		public void GenerateOutput(DashboardSlideInfo slideInfo)
-		{
-			var sumarySlideInfo = (SummarySlideInfo)slideInfo;
-			SlideContainer.PowerPointProcessor.AppendSummary(this, sumarySlideInfo.TableOutput);
-		}
-
-		public PreviewGroup GeneratePreview(DashboardSlideInfo slideInfo)
-		{
-			var sumarySlideInfo = (SummarySlideInfo)slideInfo;
-			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			SlideContainer.PowerPointProcessor.PrepareSummaryEmail(tempFileName, this, sumarySlideInfo.TableOutput);
-			return new PreviewGroup { Name = ControlName, PresentationSourcePath = tempFileName };
 		}
 		#endregion
 	}

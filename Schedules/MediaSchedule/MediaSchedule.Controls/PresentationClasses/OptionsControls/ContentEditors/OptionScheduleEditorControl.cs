@@ -18,6 +18,7 @@ using Asa.Common.GUI.Common;
 using Asa.Common.GUI.ImageGallery;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
+using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.OptionsControls.Output;
 using DevExpress.Utils;
 using DevExpress.Utils.Menu;
@@ -527,26 +528,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		public List<Dictionary<string, string>> ReplacementsList { get; private set; }
 		private static int ProgramsPerSlide => 10;
 
-		public IList<OutputConfiguration> GetOutputConfigurations()
-		{
-			var outputConfigurations = new List<OutputConfiguration>();
-			if (_data.Programs.Any() && (_data.ShowLineId || _data.ShowStation || _data.ShowProgram || _data.ShowDay || _data.ShowTime || _data.ShowSpots || _data.ShowRate || _data.ShowLenght || _data.ShowCost))
-			{
-				outputConfigurations.Add(new OutputConfiguration(
-					OptionSetOutputType.Program,
-					_data.Programs.Count / ProgramsPerSlide + (_data.Programs.Count % ProgramsPerSlide > 0 ? 1 : 0))
-				{
-					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this
-				});
-				if (_data.DigitalInfo.Records.Any())
-					outputConfigurations.Add(new OutputConfiguration(
-						OptionSetOutputType.ProgramAndDigital,
-						(_data.Programs.Count + _data.DigitalInfo.Records.Count) / ProgramsPerSlide +
-							((_data.Programs.Count + _data.DigitalInfo.Records.Count) % ProgramsPerSlide > 0 ? 1 : 0)));
-			}
-			return outputConfigurations;
-		}
-
 		private string[][] GetLogos(bool includeDigital)
 		{
 			var logos = new List<string[]>();
@@ -849,12 +830,12 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			}
 		}
 
-		public PreviewGroup GeneratePreview(bool includeDigital)
+		public OutputItem GeneratePreview(bool includeDigital)
 		{
 			Logos = GetLogos(includeDigital);
 			ColumnWidths = GetColumnInfo().OrderBy(ci => ci.Index).Select(ci => ci.Width).ToArray();
 			PopulateReplacementsList(includeDigital);
-			var previewGroup = new PreviewGroup
+			var previewGroup = new OutputItem
 			{
 				Name = String.Format("{0} ({1})", _data.Name, includeDigital ? String.Format("{0} + Digital", MediaMetaData.Instance.DataTypeString) : MediaMetaData.Instance.DataTypeString),
 				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
@@ -869,6 +850,64 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			ColumnWidths = GetColumnInfo().OrderBy(ci => ci.Index).Select(ci => ci.Width).ToArray();
 			PopulateReplacementsList(includeDigital);
 			BusinessObjects.Instance.PowerPointManager.Processor.AppendOptions(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+		}
+
+		public IList<OutputItem> GetOutputItems()
+		{
+			var outputItems = new List<OutputItem>();
+
+			if (_data.Programs.Any() && (_data.ShowLineId || _data.ShowStation || _data.ShowProgram || _data.ShowDay || _data.ShowTime || _data.ShowSpots || _data.ShowRate || _data.ShowLenght || _data.ShowCost))
+			{
+				outputItems.Add(new OutputItem
+				{
+					Name = MediaMetaData.Instance.DataTypeString,
+					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
+					PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
+						Path.GetFileName(Path.GetTempFileName())),
+					SlidesCount = _data.Programs.Count / ProgramsPerSlide + (_data.Programs.Count % ProgramsPerSlide > 0 ? 1 : 0),
+					SlideGeneratingAction = (processor, destinationPresentation) =>
+					{
+						Logos = GetLogos(false);
+						ColumnWidths = GetColumnInfo().OrderBy(ci => ci.Index).Select(ci => ci.Width).ToArray();
+						PopulateReplacementsList(false);
+						processor.AppendOptions(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster, destinationPresentation);
+					},
+					PreviewGeneratingAction = (processor, presentationSourcePath) =>
+					{
+						Logos = GetLogos(false);
+						ColumnWidths = GetColumnInfo().OrderBy(ci => ci.Index).Select(ci => ci.Width).ToArray();
+						PopulateReplacementsList(false);
+						processor.PrepareOptionsEmail(presentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+					}
+				});
+
+				if (_data.DigitalInfo.Records.Any())
+					outputItems.Add(new OutputItem
+					{
+						Name = String.Format("{0} + Digital", MediaMetaData.Instance.DataTypeString),
+						IsCurrent = false,
+						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
+						Path.GetFileName(Path.GetTempFileName())),
+						SlidesCount = (_data.Programs.Count + _data.DigitalInfo.Records.Count) / ProgramsPerSlide +
+								  ((_data.Programs.Count + _data.DigitalInfo.Records.Count) % ProgramsPerSlide > 0 ? 1 : 0),
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							Logos = GetLogos(true);
+							ColumnWidths = GetColumnInfo().OrderBy(ci => ci.Index).Select(ci => ci.Width).ToArray();
+							PopulateReplacementsList(true);
+							processor.AppendOptions(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster, destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							Logos = GetLogos(true);
+							ColumnWidths = GetColumnInfo().OrderBy(ci => ci.Index).Select(ci => ci.Width).ToArray();
+							PopulateReplacementsList(true);
+							processor.PrepareOptionsEmail(presentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+						}
+					});
+			}
+
+			return outputItems;
 		}
 
 		internal abstract class OutputColumnInfo

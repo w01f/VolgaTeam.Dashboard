@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
+using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Preview;
 using Asa.Solutions.Common.InteropClasses;
 using Asa.Solutions.Common.PresentationClasses.Output;
-using Asa.Solutions.StarApp.PresentationClasses.Output;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -19,48 +19,23 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public override OutputGroup GetOutputGroup()
 		{
-			return new OutputGroup(this)
+			return new OutputGroup
 			{
-				DisplayName = OutputName,
+				Name = SlideContainer.StarInfo.Titles.Tab10Title,
 				IsCurrent = SlideContainer.ActiveSlideContent == this,
-				Configurations = _outputProcessors
+				Items = _outputProcessors
 					.Where(processor => processor.ReadyForOutput)
-					.SelectMany(processor => processor.GetOutputConfigurations())
+					.Select(processor => processor.GetOutputItem())
 					.ToArray()
 			};
-		}
-
-		public override void GenerateOutput(IList<OutputConfiguration> configurations)
-		{
-			foreach (var configuration in configurations)
-			{
-				var outputProcessor = _outputProcessors.First(processor => processor.OutputType == configuration.OutputType);
-				SlideContainer.PowerPointProcessor.AppendStarCommonSlide(outputProcessor.GetOutputData());
-			}
-		}
-
-		public override IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
-		{
-			var previewGroups = new List<PreviewGroup>();
-
-			foreach (var configuration in configurations)
-			{
-				var outputProcessor = _outputProcessors.First(processor => processor.OutputType == configuration.OutputType);
-				var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
-					Path.GetFileName(Path.GetTempFileName()));
-				SlideContainer.PowerPointProcessor.PrepareStarCommonSlide(outputProcessor.GetOutputData(), tempFileName);
-				previewGroups.Add(new PreviewGroup { Name = outputProcessor.OutputName, PresentationSourcePath = tempFileName });
-			}
-
-			return previewGroups;
 		}
 
 		internal abstract class OutputProcessor
 		{
 			protected SolutionControl OutputControl { get; }
-			public abstract StarAppOutputType OutputType { get; }
 			public abstract string OutputName { get; }
-			public abstract bool ReadyForOutput { get; }
+			public virtual bool ReadyForOutput => !String.IsNullOrWhiteSpace(OutputName);
+			public abstract bool IsCurrent { get; }
 
 			protected OutputProcessor(SolutionControl outputControl)
 			{
@@ -78,24 +53,38 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				};
 			}
 
-			public abstract IList<OutputConfiguration> GetOutputConfigurations();
-			public abstract OutputDataPackage GetOutputData();
+			protected abstract OutputDataPackage GetOutputData();
+
+			public OutputItem GetOutputItem()
+			{
+				var outputData = GetOutputData();
+				return new OutputItem
+				{
+					Name = OutputName,
+					PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
+						Path.GetFileName(Path.GetTempFileName())),
+					SlidesCount = 1,
+					IsCurrent = IsCurrent,
+					SlideGeneratingAction = (processor, destinationPresentation) =>
+					{
+						processor.AppendStarCommonSlide(outputData, destinationPresentation);
+					},
+					PreviewGeneratingAction = (processor, presentationSourcePath) =>
+					{
+						processor.PrepareStarCommonSlide(presentationSourcePath, outputData);
+					}
+				};
+			}
 		}
 
 		internal class TabAOutputProcessor : OutputProcessor
 		{
-			public override StarAppOutputType OutputType => StarAppOutputType.SolutionTabA;
 			public override String OutputName => OutputControl.SlideContainer.StarInfo.Titles.Tab10SubATitle;
-			public override Boolean ReadyForOutput => true;
+			public override Boolean IsCurrent => OutputControl.tabbedControlGroupData.SelectedTabPageIndex == 0;
 
 			public TabAOutputProcessor(SolutionControl outputControl) : base(outputControl) { }
 
-			public override IList<OutputConfiguration> GetOutputConfigurations()
-			{
-				return new[] { new OutputConfiguration(StarAppOutputType.SolutionTabA, OutputName, 1, OutputControl.SlideContainer.ActiveSlideContent == OutputControl && OutputControl.tabbedControlGroupData.SelectedTabPageIndex == 0) };
-			}
-
-			public override OutputDataPackage GetOutputData()
+			protected override OutputDataPackage GetOutputData()
 			{
 				var outputDataPackage = new OutputDataPackage();
 
@@ -120,18 +109,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		internal class TabBOutputProcessor : OutputProcessor
 		{
-			public override StarAppOutputType OutputType => StarAppOutputType.SolutionTabB;
 			public override String OutputName => OutputControl.SlideContainer.StarInfo.Titles.Tab10SubBTitle;
-			public override Boolean ReadyForOutput => true;
+			public override Boolean IsCurrent => OutputControl.tabbedControlGroupData.SelectedTabPageIndex == 1;
 
 			public TabBOutputProcessor(SolutionControl outputControl) : base(outputControl) { }
 
-			public override IList<OutputConfiguration> GetOutputConfigurations()
-			{
-				return new[] { new OutputConfiguration(StarAppOutputType.SolutionTabB, OutputName, 1, OutputControl.SlideContainer.ActiveSlideContent == OutputControl && OutputControl.tabbedControlGroupData.SelectedTabPageIndex == 1) };
-			}
-
-			public override OutputDataPackage GetOutputData()
+			protected override OutputDataPackage GetOutputData()
 			{
 				var outputDataPackage = new OutputDataPackage();
 
@@ -172,18 +155,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		internal class TabCOutputProcessor : OutputProcessor
 		{
-			public override StarAppOutputType OutputType => StarAppOutputType.SolutionTabC;
 			public override String OutputName => OutputControl.SlideContainer.StarInfo.Titles.Tab10SubCTitle;
-			public override Boolean ReadyForOutput => true;
+			public override Boolean IsCurrent => OutputControl.tabbedControlGroupData.SelectedTabPageIndex == 2;
 
 			public TabCOutputProcessor(SolutionControl outputControl) : base(outputControl) { }
 
-			public override IList<OutputConfiguration> GetOutputConfigurations()
-			{
-				return new[] { new OutputConfiguration(StarAppOutputType.SolutionTabC, OutputName, 1, OutputControl.SlideContainer.ActiveSlideContent == OutputControl && OutputControl.tabbedControlGroupData.SelectedTabPageIndex == 2) };
-			}
-
-			public override OutputDataPackage GetOutputData()
+			protected override OutputDataPackage GetOutputData()
 			{
 				var outputDataPackage = new OutputDataPackage();
 
@@ -228,18 +205,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		internal class TabDOutputProcessor : OutputProcessor
 		{
-			public override StarAppOutputType OutputType => StarAppOutputType.SolutionTabD;
 			public override String OutputName => OutputControl.SlideContainer.StarInfo.Titles.Tab10SubDTitle;
-			public override Boolean ReadyForOutput => true;
+			public override Boolean IsCurrent => OutputControl.tabbedControlGroupData.SelectedTabPageIndex == 3;
 
 			public TabDOutputProcessor(SolutionControl outputControl) : base(outputControl) { }
 
-			public override IList<OutputConfiguration> GetOutputConfigurations()
-			{
-				return new[] { new OutputConfiguration(StarAppOutputType.SolutionTabD, OutputName, 1, OutputControl.SlideContainer.ActiveSlideContent == OutputControl && OutputControl.tabbedControlGroupData.SelectedTabPageIndex == 3) };
-			}
-
-			public override OutputDataPackage GetOutputData()
+			protected override OutputDataPackage GetOutputData()
 			{
 				var outputDataPackage = new OutputDataPackage();
 

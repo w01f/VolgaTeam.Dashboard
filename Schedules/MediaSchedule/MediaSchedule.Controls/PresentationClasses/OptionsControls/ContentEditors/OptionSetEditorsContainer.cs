@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Option;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Preview;
@@ -153,55 +151,12 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		public string OutputName => OptionSetData.Name;
 		public OutputGroup GetOutputGroup()
 		{
-			return new OutputGroup(this)
+			return new OutputGroup
 			{
-				DisplayName = OutputName,
+				Name = OutputName,
 				IsCurrent = TabControl.SelectedTabPage == this,
-				Configurations = _optionsControl.GetOutputConfigurations().Union(_digitalInfoControl.GetOutputConfigurations()).ToArray()
+				Items = _optionsControl.GetOutputItems().Union(_digitalInfoControl.GetOutputItems()).ToArray()
 			};
-		}
-
-		public void GenerateOutput(IList<OutputConfiguration> configurations)
-		{
-			foreach (var configuration in configurations)
-			{
-				switch (configuration.OutputType)
-				{
-					case OptionSetOutputType.Program:
-					case OptionSetOutputType.ProgramAndDigital:
-						_optionsControl.GenerateOutput(configuration.OutputType == OptionSetOutputType.ProgramAndDigital);
-						break;
-					case OptionSetOutputType.Digital:
-						_digitalInfoControl.GenerateOneSheetOutput();
-						break;
-					case OptionSetOutputType.DigitalStrategy:
-						_digitalInfoControl.GenerateStrategyOutput();
-						break;
-				}
-			}
-		}
-
-		public IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
-		{
-			var previewGroups = new List<PreviewGroup>();
-
-			foreach (var configuration in configurations)
-			{
-				switch (configuration.OutputType)
-				{
-					case OptionSetOutputType.Program:
-					case OptionSetOutputType.ProgramAndDigital:
-						previewGroups.Add(_optionsControl.GeneratePreview(configuration.OutputType == OptionSetOutputType.ProgramAndDigital));
-						break;
-					case OptionSetOutputType.Digital:
-						previewGroups.Add(_digitalInfoControl.GenerateOneSheetPreview(String.Format("{0} ({1})", OptionSetData.Name, _digitalInfoControl.Text)));
-						break;
-					case OptionSetOutputType.DigitalStrategy:
-						previewGroups.Add(_digitalInfoControl.GenerateStrategyPreview(String.Format("{0} ({1})", OptionSetData.Name, "Digital Strategies")));
-						break;
-				}
-			}
-			return previewGroups;
 		}
 		#endregion
 	}

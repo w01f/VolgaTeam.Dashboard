@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
+using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
@@ -103,7 +104,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			else
 			{
 				foreach (CheckedListBoxItem item in checkedListBoxControlGeographicResidence.Items)
-					item.CheckState = ((ListDataItem) item.Value).IsDefault ? CheckState.Checked : CheckState.Unchecked;
+					item.CheckState = ((ListDataItem)item.Value).IsDefault ? CheckState.Checked : CheckState.Unchecked;
 			}
 
 			_allowToSave = true;
@@ -185,29 +186,32 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			}
 		}
 
-		public IEnumerable<DashboardSlideInfo> GetSlideInfo()
+		public OutputGroup GetOutputData()
 		{
-			return new[]
+			return new OutputGroup
 			{
-				new DashboardSlideInfo
+				Name = ControlName,
+				IsCurrent = SlideContainer.SelectedSlideType == SlideType,
+				Items = new List<OutputItem>(new[]
 				{
-					SlideContainer = this,
-					SlideName = ControlName,
-					IsCurrent = SlideContainer.SelectedSlideType == SlideType
-				}
+					new OutputItem
+					{
+						Name = ControlName,
+						PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
+							Path.GetFileName(Path.GetTempFileName())),
+						SlidesCount = 1,
+						IsCurrent = true,
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							processor.AppendDashboardTargetCustomers(this,destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							processor.PrepareDashboardTargetCustomers(this, presentationSourcePath);
+						}
+					}
+				})
 			};
-		}
-
-		public void GenerateOutput(DashboardSlideInfo slideInfo)
-		{
-			SlideContainer.PowerPointProcessor.AppendDashboardTargetCustomers(this);
-		}
-
-		public PreviewGroup GeneratePreview(DashboardSlideInfo slideInfo)
-		{
-			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			SlideContainer.PowerPointProcessor.PrepareDashboardTargetCustomers(this, tempFileName);
-			return new PreviewGroup { Name = ControlName, PresentationSourcePath = tempFileName };
 		}
 		#endregion
 	}

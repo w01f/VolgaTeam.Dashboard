@@ -33,8 +33,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				Text = _slideContainer.ShiftInfo.Titles.Tab7Title;
 			else if (typeof(ClosersControl) == typeof(TBaseShiftControl))
 				Text = _slideContainer.ShiftInfo.Titles.Tab8Title;
-			else if (typeof(SupportMaterialsControl) == typeof(TBaseShiftControl))
+			else if (typeof(NextStepsControl) == typeof(TBaseShiftControl))
 				Text = _slideContainer.ShiftInfo.Titles.Tab9Title;
+			else if (typeof(ContractControl) == typeof(TBaseShiftControl))
+				Text = _slideContainer.ShiftInfo.Titles.Tab10Title;
+			else if (typeof(SupportMaterialsControl) == typeof(TBaseShiftControl))
+				Text = _slideContainer.ShiftInfo.Titles.Tab11Title;
 		}
 
 		public void LoadContent()

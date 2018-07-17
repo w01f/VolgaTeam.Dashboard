@@ -94,16 +94,9 @@ namespace Asa.Online.Controls.InteropClasses
 			}
 		}
 
-		public static void PrepareWebPackageEmail(this PowerPointProcessor target, IWebPackageOutput digitalPackage, string fileName)
+		public static void PrepareWebPackageEmail(this PowerPointProcessor target, string fileName, IWebPackageOutput digitalPackage)
 		{
 			target.PreparePresentation(fileName, presentation => target.AppendWebPackage(digitalPackage, presentation));
-		}
-
-		public static void PrepareWebPackagePdf(this PowerPointProcessor target, IWebPackageOutput digitalPackage, string targetFileName)
-		{
-			var sourceFileName = Path.GetTempFileName();
-			target.PreparePresentation(sourceFileName, presentation => target.AppendWebPackage(digitalPackage, presentation));
-			target.BuildPdf(sourceFileName, targetFileName);
 		}
 	}
 }

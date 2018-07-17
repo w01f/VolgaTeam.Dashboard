@@ -14,8 +14,8 @@ using Asa.Business.Media.Enums;
 using Asa.Business.Online.Dictionaries;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
+using Asa.Common.Core.OfficeInterops;
 using Asa.Common.GUI.Common;
-using Asa.Common.GUI.OutputSelector;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Themes;
 using Asa.Common.GUI.ToolForms;
@@ -25,17 +25,16 @@ using Asa.Media.Controls.PresentationClasses.OptionsControls.Settings;
 using Asa.Schedules.Common.Controls.ContentEditors.Controls;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
 using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
+using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
 using DevComponents.DotNetBar;
 using DevExpress.XtraLayout.Utils;
-using DevExpress.XtraPrinting.Native;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
-using RegistryHelper = Asa.Common.Core.Helpers.RegistryHelper;
 
 namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 {
 	[ToolboxItem(false)]
-	public partial class OptionsContentEditorsContainer : BasePartitionEditControl<OptionsContent, MediaSchedule, MediaScheduleSettings, MediaScheduleChangeInfo>
+	public partial class OptionsContentEditorsContainer : BasePartitionEditControl<OptionsContent, MediaSchedule, MediaScheduleSettings, MediaScheduleChangeInfo>, IMultipleSlidesOutputControl
 	//public partial class OptionsContentEditorsContainer : UserControl
 	{
 		private bool _allowToSave;
@@ -303,9 +302,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		{
 			Controller.Instance.OptionsPowerPoint.Enabled =
 				Controller.Instance.MenuOutputPdfButton.Enabled =
-				Controller.Instance.OptionsPreview.Enabled =
 				Controller.Instance.MenuEmailButton.Enabled =
-				xtraTabControlContentEditors.TabPages.OfType<IOutputContainer>().Any(oc => oc.GetOutputGroup().Configurations.Any());
+				xtraTabControlContentEditors.TabPages.OfType<IOutputContainer>().Any(oc => oc.GetOutputGroup().Items.Any());
 		}
 
 		private void UpdateSummaryState()
@@ -639,145 +637,146 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 					? SlideType.TVOptionsPrograms
 					: SlideType.RadioOptionsPrograms);
 
+		private List<OutputItem> GetOutputItems(bool onlyCurrentSlide)
+		{
+			var selectedOutputItems = new List<OutputItem>();
+
+			var availableOutputGroups = new List<OutputGroup>();
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Slides...");
+			FormProgress.ShowProgress(Controller.Instance.FormMain);
+			if (onlyCurrentSlide)
+			{
+				if (ActiveOptionSetContainer != null)
+					availableOutputGroups.Add(ActiveOptionSetContainer.GetOutputGroup());
+			}
+			else
+			{
+				var outputContainers = xtraTabControlContentEditors.TabPages
+					.OfType<IOutputContainer>()
+					.ToList();
+				foreach (var outputContainer in outputContainers)
+				{
+					availableOutputGroups.Add(outputContainer.GetOutputGroup());
+					Application.DoEvents();
+				}
+			}
+			FormProgress.CloseProgress();
+
+			if (!availableOutputGroups.Any())
+				return selectedOutputItems;
+
+			using (var form = new FormPreview(
+				Controller.Instance.FormMain,
+				BusinessObjects.Instance.PowerPointManager.Processor))
+			{
+				form.LoadGroups(availableOutputGroups);
+				if (form.ShowDialog() == DialogResult.OK)
+					selectedOutputItems.AddRange(form.GetSelectedItems());
+			}
+
+			return selectedOutputItems;
+		}
+
 		public override void OutputPowerPoint()
 		{
-			var outputGroups = GetOutputConfiguration();
-			if (!outputGroups.Any(g => g.Configurations.Any())) return;
+			var outputItems = GetOutputItems(true);
+			if (!outputItems.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				outputGroups.ForEach(g => g.OutputContainer.GenerateOutput(g.Configurations));
+				outputItems.ForEach(item => item.SlideGeneratingAction?.Invoke(BusinessObjects.Instance.PowerPointManager.Processor, null));
 				FormProgress.CloseProgress();
 			});
+		}
 
-			outputGroups.ForEach(g => g.Dispose());
+		public override void OutputPowerPointAll()
+		{
+			var outputItems = GetOutputItems(false);
+			if (!outputItems.Any()) return;
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			FormProgress.ShowOutputProgress();
+			Controller.Instance.ShowFloater(() =>
+			{
+				outputItems.ForEach(item => item.SlideGeneratingAction?.Invoke(BusinessObjects.Instance.PowerPointManager.Processor, null));
+				FormProgress.CloseProgress();
+			});
 		}
 
 		public override void OutputPdf()
 		{
-			var outputGroups = GetOutputConfiguration();
-			if (!outputGroups.Any(g => g.Configurations.Any())) return;
+			var outputItems = GetOutputItems(false);
+			if (!outputItems.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				var previewGroups = outputGroups.SelectMany(g => g.OutputContainer.GeneratePreview(g.Configurations)).ToList();
 				var pdfFileName = Path.Combine(
 					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-					String.Format("{0}-{1}.pdf", EditedContent.Schedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-				BusinessObjects.Instance.PowerPointManager.Processor.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+					String.Format("{0}-{1:MM-dd-yy-hmmss}.pdf", "star", DateTime.Now));
+				BusinessObjects.Instance.PowerPointManager.Processor.BuildPdf(pdfFileName, presentation =>
+				{
+					foreach (var outputItem in outputItems)
+						outputItem.SlideGeneratingAction?.Invoke(BusinessObjects.Instance.PowerPointManager.Processor, presentation);
+				});
+				FormProgress.CloseProgress();
 				if (File.Exists(pdfFileName))
 					try
 					{
 						Process.Start(pdfFileName);
 					}
 					catch { }
-				FormProgress.CloseProgress();
 			});
-
-			outputGroups.ForEach(g => g.Dispose());
-		}
-
-		public override void Preview()
-		{
-			var outputGroups = GetOutputConfiguration();
-			if (!outputGroups.Any(g => g.Configurations.Any())) return;
-
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress();
-			var previewGroups = outputGroups.SelectMany(g => g.OutputContainer.GeneratePreview(g.Configurations)).ToList();
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-			FormProgress.CloseProgress();
-
-			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-
-			using (var formPreview = new FormPreview(
-				Controller.Instance.FormMain,
-				BusinessObjects.Instance.PowerPointManager.Processor,
-				Controller.Instance.ShowFloater,
-				Controller.Instance.CheckPowerPointRunning))
-			{
-				formPreview.Text = "Preview Schedule";
-				formPreview.LoadGroups(previewGroups);
-				RegistryHelper.MainFormHandle = formPreview.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				var previewResult = formPreview.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-				if (previewResult != DialogResult.OK)
-					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-			}
-
-			outputGroups.ForEach(g => g.Dispose());
 		}
 
 		public override void Email()
 		{
-			var outputGroups = GetOutputConfiguration();
-			if (!outputGroups.Any(g => g.Configurations.Any())) return;
+			var outputItems = GetOutputItems(false);
+			if (!outputItems.Any()) return;
 
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress();
-			var previewGroups = outputGroups.SelectMany(g => g.OutputContainer.GeneratePreview(g.Configurations)).ToList();
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-			FormProgress.CloseProgress();
-
-			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(BusinessObjects.Instance.PowerPointManager.Processor, BusinessObjects.Instance.HelpManager))
+			using (var form = new FormEmailFileName())
 			{
-				formEmail.Text = "Email this Schedule";
-				formEmail.LoadGroups(previewGroups);
-				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-				RegistryHelper.MainFormHandle = formEmail.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				formEmail.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-			}
-
-			outputGroups.ForEach(g => g.Dispose());
-		}
-
-		private IList<OutputGroup> GetOutputConfiguration()
-		{
-			var outputGroups = new List<OutputGroup>();
-			var availableOutputGroups = xtraTabControlContentEditors.TabPages
-					.OfType<IOutputContainer>()
-					.Select(oc => oc.GetOutputGroup())
-					.ToList();
-			if (availableOutputGroups.Any())
-			{
-				FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-				FormProgress.ShowProgress();
-				var previewGroup = availableOutputGroups
-					.Where(group => group.IsCurrent)
-					.SelectMany(group => group.OutputContainer.GeneratePreview(group.Configurations.Where(configuration => configuration.IsCurrent).Take(1).ToList()))
-					.First();
-				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-				FormProgress.CloseProgress();
-
-				using (var form = new FormConfigureOutput<OutputGroup>(availableOutputGroups, previewGroup))
+				if (form.ShowDialog() == DialogResult.OK)
 				{
-					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue
-						? BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue
-						? BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditClearAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditClearAll.Text, BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue
-						? BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value.ToHex()
-						: "blue");
+					FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Email...");
+					FormProgress.ShowProgress();
+					Controller.Instance.ShowFloater(() =>
+					{
+						var emailFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1:MM-dd-yy-hmmss}.pdf", Schedule.Name, DateTime.Now));
+						var defaultItem = outputItems.First();
+						BusinessObjects.Instance.PowerPointManager.Processor.PreparePresentation(emailFileName, presentation =>
+						{
+							foreach (var outputItem in outputItems)
+								outputItem.SlideGeneratingAction?.Invoke(BusinessObjects.Instance.PowerPointManager.Processor, presentation);
+						});
 
-					if (form.ShowDialog() == DialogResult.OK)
-						outputGroups.AddRange(form.GetSelectedItems());
-					else
-						availableOutputGroups.ForEach(g => g.Dispose());
+						var emailFile = Path.Combine(
+							Path.GetFullPath(defaultItem.PresentationSourcePath)
+								.Replace(Path.GetFileName(defaultItem.PresentationSourcePath), string.Empty),
+							form.FileName + ".pptx");
+						File.Copy(emailFileName, emailFile, true);
+
+						FormProgress.CloseProgress();
+
+						try
+						{
+							if (OutlookHelper.Instance.Open())
+							{
+								OutlookHelper.Instance.CreateMessage("Advertising Schedule", emailFile);
+								OutlookHelper.Instance.Close();
+							}
+							else
+								PopupMessageHelper.Instance.ShowWarning("Cannot open Outlook");
+							File.Delete(emailFile);
+						}
+						catch { }
+					});
 				}
 			}
-			return outputGroups;
 		}
 		#endregion
 	}

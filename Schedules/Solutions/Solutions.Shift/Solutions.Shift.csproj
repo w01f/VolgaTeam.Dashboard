@@ -72,6 +72,18 @@
     <Compile Include="PresentationClasses\ContentEditors\CBCControl.Designer.cs">
       <DependentUpon>CBCControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ContractControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ContractControl.Designer.cs">
+      <DependentUpon>ContractControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextStepsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextStepsControl.Designer.cs">
+      <DependentUpon>NextStepsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\ClosersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -128,18 +140,7 @@
     <Compile Include="PresentationClasses\ContentEditors\ShiftTabPageContainerControl.Designer.cs">
       <DependentUpon>ShiftTabPageContainerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\Output\FormConfigureOutput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Output\FormConfigureOutput.Designer.cs">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\Output\IShiftSlide.cs" />
     <Compile Include="PresentationClasses\Output\IShiftSlideContainer.cs" />
-    <Compile Include="PresentationClasses\Output\LoadAllEventArgs.cs" />
-    <Compile Include="PresentationClasses\Output\OutputConfiguration.cs" />
-    <Compile Include="PresentationClasses\Output\OutputGroup.cs" />
-    <Compile Include="PresentationClasses\Output\ShiftOutputType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
@@ -155,6 +156,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\CBCControl.resx">
       <DependentUpon>CBCControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\ContractControl.resx">
+      <DependentUpon>ContractControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NextStepsControl.resx">
+      <DependentUpon>NextStepsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\ClosersControl.resx">
       <DependentUpon>ClosersControl.cs</DependentUpon>
@@ -182,9 +189,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\ShiftTabPageContainerControl.resx">
       <DependentUpon>ShiftTabPageContainerControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\Output\FormConfigureOutput.resx">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

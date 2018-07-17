@@ -225,6 +225,52 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public Image Tab9SubJFooterLogo { get; private set; }
 		#endregion
 
+		#region Tab 10
+		public Image Tab10SubARightLogo { get; private set; }
+		public Image Tab10SubAFooterLogo { get; private set; }
+		public Image Tab10SubBRightLogo { get; private set; }
+		public Image Tab10SubBFooterLogo { get; private set; }
+		public Image Tab10SubCRightLogo { get; private set; }
+		public Image Tab10SubCFooterLogo { get; private set; }
+		public Image Tab10SubDRightLogo { get; private set; }
+		public Image Tab10SubDFooterLogo { get; private set; }
+		public Image Tab10SubERightLogo { get; private set; }
+		public Image Tab10SubEFooterLogo { get; private set; }
+		public Image Tab10SubFRightLogo { get; private set; }
+		public Image Tab10SubFFooterLogo { get; private set; }
+		public Image Tab10SubGRightLogo { get; private set; }
+		public Image Tab10SubGFooterLogo { get; private set; }
+		public Image Tab10SubHRightLogo { get; private set; }
+		public Image Tab10SubHFooterLogo { get; private set; }
+		public Image Tab10SubIRightLogo { get; private set; }
+		public Image Tab10SubIFooterLogo { get; private set; }
+		public Image Tab10SubJRightLogo { get; private set; }
+		public Image Tab10SubJFooterLogo { get; private set; }
+		#endregion
+
+		#region Tab 11
+		public Image Tab11SubARightLogo { get; private set; }
+		public Image Tab11SubAFooterLogo { get; private set; }
+		public Image Tab11SubBRightLogo { get; private set; }
+		public Image Tab11SubBFooterLogo { get; private set; }
+		public Image Tab11SubCRightLogo { get; private set; }
+		public Image Tab11SubCFooterLogo { get; private set; }
+		public Image Tab11SubDRightLogo { get; private set; }
+		public Image Tab11SubDFooterLogo { get; private set; }
+		public Image Tab11SubERightLogo { get; private set; }
+		public Image Tab11SubEFooterLogo { get; private set; }
+		public Image Tab11SubFRightLogo { get; private set; }
+		public Image Tab11SubFFooterLogo { get; private set; }
+		public Image Tab11SubGRightLogo { get; private set; }
+		public Image Tab11SubGFooterLogo { get; private set; }
+		public Image Tab11SubHRightLogo { get; private set; }
+		public Image Tab11SubHFooterLogo { get; private set; }
+		public Image Tab11SubIRightLogo { get; private set; }
+		public Image Tab11SubIFooterLogo { get; private set; }
+		public Image Tab11SubJRightLogo { get; private set; }
+		public Image Tab11SubJFooterLogo { get; private set; }
+		#endregion
+
 		public ShiftSolutionInfo()
 		{
 			Type = SolutionType.Shift;
@@ -834,6 +880,132 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 				: null;
 			Tab9SubJFooterLogo = resourceManager.LogoTab9SubJFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab9SubJFooterFile.LocalPath)
+				: null;
+			#endregion
+
+			#region Tab 10
+			Tab10SubARightLogo = resourceManager.LogoTab10SubARightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubARightFile.LocalPath)
+				: null;
+			Tab10SubAFooterLogo = resourceManager.LogoTab10SubAFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubAFooterFile.LocalPath)
+				: null;
+			Tab10SubBRightLogo = resourceManager.LogoTab10SubBRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubBRightFile.LocalPath)
+				: null;
+			Tab10SubBFooterLogo = resourceManager.LogoTab10SubBFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubBFooterFile.LocalPath)
+				: null;
+			Tab10SubCRightLogo = resourceManager.LogoTab10SubCRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubCRightFile.LocalPath)
+				: null;
+			Tab10SubCFooterLogo = resourceManager.LogoTab10SubCFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubCFooterFile.LocalPath)
+				: null;
+			Tab10SubDRightLogo = resourceManager.LogoTab10SubDRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubDRightFile.LocalPath)
+				: null;
+			Tab10SubDFooterLogo = resourceManager.LogoTab10SubDFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubDFooterFile.LocalPath)
+				: null;
+			Tab10SubERightLogo = resourceManager.LogoTab10SubERightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubERightFile.LocalPath)
+				: null;
+			Tab10SubEFooterLogo = resourceManager.LogoTab10SubEFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubEFooterFile.LocalPath)
+				: null;
+			Tab10SubFRightLogo = resourceManager.LogoTab10SubFRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubFRightFile.LocalPath)
+				: null;
+			Tab10SubFFooterLogo = resourceManager.LogoTab10SubFFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubFFooterFile.LocalPath)
+				: null;
+			Tab10SubGRightLogo = resourceManager.LogoTab10SubGRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubGRightFile.LocalPath)
+				: null;
+			Tab10SubGFooterLogo = resourceManager.LogoTab10SubGFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubGFooterFile.LocalPath)
+				: null;
+			Tab10SubHRightLogo = resourceManager.LogoTab10SubHRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubHRightFile.LocalPath)
+				: null;
+			Tab10SubHFooterLogo = resourceManager.LogoTab10SubHFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubHFooterFile.LocalPath)
+				: null;
+			Tab10SubIRightLogo = resourceManager.LogoTab10SubIRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubIRightFile.LocalPath)
+				: null;
+			Tab10SubIFooterLogo = resourceManager.LogoTab10SubIFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubIFooterFile.LocalPath)
+				: null;
+			Tab10SubJRightLogo = resourceManager.LogoTab10SubJRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubJRightFile.LocalPath)
+				: null;
+			Tab10SubJFooterLogo = resourceManager.LogoTab10SubJFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubJFooterFile.LocalPath)
+				: null;
+			#endregion
+
+			#region Tab 11
+			Tab11SubARightLogo = resourceManager.LogoTab11SubARightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubARightFile.LocalPath)
+				: null;
+			Tab11SubAFooterLogo = resourceManager.LogoTab11SubAFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubAFooterFile.LocalPath)
+				: null;
+			Tab11SubBRightLogo = resourceManager.LogoTab11SubBRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubBRightFile.LocalPath)
+				: null;
+			Tab11SubBFooterLogo = resourceManager.LogoTab11SubBFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubBFooterFile.LocalPath)
+				: null;
+			Tab11SubCRightLogo = resourceManager.LogoTab11SubCRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubCRightFile.LocalPath)
+				: null;
+			Tab11SubCFooterLogo = resourceManager.LogoTab11SubCFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubCFooterFile.LocalPath)
+				: null;
+			Tab11SubDRightLogo = resourceManager.LogoTab11SubDRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubDRightFile.LocalPath)
+				: null;
+			Tab11SubDFooterLogo = resourceManager.LogoTab11SubDFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubDFooterFile.LocalPath)
+				: null;
+			Tab11SubERightLogo = resourceManager.LogoTab11SubERightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubERightFile.LocalPath)
+				: null;
+			Tab11SubEFooterLogo = resourceManager.LogoTab11SubEFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubEFooterFile.LocalPath)
+				: null;
+			Tab11SubFRightLogo = resourceManager.LogoTab11SubFRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubFRightFile.LocalPath)
+				: null;
+			Tab11SubFFooterLogo = resourceManager.LogoTab11SubFFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubFFooterFile.LocalPath)
+				: null;
+			Tab11SubGRightLogo = resourceManager.LogoTab11SubGRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubGRightFile.LocalPath)
+				: null;
+			Tab11SubGFooterLogo = resourceManager.LogoTab11SubGFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubGFooterFile.LocalPath)
+				: null;
+			Tab11SubHRightLogo = resourceManager.LogoTab11SubHRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubHRightFile.LocalPath)
+				: null;
+			Tab11SubHFooterLogo = resourceManager.LogoTab11SubHFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubHFooterFile.LocalPath)
+				: null;
+			Tab11SubIRightLogo = resourceManager.LogoTab11SubIRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubIRightFile.LocalPath)
+				: null;
+			Tab11SubIFooterLogo = resourceManager.LogoTab11SubIFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubIFooterFile.LocalPath)
+				: null;
+			Tab11SubJRightLogo = resourceManager.LogoTab11SubJRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubJRightFile.LocalPath)
+				: null;
+			Tab11SubJFooterLogo = resourceManager.LogoTab11SubJFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubJFooterFile.LocalPath)
 				: null;
 			#endregion
 		}

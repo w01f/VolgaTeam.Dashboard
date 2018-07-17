@@ -9,7 +9,6 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
-using Asa.Solutions.StarApp.PresentationClasses.Output;
 using DevExpress.Skins;
 using DevExpress.XtraTab;
 
@@ -19,9 +18,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 	public sealed partial class ShareControl : StarAppControl, IMultiTabsControl
 	{
 		private readonly List<XtraTabPage> _tabPages = new List<XtraTabPage>();
-
 		public override SlideType SlideType => SlideType.StarAppShare;
-		public override string OutputName => SlideContainer.StarInfo.Titles.Tab5Title;
 
 		public ShareControl(BaseStarAppContainer slideContainer) : base(slideContainer)
 		{
@@ -31,11 +28,16 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			comboBoxEditSlideHeader.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 
-			_tabPages.Add(new ShareTabPageContainerControl<ShareTabAControl>(this));
-			_tabPages.Add(new ShareTabPageContainerControl<ShareTabBControl>(this));
-			_tabPages.Add(new ShareTabPageContainerControl<ShareTabCControl>(this));
-			_tabPages.Add(new ShareTabPageContainerControl<ShareTabDControl>(this));
-			_tabPages.Add(new ShareTabPageContainerControl<ShareTabEControl>(this));
+			if (!String.IsNullOrWhiteSpace(SlideContainer.StarInfo.Titles.Tab5SubATitle))
+				_tabPages.Add(new ShareTabPageContainerControl<ShareTabAControl>(this));
+			if (!String.IsNullOrWhiteSpace(SlideContainer.StarInfo.Titles.Tab5SubBTitle))
+				_tabPages.Add(new ShareTabPageContainerControl<ShareTabBControl>(this));
+			if (!String.IsNullOrWhiteSpace(SlideContainer.StarInfo.Titles.Tab5SubCTitle))
+				_tabPages.Add(new ShareTabPageContainerControl<ShareTabCControl>(this));
+			if (!String.IsNullOrWhiteSpace(SlideContainer.StarInfo.Titles.Tab5SubDTitle))
+				_tabPages.Add(new ShareTabPageContainerControl<ShareTabDControl>(this));
+			if (!String.IsNullOrWhiteSpace(SlideContainer.StarInfo.Titles.Tab5SubETitle))
+				_tabPages.Add(new ShareTabPageContainerControl<ShareTabEControl>(this));
 
 			xtraTabControl.TabPages.AddRange(_tabPages.OfType<XtraTabPage>().ToArray());
 
@@ -205,11 +207,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			var tabPageContainer = e.Page as IShareTabPageContainer;
 			if (tabPageContainer?.ContentControl != null) return;
+			xtraTabControl.Enabled = false;
 			FormProgress.SetTitle("Loading data...");
 			FormProgress.ShowProgress();
 			Application.DoEvents();
 			tabPageContainer?.LoadContent();
 			tabPageContainer?.ContentControl?.LoadData();
+			xtraTabControl.Enabled = true;
 			FormProgress.CloseProgress();
 			Application.DoEvents();
 		}
@@ -234,56 +238,18 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public override OutputGroup GetOutputGroup()
 		{
-			var outputConfigurations = new List<OutputConfiguration>();
+			LoadAllTabPages();
 
-			foreach (var tabPage in _tabPages)
+			return new OutputGroup
 			{
-				var shareControl = ((IShareTabPageContainer)tabPage).ContentControl;
-				if (shareControl == null || !shareControl.ReadyForOutput) continue;
-
-				outputConfigurations.Add(new OutputConfiguration(
-					shareControl.OutputType,
-					shareControl.OutputName,
-					shareControl.SlidesCount,
-					SlideContainer.ActiveSlideContent == this && xtraTabControl.SelectedTabPage == tabPage));
-			}
-
-			return new OutputGroup(this)
-			{
-				DisplayName = OutputName,
+				Name = SlideContainer.StarInfo.Titles.Tab5Title,
 				IsCurrent = SlideContainer.ActiveSlideContent == this,
-				Configurations = outputConfigurations.ToArray()
+				Items = _tabPages
+					.OfType<IShareTabPageContainer>()
+					.Where(tabContainer => tabContainer.ContentControl.ReadyForOutput)
+					.Select(tabContainer => tabContainer.ContentControl.GetOutputItem())
+					.ToList()
 			};
-		}
-
-		public override void GenerateOutput(IList<OutputConfiguration> configurations)
-		{
-			foreach (var configuration in configurations)
-			{
-				var tabPage = _tabPages
-					.OfType<IShareTabPageContainer>()
-					.Where(container => container.ContentControl != null)
-					.Select(container => container.ContentControl)
-					.First(contentControl => contentControl.OutputType == configuration.OutputType);
-				tabPage.GenerateOutput();
-			}
-		}
-
-		public override IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
-		{
-			var previewGroups = new List<PreviewGroup>();
-
-			foreach (var configuration in configurations)
-			{
-				var tabPage = _tabPages
-					.OfType<IShareTabPageContainer>()
-					.Where(container => container.ContentControl != null)
-					.Select(container => container.ContentControl)
-					.First(contentControl => contentControl.OutputType == configuration.OutputType);
-				previewGroups.Add(tabPage.GeneratePreview());
-			}
-
-			return previewGroups;
 		}
 		#endregion
 	}

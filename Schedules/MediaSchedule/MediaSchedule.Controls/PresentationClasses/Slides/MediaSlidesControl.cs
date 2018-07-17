@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Slides;
+using Asa.Common.Core.OfficeInterops;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Slides;
 using Asa.Common.GUI.ToolForms;
@@ -46,7 +48,6 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 			_slideContainer.BackColor = BackColor;
 			_slideContainer.InitSlides(BusinessObjects.Instance.SlideManager);
 			_slideContainer.SlideOutput += (o, e) => OutputPowerPoint(e.SlideMaster);
-			_slideContainer.SlidePreview += (o, e) => Preview(e.SlideMaster);
 			pnMain.Controls.Add(_slideContainer);
 			_slideContainer.BringToFront();
 		}
@@ -79,41 +80,77 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 			BusinessObjects.Instance.HelpManager.OpenHelpLink("Slides");
 		}
 
-		public void OutputPowerPoint()
+		private IList<OutputItem> GetOutputItems(SlideMaster slideMaster = null)
 		{
-			var selectedSlideMaster = _slideContainer.SelectedSlide;
-			if (selectedSlideMaster == null) return;
+			var selectedSlideMaster = slideMaster ?? _slideContainer.SelectedSlide;
+			var defaultOutputGroup = new OutputGroup
+			{
+				Name = "Preview",
+				IsCurrent = true,
+				Items = new List<OutputItem>(new[]
+				{
+					new OutputItem
+					{
+						Name = "Preview",
+						IsCurrent = true,
+						SlidesCount = 1,
+						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
+							Path.GetFileName(Path.GetTempFileName())),
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							processor.AppendSlideMaster(selectedSlideMaster.GetMasterPath(),destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							processor.PreparePresentation(presentationSourcePath, presentation => processor.AppendSlideMaster(selectedSlideMaster.GetMasterPath(), presentation));
+						}
+					}
+				})
+			};
 
-			OutputPowerPoint(selectedSlideMaster);
+			var selectedOutputItems = new List<OutputItem>();
+			using (var form = new FormPreview(
+				Controller.Instance.FormMain,
+				BusinessObjects.Instance.PowerPointManager.Processor))
+			{
+				form.LoadGroups(new[] { defaultOutputGroup });
+				if (form.ShowDialog() == DialogResult.OK)
+					selectedOutputItems.AddRange(form.GetSelectedItems());
+			}
+
+			return selectedOutputItems;
 		}
 
-		private void OutputPowerPoint(SlideMaster slideMaster)
+		public void OutputPowerPoint(SlideMaster slideMaster = null)
 		{
+			var outputItems = GetOutputItems(slideMaster);
+			if (!outputItems.Any()) return;
+
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				BusinessObjects.Instance.PowerPointManager.Processor.AppendSlideMaster(slideMaster.GetMasterPath());
+				foreach (var outputItem in outputItems)
+					outputItem.SlideGeneratingAction?.Invoke(BusinessObjects.Instance.PowerPointManager.Processor, null);
 				FormProgress.CloseProgress();
 			});
 		}
 
-		public void OutputPdf()
+		public void OutputPdf(SlideMaster slideMaster = null)
 		{
-			var selectedSlideMaster = _slideContainer.SelectedSlide;
-			if (selectedSlideMaster == null) return;
+			var outputItems = GetOutputItems(slideMaster);
+			if (!outputItems.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-				BusinessObjects.Instance.PowerPointManager.Processor.PreparePresentation(tempFileName, presentation => BusinessObjects.Instance.PowerPointManager.Processor.AppendSlideMaster(selectedSlideMaster.GetMasterPath(), presentation));
-				var previewGroups = new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } };
-				var pdfFileName = Path.Combine(
-					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-					string.Format("{0}-{1}.pdf", selectedSlideMaster.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-				BusinessObjects.Instance.PowerPointManager.Processor.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1:MM-dd-yy-hmmss}.pdf", (slideMaster ?? _slideContainer.SelectedSlide).Name, DateTime.Now));
+				BusinessObjects.Instance.PowerPointManager.Processor.BuildPdf(pdfFileName, presentation =>
+				{
+					foreach (var outputItem in outputItems)
+						outputItem.SlideGeneratingAction?.Invoke(BusinessObjects.Instance.PowerPointManager.Processor, presentation);
+				});
 				if (File.Exists(pdfFileName))
 					try
 					{
@@ -124,69 +161,70 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 			});
 		}
 
-		public void Preview()
+		public void Email(SlideMaster slideMaster = null)
 		{
-			var selectedSlideMaster = _slideContainer.SelectedSlide;
-			if (selectedSlideMaster == null) return;
+			var outputItems = GetOutputItems(slideMaster);
+			if (!outputItems.Any()) return;
 
-			Preview(selectedSlideMaster);
-		}
-
-		private void Preview(SlideMaster slideMaster)
-		{
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress();
-			var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			BusinessObjects.Instance.PowerPointManager.Processor.PreparePresentation(tempFileName, presentation => BusinessObjects.Instance.PowerPointManager.Processor.AppendSlideMaster(slideMaster.GetMasterPath(), presentation));
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-			FormProgress.CloseProgress();
-
-			using (var formPreview = new FormPreview(
-				Controller.Instance.FormMain,
-				BusinessObjects.Instance.PowerPointManager.Processor,
-				Controller.Instance.ShowFloater,
-				Controller.Instance.CheckPowerPointRunning))
+			using (var form = new FormEmailFileName())
 			{
-				formPreview.Text = "Preview Slide";
-				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-				RegistryHelper.MainFormHandle = formPreview.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				var previewResult = formPreview.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-				if (previewResult != DialogResult.OK)
-					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-			}
-		}
+				if (form.ShowDialog() == DialogResult.OK)
+				{
+					FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Email...");
+					FormProgress.ShowProgress();
+					Controller.Instance.ShowFloater(() =>
+					{
+						var emailFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", (slideMaster ?? _slideContainer.SelectedSlide).Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+						var defaultItem = outputItems.First();
+						BusinessObjects.Instance.PowerPointManager.Processor.PreparePresentation(emailFileName, presentation =>
+						{
+							foreach (var outputItem in outputItems)
+								outputItem.SlideGeneratingAction?.Invoke(BusinessObjects.Instance.PowerPointManager.Processor, presentation);
+						});
 
-		public void Email()
-		{
-			var selectedSlideMaster = _slideContainer.SelectedSlide;
-			if (selectedSlideMaster == null) return;
+						var emailFile = Path.Combine(
+							Path.GetFullPath(defaultItem.PresentationSourcePath)
+								.Replace(Path.GetFileName(defaultItem.PresentationSourcePath), string.Empty),
+							form.FileName + ".pptx");
+						File.Copy(emailFileName, emailFile, true);
 
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress();
-			var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			BusinessObjects.Instance.PowerPointManager.Processor.PreparePresentation(tempFileName, presentation => BusinessObjects.Instance.PowerPointManager.Processor.AppendSlideMaster(selectedSlideMaster.GetMasterPath(), presentation));
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-			FormProgress.CloseProgress();
+						FormProgress.CloseProgress();
 
-			using (var formEmail = new FormEmail(BusinessObjects.Instance.PowerPointManager.Processor, BusinessObjects.Instance.HelpManager))
-			{
-				formEmail.Text = "Email this Slide";
-				formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-				RegistryHelper.MainFormHandle = formEmail.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				formEmail.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+						try
+						{
+							if (OutlookHelper.Instance.Open())
+							{
+								OutlookHelper.Instance.CreateMessage("Advertising Schedule", emailFile);
+								OutlookHelper.Instance.Close();
+							}
+							else
+								PopupMessageHelper.Instance.ShowWarning("Cannot open Outlook");
+							File.Delete(emailFile);
+						}
+						catch { }
+					});
+				}
 			}
 		}
 
 		public void EditSettings()
 		{
 			throw new NotImplementedException();
+		}
+
+		public void OutputPowerPoint()
+		{
+			OutputPowerPoint(null);
+		}
+
+		public void OutputPdf()
+		{
+			OutputPdf(null);
+		}
+
+		public void Email()
+		{
+			Email(null);
 		}
 	}
 }

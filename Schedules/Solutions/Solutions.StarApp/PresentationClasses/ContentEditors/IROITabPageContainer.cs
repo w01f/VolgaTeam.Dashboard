@@ -1,7 +1,8 @@
 ﻿namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
-	interface IROITabPageContainer
+	public interface IROITabPageContainer
 	{
+		ROIControl ParentControl { get; }
 		ROITabBaseControl ContentControl { get; }
 		void LoadContent();
 	}

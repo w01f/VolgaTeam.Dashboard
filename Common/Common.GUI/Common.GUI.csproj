@@ -129,23 +129,20 @@
     <Compile Include="OutputColors\OutputColorSelector.Designer.cs">
       <DependentUpon>OutputColorSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="OutputSelector\FormConfigureOutput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OutputSelector\FormConfigureOutput.Designer.cs">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OutputSelector\IOutputItem.cs" />
-    <Compile Include="OutputSelector\ISlideItem.cs" />
-    <Compile Include="OutputSelector\OutputItemsTreeList.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Preview\PreviewGroup.cs" />
+    <Compile Include="Preview\OutputGroup.cs" />
     <Compile Include="Preview\PreviewGroupControl.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Preview\PreviewGroupControl.Designer.cs">
       <DependentUpon>PreviewGroupControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Preview\OutputItem.cs" />
+    <Compile Include="Preview\PreviewItemChangedEventArgs.cs" />
+    <Compile Include="Preview\PreviewItemControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Preview\PreviewItemControl.Designer.cs">
+      <DependentUpon>PreviewItemControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -212,12 +209,6 @@
     </Compile>
     <Compile Include="Themes\ThemeContainerControl.Designer.cs">
       <DependentUpon>ThemeContainerControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Preview\FormEmail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Preview\FormEmail.designer.cs">
-      <DependentUpon>FormEmail.cs</DependentUpon>
     </Compile>
     <Compile Include="ListEditor\FormCommonListEditor.cs">
       <SubType>Form</SubType>
@@ -299,11 +290,11 @@
     <EmbeddedResource Include="OutputColors\OutputColorSelector.resx">
       <DependentUpon>OutputColorSelector.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OutputSelector\FormConfigureOutput.resx">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Preview\PreviewGroupControl.resx">
       <DependentUpon>PreviewGroupControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Preview\PreviewItemControl.resx">
+      <DependentUpon>PreviewItemControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -335,9 +326,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Themes\ThemeContainerControl.resx">
       <DependentUpon>ThemeContainerControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Preview\FormEmail.resx">
-      <DependentUpon>FormEmail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListEditor\FormCommonListEditor.resx">
       <DependentUpon>FormCommonListEditor.cs</DependentUpon>
@@ -382,15 +370,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Help.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PDFEmail.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RegularEmail.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PowerPoint.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Email.png" />

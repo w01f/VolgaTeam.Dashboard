@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Asa.Common.Core.Objects.Output;
 
 namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Output

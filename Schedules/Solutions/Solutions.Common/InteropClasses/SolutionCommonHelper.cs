@@ -14,7 +14,7 @@ using Shapes = Microsoft.Office.Interop.PowerPoint.Shapes;
 
 namespace Asa.Solutions.Common.InteropClasses
 {
-	public static partial class SolutionPowerPointHelperExtensions
+	public static class SolutionPowerPointExtensions
 	{
 		public static void AppendStarCommonSlide(this PowerPointProcessor target, OutputDataPackage dataPackage, Presentation destinationPresentation = null)
 		{
@@ -68,7 +68,7 @@ namespace Asa.Solutions.Common.InteropClasses
 			}
 		}
 
-		public static void PrepareStarCommonSlide(this PowerPointProcessor target, OutputDataPackage dataPackage, string fileName)
+		public static void PrepareStarCommonSlide(this PowerPointProcessor target, string fileName, OutputDataPackage dataPackage)
 		{
 			target.PreparePresentation(fileName, presentation => target.AppendStarCommonSlide(dataPackage, presentation));
 		}

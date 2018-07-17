@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using Asa.Common.GUI.Preview;
 
 namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Output
 {
 	public interface IOutputItem
 	{
-		IList<OutputConfiguration> GetOutputConfigurations();
+		IList<OutputItem> GetOutputItems();
 	}
 }

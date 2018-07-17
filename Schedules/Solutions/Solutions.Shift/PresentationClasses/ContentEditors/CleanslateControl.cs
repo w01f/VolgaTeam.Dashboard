@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using Asa.Common.Core.Enums;
 using Asa.Common.GUI.Preview;
-using Asa.Solutions.Shift.PresentationClasses.Output;
 
 namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 {
@@ -12,7 +10,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 	public sealed partial class CleanslateControl : BaseShiftControl
 	{
 		public override SlideType SlideType => SlideType.ShiftCleanslate;
-		public override string OutputName => SlideContainer.ShiftInfo.Titles.Tab0Title;
 
 		public CleanslateControl(BaseShiftContainer slideContainer) : base(slideContainer)
 		{
@@ -28,24 +25,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 		public override OutputGroup GetOutputGroup()
 		{
-			var outputConfigurations = new List<OutputConfiguration>();
-
-			return new OutputGroup(this)
+			return new OutputGroup()
 			{
-				DisplayName = OutputName,
+				Name = SlideContainer.ShiftInfo.Titles.Tab0Title,
 				IsCurrent = SlideContainer.ActiveSlideContent == this,
-				Configurations = outputConfigurations.ToArray()
+				Items = new List<OutputItem>()
 			};
-		}
-
-		public override void GenerateOutput(IList<OutputConfiguration> configurations) { }
-
-		public override IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
-		{
-			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
-				Path.GetFileName(Path.GetTempFileName()));
-			//SolutionDashboardPowerPointHelper.Instance.PrepareCover(this, tempFileName);
-			return new[] { new PreviewGroup { Name = OutputName, PresentationSourcePath = tempFileName } };
 		}
 	}
 }

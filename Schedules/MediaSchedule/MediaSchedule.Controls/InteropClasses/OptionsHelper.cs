@@ -14,9 +14,9 @@ using Theme = Asa.Common.Core.Objects.Themes.Theme;
 
 namespace Asa.Media.Controls.InteropClasses
 {
-	public partial class MediaSchedulePowerPointProcessor
+	public static partial class MediaSchedulePowerPointExtensions
 	{
-		public void AppendOptions(IEnumerable<IOptionsSlideData> pages, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
+		public static void AppendOptions(this PowerPointProcessor target, IEnumerable<IOptionsSlideData> pages, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
 		{
 			try
 			{
@@ -31,7 +31,7 @@ namespace Asa.Media.Controls.InteropClasses
 							var copyOfReplacementList = new Dictionary<string, string>(pageDictionary);
 							var presentationTemplatePath = page.TemplateFilePath;
 							if (!File.Exists(presentationTemplatePath)) return;
-							var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+							var presentation = target.PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 							var taggedSlide = presentation.Slides.Count > 0 ? presentation.Slides[1] : null;
 
 							var logoShapes = new List<Shape>();
@@ -159,7 +159,7 @@ namespace Asa.Media.Controls.InteropClasses
 								}
 
 								if (page.ContractSettings.IsConfigured)
-									FillContractInfo(design, page.ContractSettings, BusinessObjects.Instance.OutputManager.ContractTemplateFolder);
+									target.FillContractInfo(design, page.ContractSettings, BusinessObjects.Instance.OutputManager.ContractTemplateFolder);
 
 								newSlide.Design = design;
 							}
@@ -169,9 +169,9 @@ namespace Asa.Media.Controls.InteropClasses
 									presentation.ApplyTheme(selectedTheme.GetThemePath());
 
 								if (page.ContractSettings.IsConfigured)
-									FillContractInfo(taggedSlide, page.ContractSettings, BusinessObjects.Instance.OutputManager.ContractTemplateFolder);
+									target.FillContractInfo(taggedSlide, page.ContractSettings, BusinessObjects.Instance.OutputManager.ContractTemplateFolder);
 							}
-							AppendSlide(presentation, 1, destinationPresentation);
+							target.AppendSlide(presentation, 1, destinationPresentation);
 							presentation.Close();
 							slideNumber++;
 						}
@@ -190,9 +190,9 @@ namespace Asa.Media.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareOptionsEmail(string fileName, IEnumerable<IOptionsSlideData> pages, Theme selectedTheme, bool pasteToSlideMaster)
+		public static void PrepareOptionsEmail(this PowerPointProcessor target, string fileName, IEnumerable<IOptionsSlideData> pages, Theme selectedTheme, bool pasteToSlideMaster)
 		{
-			PreparePresentation(fileName, presentation => AppendOptions(pages, selectedTheme, pasteToSlideMaster, presentation));
+			target.PreparePresentation(fileName, presentation => target.AppendOptions(pages, selectedTheme, pasteToSlideMaster, presentation));
 		}
 	}
 }

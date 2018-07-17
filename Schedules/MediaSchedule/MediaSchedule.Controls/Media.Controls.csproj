@@ -126,7 +126,6 @@
     <Compile Include="InteropClasses\DigitalInfoHelper.cs" />
     <Compile Include="InteropClasses\ProgramScheduleHelper.cs" />
     <Compile Include="InteropClasses\OptionsHelper.cs" />
-    <Compile Include="InteropClasses\MediaSchedulePowerPointProcessor.cs" />
     <Compile Include="InteropClasses\SnapshotHelper.cs" />
     <Compile Include="PresentationClasses\Browser\BrowserContentControl.cs">
       <SubType>UserControl</SubType>
@@ -216,7 +215,6 @@
       <DependentUpon>BaseDigitalInfoSettingsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Digital\Output\IDigitalOutputContainer.cs" />
-    <Compile Include="PresentationClasses\Digital\Output\OutputGroup.cs" />
     <Compile Include="PresentationClasses\Digital\Settings\DigitalStandalonePackageSettingsControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -297,9 +295,6 @@
     <Compile Include="PresentationClasses\OptionsControls\Output\IOptionsSlideData.cs" />
     <Compile Include="PresentationClasses\OptionsControls\Output\IOutputContainer.cs" />
     <Compile Include="PresentationClasses\OptionsControls\Output\IOutputItem.cs" />
-    <Compile Include="PresentationClasses\OptionsControls\Output\OptionSetOutputType.cs" />
-    <Compile Include="PresentationClasses\OptionsControls\Output\OutputConfiguration.cs" />
-    <Compile Include="PresentationClasses\OptionsControls\Output\OutputGroup.cs" />
     <Compile Include="PresentationClasses\OptionsControls\Settings\ColorSettingsControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -355,6 +350,12 @@
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryProductItemControl.Designer.cs">
       <DependentUpon>SectionSummaryProductItemControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\Output\FormOutputSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\Output\FormOutputSettings.designer.cs">
+      <DependentUpon>FormOutputSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\Output\ISectionOutputControl.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionEditorType.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\FormFlexFlightDatesWarning.cs">
@@ -368,14 +369,6 @@
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryControl.Designer.cs">
       <DependentUpon>SectionSummaryControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Output\ScheduleSectionOutputItem.cs" />
-    <Compile Include="PresentationClasses\ScheduleControls\Output\ScheduleSectionOutputType.cs" />
-    <Compile Include="PresentationClasses\ScheduleControls\Output\FormOutputSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Output\FormOutputSettings.Designer.cs">
-      <DependentUpon>FormOutputSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\FormSectionName.cs">
       <SubType>Form</SubType>
@@ -519,9 +512,6 @@
     <Compile Include="PresentationClasses\SnapshotControls\Output\IOutputContainer.cs" />
     <Compile Include="PresentationClasses\SnapshotControls\Output\IOutputItem.cs" />
     <Compile Include="PresentationClasses\SnapshotControls\Output\ISnapshotSlideData.cs" />
-    <Compile Include="PresentationClasses\SnapshotControls\Output\SnapshotOutputType.cs" />
-    <Compile Include="PresentationClasses\SnapshotControls\Output\OutputConfiguration.cs" />
-    <Compile Include="PresentationClasses\SnapshotControls\Output\OutputGroup.cs" />
     <Compile Include="PresentationClasses\SnapshotControls\Settings\ColorSettingsControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -705,11 +695,11 @@
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryProductItemControl.resx">
       <DependentUpon>SectionSummaryProductItemControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\Output\FormOutputSettings.resx">
-      <DependentUpon>FormOutputSettings.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\FormSectionName.resx">
       <DependentUpon>FormSectionName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\Output\FormOutputSettings.resx">
+      <DependentUpon>FormOutputSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\QuarterSelectorControl.resx">
       <DependentUpon>QuarterSelectorControl.cs</DependentUpon>
@@ -941,9 +931,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RibbonPowerPoint.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RibbonPreview.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DigitalScheduleLogo.png" />

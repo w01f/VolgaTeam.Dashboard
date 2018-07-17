@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Snapshot;
@@ -153,55 +152,12 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		public string OutputName => SnapshotData.Name;
 		public OutputGroup GetOutputGroup()
 		{
-			return new OutputGroup(this)
+			return new OutputGroup
 			{
-				DisplayName = OutputName,
+				Name = OutputName,
 				IsCurrent = TabControl.SelectedTabPage == this,
-				Configurations = _snapshotControl.GetOutputConfigurations().Union(_digitalInfoControl.GetOutputConfigurations()).ToArray()
+				Items = _snapshotControl.GetOutputItems().Union(_digitalInfoControl.GetOutputItems()).ToArray()
 			};
-		}
-
-		public void GenerateOutput(IList<OutputConfiguration> configurations)
-		{
-			foreach (var configuration in configurations)
-			{
-				switch (configuration.OutputType)
-				{
-					case SnapshotOutputType.Program:
-					case SnapshotOutputType.ProgramAndDigital:
-						_snapshotControl.GenerateOutput(configuration.OutputType == SnapshotOutputType.ProgramAndDigital);
-						break;
-					case SnapshotOutputType.Digital:
-						_digitalInfoControl.GenerateOneSheetOutput();
-						break;
-					case SnapshotOutputType.DigitalStrategy:
-						_digitalInfoControl.GenerateStrategyOutput();
-						break;
-				}
-			}
-		}
-
-		public IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
-		{
-			var previewGroups = new List<PreviewGroup>();
-
-			foreach (var configuration in configurations)
-			{
-				switch (configuration.OutputType)
-				{
-					case SnapshotOutputType.Program:
-					case SnapshotOutputType.ProgramAndDigital:
-						previewGroups.Add(_snapshotControl.GeneratePreview(configuration.OutputType == SnapshotOutputType.ProgramAndDigital));
-						break;
-					case SnapshotOutputType.Digital:
-						previewGroups.Add(_digitalInfoControl.GenerateOneSheetPreview(String.Format("{0} ({1})", SnapshotData.Name, _digitalInfoControl.Text)));
-						break;
-					case SnapshotOutputType.DigitalStrategy:
-						previewGroups.Add(_digitalInfoControl.GenerateStrategyPreview(String.Format("{0} ({1})", SnapshotData.Name, "Digital Strategies")));
-						break;
-				}
-			}
-			return previewGroups;
 		}
 		#endregion
 	}

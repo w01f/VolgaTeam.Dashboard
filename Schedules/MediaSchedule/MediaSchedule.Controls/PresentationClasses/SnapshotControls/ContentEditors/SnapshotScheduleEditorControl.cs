@@ -18,6 +18,7 @@ using Asa.Common.GUI.Common;
 using Asa.Common.GUI.ImageGallery;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
+using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.Output;
 using DevExpress.Utils;
 using DevExpress.Utils.Menu;
@@ -536,26 +537,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			var recordsCount = includeDigital ? (programsCount + digitalsCount) : programsCount;
 
 			return recordsCount <= 10 ? recordsCount : 10;
-		}
-
-		public IList<OutputConfiguration> GetOutputConfigurations()
-		{
-			var outputConfigurations = new List<OutputConfiguration>();
-			if (_data.Programs.Any() && (_data.ShowStation || _data.ShowProgram || _data.ShowTime || _data.ShowDaypart))
-			{
-				outputConfigurations.Add(new OutputConfiguration(
-					SnapshotOutputType.Program,
-					_data.Programs.Count / GetProgramsPerSlide(false) + (_data.Programs.Count % GetProgramsPerSlide(false) > 0 ? 1 : 0))
-				{
-					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this
-				});
-				if (_data.DigitalInfo.Records.Any())
-					outputConfigurations.Add(new OutputConfiguration(
-						SnapshotOutputType.ProgramAndDigital,
-						(_data.Programs.Count + _data.DigitalInfo.Records.Count) / GetProgramsPerSlide(true) +
-							((_data.Programs.Count + _data.DigitalInfo.Records.Count) % GetProgramsPerSlide(true) > 0 ? 1 : 0)));
-			}
-			return outputConfigurations;
 		}
 
 		private void GetTemplatePath(bool includeDigital)
@@ -1125,28 +1106,66 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 				TotalRowValue = scheduleSummary;
 		}
 
-		public PreviewGroup GeneratePreview(bool includeDigital)
+		public IList<OutputItem> GetOutputItems()
 		{
-			Logos = GetLogos(includeDigital);
-			PopulateReplacementsList(includeDigital);
-			PrepareTotalRow(includeDigital);
-			GetTemplatePath(includeDigital);
-			var previewGroup = new PreviewGroup
-			{
-				Name = String.Format("{0} ({1})", _data.Name, includeDigital ? String.Format("{0} + Digital", MediaMetaData.Instance.DataTypeString) : MediaMetaData.Instance.DataTypeString),
-				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-			};
-			BusinessObjects.Instance.PowerPointManager.Processor.PrepareSnapshotEmail(previewGroup.PresentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-			return previewGroup;
-		}
+			var outputItems = new List<OutputItem>();
 
-		public void GenerateOutput(bool includeDigital)
-		{
-			Logos = GetLogos(includeDigital);
-			PopulateReplacementsList(includeDigital);
-			PrepareTotalRow(includeDigital);
-			GetTemplatePath(includeDigital);
-			BusinessObjects.Instance.PowerPointManager.Processor.AppendSnapshot(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			if (_data.Programs.Any() && (_data.ShowStation || _data.ShowProgram || _data.ShowTime || _data.ShowDaypart))
+			{
+				outputItems.Add(new OutputItem
+				{
+					Name = MediaMetaData.Instance.DataTypeString,
+					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
+					PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
+						Path.GetFileName(Path.GetTempFileName())),
+					SlidesCount = _data.Programs.Count / GetProgramsPerSlide(false) + (_data.Programs.Count % GetProgramsPerSlide(false) > 0 ? 1 : 0),
+					SlideGeneratingAction = (processor, destinationPresentation) =>
+					{
+						Logos = GetLogos(false);
+						PopulateReplacementsList(false);
+						PrepareTotalRow(false);
+						GetTemplatePath(false);
+						processor.AppendSnapshot(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster, destinationPresentation);
+					},
+					PreviewGeneratingAction = (processor, presentationSourcePath) =>
+					{
+						Logos = GetLogos(false);
+						PopulateReplacementsList(false);
+						PrepareTotalRow(false);
+						GetTemplatePath(false);
+						processor.PrepareSnapshotEmail(presentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+					}
+				});
+
+				if (_data.DigitalInfo.Records.Any())
+					outputItems.Add(new OutputItem
+					{
+						Name = String.Format("{0} + Digital", MediaMetaData.Instance.DataTypeString),
+						IsCurrent = false,
+						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
+						Path.GetFileName(Path.GetTempFileName())),
+						SlidesCount = (_data.Programs.Count + _data.DigitalInfo.Records.Count) / GetProgramsPerSlide(true) +
+								  ((_data.Programs.Count + _data.DigitalInfo.Records.Count) % GetProgramsPerSlide(true) > 0 ? 1 : 0),
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							Logos = GetLogos(true);
+							PopulateReplacementsList(true);
+							PrepareTotalRow(true);
+							GetTemplatePath(true);
+							processor.AppendSnapshot(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster, destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							Logos = GetLogos(true);
+							PopulateReplacementsList(true);
+							PrepareTotalRow(true);
+							GetTemplatePath(true);
+							processor.PrepareSnapshotEmail(presentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+						}
+					});
+			}
+
+			return outputItems;
 		}
 		#endregion
 	}

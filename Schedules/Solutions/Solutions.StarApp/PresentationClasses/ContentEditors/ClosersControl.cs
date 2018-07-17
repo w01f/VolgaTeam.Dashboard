@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
@@ -10,7 +9,6 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
-using Asa.Solutions.StarApp.PresentationClasses.Output;
 using DevExpress.Skins;
 using DevExpress.XtraTab;
 
@@ -22,7 +20,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		private readonly List<XtraTabPage> _tabPages = new List<XtraTabPage>();
 
 		public override SlideType SlideType => SlideType.StarAppClosers;
-		public override string OutputName => SlideContainer.StarInfo.Titles.Tab11Title;
 
 		public ClosersControl(BaseStarAppContainer slideContainer) : base(slideContainer)
 		{
@@ -32,9 +29,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			comboBoxEditSlideHeader.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 
-			_tabPages.Add(new ClosersTabPageContainerControl<ClosersTabAControl>(this));
-			_tabPages.Add(new ClosersTabPageContainerControl<ClosersTabBControl>(this));
-			_tabPages.Add(new ClosersTabPageContainerControl<ClosersTabCControl>(this));
+			if (!String.IsNullOrWhiteSpace(SlideContainer.StarInfo.Titles.Tab11SubATitle))
+				_tabPages.Add(new ClosersTabPageContainerControl<ClosersTabAControl>(this));
+			if (!String.IsNullOrWhiteSpace(SlideContainer.StarInfo.Titles.Tab11SubBTitle))
+				_tabPages.Add(new ClosersTabPageContainerControl<ClosersTabBControl>(this));
+			if (!String.IsNullOrWhiteSpace(SlideContainer.StarInfo.Titles.Tab11SubCTitle))
+				_tabPages.Add(new ClosersTabPageContainerControl<ClosersTabCControl>(this));
 
 			xtraTabControl.TabPages.AddRange(_tabPages.OfType<XtraTabPage>().ToArray());
 
@@ -172,11 +172,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			var tabPageContainer = e.Page as IClosersTabPageContainer;
 			if (tabPageContainer?.ContentControl != null) return;
+			xtraTabControl.Enabled = false;
 			FormProgress.SetTitle("Loading data...");
 			FormProgress.ShowProgress();
 			Application.DoEvents();
 			tabPageContainer?.LoadContent();
 			tabPageContainer?.ContentControl?.LoadData();
+			xtraTabControl.Enabled = true;
 			FormProgress.CloseProgress();
 			Application.DoEvents();
 		}
@@ -193,59 +195,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		#region Output Staff
 
-		public override bool ReadyForOutput => true;
+		public override bool ReadyForOutput => _tabPages
+			.OfType<IClosersTabPageContainer>()
+			.Where(container => container.ContentControl != null)
+			.Select(container => container.ContentControl)
+			.Any(contentControl => contentControl.ReadyForOutput);
 
 		public override OutputGroup GetOutputGroup()
 		{
-			var outputConfigurations = new List<OutputConfiguration>();
+			LoadAllTabPages();
 
-			foreach (var tabPage in _tabPages)
+			return new OutputGroup
 			{
-				var closersControl = ((IClosersTabPageContainer)tabPage).ContentControl;
-				if (closersControl == null) continue;
-
-				outputConfigurations.Add(new OutputConfiguration(
-					closersControl.OutputType,
-					closersControl.OutputName,
-					closersControl.SlidesCount,
-					SlideContainer.ActiveSlideContent == this && xtraTabControl.SelectedTabPage == tabPage));
-			}
-
-			return new OutputGroup(this)
-			{
-				DisplayName = OutputName,
+				Name = SlideContainer.StarInfo.Titles.Tab11Title,
 				IsCurrent = SlideContainer.ActiveSlideContent == this,
-				Configurations = outputConfigurations.ToArray()
+				Items = _tabPages
+					.OfType<IClosersTabPageContainer>()
+					.Where(tabContainer => tabContainer.ContentControl.ReadyForOutput)
+					.Select(tabContainer => tabContainer.ContentControl.GetOutputItem())
+					.ToList()
 			};
-		}
-
-		public override void GenerateOutput(IList<OutputConfiguration> configurations)
-		{
-			foreach (var configuration in configurations)
-			{
-				var tabPage = _tabPages
-					.OfType<IClosersTabPageContainer>()
-					.Select(container => container.ContentControl)
-					.First(contentControl => contentControl.OutputType == configuration.OutputType);
-				tabPage.GenerateOutput();
-			}
-		}
-
-		public override IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
-		{
-			var previewGroups = new List<PreviewGroup>();
-
-			foreach (var configuration in configurations)
-			{
-				var tabPage = _tabPages
-					.OfType<IClosersTabPageContainer>()
-					.Where(container => container.ContentControl != null)
-					.Select(container => container.ContentControl)
-					.First(contentControl => contentControl.OutputType == configuration.OutputType);
-				previewGroups.Add(tabPage.GeneratePreview());
-			}
-
-			return previewGroups;
 		}
 		#endregion
 	}

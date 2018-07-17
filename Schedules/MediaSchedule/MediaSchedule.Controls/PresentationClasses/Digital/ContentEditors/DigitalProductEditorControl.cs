@@ -13,6 +13,7 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Common.GUI.Common;
+using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.Digital.Output;
 using Asa.Media.Controls.PresentationClasses.Digital.Settings;
@@ -281,9 +282,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			LoadData();
 			return new OutputGroup
 			{
-				DisplayName = "Planners",
+				Name = "Planners",
 				IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
-				OutputItems = xtraTabControlProducts.TabPages.OfType<IDigitalOutputItem>().ToArray()
+				Items = xtraTabControlProducts.TabPages.OfType<IDigitalOutputItem>().Select(productControl => productControl.GeneratePreviewData()).ToList()
 			};
 		}
 		#endregion

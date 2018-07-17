@@ -7,7 +7,9 @@ namespace Asa.Common.Core.OfficeInterops
 	{
 		public void Dispose()
 		{
-			Disconnect(true);
+			if (_isFirstLaunch)
+				Close();
+			Disconnect();
 		}
 
 		public bool DoTimeLimitedAction(Action action, int timeLimit = 120)

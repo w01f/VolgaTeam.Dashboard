@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Asa.Business.Media.Configuration;
+﻿using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Enums;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
 using Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.Output;
 
@@ -58,24 +55,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		public override SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
 			SlideType.TVOptionsDigital :
 			SlideType.RadioOptionsDigital;
-
-		public IList<OutputConfiguration> GetOutputConfigurations()
-		{
-			var outputConfigurations = new List<OutputConfiguration>();
-			if (_digitalInfo.Records.Any())
-			{
-				outputConfigurations.Add(new OutputConfiguration(
-					SnapshotOutputType.Digital,
-					BaseDigitalInfoOneSheetOutputModel.SlideCount)
-				{
-					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this
-				});
-				outputConfigurations.Add(new OutputConfiguration(
-					SnapshotOutputType.DigitalStrategy,
-					BaseDigitalInfoOneSheetOutputModel.SlideCount));
-			}
-			return outputConfigurations;
-		}
 		#endregion
 	}
 }

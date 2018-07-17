@@ -73,7 +73,9 @@
 		ShiftIntegratedSolution = 507,
 		ShiftInvestemnt = 508,
 		ShiftClosers = 509,
-		ShiftSupportMaterials = 510,
+		ShiftNextSteps = 510,
+		ShiftContract = 511,
+		ShiftSupportMaterials = 512,
 		#endregion
 	}
 }

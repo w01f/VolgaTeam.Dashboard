@@ -18,6 +18,7 @@ using Asa.Common.GUI.ImageGallery;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
+using Asa.Media.Controls.InteropClasses;
 using DevExpress.Skins;
 using DevExpress.Utils;
 using DevExpress.Utils.Menu;
@@ -350,6 +351,54 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			}
 		}
 
+		public IList<OutputItem> GetOutputItems()
+		{
+			var outputItems = new List<OutputItem>();
+
+			if (_digitalInfo != null && _digitalInfo.Records.Any())
+				outputItems.AddRange(new[] {
+					new OutputItem
+					{
+						Name = "Digital",
+						IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
+						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
+							Path.GetFileName(Path.GetTempFileName())),
+						SlidesCount = BaseDigitalInfoOneSheetOutputModel.SlideCount,
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							var outputPage = PrepareOneSheetOutput();
+							processor.AppendDigitalOneSheet(outputPage, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster,
+								destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							var outputPage = PrepareOneSheetOutput();
+							processor.PrepareDigitalOneSheetEmail(presentationSourcePath, outputPage, SelectedTheme,
+								MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+						}
+					},
+					new OutputItem
+					{
+						Name = "Digital Strategies",
+						IsCurrent = false,
+						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
+							Path.GetFileName(Path.GetTempFileName())),
+						SlidesCount = BaseDigitalInfoOneSheetOutputModel.SlideCount,
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							var dataModel = PrepareStrategyOutput();
+							processor.AppendStrategy(dataModel, SelectedTheme, destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							var dataModel = PrepareStrategyOutput();
+							processor.PrepareStrategyEmail(presentationSourcePath, dataModel, SelectedTheme);
+						}
+					}
+				});
+
+			return outputItems;
+		}
 
 		#region OneSheet
 		private StandaloneDigitalInfoOneSheetOutputModel PrepareOneSheetOutput()
@@ -388,24 +437,6 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			outputPage.PopulateReplacementsList();
 
 			return outputPage;
-		}
-
-		public void GenerateOneSheetOutput()
-		{
-			var outputPage = PrepareOneSheetOutput();
-			BusinessObjects.Instance.PowerPointManager.Processor.AppendDigitalOneSheet(outputPage, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-		}
-
-		public PreviewGroup GenerateOneSheetPreview(string groupName = "")
-		{
-			var outputPage = PrepareOneSheetOutput();
-			var previewGroup = new PreviewGroup
-			{
-				Name = !String.IsNullOrEmpty(groupName) ? groupName : Text,
-				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-			};
-			BusinessObjects.Instance.PowerPointManager.Processor.PrepareDigitalOneSheetEmail(previewGroup.PresentationSourcePath, outputPage, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-			return previewGroup;
 		}
 		#endregion
 
@@ -449,24 +480,6 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 
 			outputModel.GetLogos();
 			return outputModel;
-		}
-
-		public void GenerateStrategyOutput()
-		{
-			var dataModel = PrepareStrategyOutput();
-			BusinessObjects.Instance.PowerPointManager.Processor.AppendStrategy(dataModel, SelectedTheme);
-		}
-
-		public PreviewGroup GenerateStrategyPreview(string groupName = "")
-		{
-			var dataModel = PrepareStrategyOutput();
-			var previewGroup = new PreviewGroup
-			{
-				Name = !String.IsNullOrEmpty(groupName) ? groupName : "Digital Strategies",
-				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-			};
-			BusinessObjects.Instance.PowerPointManager.Processor.PrepareStrategyEmail(previewGroup.PresentationSourcePath, dataModel, SelectedTheme);
-			return previewGroup;
 		}
 		#endregion
 

@@ -6,13 +6,13 @@ using System.Linq;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Dictionaries;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
+using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
 using Asa.Solutions.Common.InteropClasses;
 using Asa.Solutions.Common.PresentationClasses.Output;
-using Asa.Solutions.StarApp.PresentationClasses.Output;
 using DevExpress.Skins;
 using DevExpress.XtraLayout;
 
@@ -25,7 +25,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		private readonly DateTime _defaultDate = DateTime.Today;
 
 		public override SlideType SlideType => SlideType.StarAppCover;
-		public override string OutputName => SlideContainer.StarInfo.Titles.Tab1Title;
 
 		public CoverControl(BaseStarAppContainer slideContainer) : base(slideContainer)
 		{
@@ -171,11 +170,31 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public override OutputGroup GetOutputGroup()
 		{
-			return new OutputGroup(this)
+			var outputData = GetOutputData();
+			return new OutputGroup
 			{
-				DisplayName = OutputName,
+				Name = SlideContainer.StarInfo.Titles.Tab1Title,
 				IsCurrent = SlideContainer.ActiveSlideContent == this,
-				Configurations = new[] { new OutputConfiguration(StarAppOutputType.Cover, OutputName, 1, SlideContainer.ActiveSlideContent == this) }
+				Items = new List<OutputItem>(new[]
+				{
+					new OutputItem
+					{
+						Name = SlideContainer.StarInfo.Titles.Tab1Title,
+						InsertOnTop = outputData.AddAsFirtsPage,
+						PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
+							Path.GetFileName(Path.GetTempFileName())),
+						SlidesCount = 1,
+						IsCurrent = true,
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							processor.AppendStarCommonSlide(outputData, destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							processor.PrepareStarCommonSlide(presentationSourcePath, outputData);
+						}
+					}
+				})
 			};
 		}
 
@@ -264,20 +283,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			}
 
 			return outputDataPackage;
-		}
-
-		public override void GenerateOutput(IList<OutputConfiguration> configurations)
-		{
-			var outputDataPackage = GetOutputData();
-			SlideContainer.PowerPointProcessor.AppendStarCommonSlide(outputDataPackage);
-		}
-
-		public override IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
-		{
-			var outputDataPackage = GetOutputData();
-			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			SlideContainer.PowerPointProcessor.PrepareStarCommonSlide(outputDataPackage, tempFileName);
-			return new[] { new PreviewGroup { Name = OutputName, PresentationSourcePath = tempFileName, InsertOnTop = outputDataPackage.AddAsFirtsPage } };
 		}
 		#endregion
 	}

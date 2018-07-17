@@ -13,7 +13,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 	public sealed partial class SupportMaterialsControl : BaseShiftControl
 	{
 		public override SlideType SlideType => SlideType.ShiftSupportMaterials;
-		public override string OutputName => SlideContainer.ShiftInfo.Titles.Tab9Title;
 
 		public SupportMaterialsControl(BaseShiftContainer slideContainer) : base(slideContainer)
 		{
@@ -23,44 +22,44 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 			comboBoxEditSlideHeader.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 
-			if(!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab9SubATitle))
-				layoutControlGroupTabA.Text = SlideContainer.ShiftInfo.Titles.Tab9SubATitle;
+			if(!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab11SubATitle))
+				layoutControlGroupTabA.Text = SlideContainer.ShiftInfo.Titles.Tab11SubATitle;
 			else
 				layoutControlGroupTabA.Visibility = LayoutVisibility.Never;
-			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab9SubBTitle))
-				layoutControlGroupTabB.Text = SlideContainer.ShiftInfo.Titles.Tab9SubBTitle;
+			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab11SubBTitle))
+				layoutControlGroupTabB.Text = SlideContainer.ShiftInfo.Titles.Tab11SubBTitle;
 			else
 				layoutControlGroupTabB.Visibility = LayoutVisibility.Never;
-			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab9SubCTitle))
-				layoutControlGroupTabC.Text = SlideContainer.ShiftInfo.Titles.Tab9SubCTitle;
+			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab11SubCTitle))
+				layoutControlGroupTabC.Text = SlideContainer.ShiftInfo.Titles.Tab11SubCTitle;
 			else
 				layoutControlGroupTabC.Visibility = LayoutVisibility.Never;
-			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab9SubDTitle))
-				layoutControlGroupTabD.Text = SlideContainer.ShiftInfo.Titles.Tab9SubDTitle;
+			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab11SubDTitle))
+				layoutControlGroupTabD.Text = SlideContainer.ShiftInfo.Titles.Tab11SubDTitle;
 			else
 				layoutControlGroupTabD.Visibility = LayoutVisibility.Never;
-			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab9SubETitle))
-				layoutControlGroupTabE.Text = SlideContainer.ShiftInfo.Titles.Tab9SubETitle;
+			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab11SubETitle))
+				layoutControlGroupTabE.Text = SlideContainer.ShiftInfo.Titles.Tab11SubETitle;
 			else
 				layoutControlGroupTabE.Visibility = LayoutVisibility.Never;
-			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab9SubFTitle))
-				layoutControlGroupTabF.Text = SlideContainer.ShiftInfo.Titles.Tab9SubFTitle;
+			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab11SubFTitle))
+				layoutControlGroupTabF.Text = SlideContainer.ShiftInfo.Titles.Tab11SubFTitle;
 			else
 				layoutControlGroupTabF.Visibility = LayoutVisibility.Never;
-			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab9SubGTitle))
-				layoutControlGroupTabG.Text = SlideContainer.ShiftInfo.Titles.Tab9SubGTitle;
+			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab11SubGTitle))
+				layoutControlGroupTabG.Text = SlideContainer.ShiftInfo.Titles.Tab11SubGTitle;
 			else
 				layoutControlGroupTabG.Visibility = LayoutVisibility.Never;
-			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab9SubHTitle))
-				layoutControlGroupTabH.Text = SlideContainer.ShiftInfo.Titles.Tab9SubHTitle;
+			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab11SubHTitle))
+				layoutControlGroupTabH.Text = SlideContainer.ShiftInfo.Titles.Tab11SubHTitle;
 			else
 				layoutControlGroupTabH.Visibility = LayoutVisibility.Never;
-			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab9SubITitle))
-				layoutControlGroupTabI.Text = SlideContainer.ShiftInfo.Titles.Tab9SubITitle;
+			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab11SubITitle))
+				layoutControlGroupTabI.Text = SlideContainer.ShiftInfo.Titles.Tab11SubITitle;
 			else
 				layoutControlGroupTabI.Visibility = LayoutVisibility.Never;
-			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab9SubJTitle))
-				layoutControlGroupTabJ.Text = SlideContainer.ShiftInfo.Titles.Tab9SubJTitle;
+			if (!String.IsNullOrEmpty(SlideContainer.ShiftInfo.Titles.Tab11SubJTitle))
+				layoutControlGroupTabJ.Text = SlideContainer.ShiftInfo.Titles.Tab11SubJTitle;
 			else
 				layoutControlGroupTabJ.Visibility = LayoutVisibility.Never;
 
@@ -109,8 +108,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			switch (tabbedControlGroupData.SelectedTabPageIndex)
 			{
 				case 0:
-					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab9SubARightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab9SubAFooterLogo;
+					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab11SubARightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab11SubAFooterLogo;
 
 					//comboBoxEditSlideHeader.Properties.Items.Clear();
 					//comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.ShiftInfo.CNAConfiguration.HeadersPartAItems.Where(item => !item.IsPlaceholder).ToArray());
@@ -120,40 +119,40 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 					//	"Select or type";
 					break;
 				case 1:
-					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab9SubBRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab9SubBFooterLogo;
+					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab11SubBRightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab11SubBFooterLogo;
 					break;
 				case 2:
-					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab9SubCRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab9SubCFooterLogo;
+					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab11SubCRightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab11SubCFooterLogo;
 					break;
 				case 3:
-					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab9SubDRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab9SubDFooterLogo;
+					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab11SubDRightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab11SubDFooterLogo;
 					break;
 				case 4:
-					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab9SubERightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab9SubEFooterLogo;
+					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab11SubERightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab11SubEFooterLogo;
 					break;
 				case 5:
-					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab9SubFRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab9SubFFooterLogo;
+					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab11SubFRightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab11SubFFooterLogo;
 					break;
 				case 6:
-					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab9SubGRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab9SubGFooterLogo;
+					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab11SubGRightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab11SubGFooterLogo;
 					break;
 				case 7:
-					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab9SubHRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab9SubHFooterLogo;
+					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab11SubHRightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab11SubHFooterLogo;
 					break;
 				case 8:
-					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab9SubIRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab9SubIFooterLogo;
+					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab11SubIRightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab11SubIFooterLogo;
 					break;
 				case 9:
-					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab9SubJRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab9SubJFooterLogo;
+					pictureEditLogoRight.Image = SlideContainer.ShiftInfo.Tab11SubJRightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.ShiftInfo.Tab11SubJFooterLogo;
 					break;
 			}
 			_allowToSave = true;

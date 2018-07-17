@@ -15,6 +15,7 @@ using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.ImageGallery;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
+using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.OptionsControls.Output;
 using Asa.Media.Controls.PresentationClasses.OptionsControls.Settings;
 using DevExpress.Utils;
@@ -207,56 +208,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		public List<Dictionary<string, string>> ReplacementsList { get; private set; }
 		private int ProgramsPerSlide => 6;
 
-		public OutputGroup GetOutputGroup()
-		{
-			return new OutputGroup(this)
-			{
-				DisplayName = OutputName,
-				IsCurrent = TabControl.SelectedTabPage == this,
-				Configurations = GetOutputConfigurations().ToArray()
-			};
-		}
-
-		public void GenerateOutput(IList<OutputConfiguration> configurations)
-		{
-			if (!configurations.Any()) return;
-			Logos = GetLogos();
-			PopulateReplacementsList();
-			BusinessObjects.Instance.PowerPointManager.Processor.AppendOptions(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-		}
-
-		public IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
-		{
-			var groupList = new List<PreviewGroup>();
-			if (!configurations.Any())
-				return groupList;
-
-			Logos = GetLogos();
-			PopulateReplacementsList();
-			var previewGroup = new PreviewGroup
-			{
-				Name = OutputName,
-				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-			};
-			BusinessObjects.Instance.PowerPointManager.Processor.PrepareOptionsEmail(previewGroup.PresentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-
-			groupList.Add(previewGroup);
-			return groupList;
-		}
-
-		public IList<OutputConfiguration> GetOutputConfigurations()
-		{
-			var outputConfigurations = new List<OutputConfiguration>();
-			if (Data.Enabled && Data.Parent.Options.Any(s => s.Programs.Any()))
-				outputConfigurations.Add(new OutputConfiguration(
-					OptionSetOutputType.Summary,
-					Data.Parent.Options.Count / ProgramsPerSlide + (Data.Parent.Options.Count % ProgramsPerSlide > 0 ? 1 : 0))
-				{
-					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this
-				});
-			return outputConfigurations;
-		}
-
 		private string[][] GetLogos()
 		{
 			var logos = new List<string[]>();
@@ -398,6 +349,47 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				}
 				ReplacementsList.Add(pageDictionary);
 			}
+		}
+
+		public OutputGroup GetOutputGroup()
+		{
+			return new OutputGroup
+			{
+				Name = OutputName,
+				IsCurrent = TabControl.SelectedTabPage == this,
+				Items = GetOutputItems()
+			};
+		}
+
+		public IList<OutputItem> GetOutputItems()
+		{
+			var outputItems = new List<OutputItem>();
+
+			if (Data.Enabled && Data.Parent.Options.Any(s => s.Programs.Any()))
+				outputItems.Add(
+					new OutputItem
+					{
+						Name = OutputName,
+						IsCurrent = true,
+						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
+							Path.GetFileName(Path.GetTempFileName())),
+						SlidesCount = Data.Parent.Options.Count / ProgramsPerSlide + (Data.Parent.Options.Count % ProgramsPerSlide > 0 ? 1 : 0),
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							Logos = GetLogos();
+							PopulateReplacementsList();
+							processor.AppendOptions(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster, destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							Logos = GetLogos();
+							PopulateReplacementsList();
+							processor.PrepareOptionsEmail(presentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+						}
+					}
+				);
+
+			return outputItems;
 		}
 
 		internal abstract class OutputColumnInfo

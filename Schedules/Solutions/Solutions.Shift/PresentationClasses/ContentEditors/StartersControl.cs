@@ -13,7 +13,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 	public sealed partial class StartersControl : BaseShiftControl
 	{
 		public override SlideType SlideType => SlideType.ShiftStarters;
-		public override string OutputName => SlideContainer.ShiftInfo.Titles.Tab1Title;
 
 		public StartersControl(BaseShiftContainer slideContainer) : base(slideContainer)
 		{

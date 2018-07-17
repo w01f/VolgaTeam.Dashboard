@@ -1,88 +1,140 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.OfficeInterops;
+using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.Utils;
-using DevExpress.XtraBars;
-using Asa.Common.GUI.ToolForms;
+using DevExpress.Skins;
+using DevExpress.XtraLayout.Utils;
+using DevExpress.XtraTab;
 
 namespace Asa.Common.GUI.Preview
 {
 	public partial class FormPreview : MetroForm
 	{
-		private readonly PowerPointProcessor _powerPointProcessor;
+		private bool _allowHandleButtonEvents;
+		private readonly PowerPointProcessor _mainPowerPointProcessor;
 		private readonly Form _parentForm;
-		private readonly Action<Action, Action> _showFloater;
-		private readonly Func<Action, bool> _checkPowerPoint;
 
-		public List<PreviewGroupControl> GroupControls { get; }
+		private PreviewGroupControl SelectedGroupControl => xtraTabControlGroups.SelectedTabPage as PreviewGroupControl;
 
 		public FormPreview(
 			Form parentForm,
-			PowerPointProcessor powerPointProcessor,
-			Action<Action, Action> showFloater,
-			Func<Action, bool> checkPowerPoint)
+			PowerPointProcessor mainPowerPointProcessor)
 		{
 			InitializeComponent();
 			_parentForm = parentForm;
-			_powerPointProcessor = powerPointProcessor;
-			_showFloater = showFloater;
-			_checkPowerPoint = checkPowerPoint;
-			GroupControls = new List<PreviewGroupControl>();
+			_mainPowerPointProcessor = mainPowerPointProcessor;
+
+			Width = (Int32)(_parentForm.Width * 0.8);
+			Height = (Int32)(_parentForm.Height * 0.8);
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemEnableOutput.MaxSize = RectangleHelper.ScaleSize(layoutControlItemEnableOutput.MaxSize, scaleFactor);
+			layoutControlItemEnableOutput.MinSize = RectangleHelper.ScaleSize(layoutControlItemEnableOutput.MinSize, scaleFactor);
+			layoutControlItemDisableOutput.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDisableOutput.MaxSize, scaleFactor);
+			layoutControlItemDisableOutput.MinSize = RectangleHelper.ScaleSize(layoutControlItemDisableOutput.MinSize, scaleFactor);
+			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, scaleFactor);
+			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, scaleFactor);
+			layoutControlItemCancel.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MaxSize, scaleFactor);
+			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, scaleFactor);
 		}
 
-		public void LoadGroups(IEnumerable<PreviewGroup> previewGroups)
+		public void LoadGroups(IList<OutputGroup> outputGroups)
 		{
-			GroupControls.Clear();
 			xtraTabControlGroups.TabPages.Clear();
-			foreach (var groupControl in previewGroups.Select(previewGroup => new PreviewGroupControl(previewGroup)))
-				GroupControls.Add(groupControl);
-			xtraTabControlGroups.TabPages.AddRange(GroupControls.ToArray());
-			xtraTabControlGroups.ShowTabHeader = GroupControls.Count > 1 ? DefaultBoolean.True : DefaultBoolean.False;
+
+			var tabPages = outputGroups
+				.Where(outputGroup => outputGroup.Items.Any())
+				.Select(outputGroup => new PreviewGroupControl(outputGroup, _mainPowerPointProcessor, _parentForm, this)).ToList();
+			foreach (var tabPage in tabPages)
+			{
+				tabPage.PreviewItemChanged += OnPreviewItemChanged;
+				xtraTabControlGroups.TabPages.Add(tabPage);
+			}
+			xtraTabControlGroups.SelectedTabPage = xtraTabControlGroups.TabPages
+				.OfType<PreviewGroupControl>()
+				.FirstOrDefault(previewGroupControl => previewGroupControl.OutputGroup.IsCurrent);
+			xtraTabControlGroups.ShowTabHeader = DefaultBoolean.True;
+			xtraTabControlGroups.SelectedPageChanged += OnSelectedPreviewItemChanged;
+
+			CalculateSlides();
+
+			layoutControlItemDisableOutput.Visibility =
+				layoutControlItemEnableOutput.Visibility =
+					outputGroups.SelectMany(outputGroup => outputGroup.Items).Count(item => item.Enabled) > 1 ? LayoutVisibility.Always : LayoutVisibility.Never;
 		}
 
-		#region Form GUI Event Habdlers
-		private void FormPreview_Shown(object sender, EventArgs e)
+		public IList<OutputItem> GetSelectedItems()
 		{
-			GroupControls.ForEach(gc => gc.Load());
+			return xtraTabControlGroups.TabPages
+				.OfType<PreviewGroupControl>()
+				.SelectMany(groupControl => groupControl.OutputItems)
+				.ToList();
 		}
 
-		private void FormQuickView_FormClosed(object sender, FormClosedEventArgs e)
+		private void CalculateSlides()
 		{
-			foreach (var groupControl in GroupControls)
+			simpleLabelItemSlideCount.Text = String.Format("<color=gray>Slide Output Count: {0}</color>",
+				xtraTabControlGroups.TabPages
+				.OfType<PreviewGroupControl>()
+				.SelectMany(groupControl => groupControl.OutputItems)
+				.Sum(outputItem => outputItem.SlidesCount));
+		}
+
+		private void LoadPreviewGroup(PreviewGroupControl previewControl)
+		{
+			previewControl.LoadPreviewControl();
+		}
+
+		private void OnFormShown(object sender, EventArgs e)
+		{
+			xtraTabControlGroups.Enabled = false;
+			LoadPreviewGroup((PreviewGroupControl)xtraTabControlGroups.SelectedTabPage);
+			xtraTabControlGroups.Enabled = true;
+		}
+
+		private void OnFormClosed(object sender, FormClosedEventArgs e)
+		{
+			foreach (var groupControl in xtraTabControlGroups.TabPages.OfType<PreviewGroupControl>().ToList())
 				groupControl.ClearPreviewImages();
 		}
-		#endregion
 
-		#region Button Clicks
-		private void barButtonItemOutput_ItemClick(object sender, ItemClickEventArgs e)
+		private void OnSelectedPreviewItemChanged(object sender, TabPageChangedEventArgs e)
 		{
-			WindowState = FormWindowState.Normal;
-			FormBorderStyle = FormBorderStyle.None;
-			Size = new Size(0, 0);
-
-			RegistryHelper.MaximizeMainForm = _parentForm.WindowState == FormWindowState.Maximized;
-			RegistryHelper.MainFormHandle = _parentForm.Handle;
-
-			if (_powerPointProcessor.IsLinkedWithApplication)
-			{
-				FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-				FormProgress.ShowOutputProgress();
-				_showFloater(() =>
-				{
-					foreach (var previewGroup in GroupControls.Select(gc => gc.PreviewGroup))
-						_powerPointProcessor.AppendSlidesFromFile(previewGroup.PresentationSourcePath, previewGroup.InsertOnTop);
-					FormProgress.CloseProgress();
-				}, null);
-			}
-			else
-				_checkPowerPoint(null);
-			DialogResult = DialogResult.OK;
+			if (!(e.Page is PreviewGroupControl previewControl)) return;
+			xtraTabControlGroups.Enabled = false;
+			previewControl.LoadPreviewControl();
+			xtraTabControlGroups.Enabled = true;
 		}
-		#endregion
+
+		private void OnPreviewItemChanged(Object sender, PreviewItemChangedEventArgs e)
+		{
+			_allowHandleButtonEvents = false;
+			buttonXEnableOutput.Checked = e.OutputItem.Enabled;
+			buttonXDisableOutput.Checked = !e.OutputItem.Enabled;
+			_allowHandleButtonEvents = true;
+		}
+
+		private void OnOutputButtonClick(object sender, EventArgs e)
+		{
+			var button = (ButtonX)sender;
+			if (button.Checked) return;
+			buttonXEnableOutput.Checked = false;
+			buttonXDisableOutput.Checked = false;
+			button.Checked = true;
+		}
+
+		private void OnOutputButtonCheckedChanged(object sender, EventArgs e)
+		{
+			if (!_allowHandleButtonEvents) return;
+			var button = (ButtonX)sender;
+			if (!button.Checked) return;
+			SelectedGroupControl.SelectedPreviewControl.IsEnabled = buttonXEnableOutput.Checked;
+			CalculateSlides();
+		}
 	}
 }

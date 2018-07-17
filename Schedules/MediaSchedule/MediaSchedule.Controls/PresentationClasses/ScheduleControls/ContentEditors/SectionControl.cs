@@ -21,6 +21,7 @@ using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
 using Asa.Media.Controls.BusinessClasses.Output.ProgramSchedule;
+using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors;
 using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
@@ -723,27 +724,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		private const string NetRateTag = "Net Investment";
 		private const string TotalDiscountTag = "Agency Discount";
 
-		public IEnumerable<ScheduleSectionOutputItem> GetAvailableOutputItems()
-		{
-			var outputOptions = new List<ScheduleSectionOutputItem>();
-			if (_sectionContainer.SectionData.Programs.Any())
-			{
-				outputOptions.Add(new ScheduleSectionOutputItem
-				{
-					OutputType = ScheduleSectionOutputType.Program,
-					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
-					SlidesCount = GetSlidesCount(false)
-				});
-				if (_sectionContainer.SectionData.DigitalInfo.Records.Any())
-					outputOptions.Add(new ScheduleSectionOutputItem
-					{
-						OutputType = ScheduleSectionOutputType.ProgramAndDigital,
-						SlidesCount = GetSlidesCount(true)
-					});
-			}
-			return outputOptions;
-		}
-
 		public SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
 			SlideType.TVSchedulePrograms :
 			SlideType.RadioSchedulePrograms;
@@ -805,8 +785,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			return slidesCount;
 		}
 
-		public
-			IEnumerable<ProgramScheduleOutputModel> PrepareOutput(bool includeDigital)
+		public IEnumerable<ProgramScheduleOutputModel> PrepareOutput(bool includeDigital)
 		{
 			var outputPages = new List<ProgramScheduleOutputModel>();
 			var defaultProgram = _sectionContainer.SectionData.Programs.FirstOrDefault();
@@ -1004,22 +983,57 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			return outputPages;
 		}
 
-		public void GenerateOutput(bool includeDigital)
+		public IList<OutputItem> GetOutputItems()
 		{
-			var outputPages = PrepareOutput(includeDigital);
-			BusinessObjects.Instance.PowerPointManager.Processor.AppendMediaOneSheet(outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-		}
+			var outputItems = new List<OutputItem>();
 
-		public PreviewGroup GeneratePreview(bool includeDigital)
-		{
-			var outputPages = PrepareOutput(includeDigital);
-			var previewGroup = new PreviewGroup
+			if (_sectionContainer.SectionData.Programs.Any())
 			{
-				Name = includeDigital ? String.Format("{0} + Digital", MediaMetaData.Instance.DataTypeString) : MediaMetaData.Instance.DataTypeString,
-				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-			};
-			BusinessObjects.Instance.PowerPointManager.Processor.PrepareMediaOneSheetEmail(previewGroup.PresentationSourcePath, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-			return previewGroup;
+				outputItems.Add(new OutputItem
+				{
+					Name = MediaMetaData.Instance.DataTypeString,
+					IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
+					PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
+						Path.GetFileName(Path.GetTempFileName())),
+					SlidesCount = GetSlidesCount(false),
+					SlideGeneratingAction = (processor, destinationPresentation) =>
+					{
+						var outputPages = PrepareOutput(false);
+						processor.AppendMediaOneSheet(outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster,
+							destinationPresentation);
+					},
+					PreviewGeneratingAction = (processor, presentationSourcePath) =>
+					{
+						var outputPages = PrepareOutput(false);
+						processor.PrepareMediaOneSheetEmail(presentationSourcePath, outputPages, SelectedTheme,
+							MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+					}
+				});
+
+				if (_sectionContainer.SectionData.DigitalInfo.Records.Any())
+					outputItems.Add(new OutputItem
+					{
+						Name = String.Format("{0} + Digital", MediaMetaData.Instance.DataTypeString),
+						IsCurrent = false,
+						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
+						Path.GetFileName(Path.GetTempFileName())),
+						SlidesCount = GetSlidesCount(true),
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							var outputPages = PrepareOutput(true);
+							processor.AppendMediaOneSheet(outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster,
+								destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							var outputPages = PrepareOutput(true);
+							processor.PrepareMediaOneSheetEmail(presentationSourcePath, outputPages, SelectedTheme,
+								MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+						}
+					});
+			}
+
+			return outputItems;
 		}
 		#endregion
 	}

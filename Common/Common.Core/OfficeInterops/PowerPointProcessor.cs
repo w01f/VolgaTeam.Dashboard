@@ -20,7 +20,7 @@ namespace Asa.Common.Core.OfficeInterops
 {
 	public abstract class PowerPointProcessor
 	{
-		private bool _isFirstLaunch;
+		protected bool _isFirstLaunch;
 		private Application _powerPointObject;
 		protected Presentation _activePresentation;
 		private int _previouseSlideIndex;
@@ -30,7 +30,7 @@ namespace Asa.Common.Core.OfficeInterops
 			get
 			{
 				if (!IsLinkedWithApplication)
-					Connect(false);
+					Connect();
 				return _powerPointObject;
 			}
 		}
@@ -65,13 +65,12 @@ namespace Asa.Common.Core.OfficeInterops
 			try
 			{
 				MessageFilter.Register();
-				if (forceNewObject)
+				_powerPointObject = GetExistedPowerPoint();
+				if (forceNewObject && _powerPointObject == null)
 				{
-					_isFirstLaunch = GetExistedPowerPoint() == null;
 					_powerPointObject = CreateNewPowerPoint();
+					_isFirstLaunch = true;
 				}
-				else
-					_powerPointObject = GetExistedPowerPoint();
 				_powerPointObject.DisplayAlerts = PpAlertLevel.ppAlertsNone;
 			}
 			catch
@@ -94,7 +93,6 @@ namespace Asa.Common.Core.OfficeInterops
 		{
 			try
 			{
-				_isFirstLaunch = false;
 				return Marshal.GetActiveObject("PowerPoint.Application") as Application;
 			}
 			catch
@@ -103,13 +101,8 @@ namespace Asa.Common.Core.OfficeInterops
 			}
 		}
 
-		public void Disconnect(bool closeIfFirstLaunch = false)
+		public void Disconnect()
 		{
-			if (_isFirstLaunch && closeIfFirstLaunch)
-			{
-				Close();
-				_isFirstLaunch = false;
-			}
 			Utilities.ReleaseComObject(_powerPointObject);
 			_powerPointObject = null;
 			GC.Collect();
@@ -497,6 +490,37 @@ namespace Asa.Common.Core.OfficeInterops
 			{
 				MessageFilter.Revoke();
 			}
+		}
+
+		public void BuildPdf(string targetFileName, Action<Presentation> buildPresentation)
+		{
+			try
+			{
+				var thread = new Thread(delegate ()
+				{
+					SavePrevSlideIndex();
+
+					var presentation = _powerPointObject.Presentations.Open(SlideSettingsManager.Instance.GetLauncherTemplatePath(), MsoTriState.msoFalse, MsoTriState.msoFalse, MsoTriState.msoFalse);
+					if (presentation.Slides.Count > 0)
+						presentation.Slides[1].Delete();
+					buildPresentation(presentation);
+
+					var sourceFileName = Path.GetTempFileName();
+					presentation.SaveAs(sourceFileName);
+					Utilities.ReleaseComObject(presentation);
+					presentation.Close();
+
+					ConvertToPDF(sourceFileName, targetFileName);
+
+					Utilities.ReleaseComObject(presentation);
+
+					RestorePrevSlideIndex();
+				});
+				thread.Start();
+				while (thread.IsAlive)
+					System.Windows.Forms.Application.DoEvents();
+			}
+			catch { }
 		}
 
 		public void FillContractInfo(Slide slide, ContractSettings contractSettings, StorageDirectory folder)

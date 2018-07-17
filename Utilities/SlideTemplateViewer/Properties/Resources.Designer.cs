@@ -113,16 +113,6 @@ namespace Asa.SlideTemplateViewer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Preview {
-            get {
-                object obj = ResourceManager.GetObject("Preview", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap QatFloater {
             get {
                 object obj = ResourceManager.GetObject("QatFloater", resourceCulture);

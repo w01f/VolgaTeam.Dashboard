@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
@@ -136,30 +137,32 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			}
 		}
 
-
-		public IEnumerable<DashboardSlideInfo> GetSlideInfo()
+		public OutputGroup GetOutputData()
 		{
-			return new[]
+			return new OutputGroup
 			{
-				new DashboardSlideInfo
+				Name = ControlName,
+				IsCurrent = SlideContainer.SelectedSlideType == SlideType,
+				Items = new List<OutputItem>(new[]
 				{
-					SlideContainer = this,
-					SlideName = ControlName,
-					IsCurrent = SlideContainer.SelectedSlideType == SlideType
-				}
+					new OutputItem
+					{
+						Name = ControlName,
+						PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
+							Path.GetFileName(Path.GetTempFileName())),
+						SlidesCount = 1,
+						IsCurrent = true,
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							processor.AppendDashboardClientGoals(this,destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							processor.PrepareDashboardClientGoals(this, presentationSourcePath);
+						}
+					}
+				})
 			};
-		}
-
-		public void GenerateOutput(DashboardSlideInfo slideInfo)
-		{
-			SlideContainer.PowerPointProcessor.AppendDashboardClientGoals(this);
-		}
-
-		public PreviewGroup GeneratePreview(DashboardSlideInfo slideInfo)
-		{
-			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			SlideContainer.PowerPointProcessor.PrepareDashboardClientGoals(this, tempFileName);
-			return new PreviewGroup { Name = ControlName, PresentationSourcePath = tempFileName };
 		}
 		#endregion
 	}

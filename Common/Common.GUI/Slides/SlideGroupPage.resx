@@ -133,17 +133,6 @@
         qGMtAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="toolStripMenuItemPreview.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        nAAADpwBB5RT3QAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAEHSURBVDhP
-        pdIxSwJhHMfxZ4iwIQIHX0A0O0m0iCBokEI41hS06NDg4OAr0MndwaYE53CIlpbEJTCoXTdp8S1c3/95
-        jz338D9v6Aef457n93+OgzsTBMG/qJsucolXLPGNHo52vTvsI318oA150A0eMUc+nPEPWeQBcjirdK2o
-        O44VzsAJvnCm9YIMQwllDVOts0gVy6RSXnGsdRY5xyapLOJd6yxyi0VSeYg3NLReRH1TLQXpQm7q3n4O
-        z3gK125pEfne8pnuMMMLRphggQEy4axy+BprFKL1Aero4B6nsfnYwpgKVrhw9/f5uzGmjB+U3IE024sx
-        V/hExR9Is73w06Dll+kC8wv6izyI6kmRmgAAAABJRU5ErkJggg==
-</value>
-  </data>
   <metadata name="toolTipController.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

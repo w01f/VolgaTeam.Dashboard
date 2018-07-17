@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
-using Asa.Common.GUI.OutputSelector;
 using Asa.Common.GUI.Preview;
-using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
 using Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors;
@@ -400,191 +396,16 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Output Stuff
-		public bool ReadyForOutput => GetAvailableOutputItems().Any(outputItem => outputItem.OutputType == ScheduleSectionOutputType.Program || outputItem.OutputType == ScheduleSectionOutputType.DigitalOneSheet);
+		public bool ReadyForOutput => GetOutputGroup().Items.Any();
 
-		public void OutputPowerPoint()
+		public OutputGroup GetOutputGroup()
 		{
-			var availableOptions = SelectedOutputOptions().ToList();
-			if (!availableOptions.Any()) return;
-
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-			FormProgress.ShowOutputProgress();
-			Controller.Instance.ShowFloater(() =>
+			return new OutputGroup
 			{
-				GenerateOutput(availableOptions);
-				FormProgress.CloseProgress();
-			});
-		}
-
-		public void OutputPdf()
-		{
-			var availableOptions = SelectedOutputOptions().ToList();
-			if (!availableOptions.Any()) return;
-
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-			FormProgress.ShowOutputProgress();
-			Controller.Instance.ShowFloater(() =>
-			{
-				var previewGroups = GeneratePreview(availableOptions);
-				var pdfFileName = Path.Combine(
-					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-					String.Format("{0}-{1}.pdf", SectionData.ParentSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-				BusinessObjects.Instance.PowerPointManager.Processor.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
-				if (File.Exists(pdfFileName))
-					try
-					{
-						Process.Start(pdfFileName);
-					}
-					catch { }
-				FormProgress.CloseProgress();
-			});
-		}
-
-		public void Preview()
-		{
-			var availableOptions = SelectedOutputOptions().ToList();
-			if (!availableOptions.Any()) return;
-
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress();
-			var previewGroups = GeneratePreview(availableOptions).ToList();
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-			FormProgress.CloseProgress();
-
-			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-
-			using (var formPreview = new FormPreview(
-				Controller.Instance.FormMain,
-				BusinessObjects.Instance.PowerPointManager.Processor,
-				Controller.Instance.ShowFloater,
-				Controller.Instance.CheckPowerPointRunning))
-			{
-				formPreview.Text = "Preview Schedule";
-				formPreview.LoadGroups(previewGroups);
-				RegistryHelper.MainFormHandle = formPreview.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				var previewResult = formPreview.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-				if (previewResult != DialogResult.OK)
-					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-			}
-		}
-
-		public void Email()
-		{
-			var availableOptions = SelectedOutputOptions().ToList();
-			if (!availableOptions.Any()) return;
-
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress();
-			var previewGroups = GeneratePreview(availableOptions).ToList();
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-			FormProgress.CloseProgress();
-
-			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(BusinessObjects.Instance.PowerPointManager.Processor, BusinessObjects.Instance.HelpManager))
-			{
-				formEmail.Text = "Email this Schedule";
-				formEmail.LoadGroups(previewGroups);
-				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-				RegistryHelper.MainFormHandle = formEmail.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				formEmail.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-			}
-		}
-
-		private IEnumerable<ScheduleSectionOutputItem> GetAvailableOutputItems()
-		{
-			return xtraTabControl.TabPages.OfType<ISectionOutputControl>()
-				.SelectMany(sectionOutput => sectionOutput.GetAvailableOutputItems());
-		}
-
-		private IEnumerable<ScheduleSectionOutputType> SelectedOutputOptions()
-		{
-			var availableOptions = GetAvailableOutputItems().ToList();
-
-			if (availableOptions.Any())
-			{
-				FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-				FormProgress.ShowProgress();
-				var previewGroup = availableOptions
-					.Where(outputItem => outputItem.IsCurrent)
-					.SelectMany(outputItem => GeneratePreview(new[] { outputItem.OutputType }))
-					.First();
-				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-				FormProgress.CloseProgress();
-
-				using (var form = new FormConfigureOutput<ScheduleSectionOutputItem>(availableOptions, previewGroup))
-				{
-					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue
-						? BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue
-						? BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditClearAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditClearAll.Text, BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue
-						? BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value.ToHex()
-						: "blue");
-
-					if (form.ShowDialog() == DialogResult.OK)
-						return form.GetSelectedItems().Select(outputItem => outputItem.OutputType);
-				}
-			}
-
-			return new ScheduleSectionOutputType[] { };
-		}
-
-		private void GenerateOutput(IEnumerable<ScheduleSectionOutputType> selectedOutputOptions)
-		{
-			foreach (var outputOption in selectedOutputOptions)
-			{
-				switch (outputOption)
-				{
-					case ScheduleSectionOutputType.Program:
-					case ScheduleSectionOutputType.ProgramAndDigital:
-						_sectionControl.GenerateOutput(outputOption == ScheduleSectionOutputType.ProgramAndDigital);
-						break;
-					case ScheduleSectionOutputType.DigitalOneSheet:
-						_digitalInfoControl.GenerateOneSheetOutput();
-						break;
-					case ScheduleSectionOutputType.DigitalStrategy:
-						_digitalInfoControl.GenerateStrategyOutput();
-						break;
-					case ScheduleSectionOutputType.Summary:
-						_customSummaryControl.GenerateOutput();
-						break;
-				}
-			}
-		}
-
-		private IEnumerable<PreviewGroup> GeneratePreview(IEnumerable<ScheduleSectionOutputType> selectedOutputOptions)
-		{
-			var previewGroups = new List<PreviewGroup>();
-
-			foreach (var outputOption in selectedOutputOptions)
-			{
-				switch (outputOption)
-				{
-					case ScheduleSectionOutputType.Program:
-					case ScheduleSectionOutputType.ProgramAndDigital:
-						previewGroups.Add(_sectionControl.GeneratePreview(outputOption == ScheduleSectionOutputType.ProgramAndDigital));
-						break;
-					case ScheduleSectionOutputType.DigitalOneSheet:
-						previewGroups.Add(_digitalInfoControl.GenerateOneSheetPreview());
-						break;
-					case ScheduleSectionOutputType.DigitalStrategy:
-						previewGroups.Add(_digitalInfoControl.GenerateStrategyPreview());
-						break;
-					case ScheduleSectionOutputType.Summary:
-						previewGroups.Add(_customSummaryControl.GeneratePreview());
-						break;
-				}
-			}
-
-			return previewGroups;
+				Name = SectionData.Name,
+				IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
+				Items = xtraTabControl.TabPages.OfType<ISectionOutputControl>().SelectMany(sectionOutputControl => sectionOutputControl.GetOutputItems()).ToList()
+			};
 		}
 		#endregion
 	}

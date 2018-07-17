@@ -127,32 +127,28 @@ namespace Asa.Media.Controls
 
 			foreach (var ribbonButton in new[]
 			{
-				ProgramSchedulePowerPoint,
+				ProgramSchedulePowerPointCurrent,
 				DigitalProductPowerPoint,
-				SnapshotPowerPoint,
-				OptionsPowerPoint,
+				SnapshotPowerPointCurrent,
+				OptionsPowerPointCurrent,
 				Calendar1PowerPoint,
 				Calendar2PowerPoint,
-				SolutionsPowerPoint,
-				SlidesPowerPoint,
+				SolutionsPowerPointCurrent,
+				SlidesPowerPoint
 			})
 			{
-				ribbonButton.Click += ContentController.OnOutputPowerPoint;
+				ribbonButton.Click += ContentController.OnOutputPowerPointCurrent;
 			}
 
 			foreach (var ribbonButton in new[]
 			{
-				ProgramSchedulePreview,
-				DigitalProductPreview,
-				SnapshotPreview,
-				OptionsPreview,
-				Calendar1Preview,
-				Calendar2Preview,
-				SolutionsPreview,
-				SlidesPreview,
+				ProgramSchedulePowerPointAll,
+				SnapshotPowerPointAll,
+				OptionsPowerPointAll,
+				SolutionsPowerPointAll,
 			})
 			{
-				ribbonButton.Click += ContentController.OnPreview;
+				ribbonButton.Click += ContentController.OnOutputPowerPointAll;
 			}
 
 			foreach (var ribbonButton in new[]
@@ -229,37 +225,27 @@ namespace Asa.Media.Controls
 				MenuEmailButton.Visible = false;
 				MenuOutputPdfButton.Visible = false;
 
-				ProgramSchedulePowerPoint.Visible = false;
-				((RibbonBar)ProgramSchedulePowerPoint.ContainerControl).Text = "Important Info";
-				((RibbonBar)ProgramSchedulePreview.ContainerControl).Visible = false;
+				((RibbonBar)ProgramSchedulePowerPoint.ContainerControl).Visible = false;
 				Supertip.SetSuperTooltip(ProgramScheduleTheme, selectorToolTip);
 				ProgramScheduleTheme.Click -= OnThemeClick;
 				ProgramScheduleTheme.Click += OnThemeClick;
 
-				DigitalProductPowerPoint.Visible = false;
-				((RibbonBar)DigitalProductPowerPoint.ContainerControl).Text = "Important Info";
-				((RibbonBar)DigitalProductPreview.ContainerControl).Visible = false;
+				((RibbonBar)DigitalProductPowerPoint.ContainerControl).Visible = false;
 				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
 				DigitalProductTheme.Click -= OnThemeClick;
 				DigitalProductTheme.Click += OnThemeClick;
 
-				SnapshotPowerPoint.Visible = false;
-				((RibbonBar)SnapshotPowerPoint.ContainerControl).Text = "Important Info";
-				((RibbonBar)SnapshotPreview.ContainerControl).Visible = false;
+				((RibbonBar)SnapshotPowerPoint.ContainerControl).Visible = false;
 				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
 				SnapshotTheme.Click -= OnThemeClick;
 				SnapshotTheme.Click += OnThemeClick;
 
-				OptionsPowerPoint.Visible = false;
-				((RibbonBar)OptionsPowerPoint.ContainerControl).Text = "Important Info";
-				((RibbonBar)OptionsPreview.ContainerControl).Visible = false;
+				((RibbonBar)OptionsPowerPoint.ContainerControl).Visible = false;
 				Supertip.SetSuperTooltip(OptionsTheme, selectorToolTip);
 				OptionsTheme.Click -= OnThemeClick;
 				OptionsTheme.Click += OnThemeClick;
 
-				SolutionsPowerPoint.Visible = false;
-				((RibbonBar)SolutionsPowerPoint.ContainerControl).Text = "Important Info";
-				((RibbonBar)SolutionsPreview.ContainerControl).Visible = false;
+				((RibbonBar)SolutionsPowerPoint.ContainerControl).Visible = false;
 				Supertip.SetSuperTooltip(SolutionsTheme, selectorToolTip);
 				SolutionsTheme.Click -= OnThemeClick;
 				SolutionsTheme.Click += OnThemeClick;
@@ -269,24 +255,15 @@ namespace Asa.Media.Controls
 				MenuEmailButton.Visible = true;
 				MenuOutputPdfButton.Visible = true;
 
-				ProgramSchedulePowerPoint.Visible = true;
-				((RibbonBar)ProgramSchedulePreview.ContainerControl).Visible = true;
+				((RibbonBar) ProgramSchedulePowerPoint.ContainerControl).Visible = true;
 				ProgramScheduleTheme.Click -= OnThemeClick;
-
-				DigitalProductPowerPoint.Visible = true;
-				((RibbonBar)DigitalProductPreview.ContainerControl).Visible = true;
+				((RibbonBar)DigitalProductPowerPoint.ContainerControl).Visible = true;
 				DigitalProductTheme.Click -= OnThemeClick;
-
-				SnapshotPowerPoint.Visible = true;
-				((RibbonBar)SnapshotPreview.ContainerControl).Visible = true;
+				((RibbonBar)SnapshotPowerPoint.ContainerControl).Visible = true;
 				SnapshotTheme.Click -= OnThemeClick;
-
-				OptionsPowerPoint.Visible = true;
-				((RibbonBar)OptionsPreview.ContainerControl).Visible = true;
+				((RibbonBar)OptionsPowerPoint.ContainerControl).Visible = true;
 				OptionsTheme.Click -= OnThemeClick;
-
-				SolutionsPowerPoint.Visible = true;
-				((RibbonBar)SolutionsPreview.ContainerControl).Visible = true;
+				((RibbonBar)SolutionsPowerPoint.ContainerControl).Visible = true;
 				SolutionsTheme.Click -= OnThemeClick;
 
 				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
@@ -435,8 +412,9 @@ namespace Asa.Media.Controls
 		public ButtonItem ProgramScheduleNew { get; set; }
 		public ButtonItem ProgramScheduleProgramAdd { get; set; }
 		public ButtonItem ProgramScheduleProgramDelete { get; set; }
-		public ButtonItem ProgramSchedulePreview { get; set; }
 		public ButtonItem ProgramSchedulePowerPoint { get; set; }
+		public ButtonItem ProgramSchedulePowerPointCurrent { get; set; }
+		public ButtonItem ProgramSchedulePowerPointAll { get; set; }
 		public ButtonItem ProgramScheduleTheme { get; set; }
 		public ButtonItem ProgramScheduleSettings { get; set; }
 		#endregion
@@ -446,7 +424,6 @@ namespace Asa.Media.Controls
 		public RibbonBar DigitalProductLogoBar { get; set; }
 		public RibbonBar DigitalProductThemeBar { get; set; }
 		public RibbonBar DigitalProductSpecialButtons { get; set; }
-		public ButtonItem DigitalProductPreview { get; set; }
 		public ButtonItem DigitalProductPowerPoint { get; set; }
 		public ButtonItem DigitalProductTheme { get; set; }
 		public ButtonItem DigitalProductAdd { get; set; }
@@ -460,7 +437,6 @@ namespace Asa.Media.Controls
 		public ButtonItem Calendar1Copy { get; set; }
 		public ButtonItem Calendar1Paste { get; set; }
 		public ButtonItem Calendar1Clone { get; set; }
-		public ButtonItem Calendar1Preview { get; set; }
 		public ButtonItem Calendar1PowerPoint { get; set; }
 		public ButtonItem Calendar1DataSourceSchedule { get; set; }
 		public ButtonItem Calendar1DataSourceSnapshots { get; set; }
@@ -474,7 +450,6 @@ namespace Asa.Media.Controls
 		public ButtonItem Calendar2Copy { get; set; }
 		public ButtonItem Calendar2Paste { get; set; }
 		public ButtonItem Calendar2Clone { get; set; }
-		public ButtonItem Calendar2Preview { get; set; }
 		public ButtonItem Calendar2PowerPoint { get; set; }
 		public ButtonItem Calendar2Reset { get; set; }
 		#endregion
@@ -486,8 +461,9 @@ namespace Asa.Media.Controls
 		public ButtonItem SnapshotNew { get; set; }
 		public ButtonItem SnapshotProgramAdd { get; set; }
 		public ButtonItem SnapshotProgramDelete { get; set; }
-		public ButtonItem SnapshotPreview { get; set; }
 		public ButtonItem SnapshotPowerPoint { get; set; }
+		public ButtonItem SnapshotPowerPointCurrent { get; set; }
+		public ButtonItem SnapshotPowerPointAll { get; set; }
 		public ButtonItem SnapshotTheme { get; set; }
 		public ButtonItem SnapshotSettings { get; set; }
 		#endregion
@@ -499,8 +475,9 @@ namespace Asa.Media.Controls
 		public ButtonItem OptionsNew { get; set; }
 		public ButtonItem OptionsProgramAdd { get; set; }
 		public ButtonItem OptionsProgramDelete { get; set; }
-		public ButtonItem OptionsPreview { get; set; }
 		public ButtonItem OptionsPowerPoint { get; set; }
+		public ButtonItem OptionsPowerPointCurrent { get; set; }
+		public ButtonItem OptionsPowerPointAll { get; set; }
 		public ButtonItem OptionsTheme { get; set; }
 		public ButtonItem OptionsSettings { get; set; }
 		#endregion
@@ -509,8 +486,9 @@ namespace Asa.Media.Controls
 		public RibbonPanel SolutionsPanel { get; set; }
 		public RibbonBar SolutionsThemeBar { get; set; }
 		public RibbonBar SolutionsSpecialButtons { get; set; }
-		public ButtonItem SolutionsPreview { get; set; }
 		public ButtonItem SolutionsPowerPoint { get; set; }
+		public ButtonItem SolutionsPowerPointCurrent { get; set; }
+		public ButtonItem SolutionsPowerPointAll { get; set; }
 		public ButtonItem SolutionsTheme { get; set; }
 		#endregion
 
@@ -519,7 +497,6 @@ namespace Asa.Media.Controls
 		public RibbonBar SlidesLogoBar { get; set; }
 		public RibbonBar SlidesSpecialButtons { get; set; }
 		public LabelItem SlidesLogoLabel { get; set; }
-		public ButtonItem SlidesPreview { get; set; }
 		public ButtonItem SlidesPowerPoint { get; set; }
 		#endregion
 

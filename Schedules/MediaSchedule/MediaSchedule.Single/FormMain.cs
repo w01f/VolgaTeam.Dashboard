@@ -118,8 +118,6 @@ namespace Asa.Media.Single
 			}
 			buttonItemProgramSchedulePowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemProgramSchedulePowerPoint.Image;
 			ribbonBarProgramSchedulePowerPoint.RecalcLayout();
-			buttonItemProgramSchedulePreview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemProgramSchedulePreview.Image;
-			ribbonBarProgramSchedulePreview.RecalcLayout();
 			buttonItemProgramScheduleSettings.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonSettingsImage ?? buttonItemProgramScheduleSettings.Image;
 			ribbonBarProgramScheduleSettings.RecalcLayout();
 			ribbonPanelProgramSchedule.PerformLayout();
@@ -131,8 +129,6 @@ namespace Asa.Media.Single
 			}
 			buttonItemSnapshotPowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemSnapshotPowerPoint.Image;
 			ribbonBarSnapshotPowerPoint.RecalcLayout();
-			buttonItemSnapshotPreview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemSnapshotPreview.Image;
-			ribbonBarSnapshotPreview.RecalcLayout();
 			buttonItemSnapshotSettings.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonSettingsImage ?? buttonItemSnapshotSettings.Image;
 			ribbonBarSnapshotSettings.RecalcLayout();
 			ribbonPanelSnapshot.PerformLayout();
@@ -144,8 +140,6 @@ namespace Asa.Media.Single
 			}
 			buttonItemOptionsPowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemOptionsPowerPoint.Image;
 			ribbonBarOptionsPowerPoint.RecalcLayout();
-			buttonItemOptionsPreview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemOptionsPreview.Image;
-			ribbonBarOptionsPreview.RecalcLayout();
 			buttonItemOptionsSettings.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonSettingsImage ?? buttonItemOptionsSettings.Image;
 			ribbonBarOptionsSettings.RecalcLayout();
 			ribbonPanelOptions.PerformLayout();
@@ -157,8 +151,6 @@ namespace Asa.Media.Single
 			}
 			buttonItemDigitalSchedulePowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemDigitalSchedulePowerPoint.Image;
 			ribbonBarDigitalSchedulePowerPoint.RecalcLayout();
-			buttonItemDigitalSchedulePreview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemDigitalSchedulePreview.Image;
-			ribbonBarDigitalSchedulePreview.RecalcLayout();
 			ribbonPanelDigitalSchedule.PerformLayout();
 
 			buttonItemCalendar1DataSourceSchedule.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarDataSourceScheduleImage ?? buttonItemCalendar1DataSourceSchedule.Image;
@@ -175,8 +167,6 @@ namespace Asa.Media.Single
 			ribbonBarCalendar1Edit.RecalcLayout();
 			buttonItemCalendar1PowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemCalendar1PowerPoint.Image;
 			ribbonBarCalendar1PowerPoint.RecalcLayout();
-			buttonItemCalendar1Preview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemCalendar1Preview.Image;
-			ribbonBarCalendar1Preview.RecalcLayout();
 			ribbonPanelCalendar1.PerformLayout();
 
 			buttonItemCalendar2Reset.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarResetImage ?? buttonItemCalendar2Reset.Image;
@@ -187,20 +177,14 @@ namespace Asa.Media.Single
 			ribbonBarCalendar2Edit.RecalcLayout();
 			buttonItemCalendar2PowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemCalendar2PowerPoint.Image;
 			ribbonBarCalendar2PowerPoint.RecalcLayout();
-			buttonItemCalendar2Preview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemCalendar2Preview.Image;
-			ribbonBarCalendar2Preview.RecalcLayout();
 			ribbonPanelCalendar2.PerformLayout();
 
 			buttonItemSolutionsPowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemSolutionsPowerPoint.Image;
 			ribbonBarSolutionsPowerPoint.RecalcLayout();
-			buttonItemSolutionsPreview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemSolutionsPreview.Image;
-			ribbonBarSolutionsPreview.RecalcLayout();
 			ribbonPanelSolutions.PerformLayout();
 
 			buttonItemSlidesPowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemSlidesPowerPoint.Image;
 			ribbonBarSlidesPowerPoint.RecalcLayout();
-			buttonItemSlidesPreview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemSlidesPreview.Image;
-			ribbonBarSlidesPreview.RecalcLayout();
 			ribbonPanelSlides.PerformLayout();
 
 			if (BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue)
@@ -273,8 +257,9 @@ namespace Asa.Media.Single
 			Controller.Instance.ProgramSchedulePanel = ribbonPanelProgramSchedule;
 			Controller.Instance.ProgramScheduleThemeBar = ribbonBarProgramScheduleTheme;
 			Controller.Instance.ProgramScheduleSpecialButtons = ribbonBarProgramScheduleSpecialButtons;
-			Controller.Instance.ProgramSchedulePreview = buttonItemProgramSchedulePreview;
 			Controller.Instance.ProgramSchedulePowerPoint = buttonItemProgramSchedulePowerPoint;
+			Controller.Instance.ProgramSchedulePowerPointCurrent = buttonItemProgramSchedulePowerPointCurrent;
+			Controller.Instance.ProgramSchedulePowerPointAll = buttonItemProgramSchedulePowerPointAll;
 			Controller.Instance.ProgramScheduleTheme = buttonItemProgramScheduleTheme;
 			Controller.Instance.ProgramScheduleNew = buttonItemProgramScheduleNew;
 			Controller.Instance.ProgramScheduleProgramAdd = buttonItemProgramScheduleProgramAdd;
@@ -287,7 +272,6 @@ namespace Asa.Media.Single
 			Controller.Instance.DigitalProductLogoBar = ribbonBarDigitalScheduleLogo;
 			Controller.Instance.DigitalProductThemeBar = ribbonBarDigitalScheduleTheme;
 			Controller.Instance.DigitalProductSpecialButtons = ribbonBarDigitalScheduleSpecialButtons;
-			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
 			Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
 			Controller.Instance.DigitalProductTheme = buttonItemDigitalScheduleTheme;
 			Controller.Instance.DigitalProductAdd = buttonItemDigitalScheduleProductAdd;
@@ -301,7 +285,6 @@ namespace Asa.Media.Single
 			Controller.Instance.Calendar1Copy = buttonItemCalendar1Copy;
 			Controller.Instance.Calendar1Paste = buttonItemCalendar1Paste;
 			Controller.Instance.Calendar1Clone = buttonItemCalendar1Clone;
-			Controller.Instance.Calendar1Preview = buttonItemCalendar1Preview;
 			Controller.Instance.Calendar1PowerPoint = buttonItemCalendar1PowerPoint;
 			Controller.Instance.Calendar1DataSourceSchedule = buttonItemCalendar1DataSourceSchedule;
 			Controller.Instance.Calendar1DataSourceSnapshots = buttonItemCalendar1DataSourceSnapshots;
@@ -315,7 +298,6 @@ namespace Asa.Media.Single
 			Controller.Instance.Calendar2Copy = buttonItemCalendar2Copy;
 			Controller.Instance.Calendar2Paste = buttonItemCalendar2Paste;
 			Controller.Instance.Calendar2Clone = buttonItemCalendar2Clone;
-			Controller.Instance.Calendar2Preview = buttonItemCalendar2Preview;
 			Controller.Instance.Calendar2PowerPoint = buttonItemCalendar2PowerPoint;
 			Controller.Instance.Calendar2Reset = buttonItemCalendar2Reset;
 			#endregion
@@ -324,8 +306,9 @@ namespace Asa.Media.Single
 			Controller.Instance.SnapshotPanel = ribbonPanelSnapshot;
 			Controller.Instance.SnapshotThemeBar = ribbonBarSnapshotTheme;
 			Controller.Instance.SnapshotSpecialButtons = ribbonBarSnapshotSpecialButtons;
-			Controller.Instance.SnapshotPreview = buttonItemSnapshotPreview;
 			Controller.Instance.SnapshotPowerPoint = buttonItemSnapshotPowerPoint;
+			Controller.Instance.SnapshotPowerPointCurrent = buttonItemSnapshotPowerPointCurrent;
+			Controller.Instance.SnapshotPowerPointAll = buttonItemSnapshotPowerPointAll;
 			Controller.Instance.SnapshotTheme = buttonItemSnapshotTheme;
 			Controller.Instance.SnapshotNew = buttonItemSnapshotNew;
 			Controller.Instance.SnapshotProgramAdd = buttonItemSnapshotProgramAdd;
@@ -337,8 +320,9 @@ namespace Asa.Media.Single
 			Controller.Instance.OptionsPanel = ribbonPanelOptions;
 			Controller.Instance.OptionsThemeBar = ribbonBarOptionsTheme;
 			Controller.Instance.OptionsSpecialButtons = ribbonBarOptionsSpecialButtons;
-			Controller.Instance.OptionsPreview = buttonItemOptionsPreview;
 			Controller.Instance.OptionsPowerPoint = buttonItemOptionsPowerPoint;
+			Controller.Instance.OptionsPowerPointCurrent = buttonItemOptionsPowerPointCurrent;
+			Controller.Instance.OptionsPowerPointAll = buttonItemOptionsPowerPointAll;
 			Controller.Instance.OptionsTheme = buttonItemOptionsTheme;
 			Controller.Instance.OptionsNew = buttonItemOptionsNew;
 			Controller.Instance.OptionsProgramAdd = buttonItemOptionsProgramAdd;
@@ -350,8 +334,9 @@ namespace Asa.Media.Single
 			Controller.Instance.SolutionsPanel = ribbonPanelSolutions;
 			Controller.Instance.SolutionsThemeBar = ribbonBarSolutionsTheme;
 			Controller.Instance.SolutionsSpecialButtons = ribbonBarSolutionsSpecialButtons;
-			Controller.Instance.SolutionsPreview = buttonItemSolutionsPreview;
 			Controller.Instance.SolutionsPowerPoint = buttonItemSolutionsPowerPoint;
+			Controller.Instance.SolutionsPowerPointCurrent = buttonItemSolutionsPowerPointCurrent;
+			Controller.Instance.SolutionsPowerPointAll = buttonItemSolutionsPowerPointAll;
 			Controller.Instance.SolutionsTheme = buttonItemSolutionsTheme;
 			#endregion
 
@@ -360,7 +345,6 @@ namespace Asa.Media.Single
 			Controller.Instance.SlidesLogoBar = ribbonBarSlidesLogo;
 			Controller.Instance.SlidesSpecialButtons = ribbonBarSlidesSpecialButtons;
 			Controller.Instance.SlidesLogoLabel = labelItemSlideHome;
-			Controller.Instance.SlidesPreview = buttonItemSlidesPreview;
 			Controller.Instance.SlidesPowerPoint = buttonItemSlidesPowerPoint;
 			#endregion
 

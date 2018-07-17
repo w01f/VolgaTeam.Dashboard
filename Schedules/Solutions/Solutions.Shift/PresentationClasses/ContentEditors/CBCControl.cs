@@ -13,7 +13,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 	public sealed partial class CBCControl : BaseShiftControl
 	{
 		public override SlideType SlideType => SlideType.ShiftCBC;
-		public override string OutputName => SlideContainer.ShiftInfo.Titles.Tab5Title;
 
 		public CBCControl(BaseShiftContainer slideContainer) : base(slideContainer)
 		{

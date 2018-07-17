@@ -22,7 +22,6 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		public override RibbonPanel PanelSolutions => Controller.Instance.SolutionsPanel;
 		public override ButtonItem ButtonPowerPoint => Controller.Instance.SolutionsPowerPoint;
 		public override ButtonItem ButtonPdf => Controller.Instance.MenuOutputPdfButton;
-		public override ButtonItem ButtonPreview => Controller.Instance.SolutionsPreview;
 		public override ButtonItem ButtonEmail => Controller.Instance.MenuEmailButton;
 		public override MainFormStyleConfiguration StyleConfiguration => BusinessObjects.Instance.FormStyleManager.Style;
 

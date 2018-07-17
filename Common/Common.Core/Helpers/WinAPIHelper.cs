@@ -93,11 +93,11 @@ namespace Asa.Common.Core.Helpers
 		public const Byte BSM_APPLICATIONS = 8; //This tells the windows message to just go to applications Hex 8
 
 
-		private const UInt32 SWP_NOSIZE = 0x0001;
-		private const UInt32 SWP_NOMOVE = 0x0002;
+		public const UInt32 SWP_NOSIZE = 0x0001;
+		public const UInt32 SWP_NOMOVE = 0x0002;
 		private const UInt32 SWP_NOZORDER = 0x0004;
 		private const UInt32 SWP_NOREDRAW = 0x0008;
-		private const UInt32 SWP_NOACTIVATE = 0x0010;
+		public const UInt32 SWP_NOACTIVATE = 0x0010;
 		private const UInt32 SWP_FRAMECHANGED = 0x0020; /* The frame changed: send WM_NCCALCSIZE */
 		private const UInt32 SWP_SHOWWINDOW = 0x0040;
 		private const UInt32 SWP_HIDEWINDOW = 0x0080;

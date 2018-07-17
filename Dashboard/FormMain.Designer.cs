@@ -43,8 +43,6 @@ namespace Asa.Dashboard
 			this.buttonItemSlidesHelp = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSlidesPowerPoint = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemSlidesPowerPoint = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarSlidesPreview = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemSlidesPreview = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSlidesLogo = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemSlidesLogo = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonPanelHome = new DevComponents.DotNetBar.RibbonPanel();
@@ -64,8 +62,6 @@ namespace Asa.Dashboard
 			this.buttonItemHomeThemeClientGoals = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemHomeThemeTargetCustomers = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemHomeThemeSimpleSummary = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarPreview = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemPreview = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarHomeOverview = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemHomeOverview = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonTabItemHome = new DevComponents.DotNetBar.RibbonTabItem();
@@ -94,8 +90,8 @@ namespace Asa.Dashboard
 			// 
 			this.ribbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonControl.CaptionVisible = true;
-			this.ribbonControl.Controls.Add(this.ribbonPanelSlides);
 			this.ribbonControl.Controls.Add(this.ribbonPanelHome);
+			this.ribbonControl.Controls.Add(this.ribbonPanelSlides);
 			this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
 			this.ribbonControl.ForeColor = System.Drawing.Color.Black;
 			this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -133,7 +129,6 @@ namespace Asa.Dashboard
 			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesFloater);
 			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesHelp);
 			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesPowerPoint);
-			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesPreview);
 			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesLogo);
 			this.ribbonPanelSlides.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.ribbonPanelSlides.Location = new System.Drawing.Point(0, 53);
@@ -153,6 +148,7 @@ namespace Asa.Dashboard
 			// 
 			this.ribbonPanelSlides.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonPanelSlides.TabIndex = 23;
+			this.ribbonPanelSlides.Visible = false;
 			// 
 			// ribbonBarSlidesExit
 			// 
@@ -172,7 +168,7 @@ namespace Asa.Dashboard
 			this.ribbonBarSlidesExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemSlidesExit});
 			this.ribbonBarSlidesExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesExit.Location = new System.Drawing.Point(558, 0);
+			this.ribbonBarSlidesExit.Location = new System.Drawing.Point(464, 0);
 			this.ribbonBarSlidesExit.Name = "ribbonBarSlidesExit";
 			this.ribbonBarSlidesExit.Size = new System.Drawing.Size(85, 130);
 			this.ribbonBarSlidesExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -214,7 +210,7 @@ namespace Asa.Dashboard
 			this.ribbonBarSlidesFloater.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemSlidesFloater});
 			this.ribbonBarSlidesFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesFloater.Location = new System.Drawing.Point(470, 0);
+			this.ribbonBarSlidesFloater.Location = new System.Drawing.Point(376, 0);
 			this.ribbonBarSlidesFloater.Name = "ribbonBarSlidesFloater";
 			this.ribbonBarSlidesFloater.Size = new System.Drawing.Size(88, 130);
 			this.ribbonBarSlidesFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -255,7 +251,7 @@ namespace Asa.Dashboard
 			this.ribbonBarSlidesHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemSlidesHelp});
 			this.ribbonBarSlidesHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesHelp.Location = new System.Drawing.Point(386, 0);
+			this.ribbonBarSlidesHelp.Location = new System.Drawing.Point(292, 0);
 			this.ribbonBarSlidesHelp.Name = "ribbonBarSlidesHelp";
 			this.ribbonBarSlidesHelp.Size = new System.Drawing.Size(84, 130);
 			this.ribbonBarSlidesHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -296,7 +292,7 @@ namespace Asa.Dashboard
 			this.ribbonBarSlidesPowerPoint.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemSlidesPowerPoint});
 			this.ribbonBarSlidesPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesPowerPoint.Location = new System.Drawing.Point(298, 0);
+			this.ribbonBarSlidesPowerPoint.Location = new System.Drawing.Point(204, 0);
 			this.ribbonBarSlidesPowerPoint.Name = "ribbonBarSlidesPowerPoint";
 			this.ribbonBarSlidesPowerPoint.Size = new System.Drawing.Size(88, 130);
 			this.ribbonBarSlidesPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -317,46 +313,6 @@ namespace Asa.Dashboard
 			this.buttonItemSlidesPowerPoint.Name = "buttonItemSlidesPowerPoint";
 			this.buttonItemSlidesPowerPoint.SubItemsExpandWidth = 14;
 			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Insert Slide", "", "Add this slide to my Presentation…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// ribbonBarSlidesPreview
-			// 
-			this.ribbonBarSlidesPreview.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesPreview.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesPreview.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSlidesPreview.ContainerControlProcessDialogKey = true;
-			this.ribbonBarSlidesPreview.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarSlidesPreview.DragDropSupport = true;
-			this.ribbonBarSlidesPreview.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSlidesPreview});
-			this.ribbonBarSlidesPreview.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesPreview.Location = new System.Drawing.Point(204, 0);
-			this.ribbonBarSlidesPreview.Name = "ribbonBarSlidesPreview";
-			this.ribbonBarSlidesPreview.Size = new System.Drawing.Size(94, 130);
-			this.ribbonBarSlidesPreview.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarSlidesPreview.TabIndex = 28;
-			this.ribbonBarSlidesPreview.Text = "Preview";
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesPreview.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesPreview.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemSlidesPreview
-			// 
-			this.buttonItemSlidesPreview.Image = global::Asa.Dashboard.Properties.Resources.Preview;
-			this.buttonItemSlidesPreview.Name = "buttonItemSlidesPreview";
-			this.buttonItemSlidesPreview.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesPreview, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Preview", "", "View this slide before you add it to your presentation…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemSlidesPreview.Text = "buttonItem1";
 			// 
 			// ribbonBarSlidesLogo
 			// 
@@ -408,7 +364,6 @@ namespace Asa.Dashboard
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeHelp);
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeLoad);
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarPowerPoint);
-			this.ribbonPanelHome.Controls.Add(this.ribbonBarPreview);
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeOverview);
 			this.ribbonPanelHome.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.ribbonPanelHome.Location = new System.Drawing.Point(0, 53);
@@ -428,7 +383,6 @@ namespace Asa.Dashboard
 			// 
 			this.ribbonPanelHome.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonPanelHome.TabIndex = 4;
-			this.ribbonPanelHome.Visible = false;
 			// 
 			// ribbonBarHomeExit
 			// 
@@ -448,7 +402,7 @@ namespace Asa.Dashboard
 			this.ribbonBarHomeExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeExit});
 			this.ribbonBarHomeExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeExit.Location = new System.Drawing.Point(682, 0);
+			this.ribbonBarHomeExit.Location = new System.Drawing.Point(595, 0);
 			this.ribbonBarHomeExit.Name = "ribbonBarHomeExit";
 			this.ribbonBarHomeExit.Size = new System.Drawing.Size(94, 130);
 			this.ribbonBarHomeExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -490,7 +444,7 @@ namespace Asa.Dashboard
 			this.ribbonBarHomeFloater.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeFloater});
 			this.ribbonBarHomeFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeFloater.Location = new System.Drawing.Point(594, 0);
+			this.ribbonBarHomeFloater.Location = new System.Drawing.Point(507, 0);
 			this.ribbonBarHomeFloater.Name = "ribbonBarHomeFloater";
 			this.ribbonBarHomeFloater.Size = new System.Drawing.Size(88, 130);
 			this.ribbonBarHomeFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -531,7 +485,7 @@ namespace Asa.Dashboard
 			this.ribbonBarHomeHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeHelp});
 			this.ribbonBarHomeHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeHelp.Location = new System.Drawing.Point(518, 0);
+			this.ribbonBarHomeHelp.Location = new System.Drawing.Point(431, 0);
 			this.ribbonBarHomeHelp.Name = "ribbonBarHomeHelp";
 			this.ribbonBarHomeHelp.Size = new System.Drawing.Size(76, 130);
 			this.ribbonBarHomeHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -572,7 +526,7 @@ namespace Asa.Dashboard
 			this.ribbonBarHomeLoad.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeLoad});
 			this.ribbonBarHomeLoad.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeLoad.Location = new System.Drawing.Point(424, 0);
+			this.ribbonBarHomeLoad.Location = new System.Drawing.Point(337, 0);
 			this.ribbonBarHomeLoad.Name = "ribbonBarHomeLoad";
 			this.ribbonBarHomeLoad.Size = new System.Drawing.Size(94, 130);
 			this.ribbonBarHomeLoad.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -618,7 +572,7 @@ namespace Asa.Dashboard
             this.buttonItemHomeThemeTargetCustomers,
             this.buttonItemHomeThemeSimpleSummary});
 			this.ribbonBarPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarPowerPoint.Location = new System.Drawing.Point(291, 0);
+			this.ribbonBarPowerPoint.Location = new System.Drawing.Point(204, 0);
 			this.ribbonBarPowerPoint.Name = "ribbonBarPowerPoint";
 			this.ribbonBarPowerPoint.Size = new System.Drawing.Size(133, 130);
 			this.ribbonBarPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -683,47 +637,6 @@ namespace Asa.Dashboard
 			this.buttonItemHomeThemeSimpleSummary.Text = "Theme:\r\nDefault";
 			this.buttonItemHomeThemeSimpleSummary.Visible = false;
 			// 
-			// ribbonBarPreview
-			// 
-			this.ribbonBarPreview.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarPreview.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarPreview.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarPreview.ContainerControlProcessDialogKey = true;
-			this.ribbonBarPreview.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarPreview.DragDropSupport = true;
-			this.ribbonBarPreview.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemPreview});
-			this.ribbonBarPreview.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarPreview.Location = new System.Drawing.Point(204, 0);
-			this.ribbonBarPreview.Name = "ribbonBarPreview";
-			this.ribbonBarPreview.Size = new System.Drawing.Size(87, 130);
-			this.ribbonBarPreview.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarPreview.TabIndex = 23;
-			this.ribbonBarPreview.Text = "Preview";
-			// 
-			// 
-			// 
-			this.ribbonBarPreview.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarPreview.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemPreview
-			// 
-			this.buttonItemPreview.Image = global::Asa.Dashboard.Properties.Resources.Preview;
-			this.buttonItemPreview.Name = "buttonItemPreview";
-			this.buttonItemPreview.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemPreview, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Preview", "", "View this slide before you add it to your presentation…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemPreview.Text = "buttonItem1";
-			this.buttonItemPreview.Click += new System.EventHandler(this.buttonItemPreview_Click);
-			// 
 			// ribbonBarHomeOverview
 			// 
 			this.ribbonBarHomeOverview.AutoOverflowEnabled = true;
@@ -769,6 +682,7 @@ namespace Asa.Dashboard
 			// 
 			// ribbonTabItemHome
 			// 
+			this.ribbonTabItemHome.Checked = true;
 			this.ribbonTabItemHome.Name = "ribbonTabItemHome";
 			this.ribbonTabItemHome.Panel = this.ribbonPanelHome;
 			this.ribbonTabItemHome.Text = "HOME";
@@ -776,7 +690,6 @@ namespace Asa.Dashboard
 			// 
 			// ribbonTabItemSlides
 			// 
-			this.ribbonTabItemSlides.Checked = true;
 			this.ribbonTabItemSlides.Name = "ribbonTabItemSlides";
 			this.ribbonTabItemSlides.Panel = this.ribbonPanelSlides;
 			this.ribbonTabItemSlides.Text = "Slides";
@@ -803,7 +716,7 @@ namespace Asa.Dashboard
 			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnMain.Location = new System.Drawing.Point(5, 186);
 			this.pnMain.Name = "pnMain";
-			this.pnMain.Size = new System.Drawing.Size(915, 511);
+			this.pnMain.Size = new System.Drawing.Size(915, 512);
 			this.pnMain.TabIndex = 6;
 			// 
 			// styleManager
@@ -816,7 +729,7 @@ namespace Asa.Dashboard
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(925, 699);
+			this.ClientSize = new System.Drawing.Size(925, 700);
 			this.Controls.Add(this.pnMain);
 			this.Controls.Add(this.ribbonControl);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -868,10 +781,6 @@ namespace Asa.Dashboard
 		private DevComponents.DotNetBar.RibbonBar ribbonBarSlidesLogo;
 		public DevComponents.DotNetBar.ButtonItem buttonItemSlidesLogo;
 		public DevComponents.DotNetBar.RibbonTabItem ribbonTabItemSlides;
-		private DevComponents.DotNetBar.RibbonBar ribbonBarPreview;
-		private DevComponents.DotNetBar.RibbonBar ribbonBarSlidesPreview;
-		private DevComponents.DotNetBar.ButtonItem buttonItemSlidesPreview;
-		public DevComponents.DotNetBar.ButtonItem buttonItemPreview;
 		private System.Windows.Forms.Panel pnMain;
 		public DevComponents.DotNetBar.ButtonItem buttonItemHomeThemeCover;
 		public DevComponents.DotNetBar.ButtonItem buttonItemHomeThemeLeadoff;

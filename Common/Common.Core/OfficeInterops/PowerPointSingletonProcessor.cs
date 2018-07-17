@@ -2,14 +2,14 @@
 
 namespace Asa.Common.Core.OfficeInterops
 {
-	public abstract class PowerPointSingletonProcessor : PowerPointProcessor
+	public class PowerPointSingletonProcessor : PowerPointProcessor
 	{
-		public override bool Connect(bool force = false)
+		public override bool Connect(bool forceNewObject = false)
 		{
-			var result = base.Connect(force);
+			var result = base.Connect(forceNewObject);
 			if (!result)
 				return false;
-			result = GetActivePresentation(force) != null;
+			result = GetActivePresentation() != null;
 			if (result)
 				PowerPointObject.Visible = MsoTriState.msoCTrue;
 			return result;

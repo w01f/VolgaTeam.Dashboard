@@ -284,18 +284,7 @@
     <Compile Include="PresentationClasses\ContentEditors\StarAppControl.Designer.cs">
       <DependentUpon>StarAppControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\Output\FormConfigureOutput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Output\FormConfigureOutput.Designer.cs">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\Output\IStarAppSlideContainer.cs" />
-    <Compile Include="PresentationClasses\Output\IStarAppSlide.cs" />
-    <Compile Include="PresentationClasses\Output\LoadAllEventArgs.cs" />
-    <Compile Include="PresentationClasses\Output\OutputConfiguration.cs" />
-    <Compile Include="PresentationClasses\Output\OutputGroup.cs" />
-    <Compile Include="PresentationClasses\Output\StarAppOutputType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -402,9 +391,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\StarAppControl.resx">
       <DependentUpon>StarAppControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\Output\FormConfigureOutput.resx">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

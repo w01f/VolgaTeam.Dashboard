@@ -7,9 +7,8 @@ using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Dashboard.Configuration;
 using Asa.Business.Solutions.Dashboard.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
-using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
-using Asa.Common.GUI.OutputSelector;
+using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
 using Asa.Solutions.Dashboard.PresentationClasses.Output;
@@ -131,43 +130,46 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public override bool ReadyForOutput => ActiveSlide?.ReadyForOutput ?? false;
 		public abstract Theme GetSelectedTheme(SlideType slideType);
 
-		public IList<DashboardSlideInfo> GetOutputSlides()
+		public IList<OutputItem> GetOutputItems(bool onlyCurrentSlide)
 		{
-			var selectedSlideInfos = new List<DashboardSlideInfo>();
-			var availableSlideInfos = _slides
-				.Where(s => s.ReadyForOutput).OfType<IDashboardSlide>()
-				.SelectMany(slide => slide.GetSlideInfo())
-				.ToList();
+			var selectedOutputItems = new List<OutputItem>();
 
-			if (availableSlideInfos.Any())
+			var availableOutputGroups = new List<OutputGroup>();
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Slides...");
+			FormProgress.ShowProgress(MainForm);
+			if (onlyCurrentSlide)
 			{
-				FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-				FormProgress.ShowProgress();
-				var previewGroup = availableSlideInfos
-									   .Where(slideInfo => slideInfo.IsCurrent)
-									   .Select(slideInfo => slideInfo.SlideContainer.GeneratePreview(slideInfo))
-									   .FirstOrDefault() ?? availableSlideInfos.First().SlideContainer.GeneratePreview(availableSlideInfos.First());
-				Utilities.ActivateForm(MainForm.Handle, MainForm.WindowState == FormWindowState.Maximized, false);
-				FormProgress.CloseProgress();
+				if (ActiveSlide is IDashboardSlide dashboardSlide)
+					availableOutputGroups.Add(dashboardSlide.GetOutputData());
+			}
+			else
+			{
+				var allSlides = _slides
+					.OfType<IDashboardSlide>()
+					.ToList();
 
-				using (var form = new FormConfigureOutput<DashboardSlideInfo>(availableSlideInfos, previewGroup))
+				foreach (var dashboardSlide in allSlides)
 				{
-					form.hyperLinkEditAddSingleSlide.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditAddSingleSlide.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditSelectAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditSelectAll.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-					form.hyperLinkEditClearAll.Text = String.Format("<color={1}>{0}</color>", form.hyperLinkEditClearAll.Text, AccentColor.HasValue
-						? AccentColor.Value.ToHex()
-						: "blue");
-
-					if (form.ShowDialog() == DialogResult.OK)
-						selectedSlideInfos.AddRange(form.GetSelectedItems());
+					availableOutputGroups.Add(dashboardSlide.GetOutputData());
+					Application.DoEvents();
 				}
 			}
+			FormProgress.CloseProgress();
 
-			return selectedSlideInfos;
+			if (!availableOutputGroups.Any())
+				return selectedOutputItems;
+
+			using (var form = new FormPreview(
+				MainForm,
+				PowerPointProcessor))
+			{
+				form.LoadGroups(availableOutputGroups);
+				if (form.ShowDialog() == DialogResult.OK)
+					selectedOutputItems.AddRange(form.GetSelectedItems());
+			}
+
+			return selectedOutputItems;
 		}
 		#endregion
 	}

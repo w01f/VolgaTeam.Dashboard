@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
-using Asa.Common.GUI.Preview;
-using Asa.Solutions.Common.InteropClasses;
 using Asa.Solutions.Common.PresentationClasses.Output;
-using Asa.Solutions.StarApp.PresentationClasses.Output;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	public partial class ShareTabAControl : ShareTabBaseControl
 	{
-		public ShareTabAControl(ShareControl shareContentContainer) : base(shareContentContainer)
+		public ShareTabAControl(IShareTabPageContainer shareTabPageContainer) : base(shareTabPageContainer)
 		{
 			InitializeComponent();
 
@@ -279,7 +275,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		#endregion
 
 		#region Output
-		public override StarAppOutputType OutputType => StarAppOutputType.ShareTabA;
 		public override String OutputName => ShareContentContainer.SlideContainer.StarInfo.Titles.Tab5SubATitle;
 
 		protected override OutputDataPackage GetOutputData()
@@ -363,20 +358,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			}
 
 			return textDataItems;
-		}
-
-		public override void GenerateOutput()
-		{
-			var outputDataPackage = GetOutputData();
-			ShareContentContainer.SlideContainer.PowerPointProcessor.AppendStarCommonSlide(outputDataPackage);
-		}
-
-		public override PreviewGroup GeneratePreview()
-		{
-			var outputDataPackage = GetOutputData();
-			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			ShareContentContainer.SlideContainer.PowerPointProcessor.PrepareStarCommonSlide(outputDataPackage, tempFileName);
-			return new PreviewGroup { Name = OutputName, PresentationSourcePath = tempFileName };
 		}
 		#endregion
 	}

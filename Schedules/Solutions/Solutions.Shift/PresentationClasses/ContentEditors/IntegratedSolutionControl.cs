@@ -13,7 +13,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 	public sealed partial class IntegratedSolutionControl : BaseShiftControl
 	{
 		public override SlideType SlideType => SlideType.ShiftIntegratedSolution;
-		public override string OutputName => SlideContainer.ShiftInfo.Titles.Tab6Title;
 
 		public IntegratedSolutionControl(BaseShiftContainer slideContainer) : base(slideContainer)
 		{

@@ -637,7 +637,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 				optionSet.Logo = defaultLogo.Clone<ImageSource, ImageSource>();
 
 			optionSet.ShowSpots = true;
-			optionSet.SpotType = SpotType.Total;
+			optionSet.SpotType = ParentSchedule.OptionsContent.OptionsSummary.SpotType;
 
 			foreach (var program in Programs)
 			{

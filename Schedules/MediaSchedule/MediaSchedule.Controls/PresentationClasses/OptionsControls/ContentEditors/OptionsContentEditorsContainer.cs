@@ -308,7 +308,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 
 		private void UpdateSummaryState()
 		{
-			Summary.PageEnabled = EditedContent.OptionsSummary.Enabled && EditedContent.Options.SelectMany(o => o.Programs).Any();
+			Summary.PageEnabled = EditedContent.OptionsSummary.Enabled && EditedContent.Options.Count > 1 && EditedContent.Options.SelectMany(o => o.Programs).Any();
 		}
 
 		private void OnSettingsChanged(object sender, SettingsChangedEventArgs e)

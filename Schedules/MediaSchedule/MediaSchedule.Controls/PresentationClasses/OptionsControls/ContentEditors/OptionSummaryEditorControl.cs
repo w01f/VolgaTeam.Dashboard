@@ -86,7 +86,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			if (focus)
 				advBandedGridView.Focus();
 
-			PageEnabled = Data.Enabled && Data.Parent.Options.SelectMany(o => o.Programs).Any();
+			PageEnabled = Data.Enabled && Data.Parent.Options.Count > 1 && Data.Parent.Options.SelectMany(o => o.Programs).Any();
 
 			gridBandId.Visible = Data.ShowLineId;
 			gridBandLogo.Visible = Data.ShowLogo;
@@ -365,7 +365,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		{
 			var outputItems = new List<OutputItem>();
 
-			if (Data.Enabled && Data.Parent.Options.Any(s => s.Programs.Any()))
+			if (Data.Enabled && Data.Parent.Options.Count > 1 && Data.Parent.Options.SelectMany(o => o.Programs).Any())
 				outputItems.Add(
 					new OutputItem
 					{

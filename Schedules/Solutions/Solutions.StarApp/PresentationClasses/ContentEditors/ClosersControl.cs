@@ -35,6 +35,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				_tabPages.Add(new ClosersTabPageContainerControl<ClosersTabBControl>(this));
 			if (!String.IsNullOrWhiteSpace(SlideContainer.StarInfo.Titles.Tab11SubCTitle))
 				_tabPages.Add(new ClosersTabPageContainerControl<ClosersTabCControl>(this));
+			if (!String.IsNullOrWhiteSpace(SlideContainer.StarInfo.Titles.Tab11SubUTitle))
+				_tabPages.Add(new ClosersTabPageContainerControl<ClosersTabUControl>(this));
+			if (!String.IsNullOrWhiteSpace(SlideContainer.StarInfo.Titles.Tab11SubVTitle))
+				_tabPages.Add(new ClosersTabPageContainerControl<ClosersTabVControl>(this));
+			if (!String.IsNullOrWhiteSpace(SlideContainer.StarInfo.Titles.Tab11SubWTitle))
+				_tabPages.Add(new ClosersTabPageContainerControl<ClosersTabWControl>(this));
 
 			xtraTabControl.TabPages.AddRange(_tabPages.OfType<XtraTabPage>().ToArray());
 
@@ -69,23 +75,25 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			if (!_dataChanged) return;
 
-			switch (xtraTabControl.SelectedTabPageIndex)
+			var selectedTab = (xtraTabControl.SelectedTabPage as IClosersTabPageContainer)?.ContentControl;
+
+			if (selectedTab is ClosersTabAControl)
 			{
-				case 0:
-					SlideContainer.EditedContent.ClosersState.TabA.SlideHeader = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
-						null;
-					break;
-				case 1:
-					SlideContainer.EditedContent.ClosersState.TabB.SlideHeader = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
-						null;
-					break;
-				case 2:
-					SlideContainer.EditedContent.ClosersState.TabC.SlideHeader = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
-						null;
-					break;
+				SlideContainer.EditedContent.ClosersState.TabA.SlideHeader = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
+					comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
+					null;
+			}
+			else if (selectedTab is ClosersTabBControl)
+			{
+				SlideContainer.EditedContent.ClosersState.TabB.SlideHeader = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
+					comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
+					null;
+			}
+			else if (selectedTab is ClosersTabCControl)
+			{
+				SlideContainer.EditedContent.ClosersState.TabC.SlideHeader = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
+					comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
+					null;
 			}
 
 			_tabPages
@@ -101,42 +109,60 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		private void LoadPartData()
 		{
 			_allowToSave = false;
-			switch (xtraTabControl.SelectedTabPageIndex)
+
+			var selectedTab = (xtraTabControl.SelectedTabPage as IClosersTabPageContainer)?.ContentControl;
+			if (selectedTab is ClosersTabAControl)
 			{
-				case 0:
-					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab11SubARightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab11SubAFooterLogo;
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab11SubARightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab11SubAFooterLogo;
 
-					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ClosersConfiguration.HeadersPartAItems.Where(item => !item.IsPlaceholder).ToArray());
-					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ClosersState.TabA.SlideHeader ??
-						SlideContainer.StarInfo.ClosersConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault);
-					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
-						"Select or type";
-					break;
-				case 1:
-					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab11SubBRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab11SubBFooterLogo;
-
-					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.Where(item => !item.IsPlaceholder).ToArray());
-					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ClosersState.TabB.SlideHeader ??
-						SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault);
-					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
-						"Select or type";
-					break;
-				case 2:
-					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab11SubCRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab11SubCFooterLogo;
-
-					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ClosersConfiguration.HeadersPartCItems.Where(item => !item.IsPlaceholder).ToArray());
-					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ClosersState.TabC.SlideHeader ??
-						SlideContainer.StarInfo.ClosersConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault);
-					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
-						"Select or type";
-					break;
+				comboBoxEditSlideHeader.Properties.Items.Clear();
+				comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ClosersConfiguration.HeadersPartAItems.Where(item => !item.IsPlaceholder).ToArray());
+				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ClosersState.TabA.SlideHeader ??
+													SlideContainer.StarInfo.ClosersConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault);
+				comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+															  "Select or type";
 			}
+			else if (selectedTab is ClosersTabBControl)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab11SubBRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab11SubBFooterLogo;
+
+				comboBoxEditSlideHeader.Properties.Items.Clear();
+				comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.Where(item => !item.IsPlaceholder).ToArray());
+				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ClosersState.TabB.SlideHeader ??
+													SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault);
+				comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+															  "Select or type";
+			}
+			else if (selectedTab is ClosersTabCControl)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab11SubCRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab11SubCFooterLogo;
+
+				comboBoxEditSlideHeader.Properties.Items.Clear();
+				comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ClosersConfiguration.HeadersPartCItems.Where(item => !item.IsPlaceholder).ToArray());
+				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ClosersState.TabC.SlideHeader ??
+													SlideContainer.StarInfo.ClosersConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault);
+				comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+															  "Select or type";
+			}
+			else if (selectedTab is ClosersTabUControl)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab11SubURightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab11SubUFooterLogo;
+			}
+			else if (selectedTab is ClosersTabVControl)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab11SubVRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab11SubVFooterLogo;
+			}
+			else if (selectedTab is ClosersTabWControl)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab11SubWRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab11SubWFooterLogo;
+			}
+
 			_allowToSave = true;
 		}
 
@@ -168,17 +194,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			if (_allowToSave)
 				ApplyChanges();
-			((IClosersTabPageContainer)e.PrevPage)?.ContentControl?.ApplyChanges();
 
 			var tabPageContainer = e.Page as IClosersTabPageContainer;
 			if (tabPageContainer?.ContentControl != null) return;
-			xtraTabControl.Enabled = false;
+
+			xtraTabControl.TabPages
+				.Where(tabPage => tabPage != e.Page)
+				.ToList()
+				.ForEach(tabPage => tabPage.PageEnabled = false);
+
 			FormProgress.SetTitle("Loading data...");
 			FormProgress.ShowProgress();
 			Application.DoEvents();
+
 			tabPageContainer?.LoadContent();
 			tabPageContainer?.ContentControl?.LoadData();
-			xtraTabControl.Enabled = true;
+
+			xtraTabControl.TabPages
+				.ToList()
+				.ForEach(tabPage => tabPage.PageEnabled = true);
+
 			FormProgress.CloseProgress();
 			Application.DoEvents();
 		}
@@ -213,6 +248,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					.OfType<IClosersTabPageContainer>()
 					.Where(tabContainer => tabContainer.ContentControl.ReadyForOutput)
 					.Select(tabContainer => tabContainer.ContentControl.GetOutputItem())
+					.Where(outputItem => outputItem != null)
 					.ToList()
 			};
 		}

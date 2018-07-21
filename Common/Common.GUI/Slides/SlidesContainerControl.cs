@@ -1,18 +1,18 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Slides;
+using DevExpress.Utils;
 
 namespace Asa.Common.GUI.Slides
 {
-	[ToolboxItem(false)]
 	public partial class SlidesContainerControl : UserControl
 	{
 		private SlideManager _slideManager;
 
 		public event EventHandler<SlideMasterEventArgs> SlideOutput;
+		public event EventHandler<EventArgs> SelectionChanged;
 
 		public SlideMaster SelectedSlide
 		{
@@ -34,13 +34,40 @@ namespace Asa.Common.GUI.Slides
 			_slideManager = slideManager;
 			xtraTabControlSlides.TabPages.OfType<SlideGroupPage>().ToList().ForEach(g => g.Release());
 			xtraTabControlSlides.TabPages.Clear();
-			foreach (var group in _slideManager.Slides.Where(s => s.Format == SlideSettingsManager.Instance.SlideSettings.Format).Select(s => s.Group).Distinct())
+
+			var groups = _slideManager.Slides
+				.Where(s => s.Format == SlideSettingsManager.Instance.SlideSettings.Format)
+				.Select(s => s.Group).Distinct()
+				.ToList();
+			foreach (var group in groups)
 			{
 				var groupPage = new SlideGroupPage(
 					group,
 					_slideManager.Slides.Where(s => s.Group.Equals(group) && s.Format == SlideSettingsManager.Instance.SlideSettings.Format));
-				groupPage.SlideOutput += OnSlideOutput;
+				if (SlideOutput != null)
+					groupPage.SlideOutput += OnSlideOutput;
+				groupPage.SelectionChanged += OnSelectionChanged;
 				xtraTabControlSlides.TabPages.Add(groupPage);
+			}
+			xtraTabControlSlides.ShowTabHeader = groups.Count > 1 ? DefaultBoolean.True : DefaultBoolean.False;
+		}
+
+		private void OnSelectionChanged(Object sender, EventArgs e)
+		{
+			SelectionChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+		public void SelectSlide(SlideMaster slideMaster)
+		{
+			foreach (var slideGroupPage in xtraTabControlSlides.TabPages.OfType<SlideGroupPage>().ToList())
+			{
+				if (String.Equals(slideGroupPage.SlideGroupName, slideMaster.Group, StringComparison.OrdinalIgnoreCase))
+				{
+					slideGroupPage.SelectSlide(slideMaster);
+					xtraTabControlSlides.SelectedTabPage = slideGroupPage;
+				}
+				else
+					slideGroupPage.ResetSelection();
 			}
 		}
 

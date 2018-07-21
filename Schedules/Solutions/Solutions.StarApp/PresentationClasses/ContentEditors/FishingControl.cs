@@ -97,6 +97,42 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			else
 				layoutControlGroupTabC.Visibility = LayoutVisibility.Never;
 
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab3SubUTitle))
+			{
+				layoutControlGroupTabU.Text = SlideContainer.StarInfo.Titles.Tab3SubUTitle;
+
+				slidesEditContainerTabU.Init(SlideContainer.StarInfo.FishingConfiguration.PartUSlides);
+				slidesEditContainerTabU.SelectionChanged += OnEditValueChanged;
+
+				Application.DoEvents();
+			}
+			else
+				layoutControlGroupTabU.Visibility = LayoutVisibility.Never;
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab3SubVTitle))
+			{
+				layoutControlGroupTabV.Text = SlideContainer.StarInfo.Titles.Tab3SubVTitle;
+
+				slidesEditContainerTabV.Init(SlideContainer.StarInfo.FishingConfiguration.PartVSlides);
+				slidesEditContainerTabV.SelectionChanged += OnEditValueChanged;
+
+				Application.DoEvents();
+			}
+			else
+				layoutControlGroupTabV.Visibility = LayoutVisibility.Never;
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab3SubWTitle))
+			{
+				layoutControlGroupTabW.Text = SlideContainer.StarInfo.Titles.Tab3SubWTitle;
+
+				slidesEditContainerTabW.Init(SlideContainer.StarInfo.FishingConfiguration.PartWSlides);
+				slidesEditContainerTabW.SelectionChanged += OnEditValueChanged;
+
+				Application.DoEvents();
+			}
+			else
+				layoutControlGroupTabW.Visibility = LayoutVisibility.Never;
+
 			_outputProcessors.AddRange(OutputProcessor.GetOutputProcessors(this));
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
@@ -145,6 +181,21 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 												   SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader2DefaultValue;
 				memoEditTabCSubheader3.EditValue = SlideContainer.EditedContent.FishingState.TabC.Subheader3 ??
 												   SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader3DefaultValue;
+			}
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab3SubUTitle))
+			{
+				slidesEditContainerTabU.LoadData(SlideContainer.EditedContent.FishingState.TabU.Slide);
+			}
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab3SubVTitle))
+			{
+				slidesEditContainerTabV.LoadData(SlideContainer.EditedContent.FishingState.TabV.Slide);
+			}
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab3SubWTitle))
+			{
+				slidesEditContainerTabW.LoadData(SlideContainer.EditedContent.FishingState.TabW.Slide);
 			}
 
 			_allowToSave = true;
@@ -209,6 +260,18 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					memoEditTabCSubheader3.EditValue as String ?? String.Empty :
 					null;
 			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabU)
+			{
+				slidesEditContainerTabU.SaveData();
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabV)
+			{
+				slidesEditContainerTabV.SaveData();
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabW)
+			{
+				slidesEditContainerTabW.SaveData();
+			}
 
 			_dataChanged = false;
 		}
@@ -216,42 +279,59 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		private void LoadPartData()
 		{
 			_allowToSave = false;
-			switch (tabbedControlGroupData.SelectedTabPageIndex)
+
+			if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabA)
 			{
-				case 0:
-					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab3SubARightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab3SubAFooterLogo;
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab3SubARightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab3SubAFooterLogo;
 
-					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.FishingConfiguration.HeadersPartAItems.Where(item => !item.IsPlaceholder).ToArray());
-					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.FishingState.TabA.SlideHeader ??
-						SlideContainer.StarInfo.FishingConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault);
-					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
-						"Select or type";
-					break;
-				case 1:
-					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab3SubBRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab3SubBFooterLogo;
-
-					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.FishingConfiguration.HeadersPartBItems.Where(item => !item.IsPlaceholder).ToArray());
-					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.FishingState.TabB.SlideHeader ??
-						SlideContainer.StarInfo.FishingConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault);
-					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
-						"Select or type";
-					break;
-				case 2:
-					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab3SubCRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab3SubCFooterLogo;
-
-					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.FishingConfiguration.HeadersPartCItems.Where(item => !item.IsPlaceholder).ToArray());
-					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.FishingState.TabC.SlideHeader ??
-						SlideContainer.StarInfo.FishingConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault);
-					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
-						"Select or type";
-					break;
+				comboBoxEditSlideHeader.Properties.Items.Clear();
+				comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.FishingConfiguration.HeadersPartAItems.Where(item => !item.IsPlaceholder).ToArray());
+				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.FishingState.TabA.SlideHeader ??
+													SlideContainer.StarInfo.FishingConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault);
+				comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+															  "Select or type";
 			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabB)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab3SubBRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab3SubBFooterLogo;
+
+				comboBoxEditSlideHeader.Properties.Items.Clear();
+				comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.FishingConfiguration.HeadersPartBItems.Where(item => !item.IsPlaceholder).ToArray());
+				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.FishingState.TabB.SlideHeader ??
+													SlideContainer.StarInfo.FishingConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault);
+				comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+															  "Select or type";
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabC)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab3SubCRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab3SubCFooterLogo;
+
+				comboBoxEditSlideHeader.Properties.Items.Clear();
+				comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.FishingConfiguration.HeadersPartCItems.Where(item => !item.IsPlaceholder).ToArray());
+				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.FishingState.TabC.SlideHeader ??
+													SlideContainer.StarInfo.FishingConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault);
+				comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.FishingConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+															  "Select or type";
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabU)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab3SubURightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab3SubUFooterLogo;
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabV)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab3SubVRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab3SubVFooterLogo;
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabW)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab3SubWRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab3SubWFooterLogo;
+			}
+
 			_allowToSave = true;
 		}
 

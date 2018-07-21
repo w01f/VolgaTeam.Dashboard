@@ -93,6 +93,42 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			else
 				layoutControlGroupTabC.Visibility = LayoutVisibility.Never;
 
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab7SubUTitle))
+			{
+				layoutControlGroupTabU.Text = SlideContainer.StarInfo.Titles.Tab7SubUTitle;
+
+				slidesEditContainerTabU.Init(SlideContainer.StarInfo.MarketConfiguration.PartUSlides);
+				slidesEditContainerTabU.SelectionChanged += OnEditValueChanged;
+
+				Application.DoEvents();
+			}
+			else
+				layoutControlGroupTabU.Visibility = LayoutVisibility.Never;
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab7SubVTitle))
+			{
+				layoutControlGroupTabV.Text = SlideContainer.StarInfo.Titles.Tab7SubVTitle;
+
+				slidesEditContainerTabV.Init(SlideContainer.StarInfo.MarketConfiguration.PartVSlides);
+				slidesEditContainerTabV.SelectionChanged += OnEditValueChanged;
+
+				Application.DoEvents();
+			}
+			else
+				layoutControlGroupTabV.Visibility = LayoutVisibility.Never;
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab7SubWTitle))
+			{
+				layoutControlGroupTabW.Text = SlideContainer.StarInfo.Titles.Tab7SubWTitle;
+
+				slidesEditContainerTabW.Init(SlideContainer.StarInfo.MarketConfiguration.PartWSlides);
+				slidesEditContainerTabW.SelectionChanged += OnEditValueChanged;
+
+				Application.DoEvents();
+			}
+			else
+				layoutControlGroupTabW.Visibility = LayoutVisibility.Never;
+
 			_outputProcessors.AddRange(OutputProcessor.GetOutputProcessors(this));
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
@@ -135,6 +171,21 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				comboBoxEditTabCCombo1.EditValue = SlideContainer.EditedContent.MarketState.TabC.Combo1 ??
 												   SlideContainer.StarInfo.MarketConfiguration.PartCCombo1Items.FirstOrDefault(
 													   item => item.IsDefault);
+			}
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab7SubUTitle))
+			{
+				slidesEditContainerTabU.LoadData(SlideContainer.EditedContent.MarketState.TabU.Slide);
+			}
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab7SubVTitle))
+			{
+				slidesEditContainerTabV.LoadData(SlideContainer.EditedContent.MarketState.TabV.Slide);
+			}
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab7SubWTitle))
+			{
+				slidesEditContainerTabW.LoadData(SlideContainer.EditedContent.MarketState.TabW.Slide);
 			}
 
 			_allowToSave = true;
@@ -192,6 +243,18 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					comboBoxEditTabCCombo1.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditTabCCombo1.EditValue as String } :
 					null;
 			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabU)
+			{
+				slidesEditContainerTabU.SaveData();
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabV)
+			{
+				slidesEditContainerTabV.SaveData();
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabW)
+			{
+				slidesEditContainerTabW.SaveData();
+			}
 
 			_dataChanged = false;
 		}
@@ -235,6 +298,21 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 													SlideContainer.StarInfo.MarketConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault);
 				comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.MarketConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
 															  "Select or type";
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabU)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab7SubURightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab7SubUFooterLogo;
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabV)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab7SubVRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab7SubVFooterLogo;
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabW)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab7SubWRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab7SubWFooterLogo;
 			}
 
 			_allowToSave = true;

@@ -20,10 +20,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public int SlidesCount => 1;
 		public virtual bool ReadyForOutput => !String.IsNullOrWhiteSpace(OutputName);
 
-		public ClosersTabBaseControl(IClosersTabPageContainer closersContentContainer)
+		public ClosersTabBaseControl()
+		{
+			InitializeComponent();
+		}
+
+		public ClosersTabBaseControl(IClosersTabPageContainer closersContentContainer) : this()
 		{
 			TabPageContainer = closersContentContainer;
-			InitializeComponent();
 		}
 
 		public virtual void LoadData()
@@ -36,7 +40,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			throw new NotImplementedException();
 		}
 
-		public OutputItem GetOutputItem()
+		public virtual OutputItem GetOutputItem()
 		{
 			var outputData = GetOutputData();
 			return new OutputItem

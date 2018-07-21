@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using Asa.Common.Core.Configuration;
+using System.Linq;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Objects.RemoteStorage;
 using Asa.Common.Core.Objects.Slides;
 
@@ -16,18 +18,12 @@ namespace Asa.Common.Core.Helpers
 			Slides = new List<SlideMaster>();
 		}
 
-		public void Load()
+		public void LoadSlides(StorageDirectory storageDirectory)
 		{
-			var storageDirectory = ResourceManager.Instance.SlideMastersFolder;
 			if (!storageDirectory.ExistsLocal()) return;
-			LoadSlides(storageDirectory);
-		}
-
-		private void LoadSlides(StorageDirectory storageDirectory)
-		{
 			foreach (var sizeFolder in storageDirectory.GetLocalFolders())
 			{
-				var format = SlideFormatEnum.Undefined;
+				SlideFormatEnum format;
 				switch (Path.GetFileName(sizeFolder.LocalPath))
 				{
 					case "4x3":
@@ -39,21 +35,52 @@ namespace Asa.Common.Core.Helpers
 					case "3x4":
 						format = SlideFormatEnum.Format3x4;
 						break;
+					default:
+						continue;
 				}
-				foreach (var groupFolder in sizeFolder.GetLocalFolders())
-					foreach (var slideFolder in groupFolder.GetLocalFolders())
+
+				if (sizeFolder.GetLocalFolders().Any(localFolder => localFolder.GetLocalFolders().Any()))
+				{
+					foreach (var groupFolder in sizeFolder.GetLocalFolders())
 					{
-						var slideMaster = new SlideMaster(slideFolder)
+						foreach (var slideFolder in groupFolder.GetLocalFolders())
 						{
-							Group = groupFolder.Name,
-							Format = format
-						};
-						slideMaster.Load();
-						Slides.Add(slideMaster);
+							var slideMaster = new SlideMaster(slideFolder)
+							{
+								Group = groupFolder.Name,
+								Format = format
+							};
+							slideMaster.Load();
+							Slides.Add(slideMaster);
+						}
 					}
+					Slides.Sort(
+						(x, y) => x.Group.Equals(y.Group) ? x.Order.CompareTo(y.Order) : WinAPIHelper.StrCmpLogicalW(x.Group, y.Group));
+				}
+				else
+				{
+					var orderFile = Path.Combine(sizeFolder.LocalPath, "thumb_order.txt");
+					if (File.Exists(orderFile))
+					{
+						var folderNames = File.ReadAllLines(orderFile).Where(line => !String.IsNullOrWhiteSpace(line)).ToList();
+						foreach (var folderName in folderNames)
+						{
+							var slideFolder = new StorageDirectory(sizeFolder.RelativePathParts.Merge(folderName));
+							if (slideFolder.ExistsLocal())
+							{
+								var slideMaster = new SlideMaster(slideFolder)
+								{
+									Group = "Default",
+									Format = format
+								};
+								slideMaster.Load();
+								Slides.Add(slideMaster);
+							}
+						}
+					}
+				}
 			}
-			Slides.Sort(
-				(x, y) => x.Group.Equals(y.Group) ? x.Order.CompareTo(y.Order) : WinAPIHelper.StrCmpLogicalW(x.Group, y.Group));
+
 		}
 	}
 }

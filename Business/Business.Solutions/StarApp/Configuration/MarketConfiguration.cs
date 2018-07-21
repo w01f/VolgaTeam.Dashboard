@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using Asa.Business.Solutions.Common.Configuration;
+using Asa.Common.Core.Helpers;
 
 namespace Asa.Business.Solutions.StarApp.Configuration
 {
@@ -30,6 +31,10 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public ClipartConfiguration PartCClipart3Configuration { get; private set; }
 		public ClipartConfiguration PartCClipart4Configuration { get; private set; }
 
+		public SlideManager PartUSlides { get; }
+		public SlideManager PartVSlides { get; }
+		public SlideManager PartWSlides { get; }
+
 		public MarketConfiguration()
 		{
 			HeadersPartAItems = new List<ListDataItem>();
@@ -48,6 +53,10 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 			PartCClipart2Configuration = new ClipartConfiguration();
 			PartCClipart3Configuration = new ClipartConfiguration();
 			PartCClipart4Configuration = new ClipartConfiguration();
+
+			PartUSlides = new SlideManager();
+			PartVSlides = new SlideManager();
+			PartWSlides = new SlideManager();
 		}
 
 		public void Load(ResourceManager resourceManager)
@@ -145,6 +154,21 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				PartCClipart2Configuration = ClipartConfiguration.FromXml(node, "CP07CClipart2");
 				PartCClipart3Configuration = ClipartConfiguration.FromXml(node, "CP07CClipart3");
 				PartCClipart4Configuration = ClipartConfiguration.FromXml(node, "CP07CClipart4");
+			}
+
+			if (resourceManager.Tab7PartUSlidesFolder.ExistsLocal())
+			{
+				PartUSlides.LoadSlides(resourceManager.Tab7PartUSlidesFolder);
+			}
+
+			if (resourceManager.Tab7PartVSlidesFolder.ExistsLocal())
+			{
+				PartVSlides.LoadSlides(resourceManager.Tab7PartVSlidesFolder);
+			}
+
+			if (resourceManager.Tab7PartWSlidesFolder.ExistsLocal())
+			{
+				PartWSlides.LoadSlides(resourceManager.Tab7PartWSlidesFolder);
 			}
 		}
 	}

@@ -37,6 +37,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				_tabPages.Add(new ROITabPageContainerControl<ROITabCControl>(this));
 			if (!String.IsNullOrWhiteSpace(SlideContainer.StarInfo.Titles.Tab6SubDTitle))
 				_tabPages.Add(new ROITabPageContainerControl<ROITabDControl>(this));
+			if (!String.IsNullOrWhiteSpace(SlideContainer.StarInfo.Titles.Tab6SubUTitle))
+				_tabPages.Add(new ROITabPageContainerControl<ROITabUControl>(this));
+			if (!String.IsNullOrWhiteSpace(SlideContainer.StarInfo.Titles.Tab6SubVTitle))
+				_tabPages.Add(new ROITabPageContainerControl<ROITabVControl>(this));
+			if (!String.IsNullOrWhiteSpace(SlideContainer.StarInfo.Titles.Tab6SubWTitle))
+				_tabPages.Add(new ROITabPageContainerControl<ROITabWControl>(this));
 
 			xtraTabControl.TabPages.AddRange(_tabPages.OfType<XtraTabPage>().ToArray());
 
@@ -71,28 +77,31 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			if (!_dataChanged) return;
 
-			switch (xtraTabControl.SelectedTabPageIndex)
+			var selectedTab = (xtraTabControl.SelectedTabPage as IROITabPageContainer)?.ContentControl;
+
+			if (selectedTab is ROITabAControl)
 			{
-				case 0:
-					SlideContainer.EditedContent.ROIState.TabA.SlideHeader = SlideContainer.StarInfo.ROIConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
-						null;
-					break;
-				case 1:
-					SlideContainer.EditedContent.ROIState.TabB.SlideHeader = SlideContainer.StarInfo.ROIConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
-						null;
-					break;
-				case 2:
-					SlideContainer.EditedContent.ROIState.TabC.SlideHeader = SlideContainer.StarInfo.ROIConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
-						null;
-					break;
-				case 3:
-					SlideContainer.EditedContent.ROIState.TabD.SlideHeader = SlideContainer.StarInfo.ROIConfiguration.HeadersPartDItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-						comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
-						null;
-					break;
+				SlideContainer.EditedContent.ROIState.TabA.SlideHeader = SlideContainer.StarInfo.ROIConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
+					comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
+					null;
+			}
+			else if (selectedTab is ROITabBControl)
+			{
+				SlideContainer.EditedContent.ROIState.TabB.SlideHeader = SlideContainer.StarInfo.ROIConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
+					comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
+					null;
+			}
+			else if (selectedTab is ROITabCControl)
+			{
+				SlideContainer.EditedContent.ROIState.TabC.SlideHeader = SlideContainer.StarInfo.ROIConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
+					comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
+					null;
+			}
+			else if (selectedTab is ROITabDControl)
+			{
+				SlideContainer.EditedContent.ROIState.TabD.SlideHeader = SlideContainer.StarInfo.ROIConfiguration.HeadersPartDItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
+					comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
+					null;
 			}
 
 			_tabPages
@@ -108,53 +117,73 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		private void LoadPartData()
 		{
 			_allowToSave = false;
-			switch (xtraTabControl.SelectedTabPageIndex)
+
+			var selectedTab = (xtraTabControl.SelectedTabPage as IROITabPageContainer)?.ContentControl;
+
+			if (selectedTab is ROITabAControl)
 			{
-				case 0:
-					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab6SubARightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab6SubAFooterLogo;
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab6SubARightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab6SubAFooterLogo;
 
-					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ROIConfiguration.HeadersPartAItems.Where(item => !item.IsPlaceholder).ToArray());
-					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ROIState.TabA.SlideHeader ??
-						SlideContainer.StarInfo.ROIConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault);
-					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.ROIConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
-						"Select or type";
-					break;
-				case 1:
-					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab6SubBRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab6SubBFooterLogo;
-
-					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ROIConfiguration.HeadersPartBItems.Where(item => !item.IsPlaceholder).ToArray());
-					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ROIState.TabB.SlideHeader ??
-						SlideContainer.StarInfo.ROIConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault);
-					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.ROIConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
-						"Select or type";
-					break;
-				case 2:
-					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab6SubCRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab6SubCFooterLogo;
-
-					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ROIConfiguration.HeadersPartCItems.Where(item => !item.IsPlaceholder).ToArray());
-					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ROIState.TabC.SlideHeader ??
-						SlideContainer.StarInfo.ROIConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault);
-					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.ROIConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
-						"Select or type";
-					break;
-				case 3:
-					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab6SubDRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab6SubDFooterLogo;
-
-					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ROIConfiguration.HeadersPartDItems.Where(item => !item.IsPlaceholder).ToArray());
-					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ROIState.TabD.SlideHeader ??
-						SlideContainer.StarInfo.ROIConfiguration.HeadersPartDItems.FirstOrDefault(h => h.IsDefault);
-					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.ROIConfiguration.HeadersPartDItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
-						"Select or type";
-					break;
+				comboBoxEditSlideHeader.Properties.Items.Clear();
+				comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ROIConfiguration.HeadersPartAItems.Where(item => !item.IsPlaceholder).ToArray());
+				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ROIState.TabA.SlideHeader ??
+													SlideContainer.StarInfo.ROIConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault);
+				comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.ROIConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+															  "Select or type";
 			}
+			else if (selectedTab is ROITabBControl)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab6SubBRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab6SubBFooterLogo;
+
+				comboBoxEditSlideHeader.Properties.Items.Clear();
+				comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ROIConfiguration.HeadersPartBItems.Where(item => !item.IsPlaceholder).ToArray());
+				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ROIState.TabB.SlideHeader ??
+													SlideContainer.StarInfo.ROIConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault);
+				comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.ROIConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+															  "Select or type";
+			}
+			else if (selectedTab is ROITabCControl)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab6SubCRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab6SubCFooterLogo;
+
+				comboBoxEditSlideHeader.Properties.Items.Clear();
+				comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ROIConfiguration.HeadersPartCItems.Where(item => !item.IsPlaceholder).ToArray());
+				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ROIState.TabC.SlideHeader ??
+													SlideContainer.StarInfo.ROIConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault);
+				comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.ROIConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+															  "Select or type";
+			}
+			else if (selectedTab is ROITabDControl)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab6SubDRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab6SubDFooterLogo;
+
+				comboBoxEditSlideHeader.Properties.Items.Clear();
+				comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ROIConfiguration.HeadersPartDItems.Where(item => !item.IsPlaceholder).ToArray());
+				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ROIState.TabD.SlideHeader ??
+													SlideContainer.StarInfo.ROIConfiguration.HeadersPartDItems.FirstOrDefault(h => h.IsDefault);
+				comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.ROIConfiguration.HeadersPartDItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+															  "Select or type";
+			}
+			else if (selectedTab is ROITabUControl)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab6SubURightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab6SubUFooterLogo;
+			}
+			else if (selectedTab is ROITabVControl)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab6SubVRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab6SubVFooterLogo;
+			}
+			else if (selectedTab is ROITabWControl)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab6SubWRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab6SubWFooterLogo;
+			}
+
 			_allowToSave = true;
 		}
 
@@ -186,17 +215,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			if (_allowToSave)
 				ApplyChanges();
-			((IROITabPageContainer)e.PrevPage)?.ContentControl?.ApplyChanges();
 
 			var tabPageContainer = e.Page as IROITabPageContainer;
 			if (tabPageContainer?.ContentControl != null) return;
-			xtraTabControl.Enabled = false;
+
+			xtraTabControl.TabPages
+				.Where(tabPage => tabPage != e.Page)
+				.ToList()
+				.ForEach(tabPage => tabPage.PageEnabled = false);
+
 			FormProgress.SetTitle("Loading data...");
 			FormProgress.ShowProgress();
 			Application.DoEvents();
+
 			tabPageContainer?.LoadContent();
 			tabPageContainer?.ContentControl?.LoadData();
-			xtraTabControl.Enabled = true;
+
+			xtraTabControl.TabPages
+				.ToList()
+				.ForEach(tabPage => tabPage.PageEnabled = true);
+
 			FormProgress.CloseProgress();
 			Application.DoEvents();
 		}
@@ -231,6 +269,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					.OfType<IROITabPageContainer>()
 					.Where(tabContainer => tabContainer.ContentControl.ReadyForOutput)
 					.Select(tabContainer => tabContainer.ContentControl.GetOutputItem())
+					.Where(outputItem => outputItem != null)
 					.ToList()
 			};
 		}

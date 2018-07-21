@@ -30,7 +30,7 @@
 		{
 			this.SuspendLayout();
 			// 
-			// TabPageContainerControl
+			// StarAppTabPageContainerControl
 			// 
 			this.Name = "StarAppTabPageContainerControl";
 			this.Size = new System.Drawing.Size(531, 485);

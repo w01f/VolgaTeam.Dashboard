@@ -28,6 +28,12 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 
 		public Image Tab1SubARightLogo { get; private set; }
 		public Image Tab1SubAFooterLogo { get; private set; }
+		public Image Tab1SubURightLogo { get; private set; }
+		public Image Tab1SubUFooterLogo { get; private set; }
+		public Image Tab1SubVRightLogo { get; private set; }
+		public Image Tab1SubVFooterLogo { get; private set; }
+		public Image Tab1SubWRightLogo { get; private set; }
+		public Image Tab1SubWFooterLogo { get; private set; }
 
 		public Image Tab1SubAClipart1Image { get; private set; }
 		#endregion
@@ -39,6 +45,12 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab2SubAFooterLogo { get; private set; }
 		public Image Tab2SubBRightLogo { get; private set; }
 		public Image Tab2SubBFooterLogo { get; private set; }
+		public Image Tab2SubURightLogo { get; private set; }
+		public Image Tab2SubUFooterLogo { get; private set; }
+		public Image Tab2SubVRightLogo { get; private set; }
+		public Image Tab2SubVFooterLogo { get; private set; }
+		public Image Tab2SubWRightLogo { get; private set; }
+		public Image Tab2SubWFooterLogo { get; private set; }
 
 		public Image Tab2SubAClipart1Image { get; private set; }
 		public Image Tab2SubBClipart1Image { get; private set; }
@@ -54,6 +66,12 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab3SubBFooterLogo { get; private set; }
 		public Image Tab3SubCRightLogo { get; private set; }
 		public Image Tab3SubCFooterLogo { get; private set; }
+		public Image Tab3SubURightLogo { get; private set; }
+		public Image Tab3SubUFooterLogo { get; private set; }
+		public Image Tab3SubVRightLogo { get; private set; }
+		public Image Tab3SubVFooterLogo { get; private set; }
+		public Image Tab3SubWRightLogo { get; private set; }
+		public Image Tab3SubWFooterLogo { get; private set; }
 
 		public Image Tab3SubAClipart1Image { get; private set; }
 		public Image Tab3SubBClipart1Image { get; private set; }
@@ -69,6 +87,12 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab4SubBFooterLogo { get; private set; }
 		public Image Tab4SubCRightLogo { get; private set; }
 		public Image Tab4SubCFooterLogo { get; private set; }
+		public Image Tab4SubURightLogo { get; private set; }
+		public Image Tab4SubUFooterLogo { get; private set; }
+		public Image Tab4SubVRightLogo { get; private set; }
+		public Image Tab4SubVFooterLogo { get; private set; }
+		public Image Tab4SubWRightLogo { get; private set; }
+		public Image Tab4SubWFooterLogo { get; private set; }
 
 		public Image Tab4SubAClipart1Image { get; private set; }
 		public Image Tab4SubAClipart2Image { get; private set; }
@@ -89,6 +113,12 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab5SubDFooterLogo { get; private set; }
 		public Image Tab5SubERightLogo { get; private set; }
 		public Image Tab5SubEFooterLogo { get; private set; }
+		public Image Tab5SubURightLogo { get; private set; }
+		public Image Tab5SubUFooterLogo { get; private set; }
+		public Image Tab5SubVRightLogo { get; private set; }
+		public Image Tab5SubVFooterLogo { get; private set; }
+		public Image Tab5SubWRightLogo { get; private set; }
+		public Image Tab5SubWFooterLogo { get; private set; }
 
 		public Image Tab5SubAClipart1Image { get; private set; }
 		public Image Tab5SubAClipart2Image { get; private set; }
@@ -122,6 +152,12 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab6SubCFooterLogo { get; private set; }
 		public Image Tab6SubDRightLogo { get; private set; }
 		public Image Tab6SubDFooterLogo { get; private set; }
+		public Image Tab6SubURightLogo { get; private set; }
+		public Image Tab6SubUFooterLogo { get; private set; }
+		public Image Tab6SubVRightLogo { get; private set; }
+		public Image Tab6SubVFooterLogo { get; private set; }
+		public Image Tab6SubWRightLogo { get; private set; }
+		public Image Tab6SubWFooterLogo { get; private set; }
 
 		public Image Tab6SubAClipart1Image { get; private set; }
 		public Image Tab6SubAClipart2Image { get; private set; }
@@ -149,6 +185,12 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab7SubBFooterLogo { get; private set; }
 		public Image Tab7SubCRightLogo { get; private set; }
 		public Image Tab7SubCFooterLogo { get; private set; }
+		public Image Tab7SubURightLogo { get; private set; }
+		public Image Tab7SubUFooterLogo { get; private set; }
+		public Image Tab7SubVRightLogo { get; private set; }
+		public Image Tab7SubVFooterLogo { get; private set; }
+		public Image Tab7SubWRightLogo { get; private set; }
+		public Image Tab7SubWFooterLogo { get; private set; }
 
 		public Image Tab7SubAClipart1Image { get; private set; }
 
@@ -175,6 +217,12 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab8SubCFooterLogo { get; private set; }
 		public Image Tab8SubDRightLogo { get; private set; }
 		public Image Tab8SubDFooterLogo { get; private set; }
+		public Image Tab8SubURightLogo { get; private set; }
+		public Image Tab8SubUFooterLogo { get; private set; }
+		public Image Tab8SubVRightLogo { get; private set; }
+		public Image Tab8SubVFooterLogo { get; private set; }
+		public Image Tab8SubWRightLogo { get; private set; }
+		public Image Tab8SubWFooterLogo { get; private set; }
 
 		public Image Tab8SubAClipart1Image { get; private set; }
 		public Image Tab8SubBClipart1Image { get; private set; }
@@ -191,6 +239,12 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab9SubBFooterLogo { get; private set; }
 		public Image Tab9SubCRightLogo { get; private set; }
 		public Image Tab9SubCFooterLogo { get; private set; }
+		public Image Tab9SubURightLogo { get; private set; }
+		public Image Tab9SubUFooterLogo { get; private set; }
+		public Image Tab9SubVRightLogo { get; private set; }
+		public Image Tab9SubVFooterLogo { get; private set; }
+		public Image Tab9SubWRightLogo { get; private set; }
+		public Image Tab9SubWFooterLogo { get; private set; }
 
 		public Image Tab9SubAClipart1Image { get; private set; }
 		public Image Tab9SubAClipart2Image { get; private set; }
@@ -216,6 +270,12 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab10SubCFooterLogo { get; private set; }
 		public Image Tab10SubDRightLogo { get; private set; }
 		public Image Tab10SubDFooterLogo { get; private set; }
+		public Image Tab10SubURightLogo { get; private set; }
+		public Image Tab10SubUFooterLogo { get; private set; }
+		public Image Tab10SubVRightLogo { get; private set; }
+		public Image Tab10SubVFooterLogo { get; private set; }
+		public Image Tab10SubWRightLogo { get; private set; }
+		public Image Tab10SubWFooterLogo { get; private set; }
 
 		public Image Tab10SubAClipart1Image { get; private set; }
 
@@ -238,6 +298,12 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab11SubBFooterLogo { get; private set; }
 		public Image Tab11SubCRightLogo { get; private set; }
 		public Image Tab11SubCFooterLogo { get; private set; }
+		public Image Tab11SubURightLogo { get; private set; }
+		public Image Tab11SubUFooterLogo { get; private set; }
+		public Image Tab11SubVRightLogo { get; private set; }
+		public Image Tab11SubVFooterLogo { get; private set; }
+		public Image Tab11SubWRightLogo { get; private set; }
+		public Image Tab11SubWFooterLogo { get; private set; }
 
 		public Image Tab11SubAClipart1Image { get; private set; }
 		public Image Tab11SubAClipart2Image { get; private set; }
@@ -323,6 +389,24 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			Tab1SubAFooterLogo = resourceManager.LogoTab1SubAFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab1SubAFooterFile.LocalPath)
 				: null;
+			Tab1SubURightLogo = resourceManager.LogoTab1SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab1SubURightFile.LocalPath)
+				: null;
+			Tab1SubUFooterLogo = resourceManager.LogoTab1SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab1SubUFooterFile.LocalPath)
+				: null;
+			Tab1SubVRightLogo = resourceManager.LogoTab1SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab1SubVRightFile.LocalPath)
+				: null;
+			Tab1SubVFooterLogo = resourceManager.LogoTab1SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab1SubVFooterFile.LocalPath)
+				: null;
+			Tab1SubWRightLogo = resourceManager.LogoTab1SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab1SubWRightFile.LocalPath)
+				: null;
+			Tab1SubWFooterLogo = resourceManager.LogoTab1SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab1SubWFooterFile.LocalPath)
+				: null;
 
 			Tab1SubAClipart1Image = resourceManager.ClipartTab1SubA1File.ExistsLocal()
 				? Image.FromFile(resourceManager.ClipartTab1SubA1File.LocalPath)
@@ -343,6 +427,24 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 				: null;
 			Tab2SubBFooterLogo = resourceManager.LogoTab2SubBFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab2SubBFooterFile.LocalPath)
+				: null;
+			Tab2SubURightLogo = resourceManager.LogoTab2SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab2SubURightFile.LocalPath)
+				: null;
+			Tab2SubUFooterLogo = resourceManager.LogoTab2SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab2SubUFooterFile.LocalPath)
+				: null;
+			Tab2SubVRightLogo = resourceManager.LogoTab2SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab2SubVRightFile.LocalPath)
+				: null;
+			Tab2SubVFooterLogo = resourceManager.LogoTab2SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab2SubVFooterFile.LocalPath)
+				: null;
+			Tab2SubWRightLogo = resourceManager.LogoTab2SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab2SubWRightFile.LocalPath)
+				: null;
+			Tab2SubWFooterLogo = resourceManager.LogoTab2SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab2SubWFooterFile.LocalPath)
 				: null;
 
 			Tab2SubAClipart1Image = resourceManager.ClipartTab2SubA1File.ExistsLocal()
@@ -378,6 +480,24 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			Tab3SubCFooterLogo = resourceManager.LogoTab3SubCFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab3SubCFooterFile.LocalPath)
 				: null;
+			Tab3SubURightLogo = resourceManager.LogoTab3SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab3SubURightFile.LocalPath)
+				: null;
+			Tab3SubUFooterLogo = resourceManager.LogoTab3SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab3SubUFooterFile.LocalPath)
+				: null;
+			Tab3SubVRightLogo = resourceManager.LogoTab3SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab3SubVRightFile.LocalPath)
+				: null;
+			Tab3SubVFooterLogo = resourceManager.LogoTab3SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab3SubVFooterFile.LocalPath)
+				: null;
+			Tab3SubWRightLogo = resourceManager.LogoTab3SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab3SubWRightFile.LocalPath)
+				: null;
+			Tab3SubWFooterLogo = resourceManager.LogoTab3SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab3SubWFooterFile.LocalPath)
+				: null;
 
 			Tab3SubAClipart1Image = resourceManager.ClipartTab3SubA1File.ExistsLocal()
 				? Image.FromFile(resourceManager.ClipartTab3SubA1File.LocalPath)
@@ -411,6 +531,24 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 				: null;
 			Tab4SubCFooterLogo = resourceManager.LogoTab4SubCFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab4SubCFooterFile.LocalPath)
+				: null;
+			Tab4SubURightLogo = resourceManager.LogoTab4SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab4SubURightFile.LocalPath)
+				: null;
+			Tab4SubUFooterLogo = resourceManager.LogoTab4SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab4SubUFooterFile.LocalPath)
+				: null;
+			Tab4SubVRightLogo = resourceManager.LogoTab4SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab4SubVRightFile.LocalPath)
+				: null;
+			Tab4SubVFooterLogo = resourceManager.LogoTab4SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab4SubVFooterFile.LocalPath)
+				: null;
+			Tab4SubWRightLogo = resourceManager.LogoTab4SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab4SubWRightFile.LocalPath)
+				: null;
+			Tab4SubWFooterLogo = resourceManager.LogoTab4SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab4SubWFooterFile.LocalPath)
 				: null;
 
 			Tab4SubAClipart1Image = resourceManager.ClipartTab4SubA1File.ExistsLocal()
@@ -460,6 +598,24 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 				: null;
 			Tab5SubEFooterLogo = resourceManager.LogoTab5SubEFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab5SubEFooterFile.LocalPath)
+				: null;
+			Tab5SubURightLogo = resourceManager.LogoTab5SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab5SubURightFile.LocalPath)
+				: null;
+			Tab5SubUFooterLogo = resourceManager.LogoTab5SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab5SubUFooterFile.LocalPath)
+				: null;
+			Tab5SubVRightLogo = resourceManager.LogoTab5SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab5SubVRightFile.LocalPath)
+				: null;
+			Tab5SubVFooterLogo = resourceManager.LogoTab5SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab5SubVFooterFile.LocalPath)
+				: null;
+			Tab5SubWRightLogo = resourceManager.LogoTab5SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab5SubWRightFile.LocalPath)
+				: null;
+			Tab5SubWFooterLogo = resourceManager.LogoTab5SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab5SubWFooterFile.LocalPath)
 				: null;
 
 			Tab5SubAClipart1Image = resourceManager.ClipartTab5SubA1File.ExistsLocal()
@@ -540,6 +696,24 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			Tab6SubDFooterLogo = resourceManager.LogoTab6SubDFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab6SubDFooterFile.LocalPath)
 				: null;
+			Tab6SubURightLogo = resourceManager.LogoTab6SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab6SubURightFile.LocalPath)
+				: null;
+			Tab6SubUFooterLogo = resourceManager.LogoTab6SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab6SubUFooterFile.LocalPath)
+				: null;
+			Tab6SubVRightLogo = resourceManager.LogoTab6SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab6SubVRightFile.LocalPath)
+				: null;
+			Tab6SubVFooterLogo = resourceManager.LogoTab6SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab6SubVFooterFile.LocalPath)
+				: null;
+			Tab6SubWRightLogo = resourceManager.LogoTab6SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab6SubWRightFile.LocalPath)
+				: null;
+			Tab6SubWFooterLogo = resourceManager.LogoTab6SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab6SubWFooterFile.LocalPath)
+				: null;
 
 			Tab6SubAClipart1Image = resourceManager.ClipartTab6SubA1File.ExistsLocal()
 				? Image.FromFile(resourceManager.ClipartTab6SubA1File.LocalPath)
@@ -603,6 +777,24 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			Tab7SubCFooterLogo = resourceManager.LogoTab7SubCFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab7SubCFooterFile.LocalPath)
 				: null;
+			Tab7SubURightLogo = resourceManager.LogoTab7SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab7SubURightFile.LocalPath)
+				: null;
+			Tab7SubUFooterLogo = resourceManager.LogoTab7SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab7SubUFooterFile.LocalPath)
+				: null;
+			Tab7SubVRightLogo = resourceManager.LogoTab7SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab7SubVRightFile.LocalPath)
+				: null;
+			Tab7SubVFooterLogo = resourceManager.LogoTab7SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab7SubVFooterFile.LocalPath)
+				: null;
+			Tab7SubWRightLogo = resourceManager.LogoTab7SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab7SubWRightFile.LocalPath)
+				: null;
+			Tab7SubWFooterLogo = resourceManager.LogoTab7SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab7SubWFooterFile.LocalPath)
+				: null;
 
 			Tab7SubAClipart1Image = resourceManager.ClipartTab7SubA1File.ExistsLocal()
 				? Image.FromFile(resourceManager.ClipartTab7SubA1File.LocalPath)
@@ -665,6 +857,24 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			Tab8SubDFooterLogo = resourceManager.LogoTab8SubDFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab8SubDFooterFile.LocalPath)
 				: null;
+			Tab8SubURightLogo = resourceManager.LogoTab8SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab8SubURightFile.LocalPath)
+				: null;
+			Tab8SubUFooterLogo = resourceManager.LogoTab8SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab8SubUFooterFile.LocalPath)
+				: null;
+			Tab8SubVRightLogo = resourceManager.LogoTab8SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab8SubVRightFile.LocalPath)
+				: null;
+			Tab8SubVFooterLogo = resourceManager.LogoTab8SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab8SubVFooterFile.LocalPath)
+				: null;
+			Tab8SubWRightLogo = resourceManager.LogoTab8SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab8SubWRightFile.LocalPath)
+				: null;
+			Tab8SubWFooterLogo = resourceManager.LogoTab8SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab8SubWFooterFile.LocalPath)
+				: null;
 
 			Tab8SubAClipart1Image = resourceManager.ClipartTab8SubA1File.ExistsLocal()
 				? Image.FromFile(resourceManager.ClipartTab8SubA1File.LocalPath)
@@ -700,6 +910,24 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 				: null;
 			Tab9SubCFooterLogo = resourceManager.LogoTab9SubCFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab9SubCFooterFile.LocalPath)
+				: null;
+			Tab9SubURightLogo = resourceManager.LogoTab9SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab9SubURightFile.LocalPath)
+				: null;
+			Tab9SubUFooterLogo = resourceManager.LogoTab9SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab9SubUFooterFile.LocalPath)
+				: null;
+			Tab9SubVRightLogo = resourceManager.LogoTab9SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab9SubVRightFile.LocalPath)
+				: null;
+			Tab9SubVFooterLogo = resourceManager.LogoTab9SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab9SubVFooterFile.LocalPath)
+				: null;
+			Tab9SubWRightLogo = resourceManager.LogoTab9SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab9SubWRightFile.LocalPath)
+				: null;
+			Tab9SubWFooterLogo = resourceManager.LogoTab9SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab9SubWFooterFile.LocalPath)
 				: null;
 
 			Tab9SubAClipart1Image = resourceManager.ClipartTab9SubA1File.ExistsLocal()
@@ -760,6 +988,24 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			Tab10SubDFooterLogo = resourceManager.LogoTab10SubDFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab10SubDFooterFile.LocalPath)
 				: null;
+			Tab10SubURightLogo = resourceManager.LogoTab10SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubURightFile.LocalPath)
+				: null;
+			Tab10SubUFooterLogo = resourceManager.LogoTab10SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubUFooterFile.LocalPath)
+				: null;
+			Tab10SubVRightLogo = resourceManager.LogoTab10SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubVRightFile.LocalPath)
+				: null;
+			Tab10SubVFooterLogo = resourceManager.LogoTab10SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubVFooterFile.LocalPath)
+				: null;
+			Tab10SubWRightLogo = resourceManager.LogoTab10SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubWRightFile.LocalPath)
+				: null;
+			Tab10SubWFooterLogo = resourceManager.LogoTab10SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubWFooterFile.LocalPath)
+				: null;
 
 			Tab10SubAClipart1Image = resourceManager.ClipartTab10SubA1File.ExistsLocal()
 				? Image.FromFile(resourceManager.ClipartTab10SubA1File.LocalPath)
@@ -807,6 +1053,24 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 				: null;
 			Tab11SubCFooterLogo = resourceManager.LogoTab11SubCFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab11SubCFooterFile.LocalPath)
+				: null;
+			Tab11SubURightLogo = resourceManager.LogoTab11SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubURightFile.LocalPath)
+				: null;
+			Tab11SubUFooterLogo = resourceManager.LogoTab11SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubUFooterFile.LocalPath)
+				: null;
+			Tab11SubVRightLogo = resourceManager.LogoTab11SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubVRightFile.LocalPath)
+				: null;
+			Tab11SubVFooterLogo = resourceManager.LogoTab11SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubVFooterFile.LocalPath)
+				: null;
+			Tab11SubWRightLogo = resourceManager.LogoTab11SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubWRightFile.LocalPath)
+				: null;
+			Tab11SubWFooterLogo = resourceManager.LogoTab11SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubWFooterFile.LocalPath)
 				: null;
 
 			Tab11SubAClipart1Image = resourceManager.ClipartTab11SubA1File.ExistsLocal()

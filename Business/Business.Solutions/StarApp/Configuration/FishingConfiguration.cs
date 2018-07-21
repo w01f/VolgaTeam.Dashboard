@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using Asa.Business.Solutions.Common.Configuration;
+using Asa.Common.Core.Helpers;
 
 namespace Asa.Business.Solutions.StarApp.Configuration
 {
@@ -26,6 +27,10 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public string PartCSubHeader2Placeholder { get; private set; }
 		public string PartCSubHeader3Placeholder { get; private set; }
 
+		public SlideManager PartUSlides { get; }
+		public SlideManager PartVSlides { get; }
+		public SlideManager PartWSlides { get; }
+
 		public FishingConfiguration()
 		{
 			HeadersPartAItems = new List<ListDataItem>();
@@ -36,6 +41,10 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 			PartBClipart2Configuration = new ClipartConfiguration();
 
 			HeadersPartCItems = new List<ListDataItem>();
+
+			PartUSlides = new SlideManager();
+			PartVSlides = new SlideManager();
+			PartWSlides = new SlideManager();
 		}
 
 		public void Load(ResourceManager resourceManager)
@@ -133,6 +142,21 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							break;
 					}
 				}
+			}
+
+			if (resourceManager.Tab3PartUSlidesFolder.ExistsLocal())
+			{
+				PartUSlides.LoadSlides(resourceManager.Tab3PartUSlidesFolder);
+			}
+
+			if (resourceManager.Tab3PartVSlidesFolder.ExistsLocal())
+			{
+				PartVSlides.LoadSlides(resourceManager.Tab3PartVSlidesFolder);
+			}
+
+			if (resourceManager.Tab3PartWSlidesFolder.ExistsLocal())
+			{
+				PartWSlides.LoadSlides(resourceManager.Tab3PartWSlidesFolder);
 			}
 		}
 	}

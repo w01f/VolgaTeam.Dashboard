@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using Asa.Business.Solutions.Common.Configuration;
+using Asa.Common.Core.Helpers;
 
 namespace Asa.Business.Solutions.StarApp.Configuration
 {
@@ -9,13 +10,20 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 	{
 		public List<ListDataItem> HeaderPartAItems { get; }
 		public ClipartConfiguration PartAClipart1Configuration { get; private set; }
-		public string SubHeader1DefaultValue { get; private set; }
-		public string SubHeader1Placeholder { get; private set; }
+		public string PartASubHeader1DefaultValue { get; private set; }
+		public string PartASubHeader1Placeholder { get; private set; }
+		public SlideManager PartUSlides { get; }
+		public SlideManager PartVSlides { get; }
+		public SlideManager PartWSlides { get; }
 
 		public CoverConfiguration()
 		{
 			HeaderPartAItems = new List<ListDataItem>();
 			PartAClipart1Configuration = new ClipartConfiguration();
+
+			PartUSlides = new SlideManager();
+			PartVSlides = new SlideManager();
+			PartWSlides = new SlideManager();
 		}
 
 		public void Load(ResourceManager resourceManager)
@@ -38,14 +46,29 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 							break;
 						case "CP01ASubheader1":
 							if (item.IsPlaceholder)
-								SubHeader1Placeholder = item.Value;
+								PartASubHeader1Placeholder = item.Value;
 							else
-								SubHeader1DefaultValue = item.Value;
+								PartASubHeader1DefaultValue = item.Value;
 							break;
 					}
 				}
 
 				PartAClipart1Configuration = ClipartConfiguration.FromXml(node, "CP01AClipart1");
+			}
+
+			if (resourceManager.Tab1PartUSlidesFolder.ExistsLocal())
+			{
+				PartUSlides.LoadSlides(resourceManager.Tab1PartUSlidesFolder);
+			}
+
+			if (resourceManager.Tab1PartVSlidesFolder.ExistsLocal())
+			{
+				PartVSlides.LoadSlides(resourceManager.Tab1PartVSlidesFolder);
+			}
+
+			if (resourceManager.Tab1PartWSlidesFolder.ExistsLocal())
+			{
+				PartWSlides.LoadSlides(resourceManager.Tab1PartWSlidesFolder);
 			}
 		}
 	}

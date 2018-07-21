@@ -68,7 +68,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			ThemeManager.Load();
 			SlideSettingsManager.Instance.SettingsChanged += (o, e) => ThemeManager.Load();
 
-			SlideManager.Load();
+			SlideManager.LoadSlides(Common.Core.Configuration.ResourceManager.Instance.SlideMastersFolder);
 
 			RibbonTabPageManager = new RibbonTabPageManager(ResourceManager.Instance.TabsConfigFile);
 			FormStyleManager = new FormStyleManager(ResourceManager.Instance.FormStyleConfigFile);

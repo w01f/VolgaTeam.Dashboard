@@ -73,10 +73,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemTabBCombo4 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.comboBoxEditTabBCombo4 = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.clipartEditContainer1 = new ClipartEditContainer();
 			this.layoutControlItemClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainer2 = new ClipartEditContainer();
+			this.clipartEditContainer1 = new Asa.Solutions.Common.PresentationClasses.ClipartEdit.ClipartEditContainer();
 			this.layoutControlItemClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.clipartEditContainer2 = new Asa.Solutions.Common.PresentationClasses.ClipartEdit.ClipartEditContainer();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
@@ -516,15 +516,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			this.comboBoxEditTabBCombo4.TabIndex = 5;
 			this.comboBoxEditTabBCombo4.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
-			// clipartEditContainer1
-			// 
-			this.clipartEditContainer1.AllowDrop = true;
-			this.clipartEditContainer1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.clipartEditContainer1.Location = new System.Drawing.Point(603, 42);
-			this.clipartEditContainer1.Name = "clipartEditContainer1";
-			this.clipartEditContainer1.Size = new System.Drawing.Size(224, 242);
-			this.clipartEditContainer1.TabIndex = 6;
-			// 
 			// layoutControlItemClipart1
 			// 
 			this.layoutControlItemClipart1.Control = this.clipartEditContainer1;
@@ -541,14 +532,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			this.layoutControlItemClipart1.TextVisible = false;
 			this.layoutControlItemClipart1.TrimClientAreaToControl = false;
 			// 
-			// clipartEditContainer2
+			// clipartEditContainer1
 			// 
-			this.clipartEditContainer2.AllowDrop = true;
-			this.clipartEditContainer2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.clipartEditContainer2.Location = new System.Drawing.Point(603, 329);
-			this.clipartEditContainer2.Name = "clipartEditContainer2";
-			this.clipartEditContainer2.Size = new System.Drawing.Size(224, 241);
-			this.clipartEditContainer2.TabIndex = 7;
+			this.clipartEditContainer1.AllowDrop = true;
+			this.clipartEditContainer1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clipartEditContainer1.Location = new System.Drawing.Point(603, 42);
+			this.clipartEditContainer1.Name = "clipartEditContainer1";
+			this.clipartEditContainer1.Size = new System.Drawing.Size(224, 242);
+			this.clipartEditContainer1.TabIndex = 6;
 			// 
 			// layoutControlItemClipart2
 			// 
@@ -565,6 +556,15 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			this.layoutControlItemClipart2.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemClipart2.TextVisible = false;
 			this.layoutControlItemClipart2.TrimClientAreaToControl = false;
+			// 
+			// clipartEditContainer2
+			// 
+			this.clipartEditContainer2.AllowDrop = true;
+			this.clipartEditContainer2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clipartEditContainer2.Location = new System.Drawing.Point(603, 329);
+			this.clipartEditContainer2.Name = "clipartEditContainer2";
+			this.clipartEditContainer2.Size = new System.Drawing.Size(224, 241);
+			this.clipartEditContainer2.TabIndex = 7;
 			// 
 			// ClosersTabBControl
 			// 
@@ -601,7 +601,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart2)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 

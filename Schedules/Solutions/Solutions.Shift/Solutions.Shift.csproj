@@ -72,18 +72,6 @@
     <Compile Include="PresentationClasses\ContentEditors\CBCControl.Designer.cs">
       <DependentUpon>CBCControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\ContractControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\ContractControl.Designer.cs">
-      <DependentUpon>ContractControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\NextStepsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\NextStepsControl.Designer.cs">
-      <DependentUpon>NextStepsControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\ClosersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -95,6 +83,18 @@
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\SupportMaterialsControl.Designer.cs">
       <DependentUpon>SupportMaterialsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ContractControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ContractControl.Designer.cs">
+      <DependentUpon>ContractControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextStepsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextStepsControl.Designer.cs">
+      <DependentUpon>NextStepsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\InvestmentControl.cs">
       <SubType>UserControl</SubType>
@@ -120,17 +120,17 @@
     <Compile Include="PresentationClasses\ContentEditors\MarketControl.Designer.cs">
       <DependentUpon>MarketControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\StartersControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\StartersControl.Designer.cs">
-      <DependentUpon>StartersControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CNAControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CNAControl.Designer.cs">
       <DependentUpon>CNAControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\StartersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\StartersControl.Designer.cs">
+      <DependentUpon>StartersControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\IMultiTabsControl.cs" />
     <Compile Include="PresentationClasses\ContentEditors\IShiftTabPageContainer.cs" />
@@ -157,17 +157,17 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\CBCControl.resx">
       <DependentUpon>CBCControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\ContractControl.resx">
-      <DependentUpon>ContractControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\NextStepsControl.resx">
-      <DependentUpon>NextStepsControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\ClosersControl.resx">
       <DependentUpon>ClosersControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\SupportMaterialsControl.resx">
       <DependentUpon>SupportMaterialsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\ContractControl.resx">
+      <DependentUpon>ContractControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NextStepsControl.resx">
+      <DependentUpon>NextStepsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\InvestmentControl.resx">
       <DependentUpon>InvestmentControl.cs</DependentUpon>
@@ -181,11 +181,11 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\MarketControl.resx">
       <DependentUpon>MarketControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\StartersControl.resx">
-      <DependentUpon>StartersControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\CNAControl.resx">
       <DependentUpon>CNAControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\StartersControl.resx">
+      <DependentUpon>StartersControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\ShiftTabPageContainerControl.resx">
       <DependentUpon>ShiftTabPageContainerControl.cs</DependentUpon>

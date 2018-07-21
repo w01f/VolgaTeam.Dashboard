@@ -13,11 +13,15 @@ namespace Asa.Common.GUI.Slides
 	//public partial class SlideGroupPage : UserControl
 	public partial class SlideGroupPage : XtraTabPage
 	{
+		private bool _allowHandleEvents;
 		private readonly List<SlideMaster> _slideMasters = new List<SlideMaster>();
 		private SlideAdaptor _slideAdaptor;
 		private ImageListView.HitInfo _menuHitInfo;
 
 		public event EventHandler<SlideMasterEventArgs> SlideOutput;
+		public event EventHandler<EventArgs> SelectionChanged;
+
+		public string SlideGroupName { get; }
 
 		public SlideMaster SelectedSlide
 		{
@@ -32,7 +36,11 @@ namespace Asa.Common.GUI.Slides
 		public SlideGroupPage(string groupName, IEnumerable<SlideMaster> slides)
 		{
 			InitializeComponent();
-			Text = groupName;
+			SlideGroupName = groupName;
+			Text = SlideGroupName;
+
+			_allowHandleEvents = false;
+
 			_slideMasters.AddRange(slides);
 			if (_slideMasters.Any())
 			{
@@ -49,6 +57,34 @@ namespace Asa.Common.GUI.Slides
 						}).ToArray(),
 					_slideAdaptor);
 			}
+
+			_allowHandleEvents = true;
+
+			slidesListView.SelectionChanged += OnListViewSelectionChanged;
+		}
+
+		private void OnListViewSelectionChanged(Object sender, EventArgs e)
+		{
+			SelectionChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+		public void ResetSelection()
+		{
+			_allowHandleEvents = false;
+			slidesListView.ClearSelection();
+			_allowHandleEvents = true;
+		}
+
+		public void SelectSlide(SlideMaster slideMaster)
+		{
+			_allowHandleEvents = false;
+
+			ResetSelection();
+			var itemToSelect = slidesListView.Items.FirstOrDefault(item => item.Tag == slideMaster);
+			if (itemToSelect != null)
+				itemToSelect.Selected = true;
+
+			_allowHandleEvents = true;
 		}
 
 		public void Release()
@@ -58,26 +94,28 @@ namespace Asa.Common.GUI.Slides
 			_slideAdaptor.Dispose();
 			_slideAdaptor = null;
 			_slideMasters.Clear();
+
+			SlideOutput = null;
+			SelectionChanged = null;
 		}
 
-		private void imageListView_MouseMove(object sender, MouseEventArgs e)
+		private void OnListViewMouseMove(object sender, MouseEventArgs e)
 		{
 			slidesListView.Focus();
 
-			ImageListView.HitInfo hitInfo;
-			slidesListView.HitTest(new Point(e.X, e.Y), out hitInfo);
+			slidesListView.HitTest(new Point(e.X, e.Y), out var hitInfo);
 			if (!hitInfo.ItemHit)
 				toolTipController.HideHint();
 		}
 
-		private void imageListView_ItemDoubleClick(object sender, ItemClickEventArgs e)
+		private void OnListViewItemDoubleClick(object sender, ItemClickEventArgs e)
 		{
 			slidesListView.ClearSelection();
 			e.Item.Selected = true;
 			SlideOutput?.Invoke(this, new SlideMasterEventArgs { SlideMaster = (SlideMaster)e.Item.Tag });
 		}
 
-		private void slidesListView_ItemHover(object sender, ItemHoverEventArgs e)
+		private void OnListViewItemHover(object sender, ItemHoverEventArgs e)
 		{
 			toolTipController.HideHint();
 			var slideMaster = e.Item?.Tag as SlideMaster;
@@ -97,33 +135,34 @@ namespace Asa.Common.GUI.Slides
 			toolTipController.ShowHint(toolTipParameters, MousePosition);
 		}
 
-		private void slidesListView_MouseLeave(object sender, EventArgs e)
+		private void OnListViewMouseLeave(object sender, EventArgs e)
 		{
 			toolTipController.HideHint();
 		}
 
-		private void imageListView_MouseDown(object sender, MouseEventArgs e)
+		private void OnListViewMouseDown(object sender, MouseEventArgs e)
 		{
 			_menuHitInfo = null;
-			ImageListView.HitInfo hitInfo;
-			slidesListView.HitTest(new Point(e.X, e.Y), out hitInfo);
+			slidesListView.HitTest(new Point(e.X, e.Y), out var hitInfo);
 			if (ModifierKeys != Keys.None) return;
 			if (!hitInfo.InItemArea) return;
 			switch (e.Button)
 			{
 				case MouseButtons.Right:
 					_menuHitInfo = hitInfo;
-					contextMenuStrip.Show(MousePosition);
+					if (SlideOutput != null)
+						contextMenuStrip.Show(MousePosition);
 					break;
 			}
 		}
 
-		private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		private void OnContextMenuOpening(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			e.Cancel = !(_menuHitInfo != null && _menuHitInfo.InItemArea && _menuHitInfo.ItemIndex >= 0);
+			e.Cancel = SlideOutput == null ||
+				!(_menuHitInfo != null && _menuHitInfo.InItemArea && _menuHitInfo.ItemIndex >= 0);
 		}
 
-		private void toolStripMenuItemOutput_Click(object sender, System.EventArgs e)
+		private void OnMenuItemOutputClick(object sender, EventArgs e)
 		{
 			var slideMaster = (SlideMaster)slidesListView.Items[_menuHitInfo.ItemIndex].Tag;
 			SlideOutput?.Invoke(this, new SlideMasterEventArgs { SlideMaster = slideMaster });

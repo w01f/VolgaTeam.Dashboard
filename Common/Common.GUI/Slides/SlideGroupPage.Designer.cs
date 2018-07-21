@@ -43,7 +43,7 @@
             this.toolStripMenuItemOutput});
 			this.contextMenuStrip.Name = "contextMenuStrip";
 			this.contextMenuStrip.Size = new System.Drawing.Size(144, 26);
-			this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
+			this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.OnContextMenuOpening);
 			// 
 			// toolStripMenuItemOutput
 			// 
@@ -51,7 +51,7 @@
 			this.toolStripMenuItemOutput.Name = "toolStripMenuItemOutput";
 			this.toolStripMenuItemOutput.Size = new System.Drawing.Size(143, 22);
 			this.toolStripMenuItemOutput.Text = "Insert slide(s)";
-			this.toolStripMenuItemOutput.Click += new System.EventHandler(this.toolStripMenuItemOutput_Click);
+			this.toolStripMenuItemOutput.Click += new System.EventHandler(this.OnMenuItemOutputClick);
 			// 
 			// slidesListView
 			// 
@@ -70,11 +70,11 @@
 			this.slidesListView.TabIndex = 40;
 			this.slidesListView.ThumbnailSize = new System.Drawing.Size(255, 170);
 			this.slidesListView.UseWIC = true;
-			this.slidesListView.ItemHover += new Manina.Windows.Forms.ItemHoverEventHandler(this.slidesListView_ItemHover);
-			this.slidesListView.ItemDoubleClick += new Manina.Windows.Forms.ItemDoubleClickEventHandler(this.imageListView_ItemDoubleClick);
-			this.slidesListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageListView_MouseDown);
-			this.slidesListView.MouseLeave += new System.EventHandler(this.slidesListView_MouseLeave);
-			this.slidesListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageListView_MouseMove);
+			this.slidesListView.ItemHover += new Manina.Windows.Forms.ItemHoverEventHandler(this.OnListViewItemHover);
+			this.slidesListView.ItemDoubleClick += new Manina.Windows.Forms.ItemDoubleClickEventHandler(this.OnListViewItemDoubleClick);
+			this.slidesListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnListViewMouseDown);
+			this.slidesListView.MouseLeave += new System.EventHandler(this.OnListViewMouseLeave);
+			this.slidesListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnListViewMouseMove);
 			// 
 			// SlideGroupPage
 			// 

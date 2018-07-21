@@ -36,8 +36,10 @@ namespace Asa.Common.Core.Objects.Slides
 		{
 			var files = _root.GetLocalFiles().ToList();
 
-			var titleFile = files.First(file => file.Name == "title.txt");
-			Name = File.ReadAllText(titleFile.LocalPath).Trim();
+			var titleFile = files.FirstOrDefault(file => file.Name == "title.txt");
+			Name = titleFile != null ?
+				File.ReadAllText(titleFile.LocalPath).Trim() :
+				Path.GetFileName(_root.LocalPath);
 
 			var toolTipFile = files.FirstOrDefault(file => file.Name == "tip.txt");
 			if (toolTipFile != null)
@@ -47,11 +49,14 @@ namespace Asa.Common.Core.Objects.Slides
 				ToolTipBody = tooltipLines.ElementAtOrDefault(1)?.Replace("*", "");
 			}
 
-			int tempInt;
-			if (Int32.TryParse(Path.GetFileName(_root.LocalPath), out tempInt))
+			if (Int32.TryParse(Path.GetFileName(_root.LocalPath), out var tempInt))
 				Order = tempInt;
 
-			LogoFile = files.FirstOrDefault(file => file.Extension == ".png" && !file.Name.Contains("_rbn"));
+			LogoFile = files.FirstOrDefault(file => 
+				(String.Equals(file.Extension, ".PNG", StringComparison.OrdinalIgnoreCase) ||
+				String.Equals(file.Extension, ".JPG", StringComparison.OrdinalIgnoreCase) ||
+				String.Equals(file.Extension, ".JPEG", StringComparison.OrdinalIgnoreCase)) &&
+				!file.Name.Contains("_rbn"));
 			if (LogoFile != null)
 			{
 				Logo = new Bitmap(LogoFile.LocalPath);
@@ -62,7 +67,7 @@ namespace Asa.Common.Core.Objects.Slides
 				RibbonLogo = borderedLogo.GetThumbnailImage((borderedLogo.Width * 72) / borderedLogo.Height, 72, null, IntPtr.Zero);
 				AdBarLogo = borderedLogo.GetThumbnailImage((borderedLogo.Width * 86) / borderedLogo.Height, 86, null, IntPtr.Zero);
 			}
-			_masterFile = files.FirstOrDefault(file => file.Extension == ".pptx");
+			_masterFile = files.FirstOrDefault(file => String.Equals(file.Extension, ".PPTX", StringComparison.OrdinalIgnoreCase));
 		}
 
 		public string GetMasterPath()

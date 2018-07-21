@@ -9,6 +9,9 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public TabBState TabB { get; }
 		public TabCState TabC { get; }
 		public TabDState TabD { get; }
+		public TabUState TabU { get; }
+		public TabVState TabV { get; }
+		public TabWState TabW { get; }
 
 		public SolutionState()
 		{
@@ -16,6 +19,9 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			TabB = new TabBState();
 			TabC = new TabCState();
 			TabD = new TabDState();
+			TabU = new TabUState();
+			TabV = new TabVState();
+			TabW = new TabWState();
 		}
 
 		public class TabAState
@@ -48,6 +54,36 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			public ListDataItem SlideHeader { get; set; }
 			public ClipartObject Clipart1 { get; set; }
 			public string Subheader1 { get; set; }
+		}
+
+		public class TabUState
+		{
+			public SlideObject Slide { get; }
+
+			public TabUState()
+			{
+				Slide = new SlideObject();
+			}
+		}
+
+		public class TabVState
+		{
+			public SlideObject Slide { get; }
+
+			public TabVState()
+			{
+				Slide = new SlideObject();
+			}
+		}
+
+		public class TabWState
+		{
+			public SlideObject Slide { get; }
+
+			public TabWState()
+			{
+				Slide = new SlideObject();
+			}
 		}
 	}
 }

@@ -95,9 +95,19 @@ namespace Asa.Common.GUI.Preview
 		private void OnSelectedPreviewItemChanged(object sender, TabPageChangedEventArgs e)
 		{
 			if (!(e.Page is PreviewItemControl previewControl)) return;
-			xtraTabControlItems.Enabled = false;
+
+			xtraTabControlItems.TabPages
+				.Where(tabPage => tabPage != e.Page)
+				.ToList()
+				.ForEach(tabPage => tabPage.PageEnabled = false);
+			Application.DoEvents();
+
 			LoadPreviewControl(previewControl);
-			xtraTabControlItems.Enabled = true;
+
+			xtraTabControlItems.TabPages
+				.ToList()
+				.ForEach(tabPage => tabPage.PageEnabled = true);
+			Application.DoEvents();
 		}
 	}
 }

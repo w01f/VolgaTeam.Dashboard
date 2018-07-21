@@ -80,7 +80,7 @@
 			this.layoutControl.ForeColor = System.Drawing.Color.Black;
 			this.layoutControl.Location = new System.Drawing.Point(0, 0);
 			this.layoutControl.Name = "layoutControl";
-			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
+			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(879, 243, 250, 350);
 			this.layoutControl.Root = this.layoutControlGroupRoot;
 			this.layoutControl.Size = new System.Drawing.Size(830, 531);
 			this.layoutControl.TabIndex = 66;
@@ -104,22 +104,28 @@
 			// comboBoxEditSlides
 			// 
 			this.comboBoxEditSlides.EditValue = "";
-			this.comboBoxEditSlides.Location = new System.Drawing.Point(302, 475);
+			this.comboBoxEditSlides.Location = new System.Drawing.Point(336, 475);
 			this.comboBoxEditSlides.Name = "comboBoxEditSlides";
 			this.comboBoxEditSlides.Properties.Appearance.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditSlides.Properties.Appearance.Options.UseFont = true;
 			this.comboBoxEditSlides.Properties.Appearance.Options.UseTextOptions = true;
 			this.comboBoxEditSlides.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.comboBoxEditSlides.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 21.75F);
+			this.comboBoxEditSlides.Properties.AppearanceDisabled.Options.UseFont = true;
 			this.comboBoxEditSlides.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditSlides.Properties.AppearanceDropDown.Options.UseFont = true;
 			this.comboBoxEditSlides.Properties.AppearanceDropDown.Options.UseTextOptions = true;
 			this.comboBoxEditSlides.Properties.AppearanceDropDown.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.comboBoxEditSlides.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 21.75F);
+			this.comboBoxEditSlides.Properties.AppearanceFocused.Options.UseFont = true;
+			this.comboBoxEditSlides.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 21.75F);
+			this.comboBoxEditSlides.Properties.AppearanceReadOnly.Options.UseFont = true;
 			this.comboBoxEditSlides.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("comboBoxEditSlides.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("comboBoxEditSlides.Properties.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
 			this.comboBoxEditSlides.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.comboBoxEditSlides.Size = new System.Drawing.Size(226, 54);
+			this.comboBoxEditSlides.Size = new System.Drawing.Size(192, 54);
 			this.comboBoxEditSlides.StyleController = this.layoutControl;
 			this.comboBoxEditSlides.TabIndex = 5;
 			this.comboBoxEditSlides.SelectedIndexChanged += new System.EventHandler(this.OnSelectedSlideIndexChanged);
@@ -190,7 +196,7 @@
 			this.emptySpaceItem2.AllowHotTrack = false;
 			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 2);
 			this.emptySpaceItem2.Name = "emptySpaceItem2";
-			this.emptySpaceItem2.Size = new System.Drawing.Size(300, 58);
+			this.emptySpaceItem2.Size = new System.Drawing.Size(334, 58);
 			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemSlides
@@ -198,9 +204,9 @@
 			this.layoutControlItemSlides.Control = this.comboBoxEditSlides;
 			this.layoutControlItemSlides.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemSlides.FillControlToClientArea = false;
-			this.layoutControlItemSlides.Location = new System.Drawing.Point(300, 2);
+			this.layoutControlItemSlides.Location = new System.Drawing.Point(334, 2);
 			this.layoutControlItemSlides.Name = "layoutControlItemSlides";
-			this.layoutControlItemSlides.Size = new System.Drawing.Size(230, 58);
+			this.layoutControlItemSlides.Size = new System.Drawing.Size(196, 58);
 			this.layoutControlItemSlides.Text = "Slides";
 			this.layoutControlItemSlides.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemSlides.TextVisible = false;

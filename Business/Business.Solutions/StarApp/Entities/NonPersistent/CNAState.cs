@@ -7,11 +7,17 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 	{
 		public TabAState TabA { get; }
 		public TabBState TabB { get; }
+		public TabUState TabU { get; }
+		public TabVState TabV { get; }
+		public TabWState TabW { get; }
 
 		public CNAState()
 		{
 			TabA = new TabAState();
 			TabB = new TabBState();
+			TabU = new TabUState();
+			TabV = new TabVState();
+			TabW = new TabWState();
 		}
 
 		public class TabAState
@@ -32,6 +38,36 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			public ListDataItem Combo3 { get; set; }
 			public ListDataItem Combo4 { get; set; }
 			public ListDataItem Combo5 { get; set; }
+		}
+
+		public class TabUState
+		{
+			public SlideObject Slide { get; }
+
+			public TabUState()
+			{
+				Slide = new SlideObject();
+			}
+		}
+
+		public class TabVState
+		{
+			public SlideObject Slide { get; }
+
+			public TabVState()
+			{
+				Slide = new SlideObject();
+			}
+		}
+
+		public class TabWState
+		{
+			public SlideObject Slide { get; }
+
+			public TabWState()
+			{
+				Slide = new SlideObject();
+			}
 		}
 	}
 }

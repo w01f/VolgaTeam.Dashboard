@@ -20,6 +20,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab11SubBTitle;
 			else if (typeof(ClosersTabCControl) == typeof(TClosersTabControl))
 				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab11SubCTitle;
+			else if (typeof(ClosersTabUControl) == typeof(TClosersTabControl))
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab11SubUTitle;
+			else if (typeof(ClosersTabVControl) == typeof(TClosersTabControl))
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab11SubVTitle;
+			else if (typeof(ClosersTabWControl) == typeof(TClosersTabControl))
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab11SubWTitle;
 		}
 
 		public void LoadContent()

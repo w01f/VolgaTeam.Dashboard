@@ -19,6 +19,8 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		#endregion
 
 		#region Tab 1
+		public StartersConfiguration StartersConfiguration { get; }
+
 		public Image Tab1SubARightLogo { get; private set; }
 		public Image Tab1SubAFooterLogo { get; private set; }
 		public Image Tab1SubBRightLogo { get; private set; }
@@ -39,9 +41,17 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public Image Tab1SubIFooterLogo { get; private set; }
 		public Image Tab1SubJRightLogo { get; private set; }
 		public Image Tab1SubJFooterLogo { get; private set; }
+		public Image Tab1SubURightLogo { get; private set; }
+		public Image Tab1SubUFooterLogo { get; private set; }
+		public Image Tab1SubVRightLogo { get; private set; }
+		public Image Tab1SubVFooterLogo { get; private set; }
+		public Image Tab1SubWRightLogo { get; private set; }
+		public Image Tab1SubWFooterLogo { get; private set; }
 		#endregion
 
 		#region Tab 2
+		public CNAConfiguration CNAConfiguration { get; }
+
 		public Image Tab2SubARightLogo { get; private set; }
 		public Image Tab2SubAFooterLogo { get; private set; }
 		public Image Tab2SubBRightLogo { get; private set; }
@@ -62,9 +72,17 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public Image Tab2SubIFooterLogo { get; private set; }
 		public Image Tab2SubJRightLogo { get; private set; }
 		public Image Tab2SubJFooterLogo { get; private set; }
+		public Image Tab2SubURightLogo { get; private set; }
+		public Image Tab2SubUFooterLogo { get; private set; }
+		public Image Tab2SubVRightLogo { get; private set; }
+		public Image Tab2SubVFooterLogo { get; private set; }
+		public Image Tab2SubWRightLogo { get; private set; }
+		public Image Tab2SubWFooterLogo { get; private set; }
 		#endregion
 
 		#region Tab 3
+		public MarketConfiguration MarketConfiguration { get; }
+
 		public Image Tab3SubARightLogo { get; private set; }
 		public Image Tab3SubAFooterLogo { get; private set; }
 		public Image Tab3SubBRightLogo { get; private set; }
@@ -85,9 +103,17 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public Image Tab3SubIFooterLogo { get; private set; }
 		public Image Tab3SubJRightLogo { get; private set; }
 		public Image Tab3SubJFooterLogo { get; private set; }
+		public Image Tab3SubURightLogo { get; private set; }
+		public Image Tab3SubUFooterLogo { get; private set; }
+		public Image Tab3SubVRightLogo { get; private set; }
+		public Image Tab3SubVFooterLogo { get; private set; }
+		public Image Tab3SubWRightLogo { get; private set; }
+		public Image Tab3SubWFooterLogo { get; private set; }
 		#endregion
 
 		#region Tab 4
+		public NeedsSolutionsConfiguration NeedsSolutionsConfiguration { get; }
+
 		public Image Tab4SubARightLogo { get; private set; }
 		public Image Tab4SubAFooterLogo { get; private set; }
 		public Image Tab4SubBRightLogo { get; private set; }
@@ -108,9 +134,17 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public Image Tab4SubIFooterLogo { get; private set; }
 		public Image Tab4SubJRightLogo { get; private set; }
 		public Image Tab4SubJFooterLogo { get; private set; }
+		public Image Tab4SubURightLogo { get; private set; }
+		public Image Tab4SubUFooterLogo { get; private set; }
+		public Image Tab4SubVRightLogo { get; private set; }
+		public Image Tab4SubVFooterLogo { get; private set; }
+		public Image Tab4SubWRightLogo { get; private set; }
+		public Image Tab4SubWFooterLogo { get; private set; }
 		#endregion
 
 		#region Tab 5
+		public CBCConfiguration CBCConfiguration { get; }
+
 		public Image Tab5SubARightLogo { get; private set; }
 		public Image Tab5SubAFooterLogo { get; private set; }
 		public Image Tab5SubBRightLogo { get; private set; }
@@ -131,9 +165,17 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public Image Tab5SubIFooterLogo { get; private set; }
 		public Image Tab5SubJRightLogo { get; private set; }
 		public Image Tab5SubJFooterLogo { get; private set; }
+		public Image Tab5SubURightLogo { get; private set; }
+		public Image Tab5SubUFooterLogo { get; private set; }
+		public Image Tab5SubVRightLogo { get; private set; }
+		public Image Tab5SubVFooterLogo { get; private set; }
+		public Image Tab5SubWRightLogo { get; private set; }
+		public Image Tab5SubWFooterLogo { get; private set; }
 		#endregion
 
 		#region Tab 6
+		public IntegratedSolutionConfiguration IntegratedSolutionConfiguration { get; }
+
 		public Image Tab6SubARightLogo { get; private set; }
 		public Image Tab6SubAFooterLogo { get; private set; }
 		public Image Tab6SubBRightLogo { get; private set; }
@@ -154,9 +196,17 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public Image Tab6SubIFooterLogo { get; private set; }
 		public Image Tab6SubJRightLogo { get; private set; }
 		public Image Tab6SubJFooterLogo { get; private set; }
+		public Image Tab6SubURightLogo { get; private set; }
+		public Image Tab6SubUFooterLogo { get; private set; }
+		public Image Tab6SubVRightLogo { get; private set; }
+		public Image Tab6SubVFooterLogo { get; private set; }
+		public Image Tab6SubWRightLogo { get; private set; }
+		public Image Tab6SubWFooterLogo { get; private set; }
 		#endregion
 
 		#region Tab 7
+		public InvestmentConfiguration InvestmentConfiguration { get; }
+
 		public Image Tab7SubARightLogo { get; private set; }
 		public Image Tab7SubAFooterLogo { get; private set; }
 		public Image Tab7SubBRightLogo { get; private set; }
@@ -177,9 +227,17 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public Image Tab7SubIFooterLogo { get; private set; }
 		public Image Tab7SubJRightLogo { get; private set; }
 		public Image Tab7SubJFooterLogo { get; private set; }
+		public Image Tab7SubURightLogo { get; private set; }
+		public Image Tab7SubUFooterLogo { get; private set; }
+		public Image Tab7SubVRightLogo { get; private set; }
+		public Image Tab7SubVFooterLogo { get; private set; }
+		public Image Tab7SubWRightLogo { get; private set; }
+		public Image Tab7SubWFooterLogo { get; private set; }
 		#endregion
 
 		#region Tab 8
+		public ClosersConfiguration ClosersConfiguration { get; }
+
 		public Image Tab8SubARightLogo { get; private set; }
 		public Image Tab8SubAFooterLogo { get; private set; }
 		public Image Tab8SubBRightLogo { get; private set; }
@@ -200,9 +258,17 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public Image Tab8SubIFooterLogo { get; private set; }
 		public Image Tab8SubJRightLogo { get; private set; }
 		public Image Tab8SubJFooterLogo { get; private set; }
+		public Image Tab8SubURightLogo { get; private set; }
+		public Image Tab8SubUFooterLogo { get; private set; }
+		public Image Tab8SubVRightLogo { get; private set; }
+		public Image Tab8SubVFooterLogo { get; private set; }
+		public Image Tab8SubWRightLogo { get; private set; }
+		public Image Tab8SubWFooterLogo { get; private set; }
 		#endregion
 
 		#region Tab 9
+		public NextStepsConfiguration NextStepsConfiguration { get; }
+
 		public Image Tab9SubARightLogo { get; private set; }
 		public Image Tab9SubAFooterLogo { get; private set; }
 		public Image Tab9SubBRightLogo { get; private set; }
@@ -223,9 +289,17 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public Image Tab9SubIFooterLogo { get; private set; }
 		public Image Tab9SubJRightLogo { get; private set; }
 		public Image Tab9SubJFooterLogo { get; private set; }
+		public Image Tab9SubURightLogo { get; private set; }
+		public Image Tab9SubUFooterLogo { get; private set; }
+		public Image Tab9SubVRightLogo { get; private set; }
+		public Image Tab9SubVFooterLogo { get; private set; }
+		public Image Tab9SubWRightLogo { get; private set; }
+		public Image Tab9SubWFooterLogo { get; private set; }
 		#endregion
 
 		#region Tab 10
+		public ContractConfiguration ContractConfiguration { get; }
+
 		public Image Tab10SubARightLogo { get; private set; }
 		public Image Tab10SubAFooterLogo { get; private set; }
 		public Image Tab10SubBRightLogo { get; private set; }
@@ -246,9 +320,17 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public Image Tab10SubIFooterLogo { get; private set; }
 		public Image Tab10SubJRightLogo { get; private set; }
 		public Image Tab10SubJFooterLogo { get; private set; }
+		public Image Tab10SubURightLogo { get; private set; }
+		public Image Tab10SubUFooterLogo { get; private set; }
+		public Image Tab10SubVRightLogo { get; private set; }
+		public Image Tab10SubVFooterLogo { get; private set; }
+		public Image Tab10SubWRightLogo { get; private set; }
+		public Image Tab10SubWFooterLogo { get; private set; }
 		#endregion
 
 		#region Tab 11
+		public SupportMaterialsConfiguration SupportMaterialsConfiguration { get; }
+
 		public Image Tab11SubARightLogo { get; private set; }
 		public Image Tab11SubAFooterLogo { get; private set; }
 		public Image Tab11SubBRightLogo { get; private set; }
@@ -269,11 +351,29 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public Image Tab11SubIFooterLogo { get; private set; }
 		public Image Tab11SubJRightLogo { get; private set; }
 		public Image Tab11SubJFooterLogo { get; private set; }
+		public Image Tab11SubURightLogo { get; private set; }
+		public Image Tab11SubUFooterLogo { get; private set; }
+		public Image Tab11SubVRightLogo { get; private set; }
+		public Image Tab11SubVFooterLogo { get; private set; }
+		public Image Tab11SubWRightLogo { get; private set; }
+		public Image Tab11SubWFooterLogo { get; private set; }
 		#endregion
 
 		public ShiftSolutionInfo()
 		{
 			Type = SolutionType.Shift;
+
+			StartersConfiguration = new StartersConfiguration();
+			CNAConfiguration = new CNAConfiguration();
+			MarketConfiguration = new MarketConfiguration();
+			NeedsSolutionsConfiguration = new NeedsSolutionsConfiguration();
+			CBCConfiguration = new CBCConfiguration();
+			IntegratedSolutionConfiguration = new IntegratedSolutionConfiguration();
+			InvestmentConfiguration = new InvestmentConfiguration();
+			ClosersConfiguration = new ClosersConfiguration();
+			NextStepsConfiguration = new NextStepsConfiguration();
+			ContractConfiguration = new ContractConfiguration();
+			SupportMaterialsConfiguration = new SupportMaterialsConfiguration();
 		}
 
 		public override void LoadData(StorageDirectory holderAppDataFolder)
@@ -317,6 +417,8 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			#endregion
 
 			#region Tab 1
+			StartersConfiguration.Load(resourceManager);
+
 			Tab1SubARightLogo = resourceManager.LogoTab1SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab1SubARightFile.LocalPath)
 				: null;
@@ -377,9 +479,29 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			Tab1SubJFooterLogo = resourceManager.LogoTab1SubJFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab1SubJFooterFile.LocalPath)
 				: null;
+			Tab1SubURightLogo = resourceManager.LogoTab1SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab1SubURightFile.LocalPath)
+				: null;
+			Tab1SubUFooterLogo = resourceManager.LogoTab1SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab1SubUFooterFile.LocalPath)
+				: null;
+			Tab1SubVRightLogo = resourceManager.LogoTab1SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab1SubVRightFile.LocalPath)
+				: null;
+			Tab1SubVFooterLogo = resourceManager.LogoTab1SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab1SubVFooterFile.LocalPath)
+				: null;
+			Tab1SubWRightLogo = resourceManager.LogoTab1SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab1SubWRightFile.LocalPath)
+				: null;
+			Tab1SubWFooterLogo = resourceManager.LogoTab1SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab1SubWFooterFile.LocalPath)
+				: null;
 			#endregion
 
 			#region Tab 2
+			CNAConfiguration.Load(resourceManager);
+
 			Tab2SubARightLogo = resourceManager.LogoTab2SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab2SubARightFile.LocalPath)
 				: null;
@@ -440,9 +562,29 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			Tab2SubJFooterLogo = resourceManager.LogoTab2SubJFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab2SubJFooterFile.LocalPath)
 				: null;
+			Tab2SubURightLogo = resourceManager.LogoTab2SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab2SubURightFile.LocalPath)
+				: null;
+			Tab2SubUFooterLogo = resourceManager.LogoTab2SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab2SubUFooterFile.LocalPath)
+				: null;
+			Tab2SubVRightLogo = resourceManager.LogoTab2SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab2SubVRightFile.LocalPath)
+				: null;
+			Tab2SubVFooterLogo = resourceManager.LogoTab2SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab2SubVFooterFile.LocalPath)
+				: null;
+			Tab2SubWRightLogo = resourceManager.LogoTab2SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab2SubWRightFile.LocalPath)
+				: null;
+			Tab2SubWFooterLogo = resourceManager.LogoTab2SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab2SubWFooterFile.LocalPath)
+				: null;
 			#endregion
 
 			#region Tab 3
+			MarketConfiguration.Load(resourceManager);
+
 			Tab3SubARightLogo = resourceManager.LogoTab3SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab3SubARightFile.LocalPath)
 				: null;
@@ -503,9 +645,29 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			Tab3SubJFooterLogo = resourceManager.LogoTab3SubJFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab3SubJFooterFile.LocalPath)
 				: null;
+			Tab3SubURightLogo = resourceManager.LogoTab3SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab3SubURightFile.LocalPath)
+				: null;
+			Tab3SubUFooterLogo = resourceManager.LogoTab3SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab3SubUFooterFile.LocalPath)
+				: null;
+			Tab3SubVRightLogo = resourceManager.LogoTab3SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab3SubVRightFile.LocalPath)
+				: null;
+			Tab3SubVFooterLogo = resourceManager.LogoTab3SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab3SubVFooterFile.LocalPath)
+				: null;
+			Tab3SubWRightLogo = resourceManager.LogoTab3SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab3SubWRightFile.LocalPath)
+				: null;
+			Tab3SubWFooterLogo = resourceManager.LogoTab3SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab3SubWFooterFile.LocalPath)
+				: null;
 			#endregion
 
 			#region Tab 4
+			NeedsSolutionsConfiguration.Load(resourceManager);
+
 			Tab4SubARightLogo = resourceManager.LogoTab4SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab4SubARightFile.LocalPath)
 				: null;
@@ -566,9 +728,29 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			Tab4SubJFooterLogo = resourceManager.LogoTab4SubJFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab4SubJFooterFile.LocalPath)
 				: null;
+			Tab4SubURightLogo = resourceManager.LogoTab4SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab4SubURightFile.LocalPath)
+				: null;
+			Tab4SubUFooterLogo = resourceManager.LogoTab4SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab4SubUFooterFile.LocalPath)
+				: null;
+			Tab4SubVRightLogo = resourceManager.LogoTab4SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab4SubVRightFile.LocalPath)
+				: null;
+			Tab4SubVFooterLogo = resourceManager.LogoTab4SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab4SubVFooterFile.LocalPath)
+				: null;
+			Tab4SubWRightLogo = resourceManager.LogoTab4SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab4SubWRightFile.LocalPath)
+				: null;
+			Tab4SubWFooterLogo = resourceManager.LogoTab4SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab4SubWFooterFile.LocalPath)
+				: null;
 			#endregion
 
 			#region Tab 5
+			CBCConfiguration.Load(resourceManager);
+
 			Tab5SubARightLogo = resourceManager.LogoTab5SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab5SubARightFile.LocalPath)
 				: null;
@@ -629,9 +811,29 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			Tab5SubJFooterLogo = resourceManager.LogoTab5SubJFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab5SubJFooterFile.LocalPath)
 				: null;
+			Tab5SubURightLogo = resourceManager.LogoTab5SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab5SubURightFile.LocalPath)
+				: null;
+			Tab5SubUFooterLogo = resourceManager.LogoTab5SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab5SubUFooterFile.LocalPath)
+				: null;
+			Tab5SubVRightLogo = resourceManager.LogoTab5SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab5SubVRightFile.LocalPath)
+				: null;
+			Tab5SubVFooterLogo = resourceManager.LogoTab5SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab5SubVFooterFile.LocalPath)
+				: null;
+			Tab5SubWRightLogo = resourceManager.LogoTab5SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab5SubWRightFile.LocalPath)
+				: null;
+			Tab5SubWFooterLogo = resourceManager.LogoTab5SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab5SubWFooterFile.LocalPath)
+				: null;
 			#endregion
 
 			#region Tab 6
+			IntegratedSolutionConfiguration.Load(resourceManager);
+
 			Tab6SubARightLogo = resourceManager.LogoTab6SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab6SubARightFile.LocalPath)
 				: null;
@@ -692,9 +894,29 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			Tab6SubJFooterLogo = resourceManager.LogoTab6SubJFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab6SubJFooterFile.LocalPath)
 				: null;
+			Tab6SubURightLogo = resourceManager.LogoTab6SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab6SubURightFile.LocalPath)
+				: null;
+			Tab6SubUFooterLogo = resourceManager.LogoTab6SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab6SubUFooterFile.LocalPath)
+				: null;
+			Tab6SubVRightLogo = resourceManager.LogoTab6SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab6SubVRightFile.LocalPath)
+				: null;
+			Tab6SubVFooterLogo = resourceManager.LogoTab6SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab6SubVFooterFile.LocalPath)
+				: null;
+			Tab6SubWRightLogo = resourceManager.LogoTab6SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab6SubWRightFile.LocalPath)
+				: null;
+			Tab6SubWFooterLogo = resourceManager.LogoTab6SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab6SubWFooterFile.LocalPath)
+				: null;
 			#endregion
 
 			#region Tab 7
+			InvestmentConfiguration.Load(resourceManager);
+
 			Tab7SubARightLogo = resourceManager.LogoTab7SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab7SubARightFile.LocalPath)
 				: null;
@@ -755,9 +977,29 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			Tab7SubJFooterLogo = resourceManager.LogoTab7SubJFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab7SubJFooterFile.LocalPath)
 				: null;
+			Tab7SubURightLogo = resourceManager.LogoTab7SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab7SubURightFile.LocalPath)
+				: null;
+			Tab7SubUFooterLogo = resourceManager.LogoTab7SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab7SubUFooterFile.LocalPath)
+				: null;
+			Tab7SubVRightLogo = resourceManager.LogoTab7SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab7SubVRightFile.LocalPath)
+				: null;
+			Tab7SubVFooterLogo = resourceManager.LogoTab7SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab7SubVFooterFile.LocalPath)
+				: null;
+			Tab7SubWRightLogo = resourceManager.LogoTab7SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab7SubWRightFile.LocalPath)
+				: null;
+			Tab7SubWFooterLogo = resourceManager.LogoTab7SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab7SubWFooterFile.LocalPath)
+				: null;
 			#endregion
 
 			#region Tab 8
+			ClosersConfiguration.Load(resourceManager);
+
 			Tab8SubARightLogo = resourceManager.LogoTab8SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab8SubARightFile.LocalPath)
 				: null;
@@ -818,9 +1060,29 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			Tab8SubJFooterLogo = resourceManager.LogoTab8SubJFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab8SubJFooterFile.LocalPath)
 				: null;
+			Tab8SubURightLogo = resourceManager.LogoTab8SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab8SubURightFile.LocalPath)
+				: null;
+			Tab8SubUFooterLogo = resourceManager.LogoTab8SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab8SubUFooterFile.LocalPath)
+				: null;
+			Tab8SubVRightLogo = resourceManager.LogoTab8SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab8SubVRightFile.LocalPath)
+				: null;
+			Tab8SubVFooterLogo = resourceManager.LogoTab8SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab8SubVFooterFile.LocalPath)
+				: null;
+			Tab8SubWRightLogo = resourceManager.LogoTab8SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab8SubWRightFile.LocalPath)
+				: null;
+			Tab8SubWFooterLogo = resourceManager.LogoTab8SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab8SubWFooterFile.LocalPath)
+				: null;
 			#endregion
 
 			#region Tab 9
+			NextStepsConfiguration.Load(resourceManager);
+
 			Tab9SubARightLogo = resourceManager.LogoTab9SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab9SubARightFile.LocalPath)
 				: null;
@@ -881,9 +1143,29 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			Tab9SubJFooterLogo = resourceManager.LogoTab9SubJFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab9SubJFooterFile.LocalPath)
 				: null;
+			Tab9SubURightLogo = resourceManager.LogoTab9SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab9SubURightFile.LocalPath)
+				: null;
+			Tab9SubUFooterLogo = resourceManager.LogoTab9SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab9SubUFooterFile.LocalPath)
+				: null;
+			Tab9SubVRightLogo = resourceManager.LogoTab9SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab9SubVRightFile.LocalPath)
+				: null;
+			Tab9SubVFooterLogo = resourceManager.LogoTab9SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab9SubVFooterFile.LocalPath)
+				: null;
+			Tab9SubWRightLogo = resourceManager.LogoTab9SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab9SubWRightFile.LocalPath)
+				: null;
+			Tab9SubWFooterLogo = resourceManager.LogoTab9SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab9SubWFooterFile.LocalPath)
+				: null;
 			#endregion
 
 			#region Tab 10
+			ContractConfiguration.Load(resourceManager);
+
 			Tab10SubARightLogo = resourceManager.LogoTab10SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab10SubARightFile.LocalPath)
 				: null;
@@ -944,9 +1226,29 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			Tab10SubJFooterLogo = resourceManager.LogoTab10SubJFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab10SubJFooterFile.LocalPath)
 				: null;
+			Tab10SubURightLogo = resourceManager.LogoTab10SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubURightFile.LocalPath)
+				: null;
+			Tab10SubUFooterLogo = resourceManager.LogoTab10SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubUFooterFile.LocalPath)
+				: null;
+			Tab10SubVRightLogo = resourceManager.LogoTab10SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubVRightFile.LocalPath)
+				: null;
+			Tab10SubVFooterLogo = resourceManager.LogoTab10SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubVFooterFile.LocalPath)
+				: null;
+			Tab10SubWRightLogo = resourceManager.LogoTab10SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubWRightFile.LocalPath)
+				: null;
+			Tab10SubWFooterLogo = resourceManager.LogoTab10SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab10SubWFooterFile.LocalPath)
+				: null;
 			#endregion
 
 			#region Tab 11
+			SupportMaterialsConfiguration.Load(resourceManager);
+
 			Tab11SubARightLogo = resourceManager.LogoTab11SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab11SubARightFile.LocalPath)
 				: null;
@@ -1006,6 +1308,24 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 				: null;
 			Tab11SubJFooterLogo = resourceManager.LogoTab11SubJFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab11SubJFooterFile.LocalPath)
+				: null;
+			Tab11SubURightLogo = resourceManager.LogoTab11SubURightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubURightFile.LocalPath)
+				: null;
+			Tab11SubUFooterLogo = resourceManager.LogoTab11SubUFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubUFooterFile.LocalPath)
+				: null;
+			Tab11SubVRightLogo = resourceManager.LogoTab11SubVRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubVRightFile.LocalPath)
+				: null;
+			Tab11SubVFooterLogo = resourceManager.LogoTab11SubVFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubVFooterFile.LocalPath)
+				: null;
+			Tab11SubWRightLogo = resourceManager.LogoTab11SubWRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubWRightFile.LocalPath)
+				: null;
+			Tab11SubWFooterLogo = resourceManager.LogoTab11SubWFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab11SubWFooterFile.LocalPath)
 				: null;
 			#endregion
 		}

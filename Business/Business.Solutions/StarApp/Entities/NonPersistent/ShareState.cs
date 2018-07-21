@@ -10,6 +10,9 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public TabCState TabC { get; }
 		public TabDState TabD { get; }
 		public TabEState TabE { get; }
+		public TabUState TabU { get; }
+		public TabVState TabV { get; }
+		public TabWState TabW { get; }
 
 		public ShareState()
 		{
@@ -18,6 +21,9 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			TabC = new TabCState();
 			TabD = new TabDState();
 			TabE = new TabEState();
+			TabU = new TabUState();
+			TabV = new TabVState();
+			TabW = new TabWState();
 		}
 
 		public class TabAState
@@ -208,6 +214,36 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 				Group6Toggle = true;
 				Group7Toggle = true;
 				Subheader4Toggle = true;
+			}
+		}
+
+		public class TabUState
+		{
+			public SlideObject Slide { get; }
+
+			public TabUState()
+			{
+				Slide = new SlideObject();
+			}
+		}
+
+		public class TabVState
+		{
+			public SlideObject Slide { get; }
+
+			public TabVState()
+			{
+				Slide = new SlideObject();
+			}
+		}
+
+		public class TabWState
+		{
+			public SlideObject Slide { get; }
+
+			public TabWState()
+			{
+				Slide = new SlideObject();
 			}
 		}
 	}

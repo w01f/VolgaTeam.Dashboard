@@ -9,7 +9,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public ShareControl ParentControl { get; }
 		public ShareTabBaseControl ContentControl { get; private set; }
 		
-
 		public ShareTabPageContainerControl(ShareControl shareControl)
 		{
 			ParentControl = shareControl;
@@ -25,6 +24,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab5SubDTitle;
 			else if (typeof(ShareTabEControl) == typeof(TShareTabControl))
 				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab5SubETitle;
+			else if (typeof(ShareTabUControl) == typeof(TShareTabControl))
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab5SubUTitle;
+			else if (typeof(ShareTabVControl) == typeof(TShareTabControl))
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab5SubVTitle;
+			else if (typeof(ShareTabWControl) == typeof(TShareTabControl))
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab5SubWTitle;
 		}
 
 		public void LoadContent()

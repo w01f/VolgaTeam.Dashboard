@@ -33,6 +33,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab1SubIFooterFile { get; private set; }
 		public StorageFile LogoTab1SubJRightFile { get; private set; }
 		public StorageFile LogoTab1SubJFooterFile { get; private set; }
+		public StorageFile LogoTab1SubURightFile { get; private set; }
+		public StorageFile LogoTab1SubUFooterFile { get; private set; }
+		public StorageFile LogoTab1SubVRightFile { get; private set; }
+		public StorageFile LogoTab1SubVFooterFile { get; private set; }
+		public StorageFile LogoTab1SubWRightFile { get; private set; }
+		public StorageFile LogoTab1SubWFooterFile { get; private set; }
+
+		public StorageDirectory Tab1PartUSlidesFolder { get; private set; }
+		public StorageDirectory Tab1PartVSlidesFolder { get; private set; }
+		public StorageDirectory Tab1PartWSlidesFolder { get; private set; }
 		#endregion
 
 		#region Tab 2
@@ -56,6 +66,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab2SubIFooterFile { get; private set; }
 		public StorageFile LogoTab2SubJRightFile { get; private set; }
 		public StorageFile LogoTab2SubJFooterFile { get; private set; }
+		public StorageFile LogoTab2SubURightFile { get; private set; }
+		public StorageFile LogoTab2SubUFooterFile { get; private set; }
+		public StorageFile LogoTab2SubVRightFile { get; private set; }
+		public StorageFile LogoTab2SubVFooterFile { get; private set; }
+		public StorageFile LogoTab2SubWRightFile { get; private set; }
+		public StorageFile LogoTab2SubWFooterFile { get; private set; }
+
+		public StorageDirectory Tab2PartUSlidesFolder { get; private set; }
+		public StorageDirectory Tab2PartVSlidesFolder { get; private set; }
+		public StorageDirectory Tab2PartWSlidesFolder { get; private set; }
 		#endregion
 
 		#region Tab 3
@@ -79,6 +99,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab3SubIFooterFile { get; private set; }
 		public StorageFile LogoTab3SubJRightFile { get; private set; }
 		public StorageFile LogoTab3SubJFooterFile { get; private set; }
+		public StorageFile LogoTab3SubURightFile { get; private set; }
+		public StorageFile LogoTab3SubUFooterFile { get; private set; }
+		public StorageFile LogoTab3SubVRightFile { get; private set; }
+		public StorageFile LogoTab3SubVFooterFile { get; private set; }
+		public StorageFile LogoTab3SubWRightFile { get; private set; }
+		public StorageFile LogoTab3SubWFooterFile { get; private set; }
+
+		public StorageDirectory Tab3PartUSlidesFolder { get; private set; }
+		public StorageDirectory Tab3PartVSlidesFolder { get; private set; }
+		public StorageDirectory Tab3PartWSlidesFolder { get; private set; }
 		#endregion
 
 		#region Tab 4
@@ -102,6 +132,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab4SubIFooterFile { get; private set; }
 		public StorageFile LogoTab4SubJRightFile { get; private set; }
 		public StorageFile LogoTab4SubJFooterFile { get; private set; }
+		public StorageFile LogoTab4SubURightFile { get; private set; }
+		public StorageFile LogoTab4SubUFooterFile { get; private set; }
+		public StorageFile LogoTab4SubVRightFile { get; private set; }
+		public StorageFile LogoTab4SubVFooterFile { get; private set; }
+		public StorageFile LogoTab4SubWRightFile { get; private set; }
+		public StorageFile LogoTab4SubWFooterFile { get; private set; }
+
+		public StorageDirectory Tab4PartUSlidesFolder { get; private set; }
+		public StorageDirectory Tab4PartVSlidesFolder { get; private set; }
+		public StorageDirectory Tab4PartWSlidesFolder { get; private set; }
 		#endregion
 
 		#region Tab 5
@@ -125,6 +165,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab5SubIFooterFile { get; private set; }
 		public StorageFile LogoTab5SubJRightFile { get; private set; }
 		public StorageFile LogoTab5SubJFooterFile { get; private set; }
+		public StorageFile LogoTab5SubURightFile { get; private set; }
+		public StorageFile LogoTab5SubUFooterFile { get; private set; }
+		public StorageFile LogoTab5SubVRightFile { get; private set; }
+		public StorageFile LogoTab5SubVFooterFile { get; private set; }
+		public StorageFile LogoTab5SubWRightFile { get; private set; }
+		public StorageFile LogoTab5SubWFooterFile { get; private set; }
+
+		public StorageDirectory Tab5PartUSlidesFolder { get; private set; }
+		public StorageDirectory Tab5PartVSlidesFolder { get; private set; }
+		public StorageDirectory Tab5PartWSlidesFolder { get; private set; }
 		#endregion
 
 		#region Tab 6
@@ -148,6 +198,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab6SubIFooterFile { get; private set; }
 		public StorageFile LogoTab6SubJRightFile { get; private set; }
 		public StorageFile LogoTab6SubJFooterFile { get; private set; }
+		public StorageFile LogoTab6SubURightFile { get; private set; }
+		public StorageFile LogoTab6SubUFooterFile { get; private set; }
+		public StorageFile LogoTab6SubVRightFile { get; private set; }
+		public StorageFile LogoTab6SubVFooterFile { get; private set; }
+		public StorageFile LogoTab6SubWRightFile { get; private set; }
+		public StorageFile LogoTab6SubWFooterFile { get; private set; }
+
+		public StorageDirectory Tab6PartUSlidesFolder { get; private set; }
+		public StorageDirectory Tab6PartVSlidesFolder { get; private set; }
+		public StorageDirectory Tab6PartWSlidesFolder { get; private set; }
 		#endregion
 
 		#region Tab 7
@@ -171,6 +231,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab7SubIFooterFile { get; private set; }
 		public StorageFile LogoTab7SubJRightFile { get; private set; }
 		public StorageFile LogoTab7SubJFooterFile { get; private set; }
+		public StorageFile LogoTab7SubURightFile { get; private set; }
+		public StorageFile LogoTab7SubUFooterFile { get; private set; }
+		public StorageFile LogoTab7SubVRightFile { get; private set; }
+		public StorageFile LogoTab7SubVFooterFile { get; private set; }
+		public StorageFile LogoTab7SubWRightFile { get; private set; }
+		public StorageFile LogoTab7SubWFooterFile { get; private set; }
+
+		public StorageDirectory Tab7PartUSlidesFolder { get; private set; }
+		public StorageDirectory Tab7PartVSlidesFolder { get; private set; }
+		public StorageDirectory Tab7PartWSlidesFolder { get; private set; }
 		#endregion
 
 		#region Tab 8
@@ -194,6 +264,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab8SubIFooterFile { get; private set; }
 		public StorageFile LogoTab8SubJRightFile { get; private set; }
 		public StorageFile LogoTab8SubJFooterFile { get; private set; }
+		public StorageFile LogoTab8SubURightFile { get; private set; }
+		public StorageFile LogoTab8SubUFooterFile { get; private set; }
+		public StorageFile LogoTab8SubVRightFile { get; private set; }
+		public StorageFile LogoTab8SubVFooterFile { get; private set; }
+		public StorageFile LogoTab8SubWRightFile { get; private set; }
+		public StorageFile LogoTab8SubWFooterFile { get; private set; }
+
+		public StorageDirectory Tab8PartUSlidesFolder { get; private set; }
+		public StorageDirectory Tab8PartVSlidesFolder { get; private set; }
+		public StorageDirectory Tab8PartWSlidesFolder { get; private set; }
 		#endregion
 
 		#region Tab 9
@@ -217,6 +297,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab9SubIFooterFile { get; private set; }
 		public StorageFile LogoTab9SubJRightFile { get; private set; }
 		public StorageFile LogoTab9SubJFooterFile { get; private set; }
+		public StorageFile LogoTab9SubURightFile { get; private set; }
+		public StorageFile LogoTab9SubUFooterFile { get; private set; }
+		public StorageFile LogoTab9SubVRightFile { get; private set; }
+		public StorageFile LogoTab9SubVFooterFile { get; private set; }
+		public StorageFile LogoTab9SubWRightFile { get; private set; }
+		public StorageFile LogoTab9SubWFooterFile { get; private set; }
+
+		public StorageDirectory Tab9PartUSlidesFolder { get; private set; }
+		public StorageDirectory Tab9PartVSlidesFolder { get; private set; }
+		public StorageDirectory Tab9PartWSlidesFolder { get; private set; }
 		#endregion
 
 		#region Tab 10
@@ -240,6 +330,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab10SubIFooterFile { get; private set; }
 		public StorageFile LogoTab10SubJRightFile { get; private set; }
 		public StorageFile LogoTab10SubJFooterFile { get; private set; }
+		public StorageFile LogoTab10SubURightFile { get; private set; }
+		public StorageFile LogoTab10SubUFooterFile { get; private set; }
+		public StorageFile LogoTab10SubVRightFile { get; private set; }
+		public StorageFile LogoTab10SubVFooterFile { get; private set; }
+		public StorageFile LogoTab10SubWRightFile { get; private set; }
+		public StorageFile LogoTab10SubWFooterFile { get; private set; }
+
+		public StorageDirectory Tab10PartUSlidesFolder { get; private set; }
+		public StorageDirectory Tab10PartVSlidesFolder { get; private set; }
+		public StorageDirectory Tab10PartWSlidesFolder { get; private set; }
 		#endregion
 
 		#region Tab 11
@@ -263,6 +363,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab11SubIFooterFile { get; private set; }
 		public StorageFile LogoTab11SubJRightFile { get; private set; }
 		public StorageFile LogoTab11SubJFooterFile { get; private set; }
+		public StorageFile LogoTab11SubURightFile { get; private set; }
+		public StorageFile LogoTab11SubUFooterFile { get; private set; }
+		public StorageFile LogoTab11SubVRightFile { get; private set; }
+		public StorageFile LogoTab11SubVFooterFile { get; private set; }
+		public StorageFile LogoTab11SubWRightFile { get; private set; }
+		public StorageFile LogoTab11SubWFooterFile { get; private set; }
+
+		public StorageDirectory Tab11PartUSlidesFolder { get; private set; }
+		public StorageDirectory Tab11PartVSlidesFolder { get; private set; }
+		public StorageDirectory Tab11PartWSlidesFolder { get; private set; }
 		#endregion
 
 		public void Init(StorageDirectory dataFolder)
@@ -295,6 +405,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab1SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_starters", "subtab_i", "design_branding", "1i_footer.png" }));
 			LogoTab1SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_starters", "subtab_j", "design_branding", "1j_right.png" }));
 			LogoTab1SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_starters", "subtab_j", "design_branding", "1j_footer.png" }));
+			LogoTab1SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_starters", "subtab_u", "design_branding", "1u_right.png" }));
+			LogoTab1SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_starters", "subtab_u", "design_branding", "1u_footer.png" }));
+			LogoTab1SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_starters", "subtab_v", "design_branding", "1v_right.png" }));
+			LogoTab1SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_starters", "subtab_v", "design_branding", "1v_footer.png" }));
+			LogoTab1SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_starters", "subtab_w", "design_branding", "1w_right.png" }));
+			LogoTab1SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_starters", "subtab_w", "design_branding", "1w_footer.png" }));
+
+			Tab1PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "01_starters", "subtab_u" }));
+			Tab1PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "01_starters", "subtab_v" }));
+			Tab1PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "01_starters", "subtab_w" }));
 			#endregion
 
 			#region Tab 2
@@ -318,6 +438,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab2SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_goals", "subtab_i", "design_branding", "2i_footer.png" }));
 			LogoTab2SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_goals", "subtab_j", "design_branding", "2j_right.png" }));
 			LogoTab2SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_goals", "subtab_j", "design_branding", "2j_footer.png" }));
+			LogoTab2SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_goals", "subtab_u", "design_branding", "2u_right.png" }));
+			LogoTab2SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_goals", "subtab_u", "design_branding", "2u_footer.png" }));
+			LogoTab2SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_goals", "subtab_v", "design_branding", "2v_right.png" }));
+			LogoTab2SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_goals", "subtab_v", "design_branding", "2v_footer.png" }));
+			LogoTab2SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_goals", "subtab_w", "design_branding", "2w_right.png" }));
+			LogoTab2SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_goals", "subtab_w", "design_branding", "2w_footer.png" }));
+
+			Tab2PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "02_goals", "subtab_u" }));
+			Tab2PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "02_goals", "subtab_v" }));
+			Tab2PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "02_goals", "subtab_w" }));
 			#endregion
 
 			#region Tab 3
@@ -341,6 +471,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab3SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_market_opportunity", "subtab_i", "design_branding", "3i_footer.png" }));
 			LogoTab3SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_market_opportunity", "subtab_j", "design_branding", "3j_right.png" }));
 			LogoTab3SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_market_opportunity", "subtab_j", "design_branding", "3j_footer.png" }));
+			LogoTab3SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_market_opportunity", "subtab_u", "design_branding", "3u_right.png" }));
+			LogoTab3SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_market_opportunity", "subtab_u", "design_branding", "3u_footer.png" }));
+			LogoTab3SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_market_opportunity", "subtab_v", "design_branding", "3v_right.png" }));
+			LogoTab3SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_market_opportunity", "subtab_v", "design_branding", "3v_footer.png" }));
+			LogoTab3SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_market_opportunity", "subtab_w", "design_branding", "3w_right.png" }));
+			LogoTab3SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_market_opportunity", "subtab_w", "design_branding", "3w_footer.png" }));
+
+			Tab3PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "03_market_opportunity", "subtab_u" }));
+			Tab3PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "03_market_opportunity", "subtab_v" }));
+			Tab3PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "03_market_opportunity", "subtab_w" }));
 			#endregion
 
 			#region Tab 4
@@ -364,6 +504,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab4SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_needs_solutions", "subtab_i", "design_branding", "4i_footer.png" }));
 			LogoTab4SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_needs_solutions", "subtab_j", "design_branding", "4j_right.png" }));
 			LogoTab4SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_needs_solutions", "subtab_j", "design_branding", "4j_footer.png" }));
+			LogoTab4SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_needs_solutions", "subtab_u", "design_branding", "4u_right.png" }));
+			LogoTab4SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_needs_solutions", "subtab_u", "design_branding", "4u_footer.png" }));
+			LogoTab4SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_needs_solutions", "subtab_v", "design_branding", "4v_right.png" }));
+			LogoTab4SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_needs_solutions", "subtab_v", "design_branding", "4v_footer.png" }));
+			LogoTab4SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_needs_solutions", "subtab_w", "design_branding", "4w_right.png" }));
+			LogoTab4SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_needs_solutions", "subtab_w", "design_branding", "4w_footer.png" }));
+
+			Tab4PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "04_needs_solutions", "subtab_u" }));
+			Tab4PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "04_needs_solutions", "subtab_v" }));
+			Tab4PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "04_needs_solutions", "subtab_w" }));
 			#endregion
 
 			#region Tab 5
@@ -387,6 +537,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab5SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_cbc", "subtab_i", "design_branding", "5i_footer.png" }));
 			LogoTab5SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_cbc", "subtab_j", "design_branding", "5j_right.png" }));
 			LogoTab5SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_cbc", "subtab_j", "design_branding", "5j_footer.png" }));
+			LogoTab5SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_cbc", "subtab_u", "design_branding", "5u_right.png" }));
+			LogoTab5SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_cbc", "subtab_u", "design_branding", "5u_footer.png" }));
+			LogoTab5SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_cbc", "subtab_v", "design_branding", "5v_right.png" }));
+			LogoTab5SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_cbc", "subtab_v", "design_branding", "5v_footer.png" }));
+			LogoTab5SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_cbc", "subtab_w", "design_branding", "5w_right.png" }));
+			LogoTab5SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_cbc", "subtab_w", "design_branding", "5w_footer.png" }));
+
+			Tab5PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_cbc", "subtab_u" }));
+			Tab5PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_cbc", "subtab_v" }));
+			Tab5PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_cbc", "subtab_w" }));
 			#endregion
 
 			#region Tab 6
@@ -410,6 +570,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab6SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_integrated_solution", "subtab_i", "design_branding", "6i_footer.png" }));
 			LogoTab6SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_integrated_solution", "subtab_j", "design_branding", "6j_right.png" }));
 			LogoTab6SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_integrated_solution", "subtab_j", "design_branding", "6j_footer.png" }));
+			LogoTab6SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_integrated_solution", "subtab_u", "design_branding", "6u_right.png" }));
+			LogoTab6SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_integrated_solution", "subtab_u", "design_branding", "6u_footer.png" }));
+			LogoTab6SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_integrated_solution", "subtab_v", "design_branding", "6v_right.png" }));
+			LogoTab6SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_integrated_solution", "subtab_v", "design_branding", "6v_footer.png" }));
+			LogoTab6SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_integrated_solution", "subtab_w", "design_branding", "6w_right.png" }));
+			LogoTab6SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_integrated_solution", "subtab_w", "design_branding", "6w_footer.png" }));
+
+			Tab6PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "06_integrated_solution", "subtab_u" }));
+			Tab6PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "06_integrated_solution", "subtab_v" }));
+			Tab6PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "06_integrated_solution", "subtab_w" }));
 			#endregion
 
 			#region Tab 7
@@ -433,6 +603,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab7SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_investment", "subtab_i", "design_branding", "7i_footer.png" }));
 			LogoTab7SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_investment", "subtab_j", "design_branding", "7j_right.png" }));
 			LogoTab7SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_investment", "subtab_j", "design_branding", "7j_footer.png" }));
+			LogoTab7SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_investment", "subtab_u", "design_branding", "7u_right.png" }));
+			LogoTab7SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_investment", "subtab_u", "design_branding", "7u_footer.png" }));
+			LogoTab7SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_investment", "subtab_v", "design_branding", "7v_right.png" }));
+			LogoTab7SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_investment", "subtab_v", "design_branding", "7v_footer.png" }));
+			LogoTab7SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_investment", "subtab_w", "design_branding", "7w_right.png" }));
+			LogoTab7SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_investment", "subtab_w", "design_branding", "7w_footer.png" }));
+
+			Tab7PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_investment", "subtab_u" }));
+			Tab7PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_investment", "subtab_v" }));
+			Tab7PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_investment", "subtab_w" }));
 			#endregion
 
 			#region Tab 8
@@ -456,6 +636,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab8SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "08_closers", "subtab_i", "design_branding", "8i_footer.png" }));
 			LogoTab8SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "08_closers", "subtab_j", "design_branding", "8j_right.png" }));
 			LogoTab8SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "08_closers", "subtab_j", "design_branding", "8j_footer.png" }));
+			LogoTab8SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "08_closers", "subtab_u", "design_branding", "8u_right.png" }));
+			LogoTab8SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "08_closers", "subtab_u", "design_branding", "8u_footer.png" }));
+			LogoTab8SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "08_closers", "subtab_v", "design_branding", "8v_right.png" }));
+			LogoTab8SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "08_closers", "subtab_v", "design_branding", "8v_footer.png" }));
+			LogoTab8SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "08_closers", "subtab_w", "design_branding", "8w_right.png" }));
+			LogoTab8SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "08_closers", "subtab_w", "design_branding", "8w_footer.png" }));
+
+			Tab8PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "08_closers", "subtab_u" }));
+			Tab8PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "08_closers", "subtab_v" }));
+			Tab8PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "08_closers", "subtab_w" }));
 			#endregion
 
 			#region Tab 9
@@ -479,6 +669,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab9SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_relationship_next_steps", "subtab_i", "design_branding", "9i_footer.png" }));
 			LogoTab9SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_relationship_next_steps", "subtab_j", "design_branding", "9j_right.png" }));
 			LogoTab9SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_relationship_next_steps", "subtab_j", "design_branding", "9j_footer.png" }));
+			LogoTab9SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_relationship_next_steps", "subtab_u", "design_branding", "9u_right.png" }));
+			LogoTab9SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_relationship_next_steps", "subtab_u", "design_branding", "9u_footer.png" }));
+			LogoTab9SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_relationship_next_steps", "subtab_v", "design_branding", "9v_right.png" }));
+			LogoTab9SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_relationship_next_steps", "subtab_v", "design_branding", "9v_footer.png" }));
+			LogoTab9SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_relationship_next_steps", "subtab_w", "design_branding", "9w_right.png" }));
+			LogoTab9SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_relationship_next_steps", "subtab_w", "design_branding", "9w_footer.png" }));
+
+			Tab9PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_relationship_next_steps", "subtab_u" }));
+			Tab9PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_relationship_next_steps", "subtab_v" }));
+			Tab9PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_relationship_next_steps", "subtab_w" }));
 			#endregion
 
 			#region Tab 10
@@ -502,6 +702,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab10SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_agreement_contract", "subtab_i", "design_branding", "10i_footer.png" }));
 			LogoTab10SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_agreement_contract", "subtab_j", "design_branding", "10j_right.png" }));
 			LogoTab10SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_agreement_contract", "subtab_j", "design_branding", "10j_footer.png" }));
+			LogoTab10SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_agreement_contract", "subtab_u", "design_branding", "10u_right.png" }));
+			LogoTab10SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_agreement_contract", "subtab_u", "design_branding", "10u_footer.png" }));
+			LogoTab10SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_agreement_contract", "subtab_v", "design_branding", "10v_right.png" }));
+			LogoTab10SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_agreement_contract", "subtab_v", "design_branding", "10v_footer.png" }));
+			LogoTab10SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_agreement_contract", "subtab_w", "design_branding", "10w_right.png" }));
+			LogoTab10SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_agreement_contract", "subtab_w", "design_branding", "10w_footer.png" }));
+
+			Tab10PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_agreement_contract", "subtab_u" }));
+			Tab10PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_agreement_contract", "subtab_v" }));
+			Tab10PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_agreement_contract", "subtab_w" }));
 			#endregion
 
 			#region Tab 11
@@ -525,6 +735,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab11SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_support_materials", "subtab_i", "design_branding", "11i_footer.png" }));
 			LogoTab11SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_support_materials", "subtab_j", "design_branding", "11j_right.png" }));
 			LogoTab11SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_support_materials", "subtab_j", "design_branding", "11j_footer.png" }));
+			LogoTab11SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_support_materials", "subtab_u", "design_branding", "11u_right.png" }));
+			LogoTab11SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_support_materials", "subtab_u", "design_branding", "11u_footer.png" }));
+			LogoTab11SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_support_materials", "subtab_v", "design_branding", "11v_right.png" }));
+			LogoTab11SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_support_materials", "subtab_v", "design_branding", "11v_footer.png" }));
+			LogoTab11SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_support_materials", "subtab_w", "design_branding", "11w_right.png" }));
+			LogoTab11SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_support_materials", "subtab_w", "design_branding", "11w_footer.png" }));
+
+			Tab11PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_support_materials", "subtab_u" }));
+			Tab11PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_support_materials", "subtab_v" }));
+			Tab11PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_support_materials", "subtab_w" }));
 			#endregion
 		}
 	}

@@ -8,8 +8,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 	{
 		public ROIControl ParentControl { get; }
 		public ROITabBaseControl ContentControl { get; private set; }
-
-
+		
 		public ROITabPageContainerControl(ROIControl roiControl)
 		{
 			ParentControl = roiControl;
@@ -23,6 +22,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab6SubCTitle;
 			else if (typeof(ROITabDControl) == typeof(TROITabControl))
 				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab6SubDTitle;
+			else if (typeof(ROITabUControl) == typeof(TROITabControl))
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab6SubUTitle;
+			else if (typeof(ROITabVControl) == typeof(TROITabControl))
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab6SubVTitle;
+			else if (typeof(ROITabWControl) == typeof(TROITabControl))
+				Text = ParentControl.SlideContainer.StarInfo.Titles.Tab6SubWTitle;
 		}
 
 		public void LoadContent()

@@ -106,6 +106,9 @@
     <Compile Include="PresentationClasses\ISolutionEditor.cs" />
     <Compile Include="PresentationClasses\ISolutionToggle.cs" />
     <Compile Include="PresentationClasses\Output\OutputDataPackage.cs" />
+    <Compile Include="PresentationClasses\SlidesEdit\SlidesEditContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\SolutionButtonToggle.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -201,6 +204,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

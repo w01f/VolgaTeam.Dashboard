@@ -43,7 +43,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			throw new NotImplementedException();
 		}
 
-		public OutputItem GetOutputItem()
+		public virtual OutputItem GetOutputItem()
 		{
 			var outputData = GetOutputData();
 			return new OutputItem

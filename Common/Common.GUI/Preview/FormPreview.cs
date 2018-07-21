@@ -92,9 +92,18 @@ namespace Asa.Common.GUI.Preview
 
 		private void OnFormShown(object sender, EventArgs e)
 		{
-			xtraTabControlGroups.Enabled = false;
+			xtraTabControlGroups.TabPages
+				.Where(tabPage => tabPage != xtraTabControlGroups.SelectedTabPage)
+				.ToList()
+				.ForEach(tabPage => tabPage.PageEnabled = false);
+			Application.DoEvents();
+
 			LoadPreviewGroup((PreviewGroupControl)xtraTabControlGroups.SelectedTabPage);
-			xtraTabControlGroups.Enabled = true;
+
+			xtraTabControlGroups.TabPages
+				.ToList()
+				.ForEach(tabPage => tabPage.PageEnabled = true);
+			Application.DoEvents();
 		}
 
 		private void OnFormClosed(object sender, FormClosedEventArgs e)
@@ -106,9 +115,19 @@ namespace Asa.Common.GUI.Preview
 		private void OnSelectedPreviewItemChanged(object sender, TabPageChangedEventArgs e)
 		{
 			if (!(e.Page is PreviewGroupControl previewControl)) return;
-			xtraTabControlGroups.Enabled = false;
+
+			xtraTabControlGroups.TabPages
+				.Where(tabPage => tabPage != e.Page)
+				.ToList()
+				.ForEach(tabPage => tabPage.PageEnabled = false);
+			Application.DoEvents();
+
 			previewControl.LoadPreviewControl();
-			xtraTabControlGroups.Enabled = true;
+
+			xtraTabControlGroups.TabPages
+				.ToList()
+				.ForEach(tabPage => tabPage.PageEnabled = true);
+			Application.DoEvents();
 		}
 
 		private void OnPreviewItemChanged(Object sender, PreviewItemChangedEventArgs e)

@@ -13,7 +13,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	public sealed partial class SolutionControl
 	{
-		public override bool ReadyForOutput => true;
+		public override bool ReadyForOutput => _outputProcessors.Any(processor => processor.ReadyForOutput);
 
 		private readonly List<OutputProcessor> _outputProcessors = new List<OutputProcessor>();
 
@@ -26,6 +26,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				Items = _outputProcessors
 					.Where(processor => processor.ReadyForOutput)
 					.Select(processor => processor.GetOutputItem())
+					.Where(outputItem => outputItem != null)
 					.ToArray()
 			};
 		}
@@ -50,12 +51,15 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					new TabBOutputProcessor(outputControl),
 					new TabCOutputProcessor(outputControl),
 					new TabDOutputProcessor(outputControl),
+					new TabUOutputProcessor(outputControl),
+					new TabVOutputProcessor(outputControl),
+					new TabWOutputProcessor(outputControl),
 				};
 			}
 
 			protected abstract OutputDataPackage GetOutputData();
 
-			public OutputItem GetOutputItem()
+			public virtual OutputItem GetOutputItem()
 			{
 				var outputData = GetOutputData();
 				return new OutputItem
@@ -230,6 +234,150 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				outputDataPackage.TextItems.Add("CP10DSubheader1".ToUpper(), subHeader1);
 
 				return outputDataPackage;
+			}
+		}
+
+		internal class TabUOutputProcessor : OutputProcessor
+		{
+			public override String OutputName => OutputControl.SlideContainer.StarInfo.Titles.Tab10SubUTitle;
+			public override Boolean IsCurrent => OutputControl.tabbedControlGroupData.SelectedTabPage == OutputControl.layoutControlGroupTabU;
+
+			public TabUOutputProcessor(SolutionControl outputControl) : base(outputControl) { }
+
+			protected override OutputDataPackage GetOutputData()
+			{
+				return new OutputDataPackage();
+			}
+
+			public override OutputItem GetOutputItem()
+			{
+				var slideObject = OutputControl.SlideContainer.EditedContent.SolutionState.TabU.Slide;
+
+				if (slideObject.SourceSlideMasters.ContainsKey(SlideSettingsManager.Instance.SlideSettings.Format))
+				{
+					var slideMasterName = slideObject.SourceSlideMasters[SlideSettingsManager.Instance.SlideSettings.Format];
+					var targetSlideMaster = OutputControl.SlideContainer.StarInfo.SolutionConfiguration.PartUSlides.Slides
+						.FirstOrDefault(slideMaster =>
+							String.Equals(slideMaster.Name, slideMasterName, StringComparison.OrdinalIgnoreCase));
+
+					if (targetSlideMaster != null)
+					{
+						return new OutputItem
+						{
+							Name = OutputName,
+							PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
+								Path.GetFileName(Path.GetTempFileName())),
+							SlidesCount = 1,
+							IsCurrent = IsCurrent,
+							SlideGeneratingAction = (processor, destinationPresentation) =>
+							{
+								processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), destinationPresentation);
+							},
+							PreviewGeneratingAction = (processor, presentationSourcePath) =>
+							{
+								processor.PreparePresentation(presentationSourcePath,
+									presentation => processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), presentation));
+							}
+						};
+					}
+				}
+				return null;
+			}
+		}
+
+		internal class TabVOutputProcessor : OutputProcessor
+		{
+			public override String OutputName => OutputControl.SlideContainer.StarInfo.Titles.Tab10SubVTitle;
+			public override Boolean IsCurrent => OutputControl.tabbedControlGroupData.SelectedTabPage == OutputControl.layoutControlGroupTabV;
+
+			public TabVOutputProcessor(SolutionControl outputControl) : base(outputControl) { }
+
+			protected override OutputDataPackage GetOutputData()
+			{
+				return new OutputDataPackage();
+			}
+
+			public override OutputItem GetOutputItem()
+			{
+				var slideObject = OutputControl.SlideContainer.EditedContent.SolutionState.TabV.Slide;
+
+				if (slideObject.SourceSlideMasters.ContainsKey(SlideSettingsManager.Instance.SlideSettings.Format))
+				{
+					var slideMasterName = slideObject.SourceSlideMasters[SlideSettingsManager.Instance.SlideSettings.Format];
+					var targetSlideMaster = OutputControl.SlideContainer.StarInfo.SolutionConfiguration.PartVSlides.Slides
+						.FirstOrDefault(slideMaster =>
+							String.Equals(slideMaster.Name, slideMasterName, StringComparison.OrdinalIgnoreCase));
+
+					if (targetSlideMaster != null)
+					{
+						return new OutputItem
+						{
+							Name = OutputName,
+							PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
+								Path.GetFileName(Path.GetTempFileName())),
+							SlidesCount = 1,
+							IsCurrent = IsCurrent,
+							SlideGeneratingAction = (processor, destinationPresentation) =>
+							{
+								processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), destinationPresentation);
+							},
+							PreviewGeneratingAction = (processor, presentationSourcePath) =>
+							{
+								processor.PreparePresentation(presentationSourcePath,
+									presentation => processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), presentation));
+							}
+						};
+					}
+				}
+				return null;
+			}
+		}
+
+		internal class TabWOutputProcessor : OutputProcessor
+		{
+			public override String OutputName => OutputControl.SlideContainer.StarInfo.Titles.Tab10SubWTitle;
+			public override Boolean IsCurrent => OutputControl.tabbedControlGroupData.SelectedTabPage == OutputControl.layoutControlGroupTabW;
+
+			public TabWOutputProcessor(SolutionControl outputControl) : base(outputControl) { }
+
+			protected override OutputDataPackage GetOutputData()
+			{
+				return new OutputDataPackage();
+			}
+
+			public override OutputItem GetOutputItem()
+			{
+				var slideObject = OutputControl.SlideContainer.EditedContent.SolutionState.TabW.Slide;
+
+				if (slideObject.SourceSlideMasters.ContainsKey(SlideSettingsManager.Instance.SlideSettings.Format))
+				{
+					var slideMasterName = slideObject.SourceSlideMasters[SlideSettingsManager.Instance.SlideSettings.Format];
+					var targetSlideMaster = OutputControl.SlideContainer.StarInfo.SolutionConfiguration.PartWSlides.Slides
+						.FirstOrDefault(slideMaster =>
+							String.Equals(slideMaster.Name, slideMasterName, StringComparison.OrdinalIgnoreCase));
+
+					if (targetSlideMaster != null)
+					{
+						return new OutputItem
+						{
+							Name = OutputName,
+							PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
+								Path.GetFileName(Path.GetTempFileName())),
+							SlidesCount = 1,
+							IsCurrent = IsCurrent,
+							SlideGeneratingAction = (processor, destinationPresentation) =>
+							{
+								processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), destinationPresentation);
+							},
+							PreviewGeneratingAction = (processor, presentationSourcePath) =>
+							{
+								processor.PreparePresentation(presentationSourcePath,
+									presentation => processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), presentation));
+							}
+						};
+					}
+				}
+				return null;
 			}
 		}
 	}

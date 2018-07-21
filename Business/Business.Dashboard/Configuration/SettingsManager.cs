@@ -52,7 +52,7 @@ namespace Asa.Business.Dashboard.Configuration
 			InitThemeHelper(ThemeManager);
 
 			SlideManager = new SlideManager();
-			SlideManager.Load();
+			SlideManager.LoadSlides(Asa.Common.Core.Configuration.ResourceManager.Instance.SlideMastersFolder);
 
 			LoadDashboardSettings();
 		}

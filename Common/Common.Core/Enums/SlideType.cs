@@ -71,7 +71,7 @@
 		ShiftNeedsSolutions = 505,
 		ShiftCBC = 506,
 		ShiftIntegratedSolution = 507,
-		ShiftInvestemnt = 508,
+		ShiftInvestment = 508,
 		ShiftClosers = 509,
 		ShiftNextSteps = 510,
 		ShiftContract = 511,

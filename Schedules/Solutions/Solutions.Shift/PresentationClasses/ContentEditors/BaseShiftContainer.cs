@@ -146,13 +146,21 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 			var tabPageContainer = e.Page as IShiftTabPageContainer;
 			if (tabPageContainer?.ContentControl != null) return;
-			xtraTabControl.Enabled = false;
+
 			FormProgress.SetTitle("Loading data...");
 			FormProgress.ShowProgress();
 			Application.DoEvents();
+
+			xtraTabControl.TabPages
+				.Where(tabPage => tabPage != e.Page)
+				.ToList()
+				.ForEach(tabPage => tabPage.PageEnabled = false);
 			tabPageContainer?.LoadContent();
 			tabPageContainer?.ContentControl?.LoadData();
-			xtraTabControl.Enabled = true;
+			xtraTabControl.TabPages
+				.ToList()
+				.ForEach(tabPage => tabPage.PageEnabled = true);
+
 			FormProgress.CloseProgress();
 			Application.DoEvents();
 		}

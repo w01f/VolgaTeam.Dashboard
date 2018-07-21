@@ -144,13 +144,23 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			var tabPageContainer = e.Page as IStarAppTabPageContainer;
 			if (tabPageContainer?.ContentControl != null) return;
-			xtraTabControl.Enabled = false;
+
+			xtraTabControl.TabPages
+				.Where(tabPage => tabPage != e.Page)
+				.ToList()
+				.ForEach(tabPage => tabPage.PageEnabled = false);
+
 			FormProgress.SetTitle("Loading data...");
 			FormProgress.ShowProgress();
 			Application.DoEvents();
+
 			tabPageContainer?.LoadContent();
 			tabPageContainer?.ContentControl?.LoadData();
-			xtraTabControl.Enabled = true;
+
+			xtraTabControl.TabPages
+				.ToList()
+				.ForEach(tabPage => tabPage.PageEnabled = true);
+
 			FormProgress.CloseProgress();
 			Application.DoEvents();
 		}

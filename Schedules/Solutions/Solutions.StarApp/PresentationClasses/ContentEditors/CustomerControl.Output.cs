@@ -13,7 +13,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	public sealed partial class CustomerControl
 	{
-		public override bool ReadyForOutput => true;
+		public override bool ReadyForOutput => _outputProcessors.Any(processor => processor.ReadyForOutput);
 
 		private readonly List<OutputProcessor> _outputProcessors = new List<OutputProcessor>();
 
@@ -26,6 +26,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				Items = _outputProcessors
 					.Where(processor => processor.ReadyForOutput)
 					.Select(processor => processor.GetOutputItem())
+					.Where(outputItem => outputItem != null)
 					.ToArray()
 			};
 		}
@@ -49,12 +50,15 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					new TabAOutputProcessor(outputControl),
 					new TabBOutputProcessor(outputControl),
 					new TabCOutputProcessor(outputControl),
+					new TabUOutputProcessor(outputControl),
+					new TabVOutputProcessor(outputControl),
+					new TabWOutputProcessor(outputControl),
 				};
 			}
 
 			protected abstract OutputDataPackage GetOutputData();
 
-			public OutputItem GetOutputItem()
+			public virtual OutputItem GetOutputItem()
 			{
 				var outputData = GetOutputData();
 				return new OutputItem
@@ -79,7 +83,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		internal class TabAOutputProcessor : OutputProcessor
 		{
 			public override String OutputName => OutputControl.SlideContainer.StarInfo.Titles.Tab4SubATitle;
-			public override Boolean IsCurrent => OutputControl.tabbedControlGroupData.SelectedTabPageIndex == 0;
+			public override Boolean IsCurrent => OutputControl.tabbedControlGroupData.SelectedTabPage == OutputControl.layoutControlGroupTabA;
 
 			public TabAOutputProcessor(CustomerControl outputControl) : base(outputControl) { }
 
@@ -141,7 +145,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		internal class TabBOutputProcessor : OutputProcessor
 		{
 			public override String OutputName => OutputControl.SlideContainer.StarInfo.Titles.Tab4SubBTitle;
-			public override Boolean IsCurrent => OutputControl.tabbedControlGroupData.SelectedTabPageIndex == 1;
+			public override Boolean IsCurrent => OutputControl.tabbedControlGroupData.SelectedTabPage == OutputControl.layoutControlGroupTabB;
 
 			public TabBOutputProcessor(CustomerControl outputControl) : base(outputControl) { }
 
@@ -193,7 +197,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		internal class TabCOutputProcessor : OutputProcessor
 		{
 			public override String OutputName => OutputControl.SlideContainer.StarInfo.Titles.Tab4SubCTitle;
-			public override Boolean IsCurrent => OutputControl.tabbedControlGroupData.SelectedTabPageIndex == 2;
+			public override Boolean IsCurrent => OutputControl.tabbedControlGroupData.SelectedTabPage == OutputControl.layoutControlGroupTabC;
 
 			public TabCOutputProcessor(CustomerControl outputControl) : base(outputControl) { }
 
@@ -236,6 +240,150 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				outputDataPackage.TextItems.Add("CP04CSubheader3".ToUpper(), subHeaders.ElementAtOrDefault(2));
 
 				return outputDataPackage;
+			}
+		}
+
+		internal class TabUOutputProcessor : OutputProcessor
+		{
+			public override String OutputName => OutputControl.SlideContainer.StarInfo.Titles.Tab4SubUTitle;
+			public override Boolean IsCurrent => OutputControl.tabbedControlGroupData.SelectedTabPage == OutputControl.layoutControlGroupTabU;
+
+			public TabUOutputProcessor(CustomerControl outputControl) : base(outputControl) { }
+
+			protected override OutputDataPackage GetOutputData()
+			{
+				return new OutputDataPackage();
+			}
+
+			public override OutputItem GetOutputItem()
+			{
+				var slideObject = OutputControl.SlideContainer.EditedContent.CustomerState.TabU.Slide;
+
+				if (slideObject.SourceSlideMasters.ContainsKey(SlideSettingsManager.Instance.SlideSettings.Format))
+				{
+					var slideMasterName = slideObject.SourceSlideMasters[SlideSettingsManager.Instance.SlideSettings.Format];
+					var targetSlideMaster = OutputControl.SlideContainer.StarInfo.CustomerConfiguration.PartUSlides.Slides
+						.FirstOrDefault(slideMaster =>
+							String.Equals(slideMaster.Name, slideMasterName, StringComparison.OrdinalIgnoreCase));
+
+					if (targetSlideMaster != null)
+					{
+						return new OutputItem
+						{
+							Name = OutputName,
+							PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
+								Path.GetFileName(Path.GetTempFileName())),
+							SlidesCount = 1,
+							IsCurrent = IsCurrent,
+							SlideGeneratingAction = (processor, destinationPresentation) =>
+							{
+								processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), destinationPresentation);
+							},
+							PreviewGeneratingAction = (processor, presentationSourcePath) =>
+							{
+								processor.PreparePresentation(presentationSourcePath,
+									presentation => processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), presentation));
+							}
+						};
+					}
+				}
+				return null;
+			}
+		}
+
+		internal class TabVOutputProcessor : OutputProcessor
+		{
+			public override String OutputName => OutputControl.SlideContainer.StarInfo.Titles.Tab4SubVTitle;
+			public override Boolean IsCurrent => OutputControl.tabbedControlGroupData.SelectedTabPage == OutputControl.layoutControlGroupTabV;
+
+			public TabVOutputProcessor(CustomerControl outputControl) : base(outputControl) { }
+
+			protected override OutputDataPackage GetOutputData()
+			{
+				return new OutputDataPackage();
+			}
+
+			public override OutputItem GetOutputItem()
+			{
+				var slideObject = OutputControl.SlideContainer.EditedContent.CustomerState.TabV.Slide;
+
+				if (slideObject.SourceSlideMasters.ContainsKey(SlideSettingsManager.Instance.SlideSettings.Format))
+				{
+					var slideMasterName = slideObject.SourceSlideMasters[SlideSettingsManager.Instance.SlideSettings.Format];
+					var targetSlideMaster = OutputControl.SlideContainer.StarInfo.CustomerConfiguration.PartVSlides.Slides
+						.FirstOrDefault(slideMaster =>
+							String.Equals(slideMaster.Name, slideMasterName, StringComparison.OrdinalIgnoreCase));
+
+					if (targetSlideMaster != null)
+					{
+						return new OutputItem
+						{
+							Name = OutputName,
+							PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
+								Path.GetFileName(Path.GetTempFileName())),
+							SlidesCount = 1,
+							IsCurrent = IsCurrent,
+							SlideGeneratingAction = (processor, destinationPresentation) =>
+							{
+								processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), destinationPresentation);
+							},
+							PreviewGeneratingAction = (processor, presentationSourcePath) =>
+							{
+								processor.PreparePresentation(presentationSourcePath,
+									presentation => processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), presentation));
+							}
+						};
+					}
+				}
+				return null;
+			}
+		}
+
+		internal class TabWOutputProcessor : OutputProcessor
+		{
+			public override String OutputName => OutputControl.SlideContainer.StarInfo.Titles.Tab4SubWTitle;
+			public override Boolean IsCurrent => OutputControl.tabbedControlGroupData.SelectedTabPage == OutputControl.layoutControlGroupTabW;
+
+			public TabWOutputProcessor(CustomerControl outputControl) : base(outputControl) { }
+
+			protected override OutputDataPackage GetOutputData()
+			{
+				return new OutputDataPackage();
+			}
+
+			public override OutputItem GetOutputItem()
+			{
+				var slideObject = OutputControl.SlideContainer.EditedContent.CustomerState.TabW.Slide;
+
+				if (slideObject.SourceSlideMasters.ContainsKey(SlideSettingsManager.Instance.SlideSettings.Format))
+				{
+					var slideMasterName = slideObject.SourceSlideMasters[SlideSettingsManager.Instance.SlideSettings.Format];
+					var targetSlideMaster = OutputControl.SlideContainer.StarInfo.CustomerConfiguration.PartWSlides.Slides
+						.FirstOrDefault(slideMaster =>
+							String.Equals(slideMaster.Name, slideMasterName, StringComparison.OrdinalIgnoreCase));
+
+					if (targetSlideMaster != null)
+					{
+						return new OutputItem
+						{
+							Name = OutputName,
+							PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
+								Path.GetFileName(Path.GetTempFileName())),
+							SlidesCount = 1,
+							IsCurrent = IsCurrent,
+							SlideGeneratingAction = (processor, destinationPresentation) =>
+							{
+								processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), destinationPresentation);
+							},
+							PreviewGeneratingAction = (processor, presentationSourcePath) =>
+							{
+								processor.PreparePresentation(presentationSourcePath,
+									presentation => processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), presentation));
+							}
+						};
+					}
+				}
+				return null;
 			}
 		}
 	}

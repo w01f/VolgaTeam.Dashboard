@@ -54,6 +54,7 @@
     <Compile Include="Common\Entities\NonPersistent\BaseSolutionContent.cs" />
     <Compile Include="Common\Entities\NonPersistent\BaseSolutionInfo.cs" />
     <Compile Include="Common\Entities\NonPersistent\ClipartObject.cs" />
+    <Compile Include="Common\Entities\NonPersistent\SlideObject.cs" />
     <Compile Include="Common\Entities\NonPersistent\VideoClipartObject.cs" />
     <Compile Include="Common\Entities\NonPersistent\VideoResourceItem.cs" />
     <Compile Include="Common\Entities\NonPersistent\YoutubeClipartObject.cs" />
@@ -81,6 +82,17 @@
     <Compile Include="Dashboard\Entities\NonPersistent\SimpleSummaryState.cs" />
     <Compile Include="Dashboard\Entities\NonPersistent\TargetCustomersState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shift\Configuration\CNAConfiguration.cs" />
+    <Compile Include="Shift\Configuration\MarketConfiguration.cs" />
+    <Compile Include="Shift\Configuration\NeedsSolutionsConfiguration.cs" />
+    <Compile Include="Shift\Configuration\CBCConfiguration.cs" />
+    <Compile Include="Shift\Configuration\IntegratedSolutionConfiguration.cs" />
+    <Compile Include="Shift\Configuration\InvestmentConfiguration.cs" />
+    <Compile Include="Shift\Configuration\ClosersConfiguration.cs" />
+    <Compile Include="Shift\Configuration\NextStepsConfiguration.cs" />
+    <Compile Include="Shift\Configuration\ContractConfiguration.cs" />
+    <Compile Include="Shift\Configuration\SupportMaterialsConfiguration.cs" />
+    <Compile Include="Shift\Configuration\StartersConfiguration.cs" />
     <Compile Include="Shift\Configuration\IShiftSettingsContainer.cs" />
     <Compile Include="Shift\Configuration\ResourceManager.cs" />
     <Compile Include="Shift\Configuration\TitlesConfiguration.cs" />

@@ -66,7 +66,7 @@ namespace Asa.Common.GUI.Preview
 		{
 			pictureEditPreview.BackColor = Color.WhiteSmoke;
 			pictureEditPreview.Image = _previewImages[comboBoxEditSlides.SelectedIndex];
-			simpleLabelItemSlideNumber.Text = String.Format("<size=+2>Slide {0} of {1}<>", (comboBoxEditSlides.SelectedIndex + 1), _previewImages.Count);
+			simpleLabelItemSlideNumber.Text = String.Format("<size=+2>Slide {0} of {1}</size>", (comboBoxEditSlides.SelectedIndex + 1), _previewImages.Count);
 		}
 
 		private void OnSlidesButtonClick(object sender, ButtonPressedEventArgs e)

@@ -18,6 +18,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public string Tab1SubHTitle { get; private set; }
 		public string Tab1SubITitle { get; private set; }
 		public string Tab1SubJTitle { get; private set; }
+		public string Tab1SubUTitle { get; private set; }
+		public string Tab1SubVTitle { get; private set; }
+		public string Tab1SubWTitle { get; private set; }
 
 		public string Tab2Title { get; private set; }
 		public string Tab2SubATitle { get; private set; }
@@ -30,6 +33,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public string Tab2SubHTitle { get; private set; }
 		public string Tab2SubITitle { get; private set; }
 		public string Tab2SubJTitle { get; private set; }
+		public string Tab2SubUTitle { get; private set; }
+		public string Tab2SubVTitle { get; private set; }
+		public string Tab2SubWTitle { get; private set; }
 
 		public string Tab3Title { get; private set; }
 		public string Tab3SubATitle { get; private set; }
@@ -42,6 +48,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public string Tab3SubHTitle { get; private set; }
 		public string Tab3SubITitle { get; private set; }
 		public string Tab3SubJTitle { get; private set; }
+		public string Tab3SubUTitle { get; private set; }
+		public string Tab3SubVTitle { get; private set; }
+		public string Tab3SubWTitle { get; private set; }
 
 		public string Tab4Title { get; private set; }
 		public string Tab4SubATitle { get; private set; }
@@ -54,6 +63,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public string Tab4SubHTitle { get; private set; }
 		public string Tab4SubITitle { get; private set; }
 		public string Tab4SubJTitle { get; private set; }
+		public string Tab4SubUTitle { get; private set; }
+		public string Tab4SubVTitle { get; private set; }
+		public string Tab4SubWTitle { get; private set; }
 
 		public string Tab5Title { get; private set; }
 		public string Tab5SubATitle { get; private set; }
@@ -66,6 +78,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public string Tab5SubHTitle { get; private set; }
 		public string Tab5SubITitle { get; private set; }
 		public string Tab5SubJTitle { get; private set; }
+		public string Tab5SubUTitle { get; private set; }
+		public string Tab5SubVTitle { get; private set; }
+		public string Tab5SubWTitle { get; private set; }
 
 		public string Tab6Title { get; private set; }
 		public string Tab6SubATitle { get; private set; }
@@ -78,6 +93,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public string Tab6SubHTitle { get; private set; }
 		public string Tab6SubITitle { get; private set; }
 		public string Tab6SubJTitle { get; private set; }
+		public string Tab6SubUTitle { get; private set; }
+		public string Tab6SubVTitle { get; private set; }
+		public string Tab6SubWTitle { get; private set; }
 
 		public string Tab7Title { get; private set; }
 		public string Tab7SubATitle { get; private set; }
@@ -90,6 +108,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public string Tab7SubHTitle { get; private set; }
 		public string Tab7SubITitle { get; private set; }
 		public string Tab7SubJTitle { get; private set; }
+		public string Tab7SubUTitle { get; private set; }
+		public string Tab7SubVTitle { get; private set; }
+		public string Tab7SubWTitle { get; private set; }
 
 		public string Tab8Title { get; private set; }
 		public string Tab8SubATitle { get; private set; }
@@ -102,6 +123,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public string Tab8SubHTitle { get; private set; }
 		public string Tab8SubITitle { get; private set; }
 		public string Tab8SubJTitle { get; private set; }
+		public string Tab8SubUTitle { get; private set; }
+		public string Tab8SubVTitle { get; private set; }
+		public string Tab8SubWTitle { get; private set; }
 
 		public string Tab9Title { get; private set; }
 		public string Tab9SubATitle { get; private set; }
@@ -114,6 +138,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public string Tab9SubHTitle { get; private set; }
 		public string Tab9SubITitle { get; private set; }
 		public string Tab9SubJTitle { get; private set; }
+		public string Tab9SubUTitle { get; private set; }
+		public string Tab9SubVTitle { get; private set; }
+		public string Tab9SubWTitle { get; private set; }
 
 		public string Tab10Title { get; private set; }
 		public string Tab10SubATitle { get; private set; }
@@ -126,6 +153,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public string Tab10SubHTitle { get; private set; }
 		public string Tab10SubITitle { get; private set; }
 		public string Tab10SubJTitle { get; private set; }
+		public string Tab10SubUTitle { get; private set; }
+		public string Tab10SubVTitle { get; private set; }
+		public string Tab10SubWTitle { get; private set; }
 
 		public string Tab11Title { get; private set; }
 		public string Tab11SubATitle { get; private set; }
@@ -138,6 +168,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public string Tab11SubHTitle { get; private set; }
 		public string Tab11SubITitle { get; private set; }
 		public string Tab11SubJTitle { get; private set; }
+		public string Tab11SubUTitle { get; private set; }
+		public string Tab11SubVTitle { get; private set; }
+		public string Tab11SubWTitle { get; private set; }
 
 		public void Load(StorageFile dataFile)
 		{
@@ -157,6 +190,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			Tab1SubHTitle = document.SelectSingleNode(@"//Settings/Tab_1/SubTab_H")?.InnerText;
 			Tab1SubITitle = document.SelectSingleNode(@"//Settings/Tab_1/SubTab_I")?.InnerText;
 			Tab1SubJTitle = document.SelectSingleNode(@"//Settings/Tab_1/SubTab_J")?.InnerText;
+			Tab1SubUTitle = document.SelectSingleNode(@"//Settings/Tab_1/SubTab_U")?.InnerText;
+			Tab1SubVTitle = document.SelectSingleNode(@"//Settings/Tab_1/SubTab_V")?.InnerText;
+			Tab1SubWTitle = document.SelectSingleNode(@"//Settings/Tab_1/SubTab_W")?.InnerText;
 
 			Tab2Title = document.SelectSingleNode(@"//Settings/Tab_2/Name")?.InnerText;
 			Tab2SubATitle = document.SelectSingleNode(@"//Settings/Tab_2/SubTab_A")?.InnerText;
@@ -169,6 +205,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			Tab2SubHTitle = document.SelectSingleNode(@"//Settings/Tab_2/SubTab_H")?.InnerText;
 			Tab2SubITitle = document.SelectSingleNode(@"//Settings/Tab_2/SubTab_I")?.InnerText;
 			Tab2SubJTitle = document.SelectSingleNode(@"//Settings/Tab_2/SubTab_J")?.InnerText;
+			Tab2SubUTitle = document.SelectSingleNode(@"//Settings/Tab_2/SubTab_U")?.InnerText;
+			Tab2SubVTitle = document.SelectSingleNode(@"//Settings/Tab_2/SubTab_V")?.InnerText;
+			Tab2SubWTitle = document.SelectSingleNode(@"//Settings/Tab_2/SubTab_W")?.InnerText;
 
 			Tab3Title = document.SelectSingleNode(@"//Settings/Tab_3/Name")?.InnerText;
 			Tab3SubATitle = document.SelectSingleNode(@"//Settings/Tab_3/SubTab_A")?.InnerText;
@@ -181,6 +220,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			Tab3SubHTitle = document.SelectSingleNode(@"//Settings/Tab_3/SubTab_H")?.InnerText;
 			Tab3SubITitle = document.SelectSingleNode(@"//Settings/Tab_3/SubTab_I")?.InnerText;
 			Tab3SubJTitle = document.SelectSingleNode(@"//Settings/Tab_3/SubTab_J")?.InnerText;
+			Tab3SubUTitle = document.SelectSingleNode(@"//Settings/Tab_3/SubTab_U")?.InnerText;
+			Tab3SubVTitle = document.SelectSingleNode(@"//Settings/Tab_3/SubTab_V")?.InnerText;
+			Tab3SubWTitle = document.SelectSingleNode(@"//Settings/Tab_3/SubTab_W")?.InnerText;
 
 			Tab4Title = document.SelectSingleNode(@"//Settings/Tab_4/Name")?.InnerText;
 			Tab4SubATitle = document.SelectSingleNode(@"//Settings/Tab_4/SubTab_A")?.InnerText;
@@ -193,6 +235,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			Tab4SubHTitle = document.SelectSingleNode(@"//Settings/Tab_4/SubTab_H")?.InnerText;
 			Tab4SubITitle = document.SelectSingleNode(@"//Settings/Tab_4/SubTab_I")?.InnerText;
 			Tab4SubJTitle = document.SelectSingleNode(@"//Settings/Tab_4/SubTab_J")?.InnerText;
+			Tab4SubUTitle = document.SelectSingleNode(@"//Settings/Tab_4/SubTab_U")?.InnerText;
+			Tab4SubVTitle = document.SelectSingleNode(@"//Settings/Tab_4/SubTab_V")?.InnerText;
+			Tab4SubWTitle = document.SelectSingleNode(@"//Settings/Tab_4/SubTab_W")?.InnerText;
 
 			Tab5Title = document.SelectSingleNode(@"//Settings/Tab_5/Name")?.InnerText;
 			Tab5SubATitle = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_A")?.InnerText;
@@ -205,6 +250,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			Tab5SubHTitle = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_H")?.InnerText;
 			Tab5SubITitle = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_I")?.InnerText;
 			Tab5SubJTitle = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_J")?.InnerText;
+			Tab5SubUTitle = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_U")?.InnerText;
+			Tab5SubVTitle = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_V")?.InnerText;
+			Tab5SubWTitle = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_W")?.InnerText;
 
 			Tab6Title = document.SelectSingleNode(@"//Settings/Tab_6/Name")?.InnerText;
 			Tab6SubATitle = document.SelectSingleNode(@"//Settings/Tab_6/SubTab_A")?.InnerText;
@@ -217,6 +265,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			Tab6SubHTitle = document.SelectSingleNode(@"//Settings/Tab_6/SubTab_H")?.InnerText;
 			Tab6SubITitle = document.SelectSingleNode(@"//Settings/Tab_6/SubTab_I")?.InnerText;
 			Tab6SubJTitle = document.SelectSingleNode(@"//Settings/Tab_6/SubTab_J")?.InnerText;
+			Tab6SubUTitle = document.SelectSingleNode(@"//Settings/Tab_6/SubTab_U")?.InnerText;
+			Tab6SubVTitle = document.SelectSingleNode(@"//Settings/Tab_6/SubTab_V")?.InnerText;
+			Tab6SubWTitle = document.SelectSingleNode(@"//Settings/Tab_6/SubTab_W")?.InnerText;
 
 			Tab7Title = document.SelectSingleNode(@"//Settings/Tab_7/Name")?.InnerText;
 			Tab7SubATitle = document.SelectSingleNode(@"//Settings/Tab_7/SubTab_A")?.InnerText;
@@ -229,6 +280,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			Tab7SubHTitle = document.SelectSingleNode(@"//Settings/Tab_7/SubTab_H")?.InnerText;
 			Tab7SubITitle = document.SelectSingleNode(@"//Settings/Tab_7/SubTab_I")?.InnerText;
 			Tab7SubJTitle = document.SelectSingleNode(@"//Settings/Tab_7/SubTab_J")?.InnerText;
+			Tab7SubUTitle = document.SelectSingleNode(@"//Settings/Tab_7/SubTab_U")?.InnerText;
+			Tab7SubVTitle = document.SelectSingleNode(@"//Settings/Tab_7/SubTab_V")?.InnerText;
+			Tab7SubWTitle = document.SelectSingleNode(@"//Settings/Tab_7/SubTab_W")?.InnerText;
 
 			Tab8Title = document.SelectSingleNode(@"//Settings/Tab_8/Name")?.InnerText;
 			Tab8SubATitle = document.SelectSingleNode(@"//Settings/Tab_8/SubTab_A")?.InnerText;
@@ -241,6 +295,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			Tab8SubHTitle = document.SelectSingleNode(@"//Settings/Tab_8/SubTab_H")?.InnerText;
 			Tab8SubITitle = document.SelectSingleNode(@"//Settings/Tab_8/SubTab_I")?.InnerText;
 			Tab8SubJTitle = document.SelectSingleNode(@"//Settings/Tab_8/SubTab_J")?.InnerText;
+			Tab8SubUTitle = document.SelectSingleNode(@"//Settings/Tab_8/SubTab_U")?.InnerText;
+			Tab8SubVTitle = document.SelectSingleNode(@"//Settings/Tab_8/SubTab_V")?.InnerText;
+			Tab8SubWTitle = document.SelectSingleNode(@"//Settings/Tab_8/SubTab_W")?.InnerText;
 
 			Tab9Title = document.SelectSingleNode(@"//Settings/Tab_9/Name")?.InnerText;
 			Tab9SubATitle = document.SelectSingleNode(@"//Settings/Tab_9/SubTab_A")?.InnerText;
@@ -253,6 +310,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			Tab9SubHTitle = document.SelectSingleNode(@"//Settings/Tab_9/SubTab_H")?.InnerText;
 			Tab9SubITitle = document.SelectSingleNode(@"//Settings/Tab_9/SubTab_I")?.InnerText;
 			Tab9SubJTitle = document.SelectSingleNode(@"//Settings/Tab_9/SubTab_J")?.InnerText;
+			Tab9SubUTitle = document.SelectSingleNode(@"//Settings/Tab_9/SubTab_U")?.InnerText;
+			Tab9SubVTitle = document.SelectSingleNode(@"//Settings/Tab_9/SubTab_V")?.InnerText;
+			Tab9SubWTitle = document.SelectSingleNode(@"//Settings/Tab_9/SubTab_W")?.InnerText;
 
 			Tab10Title = document.SelectSingleNode(@"//Settings/Tab_10/Name")?.InnerText;
 			Tab10SubATitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_A")?.InnerText;
@@ -265,6 +325,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			Tab10SubHTitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_H")?.InnerText;
 			Tab10SubITitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_I")?.InnerText;
 			Tab10SubJTitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_J")?.InnerText;
+			Tab10SubUTitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_U")?.InnerText;
+			Tab10SubVTitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_V")?.InnerText;
+			Tab10SubWTitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_W")?.InnerText;
 
 			Tab11Title = document.SelectSingleNode(@"//Settings/Tab_11/Name")?.InnerText;
 			Tab11SubATitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_A")?.InnerText;
@@ -277,6 +340,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			Tab11SubHTitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_H")?.InnerText;
 			Tab11SubITitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_I")?.InnerText;
 			Tab11SubJTitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_J")?.InnerText;
+			Tab11SubUTitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_U")?.InnerText;
+			Tab11SubVTitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_V")?.InnerText;
+			Tab11SubWTitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_W")?.InnerText;
 		}
 	}
 }

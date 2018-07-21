@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Dictionaries;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
@@ -15,6 +16,7 @@ using Asa.Solutions.Common.InteropClasses;
 using Asa.Solutions.Common.PresentationClasses.Output;
 using DevExpress.Skins;
 using DevExpress.XtraLayout;
+using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -33,18 +35,63 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			Resize += OnResize;
 
 			comboBoxEditSlideHeader.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
-			memoEditSubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
-			comboBoxEditCombo1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 
-			layoutControlGroupTabA.Text = SlideContainer.StarInfo.Titles.Tab1SubATitle;
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab1SubATitle))
+			{
+				layoutControlGroupTabA.Text = SlideContainer.StarInfo.Titles.Tab1SubATitle;
 
-			clipartEditContainer1.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab1SubAClipart1Image), SlideContainer.StarInfo.CoverConfiguration.PartAClipart1Configuration, this);
-			clipartEditContainer1.EditValueChanged += OnEditValueChanged;
+				memoEditSubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+				comboBoxEditCombo1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 
-			memoEditSubheader1.Properties.NullText = SlideContainer.StarInfo.CoverConfiguration.SubHeader1Placeholder ?? memoEditSubheader1.Properties.NullText;
+				memoEditSubheader1.Properties.NullText = SlideContainer.StarInfo.CoverConfiguration.PartASubHeader1Placeholder ?? memoEditSubheader1.Properties.NullText;
+				_usersByStation.AddRange(SlideContainer.StarInfo.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name));
+				comboBoxEditCombo1.Properties.Items.AddRange(_usersByStation);
 
-			_usersByStation.AddRange(SlideContainer.StarInfo.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name));
-			comboBoxEditCombo1.Properties.Items.AddRange(_usersByStation);
+				clipartEditContainer1.Init(ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab1SubAClipart1Image), SlideContainer.StarInfo.CoverConfiguration.PartAClipart1Configuration, this);
+				clipartEditContainer1.EditValueChanged += OnEditValueChanged;
+
+				Application.DoEvents();
+			}
+			else
+				layoutControlGroupTabA.Visibility = LayoutVisibility.Never;
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab1SubUTitle))
+			{
+				layoutControlGroupTabU.Text = SlideContainer.StarInfo.Titles.Tab1SubUTitle;
+
+				slidesEditContainerTabU.Init(SlideContainer.StarInfo.CoverConfiguration.PartUSlides);
+				slidesEditContainerTabU.SelectionChanged += OnEditValueChanged;
+
+				Application.DoEvents();
+			}
+			else
+				layoutControlGroupTabU.Visibility = LayoutVisibility.Never;
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab1SubVTitle))
+			{
+				layoutControlGroupTabV.Text = SlideContainer.StarInfo.Titles.Tab1SubVTitle;
+
+				slidesEditContainerTabV.Init(SlideContainer.StarInfo.CoverConfiguration.PartVSlides);
+				slidesEditContainerTabV.SelectionChanged += OnEditValueChanged;
+
+				Application.DoEvents();
+			}
+			else
+				layoutControlGroupTabV.Visibility = LayoutVisibility.Never;
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab1SubWTitle))
+			{
+				layoutControlGroupTabW.Text = SlideContainer.StarInfo.Titles.Tab1SubWTitle;
+
+				slidesEditContainerTabW.Init(SlideContainer.StarInfo.CoverConfiguration.PartWSlides);
+				slidesEditContainerTabW.SelectionChanged += OnEditValueChanged;
+
+				Application.DoEvents();
+			}
+			else
+				layoutControlGroupTabW.Visibility = LayoutVisibility.Never;
+
+			_outputProcessors.AddRange(OutputProcessor.GetOutputProcessors(this));
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
@@ -59,18 +106,38 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			_allowToSave = false;
 
-			clipartEditContainer1.LoadData(SlideContainer.EditedContent.CoverState.Clipart1);
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab1SubATitle))
+			{
+				clipartEditContainer1.LoadData(SlideContainer.EditedContent.CoverState.TabA.Clipart1);
 
-			memoEditSubheader1.EditValue = SlideContainer.EditedContent.CoverState.Subheader1 ??
-				SlideContainer.StarInfo.CoverConfiguration.SubHeader1DefaultValue;
+				memoEditSubheader1.EditValue = SlideContainer.EditedContent.CoverState.TabA.Subheader1 ??
+											   SlideContainer.StarInfo.CoverConfiguration.PartASubHeader1DefaultValue;
 
-			checkEditAddAsPageOne.Checked = SlideContainer.EditedContent.CoverState.AddAsPageOne;
+				checkEditAddAsPageOne.Checked = SlideContainer.EditedContent.CoverState.TabA.AddAsPageOne;
 
-			dateEditCalendar1.EditValue = SlideContainer.EditedContent.CoverState.Calendar1 != DateTime.MinValue ? SlideContainer.EditedContent.CoverState.Calendar1 ?? _defaultDate : _defaultDate;
-			checkEditCalendar1.Checked = SlideContainer.EditedContent.CoverState.Calendar1 != DateTime.MinValue;
+				dateEditCalendar1.EditValue = SlideContainer.EditedContent.CoverState.TabA.Calendar1 != DateTime.MinValue
+					? SlideContainer.EditedContent.CoverState.TabA.Calendar1 ?? _defaultDate
+					: _defaultDate;
+				checkEditCalendar1.Checked = SlideContainer.EditedContent.CoverState.TabA.Calendar1 != DateTime.MinValue;
 
-			comboBoxEditCombo1.EditValue = SlideContainer.EditedContent.CoverState.Combo1 ??
-				_usersByStation.FirstOrDefault();
+				comboBoxEditCombo1.EditValue = SlideContainer.EditedContent.CoverState.TabA.Combo1 ??
+											   _usersByStation.FirstOrDefault();
+			}
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab1SubUTitle))
+			{
+				slidesEditContainerTabU.LoadData(SlideContainer.EditedContent.CoverState.TabU.Slide);
+			}
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab1SubVTitle))
+			{
+				slidesEditContainerTabV.LoadData(SlideContainer.EditedContent.CoverState.TabV.Slide);
+			}
+
+			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab1SubWTitle))
+			{
+				slidesEditContainerTabW.LoadData(SlideContainer.EditedContent.CoverState.TabW.Slide);
+			}
 
 			_allowToSave = true;
 
@@ -81,27 +148,47 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			if (!_dataChanged) return;
 
-			SlideContainer.EditedContent.CoverState.SlideHeader = SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
-				comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String } :
-				null;
+			if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabA)
+			{
+				SlideContainer.EditedContent.CoverState.TabA.SlideHeader =
+					SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => h.IsDefault) !=
+					comboBoxEditSlideHeader.EditValue
+						? comboBoxEditSlideHeader.EditValue as ListDataItem ??
+						  new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String }
+						: null;
 
-			SlideContainer.EditedContent.CoverState.AddAsPageOne = checkEditAddAsPageOne.Checked;
+				SlideContainer.EditedContent.CoverState.TabA.AddAsPageOne = checkEditAddAsPageOne.Checked;
 
-			SlideContainer.EditedContent.CoverState.Clipart1 = clipartEditContainer1.GetActiveClipartObject();
+				SlideContainer.EditedContent.CoverState.TabA.Clipart1 = clipartEditContainer1.GetActiveClipartObject();
 
-			SlideContainer.EditedContent.CoverState.Subheader1 = memoEditSubheader1.EditValue as String != SlideContainer.StarInfo.CoverConfiguration.SubHeader1DefaultValue ?
-				memoEditSubheader1.EditValue as String ?? String.Empty :
-				null;
+				SlideContainer.EditedContent.CoverState.TabA.Subheader1 =
+					memoEditSubheader1.EditValue as String != SlideContainer.StarInfo.CoverConfiguration.PartASubHeader1DefaultValue
+						? memoEditSubheader1.EditValue as String ?? String.Empty
+						: null;
 
-			SlideContainer.EditedContent.CoverState.Calendar1 = checkEditCalendar1.Checked ?
-				((DateTime?)dateEditCalendar1.EditValue == _defaultDate ? null : (DateTime?)dateEditCalendar1.EditValue) :
-				DateTime.MinValue;
+				SlideContainer.EditedContent.CoverState.TabA.Calendar1 = checkEditCalendar1.Checked
+					? ((DateTime?)dateEditCalendar1.EditValue == _defaultDate ? null : (DateTime?)dateEditCalendar1.EditValue)
+					: DateTime.MinValue;
 
-			SlideContainer.EditedContent.CoverState.Combo1 = _usersByStation.FirstOrDefault() != comboBoxEditCombo1.EditValue as User ?
-				comboBoxEditCombo1.EditValue as User ?? (comboBoxEditCombo1.EditValue is String ? new User { FirstName = (String)comboBoxEditCombo1.EditValue } : null) :
-				null;
-
-			SlideContainer.SettingsContainer.SaveSettings();
+				SlideContainer.EditedContent.CoverState.TabA.Combo1 =
+					_usersByStation.FirstOrDefault() != comboBoxEditCombo1.EditValue as User
+						? comboBoxEditCombo1.EditValue as User ?? (comboBoxEditCombo1.EditValue is String
+							  ? new User { FirstName = (String)comboBoxEditCombo1.EditValue }
+							  : null)
+						: null;
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabU)
+			{
+				slidesEditContainerTabU.SaveData();
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabV)
+			{
+				slidesEditContainerTabV.SaveData();
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabW)
+			{
+				slidesEditContainerTabW.SaveData();
+			}
 
 			_dataChanged = false;
 		}
@@ -109,21 +196,39 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		private void LoadPartData()
 		{
 			_allowToSave = false;
-			switch (tabbedControlGroupData.SelectedTabPageIndex)
+			if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabA)
 			{
-				case 0:
-					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab1SubARightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab1SubAFooterLogo;
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab1SubARightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab1SubAFooterLogo;
 
-					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.Where(item => !item.IsPlaceholder).ToArray());
+				comboBoxEditSlideHeader.Properties.Items.Clear();
+				comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.Where(item => !item.IsPlaceholder).ToArray());
 
-					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.CoverState.SlideHeader ??
-						SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => h.IsDefault);
-					comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
-						"Select or type";
-					break;
+				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.CoverState.TabA.SlideHeader ??
+					SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => h.IsDefault);
+				comboBoxEditSlideHeader.Properties.NullText = SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+					"Select or type";
 			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabU)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab1SubURightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab1SubUFooterLogo;
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabV)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab1SubVRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab1SubVFooterLogo;
+			}
+			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabW)
+			{
+				pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab1SubWRightLogo;
+				pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab1SubWFooterLogo;
+			}
+
+			layoutControlItemAddAsPageOne.Visibility = tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabA
+				? LayoutVisibility.Always
+				: LayoutVisibility.Never;
+
 			_allowToSave = true;
 		}
 
@@ -134,11 +239,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			SlideContainer.RaiseDataChanged();
 		}
 
-		private void OnSelectedPageChanged(object sender, LayoutTabPageChangedEventArgs e)
+		private void OnSelectedPageChanging(object sender, LayoutTabPageChangingEventArgs e)
 		{
 			if (_allowToSave)
 				ApplyChanges();
+		}
 
+		private void OnSelectedPageChanged(object sender, LayoutTabPageChangedEventArgs e)
+		{
 			LoadPartData();
 		}
 
@@ -164,126 +272,5 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			panelLogoRight.Visible = panelLogoBottom.Visible = Width > 1000;
 		}
-
-		#region Output Staff
-		public override bool ReadyForOutput => true;
-
-		public override OutputGroup GetOutputGroup()
-		{
-			var outputData = GetOutputData();
-			return new OutputGroup
-			{
-				Name = SlideContainer.StarInfo.Titles.Tab1Title,
-				IsCurrent = SlideContainer.ActiveSlideContent == this,
-				Items = new List<OutputItem>(new[]
-				{
-					new OutputItem
-					{
-						Name = SlideContainer.StarInfo.Titles.Tab1Title,
-						InsertOnTop = outputData.AddAsFirtsPage,
-						PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
-							Path.GetFileName(Path.GetTempFileName())),
-						SlidesCount = 1,
-						IsCurrent = true,
-						SlideGeneratingAction = (processor, destinationPresentation) =>
-						{
-							processor.AppendStarCommonSlide(outputData, destinationPresentation);
-						},
-						PreviewGeneratingAction = (processor, presentationSourcePath) =>
-						{
-							processor.PrepareStarCommonSlide(presentationSourcePath, outputData);
-						}
-					}
-				})
-			};
-		}
-
-		private OutputDataPackage GetOutputData()
-		{
-			var outputDataPackage = new OutputDataPackage();
-
-			outputDataPackage.Theme = SelectedTheme;
-			outputDataPackage.AddAsFirtsPage = SlideContainer.EditedContent.CoverState.AddAsPageOne;
-
-			var clipart = SlideContainer.EditedContent.CoverState.Clipart1 ?? ImageClipartObject.FromImage(SlideContainer.StarInfo.Tab1SubAClipart1Image);
-			if (clipart != null)
-				outputDataPackage.ClipartItems.Add("CP01ACLIPART1", clipart);
-
-			var slideHeader = (SlideContainer.EditedContent.CoverState.SlideHeader ?? SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => h.IsDefault))?.Value;
-			var subHeader1 = SlideContainer.EditedContent.CoverState.Subheader1 ?? SlideContainer.StarInfo.CoverConfiguration.SubHeader1DefaultValue;
-			var calendar1 = SlideContainer.EditedContent.CoverState.Calendar1 != DateTime.MinValue ? SlideContainer.EditedContent.CoverState.Calendar1 ?? _defaultDate : (DateTime?)null;
-			var combo1 = SlideContainer.EditedContent.CoverState.Combo1 ?? _usersByStation.FirstOrDefault();
-
-			if (!String.IsNullOrWhiteSpace(slideHeader) &&
-				!String.IsNullOrWhiteSpace(subHeader1) &&
-				calendar1.HasValue &&
-				combo1 != null)
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCoverFile(clipart != null ? "CP01A-1.pptx" : "CP01A-8.pptx");
-
-				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
-				outputDataPackage.TextItems.Add("CP01ASubheader1".ToUpper(), subHeader1);
-				outputDataPackage.TextItems.Add("CP01ACalendar1".ToUpper(), calendar1.Value.ToString("MMMM d, yyyy"));
-				outputDataPackage.TextItems.Add("CP01ACombo1".ToUpper(), combo1.ToString());
-				outputDataPackage.TextItems.Add("CP01ACombo1b".ToUpper(), String.Join("     ", combo1.Email, combo1.Phone));
-			}
-			else if (!String.IsNullOrWhiteSpace(slideHeader) &&
-				   calendar1.HasValue &&
-					 combo1 != null)
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCoverFile(clipart != null ? "CP01A-2.pptx" : "CP01A-9.pptx");
-
-				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
-				outputDataPackage.TextItems.Add("CP01ACalendar1".ToUpper(), calendar1.Value.ToString("MMMM d, yyyy"));
-				outputDataPackage.TextItems.Add("CP01ACombo1".ToUpper(), combo1.ToString());
-				outputDataPackage.TextItems.Add("CP01ACombo1b".ToUpper(), String.Join("     ", combo1.Email, combo1.Phone));
-			}
-			else if (!String.IsNullOrWhiteSpace(slideHeader) &&
-					 !String.IsNullOrWhiteSpace(subHeader1) &&
-					 calendar1.HasValue)
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCoverFile(clipart != null ? "CP01A-3.pptx" : "CP01A-10.pptx");
-
-				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
-				outputDataPackage.TextItems.Add("CP01ASubheader1".ToUpper(), subHeader1);
-				outputDataPackage.TextItems.Add("CP01ACalendar1".ToUpper(), calendar1.Value.ToString("MMMM d, yyyy"));
-			}
-			else if (!String.IsNullOrWhiteSpace(slideHeader) &&
-					 !String.IsNullOrWhiteSpace(subHeader1) &&
-					 combo1 != null)
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCoverFile(clipart != null ? "CP01A-7.pptx" : "CP018A-14.pptx");
-
-				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
-				outputDataPackage.TextItems.Add("CP01ASubheader1".ToUpper(), subHeader1);
-				outputDataPackage.TextItems.Add("CP01ACombo1".ToUpper(), combo1.ToString());
-				outputDataPackage.TextItems.Add("CP01ACombo1b".ToUpper(), String.Join("     ", combo1.Email, combo1.Phone));
-			}
-			else if (!String.IsNullOrWhiteSpace(slideHeader) &&
-					 !String.IsNullOrWhiteSpace(subHeader1))
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCoverFile(clipart != null ? "CP01A-4.pptx" : "CP01A-11.pptx");
-
-				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
-				outputDataPackage.TextItems.Add("CP01ASubheader1".ToUpper(), subHeader1);
-			}
-			else if (!String.IsNullOrWhiteSpace(slideHeader) &&
-					 calendar1.HasValue)
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCoverFile(clipart != null ? "CP01A-5.pptx" : "CP01A-12.pptx");
-
-				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
-				outputDataPackage.TextItems.Add("CP01ACalendar1".ToUpper(), calendar1.Value.ToString("MMMM d, yyyy"));
-			}
-			else if (!String.IsNullOrWhiteSpace(slideHeader))
-			{
-				outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarCoverFile(clipart != null ? "CP01A-6.pptx" : "CP01A-13.pptx");
-
-				outputDataPackage.TextItems.Add("CP01ATitleBox".ToUpper(), slideHeader);
-			}
-
-			return outputDataPackage;
-		}
-		#endregion
 	}
 }

@@ -169,7 +169,7 @@ namespace Asa.SlideTemplateViewer
 
 			MasterWizardManager.Instance.Load();
 			SettingsManager.Instance.LoadSharedSettings();
-			SlideManager.Load();
+			SlideManager.LoadSlides(ResourceManager.Instance.SlideMastersFolder);
 
 			HelpManager.LoadHelpLinks();
 

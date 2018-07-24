@@ -57,7 +57,7 @@ namespace Asa.Common.GUI.Preview
 			}
 			xtraTabControlGroups.SelectedTabPage = xtraTabControlGroups.TabPages
 				.OfType<PreviewGroupControl>()
-				.FirstOrDefault(previewGroupControl => previewGroupControl.OutputGroup.IsCurrent);
+				.FirstOrDefault(previewGroupControl => previewGroupControl.OutputGroup.IsCurrent) ?? xtraTabControlGroups.SelectedTabPage;
 			xtraTabControlGroups.ShowTabHeader = DefaultBoolean.True;
 			xtraTabControlGroups.SelectedPageChanged += OnSelectedPreviewItemChanged;
 
@@ -76,7 +76,7 @@ namespace Asa.Common.GUI.Preview
 				.ToList();
 		}
 
-		private void CalculateSlides()
+		public void CalculateSlides()
 		{
 			simpleLabelItemSlideCount.Text = String.Format("<color=gray>Slide Output Count: {0}</color>",
 				xtraTabControlGroups.TabPages

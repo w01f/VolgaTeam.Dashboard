@@ -60,7 +60,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				layoutControlGroupTabU.Text = SlideContainer.StarInfo.Titles.Tab1SubUTitle;
 
 				slidesEditContainerTabU.Init(SlideContainer.StarInfo.CoverConfiguration.PartUSlides);
-				slidesEditContainerTabU.SelectionChanged += OnEditValueChanged;
+				slidesEditContainerTabU.SlideOutput += SlideContainer.OnCustomSlideOutput;
 
 				Application.DoEvents();
 			}
@@ -72,7 +72,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				layoutControlGroupTabV.Text = SlideContainer.StarInfo.Titles.Tab1SubVTitle;
 
 				slidesEditContainerTabV.Init(SlideContainer.StarInfo.CoverConfiguration.PartVSlides);
-				slidesEditContainerTabV.SelectionChanged += OnEditValueChanged;
+				slidesEditContainerTabV.SlideOutput += SlideContainer.OnCustomSlideOutput;
 
 				Application.DoEvents();
 			}
@@ -84,7 +84,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				layoutControlGroupTabW.Text = SlideContainer.StarInfo.Titles.Tab1SubWTitle;
 
 				slidesEditContainerTabW.Init(SlideContainer.StarInfo.CoverConfiguration.PartWSlides);
-				slidesEditContainerTabW.SelectionChanged += OnEditValueChanged;
+				slidesEditContainerTabW.SlideOutput += SlideContainer.OnCustomSlideOutput;
 
 				Application.DoEvents();
 			}
@@ -126,17 +126,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab1SubUTitle))
 			{
-				slidesEditContainerTabU.LoadData(SlideContainer.EditedContent.CoverState.TabU.Slide);
 			}
 
 			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab1SubVTitle))
 			{
-				slidesEditContainerTabV.LoadData(SlideContainer.EditedContent.CoverState.TabV.Slide);
 			}
 
 			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab1SubWTitle))
 			{
-				slidesEditContainerTabW.LoadData(SlideContainer.EditedContent.CoverState.TabW.Slide);
 			}
 
 			_allowToSave = true;
@@ -179,15 +176,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			}
 			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabU)
 			{
-				slidesEditContainerTabU.SaveData();
 			}
 			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabV)
 			{
-				slidesEditContainerTabV.SaveData();
 			}
 			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabW)
 			{
-				slidesEditContainerTabW.SaveData();
 			}
 
 			_dataChanged = false;

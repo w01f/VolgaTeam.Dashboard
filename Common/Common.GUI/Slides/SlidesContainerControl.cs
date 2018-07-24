@@ -44,8 +44,7 @@ namespace Asa.Common.GUI.Slides
 				var groupPage = new SlideGroupPage(
 					group,
 					_slideManager.Slides.Where(s => s.Group.Equals(group) && s.Format == SlideSettingsManager.Instance.SlideSettings.Format));
-				if (SlideOutput != null)
-					groupPage.SlideOutput += OnSlideOutput;
+				groupPage.SlideOutput += OnSlideOutput;
 				groupPage.SelectionChanged += OnSelectionChanged;
 				xtraTabControlSlides.TabPages.Add(groupPage);
 			}

@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Shift.Configuration;
 using Asa.Business.Solutions.Shift.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
-using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
-using Asa.Solutions.Shift.PresentationClasses.Output;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 
@@ -28,8 +25,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		public abstract IShiftSettingsContainer SettingsContainer { get; }
 		public BaseShiftControl ActiveSlideContent => (xtraTabControl.SelectedTabPage as IShiftTabPageContainer)?.ContentControl;
 		public override SlideType SelectedSlideType => ActiveSlideContent?.SlideType ?? SlideType.Cleanslate;
-		public abstract Form MainForm { get; }
-		public abstract Color? AccentColor { get; }
 		public override string HelpKey
 		{
 			get

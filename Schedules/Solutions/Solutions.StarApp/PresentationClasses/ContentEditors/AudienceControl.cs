@@ -106,7 +106,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				layoutControlGroupTabU.Text = SlideContainer.StarInfo.Titles.Tab9SubUTitle;
 
 				slidesEditContainerTabU.Init(SlideContainer.StarInfo.AudienceConfiguration.PartUSlides);
-				slidesEditContainerTabU.SelectionChanged += OnEditValueChanged;
+				slidesEditContainerTabU.SlideOutput += SlideContainer.OnCustomSlideOutput;
 
 				Application.DoEvents();
 			}
@@ -118,7 +118,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				layoutControlGroupTabV.Text = SlideContainer.StarInfo.Titles.Tab9SubVTitle;
 
 				slidesEditContainerTabV.Init(SlideContainer.StarInfo.AudienceConfiguration.PartVSlides);
-				slidesEditContainerTabV.SelectionChanged += OnEditValueChanged;
+				slidesEditContainerTabV.SlideOutput += SlideContainer.OnCustomSlideOutput;
 
 				Application.DoEvents();
 			}
@@ -130,7 +130,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				layoutControlGroupTabW.Text = SlideContainer.StarInfo.Titles.Tab9SubWTitle;
 
 				slidesEditContainerTabW.Init(SlideContainer.StarInfo.AudienceConfiguration.PartWSlides);
-				slidesEditContainerTabW.SelectionChanged += OnEditValueChanged;
+				slidesEditContainerTabW.SlideOutput += SlideContainer.OnCustomSlideOutput;
 
 				Application.DoEvents();
 			}
@@ -192,17 +192,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab9SubUTitle))
 			{
-				slidesEditContainerTabU.LoadData(SlideContainer.EditedContent.AudienceState.TabU.Slide);
 			}
 
 			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab9SubVTitle))
 			{
-				slidesEditContainerTabV.LoadData(SlideContainer.EditedContent.AudienceState.TabV.Slide);
 			}
 
 			if (!String.IsNullOrEmpty(SlideContainer.StarInfo.Titles.Tab9SubWTitle))
 			{
-				slidesEditContainerTabW.LoadData(SlideContainer.EditedContent.AudienceState.TabW.Slide);
 			}
 
 			_allowToSave = true;
@@ -276,15 +273,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			}
 			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabU)
 			{
-				slidesEditContainerTabU.SaveData();
 			}
 			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabV)
 			{
-				slidesEditContainerTabV.SaveData();
 			}
 			else if (tabbedControlGroupData.SelectedTabPage == layoutControlGroupTabW)
 			{
-				slidesEditContainerTabW.SaveData();
 			}
 
 			_dataChanged = false;

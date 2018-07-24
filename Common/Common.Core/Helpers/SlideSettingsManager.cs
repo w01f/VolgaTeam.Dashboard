@@ -49,7 +49,7 @@ namespace Asa.Common.Core.Helpers
 
 		public string GetLauncherTemplatePath()
 		{
-			var launcherTemplate = new StorageFile(ResourceManager.Instance.LauncherTemplatesFolder.RelativePathParts.Merge(SlideSettingsManager.Instance.SlideSettings.LauncherTemplateName));
+			var launcherTemplate = new StorageFile(ResourceManager.Instance.LauncherTemplatesFolder.RelativePathParts.Merge(Instance.SlideSettings.LauncherTemplateName));
 			if (!launcherTemplate.ExistsLocal())
 				throw new FileNotFoundException(String.Format("There is no {0} found", launcherTemplate.Name));
 

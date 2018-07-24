@@ -21,7 +21,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public virtual string OutputName { get; }
 		public int SlidesCount => 1;
-		public bool ReadyForOutput => !String.IsNullOrWhiteSpace(OutputName) && GetOutputDataTextItems().Any();
+		public virtual bool ReadyForOutput => !String.IsNullOrWhiteSpace(OutputName) && GetOutputDataTextItems().Any();
 
 		protected ROITabBaseControl()
 		{

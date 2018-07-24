@@ -59,7 +59,7 @@ namespace Asa.Common.GUI.Slides
 			}
 
 			_allowHandleEvents = true;
-
+			slidesListView.ClearSelection();
 			slidesListView.SelectionChanged += OnListViewSelectionChanged;
 		}
 

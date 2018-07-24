@@ -16,7 +16,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			InitializeComponent();
 
 			slidesEditContainer.Init(ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartUSlides);
-			slidesEditContainer.SelectionChanged += OnEditValueChanged;
+			slidesEditContainer.SlideOutput += ROIContentContainer.SlideContainer.OnCustomSlideOutput;
 
 			Application.DoEvents();
 		}
@@ -25,17 +25,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			_allowToSave = false;
 
-			slidesEditContainer.LoadData(ROIContentContainer.SlideContainer.EditedContent.ROIState.TabU.Slide);
-			Application.DoEvents();
-
 			_allowToSave = true;
 		}
 
 		public override void ApplyChanges()
 		{
 			if (!_dataChanged) return;
-
-			slidesEditContainer.SaveData();
 
 			_dataChanged = false;
 		}
@@ -48,41 +43,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		}
 
 		#region Output
+		public override bool ReadyForOutput => false;
 		public override string OutputName => ROIContentContainer.SlideContainer.StarInfo.Titles.Tab6SubUTitle;
 
 		public override OutputItem GetOutputItem()
 		{
-			var slideObject = ROIContentContainer.SlideContainer.EditedContent.ROIState.TabU.Slide;
-
-			if (slideObject.SourceSlideMasters.ContainsKey(SlideSettingsManager.Instance.SlideSettings.Format))
-			{
-				var slideMasterName = slideObject.SourceSlideMasters[SlideSettingsManager.Instance.SlideSettings.Format];
-				var targetSlideMaster = ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartUSlides.Slides
-					.FirstOrDefault(slideMaster =>
-						String.Equals(slideMaster.Name, slideMasterName, StringComparison.OrdinalIgnoreCase));
-
-				if (targetSlideMaster != null)
-				{
-					return new OutputItem
-					{
-						Name = OutputName,
-						PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
-							Path.GetFileName(Path.GetTempFileName())),
-						SlidesCount = 1,
-						IsCurrent = ((XtraTabPage)TabPageContainer).TabControl?.SelectedTabPage == TabPageContainer,
-						SlideGeneratingAction = (processor, destinationPresentation) =>
-						{
-							processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), destinationPresentation);
-						},
-						PreviewGeneratingAction = (processor, presentationSourcePath) =>
-						{
-							processor.PreparePresentation(presentationSourcePath,
-								presentation => processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), presentation));
-						}
-					};
-				}
-			}
-
 			return null;
 		}
 		#endregion

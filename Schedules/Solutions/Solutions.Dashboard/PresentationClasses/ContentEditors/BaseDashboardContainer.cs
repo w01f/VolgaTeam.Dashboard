@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
@@ -27,8 +26,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public DashboardContent EditedContent { get; protected set; }
 		public abstract IDashboardSettingsContainer SettingsContainer { get; }
 		public override SlideType SelectedSlideType => ActiveSlide.SlideType;
-		public abstract Form MainForm { get; }
-		public abstract Color? AccentColor { get; }
 		public override string HelpKey
 		{
 			get

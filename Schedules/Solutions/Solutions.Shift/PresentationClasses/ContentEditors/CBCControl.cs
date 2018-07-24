@@ -78,7 +78,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				layoutControlGroupTabU.Text = SlideContainer.ShiftInfo.Titles.Tab5SubUTitle;
 
 				slidesEditContainerTabU.Init(SlideContainer.ShiftInfo.CBCConfiguration.PartUSlides);
-				slidesEditContainerTabU.SelectionChanged += OnEditValueChanged;
+				slidesEditContainerTabU.SlideOutput += SlideContainer.OnCustomSlideOutput;
 
 				Application.DoEvents();
 			}
@@ -90,7 +90,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				layoutControlGroupTabV.Text = SlideContainer.ShiftInfo.Titles.Tab5SubVTitle;
 
 				slidesEditContainerTabV.Init(SlideContainer.ShiftInfo.CBCConfiguration.PartVSlides);
-				slidesEditContainerTabV.SelectionChanged += OnEditValueChanged;
+				slidesEditContainerTabV.SlideOutput += SlideContainer.OnCustomSlideOutput;
 
 				Application.DoEvents();
 			}
@@ -102,7 +102,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				layoutControlGroupTabW.Text = SlideContainer.ShiftInfo.Titles.Tab5SubWTitle;
 
 				slidesEditContainerTabW.Init(SlideContainer.ShiftInfo.CBCConfiguration.PartWSlides);
-				slidesEditContainerTabW.SelectionChanged += OnEditValueChanged;
+				slidesEditContainerTabW.SlideOutput += SlideContainer.OnCustomSlideOutput;
 
 				Application.DoEvents();
 			}

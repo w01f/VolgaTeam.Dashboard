@@ -58,6 +58,10 @@ namespace Asa.Common.GUI.Preview
 
 			layoutControlGroupNavigation.Visibility = _previewImages.Count > 1 ? LayoutVisibility.Always : LayoutVisibility.Never;
 
+			OutputItem.SlidesCount = _previewImages.Count > OutputItem.SlidesCount ?
+				_previewImages.Count :
+				OutputItem.SlidesCount;
+
 			IsLoaded = true;
 		}
 

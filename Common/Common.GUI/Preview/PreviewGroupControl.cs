@@ -15,7 +15,7 @@ namespace Asa.Common.GUI.Preview
 	{
 		private readonly PowerPointProcessor _mainPowerPointProcessor;
 		private readonly Form _parentForm;
-		private readonly Form _previewForm;
+		private readonly FormPreview _previewForm;
 
 		public OutputGroup OutputGroup { get; }
 
@@ -33,7 +33,7 @@ namespace Asa.Common.GUI.Preview
 			OutputGroup outputGroup,
 			PowerPointProcessor mainPowerPointProcessor,
 			Form parentForm,
-			Form previewForm)
+			FormPreview previewForm)
 		{
 			OutputGroup = outputGroup;
 			_mainPowerPointProcessor = mainPowerPointProcessor;
@@ -50,7 +50,7 @@ namespace Asa.Common.GUI.Preview
 			xtraTabControlItems.ShowTabHeader = xtraTabControlItems.TabPages.Count > 1 ? DefaultBoolean.True : DefaultBoolean.False;
 			xtraTabControlItems.SelectedTabPage = xtraTabControlItems.TabPages
 				.OfType<PreviewItemControl>()
-				.FirstOrDefault(previewControl => previewControl.OutputItem.IsCurrent);
+				.FirstOrDefault(previewControl => previewControl.OutputItem.IsCurrent) ?? xtraTabControlItems.SelectedTabPage;
 			xtraTabControlItems.SelectedPageChanged += OnSelectedPreviewItemChanged;
 		}
 
@@ -76,6 +76,8 @@ namespace Asa.Common.GUI.Preview
 				});
 				Utilities.ActivateForm(_parentForm.Handle, _parentForm.WindowState == FormWindowState.Maximized, false);
 				Utilities.ActivateForm(_previewForm.Handle, _previewForm.WindowState == FormWindowState.Maximized, false);
+
+				_previewForm.CalculateSlides();
 			}
 
 			PreviewItemChanged?.Invoke(

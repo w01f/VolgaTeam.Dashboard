@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Asa.Common.Core.Enums;
+using Asa.Common.GUI.Preview;
 using Asa.Solutions.Common.Common;
 
 namespace Asa.Solutions.Common.PresentationClasses
@@ -18,6 +20,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 		void ApplyChanges();
 		void OutputPowerPointCurrent();
 		void OutputPowerPointAll();
+		void OutputPowerPointCustom(IList<OutputItem> outputItems);
 		void OutputPdf();
 		void Email();
 		event EventHandler<EventArgs> DataChanged;

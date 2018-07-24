@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -13,11 +14,11 @@ using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.Core.OfficeInterops;
+using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors;
 using DevExpress.XtraPrinting.Native;
-using RegistryHelper = Asa.Common.Core.Helpers.RegistryHelper;
 
 namespace Asa.Media.Controls.PresentationClasses.Solutions
 {
@@ -51,25 +52,26 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			return MediaMetaData.Instance.SettingsManager.GetSelectedTheme(slideType);
 		}
 
+		public override Boolean CheckPowerPointRunning()
+		{
+			return Controller.Instance.CheckPowerPointRunning();
+		}
+
 		public override void OutputPowerPointCurrent()
 		{
 			var outputItems = GetOutputItems(true);
-			if (!outputItems.Any()) return;
-
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-			FormProgress.ShowOutputProgress();
-			Controller.Instance.ShowFloater(() =>
-			{
-				outputItems.ForEach(item => item.SlideGeneratingAction?.Invoke(BusinessObjects.Instance.PowerPointManager.Processor, null));
-				FormProgress.CloseProgress();
-			});
+			OutputPowerPointCustom(outputItems);
 		}
 
 		public override void OutputPowerPointAll()
 		{
 			var outputItems = GetOutputItems(false);
-			if (!outputItems.Any()) return;
+			OutputPowerPointCustom(outputItems);
+		}
 
+		public override void OutputPowerPointCustom(IList<OutputItem> outputItems)
+		{
+			if (!outputItems.Any()) return;
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>

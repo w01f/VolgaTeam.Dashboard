@@ -157,6 +157,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		private void OnSelectedTabPageChanged(object sender, TabPageChangedEventArgs e)
 		{
 			LoadChildTabaData();
+			SlideContainer.RaiseOutputStatuesChanged();
 		}
 
 		private void OnResize(object sender, EventArgs e)
@@ -165,12 +166,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		}
 
 		#region Output Staff
-
-		public override bool ReadyForOutput => xtraTabControl.TabPages
-			.OfType<IChildTabPageContainer>()
-			.Where(container => container.ContentControl != null)
-			.Select(container => container.ContentControl)
-			.Any(contentControl => contentControl.ReadyForOutput);
+		public override bool ReadyForOutput
+		{
+			get
+			{
+				var selectedContentControl = (xtraTabControl.SelectedTabPage as IChildTabPageContainer)?.ContentControl;
+				return selectedContentControl != null && selectedContentControl.ReadyForOutput;
+			}
+		}
 
 		public override OutputGroup GetOutputGroup()
 		{

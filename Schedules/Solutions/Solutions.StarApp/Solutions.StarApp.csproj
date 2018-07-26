@@ -128,6 +128,9 @@
     <Compile Include="PresentationClasses\ContentEditors\CNA\CNAControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Cover\CoverControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\Customer\CustomerTabCControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -268,12 +271,6 @@
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CNA\CNATabAControl.Designer.cs">
       <DependentUpon>CNATabAControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\Cover\CoverControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\Cover\CoverControl.Designer.cs">
-      <DependentUpon>CoverControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\Cover\CoverTabAControl.cs">
       <SubType>UserControl</SubType>
@@ -462,9 +459,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\CNA\CNATabAControl.resx">
       <DependentUpon>CNATabAControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\Cover\CoverControl.resx">
-      <DependentUpon>CoverControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Cover\CoverTabAControl.resx">
       <DependentUpon>CoverTabAControl.cs</DependentUpon>

@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Business.Solutions.StarApp.Enums;
 using Asa.Common.Core.Enums;
+using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Cover
 {
-	public partial class CoverControl : MultiTabControl
+	class CoverControl : MultiTabControl
 	{
 		public override SlideType SlideType => SlideType.StarAppCover;
 
 		public CoverControl(BaseStarAppContainer slideContainer, StarChildTabsContainer tabInfo) : base(slideContainer, tabInfo)
 		{
-			InitializeComponent();
+			layoutControlItemAddAsPageOne.Visibility = LayoutVisibility.Always;
 		}
 
 		protected override IList<IChildTabPageContainer> GetChildTabPages()

@@ -6,7 +6,6 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Common.GUI.RateCard;
 using Asa.Media.Controls.BusinessClasses.Output;
-using Asa.Media.Controls.InteropClasses;
 
 namespace Asa.Media.Controls.BusinessClasses.Managers
 {

@@ -1,0 +1,120 @@
+﻿using System;
+using System.Drawing;
+using System.Xml;
+using Asa.Business.Solutions.Common.Configuration;
+using Asa.Business.Solutions.StarApp.Enums;
+
+namespace Asa.Business.Solutions.StarApp.Configuration.Audience
+{
+	public class AudienceTabBInfo : StarChildTabInfo
+	{
+		public override StarChildTabType TabType => StarChildTabType.B;
+
+		public Image Clipart1Image { get; private set; }
+		public Image Clipart2Image { get; private set; }
+		public Image Clipart3Image { get; private set; }
+
+		public string SubHeader1DefaultValue { get; private set; }
+		public string SubHeader2DefaultValue { get; private set; }
+		public string SubHeader3DefaultValue { get; private set; }
+		public string SubHeader4DefaultValue { get; private set; }
+		public string SubHeader5DefaultValue { get; private set; }
+		public string SubHeader6DefaultValue { get; private set; }
+		public string SubHeader1Placeholder { get; private set; }
+		public string SubHeader2Placeholder { get; private set; }
+		public string SubHeader3Placeholder { get; private set; }
+		public string SubHeader4Placeholder { get; private set; }
+		public string SubHeader5Placeholder { get; private set; }
+		public string SubHeader6Placeholder { get; private set; }
+		public ClipartConfiguration Clipart1Configuration { get; private set; }
+		public ClipartConfiguration Clipart2Configuration { get; private set; }
+		public ClipartConfiguration Clipart3Configuration { get; private set; }
+
+		public AudienceTabBInfo()
+		{
+			Clipart1Configuration = new ClipartConfiguration();
+			Clipart2Configuration = new ClipartConfiguration();
+			Clipart3Configuration = new ClipartConfiguration();
+		}
+
+		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
+		{
+			base.LoadData(configNode, resourceManager);
+
+			RightLogo = resourceManager.LogoTab9SubBRightFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab9SubBRightFile.LocalPath)
+				: null;
+			FooterLogo = resourceManager.LogoTab9SubBFooterFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab9SubBFooterFile.LocalPath)
+				: null;
+
+			Clipart1Image = resourceManager.ClipartTab9SubB1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab9SubB1File.LocalPath)
+				: null;
+			Clipart2Image = resourceManager.ClipartTab9SubB2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab9SubB2File.LocalPath)
+				: null;
+			Clipart3Image = resourceManager.ClipartTab9SubB3File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab9SubB3File.LocalPath)
+				: null;
+
+			if (!resourceManager.DataAudiencePartBFile.ExistsLocal()) return;
+			var document = new XmlDocument();
+			document.Load(resourceManager.DataAudiencePartBFile.LocalPath);
+
+			var node = document.SelectSingleNode(@"/CP09B");
+			if (node == null) return;
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				var item = ListDataItem.FromXml(childNode);
+				switch (childNode.Name)
+				{
+					case "CP09BHeader":
+						if (!String.IsNullOrEmpty(item.Value))
+							HeadersItems.Add(item);
+						break;
+					case "CP09BSubheader1":
+						if (item.IsPlaceholder)
+							SubHeader1Placeholder = item.Value;
+						else
+							SubHeader1DefaultValue = item.Value;
+						break;
+					case "CP09BSubheader2":
+						if (item.IsPlaceholder)
+							SubHeader2Placeholder = item.Value;
+						else
+							SubHeader2DefaultValue = item.Value;
+						break;
+					case "CP09BSubheader3":
+						if (item.IsPlaceholder)
+							SubHeader3Placeholder = item.Value;
+						else
+							SubHeader3DefaultValue = item.Value;
+						break;
+					case "CP09BSubheader4":
+						if (item.IsPlaceholder)
+							SubHeader4Placeholder = item.Value;
+						else
+							SubHeader4DefaultValue = item.Value;
+						break;
+					case "CP09BSubheader5":
+						if (item.IsPlaceholder)
+							SubHeader5Placeholder = item.Value;
+						else
+							SubHeader5DefaultValue = item.Value;
+						break;
+					case "CP09BSubheader6":
+						if (item.IsPlaceholder)
+							SubHeader6Placeholder = item.Value;
+						else
+							SubHeader6DefaultValue = item.Value;
+						break;
+				}
+			}
+
+			Clipart1Configuration = ClipartConfiguration.FromXml(node, "CP09BClipart1");
+			Clipart2Configuration = ClipartConfiguration.FromXml(node, "CP09BClipart2");
+			Clipart3Configuration = ClipartConfiguration.FromXml(node, "CP09BClipart3");
+		}
+	}
+}

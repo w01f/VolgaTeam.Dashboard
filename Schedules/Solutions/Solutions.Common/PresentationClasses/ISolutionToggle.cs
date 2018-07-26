@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 
 namespace Asa.Solutions.Common.PresentationClasses

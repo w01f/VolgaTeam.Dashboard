@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.ScheduleResources;
+using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Preview;
@@ -17,6 +19,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		protected bool _dataChanged;
 
 		public BaseStarAppContainer SlideContainer { get; }
+		public StarTopTabInfo TabInfo { get; }
 
 		public virtual SlideType SlideType { get; }
 		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType);
@@ -27,9 +30,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			InitializeComponent();
 		}
 
-		protected StarAppControl(BaseStarAppContainer slideContainer) : this()
+		protected StarAppControl(BaseStarAppContainer slideContainer, StarTopTabInfo tabInfo) : this()
 		{
 			SlideContainer = slideContainer;
+			TabInfo = tabInfo;
 		}
 
 		public virtual void LoadData()
@@ -45,7 +49,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public virtual OutputGroup GetOutputGroup()
 		{
-			throw new NotImplementedException();
+			return new OutputGroup()
+			{
+				Name = TabInfo.Title,
+				IsCurrent = SlideContainer.ActiveSlideContent == this,
+				Items = new List<OutputItem>()
+			};
 		}
 	}
 }

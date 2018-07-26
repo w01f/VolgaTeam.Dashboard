@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;

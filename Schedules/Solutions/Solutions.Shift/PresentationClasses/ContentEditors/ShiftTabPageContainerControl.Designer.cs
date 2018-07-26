@@ -1,6 +1,6 @@
 ﻿namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 {
-	partial class ShiftTabPageContainerControl<TBaseShiftControl>
+	partial class ShiftTabPageContainerControl<TShiftControl>
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -30,9 +30,9 @@
 		{
 			this.SuspendLayout();
 			// 
-			// TabPageContainerControl
+			// ShiftTabPageContainerControl
 			// 
-			this.Name = "StarAppTabPageContainerControl";
+			this.Name = "ShiftTabPageContainerControl";
 			this.Size = new System.Drawing.Size(531, 485);
 			this.ResumeLayout(false);
 

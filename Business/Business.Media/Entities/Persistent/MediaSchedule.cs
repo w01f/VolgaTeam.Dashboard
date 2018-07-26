@@ -17,6 +17,7 @@ using Asa.Business.Media.Entities.NonPersistent.Snapshot;
 using Asa.Business.Media.Enums;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Business.Online.Interfaces;
+using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Common.Interfaces;

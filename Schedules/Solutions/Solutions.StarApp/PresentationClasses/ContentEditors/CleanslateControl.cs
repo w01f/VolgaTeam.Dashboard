@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
+using Asa.Business.Solutions.StarApp.Configuration;
+using Asa.Business.Solutions.StarApp.Configuration.Cleanslate;
 using Asa.Common.Core.Enums;
-using Asa.Common.GUI.Preview;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -11,26 +11,19 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 	{
 		public override SlideType SlideType => SlideType.StarAppCleanslate;
 
-		public CleanslateControl(BaseStarAppContainer slideContainer) : base(slideContainer)
+		public CleanslateControl(BaseStarAppContainer slideContainer, StarTopTabInfo tabInfo) : base(slideContainer, tabInfo)
 		{
 			InitializeComponent();
-			pictureEditHeader.Image = SlideContainer.StarInfo.CleanslateHeaderLogo;
-			pictureEditSplash.Image = SlideContainer.StarInfo.CleanslateSplashLogo;
+
+			var cleanslateTabInfo = tabInfo as CleanslateTabInfo;
+
+			pictureEditHeader.Image = cleanslateTabInfo?.HeaderLogo;
+			pictureEditSplash.Image = cleanslateTabInfo?.SplashLogo;
 		}
 
 		public override void LoadData() { }
 		public override void ApplyChanges() { }
 
 		public override Boolean ReadyForOutput => false;
-
-		public override OutputGroup GetOutputGroup()
-		{
-			return new OutputGroup()
-			{
-				Name = SlideContainer.StarInfo.Titles.Tab0Title,
-				IsCurrent = SlideContainer.ActiveSlideContent == this,
-				Items = new List<OutputItem>()
-			};
-		}
 	}
 }

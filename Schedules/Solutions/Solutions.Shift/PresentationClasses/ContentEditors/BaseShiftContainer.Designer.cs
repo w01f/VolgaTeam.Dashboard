@@ -136,12 +136,12 @@
 			this.layoutControlItemContainer.TextVisible = false;
 			this.layoutControlItemContainer.TrimClientAreaToControl = false;
 			// 
-			// BaseStarAppContainer
+			// BaseShiftContainer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Controls.Add(this.layoutControl);
-			this.Name = "BaseStarAppContainer";
+			this.Name = "BaseShiftContainer";
 			this.Size = new System.Drawing.Size(1100, 661);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);

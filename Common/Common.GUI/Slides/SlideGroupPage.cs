@@ -39,11 +39,14 @@ namespace Asa.Common.GUI.Slides
 			SlideGroupName = groupName;
 			Text = SlideGroupName;
 
-			_allowHandleEvents = false;
-
 			_slideMasters.AddRange(slides);
+
+			_allowHandleEvents = false;
 			if (_slideMasters.Any())
 			{
+				var defaultSlideMaster = _slideMasters.First();
+				slidesListView.ThumbnailSize = new Size(defaultSlideMaster.BrowseLogo.Width + 26, defaultSlideMaster.BrowseLogo.Height + 26);
+
 				var minOrder = _slideMasters.Min(s => s.Order);
 				_slideAdaptor = new SlideAdaptor(_slideMasters);
 				slidesListView.Items.Clear();
@@ -57,8 +60,8 @@ namespace Asa.Common.GUI.Slides
 						}).ToArray(),
 					_slideAdaptor);
 			}
-
 			_allowHandleEvents = true;
+
 			slidesListView.ClearSelection();
 			slidesListView.SelectionChanged += OnListViewSelectionChanged;
 		}

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.ScheduleResources;
+using Asa.Business.Solutions.Shift.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Preview;
@@ -17,6 +19,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		protected bool _dataChanged;
 
 		public BaseShiftContainer SlideContainer { get; }
+		public ShiftTopTabInfo TabInfo { get; }
 
 		public virtual SlideType SlideType { get; }
 		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType);
@@ -27,9 +30,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			InitializeComponent();
 		}
 
-		protected BaseShiftControl(BaseShiftContainer slideContainer) : this()
+		protected BaseShiftControl(BaseShiftContainer slideContainer, ShiftTopTabInfo tabInfo) : this()
 		{
 			SlideContainer = slideContainer;
+			TabInfo = tabInfo;
 		}
 
 		public virtual void LoadData()
@@ -45,7 +49,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 		public virtual OutputGroup GetOutputGroup()
 		{
-			throw new NotImplementedException();
+			return new OutputGroup()
+			{
+				Name = TabInfo.Title,
+				IsCurrent = SlideContainer.ActiveSlideContent == this,
+				Items = new List<OutputItem>()
+			};
 		}
 	}
 }

@@ -2,14 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.Business.Solutions.Common.Entities.NonPersistent;
+using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Business.Solutions.StarApp.Entities.NonPersistent;
+using Asa.Business.Solutions.StarApp.Enums;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
+using Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Audience;
+using Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Closers;
+using Asa.Solutions.StarApp.PresentationClasses.ContentEditors.CNA;
+using Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Cover;
+using Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Customer;
+using Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Fishing;
+using Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Market;
+using Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI;
+using Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Share;
+using Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Solution;
+using Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Video;
 using DevExpress.XtraTab;
 using DevExpress.XtraEditors;
 
@@ -56,65 +68,51 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				Application.DoEvents();
 			}
 
-			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab0Title))
+			foreach (var tabInfo in StarInfo.TabsInfo)
 			{
-				_slides.Add(new StarAppTabPageContainerControl<CleanslateControl>(this));
 				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab1Title))
-			{
-				_slides.Add(new StarAppTabPageContainerControl<CoverControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab2Title))
-			{
-				_slides.Add(new StarAppTabPageContainerControl<CNAControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab3Title))
-			{
-				_slides.Add(new StarAppTabPageContainerControl<FishingControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab4Title))
-			{
-				_slides.Add(new StarAppTabPageContainerControl<CustomerControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab5Title))
-			{
-				_slides.Add(new StarAppTabPageContainerControl<ShareControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab6Title))
-			{
-				_slides.Add(new StarAppTabPageContainerControl<ROIControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab7Title))
-			{
-				_slides.Add(new StarAppTabPageContainerControl<MarketControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab8Title))
-			{
-				_slides.Add(new StarAppTabPageContainerControl<VideoControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab9Title))
-			{
-				_slides.Add(new StarAppTabPageContainerControl<AudienceControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab10Title))
-			{
-				_slides.Add(new StarAppTabPageContainerControl<SolutionControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(StarInfo.Titles.Tab11Title))
-			{
-				_slides.Add(new StarAppTabPageContainerControl<ClosersControl>(this));
-				Application.DoEvents();
+
+				switch (tabInfo.TabType)
+				{
+					case StarTopTabType.Cleanslate:
+						_slides.Add(new StarAppTabPageContainerControl<CleanslateControl>(this, tabInfo));
+						break;
+					case StarTopTabType.Cover:
+						_slides.Add(new StarAppTabPageContainerControl<CoverControl>(this, tabInfo));
+						break;
+					case StarTopTabType.CNA:
+						_slides.Add(new StarAppTabPageContainerControl<CNAControl>(this, tabInfo));
+						break;
+					case StarTopTabType.Fishing:
+						_slides.Add(new StarAppTabPageContainerControl<FishingControl>(this, tabInfo));
+						break;
+					case StarTopTabType.Customer:
+						_slides.Add(new StarAppTabPageContainerControl<CustomerControl>(this, tabInfo));
+						break;
+					case StarTopTabType.Share:
+						_slides.Add(new StarAppTabPageContainerControl<ShareControl>(this, tabInfo));
+						break;
+					case StarTopTabType.ROI:
+						_slides.Add(new StarAppTabPageContainerControl<ROIControl>(this, tabInfo));
+						break;
+					case StarTopTabType.Market:
+						_slides.Add(new StarAppTabPageContainerControl<MarketControl>(this, tabInfo));
+						break;
+					case StarTopTabType.Video:
+						_slides.Add(new StarAppTabPageContainerControl<VideoControl>(this, tabInfo));
+						break;
+					case StarTopTabType.Audience:
+						_slides.Add(new StarAppTabPageContainerControl<AudienceControl>(this, tabInfo));
+						break;
+					case StarTopTabType.Solution:
+						_slides.Add(new StarAppTabPageContainerControl<SolutionControl>(this, tabInfo));
+						break;
+					case StarTopTabType.Closers:
+						_slides.Add(new StarAppTabPageContainerControl<ClosersControl>(this, tabInfo));
+						break;
+					default:
+						throw new ArgumentOutOfRangeException("Star tab type is not defined");
+				}
 			}
 
 			xtraTabControl.TabPages.AddRange(_slides.OfType<XtraTabPage>().ToArray());
@@ -154,11 +152,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			tabPageContainer?.LoadContent();
 			tabPageContainer?.ContentControl?.LoadData();
 
+			FormProgress.CloseProgress();
+			Application.DoEvents();
+
 			xtraTabControl.TabPages
 				.ToList()
 				.ForEach(tabPage => tabPage.PageEnabled = true);
-
-			FormProgress.CloseProgress();
 			Application.DoEvents();
 		}
 
@@ -246,9 +245,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				foreach (var tabPageContainer in allSlides.Where(slide => slide.ContentControl == null).ToList())
 				{
 					tabPageContainer.LoadContent();
-					if (tabPageContainer.ContentControl is IMultiTabsControl multiTabsControl)
+					if (tabPageContainer.ContentControl is MultiTabControl multiTabControl)
 					{
-						multiTabsControl.LoadAllTabPages();
+						multiTabControl.LoadAllTabPages();
 						Application.DoEvents();
 					}
 				}

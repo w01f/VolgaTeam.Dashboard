@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Asa.Common.Core.Enums;
-using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Objects.RemoteStorage;
 using Asa.Common.Core.Objects.Slides;
 
@@ -39,48 +37,27 @@ namespace Asa.Common.Core.Helpers
 						continue;
 				}
 
-				if (sizeFolder.GetLocalFolders().Any(localFolder => localFolder.GetLocalFolders().Any()))
+				ProcessSlideSizeFolder(sizeFolder, format);
+			}
+		}
+
+		protected virtual void ProcessSlideSizeFolder(StorageDirectory sizeFolder, SlideFormatEnum format)
+		{
+			foreach (var groupFolder in sizeFolder.GetLocalFolders())
+			{
+				foreach (var slideFolder in groupFolder.GetLocalFolders())
 				{
-					foreach (var groupFolder in sizeFolder.GetLocalFolders())
+					var slideMaster = new SlideMaster(slideFolder)
 					{
-						foreach (var slideFolder in groupFolder.GetLocalFolders())
-						{
-							var slideMaster = new SlideMaster(slideFolder)
-							{
-								Group = groupFolder.Name,
-								Format = format
-							};
-							slideMaster.Load();
-							Slides.Add(slideMaster);
-						}
-					}
-					Slides.Sort(
-						(x, y) => x.Group.Equals(y.Group) ? x.Order.CompareTo(y.Order) : WinAPIHelper.StrCmpLogicalW(x.Group, y.Group));
-				}
-				else
-				{
-					var orderFile = Path.Combine(sizeFolder.LocalPath, "thumb_order.txt");
-					if (File.Exists(orderFile))
-					{
-						var folderNames = File.ReadAllLines(orderFile).Where(line => !String.IsNullOrWhiteSpace(line)).ToList();
-						foreach (var folderName in folderNames)
-						{
-							var slideFolder = new StorageDirectory(sizeFolder.RelativePathParts.Merge(folderName));
-							if (slideFolder.ExistsLocal())
-							{
-								var slideMaster = new SlideMaster(slideFolder)
-								{
-									Group = "Default",
-									Format = format
-								};
-								slideMaster.Load();
-								Slides.Add(slideMaster);
-							}
-						}
-					}
+						Group = groupFolder.Name,
+						Format = format
+					};
+					slideMaster.Load();
+					Slides.Add(slideMaster);
 				}
 			}
-
+			Slides.Sort(
+				(x, y) => x.Group.Equals(y.Group) ? x.Order.CompareTo(y.Order) : WinAPIHelper.StrCmpLogicalW(x.Group, y.Group));
 		}
 	}
 }

@@ -10,8 +10,12 @@ namespace Asa.Common.Core.Objects.Slides
 {
 	public class SlideMaster
 	{
+		public const int DefaultThumbnailHeight = 144;
+
 		private readonly StorageDirectory _root;
 		private StorageFile _masterFile;
+
+		protected Size _thumbnailSize = Size.Empty;
 
 		public Guid Identifier { get; set; }
 		public string Name { get; private set; }
@@ -52,7 +56,7 @@ namespace Asa.Common.Core.Objects.Slides
 			if (Int32.TryParse(Path.GetFileName(_root.LocalPath), out var tempInt))
 				Order = tempInt;
 
-			LogoFile = files.FirstOrDefault(file => 
+			LogoFile = files.FirstOrDefault(file =>
 				(String.Equals(file.Extension, ".PNG", StringComparison.OrdinalIgnoreCase) ||
 				String.Equals(file.Extension, ".JPG", StringComparison.OrdinalIgnoreCase) ||
 				String.Equals(file.Extension, ".JPEG", StringComparison.OrdinalIgnoreCase)) &&
@@ -60,7 +64,23 @@ namespace Asa.Common.Core.Objects.Slides
 			if (LogoFile != null)
 			{
 				Logo = new Bitmap(LogoFile.LocalPath);
-				BrowseLogo = Logo.GetThumbnailImage((Logo.Width * 144) / Logo.Height, 144, null, IntPtr.Zero);
+
+				Int32 browseLogoWidth;
+				Int32 browseLogoHeight;
+				if (_thumbnailSize == Size.Empty)
+				{
+					browseLogoWidth = (Int32)(Logo.Width * DefaultThumbnailHeight) / Logo.Height;
+					browseLogoHeight = DefaultThumbnailHeight;
+				}
+				else
+				{
+					var persentWidth = _thumbnailSize.Width > 0 ? (float)_thumbnailSize.Width / Logo.Width : 1;
+					var persentHeight = _thumbnailSize.Height > 0 ? (float)_thumbnailSize.Height / Logo.Height : 1;
+					var percentFinal = new[] { persentWidth, persentHeight }.Min();
+					browseLogoWidth = (Int32)(Logo.Width * percentFinal);
+					browseLogoHeight = (Int32)(Logo.Height * percentFinal);
+				}
+				BrowseLogo = Logo.GetThumbnailImage(browseLogoWidth, browseLogoHeight, null, IntPtr.Zero);
 
 				var borderedLogo = Logo.DrawBorder();
 

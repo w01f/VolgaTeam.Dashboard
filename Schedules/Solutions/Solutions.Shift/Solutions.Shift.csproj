@@ -48,17 +48,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PresentationClasses\ContentEditors\BaseShiftControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\BaseShiftControl.Designer.cs">
-      <DependentUpon>BaseShiftControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\BaseShiftContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\BaseShiftContainer.Designer.cs">
       <DependentUpon>BaseShiftContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ChildTabBaseControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ChildTabBaseControl.Designer.cs">
+      <DependentUpon>ChildTabBaseControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ChildTabPageContainerControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ChildTabPageContainerControl.Designer.cs">
+      <DependentUpon>ChildTabPageContainerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CleanslateControl.cs">
       <SubType>UserControl</SubType>
@@ -66,74 +72,32 @@
     <Compile Include="PresentationClasses\ContentEditors\CleanslateControl.Designer.cs">
       <DependentUpon>CleanslateControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\CBCControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\CommonChildTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\CBCControl.Designer.cs">
-      <DependentUpon>CBCControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\ClosersControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\CommonTopTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\ClosersControl.Designer.cs">
-      <DependentUpon>ClosersControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\SupportMaterialsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\SupportMaterialsControl.Designer.cs">
-      <DependentUpon>SupportMaterialsControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\ContractControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\ContractControl.Designer.cs">
-      <DependentUpon>ContractControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\NextStepsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\NextStepsControl.Designer.cs">
-      <DependentUpon>NextStepsControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\InvestmentControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\InvestmentControl.Designer.cs">
-      <DependentUpon>InvestmentControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolutionControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolutionControl.Designer.cs">
-      <DependentUpon>IntegratedSolutionControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutionsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutionsControl.Designer.cs">
-      <DependentUpon>NeedsSolutionsControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\MarketControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\MarketControl.Designer.cs">
-      <DependentUpon>MarketControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\CNAControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\CNAControl.Designer.cs">
-      <DependentUpon>CNAControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\StartersControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\StartersControl.Designer.cs">
-      <DependentUpon>StartersControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IMultiTabsControl.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\IChildTabPageContainer.cs" />
     <Compile Include="PresentationClasses\ContentEditors\IShiftTabPageContainer.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\MultiTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\MultiTabControl.Designer.cs">
+      <DependentUpon>MultiTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\SlidesTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\SlidesTabControl.Designer.cs">
+      <DependentUpon>SlidesTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\BaseShiftControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\BaseShiftControl.Designer.cs">
+      <DependentUpon>BaseShiftControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\ShiftTabPageContainerControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -143,49 +107,27 @@
     <Compile Include="PresentationClasses\Output\IShiftSlideContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\BaseShiftControl.resx">
-      <DependentUpon>BaseShiftControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\BaseShiftContainer.resx">
       <DependentUpon>BaseShiftContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\ChildTabBaseControl.resx">
+      <DependentUpon>ChildTabBaseControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\ChildTabPageContainerControl.resx">
+      <DependentUpon>ChildTabPageContainerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\CleanslateControl.resx">
       <DependentUpon>CleanslateControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\CBCControl.resx">
-      <DependentUpon>CBCControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\MultiTabControl.resx">
+      <DependentUpon>MultiTabControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\ClosersControl.resx">
-      <DependentUpon>ClosersControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\SlidesTabControl.resx">
+      <DependentUpon>SlidesTabControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\SupportMaterialsControl.resx">
-      <DependentUpon>SupportMaterialsControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\ContractControl.resx">
-      <DependentUpon>ContractControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\NextStepsControl.resx">
-      <DependentUpon>NextStepsControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\InvestmentControl.resx">
-      <DependentUpon>InvestmentControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolutionControl.resx">
-      <DependentUpon>IntegratedSolutionControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutionsControl.resx">
-      <DependentUpon>NeedsSolutionsControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\MarketControl.resx">
-      <DependentUpon>MarketControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\CNAControl.resx">
-      <DependentUpon>CNAControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\StartersControl.resx">
-      <DependentUpon>StartersControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\BaseShiftControl.resx">
+      <DependentUpon>BaseShiftControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\ShiftTabPageContainerControl.resx">
       <DependentUpon>ShiftTabPageContainerControl.cs</DependentUpon>
@@ -212,6 +154,35 @@
       <Project>{5265E59C-B925-4494-AA69-A40D8A8E50E0}</Project>
       <Name>Solutions.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.PowerPoint">
+      <Guid>{91493440-5A91-11CF-8700-00AA0060263B}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>12</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

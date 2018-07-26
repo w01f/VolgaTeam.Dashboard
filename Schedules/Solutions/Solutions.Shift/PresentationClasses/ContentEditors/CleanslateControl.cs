@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
+using Asa.Business.Solutions.Shift.Configuration;
+using Asa.Business.Solutions.Shift.Configuration.Cleanslate;
 using Asa.Common.Core.Enums;
-using Asa.Common.GUI.Preview;
 
 namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 {
@@ -11,26 +11,19 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 	{
 		public override SlideType SlideType => SlideType.ShiftCleanslate;
 
-		public CleanslateControl(BaseShiftContainer slideContainer) : base(slideContainer)
+		public CleanslateControl(BaseShiftContainer slideContainer, ShiftTopTabInfo tabInfo) : base(slideContainer, tabInfo)
 		{
 			InitializeComponent();
-			pictureEditHeader.Image = SlideContainer.ShiftInfo.CleanslateHeaderLogo;
-			pictureEditSplash.Image = SlideContainer.ShiftInfo.CleanslateSplashLogo;
+
+			var cleanslateTabInfo = tabInfo as CleanslateTabInfo;
+
+			pictureEditHeader.Image = cleanslateTabInfo?.HeaderLogo;
+			pictureEditSplash.Image = cleanslateTabInfo?.SplashLogo;
 		}
 
 		public override void LoadData() { }
 		public override void ApplyChanges() { }
 
 		public override Boolean ReadyForOutput => false;
-
-		public override OutputGroup GetOutputGroup()
-		{
-			return new OutputGroup()
-			{
-				Name = SlideContainer.ShiftInfo.Titles.Tab0Title,
-				IsCurrent = SlideContainer.ActiveSlideContent == this,
-				Items = new List<OutputItem>()
-			};
-		}
 	}
 }

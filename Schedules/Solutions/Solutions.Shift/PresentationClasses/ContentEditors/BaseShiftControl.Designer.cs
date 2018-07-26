@@ -40,11 +40,11 @@
 			this.labelFocusFake.TabIndex = 0;
 			this.labelFocusFake.Text = "label1";
 			// 
-			// StarAppControl
+			// ShiftControl
 			// 
 			this.Controls.Add(this.labelFocusFake);
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.Name = "StarAppControl";
+			this.Name = "BaseShiftControl";
 			this.Size = new System.Drawing.Size(997, 512);
 			this.ResumeLayout(false);
 			this.PerformLayout();

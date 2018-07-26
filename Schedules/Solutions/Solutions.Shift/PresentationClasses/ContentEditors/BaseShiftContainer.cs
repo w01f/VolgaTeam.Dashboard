@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.Business.Solutions.Common.Entities.NonPersistent;
+using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Shift.Configuration;
 using Asa.Business.Solutions.Shift.Entities.NonPersistent;
+using Asa.Business.Solutions.Shift.Enums;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
-using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
+using DevExpress.XtraEditors;
 
 namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 {
-	//public abstract partial class BaseStarAppContainer : UserControl
+	//public abstract partial class BaseShiftContainer : UserControl
 	public abstract partial class BaseShiftContainer : BaseSolutionEditor
 	{
 		private readonly List<XtraTabPage> _slides = new List<XtraTabPage>();
@@ -56,66 +57,17 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				Application.DoEvents();
 			}
 
-			if (!String.IsNullOrEmpty(ShiftInfo.Titles.Tab0Title))
-			{
-				_slides.Add(new ShiftTabPageContainerControl<CleanslateControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(ShiftInfo.Titles.Tab1Title))
-			{
-				_slides.Add(new ShiftTabPageContainerControl<StartersControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(ShiftInfo.Titles.Tab2Title))
-			{
-				_slides.Add(new ShiftTabPageContainerControl<CNAControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(ShiftInfo.Titles.Tab3Title))
-			{
-				_slides.Add(new ShiftTabPageContainerControl<MarketControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(ShiftInfo.Titles.Tab4Title))
-			{
-				_slides.Add(new ShiftTabPageContainerControl<NeedsSolutionsControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(ShiftInfo.Titles.Tab5Title))
-			{
-				_slides.Add(new ShiftTabPageContainerControl<CBCControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(ShiftInfo.Titles.Tab6Title))
-			{
-				_slides.Add(new ShiftTabPageContainerControl<IntegratedSolutionControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(ShiftInfo.Titles.Tab7Title))
-			{
-				_slides.Add(new ShiftTabPageContainerControl<InvestmentControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(ShiftInfo.Titles.Tab8Title))
-			{
-				_slides.Add(new ShiftTabPageContainerControl<ClosersControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(ShiftInfo.Titles.Tab9Title))
-			{
-				_slides.Add(new ShiftTabPageContainerControl<NextStepsControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(ShiftInfo.Titles.Tab10Title))
-			{
-				_slides.Add(new ShiftTabPageContainerControl<ContractControl>(this));
-				Application.DoEvents();
-			}
-			if (!String.IsNullOrEmpty(ShiftInfo.Titles.Tab11Title))
-			{
-				_slides.Add(new ShiftTabPageContainerControl<SupportMaterialsControl>(this));
-				Application.DoEvents();
-			}
+			foreach (var tabInfo in ShiftInfo.TabsInfo)
+				switch (tabInfo.TabType)
+				{
+					case ShiftTopTabType.Cleanslate:
+						_slides.Add(new ShiftTabPageContainerControl<CleanslateControl>(this, tabInfo));
+						break;
+					default:
+						_slides.Add(new ShiftTabPageContainerControl<CommonTopTabControl>(this, tabInfo));
+						break;
+				}
+
 
 			xtraTabControl.TabPages.AddRange(_slides.OfType<XtraTabPage>().ToArray());
 			Application.DoEvents();
@@ -142,21 +94,24 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			var tabPageContainer = e.Page as IShiftTabPageContainer;
 			if (tabPageContainer?.ContentControl != null) return;
 
-			FormProgress.SetTitle("Loading data...");
-			FormProgress.ShowProgress();
-			Application.DoEvents();
-
 			xtraTabControl.TabPages
 				.Where(tabPage => tabPage != e.Page)
 				.ToList()
 				.ForEach(tabPage => tabPage.PageEnabled = false);
+
+			FormProgress.SetTitle("Loading data...");
+			FormProgress.ShowProgress();
+			Application.DoEvents();
+
 			tabPageContainer?.LoadContent();
 			tabPageContainer?.ContentControl?.LoadData();
+
+			FormProgress.CloseProgress();
+			Application.DoEvents();
+
 			xtraTabControl.TabPages
 				.ToList()
 				.ForEach(tabPage => tabPage.PageEnabled = true);
-
-			FormProgress.CloseProgress();
 			Application.DoEvents();
 		}
 
@@ -244,9 +199,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				foreach (var tabPageContainer in allSlides.Where(slide => slide.ContentControl == null).ToList())
 				{
 					tabPageContainer.LoadContent();
-					if (tabPageContainer.ContentControl is IMultiTabsControl multiTabsControl)
+					if (tabPageContainer.ContentControl is MultiTabControl multiTabControl)
 					{
-						multiTabsControl.LoadAllTabPages();
+						multiTabControl.LoadAllTabPages();
 						Application.DoEvents();
 					}
 				}

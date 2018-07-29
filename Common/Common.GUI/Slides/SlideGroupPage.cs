@@ -63,12 +63,10 @@ namespace Asa.Common.GUI.Slides
 			_allowHandleEvents = true;
 
 			slidesListView.ClearSelection();
+			var defaultItem = slidesListView.Items.FirstOrDefault();
+			if (defaultItem != null)
+				defaultItem.Selected = true;
 			slidesListView.SelectionChanged += OnListViewSelectionChanged;
-		}
-
-		private void OnListViewSelectionChanged(Object sender, EventArgs e)
-		{
-			SelectionChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		public void ResetSelection()
@@ -90,6 +88,15 @@ namespace Asa.Common.GUI.Slides
 			_allowHandleEvents = true;
 		}
 
+		public void SetBackground(Image image)
+		{
+			if (image != null)
+			{
+				slidesListView.BackgroundImage = image;
+				slidesListView.BackgroundImageLayout = ImageLayout.Stretch;
+			}
+		}
+
 		public void Release()
 		{
 			slidesListView.ClearSelection();
@@ -100,6 +107,11 @@ namespace Asa.Common.GUI.Slides
 
 			SlideOutput = null;
 			SelectionChanged = null;
+		}
+
+		private void OnListViewSelectionChanged(Object sender, EventArgs e)
+		{
+			SelectionChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void OnListViewMouseMove(object sender, MouseEventArgs e)

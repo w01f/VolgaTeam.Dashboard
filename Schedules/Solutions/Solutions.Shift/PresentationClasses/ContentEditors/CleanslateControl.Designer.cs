@@ -28,8 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.pictureEditHeader = new DevExpress.XtraEditors.PictureEdit();
 			this.pictureEditSplash = new DevExpress.XtraEditors.PictureEdit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditHeader.Properties)).BeginInit();
@@ -43,6 +41,8 @@
 			this.pictureEditHeader.Location = new System.Drawing.Point(40, 40);
 			this.pictureEditHeader.Name = "pictureEditHeader";
 			this.pictureEditHeader.Properties.AllowFocused = false;
+			this.pictureEditHeader.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEditHeader.Properties.Appearance.Options.UseBackColor = true;
 			this.pictureEditHeader.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditHeader.Properties.NullText = " ";
 			this.pictureEditHeader.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
@@ -62,6 +62,8 @@
 			this.pictureEditSplash.MinimumSize = new System.Drawing.Size(0, 320);
 			this.pictureEditSplash.Name = "pictureEditSplash";
 			this.pictureEditSplash.Properties.AllowFocused = false;
+			this.pictureEditSplash.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEditSplash.Properties.Appearance.Options.UseBackColor = true;
 			this.pictureEditSplash.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditSplash.Properties.NullText = " ";
 			this.pictureEditSplash.Properties.PictureAlignment = System.Drawing.ContentAlignment.BottomRight;
@@ -77,17 +79,20 @@
 			// 
 			this.Controls.Add(this.pictureEditHeader);
 			this.Controls.Add(this.pictureEditSplash);
+			this.Name = "CleanslateControl";
 			this.Padding = new System.Windows.Forms.Padding(40, 40, 0, 0);
 			this.Size = new System.Drawing.Size(965, 644);
+			this.Controls.SetChildIndex(this.pictureEditSplash, 0);
+			this.Controls.SetChildIndex(this.pictureEditHeader, 0);
+			this.Controls.SetChildIndex(this.labelFocusFake, 0);
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditHeader.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditSplash.Properties)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
-
-		private System.Windows.Forms.ToolTip toolTip;
 		private DevExpress.XtraEditors.PictureEdit pictureEditHeader;
 		private DevExpress.XtraEditors.PictureEdit pictureEditSplash;
 	}

@@ -35,10 +35,34 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			}
 		}
 
-		public class TabUState { }
+		public class TabUState
+		{
+			public SlideObject Slide { get; }
 
-		public class TabVState { }
+			public TabUState()
+			{
+				Slide = new SlideObject();
+			}
+		}
 
-		public class TabWState { }
+		public class TabVState
+		{
+			public SlideObject Slide { get; }
+
+			public TabVState()
+			{
+				Slide = new SlideObject();
+			}
+		}
+
+		public class TabWState
+		{
+			public SlideObject Slide { get; }
+
+			public TabWState()
+			{
+				Slide = new SlideObject();
+			}
+		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using Asa.Business.Solutions.StarApp.Enums;
 
 namespace Asa.Business.Solutions.StarApp.Configuration
 {
@@ -25,9 +26,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				switch (tabId)
 				{
 					case "u":
+						childTabInfo = new SlidesChildTabInfo(TabType, StarChildTabType.U);
+						break;
 					case "v":
+						childTabInfo = new SlidesChildTabInfo(TabType, StarChildTabType.V);
+						break;
 					case "w":
-						childTabInfo = new SlidesChildTabInfo(this);
+						childTabInfo = new SlidesChildTabInfo(TabType, StarChildTabType.W);
 						break;
 					default:
 						childTabInfo = CreatChildTab(tabId);

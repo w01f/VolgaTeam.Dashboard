@@ -10,6 +10,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Cleanslate
 
 		public Image HeaderLogo { get; private set; }
 		public Image SplashLogo { get; private set; }
+		public Image BackgroundhLogo { get; private set; }
 
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
@@ -20,6 +21,9 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Cleanslate
 				: null;
 			SplashLogo = resourceManager.LogoCleanslateSplashFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoCleanslateSplashFile.LocalPath)
+				: null;
+			BackgroundhLogo = resourceManager.LogoCleanslateBackgroundFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoCleanslateBackgroundFile.LocalPath)
 				: null;
 		}
 	}

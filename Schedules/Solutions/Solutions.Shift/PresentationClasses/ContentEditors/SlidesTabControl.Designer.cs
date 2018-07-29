@@ -99,7 +99,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			// 
 			// slidesEditContainer
 			// 
-			this.slidesEditContainer.BackColor = System.Drawing.SystemColors.Control;
+			this.slidesEditContainer.BackColor = System.Drawing.Color.Transparent;
 			this.slidesEditContainer.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.slidesEditContainer.Location = new System.Drawing.Point(42, 12);
 			this.slidesEditContainer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -120,12 +120,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			this.layoutControlItemSlidesContainer.TextVisible = false;
 			this.layoutControlItemSlidesContainer.TrimClientAreaToControl = false;
 			// 
-			// ClosersTabUControl
+			// SlidesTabControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
-			this.Name = "ClosersTabUControl";
+			this.Name = "SlidesTabControl";
 			this.Size = new System.Drawing.Size(869, 582);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);

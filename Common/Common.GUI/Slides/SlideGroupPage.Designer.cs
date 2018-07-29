@@ -56,6 +56,7 @@
 			// slidesListView
 			// 
 			this.slidesListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.slidesListView.Colors = new Manina.Windows.Forms.ImageListViewColor(resources.GetString("slidesListView.Colors"));
 			this.slidesListView.ColumnHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
 			this.slidesListView.ContextMenuStrip = this.contextMenuStrip;
 			this.slidesListView.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -78,6 +79,7 @@
 			// 
 			// SlideGroupPage
 			// 
+			this.BackColor = System.Drawing.Color.Transparent;
 			this.Controls.Add(this.slidesListView);
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "SlideGroupPage";

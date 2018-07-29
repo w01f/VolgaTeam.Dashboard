@@ -57,7 +57,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Cover
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditCalendar1.Properties.CalendarTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditCalendar1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditSubheader1.Properties)).BeginInit();
@@ -78,19 +77,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Cover
 			// 
 			// layoutControl
 			// 
-			this.layoutControl.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.layoutControl.Appearance.Control.Options.UseFont = true;
-			this.layoutControl.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.layoutControl.Appearance.ControlDisabled.Options.UseFont = true;
-			this.layoutControl.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.layoutControl.Appearance.ControlDropDown.Options.UseFont = true;
-			this.layoutControl.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.layoutControl.Appearance.ControlDropDownHeader.Options.UseFont = true;
-			this.layoutControl.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.layoutControl.Appearance.ControlFocused.Options.UseFont = true;
-			this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
-			this.layoutControl.BackColor = System.Drawing.Color.White;
 			this.layoutControl.Controls.Add(this.clipartEditContainer1);
 			this.layoutControl.Controls.Add(this.dateEditCalendar1);
 			this.layoutControl.Controls.Add(this.memoEditSubheader1);
@@ -128,21 +114,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Cover
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(40, 10, 10, 10);
 			this.layoutControlGroupRoot.Size = new System.Drawing.Size(981, 821);
-			// 
-			// styleController
-			// 
-			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.styleController.Appearance.Options.UseFont = true;
-			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDisabled.Options.UseFont = true;
-			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDown.Options.UseFont = true;
-			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
-			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceFocused.Options.UseFont = true;
-			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
 			// clipartEditContainer1
 			// 
@@ -399,7 +370,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Cover
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditCalendar1.Properties.CalendarTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditCalendar1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditSubheader1.Properties)).EndInit();

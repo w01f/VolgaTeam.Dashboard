@@ -35,7 +35,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlidesContainer)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -80,31 +79,17 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			this.layoutControlGroupRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemSlidesContainer});
 			this.layoutControlGroupRoot.Name = "Root";
+			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
 			this.layoutControlGroupRoot.Size = new System.Drawing.Size(869, 582);
-			// 
-			// styleController
-			// 
-			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.styleController.Appearance.Options.UseFont = true;
-			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDisabled.Options.UseFont = true;
-			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDown.Options.UseFont = true;
-			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
-			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceFocused.Options.UseFont = true;
-			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
 			// slidesEditContainer
 			// 
-			this.slidesEditContainer.BackColor = System.Drawing.SystemColors.Control;
+			this.slidesEditContainer.BackColor = System.Drawing.Color.Transparent;
 			this.slidesEditContainer.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.slidesEditContainer.Location = new System.Drawing.Point(42, 12);
+			this.slidesEditContainer.Location = new System.Drawing.Point(2, 2);
 			this.slidesEditContainer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.slidesEditContainer.Name = "slidesEditContainer";
-			this.slidesEditContainer.Size = new System.Drawing.Size(785, 558);
+			this.slidesEditContainer.Size = new System.Drawing.Size(865, 578);
 			this.slidesEditContainer.TabIndex = 4;
 			// 
 			// layoutControlItemSlidesContainer
@@ -114,23 +99,22 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			this.layoutControlItemSlidesContainer.FillControlToClientArea = false;
 			this.layoutControlItemSlidesContainer.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemSlidesContainer.Name = "layoutControlItemSlidesContainer";
-			this.layoutControlItemSlidesContainer.Size = new System.Drawing.Size(789, 562);
+			this.layoutControlItemSlidesContainer.Size = new System.Drawing.Size(869, 582);
 			this.layoutControlItemSlidesContainer.Text = "Slide Container";
 			this.layoutControlItemSlidesContainer.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemSlidesContainer.TextVisible = false;
 			this.layoutControlItemSlidesContainer.TrimClientAreaToControl = false;
 			// 
-			// ClosersTabUControl
+			// SlidesTabControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
-			this.Name = "ClosersTabUControl";
+			this.Name = "SlidesTabControl";
 			this.Size = new System.Drawing.Size(869, 582);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlidesContainer)).EndInit();
 			this.ResumeLayout(false);
 

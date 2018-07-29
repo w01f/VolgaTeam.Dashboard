@@ -27,6 +27,9 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Fishing
 			FooterLogo = resourceManager.LogoTab3SubCFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab3SubCFooterFile.LocalPath)
 				: null;
+			BackgroundLogo = resourceManager.LogoTab3SubCBackgroundFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab3SubCBackgroundFile.LocalPath)
+				: null;
 
 			if (!resourceManager.DataFishingPartCFile.ExistsLocal()) return;
 			var document = new XmlDocument();

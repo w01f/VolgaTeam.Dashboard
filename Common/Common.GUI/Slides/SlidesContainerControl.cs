@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
@@ -49,6 +50,12 @@ namespace Asa.Common.GUI.Slides
 				xtraTabControlSlides.TabPages.Add(groupPage);
 			}
 			xtraTabControlSlides.ShowTabHeader = groups.Count > 1 ? DefaultBoolean.True : DefaultBoolean.False;
+		}
+
+		public void SetBackground(Image image)
+		{
+			foreach (var slideGroupPage in xtraTabControlSlides.TabPages.OfType<SlideGroupPage>().ToList())
+				slideGroupPage.SetBackground(image);
 		}
 
 		private void OnSelectionChanged(Object sender, EventArgs e)

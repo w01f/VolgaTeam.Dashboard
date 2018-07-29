@@ -68,7 +68,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
-				case ShiftTopTabType.CNA:
+				case ShiftTopTabType.Goals:
 					switch (tabId)
 					{
 						case "u":
@@ -142,7 +142,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
-				case ShiftTopTabType.NeedsSolutions:
+				case ShiftTopTabType.Partnership:
 					switch (tabId)
 					{
 						case "u":
@@ -179,7 +179,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
-				case ShiftTopTabType.CBC:
+				case ShiftTopTabType.NeedsSolutions:
 					switch (tabId)
 					{
 						case "u":
@@ -216,7 +216,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
-				case ShiftTopTabType.IntegratedSolution:
+				case ShiftTopTabType.CBC:
 					switch (tabId)
 					{
 						case "u":
@@ -253,7 +253,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
-				case ShiftTopTabType.Investment:
+				case ShiftTopTabType.IntegratedSolution:
 					switch (tabId)
 					{
 						case "u":
@@ -290,7 +290,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
-				case ShiftTopTabType.Closers:
+				case ShiftTopTabType.Investment:
 					switch (tabId)
 					{
 						case "u":

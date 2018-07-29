@@ -160,7 +160,6 @@ namespace Asa.Common.GUI.ToolForms
 				_instance.laTitle.Text = text;
 				_instance.laDetails.Visible = withDetails;
 				SetDetails(String.Empty);
-				Application.DoEvents();
 			}
 		}
 
@@ -177,7 +176,6 @@ namespace Asa.Common.GUI.ToolForms
 			else
 			{
 				_instance.laDetails.Text = text;
-				Application.DoEvents();
 			}
 		}
 	}

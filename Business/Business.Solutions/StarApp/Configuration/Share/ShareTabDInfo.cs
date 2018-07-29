@@ -62,6 +62,9 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Share
 			FooterLogo = resourceManager.LogoTab5SubDFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab5SubDFooterFile.LocalPath)
 				: null;
+			BackgroundLogo = resourceManager.LogoTab5SubDBackgroundFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab5SubDBackgroundFile.LocalPath)
+				: null;
 
 			Clipart1Image = resourceManager.ClipartTab5SubD1File.ExistsLocal()
 				? Image.FromFile(resourceManager.ClipartTab5SubD1File.LocalPath)

@@ -32,6 +32,9 @@ namespace Asa.Business.Solutions.StarApp.Configuration.CNA
 			FooterLogo = resourceManager.LogoTab2SubBFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab2SubBFooterFile.LocalPath)
 				: null;
+			BackgroundLogo = resourceManager.LogoTab2SubBBackgroundFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab2SubBBackgroundFile.LocalPath)
+				: null;
 
 			Clipart1Image = resourceManager.ClipartTab2SubB1File.ExistsLocal()
 				? Image.FromFile(resourceManager.ClipartTab2SubB1File.LocalPath)

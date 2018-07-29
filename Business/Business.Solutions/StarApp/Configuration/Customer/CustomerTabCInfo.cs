@@ -27,6 +27,9 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Customer
 			FooterLogo = resourceManager.LogoTab4SubCFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab4SubCFooterFile.LocalPath)
 				: null;
+			BackgroundLogo = resourceManager.LogoTab4SubCBackgroundFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab4SubCBackgroundFile.LocalPath)
+				: null;
 
 			if (!resourceManager.DataCustomerPartCFile.ExistsLocal()) return;
 			var document = new XmlDocument();

@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Business.Solutions.Common.Configuration;
-using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Helpers;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.FormStyle;
 using Asa.Schedules.Common.Controls.ContentEditors.Controls;
-using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
 using Asa.Solutions.Common.Common;
 using DevComponents.DotNetBar;
 using DevExpress.Skins;
@@ -19,7 +16,7 @@ using DevExpress.Skins;
 namespace Asa.Solutions.Common.PresentationClasses
 {
 	//public abstract partial class BaseSolutionContainerControl<TChangeInfo> : UserControl where TChangeInfo : BaseScheduleChangeInfo
-	public abstract partial class BaseSolutionContainerControl<TChangeInfo> : BaseContentOutputControl<TChangeInfo>, IMultipleSlidesOutputControl where TChangeInfo : BaseScheduleChangeInfo
+	public abstract partial class BaseSolutionContainerControl<TChangeInfo> : BaseContentOutputControl<TChangeInfo> where TChangeInfo : BaseScheduleChangeInfo
 	{
 		private bool _allowToHandleEvents;
 		protected abstract SolutionsManager SolutionManager { get; }

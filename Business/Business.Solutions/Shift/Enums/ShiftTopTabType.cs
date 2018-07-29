@@ -4,13 +4,13 @@
 	{
 		Cleanslate = 0,
 		Starters,
-		CNA,
+		Goals,
 		Market,
+		Partnership,
 		NeedsSolutions,
 		CBC,
 		IntegratedSolution,
 		Investment,
-		Closers,
 		NextSteps,
 		Contract,
 		SupportMaterials

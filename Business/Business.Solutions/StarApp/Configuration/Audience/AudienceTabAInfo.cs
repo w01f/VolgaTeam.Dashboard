@@ -36,6 +36,9 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Audience
 			FooterLogo = resourceManager.LogoTab9SubAFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab9SubAFooterFile.LocalPath)
 				: null;
+			BackgroundLogo = resourceManager.LogoTab9SubABackgroundFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab9SubABackgroundFile.LocalPath)
+				: null;
 
 			Clipart1Image = resourceManager.ClipartTab9SubA1File.ExistsLocal()
 				? Image.FromFile(resourceManager.ClipartTab9SubA1File.LocalPath)

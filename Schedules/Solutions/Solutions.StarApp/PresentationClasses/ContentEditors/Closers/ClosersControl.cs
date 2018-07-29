@@ -31,7 +31,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Closers
 					case StarChildTabType.C:
 						tabPages.Add(new ChildTabPageContainerControl<ClosersTabCControl>(this, tabInfo));
 						break;
-					case StarChildTabType.Slides:
+					case StarChildTabType.U:
+					case StarChildTabType.V:
+					case StarChildTabType.W:
 						tabPages.Add(new ChildTabPageContainerControl<SlidesTabControl>(this, tabInfo));
 						break;
 					default:

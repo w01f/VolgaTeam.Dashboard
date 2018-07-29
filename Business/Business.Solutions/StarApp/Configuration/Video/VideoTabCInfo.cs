@@ -31,6 +31,9 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Video
 			FooterLogo = resourceManager.LogoTab8SubCFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab8SubCFooterFile.LocalPath)
 				: null;
+			BackgroundLogo = resourceManager.LogoTab8SubABackgroundFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab8SubABackgroundFile.LocalPath)
+				: null;
 
 			Clipart1Image = resourceManager.ClipartTab8SubC1File.ExistsLocal()
 				? Image.FromFile(resourceManager.ClipartTab8SubC1File.LocalPath)

@@ -28,7 +28,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.CNA
 					case StarChildTabType.B:
 						tabPages.Add(new ChildTabPageContainerControl<CNATabBControl>(this, tabInfo));
 						break;
-					case StarChildTabType.Slides:
+					case StarChildTabType.U:
+					case StarChildTabType.V:
+					case StarChildTabType.W:
 						tabPages.Add(new ChildTabPageContainerControl<SlidesTabControl>(this, tabInfo));
 						break;
 					default:

@@ -125,7 +125,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Closers
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabAUsersContainer)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAUsersContainer)).BeginInit();
@@ -229,21 +228,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Closers
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Size = new System.Drawing.Size(869, 619);
 			// 
-			// styleController
-			// 
-			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.styleController.Appearance.Options.UseFont = true;
-			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDisabled.Options.UseFont = true;
-			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDown.Options.UseFont = true;
-			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
-			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceFocused.Options.UseFont = true;
-			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceReadOnly.Options.UseFont = true;
-			// 
 			// layoutControlGroupTabA
 			// 
 			this.layoutControlGroupTabA.CustomizationFormText = "Tab A";
@@ -339,6 +323,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Closers
 			// 
 			// panelTabAContentContainer
 			// 
+			this.panelTabAContentContainer.BackColor = System.Drawing.Color.Transparent;
 			this.panelTabAContentContainer.Controls.Add(this.layoutControlTabAUsers);
 			this.panelTabAContentContainer.Location = new System.Drawing.Point(43, 190);
 			this.panelTabAContentContainer.Name = "panelTabAContentContainer";
@@ -381,7 +366,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Closers
 			this.layoutControlTabAUsers.OptionsFocus.AllowFocusTabbedGroups = false;
 			this.layoutControlTabAUsers.Root = this.layoutControlGroupTabAUsersRoot;
 			this.layoutControlTabAUsers.Size = new System.Drawing.Size(525, 416);
-			this.layoutControlTabAUsers.StyleController = this.styleController;
 			this.layoutControlTabAUsers.TabIndex = 1;
 			// 
 			// comboBoxEditTabACombo2
@@ -1172,6 +1156,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Closers
 			// clipartEditContainer2
 			// 
 			this.clipartEditContainer2.AllowDrop = true;
+			this.clipartEditContainer2.BackColor = System.Drawing.Color.Transparent;
 			this.clipartEditContainer2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.clipartEditContainer2.Location = new System.Drawing.Point(603, 357);
 			this.clipartEditContainer2.Name = "clipartEditContainer2";
@@ -1197,6 +1182,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Closers
 			// clipartEditContainer1
 			// 
 			this.clipartEditContainer1.AllowDrop = true;
+			this.clipartEditContainer1.BackColor = System.Drawing.Color.Transparent;
 			this.clipartEditContainer1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.clipartEditContainer1.Location = new System.Drawing.Point(603, 42);
 			this.clipartEditContainer1.Name = "clipartEditContainer1";
@@ -1213,7 +1199,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Closers
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabAUsersContainer)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAUsersContainer)).EndInit();

@@ -63,11 +63,14 @@ namespace Asa.Business.Solutions.Shift.Configuration
 						case "starters":
 							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Starters);
 							break;
-						case "cna":
-							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.CNA);
+						case "goals":
+							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Goals);
 							break;
 						case "market":
 							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Market);
+							break;
+						case "partnership":
+							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Partnership);
 							break;
 						case "needs-solutions":
 							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.NeedsSolutions);
@@ -80,9 +83,6 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							break;
 						case "investment":
 							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Investment);
-							break;
-						case "closers":
-							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Closers);
 							break;
 						case "next-steps":
 							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.NextSteps);

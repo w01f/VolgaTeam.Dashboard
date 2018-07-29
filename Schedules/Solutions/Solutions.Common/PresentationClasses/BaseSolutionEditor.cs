@@ -4,7 +4,6 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
-using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Common.GUI.Preview;
@@ -62,16 +61,6 @@ namespace Asa.Solutions.Common.PresentationClasses
 		#region Output
 		public abstract bool ReadyForOutput { get; }
 
-		public void RaiseSlideTypeChanged()
-		{
-			SlideTypeChanged?.Invoke(this, new SelectedSlideTypeChanged { SlideType = SelectedSlideType });
-		}
-
-		public void RaiseOutputStatuesChanged()
-		{
-			OutputStatusChanged?.Invoke(this, new OutputStatusChangedEventArgs { IsOutputEnabled = ReadyForOutput });
-		}
-
 		public abstract bool CheckPowerPointRunning();
 		public abstract void OutputPowerPointCurrent();
 		public abstract void OutputPowerPointAll();
@@ -119,6 +108,16 @@ namespace Asa.Solutions.Common.PresentationClasses
 			}
 
 			OutputPowerPointCustom(selectedOutputItems);
+		}
+
+		protected void RaiseSlideTypeChanged()
+		{
+			SlideTypeChanged?.Invoke(this, new SelectedSlideTypeChanged { SlideType = SelectedSlideType });
+		}
+
+		public void RaiseOutputStatuesChanged()
+		{
+			OutputStatusChanged?.Invoke(this, new OutputStatusChangedEventArgs { IsOutputEnabled = ReadyForOutput });
 		}
 		#endregion
 	}

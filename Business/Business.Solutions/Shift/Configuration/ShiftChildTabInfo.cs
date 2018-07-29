@@ -10,6 +10,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public ShiftChildTabType TabType { get; }
 		public Image RightLogo { get; protected set; }
 		public Image FooterLogo { get; protected set; }
+		public Image BackgroundLogo { get; protected set; }
 		public List<ListDataItem> HeadersItems { get; set; }
 
 		protected ShiftChildTabInfo(ShiftChildTabType tabType)

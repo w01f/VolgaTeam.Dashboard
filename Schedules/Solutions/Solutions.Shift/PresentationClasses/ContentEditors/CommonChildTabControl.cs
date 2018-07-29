@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Shift.Configuration;
 using Asa.Solutions.Common.PresentationClasses.Output;
@@ -11,6 +12,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 		public CommonChildTabControl(IChildTabPageContainer slideContainer, ShiftChildTabInfo tabInfo) : base(slideContainer, tabInfo)
 		{
+			if (CustomTabInfo.BackgroundLogo != null)
+			{
+				layoutControlGroupRoot.BackgroundImage = CustomTabInfo.BackgroundLogo;
+				layoutControlGroupRoot.BackgroundImageVisible = true;
+				layoutControlGroupRoot.BackgroundImageLayout = ImageLayout.Stretch;
+			}
 		}
 
 		public override void LoadData()

@@ -64,6 +64,9 @@ namespace Asa.Business.Solutions.StarApp.Configuration.ROI
 			FooterLogo = resourceManager.LogoTab6SubAFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab6SubAFooterFile.LocalPath)
 				: null;
+			BackgroundLogo = resourceManager.LogoTab6SubABackgroundFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab6SubABackgroundFile.LocalPath)
+				: null;
 
 			Clipart1Image = resourceManager.ClipartTab6SubA1File.ExistsLocal()
 				? Image.FromFile(resourceManager.ClipartTab6SubA1File.LocalPath)

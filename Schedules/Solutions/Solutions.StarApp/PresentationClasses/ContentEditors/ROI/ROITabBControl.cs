@@ -19,7 +19,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 		public ROITabBControl(IChildTabPageContainer slideContainer, StarChildTabInfo tabInfo) : base(slideContainer, tabInfo)
 		{
 			InitializeComponent();
-
+			
 			textEditTabBSubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			spinEditTabBSubheader2.EnableSelectAll();
 			textEditTabBSubheader3.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();

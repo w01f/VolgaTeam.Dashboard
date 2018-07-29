@@ -32,6 +32,9 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Fishing
 			FooterLogo = resourceManager.LogoTab3SubBFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab3SubBFooterFile.LocalPath)
 				: null;
+			BackgroundLogo = resourceManager.LogoTab3SubBBackgroundFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoTab3SubBBackgroundFile.LocalPath)
+				: null;
 
 			Clipart1Image = resourceManager.ClipartTab3SubB1File.ExistsLocal()
 				? Image.FromFile(resourceManager.ClipartTab3SubB1File.LocalPath)

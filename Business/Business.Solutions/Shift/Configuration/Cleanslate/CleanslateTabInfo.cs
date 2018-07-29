@@ -8,6 +8,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Cleanslate
 	{
 		public Image HeaderLogo { get; private set; }
 		public Image SplashLogo { get; private set; }
+		public Image BackgroundLogo { get; private set; }
 
 		public CleanslateTabInfo() : base(ShiftTopTabType.Cleanslate) { }
 
@@ -20,6 +21,9 @@ namespace Asa.Business.Solutions.Shift.Configuration.Cleanslate
 				: null;
 			SplashLogo = resourceManager.LogoCleanslateSplashFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoCleanslateSplashFile.LocalPath)
+				: null;
+			BackgroundLogo = resourceManager.LogoCleanslateBackgroundFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoCleanslateBackgroundFile.LocalPath)
 				: null;
 		}
 	}

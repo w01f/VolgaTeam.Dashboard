@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows.Forms;
 using Asa.Business.Solutions.Shift.Configuration;
 using Asa.Business.Solutions.Shift.Configuration.Cleanslate;
 using Asa.Common.Core.Enums;
@@ -19,6 +20,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 			pictureEditHeader.Image = cleanslateTabInfo?.HeaderLogo;
 			pictureEditSplash.Image = cleanslateTabInfo?.SplashLogo;
+
+			if (cleanslateTabInfo?.BackgroundLogo != null)
+			{
+				BackgroundImage = cleanslateTabInfo.BackgroundLogo;
+				BackgroundImageLayout = ImageLayout.Stretch;
+			}
 		}
 
 		public override void LoadData() { }

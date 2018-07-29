@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using Asa.Business.Solutions.Shift.Configuration;
+﻿using Asa.Business.Solutions.Shift.Configuration;
 using Asa.Common.GUI.Preview;
 
 namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
@@ -15,7 +14,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			slidesEditContainer.Init(CustomTabInfo.Slides);
 			slidesEditContainer.SlideOutput += SlideContainer.OnCustomSlideOutput;
 
-			Application.DoEvents();
+			if (TabInfo.BackgroundLogo != null)
+				slidesEditContainer.SetBackground(TabInfo.BackgroundLogo);
 		}
 
 		public override void LoadData()

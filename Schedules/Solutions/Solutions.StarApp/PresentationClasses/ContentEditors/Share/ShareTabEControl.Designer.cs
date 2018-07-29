@@ -197,16 +197,15 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Share
 			this.layoutControlItemTabESubheader6 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemTabESubheader7 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem30 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.clipartEditContainer1 = new ClipartEditContainer();
 			this.layoutControlItemClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainer2 = new ClipartEditContainer();
+			this.clipartEditContainer1 = new Asa.Solutions.Common.PresentationClasses.ClipartEdit.ClipartEditContainer();
 			this.layoutControlItemClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.clipartEditContainer3 = new ClipartEditContainer();
+			this.clipartEditContainer2 = new Asa.Solutions.Common.PresentationClasses.ClipartEdit.ClipartEditContainer();
 			this.layoutControlItemClipart3 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.clipartEditContainer3 = new Asa.Solutions.Common.PresentationClasses.ClipartEdit.ClipartEditContainer();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabE)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabE)).BeginInit();
 			this.panelTabEContentContainer.SuspendLayout();
@@ -346,21 +345,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Share
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(40, 0, 10, 10);
 			this.layoutControlGroupRoot.Size = new System.Drawing.Size(923, 682);
 			// 
-			// styleController
-			// 
-			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.styleController.Appearance.Options.UseFont = true;
-			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDisabled.Options.UseFont = true;
-			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDown.Options.UseFont = true;
-			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
-			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceFocused.Options.UseFont = true;
-			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceReadOnly.Options.UseFont = true;
-			// 
 			// layoutControlGroupTabE
 			// 
 			this.layoutControlGroupTabE.CustomizationFormText = "Tab E";
@@ -453,6 +437,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Share
 			// 
 			// panelTabEContentContainer
 			// 
+			this.panelTabEContentContainer.BackColor = System.Drawing.Color.Transparent;
 			this.panelTabEContentContainer.Controls.Add(this.layoutControlInner);
 			this.panelTabEContentContainer.Location = new System.Drawing.Point(198, 40);
 			this.panelTabEContentContainer.Name = "panelTabEContentContainer";
@@ -1887,15 +1872,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Share
 			this.emptySpaceItem30.Text = "emptySpaceItem14";
 			this.emptySpaceItem30.TextSize = new System.Drawing.Size(0, 0);
 			// 
-			// clipartEditContainer1
-			// 
-			this.clipartEditContainer1.AllowDrop = true;
-			this.clipartEditContainer1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.clipartEditContainer1.Location = new System.Drawing.Point(42, 42);
-			this.clipartEditContainer1.Name = "clipartEditContainer1";
-			this.clipartEditContainer1.Size = new System.Drawing.Size(124, 176);
-			this.clipartEditContainer1.TabIndex = 5;
-			// 
 			// layoutControlItemClipart1
 			// 
 			this.layoutControlItemClipart1.Control = this.clipartEditContainer1;
@@ -1911,14 +1887,15 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Share
 			this.layoutControlItemClipart1.TextVisible = false;
 			this.layoutControlItemClipart1.TrimClientAreaToControl = false;
 			// 
-			// clipartEditContainer2
+			// clipartEditContainer1
 			// 
-			this.clipartEditContainer2.AllowDrop = true;
-			this.clipartEditContainer2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.clipartEditContainer2.Location = new System.Drawing.Point(42, 267);
-			this.clipartEditContainer2.Name = "clipartEditContainer2";
-			this.clipartEditContainer2.Size = new System.Drawing.Size(124, 176);
-			this.clipartEditContainer2.TabIndex = 6;
+			this.clipartEditContainer1.AllowDrop = true;
+			this.clipartEditContainer1.BackColor = System.Drawing.Color.Transparent;
+			this.clipartEditContainer1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clipartEditContainer1.Location = new System.Drawing.Point(42, 42);
+			this.clipartEditContainer1.Name = "clipartEditContainer1";
+			this.clipartEditContainer1.Size = new System.Drawing.Size(124, 176);
+			this.clipartEditContainer1.TabIndex = 5;
 			// 
 			// layoutControlItemClipart2
 			// 
@@ -1935,14 +1912,15 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Share
 			this.layoutControlItemClipart2.TextVisible = false;
 			this.layoutControlItemClipart2.TrimClientAreaToControl = false;
 			// 
-			// clipartEditContainer3
+			// clipartEditContainer2
 			// 
-			this.clipartEditContainer3.AllowDrop = true;
-			this.clipartEditContainer3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.clipartEditContainer3.Location = new System.Drawing.Point(42, 492);
-			this.clipartEditContainer3.Name = "clipartEditContainer3";
-			this.clipartEditContainer3.Size = new System.Drawing.Size(124, 178);
-			this.clipartEditContainer3.TabIndex = 7;
+			this.clipartEditContainer2.AllowDrop = true;
+			this.clipartEditContainer2.BackColor = System.Drawing.Color.Transparent;
+			this.clipartEditContainer2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clipartEditContainer2.Location = new System.Drawing.Point(42, 267);
+			this.clipartEditContainer2.Name = "clipartEditContainer2";
+			this.clipartEditContainer2.Size = new System.Drawing.Size(124, 176);
+			this.clipartEditContainer2.TabIndex = 6;
 			// 
 			// layoutControlItemClipart3
 			// 
@@ -1959,6 +1937,16 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Share
 			this.layoutControlItemClipart3.TextVisible = false;
 			this.layoutControlItemClipart3.TrimClientAreaToControl = false;
 			// 
+			// clipartEditContainer3
+			// 
+			this.clipartEditContainer3.AllowDrop = true;
+			this.clipartEditContainer3.BackColor = System.Drawing.Color.Transparent;
+			this.clipartEditContainer3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clipartEditContainer3.Location = new System.Drawing.Point(42, 492);
+			this.clipartEditContainer3.Name = "clipartEditContainer3";
+			this.clipartEditContainer3.Size = new System.Drawing.Size(124, 178);
+			this.clipartEditContainer3.TabIndex = 7;
+			// 
 			// ShareTabEControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1969,7 +1957,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Share
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabE)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabE)).EndInit();
 			this.panelTabEContentContainer.ResumeLayout(false);
@@ -2061,7 +2048,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Share
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart3)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 

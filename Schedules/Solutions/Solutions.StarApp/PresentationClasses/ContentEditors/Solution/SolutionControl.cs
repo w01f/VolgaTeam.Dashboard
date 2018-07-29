@@ -34,7 +34,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Solution
 					case StarChildTabType.D:
 						tabPages.Add(new ChildTabPageContainerControl<SolutionTabDControl>(this, tabInfo));
 						break;
-					case StarChildTabType.Slides:
+					case StarChildTabType.U:
+					case StarChildTabType.V:
+					case StarChildTabType.W:
 						tabPages.Add(new ChildTabPageContainerControl<SlidesTabControl>(this, tabInfo));
 						break;
 					default:

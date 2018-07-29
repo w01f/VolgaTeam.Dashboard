@@ -30,6 +30,15 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			TabPageContainer = tabPageContainer;
 			TabInfo = tabInfo;
+
+			if (TabInfo.BackgroundLogo != null)
+			{
+				layoutControlGroupRoot.BackgroundImage = TabInfo.BackgroundLogo;
+				layoutControlGroupRoot.BackgroundImageVisible = true;
+				layoutControlGroupRoot.BackgroundImageLayout = ImageLayout.Stretch;
+				//layoutControl.Appearance.Control.BackColor = Color.LightGray;
+				//layoutControl.Appearance.ControlFocused.BackColor = Color.LightGray;
+			}
 		}
 
 		public virtual void LoadData()

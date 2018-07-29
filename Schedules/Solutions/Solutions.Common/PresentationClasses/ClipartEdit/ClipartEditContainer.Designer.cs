@@ -28,8 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			this.popupMenuImage = new DevExpress.XtraBars.PopupMenu(this.components);
+			this.popupMenuImage = new DevExpress.XtraBars.PopupMenu();
 			this.barButtonItemPreview = new DevExpress.XtraBars.BarButtonItem();
 			this.barButtonItemImagePaste = new DevExpress.XtraBars.BarButtonItem();
 			this.barButtonItemImageFavoritesAdd = new DevExpress.XtraBars.BarButtonItem();
@@ -37,7 +36,7 @@
 			this.barButtonItemInsertFile = new DevExpress.XtraBars.BarButtonItem();
 			this.barButtonItemInsertYouTube = new DevExpress.XtraBars.BarButtonItem();
 			this.barButtonItemReset = new DevExpress.XtraBars.BarButtonItem();
-			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+			this.barManager = new DevExpress.XtraBars.BarManager();
 			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -177,6 +176,8 @@
 			this.pictureEdit.Location = new System.Drawing.Point(0, 0);
 			this.pictureEdit.Name = "pictureEdit";
 			this.pictureEdit.Properties.AllowFocused = false;
+			this.pictureEdit.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEdit.Properties.Appearance.Options.UseBackColor = true;
 			this.pictureEdit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEdit.Properties.NullText = " ";
 			this.pictureEdit.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
@@ -204,6 +205,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.BackColor = System.Drawing.Color.Transparent;
 			this.Controls.Add(this.pictureEdit);
 			this.Controls.Add(this.barDockControlLeft);
 			this.Controls.Add(this.barDockControlRight);

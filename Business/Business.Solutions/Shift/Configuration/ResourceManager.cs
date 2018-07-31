@@ -14,6 +14,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 1
+		public StorageFile DataCoverPartAFile { get; private set; }
+		public StorageFile DataCoverPartBFile { get; private set; }
+		public StorageFile DataCoverPartCFile { get; private set; }
+		public StorageFile DataCoverPartDFile { get; private set; }
+
 		public StorageFile LogoTab1SubARightFile { get; private set; }
 		public StorageFile LogoTab1SubAFooterFile { get; private set; }
 		public StorageFile LogoTab1SubABackgroundFile { get; private set; }
@@ -53,6 +58,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab1SubWRightFile { get; private set; }
 		public StorageFile LogoTab1SubWFooterFile { get; private set; }
 		public StorageFile LogoTab1SubWBackgroundFile { get; private set; }
+
+		public StorageFile ClipartTab1SubA1File { get; private set; }
+		public StorageFile ClipartTab1SubB1File { get; private set; }
+		public StorageFile ClipartTab1SubC1File { get; private set; }
+		public StorageFile ClipartTab1SubD1File { get; private set; }
 
 		public StorageDirectory Tab1PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab1PartVSlidesFolder { get; private set; }
@@ -622,6 +632,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			#endregion
 
 			#region Tab 1
+			DataCoverPartAFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT01A.xml"));
+			DataCoverPartBFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT01B.xml"));
+			DataCoverPartCFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT01C.xml"));
+			DataCoverPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT01D.xml"));
+
 			LogoTab1SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_a", "design_branding", "1a_right.png" }));
 			LogoTab1SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_a", "design_branding", "1a_footer.png" }));
 			LogoTab1SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_b", "design_branding", "1b_right.png" }));
@@ -662,6 +677,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab1SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_u", "design_branding", "background.png" }));
 			LogoTab1SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_v", "design_branding", "background.png" }));
 			LogoTab1SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_w", "design_branding", "background.png" }));
+
+			ClipartTab1SubA1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_a", "placeholders", "SHIFT01ACLIPART1.jpg" }));
+			ClipartTab1SubB1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_b", "placeholders", "SHIFT01BCLIPART1.jpg" }));
+			ClipartTab1SubC1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_c", "placeholders", "SHIFT01CCLIPART1.jpg" }));
+			ClipartTab1SubD1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_d", "placeholders", "SHIFT01DCLIPART1.jpg" }));
 
 			Tab1PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_u" }));
 			Tab1PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_v" }));

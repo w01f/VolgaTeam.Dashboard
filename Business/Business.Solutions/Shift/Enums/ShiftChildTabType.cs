@@ -12,6 +12,8 @@
 		H,
 		I,
 		J,
-		Slides
+		U,
+		V,
+		W
 	}
 }

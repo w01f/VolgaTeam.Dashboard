@@ -7,8 +7,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 {
 	class CommonTopTabControl : MultiTabControl
 	{
-		public override SlideType SlideType => SlideType.Cleanslate;
-
 		public CommonTopTabControl(BaseShiftContainer slideContainer, ShiftChildTabsContainer tabInfo) : base(slideContainer,
 			tabInfo)
 		{
@@ -20,7 +18,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			foreach (var tabInfo in TabContainerInfo.ChildTabs)
 				switch (tabInfo.TabType)
 				{
-					case ShiftChildTabType.Slides:
+					case ShiftChildTabType.U:
+					case ShiftChildTabType.V:
+					case ShiftChildTabType.W:
 						tabPages.Add(new ChildTabPageContainerControl<SlidesTabControl>(this, tabInfo));
 						break;
 					default:

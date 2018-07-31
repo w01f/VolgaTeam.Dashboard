@@ -188,7 +188,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public override OutputGroup GetOutputGroup()
 		{
-
 			var outputItems = new List<OutputItem>();
 
 			if (MultipleSlidesAllowed)
@@ -196,7 +195,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				LoadAllTabPages();
 				outputItems.AddRange(xtraTabControl.TabPages
 					.OfType<IChildTabPageContainer>()
-					.Where(tabContainer => tabContainer.ContentControl != null && tabContainer.ContentControl.ReadyForOutput)
+					.Where(tabContainer => tabContainer.ContentControl != null && tabContainer.ContentControl.ReadyForOutput && tabContainer.ContentControl.MultipleSlidesAllowed)
 					.Select(tabContainer => tabContainer.ContentControl.GetOutputItem())
 					.Where(outputItem => outputItem != null));
 			}

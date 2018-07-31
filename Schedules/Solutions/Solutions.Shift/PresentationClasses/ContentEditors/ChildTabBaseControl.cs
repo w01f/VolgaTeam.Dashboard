@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Shift.Configuration;
+using Asa.Common.Core.Enums;
+using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Preview;
+using Asa.Solutions.Common.InteropClasses;
 using Asa.Solutions.Common.PresentationClasses.Output;
 using DevExpress.XtraTab;
 using ResourceManager = Asa.Common.Core.Configuration.ResourceManager;
@@ -29,17 +33,37 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		{
 			TabPageContainer = tabPageContainer;
 			TabInfo = tabInfo;
+
+			if (TabInfo.EditorConfiguration.FontSize.HasValue)
+			{
+				var fontSizeDelte = TabInfo.EditorConfiguration.FontSize.Value - TextEditorConfiguration.DefaultFontSize;
+				layoutControl.Appearance.Control.FontSizeDelta = fontSizeDelte;
+				layoutControl.Appearance.ControlFocused.FontSizeDelta = fontSizeDelte;
+				layoutControl.Appearance.ControlDropDown.FontSizeDelta = fontSizeDelte;
+				layoutControl.Appearance.ControlDropDownHeader.FontSizeDelta = fontSizeDelte;
+				layoutControl.Appearance.ControlDisabled.FontSizeDelta = fontSizeDelte;
+				layoutControl.Appearance.ControlReadOnly.FontSizeDelta = fontSizeDelte;
+			}
+			if (!TabInfo.EditorConfiguration.BackColor.IsEmpty)
+			{
+				layoutControl.Appearance.Control.BackColor = TabInfo.EditorConfiguration.BackColor;
+				layoutControl.Appearance.ControlFocused.BackColor = TabInfo.EditorConfiguration.BackColor;
+			}
+			if (!TabInfo.EditorConfiguration.ForeColor.IsEmpty)
+			{
+				layoutControl.Appearance.Control.ForeColor = TabInfo.EditorConfiguration.ForeColor;
+				layoutControl.Appearance.ControlFocused.ForeColor = TabInfo.EditorConfiguration.ForeColor;
+				layoutControl.Appearance.ControlDropDown.ForeColor = TabInfo.EditorConfiguration.ForeColor;
+				layoutControl.Appearance.ControlDropDownHeader.ForeColor = TabInfo.EditorConfiguration.ForeColor;
+			}
 		}
 
 		public virtual void ApplyBackground()
 		{
 			if (TabInfo.BackgroundLogo == null) return;
-
 			layoutControlGroupRoot.BackgroundImage = TabInfo.BackgroundLogo;
 			layoutControlGroupRoot.BackgroundImageVisible = true;
 			layoutControlGroupRoot.BackgroundImageLayout = ImageLayout.Stretch;
-			//layoutControl.Appearance.Control.BackColor = Color.LightGray;
-			//layoutControl.Appearance.ControlFocused.BackColor = Color.LightGray;
 		}
 
 		public virtual void LoadData()
@@ -48,16 +72,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		}
 
 		public virtual void ApplyChanges()
-		{
-			throw new NotImplementedException();
-		}
-
-		public virtual ListDataItem GetSlideHeaderValue()
-		{
-			throw new NotImplementedException();
-		}
-
-		public virtual void ApplySlideHeaderValue(ListDataItem slideHeaderValue)
 		{
 			throw new NotImplementedException();
 		}
@@ -74,6 +88,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		public virtual int SlidesCount => 1;
 		public virtual bool MultipleSlidesAllowed => true;
 		public virtual bool ReadyForOutput => !String.IsNullOrWhiteSpace(OutputName);
+		public virtual SlideType SlideType => SlideType.ShiftCleanslate;
+		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType);
 
 		public virtual OutputItem GetOutputItem()
 		{
@@ -87,11 +103,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				IsCurrent = ((XtraTabPage)TabPageContainer).TabControl?.SelectedTabPage == TabPageContainer,
 				SlideGeneratingAction = (processor, destinationPresentation) =>
 				{
-					//processor.AppendShiftCommonSlide(outputData, destinationPresentation);
+					processor.AppendSolutionCommonSlide(outputData, destinationPresentation);
 				},
 				PreviewGeneratingAction = (processor, presentationSourcePath) =>
 				{
-					//processor.PrepareShiftCommonSlide(presentationSourcePath, outputData);
+					processor.PrepareSolutionCommonSlide(presentationSourcePath, outputData);
 				}
 			};
 		}

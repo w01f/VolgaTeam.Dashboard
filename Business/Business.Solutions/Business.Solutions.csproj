@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -51,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Configuration\TextEditorConfiguration.cs" />
     <Compile Include="Common\Entities\NonPersistent\BaseSolutionContent.cs" />
     <Compile Include="Common\Configuration\BaseSolutionInfo.cs" />
     <Compile Include="Common\Entities\NonPersistent\ClipartObject.cs" />
@@ -86,6 +88,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shift\Configuration\CommonChildTabInfo.cs" />
     <Compile Include="Shift\Configuration\CommonTopTabInfo.cs" />
+    <Compile Include="Shift\Configuration\Cover\CoverTabDInfo.cs" />
+    <Compile Include="Shift\Configuration\Cover\CoverTabCInfo.cs" />
+    <Compile Include="Shift\Configuration\Cover\CoverTabBInfo.cs" />
+    <Compile Include="Shift\Configuration\Cover\CoverTabAInfo.cs" />
+    <Compile Include="Shift\Configuration\Cover\CoverTabInfo.cs" />
     <Compile Include="Shift\Configuration\SlidesChildTabInfo.cs" />
     <Compile Include="Shift\Configuration\ShiftChildTabInfo.cs" />
     <Compile Include="Shift\Configuration\ShiftChildTabsContainer.cs" />
@@ -94,6 +101,7 @@
     <Compile Include="Shift\Configuration\IShiftSettingsContainer.cs" />
     <Compile Include="Shift\Configuration\ResourceManager.cs" />
     <Compile Include="Shift\Configuration\ShiftSolutionInfo.cs" />
+    <Compile Include="Shift\Entities\NonPersistent\CoverState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\ShiftContent.cs" />
     <Compile Include="Shift\Enums\ShiftChildTabType.cs" />
     <Compile Include="Shift\Enums\ShiftTopTabType.cs" />

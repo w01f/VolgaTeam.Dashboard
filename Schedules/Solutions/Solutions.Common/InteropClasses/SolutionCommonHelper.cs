@@ -16,7 +16,7 @@ namespace Asa.Solutions.Common.InteropClasses
 {
 	public static class SolutionPowerPointExtensions
 	{
-		public static void AppendStarCommonSlide(this PowerPointProcessor target, OutputDataPackage dataPackage, Presentation destinationPresentation = null)
+		public static void AppendSolutionCommonSlide(this PowerPointProcessor target, OutputDataPackage dataPackage, Presentation destinationPresentation = null)
 		{
 			var presentationTemplatePath = dataPackage.TemplateName;
 			try
@@ -68,9 +68,9 @@ namespace Asa.Solutions.Common.InteropClasses
 			}
 		}
 
-		public static void PrepareStarCommonSlide(this PowerPointProcessor target, string fileName, OutputDataPackage dataPackage)
+		public static void PrepareSolutionCommonSlide(this PowerPointProcessor target, string fileName, OutputDataPackage dataPackage)
 		{
-			target.PreparePresentation(fileName, presentation => target.AppendStarCommonSlide(dataPackage, presentation));
+			target.PreparePresentation(fileName, presentation => target.AppendSolutionCommonSlide(dataPackage, presentation));
 		}
 
 		private static void AddClipartObject(this Shapes shapes, ClipartObject clipartObject, Shape shapeTemplate)
@@ -81,23 +81,26 @@ namespace Asa.Solutions.Common.InteropClasses
 					{
 						var imageObject = (ImageClipartObject)clipartObject;
 						var fileName = Path.GetTempFileName();
-						imageObject.Image.Save(fileName);
+						if (imageObject.Image != null)
+						{
+							imageObject.Image.Save(fileName);
 
-						var originalWidth = imageObject.Image.Width;
-						var originalHeight = imageObject.Image.Height;
-						var percentWidth = shapeTemplate.Width / originalWidth;
-						var percentHeight = shapeTemplate.Height / originalHeight;
-						var percent = new[] { 1, percentWidth, percentHeight }.Min();
-						var width = (Int32)(originalWidth * percent);
-						var height = (Int32)(originalHeight * percent);
+							var originalWidth = imageObject.Image.Width;
+							var originalHeight = imageObject.Image.Height;
+							var percentWidth = shapeTemplate.Width / originalWidth;
+							var percentHeight = shapeTemplate.Height / originalHeight;
+							var percent = new[] {1, percentWidth, percentHeight}.Min();
+							var width = (Int32) (originalWidth * percent);
+							var height = (Int32) (originalHeight * percent);
 
-						shapes.AddPicture(fileName,
-							MsoTriState.msoFalse,
-							MsoTriState.msoCTrue,
-							shapeTemplate.Left + (shapeTemplate.Width - width) / 2,
-							shapeTemplate.Top + (shapeTemplate.Height - height) / 2,
-							width,
-							height);
+							shapes.AddPicture(fileName,
+								MsoTriState.msoFalse,
+								MsoTriState.msoCTrue,
+								shapeTemplate.Left + (shapeTemplate.Width - width) / 2,
+								shapeTemplate.Top + (shapeTemplate.Height - height) / 2,
+								width,
+								height);
+						}
 					}
 					break;
 

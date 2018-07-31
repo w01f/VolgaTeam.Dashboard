@@ -143,7 +143,7 @@ namespace Asa.Common.Core.Helpers
 
 					#region StarApp
 					case "Star_01_cover":
-						slideType = SlideType.Cover;
+						slideType = SlideType.StarAppCover;
 						break;
 					case "Star_02_cna":
 						slideType = SlideType.StarAppCNA;
@@ -176,6 +176,57 @@ namespace Asa.Common.Core.Helpers
 						slideType = SlideType.StarAppClosers;
 						break;
 					#endregion
+
+					#region Shift
+					case "Shift_01a_cover":
+						slideType = SlideType.ShiftCoverA;
+						break;
+					case "Shift_01b_cover":
+						slideType = SlideType.ShiftCoverB;
+						break;
+					case "Shift_01c_cover":
+						slideType = SlideType.ShiftCoverC;
+						break;
+					case "Shift_01d_cover":
+						slideType = SlideType.ShiftCoverD;
+						break;
+					case "Shift_02_intro":
+						slideType = SlideType.ShiftIntro;
+						break;
+					case "Shift_03_agenda":
+						slideType = SlideType.ShiftAgenda;
+						break;
+					case "Shift_04_goals":
+						slideType = SlideType.ShiftGoals;
+						break;
+					case "Shift_05_market_opportunity":
+						slideType = SlideType.ShiftMarket;
+						break;
+					case "Shift_06_our_partnership":
+						slideType = SlideType.ShiftPartnership;
+						break;
+					case "Shift_07_needs_solutions":
+						slideType = SlideType.ShiftNeedsSolutions;
+						break;
+					case "Shift_08_cbc":
+						slideType = SlideType.ShiftCBC;
+						break;
+					case "Shift_09_integrated_solution":
+						slideType = SlideType.ShiftIntegratedSolution;
+						break;
+					case "Shift_10_investment":
+						slideType = SlideType.ShiftInvestment;
+						break;
+					case "Shift_11_relationship_next_steps":
+						slideType = SlideType.ShiftNextSteps;
+						break;
+					case "Shift_12_agreement_contract":
+						slideType = SlideType.ShiftContract;
+						break;
+					case "Shift_13_support_materials":
+						slideType = SlideType.ShiftSupportMaterials;
+						break;
+						#endregion
 				}
 				if (slideType == SlideType.None) continue;
 				foreach (var themeNode in slideNode.SelectNodes("Theme").OfType<XmlNode>())

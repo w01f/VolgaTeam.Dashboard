@@ -6,6 +6,7 @@ using System.Xml;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Shift.Configuration.Cleanslate;
+using Asa.Business.Solutions.Shift.Configuration.Cover;
 using Asa.Business.Solutions.Shift.Enums;
 using Asa.Common.Core.Objects.RemoteStorage;
 
@@ -61,43 +62,43 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							tabInfo = new CleanslateTabInfo();
 							break;
 						case "cover":
-							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Cover);
+							tabInfo = new CoverTabInfo();
 							break;
 						case "intro":
-							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Intro);
+							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Intro);
 							break;
 						case "agenda":
-							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Agenda);
+							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Agenda);
 							break;
 						case "goals":
-							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Goals);
+							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Goals);
 							break;
 						case "market":
-							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Market);
+							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Market);
 							break;
 						case "partnership":
-							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Partnership);
+							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Partnership);
 							break;
 						case "needs-solutions":
-							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.NeedsSolutions);
+							tabInfo = new CommonTopTabInfo(ShiftTopTabType.NeedsSolutions);
 							break;
 						case "cbc":
-							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.CBC);
+							tabInfo = new CommonTopTabInfo(ShiftTopTabType.CBC);
 							break;
 						case "integrated-solution":
-							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.IntegratedSolution);
+							tabInfo = new CommonTopTabInfo(ShiftTopTabType.IntegratedSolution);
 							break;
 						case "investment":
-							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Investment);
+							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Investment);
 							break;
 						case "next-steps":
-							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.NextSteps);
+							tabInfo = new CommonTopTabInfo(ShiftTopTabType.NextSteps);
 							break;
 						case "contract":
-							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Contract);
+							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Contract);
 							break;
 						case "support-materials":
-							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.SupportMaterials);
+							tabInfo = new CommonTopTabInfo(ShiftTopTabType.SupportMaterials);
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");

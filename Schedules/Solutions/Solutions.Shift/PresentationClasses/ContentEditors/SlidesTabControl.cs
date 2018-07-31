@@ -1,9 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Shift.Configuration;
+using Asa.Business.Solutions.Shift.Enums;
+using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Preview;
 using DevExpress.XtraTab;
@@ -34,9 +35,31 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		{
 			_allowToSave = false;
 
-			_sourceSlideObject = new SlideObject();
-			slidesEditContainer.LoadData(_sourceSlideObject);
-			slidesEditContainer.SaveData();
+			switch (CustomTabInfo.TopTabType)
+			{
+				case ShiftTopTabType.Cover:
+					switch (CustomTabInfo.TabType)
+					{
+						case ShiftChildTabType.U:
+							_sourceSlideObject = SlideContainer.EditedContent.CoverState.TabU.Slide;
+							break;
+						case ShiftChildTabType.V:
+							_sourceSlideObject = SlideContainer.EditedContent.CoverState.TabV.Slide;
+							break;
+						case ShiftChildTabType.W:
+							_sourceSlideObject = SlideContainer.EditedContent.CoverState.TabW.Slide;
+							break;
+						default:
+							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
+					}
+					slidesEditContainer.LoadData(_sourceSlideObject);
+					break;
+				default:
+					_sourceSlideObject = new SlideObject();
+					slidesEditContainer.LoadData(_sourceSlideObject);
+					slidesEditContainer.SaveData();
+					break;
+			}
 
 			_allowToSave = true;
 		}
@@ -50,15 +73,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			_dataChanged = false;
 		}
 
-		public override ListDataItem GetSlideHeaderValue()
-		{
-			return null;
-		}
-
-		public override void ApplySlideHeaderValue(ListDataItem slideHeaderValue)
-		{
-		}
-
 		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			RaiseEditValueChanged();
@@ -67,6 +81,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		#region Output
 		public override bool MultipleSlidesAllowed => false;
 		public override bool ReadyForOutput => GetOutputItem() != null;
+		public override SlideType SlideType => SlideType.ShiftCleanslate;
 
 		public override OutputItem GetOutputItem()
 		{

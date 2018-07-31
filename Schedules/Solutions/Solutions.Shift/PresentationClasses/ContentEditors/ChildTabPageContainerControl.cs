@@ -9,24 +9,24 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 	public partial class ChildTabPageContainerControl<TChildTabControl> : XtraTabPage, IChildTabPageContainer where TChildTabControl : ChildTabBaseControl
 	{
 		private TChildTabControl _contentControl;
-		private readonly ShiftChildTabInfo _tabInfo;
+		public ShiftChildTabInfo TabInfo { get; }
 		public MultiTabControl ParentControl { get; }
 		public ChildTabBaseControl ContentControl => _contentControl;
 
 		public ChildTabPageContainerControl(MultiTabControl multiTabControl, ShiftChildTabInfo tabInfo)
 		{
 			ParentControl = multiTabControl;
-			_tabInfo = tabInfo;
+			TabInfo = tabInfo;
 			InitializeComponent();
 
-			Text = _tabInfo.Title;
+			Text = TabInfo.Title;
 		}
 
 		public void LoadContent()
 		{
 			if (_contentControl != null) return;
 			TabControl.BeginUpdate();
-			_contentControl = (TChildTabControl)Activator.CreateInstance(typeof(TChildTabControl), this, _tabInfo);
+			_contentControl = (TChildTabControl)Activator.CreateInstance(typeof(TChildTabControl), this, TabInfo);
 			_contentControl.Dock = DockStyle.Fill;
 			_contentControl.Visible = false;
 			Controls.Add(_contentControl);

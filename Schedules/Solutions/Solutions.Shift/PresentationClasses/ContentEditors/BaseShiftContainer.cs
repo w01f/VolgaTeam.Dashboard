@@ -11,6 +11,7 @@ using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
+using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover;
 using DevExpress.XtraTab;
 using DevExpress.XtraEditors;
 
@@ -25,7 +26,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		public ShiftContent EditedContent { get; protected set; }
 		public abstract IShiftSettingsContainer SettingsContainer { get; }
 		public BaseShiftControl ActiveSlideContent => (xtraTabControl.SelectedTabPage as IShiftTabPageContainer)?.ContentControl;
-		public override SlideType SelectedSlideType => ActiveSlideContent?.SlideType ?? SlideType.Cleanslate;
+		public override SlideType SelectedSlideType => ActiveSlideContent?.SlideType ?? SlideType.ShiftCleanslate;
 		public override string HelpKey
 		{
 			get
@@ -62,6 +63,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				{
 					case ShiftTopTabType.Cleanslate:
 						_slides.Add(new ShiftTabPageContainerControl<CleanslateControl>(this, tabInfo));
+						break;
+					case ShiftTopTabType.Cover:
+						_slides.Add(new ShiftTabPageContainerControl<CoverControl>(this, tabInfo));
 						break;
 					default:
 						_slides.Add(new ShiftTabPageContainerControl<CommonTopTabControl>(this, tabInfo));
@@ -119,6 +123,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		{
 			RaiseSlideTypeChanged();
 			RaiseOutputStatuesChanged();
+			RaiseSlideTypeChanged();
 		}
 
 		public override void ShowEditor()

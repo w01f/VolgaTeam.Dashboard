@@ -88,11 +88,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				IsCurrent = ((XtraTabPage)TabPageContainer).TabControl?.SelectedTabPage == TabPageContainer,
 				SlideGeneratingAction = (processor, destinationPresentation) =>
 				{
-					processor.AppendStarCommonSlide(outputData, destinationPresentation);
+					processor.AppendSolutionCommonSlide(outputData, destinationPresentation);
 				},
 				PreviewGeneratingAction = (processor, presentationSourcePath) =>
 				{
-					processor.PrepareStarCommonSlide(presentationSourcePath, outputData);
+					processor.PrepareSolutionCommonSlide(presentationSourcePath, outputData);
 				}
 			};
 		}

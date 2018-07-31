@@ -232,6 +232,19 @@ namespace Asa.Common.Core.Objects.Output
 		}
 		#endregion
 
+		#region Shift Slides
+		private string GetShiftSolutionTemplateFile(IEnumerable<string> fileName)
+		{
+			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { SlideSettingsManager.Instance.SlideSettings.SlideFolder, "SHIFT Slides" }).Merge(fileName));
+			return file.LocalPath;
+		}
+
+		public string GetShiftCoverFile(string fileName)
+		{
+			return GetShiftSolutionTemplateFile(new[] { "01_cover_slide", fileName });
+		}
+		#endregion
+
 		#region Newspapaer Slides
 		private string GetNewspaperTemplateFile(IEnumerable<string> fileName)
 		{

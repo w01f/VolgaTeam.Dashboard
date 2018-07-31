@@ -9,13 +9,13 @@ namespace Asa.Business.Solutions.Shift.Configuration
 {
 	public class SlidesChildTabInfo : ShiftChildTabInfo
 	{
-		private readonly ShiftTopTabType _topTabInfo;
+		public ShiftTopTabType TopTabType { get; }
 
 		public SolutionSlideManager Slides { get; }
 
-		public SlidesChildTabInfo(ShiftChildTabType tabType, ShiftTopTabType topTabInfo) : base(tabType)
+		public SlidesChildTabInfo(ShiftChildTabType tabType, ShiftTopTabType topTabType) : base(tabType)
 		{
-			_topTabInfo = topTabInfo;
+			TopTabType = topTabType;
 			Slides = new SolutionSlideManager();
 		}
 
@@ -29,7 +29,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 
 			StorageDirectory sourceDirectory;
 			var tabId = configNode.SelectSingleNode("./Type")?.InnerText?.ToLower();
-			switch (_topTabInfo)
+			switch (TopTabType)
 			{
 				case ShiftTopTabType.Cover:
 					switch (tabId)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors.Controls;
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Xml;
@@ -8,10 +9,12 @@ namespace Asa.Business.Solutions.Common.Configuration
 	public class ClipartConfiguration
 	{
 		public ContentAlignment Alignment { get; private set; }
+		public PictureSizeMode SizeMode { get; private set; }
 
 		public ClipartConfiguration()
 		{
 			Alignment = ContentAlignment.MiddleCenter;
+			SizeMode = PictureSizeMode.Squeeze;
 		}
 
 		public static ClipartConfiguration FromXml(XmlNode containerNode, string clipartTag)
@@ -66,6 +69,19 @@ namespace Asa.Business.Solutions.Common.Configuration
 							configuration.Alignment = ContentAlignment.BottomRight;
 							break;
 					}
+					break;
+			}
+
+			var sizeModeValue = containerNode
+				.SelectNodes(@"ClipartAlignment").OfType<XmlNode>().FirstOrDefault(n => String.Equals(n.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "ClipartTag"))?.Value, clipartTag, StringComparison.OrdinalIgnoreCase))
+				?.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "SizeMode"))?.Value?.ToLower();
+			switch (sizeModeValue)
+			{
+				case "stretch":
+					configuration.SizeMode = PictureSizeMode.Stretch;
+					break;
+				default:
+					configuration.SizeMode = PictureSizeMode.Squeeze;
 					break;
 			}
 			return configuration;

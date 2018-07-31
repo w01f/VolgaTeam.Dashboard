@@ -1,5 +1,4 @@
 ﻿using System;
-using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Shift.Configuration;
 using Asa.Solutions.Common.PresentationClasses.Output;
 
@@ -23,19 +22,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			if (!_dataChanged) return;
 
 			_dataChanged = false;
-		}
-
-		public override ListDataItem GetSlideHeaderValue()
-		{
-			return null;
-			//return SlideContainer.EditedContent.SolutionState.TabA.SlideHeader ??
-			//	   TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
-		}
-
-		public override void ApplySlideHeaderValue(ListDataItem slideHeaderValue)
-		{
-			//SlideContainer.EditedContent.SolutionState.TabA.SlideHeader =
-			//	slideHeaderValue != TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
 		}
 
 		private void OnEditValueChanged(object sender, EventArgs e)

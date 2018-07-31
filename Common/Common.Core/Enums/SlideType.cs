@@ -64,18 +64,24 @@
 		#endregion
 
 		#region Shift
-		ShiftCleanslate = 501,
-		ShiftStarters = 502,
-		ShiftCNA = 503,
-		ShiftMarket = 504,
-		ShiftNeedsSolutions = 505,
-		ShiftCBC = 506,
-		ShiftIntegratedSolution = 507,
-		ShiftInvestment = 508,
-		ShiftClosers = 509,
-		ShiftNextSteps = 510,
-		ShiftContract = 511,
-		ShiftSupportMaterials = 512,
+		ShiftCleanslate = 5010,
+		ShiftCoverA = 5021,
+		ShiftCoverB = 5022,
+		ShiftCoverC = 5023,
+		ShiftCoverD = 5024,
+		ShiftIntro = 5030,
+		ShiftAgenda = 5040,
+		ShiftGoals = 5050,
+		ShiftMarket = 5060,
+		ShiftPartnership = 5070,
+		ShiftNeedsSolutions = 5080,
+		ShiftCBC = 5090,
+		ShiftIntegratedSolution = 5100,
+		ShiftInvestment = 5110,
+		ShiftClosers = 5120,
+		ShiftNextSteps = 5130,
+		ShiftContract = 5140,
+		ShiftSupportMaterials = 5150,
 		#endregion
 	}
 }

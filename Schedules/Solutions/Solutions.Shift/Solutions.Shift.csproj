@@ -78,6 +78,33 @@
     <Compile Include="PresentationClasses\ContentEditors\CommonTopTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Cover\CoverControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Cover\CoverTabDControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Cover\CoverTabDControl.Designer.cs">
+      <DependentUpon>CoverTabDControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Cover\CoverTabCControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Cover\CoverTabCControl.Designer.cs">
+      <DependentUpon>CoverTabCControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Cover\CoverTabBControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Cover\CoverTabBControl.Designer.cs">
+      <DependentUpon>CoverTabBControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Cover\CoverTabAControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Cover\CoverTabAControl.Designer.cs">
+      <DependentUpon>CoverTabAControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\IChildTabPageContainer.cs" />
     <Compile Include="PresentationClasses\ContentEditors\IShiftTabPageContainer.cs" />
     <Compile Include="PresentationClasses\ContentEditors\MultiTabControl.cs">
@@ -106,6 +133,11 @@
     </Compile>
     <Compile Include="PresentationClasses\Output\IShiftSlideContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\BaseShiftContainer.resx">
@@ -120,6 +152,18 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\CleanslateControl.resx">
       <DependentUpon>CleanslateControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Cover\CoverTabDControl.resx">
+      <DependentUpon>CoverTabDControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Cover\CoverTabCControl.resx">
+      <DependentUpon>CoverTabCControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Cover\CoverTabBControl.resx">
+      <DependentUpon>CoverTabBControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Cover\CoverTabAControl.resx">
+      <DependentUpon>CoverTabAControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\MultiTabControl.resx">
       <DependentUpon>MultiTabControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,6 +175,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\ShiftTabPageContainerControl.resx">
       <DependentUpon>ShiftTabPageContainerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +231,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ButtonCalendar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

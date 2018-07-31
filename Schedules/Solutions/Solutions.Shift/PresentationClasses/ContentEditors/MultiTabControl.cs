@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Shift.Configuration;
-using Asa.Common.Core.Helpers;
-using Asa.Common.GUI.Common;
+using Asa.Business.Solutions.Shift.Enums;
+using Asa.Common.Core.Enums;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
-using DevExpress.Skins;
 using DevExpress.XtraTab;
 
 namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
@@ -31,8 +29,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 		public override void InitControls()
 		{
-			comboBoxEditSlideHeader.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
-
 			xtraTabControl.TabPages.AddRange(GetChildTabPages().OfType<XtraTabPage>().ToArray());
 
 			var defaultPage = xtraTabControl.TabPages.FirstOrDefault() as IChildTabPageContainer;
@@ -42,10 +38,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 			xtraTabControl.SelectedPageChanged += OnSelectedTabPageChanged;
 			xtraTabControl.SelectedPageChanging += OnSelectedTabPageChanging;
-
-			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
-			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
-			layoutControlItemSlideHeader.MinSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MinSize, scaleFactor);
 
 			OnResize(this, EventArgs.Empty);
 			Resize += OnResize;
@@ -69,7 +61,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 			var selectedContentControl = (xtraTabControl.SelectedTabPage as IChildTabPageContainer)?.ContentControl;
 			selectedContentControl?.ApplyChanges();
-			selectedContentControl?.ApplySlideHeaderValue(comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String });
 
 			_dataChanged = false;
 		}
@@ -89,17 +80,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			pictureEditLogoRight.Image = selectedContentControl.TabInfo.RightLogo;
 			pictureEditLogoFooter.Image = selectedContentControl.TabInfo.FooterLogo;
 
-			if (selectedContentControl.TabInfo.HeadersItems.Any())
-			{
-				comboBoxEditSlideHeader.Properties.Items.Clear();
-				comboBoxEditSlideHeader.Properties.Items.AddRange(selectedContentControl.TabInfo.HeadersItems
-					.Where(item => !item.IsPlaceholder).ToArray());
-				comboBoxEditSlideHeader.EditValue = selectedContentControl.GetSlideHeaderValue();
-				comboBoxEditSlideHeader.Properties.NullText =
-					selectedContentControl.TabInfo.HeadersItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
-					"Select or type";
-			}
-
 			_allowToSave = true;
 		}
 
@@ -113,18 +93,13 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		{
 			foreach (var tabPageContainer in xtraTabControl.TabPages
 				.OfType<IChildTabPageContainer>()
+				.Where(tabPage => tabPage.TabInfo.TabType != ShiftChildTabType.U && tabPage.TabInfo.TabType != ShiftChildTabType.V && tabPage.TabInfo.TabType != ShiftChildTabType.W)
 				.ToList())
 			{
 				if (tabPageContainer.ContentControl == null)
 					tabPageContainer.LoadContent();
 				tabPageContainer.ContentControl?.LoadData();
 			}
-		}
-
-		private void OnEditValueChanged(object sender, EventArgs e)
-		{
-			if (!_allowToSave) return;
-			RaiseDataChanged();
 		}
 
 		private void OnSelectedTabPageChanging(object sender, TabPageChangingEventArgs e)
@@ -160,6 +135,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		{
 			LoadChildTabaData();
 			SlideContainer.RaiseOutputStatuesChanged();
+			SlideContainer.RaiseSlideTypeChanged();
 		}
 
 		private void OnResize(object sender, EventArgs e)
@@ -168,6 +144,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		}
 
 		#region Output Staff
+		public override SlideType SlideType => (xtraTabControl.SelectedTabPage as IChildTabPageContainer)?.ContentControl?.SlideType ?? SlideType.ShiftCleanslate;
+
 		public override bool MultipleSlidesAllowed
 		{
 			get
@@ -195,7 +173,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				LoadAllTabPages();
 				outputItems.AddRange(xtraTabControl.TabPages
 					.OfType<IChildTabPageContainer>()
-					.Where(tabContainer => tabContainer.ContentControl != null && tabContainer.ContentControl.ReadyForOutput)
+					.Where(tabContainer => tabContainer.ContentControl != null && tabContainer.ContentControl.ReadyForOutput && tabContainer.ContentControl.MultipleSlidesAllowed)
 					.Select(tabContainer => tabContainer.ContentControl.GetOutputItem())
 					.Where(outputItem => outputItem != null));
 			}

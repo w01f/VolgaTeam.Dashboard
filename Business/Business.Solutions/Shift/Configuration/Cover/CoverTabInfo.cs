@@ -1,24 +1,24 @@
 ﻿using System;
 using Asa.Business.Solutions.Shift.Enums;
 
-namespace Asa.Business.Solutions.Shift.Configuration
+namespace Asa.Business.Solutions.Shift.Configuration.Cover
 {
-	public class CommonTopTabInfo : ShiftChildTabsContainer
+	public class CoverTabInfo : ShiftChildTabsContainer
 	{
-		public CommonTopTabInfo(ShiftTopTabType tabType) : base(tabType) { }
+		public CoverTabInfo() : base(ShiftTopTabType.Cover) { }
 
 		protected override ShiftChildTabInfo CreatChildTab(string tabId)
 		{
 			switch (tabId)
 			{
 				case "a":
-					return new CommonChildTabInfo(ShiftChildTabType.A, TabType);
+					return new CoverTabAInfo();
 				case "b":
-					return new CommonChildTabInfo(ShiftChildTabType.B, TabType);
+					return new CoverTabBInfo();
 				case "c":
-					return new CommonChildTabInfo(ShiftChildTabType.C, TabType);
+					return new CoverTabCInfo();
 				case "d":
-					return new CommonChildTabInfo(ShiftChildTabType.D, TabType);
+					return new CoverTabDInfo();
 				case "e":
 					return new CommonChildTabInfo(ShiftChildTabType.E, TabType);
 				case "f":
@@ -32,10 +32,8 @@ namespace Asa.Business.Solutions.Shift.Configuration
 				case "j":
 					return new CommonChildTabInfo(ShiftChildTabType.J, TabType);
 				default:
-					throw new ArgumentOutOfRangeException("Shift tab type is not defined");
+					throw new ArgumentOutOfRangeException("Star tab type is not defined");
 			}
 		}
-
-
 	}
 }

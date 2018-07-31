@@ -12,11 +12,13 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public Image FooterLogo { get; protected set; }
 		public Image BackgroundLogo { get; protected set; }
 		public List<ListDataItem> HeadersItems { get; set; }
+		public TextEditorConfiguration EditorConfiguration { get; set; }
 
 		protected ShiftChildTabInfo(ShiftChildTabType tabType)
 		{
 			TabType = tabType;
 			HeadersItems = new List<ListDataItem>();
+			EditorConfiguration = TextEditorConfiguration.Empty();
 		}
 	}
 }

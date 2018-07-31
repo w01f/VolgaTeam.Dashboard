@@ -111,7 +111,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 			OutputPowerPointCustom(selectedOutputItems);
 		}
 
-		protected void RaiseSlideTypeChanged()
+		public void RaiseSlideTypeChanged()
 		{
 			SlideTypeChanged?.Invoke(this, new SelectedSlideTypeChanged { SlideType = SelectedSlideType });
 		}

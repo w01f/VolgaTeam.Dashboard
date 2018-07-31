@@ -126,6 +126,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		#region Output Processing
 		public override bool ReadyForOutput => ActiveSlide?.ReadyForOutput ?? false;
+		public override bool MultipleSlidesAllowed => true;
 		public abstract Theme GetSelectedTheme(SlideType slideType);
 
 		public IList<OutputItem> GetOutputItems(bool onlyCurrentSlide)

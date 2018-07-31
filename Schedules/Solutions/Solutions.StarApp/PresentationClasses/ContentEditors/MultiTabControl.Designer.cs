@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.comboBoxEditSlideHeader = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -248,6 +247,7 @@
 			this.layoutControlItemAddAsPageOne.Location = new System.Drawing.Point(403, 0);
 			this.layoutControlItemAddAsPageOne.Name = "layoutControlItemAddAsPageOne";
 			this.layoutControlItemAddAsPageOne.Size = new System.Drawing.Size(234, 80);
+			this.layoutControlItemAddAsPageOne.Text = "Add As Page One";
 			this.layoutControlItemAddAsPageOne.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemAddAsPageOne.TextVisible = false;
 			this.layoutControlItemAddAsPageOne.TrimClientAreaToControl = false;

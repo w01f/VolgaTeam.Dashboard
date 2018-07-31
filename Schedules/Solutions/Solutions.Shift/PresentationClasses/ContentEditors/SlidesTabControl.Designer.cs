@@ -80,6 +80,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			this.layoutControlGroupRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemSlidesContainer});
 			this.layoutControlGroupRoot.Name = "Root";
+			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
 			this.layoutControlGroupRoot.Size = new System.Drawing.Size(869, 582);
 			// 
 			// styleController
@@ -101,10 +102,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			// 
 			this.slidesEditContainer.BackColor = System.Drawing.Color.Transparent;
 			this.slidesEditContainer.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.slidesEditContainer.Location = new System.Drawing.Point(42, 12);
+			this.slidesEditContainer.Location = new System.Drawing.Point(2, 2);
 			this.slidesEditContainer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.slidesEditContainer.Name = "slidesEditContainer";
-			this.slidesEditContainer.Size = new System.Drawing.Size(785, 558);
+			this.slidesEditContainer.Size = new System.Drawing.Size(865, 578);
 			this.slidesEditContainer.TabIndex = 4;
 			// 
 			// layoutControlItemSlidesContainer
@@ -114,7 +115,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			this.layoutControlItemSlidesContainer.FillControlToClientArea = false;
 			this.layoutControlItemSlidesContainer.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemSlidesContainer.Name = "layoutControlItemSlidesContainer";
-			this.layoutControlItemSlidesContainer.Size = new System.Drawing.Size(789, 562);
+			this.layoutControlItemSlidesContainer.Size = new System.Drawing.Size(869, 582);
 			this.layoutControlItemSlidesContainer.Text = "Slide Container";
 			this.layoutControlItemSlidesContainer.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemSlidesContainer.TextVisible = false;

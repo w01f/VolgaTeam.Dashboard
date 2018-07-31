@@ -27,9 +27,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		public MultiTabControl(BaseShiftContainer slideContainer, ShiftChildTabsContainer tabInfo) : base(slideContainer, tabInfo)
 		{
 			InitializeComponent();
+		}
 
-			Resize += OnResize;
-
+		public override void InitControls()
+		{
 			comboBoxEditSlideHeader.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 
 			xtraTabControl.TabPages.AddRange(GetChildTabPages().OfType<XtraTabPage>().ToArray());
@@ -47,6 +48,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			layoutControlItemSlideHeader.MinSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MinSize, scaleFactor);
 
 			OnResize(this, EventArgs.Empty);
+			Resize += OnResize;
 		}
 
 		public override void LoadData()
@@ -157,6 +159,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		private void OnSelectedTabPageChanged(object sender, TabPageChangedEventArgs e)
 		{
 			LoadChildTabaData();
+			SlideContainer.RaiseOutputStatuesChanged();
 		}
 
 		private void OnResize(object sender, EventArgs e)
@@ -165,27 +168,50 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		}
 
 		#region Output Staff
+		public override bool MultipleSlidesAllowed
+		{
+			get
+			{
+				var selectedContentControl = (xtraTabControl.SelectedTabPage as IChildTabPageContainer)?.ContentControl;
+				return selectedContentControl != null && selectedContentControl.MultipleSlidesAllowed;
+			}
+		}
 
-		public override bool ReadyForOutput => xtraTabControl.TabPages
-			.OfType<IChildTabPageContainer>()
-			.Where(container => container.ContentControl != null)
-			.Select(container => container.ContentControl)
-			.Any(contentControl => contentControl.ReadyForOutput);
+		public override bool ReadyForOutput
+		{
+			get
+			{
+				var selectedContentControl = (xtraTabControl.SelectedTabPage as IChildTabPageContainer)?.ContentControl;
+				return selectedContentControl != null && selectedContentControl.ReadyForOutput;
+			}
+		}
 
 		public override OutputGroup GetOutputGroup()
 		{
-			LoadAllTabPages();
+			var outputItems = new List<OutputItem>();
 
-			return new OutputGroup
+			if (MultipleSlidesAllowed)
 			{
-				Name = TabInfo.Title,
-				IsCurrent = SlideContainer.ActiveSlideContent == this,
-				Items = xtraTabControl.TabPages
+				LoadAllTabPages();
+				outputItems.AddRange(xtraTabControl.TabPages
 					.OfType<IChildTabPageContainer>()
 					.Where(tabContainer => tabContainer.ContentControl != null && tabContainer.ContentControl.ReadyForOutput)
 					.Select(tabContainer => tabContainer.ContentControl.GetOutputItem())
-					.Where(outputItem => outputItem != null)
-					.ToList()
+					.Where(outputItem => outputItem != null));
+			}
+			else
+			{
+				var selectedContentControl = (xtraTabControl.SelectedTabPage as IChildTabPageContainer)?.ContentControl;
+				var outputItem = selectedContentControl?.GetOutputItem();
+				if (outputItem != null)
+					outputItems.Add(outputItem);
+			}
+
+			return new OutputGroup
+			{
+				Name = MultipleSlidesAllowed ? TabInfo.Title : outputItems.FirstOrDefault()?.Name,
+				IsCurrent = SlideContainer.ActiveSlideContent == this,
+				Items = outputItems
 			};
 		}
 		#endregion

@@ -36,6 +36,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			TabInfo = tabInfo;
 		}
 
+		public virtual void InitControls()
+		{
+			throw new NotImplementedException();
+		}
+
 		public virtual void LoadData()
 		{
 			throw new NotImplementedException();
@@ -45,7 +50,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			throw new NotImplementedException();
 		}
 
-		public virtual bool ReadyForOutput { get; }
+		public virtual bool MultipleSlidesAllowed => false;
+		public virtual bool ReadyForOutput => false;
 
 		public virtual OutputGroup GetOutputGroup()
 		{

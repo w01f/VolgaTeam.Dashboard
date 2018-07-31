@@ -7,6 +7,7 @@ using Asa.Common.GUI.ToolForms;
 using Asa.Schedules.Common.Controls.ContentEditors.Enums;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
 using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
+using DevComponents.DotNetBar;
 
 namespace Asa.Schedules.Common.Controls.ContentEditors.Helpers
 {
@@ -147,6 +148,13 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Helpers
 			if (!(_controller.ActiveOutputControl is IMultipleSlidesOutputControl multipleSlidesOutputControl)) return;
 			SaveSchedule(true);
 			multipleSlidesOutputControl.OutputPowerPointAll();
+		}
+
+		public static void OutputPowerPointBeforePopup(PopupOpenEventArgs e)
+		{
+			if (!(_controller.ActiveOutputControl is IMultipleSlidesOutputControl multipleSlidesOutputControl)) return;
+			SaveSchedule(true);
+			multipleSlidesOutputControl.OutputPowerPointBeforePopup(e);
 		}
 
 		public static void OutputPdf()

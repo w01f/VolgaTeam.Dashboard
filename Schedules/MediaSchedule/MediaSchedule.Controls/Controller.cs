@@ -125,41 +125,7 @@ namespace Asa.Media.Controls
 			Ribbon.Items.Add(RibbonCollapseButton);
 			Ribbon.Items.Add(RibbonPinButton);
 
-			foreach (var ribbonButton in new[]
-			{
-				ProgramSchedulePowerPointCurrent,
-				DigitalProductPowerPoint,
-				SnapshotPowerPointCurrent,
-				OptionsPowerPointCurrent,
-				Calendar1PowerPoint,
-				Calendar2PowerPoint,
-				SolutionsPowerPointCurrent,
-				SlidesPowerPoint
-			})
-			{
-				ribbonButton.Click += ContentController.OnOutputPowerPointCurrent;
-			}
-
-			foreach (var ribbonButton in new[]
-			{
-				ProgramSchedulePowerPointAll,
-				SnapshotPowerPointAll,
-				OptionsPowerPointAll,
-				SolutionsPowerPointAll,
-			})
-			{
-				ribbonButton.Click += ContentController.OnOutputPowerPointAll;
-			}
-
-			foreach (var ribbonButton in new[]
-			{
-				ProgramScheduleSettings,
-				SnapshotSettings,
-				OptionsSettings,
-			})
-			{
-				ribbonButton.Click += ContentController.OnEditOutputSettings;
-			}
+			ConfigureOutputButtons();
 
 			BusinessObjects.Instance.ScheduleManager.ScheduleOpened +=
 				OnScheduleInfoChanged;
@@ -216,7 +182,57 @@ namespace Asa.Media.Controls
 			MenuHelpButton.Click += ContentController.OnGetHelp;
 		}
 
-		public void ConfigureThemeButtons()
+		private void ConfigureOutputButtons()
+		{
+			foreach (var ribbonButton in new[]
+			{
+				ProgramSchedulePowerPointCurrent,
+				DigitalProductPowerPoint,
+				SnapshotPowerPointCurrent,
+				OptionsPowerPointCurrent,
+				Calendar1PowerPoint,
+				Calendar2PowerPoint,
+				SolutionsPowerPointCurrent,
+				SlidesPowerPoint
+			})
+			{
+				ribbonButton.Click += ContentController.OnOutputPowerPointCurrent;
+			}
+
+			foreach (var ribbonButton in new[]
+			{
+				ProgramSchedulePowerPointAll,
+				SnapshotPowerPointAll,
+				OptionsPowerPointAll,
+				SolutionsPowerPointAll,
+			})
+			{
+				ribbonButton.Click += ContentController.OnOutputPowerPointAll;
+			}
+
+			foreach (var ribbonButton in new[]
+			{
+				ProgramSchedulePowerPoint,
+				SnapshotPowerPoint,
+				OptionsPowerPoint,
+				SolutionsPowerPoint,
+			})
+			{
+				ribbonButton.PopupOpen += ContentController.OnOutputPowerPointBeforePopup;
+			}
+
+			foreach (var ribbonButton in new[]
+			{
+				ProgramScheduleSettings,
+				SnapshotSettings,
+				OptionsSettings,
+			})
+			{
+				ribbonButton.Click += ContentController.OnEditOutputSettings;
+			}
+		}
+
+		private void ConfigureThemeButtons()
 		{
 			if (!BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.None).Any())
 			{

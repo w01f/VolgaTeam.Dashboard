@@ -31,7 +31,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			var tabId = configNode.SelectSingleNode("./Type")?.InnerText?.ToLower();
 			switch (_topTabInfo)
 			{
-				case ShiftTopTabType.Starters:
+				case ShiftTopTabType.Cover:
 					switch (tabId)
 					{
 						case "u":
@@ -68,7 +68,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
-				case ShiftTopTabType.Goals:
+				case ShiftTopTabType.Intro:
 					switch (tabId)
 					{
 						case "u":
@@ -105,7 +105,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
-				case ShiftTopTabType.Market:
+				case ShiftTopTabType.Agenda:
 					switch (tabId)
 					{
 						case "u":
@@ -142,7 +142,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
-				case ShiftTopTabType.Partnership:
+				case ShiftTopTabType.Goals:
 					switch (tabId)
 					{
 						case "u":
@@ -179,7 +179,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
-				case ShiftTopTabType.NeedsSolutions:
+				case ShiftTopTabType.Market:
 					switch (tabId)
 					{
 						case "u":
@@ -216,7 +216,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
-				case ShiftTopTabType.CBC:
+				case ShiftTopTabType.Partnership:
 					switch (tabId)
 					{
 						case "u":
@@ -253,7 +253,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
-				case ShiftTopTabType.IntegratedSolution:
+				case ShiftTopTabType.NeedsSolutions:
 					switch (tabId)
 					{
 						case "u":
@@ -290,7 +290,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
-				case ShiftTopTabType.Investment:
+				case ShiftTopTabType.CBC:
 					switch (tabId)
 					{
 						case "u":
@@ -327,7 +327,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
-				case ShiftTopTabType.NextSteps:
+				case ShiftTopTabType.IntegratedSolution:
 					switch (tabId)
 					{
 						case "u":
@@ -364,7 +364,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
-				case ShiftTopTabType.Contract:
+				case ShiftTopTabType.Investment:
 					switch (tabId)
 					{
 						case "u":
@@ -401,7 +401,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
-				case ShiftTopTabType.SupportMaterials:
+				case ShiftTopTabType.NextSteps:
 					switch (tabId)
 					{
 						case "u":
@@ -432,6 +432,80 @@ namespace Asa.Business.Solutions.Shift.Configuration
 								: null;
 							FooterLogo = resourceManager.LogoTab11SubWFooterFile.ExistsLocal()
 								? Image.FromFile(resourceManager.LogoTab11SubWFooterFile.LocalPath)
+								: null;
+							break;
+						default:
+							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
+					}
+					break;
+				case ShiftTopTabType.Contract:
+					switch (tabId)
+					{
+						case "u":
+							sourceDirectory = resourceManager.Tab12PartUSlidesFolder;
+
+							RightLogo = resourceManager.LogoTab12SubURightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab12SubURightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab12SubUFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab12SubUFooterFile.LocalPath)
+								: null;
+							break;
+						case "v":
+							sourceDirectory = resourceManager.Tab12PartVSlidesFolder;
+
+							RightLogo = resourceManager.LogoTab12SubVRightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab12SubVRightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab12SubVFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab12SubVFooterFile.LocalPath)
+								: null;
+							break;
+						case "w":
+							sourceDirectory = resourceManager.Tab12PartWSlidesFolder;
+
+							RightLogo = resourceManager.LogoTab12SubWRightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab12SubWRightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab12SubWFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab12SubWFooterFile.LocalPath)
+								: null;
+							break;
+						default:
+							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
+					}
+					break;
+				case ShiftTopTabType.SupportMaterials:
+					switch (tabId)
+					{
+						case "u":
+							sourceDirectory = resourceManager.Tab13PartUSlidesFolder;
+
+							RightLogo = resourceManager.LogoTab13SubURightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab13SubURightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab13SubUFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab13SubUFooterFile.LocalPath)
+								: null;
+							break;
+						case "v":
+							sourceDirectory = resourceManager.Tab13PartVSlidesFolder;
+
+							RightLogo = resourceManager.LogoTab13SubVRightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab13SubVRightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab13SubVFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab13SubVFooterFile.LocalPath)
+								: null;
+							break;
+						case "w":
+							sourceDirectory = resourceManager.Tab13PartWSlidesFolder;
+
+							RightLogo = resourceManager.LogoTab13SubWRightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab13SubWRightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab13SubWFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab13SubWFooterFile.LocalPath)
 								: null;
 							break;
 						default:

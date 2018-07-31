@@ -174,6 +174,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 		#region Output Processing
 		public override bool ReadyForOutput => ActiveSlideContent?.ReadyForOutput ?? false;
+		public override bool MultipleSlidesAllowed => ActiveSlideContent?.MultipleSlidesAllowed ?? false;
 
 		public abstract Theme GetSelectedTheme(SlideType slideType);
 
@@ -218,7 +219,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			}
 			FormProgress.CloseProgress();
 
-			if (!availableOutputGroups.Any())
+			if (!availableOutputGroups.SelectMany(group => group.Items).Any())
 				return selectedOutputItems;
 
 			using (var form = new FormPreview(

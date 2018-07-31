@@ -11,8 +11,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Cover
 	{
 		public override SlideType SlideType => SlideType.StarAppCover;
 
-		public CoverControl(BaseStarAppContainer slideContainer, StarChildTabsContainer tabInfo) : base(slideContainer, tabInfo)
+		public CoverControl(BaseStarAppContainer slideContainer, StarChildTabsContainer tabInfo) : base(slideContainer, tabInfo) { }
+
+		public override void InitControls()
 		{
+			base.InitControls();
 			layoutControlItemAddAsPageOne.Visibility = LayoutVisibility.Always;
 		}
 

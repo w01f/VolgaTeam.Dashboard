@@ -9,6 +9,7 @@ using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.FormStyle;
 using Asa.Schedules.Common.Controls.ContentEditors.Controls;
+using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
 using Asa.Solutions.Common.Common;
 using DevComponents.DotNetBar;
 using DevExpress.Skins;
@@ -16,7 +17,7 @@ using DevExpress.Skins;
 namespace Asa.Solutions.Common.PresentationClasses
 {
 	//public abstract partial class BaseSolutionContainerControl<TChangeInfo> : UserControl where TChangeInfo : BaseScheduleChangeInfo
-	public abstract partial class BaseSolutionContainerControl<TChangeInfo> : BaseContentOutputControl<TChangeInfo> where TChangeInfo : BaseScheduleChangeInfo
+	public abstract partial class BaseSolutionContainerControl<TChangeInfo> : BaseContentOutputControl<TChangeInfo>, IMultipleSlidesOutputControl where TChangeInfo : BaseScheduleChangeInfo
 	{
 		private bool _allowToHandleEvents;
 		protected abstract SolutionsManager SolutionManager { get; }
@@ -183,14 +184,22 @@ namespace Asa.Solutions.Common.PresentationClasses
 
 		private void OnEditorOutputStatusChanged(object sender, OutputStatusChangedEventArgs e)
 		{
+			ButtonPowerPoint.ShowSubItems = e.MultipleSlidesAllowed;
 			ButtonPowerPoint.Enabled =
 				ButtonPdf.Enabled =
 						ButtonEmail.Enabled = e.IsOutputEnabled;
+			((RibbonBar)ButtonPowerPoint.ContainerControl).RecalcLayout();
+			PanelSolutions.PerformLayout();
 		}
 
 		public override void OutputPowerPoint()
 		{
 			ActiveSolutionEditor?.OutputPowerPointCurrent();
+		}
+
+		public override void OutputPowerPointBeforePopup(PopupOpenEventArgs e)
+		{
+			e.Cancel = ActiveSolutionEditor == null || !ActiveSolutionEditor.MultipleSlidesAllowed;
 		}
 
 		public override void OutputPowerPointAll()

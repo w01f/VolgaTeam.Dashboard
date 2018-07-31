@@ -11,6 +11,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 		string SolutionId { get; }
 		SlideType SelectedSlideType { get; }
 		string HelpKey { get; }
+		bool MultipleSlidesAllowed { get; }
 		bool ReadyForOutput { get; }
 		void InitControl(bool showSplash);
 		void ShowEditor();

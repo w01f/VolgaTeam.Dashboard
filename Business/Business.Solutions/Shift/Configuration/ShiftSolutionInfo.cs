@@ -60,8 +60,14 @@ namespace Asa.Business.Solutions.Shift.Configuration
 						case "default":
 							tabInfo = new CleanslateTabInfo();
 							break;
-						case "starters":
-							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Starters);
+						case "cover":
+							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Cover);
+							break;
+						case "intro":
+							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Intro);
+							break;
+						case "agenda":
+							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Agenda);
 							break;
 						case "goals":
 							tabInfo = new CommonTopTabTabInfo(ShiftTopTabType.Goals);

@@ -15,9 +15,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		public CleanslateControl(BaseShiftContainer slideContainer, ShiftTopTabInfo tabInfo) : base(slideContainer, tabInfo)
 		{
 			InitializeComponent();
+		}
 
-			var cleanslateTabInfo = tabInfo as CleanslateTabInfo;
-
+		public override void InitControls()
+		{
+			var cleanslateTabInfo = TabInfo as CleanslateTabInfo;
 			pictureEditHeader.Image = cleanslateTabInfo?.HeaderLogo;
 			pictureEditSplash.Image = cleanslateTabInfo?.SplashLogo;
 

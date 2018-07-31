@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows.Forms;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Business.Solutions.StarApp.Configuration.Cleanslate;
 using Asa.Common.Core.Enums;
@@ -14,11 +15,18 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public CleanslateControl(BaseStarAppContainer slideContainer, StarTopTabInfo tabInfo) : base(slideContainer, tabInfo)
 		{
 			InitializeComponent();
+		}
 
-			var cleanslateTabInfo = tabInfo as CleanslateTabInfo;
-
+		public override void InitControls()
+		{
+			var cleanslateTabInfo = TabInfo as CleanslateTabInfo;
 			pictureEditHeader.Image = cleanslateTabInfo?.HeaderLogo;
 			pictureEditSplash.Image = cleanslateTabInfo?.SplashLogo;
+			if (cleanslateTabInfo?.BackgroundLogo != null)
+			{
+				BackgroundImage = cleanslateTabInfo.BackgroundLogo;
+				BackgroundImageLayout = ImageLayout.Stretch;
+			}
 		}
 
 		public override void LoadData() { }

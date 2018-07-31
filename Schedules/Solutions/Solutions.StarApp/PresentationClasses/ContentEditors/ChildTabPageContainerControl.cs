@@ -25,12 +25,16 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public void LoadContent()
 		{
 			if (_contentControl != null) return;
-			Application.DoEvents();
+			TabControl.BeginUpdate();
 			_contentControl = (TChildTabControl)Activator.CreateInstance(typeof(TChildTabControl), this, _tabInfo);
 			_contentControl.Dock = DockStyle.Fill;
+			_contentControl.Visible = false;
 			Controls.Add(_contentControl);
 			ParentControl.SlideContainer.AssignCloseActiveEditorsOnOutsideClick(ContentControl);
+			_contentControl.Visible = true;
 			_contentControl.BringToFront();
+			_contentControl.ApplyBackground();
+			TabControl.EndUpdate();
 			Application.DoEvents();
 		}
 	}

@@ -60,6 +60,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 
 		#region Output
 		public abstract bool ReadyForOutput { get; }
+		public abstract bool MultipleSlidesAllowed { get; }
 
 		public abstract bool CheckPowerPointRunning();
 		public abstract void OutputPowerPointCurrent();
@@ -117,7 +118,11 @@ namespace Asa.Solutions.Common.PresentationClasses
 
 		public void RaiseOutputStatuesChanged()
 		{
-			OutputStatusChanged?.Invoke(this, new OutputStatusChangedEventArgs { IsOutputEnabled = ReadyForOutput });
+			OutputStatusChanged?.Invoke(this, new OutputStatusChangedEventArgs
+			{
+				MultipleSlidesAllowed = MultipleSlidesAllowed,
+				IsOutputEnabled = ReadyForOutput
+			});
 		}
 		#endregion
 	}

@@ -3,7 +3,9 @@
 	public enum ShiftTopTabType
 	{
 		Cleanslate = 0,
-		Starters,
+		Cover,
+		Intro,
+		Agenda,
 		Goals,
 		Market,
 		Partnership,

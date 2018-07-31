@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
+using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Output;
@@ -32,16 +34,28 @@ namespace Asa.Solutions.Common.PresentationClasses.SlidesEdit
 		{
 			if (_slideObject == null) return;
 			var selectedSlideMaster = SelectedSlide;
+			if (selectedSlideMaster == null) return;
 			if (_slideObject.SourceSlideMasters.ContainsKey(SlideSettingsManager.Instance.SlideSettings.Format))
 				_slideObject.SourceSlideMasters[SlideSettingsManager.Instance.SlideSettings.Format] = selectedSlideMaster.Name;
 			else
 				_slideObject.SourceSlideMasters.Add(SlideSettingsManager.Instance.SlideSettings.Format, selectedSlideMaster.Name);
 		}
 
+		public void SetBackground(Image image)
+		{
+			if (image == null) return;
+			foreach (var slideGroupPage in xtraTabControlSlides.TabPages.OfType<SlideGroupPage>().ToList())
+			{
+				slideGroupPage.slidesListView.Colors.BackColor = Color.Transparent;
+				slideGroupPage.slidesListView.BackgroundImage = image;
+				slideGroupPage.slidesListView.BackgroundImageLayout = ImageLayout.Stretch;
+			}
+		}
+
 		private void ApplySavedState()
 		{
 			SlideMaster targetSlideMaster = null;
-			if (_slideObject.SourceSlideMasters.ContainsKey(SlideSettingsManager.Instance.SlideSettings.Format))
+			if (_slideObject != null && _slideObject.SourceSlideMasters.ContainsKey(SlideSettingsManager.Instance.SlideSettings.Format))
 			{
 				var slideMasterName = _slideObject.SourceSlideMasters[SlideSettingsManager.Instance.SlideSettings.Format];
 				targetSlideMaster =
@@ -52,7 +66,7 @@ namespace Asa.Solutions.Common.PresentationClasses.SlidesEdit
 				targetSlideMaster = _slideManager.Slides.FirstOrDefault(slideMaster =>
 					slideMaster.Format == SlideSettingsManager.Instance.SlideSettings.Format);
 
-			SelectSlide(targetSlideMaster); ;
+			SelectSlide(targetSlideMaster);
 		}
 
 		private void OnSlideFormatSettingsChanging(object sender, SlideSettingsChangingEventArgs e)

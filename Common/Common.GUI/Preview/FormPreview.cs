@@ -92,18 +92,21 @@ namespace Asa.Common.GUI.Preview
 
 		private void OnFormShown(object sender, EventArgs e)
 		{
-			xtraTabControlGroups.TabPages
-				.Where(tabPage => tabPage != xtraTabControlGroups.SelectedTabPage)
-				.ToList()
-				.ForEach(tabPage => tabPage.PageEnabled = false);
-			Application.DoEvents();
+			if (xtraTabControlGroups.SelectedTabPage != null)
+			{
+				xtraTabControlGroups.TabPages
+					.Where(tabPage => tabPage != xtraTabControlGroups.SelectedTabPage)
+					.ToList()
+					.ForEach(tabPage => tabPage.PageEnabled = false);
+				Application.DoEvents();
 
-			LoadPreviewGroup((PreviewGroupControl)xtraTabControlGroups.SelectedTabPage);
+				LoadPreviewGroup((PreviewGroupControl) xtraTabControlGroups.SelectedTabPage);
 
-			xtraTabControlGroups.TabPages
-				.ToList()
-				.ForEach(tabPage => tabPage.PageEnabled = true);
-			Application.DoEvents();
+				xtraTabControlGroups.TabPages
+					.ToList()
+					.ForEach(tabPage => tabPage.PageEnabled = true);
+				Application.DoEvents();
+			}
 		}
 
 		private void OnFormClosed(object sender, FormClosedEventArgs e)

@@ -3,6 +3,7 @@ using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
 using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
 using Asa.Schedules.Common.Controls.ContentEditors.Objects;
+using DevComponents.DotNetBar;
 
 namespace Asa.Schedules.Common.Controls.ContentEditors.Controls
 {
@@ -13,10 +14,10 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Controls
 
 		protected abstract void UpdateMenuOutputButtons();
 
-
 		public virtual void EditSettings() { throw new NotImplementedException(); }
 		public abstract void OutputPowerPoint();
 		public abstract void OutputPowerPointAll();
+		public virtual void OutputPowerPointBeforePopup(PopupOpenEventArgs e) { }
 		public abstract void OutputPdf();
 		public abstract void Email();
 

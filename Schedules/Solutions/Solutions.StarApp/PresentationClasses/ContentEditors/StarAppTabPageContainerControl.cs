@@ -25,12 +25,16 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public void LoadContent()
 		{
 			if (_contentControl != null) return;
-			Application.DoEvents();
+			TabControl.BeginUpdate();
 			_contentControl = (TStarAppControl)Activator.CreateInstance(typeof(TStarAppControl), _slideContainer, _tabInfo);
 			_contentControl.Dock = DockStyle.Fill;
+			_contentControl.Visible = false;
 			Controls.Add(_contentControl);
 			_slideContainer.AssignCloseActiveEditorsOnOutsideClick(_contentControl);
+			_contentControl.Visible = true;
+			_contentControl.InitControls();
 			_contentControl.BringToFront();
+			TabControl.EndUpdate();
 			Application.DoEvents();
 		}
 	}

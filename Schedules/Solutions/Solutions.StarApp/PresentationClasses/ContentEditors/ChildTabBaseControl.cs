@@ -30,15 +30,17 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			TabPageContainer = tabPageContainer;
 			TabInfo = tabInfo;
+		}
 
-			if (TabInfo.BackgroundLogo != null)
-			{
-				layoutControlGroupRoot.BackgroundImage = TabInfo.BackgroundLogo;
-				layoutControlGroupRoot.BackgroundImageVisible = true;
-				layoutControlGroupRoot.BackgroundImageLayout = ImageLayout.Stretch;
-				//layoutControl.Appearance.Control.BackColor = Color.LightGray;
-				//layoutControl.Appearance.ControlFocused.BackColor = Color.LightGray;
-			}
+		public virtual void ApplyBackground()
+		{
+			if (TabInfo.BackgroundLogo == null) return;
+
+			layoutControlGroupRoot.BackgroundImage = TabInfo.BackgroundLogo;
+			layoutControlGroupRoot.BackgroundImageVisible = true;
+			layoutControlGroupRoot.BackgroundImageLayout = ImageLayout.Stretch;
+			//layoutControl.Appearance.Control.BackColor = Color.LightGray;
+			//layoutControl.Appearance.ControlFocused.BackColor = Color.LightGray;
 		}
 
 		public virtual void LoadData()
@@ -71,6 +73,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		#region Output
 		public virtual string OutputName => TabInfo.Title;
 		public virtual int SlidesCount => 1;
+		public virtual bool MultipleSlidesAllowed => true;
 		public virtual bool ReadyForOutput => !String.IsNullOrWhiteSpace(OutputName);
 
 		public virtual OutputItem GetOutputItem()

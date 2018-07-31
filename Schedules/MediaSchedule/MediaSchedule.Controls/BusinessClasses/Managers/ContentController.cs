@@ -236,6 +236,13 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 				ContentEditManager<MediaScheduleChangeInfo>.OutputPowerPointAll();
 		}
 
+		public void OnOutputPowerPointBeforePopup(object sender, PopupOpenEventArgs e)
+		{
+			ContentEditManager<MediaScheduleChangeInfo>.OutputPowerPointBeforePopup(e);
+			if (e.Cancel)
+				OnOutputPowerPointCurrent(sender, e);
+		}
+
 		public void OnOutputPdf(object sender, EventArgs e)
 		{
 			if (Controller.Instance.CheckPowerPointRunning())

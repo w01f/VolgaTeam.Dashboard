@@ -27,9 +27,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public MultiTabControl(BaseStarAppContainer slideContainer, StarChildTabsContainer tabInfo) : base(slideContainer, tabInfo)
 		{
 			InitializeComponent();
+		}
 
-			Resize += OnResize;
-
+		public override void InitControls()
+		{
 			comboBoxEditSlideHeader.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 
 			xtraTabControl.TabPages.AddRange(GetChildTabPages().OfType<XtraTabPage>().ToArray());
@@ -47,6 +48,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			layoutControlItemSlideHeader.MinSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MinSize, scaleFactor);
 
 			OnResize(this, EventArgs.Empty);
+			Resize += OnResize;
 		}
 
 		public override void LoadData()
@@ -166,6 +168,15 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		}
 
 		#region Output Staff
+		public override bool MultipleSlidesAllowed
+		{
+			get
+			{
+				var selectedContentControl = (xtraTabControl.SelectedTabPage as IChildTabPageContainer)?.ContentControl;
+				return selectedContentControl != null && selectedContentControl.MultipleSlidesAllowed;
+			}
+		}
+
 		public override bool ReadyForOutput
 		{
 			get
@@ -177,18 +188,31 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public override OutputGroup GetOutputGroup()
 		{
-			LoadAllTabPages();
 
-			return new OutputGroup
+			var outputItems = new List<OutputItem>();
+
+			if (MultipleSlidesAllowed)
 			{
-				Name = TabInfo.Title,
-				IsCurrent = SlideContainer.ActiveSlideContent == this,
-				Items = xtraTabControl.TabPages
+				LoadAllTabPages();
+				outputItems.AddRange(xtraTabControl.TabPages
 					.OfType<IChildTabPageContainer>()
 					.Where(tabContainer => tabContainer.ContentControl != null && tabContainer.ContentControl.ReadyForOutput)
 					.Select(tabContainer => tabContainer.ContentControl.GetOutputItem())
-					.Where(outputItem => outputItem != null)
-					.ToList()
+					.Where(outputItem => outputItem != null));
+			}
+			else
+			{
+				var selectedContentControl = (xtraTabControl.SelectedTabPage as IChildTabPageContainer)?.ContentControl;
+				var outputItem = selectedContentControl?.GetOutputItem();
+				if (outputItem != null)
+					outputItems.Add(outputItem);
+			}
+
+			return new OutputGroup
+			{
+				Name = MultipleSlidesAllowed ? TabInfo.Title : outputItems.FirstOrDefault()?.Name,
+				IsCurrent = SlideContainer.ActiveSlideContent == this,
+				Items = outputItems
 			};
 		}
 		#endregion

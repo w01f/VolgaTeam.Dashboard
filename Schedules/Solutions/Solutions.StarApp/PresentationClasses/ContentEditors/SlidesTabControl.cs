@@ -1,15 +1,20 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Business.Solutions.StarApp.Enums;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Preview;
+using DevExpress.XtraTab;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	public partial class SlidesTabControl : ChildTabBaseControl
 	{
+		private SlideObject _sourceSlideObject;
 		private SlidesChildTabInfo CustomTabInfo => (SlidesChildTabInfo)TabInfo;
 
 		public SlidesTabControl(IChildTabPageContainer slideContainer, StarChildTabInfo tabInfo) : base(slideContainer, tabInfo)
@@ -19,7 +24,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			slidesEditContainer.Init(CustomTabInfo.Slides);
 			slidesEditContainer.SelectionChanged += OnEditValueChanged;
 			slidesEditContainer.SlideOutput += SlideContainer.OnCustomSlideOutput;
+		}
 
+		public override void ApplyBackground()
+		{
 			if (TabInfo.BackgroundLogo != null)
 				slidesEditContainer.SetBackground(TabInfo.BackgroundLogo);
 		}
@@ -28,20 +36,19 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			_allowToSave = false;
 
-			SlideObject sourceSlideObject;
 			switch (CustomTabInfo.TopTabType)
 			{
 				case StarTopTabType.Cover:
 					switch (CustomTabInfo.TabType)
 					{
 						case StarChildTabType.U:
-							sourceSlideObject = SlideContainer.EditedContent.CoverState.TabU.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.CoverState.TabU.Slide;
 							break;
 						case StarChildTabType.V:
-							sourceSlideObject = SlideContainer.EditedContent.CoverState.TabV.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.CoverState.TabV.Slide;
 							break;
 						case StarChildTabType.W:
-							sourceSlideObject = SlideContainer.EditedContent.CoverState.TabW.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.CoverState.TabW.Slide;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -51,13 +58,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					switch (CustomTabInfo.TabType)
 					{
 						case StarChildTabType.U:
-							sourceSlideObject = SlideContainer.EditedContent.CNAState.TabU.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.CNAState.TabU.Slide;
 							break;
 						case StarChildTabType.V:
-							sourceSlideObject = SlideContainer.EditedContent.CNAState.TabV.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.CNAState.TabV.Slide;
 							break;
 						case StarChildTabType.W:
-							sourceSlideObject = SlideContainer.EditedContent.CNAState.TabW.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.CNAState.TabW.Slide;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -67,13 +74,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					switch (CustomTabInfo.TabType)
 					{
 						case StarChildTabType.U:
-							sourceSlideObject = SlideContainer.EditedContent.FishingState.TabU.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.FishingState.TabU.Slide;
 							break;
 						case StarChildTabType.V:
-							sourceSlideObject = SlideContainer.EditedContent.FishingState.TabV.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.FishingState.TabV.Slide;
 							break;
 						case StarChildTabType.W:
-							sourceSlideObject = SlideContainer.EditedContent.FishingState.TabW.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.FishingState.TabW.Slide;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -83,13 +90,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					switch (CustomTabInfo.TabType)
 					{
 						case StarChildTabType.U:
-							sourceSlideObject = SlideContainer.EditedContent.CustomerState.TabU.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.CustomerState.TabU.Slide;
 							break;
 						case StarChildTabType.V:
-							sourceSlideObject = SlideContainer.EditedContent.CustomerState.TabV.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.CustomerState.TabV.Slide;
 							break;
 						case StarChildTabType.W:
-							sourceSlideObject = SlideContainer.EditedContent.CustomerState.TabW.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.CustomerState.TabW.Slide;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -99,13 +106,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					switch (CustomTabInfo.TabType)
 					{
 						case StarChildTabType.U:
-							sourceSlideObject = SlideContainer.EditedContent.ShareState.TabU.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.ShareState.TabU.Slide;
 							break;
 						case StarChildTabType.V:
-							sourceSlideObject = SlideContainer.EditedContent.ShareState.TabV.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.ShareState.TabV.Slide;
 							break;
 						case StarChildTabType.W:
-							sourceSlideObject = SlideContainer.EditedContent.ShareState.TabW.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.ShareState.TabW.Slide;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -115,13 +122,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					switch (CustomTabInfo.TabType)
 					{
 						case StarChildTabType.U:
-							sourceSlideObject = SlideContainer.EditedContent.ROIState.TabU.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.ROIState.TabU.Slide;
 							break;
 						case StarChildTabType.V:
-							sourceSlideObject = SlideContainer.EditedContent.ROIState.TabV.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.ROIState.TabV.Slide;
 							break;
 						case StarChildTabType.W:
-							sourceSlideObject = SlideContainer.EditedContent.ROIState.TabW.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.ROIState.TabW.Slide;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -131,13 +138,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					switch (CustomTabInfo.TabType)
 					{
 						case StarChildTabType.U:
-							sourceSlideObject = SlideContainer.EditedContent.MarketState.TabU.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.MarketState.TabU.Slide;
 							break;
 						case StarChildTabType.V:
-							sourceSlideObject = SlideContainer.EditedContent.MarketState.TabV.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.MarketState.TabV.Slide;
 							break;
 						case StarChildTabType.W:
-							sourceSlideObject = SlideContainer.EditedContent.MarketState.TabW.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.MarketState.TabW.Slide;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -147,13 +154,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					switch (CustomTabInfo.TabType)
 					{
 						case StarChildTabType.U:
-							sourceSlideObject = SlideContainer.EditedContent.VideoState.TabU.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.VideoState.TabU.Slide;
 							break;
 						case StarChildTabType.V:
-							sourceSlideObject = SlideContainer.EditedContent.VideoState.TabV.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.VideoState.TabV.Slide;
 							break;
 						case StarChildTabType.W:
-							sourceSlideObject = SlideContainer.EditedContent.VideoState.TabW.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.VideoState.TabW.Slide;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -163,13 +170,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					switch (CustomTabInfo.TabType)
 					{
 						case StarChildTabType.U:
-							sourceSlideObject = SlideContainer.EditedContent.AudienceState.TabU.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.AudienceState.TabU.Slide;
 							break;
 						case StarChildTabType.V:
-							sourceSlideObject = SlideContainer.EditedContent.AudienceState.TabV.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.AudienceState.TabV.Slide;
 							break;
 						case StarChildTabType.W:
-							sourceSlideObject = SlideContainer.EditedContent.AudienceState.TabW.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.AudienceState.TabW.Slide;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -179,13 +186,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					switch (CustomTabInfo.TabType)
 					{
 						case StarChildTabType.U:
-							sourceSlideObject = SlideContainer.EditedContent.SolutionState.TabU.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.SolutionState.TabU.Slide;
 							break;
 						case StarChildTabType.V:
-							sourceSlideObject = SlideContainer.EditedContent.SolutionState.TabV.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.SolutionState.TabV.Slide;
 							break;
 						case StarChildTabType.W:
-							sourceSlideObject = SlideContainer.EditedContent.SolutionState.TabW.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.SolutionState.TabW.Slide;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -195,13 +202,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					switch (CustomTabInfo.TabType)
 					{
 						case StarChildTabType.U:
-							sourceSlideObject = SlideContainer.EditedContent.ClosersState.TabU.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.ClosersState.TabU.Slide;
 							break;
 						case StarChildTabType.V:
-							sourceSlideObject = SlideContainer.EditedContent.ClosersState.TabV.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.ClosersState.TabV.Slide;
 							break;
 						case StarChildTabType.W:
-							sourceSlideObject = SlideContainer.EditedContent.ClosersState.TabW.Slide;
+							_sourceSlideObject = SlideContainer.EditedContent.ClosersState.TabW.Slide;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -211,7 +218,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					throw new ArgumentOutOfRangeException("Star tab type is not defined");
 			}
 
-			slidesEditContainer.LoadData(sourceSlideObject);
+			slidesEditContainer.LoadData(_sourceSlideObject);
 			Application.DoEvents();
 
 			_allowToSave = true;
@@ -241,10 +248,40 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		}
 
 		#region Output
-		public override bool ReadyForOutput => false;
+		public override bool MultipleSlidesAllowed => false;
+		public override bool ReadyForOutput => GetOutputItem() != null;
 
 		public override OutputItem GetOutputItem()
 		{
+			if (_sourceSlideObject == null)
+				return null;
+			if (_sourceSlideObject.SourceSlideMasters.ContainsKey(SlideSettingsManager.Instance.SlideSettings.Format))
+			{
+				var slideMasterName = _sourceSlideObject.SourceSlideMasters[SlideSettingsManager.Instance.SlideSettings.Format];
+				var targetSlideMaster = CustomTabInfo.Slides.Slides.FirstOrDefault(slideMaster =>
+					String.Equals(slideMaster.Name, slideMasterName, StringComparison.OrdinalIgnoreCase));
+
+				if (targetSlideMaster != null)
+				{
+					return new OutputItem
+					{
+						Name = slideMasterName,
+						PresentationSourcePath = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName())),
+						SlidesCount = 1,
+						IsCurrent = ((XtraTabPage)TabPageContainer).TabControl?.SelectedTabPage == TabPageContainer,
+						SlideGeneratingAction = (processor, destinationPresentation) =>
+						{
+							processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), destinationPresentation);
+						},
+						PreviewGeneratingAction = (processor, presentationSourcePath) =>
+						{
+							processor.PreparePresentation(presentationSourcePath,
+								presentation => processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), presentation));
+						}
+					};
+				}
+			}
+
 			return null;
 		}
 		#endregion

@@ -220,6 +220,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		#region Output Processing
 		public override bool ReadyForOutput => ActiveSlideContent?.ReadyForOutput ?? false;
+		public override bool MultipleSlidesAllowed => ActiveSlideContent?.MultipleSlidesAllowed ?? false;
 
 		public abstract Theme GetSelectedTheme(SlideType slideType);
 

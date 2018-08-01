@@ -28,6 +28,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public class TabAState
 		{
 			public ListDataItem SlideHeader { get; set; }
+			public bool? EnableOutput { get; set; }
 			public ClipartObject Clipart1 { get; set; }
 			public string Subheader1 { get; set; }
 			public DateTime? Calendar1 { get; set; }
@@ -36,6 +37,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public class TabBState
 		{
 			public ListDataItem SlideHeader { get; set; }
+			public bool? EnableOutput { get; set; }
 			public ClipartObject Clipart1 { get; set; }
 			public string Subheader1 { get; set; }
 			public DateTime? Calendar1 { get; set; }
@@ -44,6 +46,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public class TabCState
 		{
 			public ListDataItem SlideHeader { get; set; }
+			public bool? EnableOutput { get; set; }
 			public ClipartObject Clipart1 { get; set; }
 			public string Subheader1 { get; set; }
 			public DateTime? Calendar1 { get; set; }
@@ -52,6 +55,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public class TabDState
 		{
 			public ListDataItem SlideHeader { get; set; }
+			public bool? EnableOutput { get; set; }
 			public ClipartObject Clipart1 { get; set; }
 			public string Subheader1 { get; set; }
 			public DateTime? Calendar1 { get; set; }

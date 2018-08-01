@@ -25,6 +25,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public class TabAState
 		{
 			public ListDataItem SlideHeader { get; set; }
+			public bool? EnableOutput { get; set; }
 			public ClipartObject Clipart1 { get; set; }
 			public string Subheader1 { get; set; }
 		}
@@ -32,6 +33,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public class TabBState
 		{
 			public ListDataItem SlideHeader { get; set; }
+			public bool? EnableOutput { get; set; }
 			public ClipartObject Clipart1 { get; set; }
 			public ClipartObject Clipart2 { get; set; }
 			public ClipartObject Clipart3 { get; set; }
@@ -44,6 +46,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public class TabCState
 		{
 			public ListDataItem SlideHeader { get; set; }
+			public bool? EnableOutput { get; set; }
 			public ClipartObject Clipart1 { get; set; }
 			public ClipartObject Clipart2 { get; set; }
 			public ClipartObject Clipart3 { get; set; }

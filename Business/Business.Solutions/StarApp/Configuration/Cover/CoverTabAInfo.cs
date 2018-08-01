@@ -6,7 +6,7 @@ using Asa.Business.Solutions.StarApp.Enums;
 
 namespace Asa.Business.Solutions.StarApp.Configuration.Cover
 {
-	public class CoverTabAInfo : StarChildTabInfo
+	public class CoverTabAInfo : StarTabWithHeaderInfo
 	{
 		public override StarChildTabType TabType => StarChildTabType.A;
 

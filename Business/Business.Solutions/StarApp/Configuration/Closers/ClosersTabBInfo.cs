@@ -7,7 +7,7 @@ using Asa.Business.Solutions.StarApp.Enums;
 
 namespace Asa.Business.Solutions.StarApp.Configuration.Closers
 {
-	public class ClosersTabBInfo : StarChildTabInfo
+	public class ClosersTabBInfo : StarTabWithHeaderInfo
 	{
 		public override StarChildTabType TabType => StarChildTabType.B;
 

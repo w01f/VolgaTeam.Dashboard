@@ -55,13 +55,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Solution
 		public override ListDataItem GetSlideHeaderValue()
 		{
 			return SlideContainer.EditedContent.SolutionState.TabA.SlideHeader ??
-				   TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+				   CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+		}
+
+		public override Boolean GetOutputEnableState()
+		{
+			return SlideContainer.EditedContent.SolutionState.TabA.EnableOutput ?? CustomTabInfo.EnableOutput;
 		}
 
 		public override void ApplySlideHeaderValue(ListDataItem slideHeaderValue)
 		{
 			SlideContainer.EditedContent.SolutionState.TabA.SlideHeader =
-				slideHeaderValue != TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+				slideHeaderValue != CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+		}
+
+		public override void ApplyOutputEnableState(Boolean outputEnabled)
+		{
+			SlideContainer.EditedContent.SolutionState.TabA.EnableOutput =
+				outputEnabled != CustomTabInfo.EnableOutput ? outputEnabled : (bool?)null;
+
+			base.ApplyOutputEnableState(outputEnabled);
 		}
 
 		private void OnEditValueChanged(object sender, EventArgs e)
@@ -80,7 +93,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Solution
 			if (clipart != null)
 				outputDataPackage.ClipartItems.Add("CP10ACLIPART1", clipart);
 
-			var slideHeader = (SlideContainer.EditedContent.SolutionState.TabA.SlideHeader ?? TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
+			var slideHeader = (SlideContainer.EditedContent.SolutionState.TabA.SlideHeader ?? CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
 			var subHeader1 = SlideContainer.EditedContent.SolutionState.TabA.Subheader1 ?? CustomTabInfo.SubHeader1DefaultValue;
 
 			outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarSolutionFile("CP10A-1.pptx");

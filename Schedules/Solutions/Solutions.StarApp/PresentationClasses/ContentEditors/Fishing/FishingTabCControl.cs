@@ -62,13 +62,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Fishing
 		public override ListDataItem GetSlideHeaderValue()
 		{
 			return SlideContainer.EditedContent.FishingState.TabC.SlideHeader ??
-			       TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+			       CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+		}
+
+		public override Boolean GetOutputEnableState()
+		{
+			return SlideContainer.EditedContent.FishingState.TabC.EnableOutput ?? CustomTabInfo.EnableOutput;
 		}
 
 		public override void ApplySlideHeaderValue(ListDataItem slideHeaderValue)
 		{
 			SlideContainer.EditedContent.FishingState.TabC.SlideHeader =
-				slideHeaderValue != TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+				slideHeaderValue != CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+		}
+
+		public override void ApplyOutputEnableState(Boolean outputEnabled)
+		{
+			SlideContainer.EditedContent.FishingState.TabC.EnableOutput =
+				outputEnabled != CustomTabInfo.EnableOutput ? outputEnabled : (bool?)null;
+
+			base.ApplyOutputEnableState(outputEnabled);
 		}
 
 		private void OnEditValueChanged(object sender, EventArgs e)
@@ -83,7 +96,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Fishing
 
 			outputDataPackage.Theme = TabPageContainer.ParentControl.SelectedTheme;
 
-			var slideHeader = (SlideContainer.EditedContent.FishingState.TabC.SlideHeader ?? TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
+			var slideHeader = (SlideContainer.EditedContent.FishingState.TabC.SlideHeader ?? CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
 			var subHeaders = new[]
 				{
 						SlideContainer.EditedContent.FishingState.TabC.Subheader1 ?? CustomTabInfo.SubHeader1DefaultValue,

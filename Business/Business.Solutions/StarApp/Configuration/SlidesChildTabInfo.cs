@@ -19,6 +19,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 			TopTabType = topTabType;
 			TabType = tabType;
 			Slides = new SolutionSlideManager();
+			EnableOutput = false;
 		}
 
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)

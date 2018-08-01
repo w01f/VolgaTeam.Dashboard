@@ -6,7 +6,7 @@ using Asa.Business.Solutions.StarApp.Enums;
 
 namespace Asa.Business.Solutions.StarApp.Configuration.Market
 {
-	public class MarketTabBInfo : StarChildTabInfo
+	public class MarketTabBInfo : StarTabWithHeaderInfo
 	{
 		public override StarChildTabType TabType => StarChildTabType.B;
 

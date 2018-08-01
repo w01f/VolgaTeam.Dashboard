@@ -23,6 +23,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public class TabAState
 		{
 			public ListDataItem SlideHeader { get; set; }
+			public bool? EnableOutput { get; set; }
 			public bool AddAsPageOne { get; set; }
 			public ClipartObject Clipart1 { get; set; }
 			public string Subheader1 { get; set; }

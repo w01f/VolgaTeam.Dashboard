@@ -173,13 +173,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Share
 		public override ListDataItem GetSlideHeaderValue()
 		{
 			return SlideContainer.EditedContent.ShareState.TabA.SlideHeader ??
-				   TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+				   CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+		}
+
+		public override Boolean GetOutputEnableState()
+		{
+			return SlideContainer.EditedContent.ShareState.TabA.EnableOutput ?? CustomTabInfo.EnableOutput;
 		}
 
 		public override void ApplySlideHeaderValue(ListDataItem slideHeaderValue)
 		{
 			SlideContainer.EditedContent.ShareState.TabA.SlideHeader =
-				slideHeaderValue != TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+				slideHeaderValue != CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+		}
+
+		public override void ApplyOutputEnableState(Boolean outputEnabled)
+		{
+			SlideContainer.EditedContent.ShareState.TabA.EnableOutput =
+				outputEnabled != CustomTabInfo.EnableOutput ? outputEnabled : (bool?)null;
+
+			base.ApplyOutputEnableState(outputEnabled);
 		}
 
 		#region Event Handlers
@@ -312,7 +325,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Share
 
 			outputDataPackage.TextItems = GetOutputDataTextItems();
 
-			var slideHeader = (SlideContainer.EditedContent.ShareState.TabA.SlideHeader ?? TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
+			var slideHeader = (SlideContainer.EditedContent.ShareState.TabA.SlideHeader ?? CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
 			outputDataPackage.TextItems.Add("CP05AHEADER", slideHeader);
 			outputDataPackage.TextItems.Add("HEADER", slideHeader);
 

@@ -6,7 +6,7 @@ using Asa.Business.Solutions.StarApp.Enums;
 
 namespace Asa.Business.Solutions.StarApp.Configuration.Customer
 {
-	public class CustomerTabBInfo : StarChildTabInfo
+	public class CustomerTabBInfo : StarTabWithHeaderInfo
 	{
 		public override StarChildTabType TabType => StarChildTabType.B;
 

@@ -73,6 +73,15 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			_dataChanged = false;
 		}
 
+		public override Boolean GetOutputEnableState()
+		{
+			return true;
+		}
+
+		public override void ApplyOutputEnableState(Boolean outputEnabled)
+		{
+		}
+
 		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			RaiseEditValueChanged();

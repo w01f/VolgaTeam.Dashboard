@@ -26,10 +26,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover
 			memoEditSubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
-			comboBoxEditSlideHeader.Properties.Items.AddRange(TabInfo.HeadersItems
+			comboBoxEditSlideHeader.Properties.Items.AddRange(CustomTabInfo.HeadersItems
 				.Where(item => !item.IsPlaceholder).ToArray());
 			comboBoxEditSlideHeader.Properties.NullText =
-				TabInfo.HeadersItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+				CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
 				"Select or type";
 			memoEditSubheader1.Properties.NullText = CustomTabInfo.SubHeader1Placeholder ?? memoEditSubheader1.Properties.NullText;
 
@@ -44,7 +44,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover
 			clipartEditContainer1.LoadData(SlideContainer.EditedContent.CoverState.TabD.Clipart1);
 
 			comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.CoverState.TabD.SlideHeader ??
-				TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+				CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
 			memoEditSubheader1.EditValue = SlideContainer.EditedContent.CoverState.TabD.Subheader1 ??
 				CustomTabInfo.SubHeader1DefaultValue;
 
@@ -62,7 +62,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover
 			SlideContainer.EditedContent.CoverState.TabD.Clipart1 = clipartEditContainer1.GetActiveClipartObject();
 
 			var slideHeaderValue = comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String };
-			SlideContainer.EditedContent.CoverState.TabD.SlideHeader = slideHeaderValue != TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ?
+			SlideContainer.EditedContent.CoverState.TabD.SlideHeader = slideHeaderValue != CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ?
 				slideHeaderValue :
 				null;
 			SlideContainer.EditedContent.CoverState.TabD.Subheader1 =
@@ -73,6 +73,19 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover
 			SlideContainer.EditedContent.CoverState.TabD.Calendar1 = (DateTime?)dateEditCalendar1.EditValue == _defaultDate ? null : (DateTime?)dateEditCalendar1.EditValue;
 
 			_dataChanged = false;
+		}
+
+		public override bool GetOutputEnableState()
+		{
+			return SlideContainer.EditedContent.CoverState.TabD.EnableOutput ?? CustomTabInfo.EnableOutput;
+		}
+
+		public override void ApplyOutputEnableState(Boolean outputEnabled)
+		{
+			SlideContainer.EditedContent.CoverState.TabD.EnableOutput =
+				outputEnabled != CustomTabInfo.EnableOutput ? outputEnabled : (bool?)null;
+
+			base.ApplyOutputEnableState(outputEnabled);
 		}
 
 		private void OnEditValueChanged(object sender, EventArgs e)
@@ -95,7 +108,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover
 				outputDataPackage.ClipartItems.Add("SHIFT01DCLIPART1", clipart);
 
 			var slideHeader = (SlideContainer.EditedContent.CoverState.TabD.SlideHeader ??
-							   TabInfo.HeadersItems.FirstOrDefault(h =>
+							   CustomTabInfo.HeadersItems.FirstOrDefault(h =>
 								   h.IsDefault))?.Value;
 			var subHeader1 = SlideContainer.EditedContent.CoverState.TabD.Subheader1 ??
 							 CustomTabInfo.SubHeader1DefaultValue;

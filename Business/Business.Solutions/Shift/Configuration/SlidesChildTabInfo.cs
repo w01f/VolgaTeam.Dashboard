@@ -17,6 +17,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		{
 			TopTabType = topTabType;
 			Slides = new SolutionSlideManager();
+			EnableOutput = false;
 		}
 
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)

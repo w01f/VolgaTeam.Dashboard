@@ -32,6 +32,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		public override IStarAppSettingsContainer SettingsContainer => MediaMetaData.Instance.SettingsManager;
 		public override Form MainForm => Controller.Instance.FormMain;
 		public override Color? AccentColor => BusinessObjects.Instance.FormStyleManager.Style.AccentColor;
+		public override Image ToggleSwitchSkinElement => BusinessObjects.Instance.ImageResourcesManager.SolutionToggleSwitchSkinElement;
 
 		public override void LoadData()
 		{

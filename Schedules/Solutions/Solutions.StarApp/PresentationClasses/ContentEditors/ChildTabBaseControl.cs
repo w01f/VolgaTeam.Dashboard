@@ -39,8 +39,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			layoutControlGroupRoot.BackgroundImage = TabInfo.BackgroundLogo;
 			layoutControlGroupRoot.BackgroundImageVisible = true;
 			layoutControlGroupRoot.BackgroundImageLayout = ImageLayout.Stretch;
-			//layoutControl.Appearance.Control.BackColor = Color.LightGray;
-			//layoutControl.Appearance.ControlFocused.BackColor = Color.LightGray;
 		}
 
 		public virtual void LoadData()
@@ -58,9 +56,19 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			throw new NotImplementedException();
 		}
 
+		public virtual bool GetOutputEnableState()
+		{
+			throw new NotImplementedException();
+		}
+
 		public virtual void ApplySlideHeaderValue(ListDataItem slideHeaderValue)
 		{
 			throw new NotImplementedException();
+		}
+
+		public virtual void ApplyOutputEnableState(bool outputEnabled)
+		{
+			TabPageContainer.FormatSlideHeader();
 		}
 
 		protected void RaiseEditValueChanged()

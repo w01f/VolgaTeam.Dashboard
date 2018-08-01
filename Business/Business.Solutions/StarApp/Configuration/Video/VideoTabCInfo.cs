@@ -6,7 +6,7 @@ using Asa.Business.Solutions.StarApp.Enums;
 
 namespace Asa.Business.Solutions.StarApp.Configuration.Video
 {
-	public class VideoTabCInfo : StarChildTabInfo
+	public class VideoTabCInfo : StarTabWithHeaderInfo
 	{
 		public override StarChildTabType TabType => StarChildTabType.C;
 

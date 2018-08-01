@@ -76,6 +76,16 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			throw new NotImplementedException();
 		}
 
+		public virtual bool GetOutputEnableState()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual void ApplyOutputEnableState(bool outputEnabled)
+		{
+			TabPageContainer.FormatSlideHeader();
+		}
+
 		protected void RaiseEditValueChanged()
 		{
 			if (!_allowToSave) return;

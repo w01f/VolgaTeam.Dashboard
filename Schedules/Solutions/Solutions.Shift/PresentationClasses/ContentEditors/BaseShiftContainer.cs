@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
@@ -27,6 +28,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		public abstract IShiftSettingsContainer SettingsContainer { get; }
 		public BaseShiftControl ActiveSlideContent => (xtraTabControl.SelectedTabPage as IShiftTabPageContainer)?.ContentControl;
 		public override SlideType SelectedSlideType => ActiveSlideContent?.SlideType ?? SlideType.ShiftCleanslate;
+		public abstract Image ToggleSwitchSkinElement { get; }
 		public override string HelpKey
 		{
 			get
@@ -214,11 +216,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 				var contentControls = allSlides
 					.Select(container => container.ContentControl)
-					.Where(control => control.ReadyForOutput)
 					.ToList();
 				foreach (var contentControl in contentControls)
 				{
-					availableOutputGroups.Add(contentControl.GetOutputGroup());
+					var outputGroup = contentControl.GetOutputGroup();
+					if (outputGroup.Items.Any())
+						availableOutputGroups.Add(outputGroup);
 					Application.DoEvents();
 				}
 			}

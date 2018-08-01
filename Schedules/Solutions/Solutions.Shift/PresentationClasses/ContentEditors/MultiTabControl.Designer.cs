@@ -28,13 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition1 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition2 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition1 = new DevExpress.XtraLayout.RowDefinition();
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
+			this.toggleSwitchOutput = new DevExpress.XtraEditors.ToggleSwitch();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemTabPages = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlGroupSlideHeader = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemOutputToggle = new DevExpress.XtraLayout.LayoutControlItem();
+			this.emptySpaceItemSlideHeader = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.pictureEditLogoRight = new DevExpress.XtraEditors.PictureEdit();
 			this.pictureEditLogoFooter = new DevExpress.XtraEditors.PictureEdit();
 			this.panelLogoRight = new System.Windows.Forms.Panel();
@@ -42,10 +47,13 @@
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.toggleSwitchOutput.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabPages)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSlideHeader)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOutputToggle)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItemSlideHeader)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).BeginInit();
 			this.panelLogoRight.SuspendLayout();
@@ -83,6 +91,7 @@
 			this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
 			this.layoutControl.BackColor = System.Drawing.Color.White;
+			this.layoutControl.Controls.Add(this.toggleSwitchOutput);
 			this.layoutControl.Controls.Add(this.xtraTabControl);
 			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutControl.ForeColor = System.Drawing.Color.Black;
@@ -98,6 +107,18 @@
 			this.layoutControl.StyleController = this.styleController;
 			this.layoutControl.TabIndex = 68;
 			this.layoutControl.Text = "layoutControl1";
+			// 
+			// toggleSwitchOutput
+			// 
+			this.toggleSwitchOutput.Location = new System.Drawing.Point(552, 7);
+			this.toggleSwitchOutput.Name = "toggleSwitchOutput";
+			this.toggleSwitchOutput.Properties.AllowFocused = false;
+			this.toggleSwitchOutput.Properties.OffText = "Off";
+			this.toggleSwitchOutput.Properties.OnText = "On";
+			this.toggleSwitchOutput.Size = new System.Drawing.Size(123, 25);
+			this.toggleSwitchOutput.StyleController = this.layoutControl;
+			this.toggleSwitchOutput.TabIndex = 31;
+			this.toggleSwitchOutput.Toggled += new System.EventHandler(this.OnOutputToggled);
 			// 
 			// xtraTabControl
 			// 
@@ -125,9 +146,9 @@
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseTextOptions = true;
 			this.xtraTabControl.AppearancePage.PageClient.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
-			this.xtraTabControl.Location = new System.Drawing.Point(40, 30);
+			this.xtraTabControl.Location = new System.Drawing.Point(40, 40);
 			this.xtraTabControl.Name = "xtraTabControl";
-			this.xtraTabControl.Size = new System.Drawing.Size(637, 382);
+			this.xtraTabControl.Size = new System.Drawing.Size(637, 372);
 			this.xtraTabControl.TabIndex = 29;
 			// 
 			// layoutControlGroupRoot
@@ -148,38 +169,80 @@
 			this.layoutControlGroupRoot.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
 			this.layoutControlGroupRoot.GroupBordersVisible = false;
 			this.layoutControlGroupRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItem1,
-            this.layoutControlItemTabPages});
+            this.layoutControlItemTabPages,
+            this.layoutControlGroupSlideHeader});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(40, 0, 0, 0);
 			this.layoutControlGroupRoot.Size = new System.Drawing.Size(677, 412);
 			this.layoutControlGroupRoot.TextVisible = false;
 			// 
-			// emptySpaceItem1
-			// 
-			this.emptySpaceItem1.AllowHotTrack = false;
-			this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
-			this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 30);
-			this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 30);
-			this.emptySpaceItem1.Name = "emptySpaceItem1";
-			this.emptySpaceItem1.Size = new System.Drawing.Size(637, 30);
-			this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-			// 
 			// layoutControlItemTabPages
 			// 
 			this.layoutControlItemTabPages.Control = this.xtraTabControl;
 			this.layoutControlItemTabPages.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemTabPages.FillControlToClientArea = false;
-			this.layoutControlItemTabPages.Location = new System.Drawing.Point(0, 30);
+			this.layoutControlItemTabPages.Location = new System.Drawing.Point(0, 40);
 			this.layoutControlItemTabPages.Name = "layoutControlItemTabPages";
 			this.layoutControlItemTabPages.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemTabPages.Size = new System.Drawing.Size(637, 382);
+			this.layoutControlItemTabPages.Size = new System.Drawing.Size(637, 372);
 			this.layoutControlItemTabPages.Text = "Tab Pages";
 			this.layoutControlItemTabPages.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabPages.TextVisible = false;
 			this.layoutControlItemTabPages.TrimClientAreaToControl = false;
+			// 
+			// layoutControlGroupSlideHeader
+			// 
+			this.layoutControlGroupSlideHeader.GroupBordersVisible = false;
+			this.layoutControlGroupSlideHeader.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemOutputToggle,
+            this.emptySpaceItemSlideHeader});
+			this.layoutControlGroupSlideHeader.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
+			this.layoutControlGroupSlideHeader.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupSlideHeader.Name = "layoutControlGroupSlideHeader";
+			columnDefinition1.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition1.Width = 80D;
+			columnDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition2.Width = 20D;
+			this.layoutControlGroupSlideHeader.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
+            columnDefinition1,
+            columnDefinition2});
+			rowDefinition1.Height = 100D;
+			rowDefinition1.SizeType = System.Windows.Forms.SizeType.Percent;
+			this.layoutControlGroupSlideHeader.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
+            rowDefinition1});
+			this.layoutControlGroupSlideHeader.Size = new System.Drawing.Size(637, 40);
+			this.layoutControlGroupSlideHeader.Text = "Slide Header";
+			this.layoutControlGroupSlideHeader.TextVisible = false;
+			// 
+			// layoutControlItemOutputToggle
+			// 
+			this.layoutControlItemOutputToggle.Control = this.toggleSwitchOutput;
+			this.layoutControlItemOutputToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleRight;
+			this.layoutControlItemOutputToggle.FillControlToClientArea = false;
+			this.layoutControlItemOutputToggle.Location = new System.Drawing.Point(510, 0);
+			this.layoutControlItemOutputToggle.MaxSize = new System.Drawing.Size(0, 40);
+			this.layoutControlItemOutputToggle.MinSize = new System.Drawing.Size(98, 40);
+			this.layoutControlItemOutputToggle.Name = "layoutControlItemOutputToggle";
+			this.layoutControlItemOutputToggle.OptionsTableLayoutItem.ColumnIndex = 1;
+			this.layoutControlItemOutputToggle.Size = new System.Drawing.Size(127, 40);
+			this.layoutControlItemOutputToggle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemOutputToggle.Text = "Output Toggle";
+			this.layoutControlItemOutputToggle.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemOutputToggle.TextVisible = false;
+			this.layoutControlItemOutputToggle.TrimClientAreaToControl = false;
+			this.layoutControlItemOutputToggle.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+			// 
+			// emptySpaceItemSlideHeader
+			// 
+			this.emptySpaceItemSlideHeader.AllowHotTrack = false;
+			this.emptySpaceItemSlideHeader.Location = new System.Drawing.Point(0, 0);
+			this.emptySpaceItemSlideHeader.MaxSize = new System.Drawing.Size(0, 40);
+			this.emptySpaceItemSlideHeader.MinSize = new System.Drawing.Size(10, 40);
+			this.emptySpaceItemSlideHeader.Name = "emptySpaceItemSlideHeader";
+			this.emptySpaceItemSlideHeader.Size = new System.Drawing.Size(510, 40);
+			this.emptySpaceItemSlideHeader.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItemSlideHeader.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// pictureEditLogoRight
 			// 
@@ -254,10 +317,13 @@
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.toggleSwitchOutput.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabPages)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSlideHeader)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOutputToggle)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItemSlideHeader)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).EndInit();
 			this.panelLogoRight.ResumeLayout(false);
@@ -273,10 +339,13 @@
 		protected DevExpress.XtraEditors.PictureEdit pictureEditLogoRight;
 		private DevExpress.XtraEditors.PictureEdit pictureEditLogoFooter;
 		protected DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;
-		protected DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
 		private System.Windows.Forms.Panel panelLogoRight;
 		private System.Windows.Forms.Panel panelLogoBottom;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControl;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabPages;
+		private DevExpress.XtraEditors.ToggleSwitch toggleSwitchOutput;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemOutputToggle;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupSlideHeader;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItemSlideHeader;
 	}
 }

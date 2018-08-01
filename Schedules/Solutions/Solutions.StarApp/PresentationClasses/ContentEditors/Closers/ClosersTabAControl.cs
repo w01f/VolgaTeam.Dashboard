@@ -148,13 +148,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Closers
 		public override ListDataItem GetSlideHeaderValue()
 		{
 			return SlideContainer.EditedContent.ClosersState.TabA.SlideHeader ??
-			       TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+			       CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+		}
+
+		public override Boolean GetOutputEnableState()
+		{
+			return SlideContainer.EditedContent.ClosersState.TabA.EnableOutput ?? CustomTabInfo.EnableOutput;
 		}
 
 		public override void ApplySlideHeaderValue(ListDataItem slideHeaderValue)
 		{
 			SlideContainer.EditedContent.ClosersState.TabA.SlideHeader =
-				slideHeaderValue != TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+				slideHeaderValue != CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+		}
+
+		public override void ApplyOutputEnableState(Boolean outputEnabled)
+		{
+			SlideContainer.EditedContent.ClosersState.TabA.EnableOutput =
+				outputEnabled != CustomTabInfo.EnableOutput ? outputEnabled : (bool?)null;
+
+			base.ApplyOutputEnableState(outputEnabled);
 		}
 
 		#region Event Handlers
@@ -256,7 +269,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Closers
 			if (clipart2 != null)
 				outputDataPackage.ClipartItems.Add("CP11ACLIPART2", clipart2);
 
-			var slideHeader = (SlideContainer.EditedContent.ClosersState.TabA.SlideHeader ?? TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
+			var slideHeader = (SlideContainer.EditedContent.ClosersState.TabA.SlideHeader ?? CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
 			var subHeader1 = SlideContainer.EditedContent.ClosersState.TabA.Subheader1 ??
 							 CustomTabInfo.SubHeader1DefaultValue;
 

@@ -96,13 +96,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Customer
 		public override ListDataItem GetSlideHeaderValue()
 		{
 			return SlideContainer.EditedContent.CustomerState.TabA.SlideHeader ??
-				   TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+				   CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+		}
+
+		public override Boolean GetOutputEnableState()
+		{
+			return SlideContainer.EditedContent.CustomerState.TabA.EnableOutput ?? CustomTabInfo.EnableOutput;
 		}
 
 		public override void ApplySlideHeaderValue(ListDataItem slideHeaderValue)
 		{
 			SlideContainer.EditedContent.CustomerState.TabA.SlideHeader =
-				slideHeaderValue != TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+				slideHeaderValue != CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+		}
+
+		public override void ApplyOutputEnableState(Boolean outputEnabled)
+		{
+			SlideContainer.EditedContent.CustomerState.TabA.EnableOutput =
+				outputEnabled != CustomTabInfo.EnableOutput ? outputEnabled : (bool?)null;
+
+			base.ApplyOutputEnableState(outputEnabled);
 		}
 
 		private void OnEditValueChanged(object sender, EventArgs e)
@@ -125,7 +138,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Customer
 			if (clipart2 != null)
 				outputDataPackage.ClipartItems.Add("CP04ACLIPART2", clipart2);
 
-			var slideHeader = (SlideContainer.EditedContent.CustomerState.TabA.SlideHeader ?? TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
+			var slideHeader = (SlideContainer.EditedContent.CustomerState.TabA.SlideHeader ?? CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
 			var combos = new[]
 				{
 						(SlideContainer.EditedContent.CustomerState.TabA.Combo1 ?? SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0))?.Value,

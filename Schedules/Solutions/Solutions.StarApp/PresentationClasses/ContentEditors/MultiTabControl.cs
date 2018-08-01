@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
@@ -9,7 +10,9 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
+using DevExpress.LookAndFeel;
 using DevExpress.Skins;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
@@ -46,6 +49,17 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
 			layoutControlItemSlideHeader.MinSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MinSize, scaleFactor);
+			layoutControlItemOutputToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOutputToggle.MaxSize, scaleFactor);
+			layoutControlItemOutputToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemOutputToggle.MinSize, scaleFactor);
+			emptySpaceItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(emptySpaceItemSlideHeader.MaxSize, scaleFactor);
+			emptySpaceItemSlideHeader.MinSize = RectangleHelper.ScaleSize(emptySpaceItemSlideHeader.MinSize, scaleFactor);
+
+			if (SlideContainer.ToggleSwitchSkinElement != null)
+			{
+				var element = SkinManager.GetSkinElement(SkinProductId.Editors, UserLookAndFeel.Default, "ToggleSwitch");
+				element.Image.SetImage(SlideContainer.ToggleSwitchSkinElement, Color.Transparent);
+				LookAndFeelHelper.ForceDefaultLookAndFeelChanged();
+			}
 
 			OnResize(this, EventArgs.Empty);
 			Resize += OnResize;
@@ -68,8 +82,16 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			if (!_dataChanged) return;
 
 			var selectedContentControl = (xtraTabControl.SelectedTabPage as IChildTabPageContainer)?.ContentControl;
-			selectedContentControl?.ApplyChanges();
-			selectedContentControl?.ApplySlideHeaderValue(comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String });
+			if (selectedContentControl != null)
+			{
+				selectedContentControl.ApplyChanges();
+				if (selectedContentControl.TabInfo.IsRegularChildTab)
+					selectedContentControl.ApplySlideHeaderValue(comboBoxEditSlideHeader.EditValue as ListDataItem ??
+						new ListDataItem
+						{
+							Value = comboBoxEditSlideHeader.EditValue as String
+						});
+			}
 
 			_dataChanged = false;
 		}
@@ -84,20 +106,32 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			_allowToSave = false;
 
 			var selectedContentControl = (xtraTabControl.SelectedTabPage as IChildTabPageContainer)?.ContentControl;
-			if (selectedContentControl == null) return;
-
-			pictureEditLogoRight.Image = selectedContentControl.TabInfo.RightLogo;
-			pictureEditLogoFooter.Image = selectedContentControl.TabInfo.FooterLogo;
-
-			if (selectedContentControl.TabInfo.HeadersItems.Any())
+			if (selectedContentControl != null)
 			{
-				comboBoxEditSlideHeader.Properties.Items.Clear();
-				comboBoxEditSlideHeader.Properties.Items.AddRange(selectedContentControl.TabInfo.HeadersItems
-					.Where(item => !item.IsPlaceholder).ToArray());
-				comboBoxEditSlideHeader.EditValue = selectedContentControl.GetSlideHeaderValue();
-				comboBoxEditSlideHeader.Properties.NullText =
-					selectedContentControl.TabInfo.HeadersItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
-					"Select or type";
+				pictureEditLogoRight.Image = selectedContentControl.TabInfo.RightLogo;
+				pictureEditLogoFooter.Image = selectedContentControl.TabInfo.FooterLogo;
+
+				toggleSwitchOutput.IsOn = selectedContentControl.TabInfo.IsRegularChildTab && selectedContentControl.GetOutputEnableState();
+
+				if (selectedContentControl.TabInfo.IsRegularChildTab)
+				{
+					layoutControlItemSlideHeader.Visibility = LayoutVisibility.Always;
+					layoutControlItemOutputToggle.Visibility = LayoutVisibility.Always;
+
+					var slideHaederTabInfo = (StarTabWithHeaderInfo)selectedContentControl.TabInfo;
+					comboBoxEditSlideHeader.Properties.Items.Clear();
+					comboBoxEditSlideHeader.Properties.Items.AddRange(slideHaederTabInfo.HeadersItems
+						.Where(item => !item.IsPlaceholder).ToArray());
+					comboBoxEditSlideHeader.EditValue = selectedContentControl.GetSlideHeaderValue();
+					comboBoxEditSlideHeader.Properties.NullText =
+						slideHaederTabInfo.HeadersItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+						"Select or type";
+				}
+				else
+				{
+					layoutControlItemSlideHeader.Visibility = LayoutVisibility.Never;
+					layoutControlItemOutputToggle.Visibility = LayoutVisibility.Never;
+				}
 			}
 
 			_allowToSave = true;
@@ -113,6 +147,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			foreach (var tabPageContainer in xtraTabControl.TabPages
 				.OfType<IChildTabPageContainer>()
+				.Where(tabPage => tabPage.TabInfo.IsRegularChildTab && tabPage.OutputEnabled)
 				.ToList())
 			{
 				if (tabPageContainer.ContentControl == null)
@@ -124,6 +159,15 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
+			RaiseDataChanged();
+		}
+
+		private void OnOutputToggled(object sender, EventArgs e)
+		{
+			if (!_allowToSave) return;
+			var selectedContentControl = (xtraTabControl.SelectedTabPage as IChildTabPageContainer)?.ContentControl;
+			if (selectedContentControl == null) return;
+			selectedContentControl.ApplyOutputEnableState(toggleSwitchOutput.IsOn);
 			RaiseDataChanged();
 		}
 
@@ -182,7 +226,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			get
 			{
 				var selectedContentControl = (xtraTabControl.SelectedTabPage as IChildTabPageContainer)?.ContentControl;
-				return selectedContentControl != null && selectedContentControl.ReadyForOutput;
+				return selectedContentControl != null && (!selectedContentControl.TabInfo.IsRegularChildTab || selectedContentControl.GetOutputEnableState()) && selectedContentControl.ReadyForOutput;
 			}
 		}
 
@@ -195,7 +239,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				LoadAllTabPages();
 				outputItems.AddRange(xtraTabControl.TabPages
 					.OfType<IChildTabPageContainer>()
-					.Where(tabContainer => tabContainer.ContentControl != null && tabContainer.ContentControl.ReadyForOutput && tabContainer.ContentControl.MultipleSlidesAllowed)
+					.Where(tabContainer => tabContainer.TabInfo.IsRegularChildTab && tabContainer.OutputEnabled && tabContainer.ContentControl != null && tabContainer.ContentControl.ReadyForOutput && tabContainer.ContentControl.MultipleSlidesAllowed)
 					.Select(tabContainer => tabContainer.ContentControl.GetOutputItem())
 					.Where(outputItem => outputItem != null));
 			}

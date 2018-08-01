@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
-using Asa.Business.Solutions.Common.Configuration;
+﻿using System.Drawing;
 using Asa.Business.Solutions.StarApp.Enums;
 
 namespace Asa.Business.Solutions.StarApp.Configuration
@@ -11,11 +9,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public Image RightLogo { get; protected set; }
 		public Image FooterLogo { get; protected set; }
 		public Image BackgroundLogo { get; protected set; }
-		public List<ListDataItem> HeadersItems { get; set; }
+		public virtual bool IsRegularChildTab => false;
+		public bool EnableOutput { get; protected set; }
 
 		protected StarChildTabInfo()
 		{
-			HeadersItems = new List<ListDataItem>();
+			EnableOutput = true;
 		}
 	}
 }

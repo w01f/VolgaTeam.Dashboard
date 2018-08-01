@@ -24,6 +24,19 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			_dataChanged = false;
 		}
 
+		public override bool GetOutputEnableState()
+		{
+			return CustomTabInfo.EnableOutput;
+		}
+
+		public override void ApplyOutputEnableState(Boolean outputEnabled)
+		{
+			//SlideContainer.EditedContent.CoverState.TabA.EnableOutput =
+			//	outputEnabled != CustomTabInfo.EnableOutput ? outputEnabled : (bool?)null;
+
+			base.ApplyOutputEnableState(outputEnabled);
+		}
+
 		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			RaiseEditValueChanged();

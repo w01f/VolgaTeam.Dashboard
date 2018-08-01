@@ -63,10 +63,14 @@ namespace Asa.Solutions.Common.PresentationClasses.SlidesEdit
 						String.Equals(slideMaster.Name, slideMasterName, StringComparison.OrdinalIgnoreCase));
 			}
 			if (targetSlideMaster == null)
+			{
 				targetSlideMaster = _slideManager.Slides.FirstOrDefault(slideMaster =>
 					slideMaster.Format == SlideSettingsManager.Instance.SlideSettings.Format);
-
-			SelectSlide(targetSlideMaster);
+				SelectSlide(targetSlideMaster);
+				SaveData();
+			}
+			else
+				SelectSlide(targetSlideMaster);
 		}
 
 		private void OnSlideFormatSettingsChanging(object sender, SlideSettingsChangingEventArgs e)

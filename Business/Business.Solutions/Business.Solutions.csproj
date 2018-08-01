@@ -101,6 +101,7 @@
     <Compile Include="Shift\Configuration\IShiftSettingsContainer.cs" />
     <Compile Include="Shift\Configuration\ResourceManager.cs" />
     <Compile Include="Shift\Configuration\ShiftSolutionInfo.cs" />
+    <Compile Include="Shift\Configuration\ShiftTabWithHeaderInfo.cs" />
     <Compile Include="Shift\Entities\NonPersistent\CoverState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\ShiftContent.cs" />
     <Compile Include="Shift\Enums\ShiftChildTabType.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="StarApp\Configuration\StarChildTabsContainer.cs" />
     <Compile Include="Common\Configuration\ListDataItem.cs" />
     <Compile Include="StarApp\Configuration\StarChildTabInfo.cs" />
+    <Compile Include="StarApp\Configuration\StarTabWithHeaderInfo.cs" />
     <Compile Include="StarApp\Configuration\StarTopTabInfo.cs" />
     <Compile Include="StarApp\Configuration\StarTabInfo.cs" />
     <Compile Include="StarApp\Configuration\Video\VideoTabInfo.cs" />

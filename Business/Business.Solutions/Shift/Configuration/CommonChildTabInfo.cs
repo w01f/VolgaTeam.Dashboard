@@ -5,7 +5,7 @@ using Asa.Business.Solutions.Shift.Enums;
 
 namespace Asa.Business.Solutions.Shift.Configuration
 {
-	public class CommonChildTabInfo : ShiftChildTabInfo
+	public class CommonChildTabInfo : ShiftTabWithHeaderInfo
 	{
 		private readonly ShiftTopTabType _topTabInfo;
 

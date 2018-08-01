@@ -8,7 +8,7 @@ using Asa.Business.Solutions.StarApp.Enums;
 
 namespace Asa.Business.Solutions.StarApp.Configuration.Share
 {
-	public class ShareTabAInfo : StarChildTabInfo
+	public class ShareTabAInfo : StarTabWithHeaderInfo
 	{
 		public override StarChildTabType TabType => StarChildTabType.A;
 

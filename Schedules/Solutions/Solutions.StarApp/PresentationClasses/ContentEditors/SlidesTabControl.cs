@@ -238,7 +238,16 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			return null;
 		}
 
+		public override Boolean GetOutputEnableState()
+		{
+			return true;
+		}
+
 		public override void ApplySlideHeaderValue(ListDataItem slideHeaderValue)
+		{
+		}
+
+		public override void ApplyOutputEnableState(Boolean outputEnabled)
 		{
 		}
 

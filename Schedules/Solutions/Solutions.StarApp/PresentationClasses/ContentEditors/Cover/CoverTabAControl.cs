@@ -88,13 +88,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Cover
 		public override ListDataItem GetSlideHeaderValue()
 		{
 			return SlideContainer.EditedContent.CoverState.TabA.SlideHeader ??
-				   TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+				   CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+		}
+
+		public override Boolean GetOutputEnableState()
+		{
+			return SlideContainer.EditedContent.CoverState.TabA.EnableOutput ?? CustomTabInfo.EnableOutput;
 		}
 
 		public override void ApplySlideHeaderValue(ListDataItem slideHeaderValue)
 		{
 			SlideContainer.EditedContent.CoverState.TabA.SlideHeader =
-				slideHeaderValue != TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+				slideHeaderValue != CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+		}
+
+		public override void ApplyOutputEnableState(Boolean outputEnabled)
+		{
+			SlideContainer.EditedContent.CoverState.TabA.EnableOutput =
+				outputEnabled != CustomTabInfo.EnableOutput ? outputEnabled : (bool?)null;
+
+			base.ApplyOutputEnableState(outputEnabled);
 		}
 
 		private void OnEditValueChanged(object sender, EventArgs e)
@@ -129,7 +142,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Cover
 				outputDataPackage.ClipartItems.Add("CP01ACLIPART1", clipart);
 
 			var slideHeader = (SlideContainer.EditedContent.CoverState.TabA.SlideHeader ??
-							   TabInfo.HeadersItems.FirstOrDefault(h =>
+							   CustomTabInfo.HeadersItems.FirstOrDefault(h =>
 								   h.IsDefault))?.Value;
 			var subHeader1 = SlideContainer.EditedContent.CoverState.TabA.Subheader1 ??
 							 CustomTabInfo.SubHeader1DefaultValue;

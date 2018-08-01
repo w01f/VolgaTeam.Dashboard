@@ -7,7 +7,7 @@ using Asa.Business.Solutions.StarApp.Enums;
 
 namespace Asa.Business.Solutions.StarApp.Configuration.ROI
 {
-	public class ROITabCInfo : StarChildTabInfo
+	public class ROITabCInfo : StarTabWithHeaderInfo
 	{
 		public override StarChildTabType TabType => StarChildTabType.C;
 

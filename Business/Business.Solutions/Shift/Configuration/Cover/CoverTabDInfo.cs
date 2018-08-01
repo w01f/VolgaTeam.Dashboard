@@ -6,7 +6,7 @@ using Asa.Business.Solutions.Shift.Enums;
 
 namespace Asa.Business.Solutions.Shift.Configuration.Cover
 {
-	public class CoverTabDInfo : ShiftChildTabInfo
+	public class CoverTabDInfo : ShiftTabWithHeaderInfo
 	{
 		public Image Clipart1Image { get; private set; }
 

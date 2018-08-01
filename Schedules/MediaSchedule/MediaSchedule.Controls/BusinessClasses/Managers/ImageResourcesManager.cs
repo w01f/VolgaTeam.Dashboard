@@ -152,6 +152,10 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Image BrowserUrlEmail { get; private set; }
 		#endregion
 
+		#region Solution
+		public Image SolutionToggleSwitchSkinElement { get; private set; }
+		#endregion
+
 		public void Load()
 		{
 			var resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "form_icon.ico");
@@ -582,6 +586,12 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_email.png");
 			if (File.Exists(resourceFile))
 				BrowserUrlEmail = Image.FromFile(resourceFile);
+			#endregion
+
+			#region Solution
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "toggleswitch.png");
+			if (File.Exists(resourceFile))
+				SolutionToggleSwitchSkinElement = Image.FromFile(resourceFile);
 			#endregion
 		}
 	}

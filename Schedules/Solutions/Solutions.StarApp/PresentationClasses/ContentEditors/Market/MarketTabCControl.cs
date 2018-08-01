@@ -71,13 +71,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Market
 		public override ListDataItem GetSlideHeaderValue()
 		{
 			return SlideContainer.EditedContent.MarketState.TabC.SlideHeader ??
-				   TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+				   CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+		}
+
+		public override Boolean GetOutputEnableState()
+		{
+			return SlideContainer.EditedContent.MarketState.TabC.EnableOutput ?? CustomTabInfo.EnableOutput;
 		}
 
 		public override void ApplySlideHeaderValue(ListDataItem slideHeaderValue)
 		{
 			SlideContainer.EditedContent.MarketState.TabC.SlideHeader =
-				slideHeaderValue != TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+				slideHeaderValue != CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+		}
+
+		public override void ApplyOutputEnableState(Boolean outputEnabled)
+		{
+			SlideContainer.EditedContent.MarketState.TabC.EnableOutput =
+				outputEnabled != CustomTabInfo.EnableOutput ? outputEnabled : (bool?)null;
+
+			base.ApplyOutputEnableState(outputEnabled);
 		}
 
 		private void OnEditValueChanged(object sender, EventArgs e)
@@ -108,7 +121,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Market
 			if (clipart4 != null)
 				outputDataPackage.ClipartItems.Add("CP07CCLIPART4", clipart4);
 
-			var slideHeader = (SlideContainer.EditedContent.MarketState.TabC.SlideHeader ?? TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
+			var slideHeader = (SlideContainer.EditedContent.MarketState.TabC.SlideHeader ?? CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
 			var combo1 = (SlideContainer.EditedContent.MarketState.TabC.Combo1 ?? CustomTabInfo.Combo1Items.FirstOrDefault(h => h.IsDefault))?.Value;
 
 			outputDataPackage.TextItems.Add("CP07CHEADER".ToUpper(), slideHeader);

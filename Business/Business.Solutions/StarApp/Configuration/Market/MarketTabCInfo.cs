@@ -7,7 +7,7 @@ using Asa.Business.Solutions.StarApp.Enums;
 
 namespace Asa.Business.Solutions.StarApp.Configuration.Market
 {
-	public class MarketTabCInfo : StarChildTabInfo
+	public class MarketTabCInfo : StarTabWithHeaderInfo
 	{
 		public override StarChildTabType TabType => StarChildTabType.C;
 

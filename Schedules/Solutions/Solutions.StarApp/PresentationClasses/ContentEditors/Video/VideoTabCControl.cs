@@ -55,13 +55,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Video
 		public override ListDataItem GetSlideHeaderValue()
 		{
 			return SlideContainer.EditedContent.VideoState.TabC.SlideHeader ??
-				   TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+				   CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+		}
+
+		public override Boolean GetOutputEnableState()
+		{
+			return SlideContainer.EditedContent.VideoState.TabC.EnableOutput ?? CustomTabInfo.EnableOutput;
 		}
 
 		public override void ApplySlideHeaderValue(ListDataItem slideHeaderValue)
 		{
 			SlideContainer.EditedContent.VideoState.TabC.SlideHeader =
-				slideHeaderValue != TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+				slideHeaderValue != CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+		}
+
+		public override void ApplyOutputEnableState(Boolean outputEnabled)
+		{
+			SlideContainer.EditedContent.VideoState.TabC.EnableOutput =
+				outputEnabled != CustomTabInfo.EnableOutput ? outputEnabled : (bool?)null;
+
+			base.ApplyOutputEnableState(outputEnabled);
 		}
 
 		private void OnEditValueChanged(object sender, EventArgs e)
@@ -80,7 +93,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Video
 			if (clipart != null)
 				outputDataPackage.ClipartItems.Add("CP08CCLIPART1", clipart);
 
-			var slideHeader = (SlideContainer.EditedContent.VideoState.TabC.SlideHeader ?? TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
+			var slideHeader = (SlideContainer.EditedContent.VideoState.TabC.SlideHeader ?? CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
 			var subHeader1 = SlideContainer.EditedContent.VideoState.TabC.Subheader1 ?? CustomTabInfo.SubHeader1DefaultValue;
 
 			outputDataPackage.TemplateName = MasterWizardManager.Instance.SelectedWizard.GetStarVideoFile(!String.IsNullOrEmpty(subHeader1) ? "CP08C-1.pptx" : "CP08C-2.pptx");

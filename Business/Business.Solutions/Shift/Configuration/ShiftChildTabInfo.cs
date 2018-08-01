@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Shift.Enums;
 
@@ -11,13 +10,14 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public Image RightLogo { get; protected set; }
 		public Image FooterLogo { get; protected set; }
 		public Image BackgroundLogo { get; protected set; }
-		public List<ListDataItem> HeadersItems { get; set; }
+		public virtual bool IsRegularChildTab => false;
+		public bool EnableOutput { get; protected set; }
 		public TextEditorConfiguration EditorConfiguration { get; set; }
 
 		protected ShiftChildTabInfo(ShiftChildTabType tabType)
 		{
 			TabType = tabType;
-			HeadersItems = new List<ListDataItem>();
+			EnableOutput = true;
 			EditorConfiguration = TextEditorConfiguration.Empty();
 		}
 	}

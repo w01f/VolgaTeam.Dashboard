@@ -78,13 +78,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Market
 		public override ListDataItem GetSlideHeaderValue()
 		{
 			return SlideContainer.EditedContent.MarketState.TabB.SlideHeader ??
-				   TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+				   CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
+		}
+
+		public override Boolean GetOutputEnableState()
+		{
+			return SlideContainer.EditedContent.MarketState.TabB.EnableOutput ?? CustomTabInfo.EnableOutput;
 		}
 
 		public override void ApplySlideHeaderValue(ListDataItem slideHeaderValue)
 		{
 			SlideContainer.EditedContent.MarketState.TabB.SlideHeader =
-				slideHeaderValue != TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+				slideHeaderValue != CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ? slideHeaderValue : null;
+		}
+
+		public override void ApplyOutputEnableState(Boolean outputEnabled)
+		{
+			SlideContainer.EditedContent.MarketState.TabB.EnableOutput =
+				outputEnabled != CustomTabInfo.EnableOutput ? outputEnabled : (bool?)null;
+
+			base.ApplyOutputEnableState(outputEnabled);
 		}
 
 		private void OnEditValueChanged(object sender, EventArgs e)
@@ -119,7 +132,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Market
 			if (clipart5 != null)
 				outputDataPackage.ClipartItems.Add("CP07BCLIPART5", clipart5);
 
-			var slideHeader = (SlideContainer.EditedContent.MarketState.TabB.SlideHeader ?? TabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
+			var slideHeader = (SlideContainer.EditedContent.MarketState.TabB.SlideHeader ?? CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
 			var subHeader1 = SlideContainer.EditedContent.MarketState.TabB.Subheader1 ?? CustomTabInfo.SubHeader1DefaultValue;
 			var subHeader2 = SlideContainer.EditedContent.MarketState.TabB.Subheader2 ?? CustomTabInfo.SubHeader2DefaultValue;
 

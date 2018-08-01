@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
@@ -53,6 +52,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			{
 				layoutControl.Appearance.Control.ForeColor = TabInfo.EditorConfiguration.ForeColor;
 				layoutControl.Appearance.ControlFocused.ForeColor = TabInfo.EditorConfiguration.ForeColor;
+			}
+			if (!TabInfo.EditorConfiguration.DropdownForeColor.IsEmpty)
+			{
 				layoutControl.Appearance.ControlDropDown.ForeColor = TabInfo.EditorConfiguration.ForeColor;
 				layoutControl.Appearance.ControlDropDownHeader.ForeColor = TabInfo.EditorConfiguration.ForeColor;
 			}

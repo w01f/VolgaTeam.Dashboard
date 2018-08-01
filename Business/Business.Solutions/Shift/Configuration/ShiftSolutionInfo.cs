@@ -7,6 +7,7 @@ using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Shift.Configuration.Cleanslate;
 using Asa.Business.Solutions.Shift.Configuration.Cover;
+using Asa.Business.Solutions.Shift.Configuration.Intro;
 using Asa.Business.Solutions.Shift.Enums;
 using Asa.Common.Core.Objects.RemoteStorage;
 
@@ -65,7 +66,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							tabInfo = new CoverTabInfo();
 							break;
 						case "intro":
-							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Intro);
+							tabInfo = new IntroTabInfo();
 							break;
 						case "agenda":
 							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Agenda);

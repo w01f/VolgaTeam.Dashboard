@@ -243,6 +243,11 @@ namespace Asa.Common.Core.Objects.Output
 		{
 			return GetShiftSolutionTemplateFile(new[] { "01_cover_slide", fileName });
 		}
+
+		public string GetShiftIntroFile(string fileName)
+		{
+			return GetShiftSolutionTemplateFile(new[] { "02_introduction", fileName });
+		}
 		#endregion
 
 		#region Newspapaer Slides

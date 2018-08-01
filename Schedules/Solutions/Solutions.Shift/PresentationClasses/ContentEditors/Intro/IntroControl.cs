@@ -2,11 +2,11 @@
 using Asa.Business.Solutions.Shift.Configuration;
 using Asa.Business.Solutions.Shift.Enums;
 
-namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover
+namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Intro
 {
-	class CoverControl : MultiTabControl
+	class IntroControl : MultiTabControl
 	{
-		public CoverControl(BaseShiftContainer slideContainer, ShiftChildTabsContainer tabInfo) : base(slideContainer, tabInfo) { }
+		public IntroControl(BaseShiftContainer slideContainer, ShiftChildTabsContainer tabInfo) : base(slideContainer, tabInfo) { }
 
 		protected override IList<IChildTabPageContainer> GetChildTabPages()
 		{
@@ -16,16 +16,16 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover
 				switch (tabInfo.TabType)
 				{
 					case ShiftChildTabType.A:
-						tabPages.Add(new ChildTabPageContainerControl<CoverTabAControl>(this, tabInfo));
+						tabPages.Add(new ChildTabPageContainerControl<IntroTabAControl>(this, tabInfo));
 						break;
 					case ShiftChildTabType.B:
-						tabPages.Add(new ChildTabPageContainerControl<CoverTabBControl>(this, tabInfo));
+						tabPages.Add(new ChildTabPageContainerControl<IntroTabBControl>(this, tabInfo));
 						break;
 					case ShiftChildTabType.C:
-						tabPages.Add(new ChildTabPageContainerControl<CoverTabCControl>(this, tabInfo));
+						tabPages.Add(new ChildTabPageContainerControl<IntroTabCControl>(this, tabInfo));
 						break;
 					case ShiftChildTabType.D:
-						tabPages.Add(new ChildTabPageContainerControl<CoverTabDControl>(this, tabInfo));
+						tabPages.Add(new ChildTabPageContainerControl<IntroTabDControl>(this, tabInfo));
 						break;
 					case ShiftChildTabType.U:
 					case ShiftChildTabType.V:

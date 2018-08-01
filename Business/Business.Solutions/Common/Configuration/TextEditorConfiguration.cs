@@ -11,11 +11,13 @@ namespace Asa.Business.Solutions.Common.Configuration
 
 		public int? FontSize { get; private set; }
 		public Color ForeColor { get; private set; }
+		public Color DropdownForeColor { get; private set; }
 		public Color BackColor { get; private set; }
 
 		private TextEditorConfiguration()
 		{
 			ForeColor = Color.Empty;
+			DropdownForeColor = Color.Empty;
 			BackColor = Color.Empty;
 		}
 
@@ -40,6 +42,11 @@ namespace Asa.Business.Solutions.Common.Configuration
 			configuration.BackColor = ColorTranslator.FromHtml(configNode.Attributes
 				.OfType<XmlAttribute>()
 				.FirstOrDefault(a => String.Equals(a.Name, "BackgroundColor",
+					StringComparison.OrdinalIgnoreCase))?.Value);
+
+			configuration.DropdownForeColor = ColorTranslator.FromHtml(configNode.Attributes
+				.OfType<XmlAttribute>()
+				.FirstOrDefault(a => String.Equals(a.Name, "DropdownColor",
 					StringComparison.OrdinalIgnoreCase))?.Value);
 
 			return configuration;

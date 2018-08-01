@@ -13,6 +13,7 @@ using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover;
+using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Intro;
 using DevExpress.XtraTab;
 using DevExpress.XtraEditors;
 
@@ -68,6 +69,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 						break;
 					case ShiftTopTabType.Cover:
 						_slides.Add(new ShiftTabPageContainerControl<CoverControl>(this, tabInfo));
+						break;
+					case ShiftTopTabType.Intro:
+						_slides.Add(new ShiftTabPageContainerControl<IntroControl>(this, tabInfo));
 						break;
 					default:
 						_slides.Add(new ShiftTabPageContainerControl<CommonTopTabControl>(this, tabInfo));

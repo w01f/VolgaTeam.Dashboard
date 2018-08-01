@@ -106,6 +106,33 @@
       <DependentUpon>CoverTabAControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\IChildTabPageContainer.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\Intro\IntroControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Intro\IntroTabDControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Intro\IntroTabDControl.Designer.cs">
+      <DependentUpon>IntroTabDControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Intro\IntroTabCControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Intro\IntroTabCControl.Designer.cs">
+      <DependentUpon>IntroTabCControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Intro\IntroTabBControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Intro\IntroTabBControl.Designer.cs">
+      <DependentUpon>IntroTabBControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Intro\IntroTabAControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Intro\IntroTabAControl.Designer.cs">
+      <DependentUpon>IntroTabAControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\IShiftTabPageContainer.cs" />
     <Compile Include="PresentationClasses\ContentEditors\MultiTabControl.cs">
       <SubType>UserControl</SubType>
@@ -163,6 +190,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Cover\CoverTabAControl.resx">
       <DependentUpon>CoverTabAControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Intro\IntroTabDControl.resx">
+      <DependentUpon>IntroTabDControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Intro\IntroTabCControl.resx">
+      <DependentUpon>IntroTabCControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Intro\IntroTabBControl.resx">
+      <DependentUpon>IntroTabBControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Intro\IntroTabAControl.resx">
+      <DependentUpon>IntroTabAControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\MultiTabControl.resx">
       <DependentUpon>MultiTabControl.cs</DependentUpon>

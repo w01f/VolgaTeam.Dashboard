@@ -93,6 +93,11 @@
     <Compile Include="Shift\Configuration\Cover\CoverTabBInfo.cs" />
     <Compile Include="Shift\Configuration\Cover\CoverTabAInfo.cs" />
     <Compile Include="Shift\Configuration\Cover\CoverTabInfo.cs" />
+    <Compile Include="Shift\Configuration\Intro\IntroTabInfo.cs" />
+    <Compile Include="Shift\Configuration\Intro\IntroTabDInfo.cs" />
+    <Compile Include="Shift\Configuration\Intro\IntroTabCInfo.cs" />
+    <Compile Include="Shift\Configuration\Intro\IntroTabBInfo.cs" />
+    <Compile Include="Shift\Configuration\Intro\IntroTabAInfo.cs" />
     <Compile Include="Shift\Configuration\SlidesChildTabInfo.cs" />
     <Compile Include="Shift\Configuration\ShiftChildTabInfo.cs" />
     <Compile Include="Shift\Configuration\ShiftChildTabsContainer.cs" />
@@ -102,6 +107,7 @@
     <Compile Include="Shift\Configuration\ResourceManager.cs" />
     <Compile Include="Shift\Configuration\ShiftSolutionInfo.cs" />
     <Compile Include="Shift\Configuration\ShiftTabWithHeaderInfo.cs" />
+    <Compile Include="Shift\Entities\NonPersistent\IntroState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\CoverState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\ShiftContent.cs" />
     <Compile Include="Shift\Enums\ShiftChildTabType.cs" />

@@ -70,6 +70,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 2
+		public StorageFile DataIntroPartAFile { get; private set; }
+		public StorageFile DataIntroPartBFile { get; private set; }
+		public StorageFile DataIntroPartCFile { get; private set; }
+		public StorageFile DataIntroPartDFile { get; private set; }
+
 		public StorageFile LogoTab2SubARightFile { get; private set; }
 		public StorageFile LogoTab2SubAFooterFile { get; private set; }
 		public StorageFile LogoTab2SubABackgroundFile { get; private set; }
@@ -109,6 +114,23 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab2SubWRightFile { get; private set; }
 		public StorageFile LogoTab2SubWFooterFile { get; private set; }
 		public StorageFile LogoTab2SubWBackgroundFile { get; private set; }
+
+		public StorageFile ClipartTab2SubA1File { get; private set; }
+		public StorageFile ClipartTab2SubA2File { get; private set; }
+		public StorageFile ClipartTab2SubA3File { get; private set; }
+		public StorageFile ClipartTab2SubA4File { get; private set; }
+		public StorageFile ClipartTab2SubB1File { get; private set; }
+		public StorageFile ClipartTab2SubB2File { get; private set; }
+		public StorageFile ClipartTab2SubB3File { get; private set; }
+		public StorageFile ClipartTab2SubB4File { get; private set; }
+		public StorageFile ClipartTab2SubC1File { get; private set; }
+		public StorageFile ClipartTab2SubC2File { get; private set; }
+		public StorageFile ClipartTab2SubC3File { get; private set; }
+		public StorageFile ClipartTab2SubC4File { get; private set; }
+		public StorageFile ClipartTab2SubD1File { get; private set; }
+		public StorageFile ClipartTab2SubD2File { get; private set; }
+		public StorageFile ClipartTab2SubD3File { get; private set; }
+		public StorageFile ClipartTab2SubD4File { get; private set; }
 
 		public StorageDirectory Tab2PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab2PartVSlidesFolder { get; private set; }
@@ -678,10 +700,10 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab1SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_v", "design_branding", "background.png" }));
 			LogoTab1SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_w", "design_branding", "background.png" }));
 
-			ClipartTab1SubA1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_a", "placeholders", "SHIFT01ACLIPART1.jpg" }));
-			ClipartTab1SubB1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_b", "placeholders", "SHIFT01BCLIPART1.jpg" }));
-			ClipartTab1SubC1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_c", "placeholders", "SHIFT01CCLIPART1.jpg" }));
-			ClipartTab1SubD1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_d", "placeholders", "SHIFT01DCLIPART1.jpg" }));
+			ClipartTab1SubA1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_a", "placeholders", "SHIFT01ACLIPART1.png" }));
+			ClipartTab1SubB1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_b", "placeholders", "SHIFT01BCLIPART1.png" }));
+			ClipartTab1SubC1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_c", "placeholders", "SHIFT01CCLIPART1.png" }));
+			ClipartTab1SubD1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_d", "placeholders", "SHIFT01DCLIPART1.png" }));
 
 			Tab1PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_u" }));
 			Tab1PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_v" }));
@@ -689,6 +711,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			#endregion
 
 			#region Tab 2
+			DataIntroPartAFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT02A.xml"));
+			DataIntroPartBFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT02B.xml"));
+			DataIntroPartCFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT02C.xml"));
+			DataIntroPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT02D.xml"));
+
 			LogoTab2SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_a", "design_branding", "2a_right.png" }));
 			LogoTab2SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_a", "design_branding", "2a_footer.png" }));
 			LogoTab2SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_b", "design_branding", "2b_right.png" }));
@@ -729,6 +756,23 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab2SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_u", "design_branding", "background.png" }));
 			LogoTab2SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_v", "design_branding", "background.png" }));
 			LogoTab2SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_w", "design_branding", "background.png" }));
+
+			ClipartTab2SubA1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_a", "placeholders", "SHIFT02ACLIPART1.png" }));
+			ClipartTab2SubA2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_a", "placeholders", "SHIFT02ACLIPART2.png" }));
+			ClipartTab2SubA3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_a", "placeholders", "SHIFT02ACLIPART3.png" }));
+			ClipartTab2SubA4File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_a", "placeholders", "SHIFT02ACLIPART4.png" }));
+			ClipartTab2SubB1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_b", "placeholders", "SHIFT02BCLIPART1.png" }));
+			ClipartTab2SubB2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_b", "placeholders", "SHIFT02BCLIPART2.png" }));
+			ClipartTab2SubB3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_b", "placeholders", "SHIFT02BCLIPART3.png" }));
+			ClipartTab2SubB4File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_b", "placeholders", "SHIFT02BCLIPART4.png" }));
+			ClipartTab2SubC1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_c", "placeholders", "SHIFT02CCLIPART1.png" }));
+			ClipartTab2SubC2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_c", "placeholders", "SHIFT02CCLIPART2.png" }));
+			ClipartTab2SubC3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_c", "placeholders", "SHIFT02CCLIPART3.png" }));
+			ClipartTab2SubC4File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_c", "placeholders", "SHIFT02CCLIPART4.png" }));
+			ClipartTab2SubD1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_d", "placeholders", "SHIFT02DCLIPART1.png" }));
+			ClipartTab2SubD2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_d", "placeholders", "SHIFT02DCLIPART2.png" }));
+			ClipartTab2SubD3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_d", "placeholders", "SHIFT02DCLIPART3.png" }));
+			ClipartTab2SubD4File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_d", "placeholders", "SHIFT02DCLIPART4.png" }));
 
 			Tab2PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_u" }));
 			Tab2PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_v" }));

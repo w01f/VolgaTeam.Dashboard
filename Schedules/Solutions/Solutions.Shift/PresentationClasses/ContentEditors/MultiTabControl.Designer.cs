@@ -110,12 +110,12 @@
 			// 
 			// toggleSwitchOutput
 			// 
-			this.toggleSwitchOutput.Location = new System.Drawing.Point(552, 7);
+			this.toggleSwitchOutput.Location = new System.Drawing.Point(42, 7);
 			this.toggleSwitchOutput.Name = "toggleSwitchOutput";
 			this.toggleSwitchOutput.Properties.AllowFocused = false;
 			this.toggleSwitchOutput.Properties.OffText = "Off";
 			this.toggleSwitchOutput.Properties.OnText = "On";
-			this.toggleSwitchOutput.Size = new System.Drawing.Size(123, 25);
+			this.toggleSwitchOutput.Size = new System.Drawing.Size(506, 25);
 			this.toggleSwitchOutput.StyleController = this.layoutControl;
 			this.toggleSwitchOutput.TabIndex = 31;
 			this.toggleSwitchOutput.Toggled += new System.EventHandler(this.OnOutputToggled);
@@ -220,12 +220,11 @@
 			this.layoutControlItemOutputToggle.Control = this.toggleSwitchOutput;
 			this.layoutControlItemOutputToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleRight;
 			this.layoutControlItemOutputToggle.FillControlToClientArea = false;
-			this.layoutControlItemOutputToggle.Location = new System.Drawing.Point(510, 0);
+			this.layoutControlItemOutputToggle.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemOutputToggle.MaxSize = new System.Drawing.Size(0, 40);
 			this.layoutControlItemOutputToggle.MinSize = new System.Drawing.Size(98, 40);
 			this.layoutControlItemOutputToggle.Name = "layoutControlItemOutputToggle";
-			this.layoutControlItemOutputToggle.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemOutputToggle.Size = new System.Drawing.Size(127, 40);
+			this.layoutControlItemOutputToggle.Size = new System.Drawing.Size(510, 40);
 			this.layoutControlItemOutputToggle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemOutputToggle.Text = "Output Toggle";
 			this.layoutControlItemOutputToggle.TextSize = new System.Drawing.Size(0, 0);
@@ -236,11 +235,12 @@
 			// emptySpaceItemSlideHeader
 			// 
 			this.emptySpaceItemSlideHeader.AllowHotTrack = false;
-			this.emptySpaceItemSlideHeader.Location = new System.Drawing.Point(0, 0);
+			this.emptySpaceItemSlideHeader.Location = new System.Drawing.Point(510, 0);
 			this.emptySpaceItemSlideHeader.MaxSize = new System.Drawing.Size(0, 40);
 			this.emptySpaceItemSlideHeader.MinSize = new System.Drawing.Size(10, 40);
 			this.emptySpaceItemSlideHeader.Name = "emptySpaceItemSlideHeader";
-			this.emptySpaceItemSlideHeader.Size = new System.Drawing.Size(510, 40);
+			this.emptySpaceItemSlideHeader.OptionsTableLayoutItem.ColumnIndex = 1;
+			this.emptySpaceItemSlideHeader.Size = new System.Drawing.Size(127, 40);
 			this.emptySpaceItemSlideHeader.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItemSlideHeader.TextSize = new System.Drawing.Size(0, 0);
 			// 

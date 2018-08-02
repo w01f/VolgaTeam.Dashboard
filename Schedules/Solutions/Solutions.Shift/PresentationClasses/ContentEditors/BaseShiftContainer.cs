@@ -52,7 +52,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		}
 
 		#region GUI Processing
-
 		public override void InitControl(bool showSplash)
 		{
 			if (showSplash)
@@ -86,12 +85,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			xtraTabControl.TabPages.AddRange(_slides.OfType<XtraTabPage>().ToArray());
 			Application.DoEvents();
 
-			var defaultPage = _slides.FirstOrDefault() as IShiftTabPageContainer;
-			defaultPage?.LoadContent();
-			Application.DoEvents();
-			xtraTabControl.SelectedTabPage = _slides.FirstOrDefault();
-
-			xtraTabControl.SelectedPageChanged += OnSelectedSlideChanged;
 			xtraTabControl.SelectedPageChanging += OnSelectedSlideChanging;
 
 			if (showSplash)
@@ -101,54 +94,53 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			}
 		}
 
-		private void OnSelectedSlideChanging(object sender, TabPageChangingEventArgs e)
+		public override void ShowEditor(bool showSplash)
 		{
-			((IShiftTabPageContainer)e.PrevPage)?.ContentControl?.ApplyChanges();
+			ShowHomeSlide(showSplash);
+			base.ShowEditor(showSplash);
+		}
 
-			var tabPageContainer = e.Page as IShiftTabPageContainer;
-			if (tabPageContainer?.ContentControl != null) return;
+		public override void ShowHomeSlide(bool showSplash)
+		{
+			xtraTabControl.SelectedTabPage = _slides.FirstOrDefault();
+			LoadTabPage(xtraTabControl.SelectedTabPage as IShiftTabPageContainer, showSplash);
+			RaiseSlideTypeChanged();
+			RaiseOutputStatuesChanged();
+		}
 
-			xtraTabControl.SelectedPageChanged -= OnSelectedSlideChanged;
+		private void LoadTabPage(IShiftTabPageContainer tabPageContainer, bool showSplash)
+		{
+			if (tabPageContainer == null) return;
+			if (tabPageContainer.ContentControl != null) return;
+
+			xtraTabControl.SelectedPageChanging -= OnSelectedSlideChanging;
+
 			xtraTabControl.TabPages
-				.Where(tabPage => tabPage != e.Page)
+				.Where(tabPage => tabPage != tabPageContainer)
 				.ToList()
 				.ForEach(tabPage => tabPage.PageEnabled = false);
 
-			FormProgress.SetTitle("Loading data...");
-			FormProgress.ShowProgress();
-			Application.DoEvents();
-
-			tabPageContainer?.LoadContent();
-			tabPageContainer?.ContentControl?.LoadData();
-
-			FormProgress.CloseProgress();
-			Application.DoEvents();
+			if (showSplash)
+			{
+				FormProgress.ShowProgress("Loading data...", () =>
+				{
+					tabPageContainer.LoadContent();
+					tabPageContainer.ContentControl?.LoadData();
+				});
+			}
+			else
+			{
+				tabPageContainer.LoadContent();
+				tabPageContainer.ContentControl?.LoadData();
+			}
 
 			xtraTabControl.TabPages
 				.ToList()
 				.ForEach(tabPage => tabPage.PageEnabled = true);
-			Application.DoEvents();
-			xtraTabControl.SelectedPageChanged += OnSelectedSlideChanged;
-			OnSelectedSlideChanged(sender, e);
-		}
 
-		private void OnSelectedSlideChanged(object sender, TabPageChangedEventArgs e)
-		{
-			RaiseSlideTypeChanged();
-			RaiseOutputStatuesChanged();
-			RaiseSlideTypeChanged();
-		}
+			xtraTabControl.SelectedTabPage = (XtraTabPage)tabPageContainer;
 
-		public override void ShowEditor()
-		{
-			ShowHomeSlide();
-			base.ShowEditor();
-		}
-
-		public override void ShowHomeSlide()
-		{
-			xtraTabControl.SelectedTabPage = _slides.FirstOrDefault();
-			OnSelectedSlideChanging(xtraTabControl, new TabPageChangingEventArgs(null, xtraTabControl.SelectedTabPage));
+			xtraTabControl.SelectedPageChanging += OnSelectedSlideChanging;
 		}
 
 		public void AssignCloseActiveEditorsOnOutsideClick(Control control)
@@ -165,6 +157,16 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		protected void CloseActiveEditorsOnOutSideClick(object sender, EventArgs e)
 		{
 			xtraTabControl.Focus();
+		}
+
+		private void OnSelectedSlideChanging(object sender, TabPageChangingEventArgs e)
+		{
+			((IShiftTabPageContainer)e.PrevPage)?.ContentControl?.ApplyChanges();
+
+			var tabPageContainer = e.Page as IShiftTabPageContainer;
+			LoadTabPage(tabPageContainer, true);
+			RaiseSlideTypeChanged();
+			RaiseOutputStatuesChanged();
 		}
 		#endregion
 

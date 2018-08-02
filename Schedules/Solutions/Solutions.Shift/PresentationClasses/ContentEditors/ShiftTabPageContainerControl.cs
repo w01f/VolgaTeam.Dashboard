@@ -28,10 +28,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			TabControl.BeginUpdate();
 			_contentControl = (TShiftControl)Activator.CreateInstance(typeof(TShiftControl), _slideContainer, _tabInfo);
 			_contentControl.Dock = DockStyle.Fill;
-			_contentControl.Visible = false;
 			Controls.Add(_contentControl);
 			_slideContainer.AssignCloseActiveEditorsOnOutsideClick(_contentControl);
-			_contentControl.Visible = true;
 			_contentControl.InitControls();
 			_contentControl.BringToFront();
 			TabControl.EndUpdate();

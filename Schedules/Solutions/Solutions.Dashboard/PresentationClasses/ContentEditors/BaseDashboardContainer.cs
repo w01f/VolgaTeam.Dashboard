@@ -84,13 +84,13 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			RaiseOutputStatuesChanged();
 		}
 
-		public override void ShowEditor()
+		public override void ShowEditor(bool showSplash)
 		{
-			ShowHomeSlide();
-			base.ShowEditor();
+			ShowHomeSlide(showSplash);
+			base.ShowEditor(showSplash);
 		}
 
-		public override void ShowHomeSlide()
+		public override void ShowHomeSlide(bool showSplash)
 		{
 			xtraTabControl.SelectedTabPage = _slides.FirstOrDefault();
 		}

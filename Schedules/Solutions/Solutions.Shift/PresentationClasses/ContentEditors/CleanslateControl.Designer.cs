@@ -50,14 +50,14 @@
 			this.pictureEditHeader.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditHeader.Properties.ShowMenu = false;
 			this.pictureEditHeader.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditHeader.Size = new System.Drawing.Size(925, 284);
+			this.pictureEditHeader.Size = new System.Drawing.Size(9960, 6640);
 			this.pictureEditHeader.TabIndex = 29;
 			// 
 			// pictureEditSplash
 			// 
 			this.pictureEditSplash.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditSplash.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pictureEditSplash.Location = new System.Drawing.Point(40, 324);
+			this.pictureEditSplash.Location = new System.Drawing.Point(40, 6680);
 			this.pictureEditSplash.MaximumSize = new System.Drawing.Size(0, 320);
 			this.pictureEditSplash.MinimumSize = new System.Drawing.Size(0, 320);
 			this.pictureEditSplash.Name = "pictureEditSplash";
@@ -72,7 +72,7 @@
 			this.pictureEditSplash.Properties.ShowMenu = false;
 			this.pictureEditSplash.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
 			this.pictureEditSplash.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditSplash.Size = new System.Drawing.Size(925, 320);
+			this.pictureEditSplash.Size = new System.Drawing.Size(9960, 320);
 			this.pictureEditSplash.TabIndex = 67;
 			// 
 			// CleanslateControl
@@ -81,7 +81,7 @@
 			this.Controls.Add(this.pictureEditSplash);
 			this.Name = "CleanslateControl";
 			this.Padding = new System.Windows.Forms.Padding(40, 40, 0, 0);
-			this.Size = new System.Drawing.Size(965, 644);
+			this.Size = new System.Drawing.Size(10000, 7000);
 			this.Controls.SetChildIndex(this.pictureEditSplash, 0);
 			this.Controls.SetChildIndex(this.pictureEditHeader, 0);
 			this.Controls.SetChildIndex(this.labelFocusFake, 0);

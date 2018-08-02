@@ -38,13 +38,13 @@ namespace Asa.Solutions.Common.PresentationClasses
 		#region GUI Methods
 		public abstract void InitControl(bool showSplash);
 
-		public virtual void ShowEditor()
+		public virtual void ShowEditor(bool showSplash)
 		{
 			BringToFront();
 			RaiseSlideTypeChanged();
 			RaiseOutputStatuesChanged();
 		}
-		public abstract void ShowHomeSlide();
+		public abstract void ShowHomeSlide(bool showSplash);
 		#endregion
 
 		#region Data Management

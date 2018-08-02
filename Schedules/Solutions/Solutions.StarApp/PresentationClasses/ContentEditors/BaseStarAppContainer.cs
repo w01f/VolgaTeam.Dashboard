@@ -120,12 +120,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			xtraTabControl.TabPages.AddRange(_slides.OfType<XtraTabPage>().ToArray());
 			Application.DoEvents();
 
-			var defaultPage = _slides.FirstOrDefault() as IStarAppTabPageContainer;
-			defaultPage?.LoadContent();
-			Application.DoEvents();
-			xtraTabControl.SelectedTabPage = _slides.FirstOrDefault();
-
-			xtraTabControl.SelectedPageChanged += OnSelectedSlideChanged;
 			xtraTabControl.SelectedPageChanging += OnSelectedSlideChanging;
 
 			if (showSplash)
@@ -135,53 +129,53 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			}
 		}
 
-		private void OnSelectedSlideChanging(object sender, TabPageChangingEventArgs e)
+		public override void ShowEditor(bool showSplash)
 		{
-			((IStarAppTabPageContainer)e.PrevPage)?.ContentControl?.ApplyChanges();
-
-			var tabPageContainer = e.Page as IStarAppTabPageContainer;
-			if (tabPageContainer?.ContentControl != null) return;
-
-			xtraTabControl.SelectedPageChanged -= OnSelectedSlideChanged;
-			xtraTabControl.TabPages
-				.Where(tabPage => tabPage != e.Page)
-				.ToList()
-				.ForEach(tabPage => tabPage.PageEnabled = false);
-
-			FormProgress.SetTitle("Loading data...");
-			FormProgress.ShowProgress();
-			Application.DoEvents();
-
-			tabPageContainer?.LoadContent();
-			tabPageContainer?.ContentControl?.LoadData();
-
-			FormProgress.CloseProgress();
-			Application.DoEvents();
-
-			xtraTabControl.TabPages
-				.ToList()
-				.ForEach(tabPage => tabPage.PageEnabled = true);
-			Application.DoEvents();
-			xtraTabControl.SelectedPageChanged += OnSelectedSlideChanged;
-			OnSelectedSlideChanged(sender,e);
+			ShowHomeSlide(showSplash);
+			base.ShowEditor(showSplash);
 		}
 
-		private void OnSelectedSlideChanged(object sender, TabPageChangedEventArgs e)
+		public override void ShowHomeSlide(bool showSplash)
 		{
+			xtraTabControl.SelectedTabPage = _slides.FirstOrDefault();
+			LoadTabPage(xtraTabControl.SelectedTabPage as IStarAppTabPageContainer, showSplash);
 			RaiseSlideTypeChanged();
 			RaiseOutputStatuesChanged();
 		}
 
-		public override void ShowEditor()
+		private void LoadTabPage(IStarAppTabPageContainer tabPageContainer, bool showSplash)
 		{
-			ShowHomeSlide();
-			base.ShowEditor();
-		}
+			if (tabPageContainer == null) return;
+			if (tabPageContainer.ContentControl != null) return;
 
-		public override void ShowHomeSlide()
-		{
-			xtraTabControl.SelectedTabPage = _slides.FirstOrDefault();
-			OnSelectedSlideChanging(xtraTabControl, new TabPageChangingEventArgs(null, xtraTabControl.SelectedTabPage));
+			xtraTabControl.SelectedPageChanging -= OnSelectedSlideChanging;
+
+			xtraTabControl.TabPages
+				.Where(tabPage => tabPage != tabPageContainer)
+				.ToList()
+				.ForEach(tabPage => tabPage.PageEnabled = false);
+
+			if (showSplash)
+			{
+				FormProgress.ShowProgress("Loading data...", () =>
+				{
+					tabPageContainer.LoadContent();
+					tabPageContainer.ContentControl?.LoadData();
+				});
+			}
+			else
+			{
+				tabPageContainer.LoadContent();
+				tabPageContainer.ContentControl?.LoadData();
+			}
+
+			xtraTabControl.TabPages
+				.ToList()
+				.ForEach(tabPage => tabPage.PageEnabled = true);
+
+			xtraTabControl.SelectedTabPage = (XtraTabPage)tabPageContainer;
+
+			xtraTabControl.SelectedPageChanging += OnSelectedSlideChanging;
 		}
 
 		public void AssignCloseActiveEditorsOnOutsideClick(Control control)
@@ -198,6 +192,16 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		protected void CloseActiveEditorsOnOutSideClick(object sender, EventArgs e)
 		{
 			xtraTabControl.Focus();
+		}
+
+		private void OnSelectedSlideChanging(object sender, TabPageChangingEventArgs e)
+		{
+			((IStarAppTabPageContainer)e.PrevPage)?.ContentControl?.ApplyChanges();
+
+			var tabPageContainer = e.Page as IStarAppTabPageContainer;
+			LoadTabPage(tabPageContainer, true);
+			RaiseSlideTypeChanged();
+			RaiseOutputStatuesChanged();
 		}
 		#endregion
 

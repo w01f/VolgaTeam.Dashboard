@@ -88,14 +88,16 @@ namespace Asa.Solutions.Common.PresentationClasses
 			if (ActiveSolutionEditor == null)
 			{
 				var newEditor = CreateSolutionEditor(SelectedSolutionToggle.SolutionInfo);
-				ConfigureSolutionEditor(newEditor, showSplash);
 				SolutionEditors.Add(newEditor);
-				newEditor.LoadData();
 			}
 			var activeEditorControl = (Control)ActiveSolutionEditor;
 			if (!pnContent.Controls.Contains(activeEditorControl))
+			{
 				pnContent.Controls.Add(activeEditorControl);
-			ActiveSolutionEditor.ShowEditor();
+				ConfigureSolutionEditor(ActiveSolutionEditor, showSplash);
+				ActiveSolutionEditor.LoadData();
+			}
+			ActiveSolutionEditor.ShowEditor(showSplash);
 		}
 
 		protected abstract ISolutionEditor CreateSolutionEditor(BaseSolutionInfo solutionInfo);

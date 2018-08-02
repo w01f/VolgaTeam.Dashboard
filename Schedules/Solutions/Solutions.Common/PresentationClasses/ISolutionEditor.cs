@@ -14,8 +14,8 @@ namespace Asa.Solutions.Common.PresentationClasses
 		bool MultipleSlidesAllowed { get; }
 		bool ReadyForOutput { get; }
 		void InitControl(bool showSplash);
-		void ShowEditor();
-		void ShowHomeSlide();
+		void ShowEditor(bool showSplash);
+		void ShowHomeSlide(bool showSplash);
 		void LoadData();
 		void SaveData();
 		void ApplyChanges();

@@ -48,6 +48,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PresentationClasses\ContentEditors\Agenda\AgendaTabDControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Agenda\AgendaTabDControl.Designer.cs">
+      <DependentUpon>AgendaTabDControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Agenda\AgendaTabCControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Agenda\AgendaTabCControl.Designer.cs">
+      <DependentUpon>AgendaTabCControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Agenda\AgendaTabBControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Agenda\AgendaTabBControl.Designer.cs">
+      <DependentUpon>AgendaTabBControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Agenda\AgendaTabAControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Agenda\AgendaTabAControl.Designer.cs">
+      <DependentUpon>AgendaTabAControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Agenda\AgendaControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\BaseShiftContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -167,6 +194,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Agenda\AgendaTabDControl.resx">
+      <DependentUpon>AgendaTabDControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Agenda\AgendaTabCControl.resx">
+      <DependentUpon>AgendaTabCControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Agenda\AgendaTabBControl.resx">
+      <DependentUpon>AgendaTabBControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Agenda\AgendaTabAControl.resx">
+      <DependentUpon>AgendaTabAControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\BaseShiftContainer.resx">
       <DependentUpon>BaseShiftContainer.cs</DependentUpon>
     </EmbeddedResource>

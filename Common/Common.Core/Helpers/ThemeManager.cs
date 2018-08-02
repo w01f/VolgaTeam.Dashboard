@@ -202,8 +202,17 @@ namespace Asa.Common.Core.Helpers
 					case "Shift_02d_intro":
 						slideType = SlideType.ShiftIntroD;
 						break;
-					case "Shift_03_agenda":
-						slideType = SlideType.ShiftAgenda;
+					case "Shift_03a_agenda":
+						slideType = SlideType.ShiftAgendaA;
+						break;
+					case "Shift_03b_agenda":
+						slideType = SlideType.ShiftAgendaB;
+						break;
+					case "Shift_03c_agenda":
+						slideType = SlideType.ShiftAgendaC;
+						break;
+					case "Shift_03d_agenda":
+						slideType = SlideType.ShiftAgendaD;
 						break;
 					case "Shift_04_goals":
 						slideType = SlideType.ShiftGoals;

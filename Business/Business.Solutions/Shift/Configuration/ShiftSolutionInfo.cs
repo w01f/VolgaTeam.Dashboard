@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Enums;
+using Asa.Business.Solutions.Shift.Configuration.Agenda;
 using Asa.Business.Solutions.Shift.Configuration.Cleanslate;
 using Asa.Business.Solutions.Shift.Configuration.Cover;
 using Asa.Business.Solutions.Shift.Configuration.Intro;
@@ -69,7 +70,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							tabInfo = new IntroTabInfo();
 							break;
 						case "agenda":
-							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Agenda);
+							tabInfo = new AgendaTabInfo();
 							break;
 						case "goals":
 							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Goals);

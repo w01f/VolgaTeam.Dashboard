@@ -138,6 +138,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 3
+		public StorageFile DataAgendaPartAFile { get; private set; }
+		public StorageFile DataAgendaPartBFile { get; private set; }
+		public StorageFile DataAgendaPartCFile { get; private set; }
+		public StorageFile DataAgendaPartDFile { get; private set; }
+
 		public StorageFile LogoTab3SubARightFile { get; private set; }
 		public StorageFile LogoTab3SubAFooterFile { get; private set; }
 		public StorageFile LogoTab3SubABackgroundFile { get; private set; }
@@ -177,6 +182,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab3SubWRightFile { get; private set; }
 		public StorageFile LogoTab3SubWFooterFile { get; private set; }
 		public StorageFile LogoTab3SubWBackgroundFile { get; private set; }
+
+		public StorageFile ClipartTab3SubA1File { get; private set; }
+		public StorageFile ClipartTab3SubB1File { get; private set; }
+		public StorageFile ClipartTab3SubC1File { get; private set; }
+		public StorageFile ClipartTab3SubD1File { get; private set; }
 
 		public StorageDirectory Tab3PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab3PartVSlidesFolder { get; private set; }
@@ -780,6 +790,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			#endregion
 
 			#region Tab 3
+			DataAgendaPartAFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT03A.xml"));
+			DataAgendaPartBFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT03B.xml"));
+			DataAgendaPartCFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT03C.xml"));
+			DataAgendaPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT03D.xml"));
+
 			LogoTab3SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_a", "design_branding", "3a_right.png" }));
 			LogoTab3SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_a", "design_branding", "3a_footer.png" }));
 			LogoTab3SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_b", "design_branding", "3b_right.png" }));
@@ -820,6 +835,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab3SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_u", "design_branding", "background.png" }));
 			LogoTab3SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_v", "design_branding", "background.png" }));
 			LogoTab3SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_w", "design_branding", "background.png" }));
+
+			ClipartTab3SubA1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_a", "placeholders", "SHIFT03ACLIPART1.png" }));
+			ClipartTab3SubB1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_b", "placeholders", "SHIFT03BCLIPART1.png" }));
+			ClipartTab3SubC1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_c", "placeholders", "SHIFT03CCLIPART1.png" }));
+			ClipartTab3SubD1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_d", "placeholders", "SHIFT03DCLIPART1.png" }));
 
 			Tab3PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_u" }));
 			Tab3PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_v" }));

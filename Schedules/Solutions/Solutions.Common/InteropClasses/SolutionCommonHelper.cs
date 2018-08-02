@@ -41,7 +41,7 @@ namespace Asa.Solutions.Common.InteropClasses
 									}
 									shape.Visible = MsoTriState.msoFalse;
 								}
-								else
+								else if (shape.TextFrame.HasText != MsoTriState.msoFalse)
 								{
 									if (dataPackage.TextItems.ContainsKey(tagName.ToUpper()))
 										shape.TextFrame.TextRange.Text = dataPackage.TextItems[tagName.ToUpper()] ?? String.Empty;
@@ -89,9 +89,9 @@ namespace Asa.Solutions.Common.InteropClasses
 							var originalHeight = imageObject.Image.Height;
 							var percentWidth = shapeTemplate.Width / originalWidth;
 							var percentHeight = shapeTemplate.Height / originalHeight;
-							var percent = new[] {1, percentWidth, percentHeight}.Min();
-							var width = (Int32) (originalWidth * percent);
-							var height = (Int32) (originalHeight * percent);
+							var percent = new[] { 1, percentWidth, percentHeight }.Min();
+							var width = (Int32)(originalWidth * percent);
+							var height = (Int32)(originalHeight * percent);
 
 							shapes.AddPicture(fileName,
 								MsoTriState.msoFalse,

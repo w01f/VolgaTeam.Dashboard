@@ -55,8 +55,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			}
 			if (!TabInfo.EditorConfiguration.DropdownForeColor.IsEmpty)
 			{
-				layoutControl.Appearance.ControlDropDown.ForeColor = TabInfo.EditorConfiguration.ForeColor;
-				layoutControl.Appearance.ControlDropDownHeader.ForeColor = TabInfo.EditorConfiguration.ForeColor;
+				layoutControl.Appearance.ControlDropDown.ForeColor = TabInfo.EditorConfiguration.DropdownForeColor;
+				layoutControl.Appearance.ControlDropDownHeader.ForeColor = TabInfo.EditorConfiguration.DropdownForeColor;
 			}
 		}
 

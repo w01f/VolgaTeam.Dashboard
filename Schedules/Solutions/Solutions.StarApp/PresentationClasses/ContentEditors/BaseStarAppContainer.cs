@@ -142,6 +142,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			var tabPageContainer = e.Page as IStarAppTabPageContainer;
 			if (tabPageContainer?.ContentControl != null) return;
 
+			xtraTabControl.SelectedPageChanged -= OnSelectedSlideChanged;
 			xtraTabControl.TabPages
 				.Where(tabPage => tabPage != e.Page)
 				.ToList()
@@ -161,6 +162,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				.ToList()
 				.ForEach(tabPage => tabPage.PageEnabled = true);
 			Application.DoEvents();
+			xtraTabControl.SelectedPageChanged += OnSelectedSlideChanged;
+			OnSelectedSlideChanged(sender,e);
 		}
 
 		private void OnSelectedSlideChanged(object sender, TabPageChangedEventArgs e)

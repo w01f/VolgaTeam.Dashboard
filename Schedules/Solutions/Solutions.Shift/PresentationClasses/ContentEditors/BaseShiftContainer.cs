@@ -12,6 +12,7 @@ using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
+using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Agenda;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Intro;
 using DevExpress.XtraTab;
@@ -73,6 +74,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 					case ShiftTopTabType.Intro:
 						_slides.Add(new ShiftTabPageContainerControl<IntroControl>(this, tabInfo));
 						break;
+					case ShiftTopTabType.Agenda:
+						_slides.Add(new ShiftTabPageContainerControl<AgendaControl>(this, tabInfo));
+						break;
 					default:
 						_slides.Add(new ShiftTabPageContainerControl<CommonTopTabControl>(this, tabInfo));
 						break;
@@ -104,6 +108,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			var tabPageContainer = e.Page as IShiftTabPageContainer;
 			if (tabPageContainer?.ContentControl != null) return;
 
+			xtraTabControl.SelectedPageChanged -= OnSelectedSlideChanged;
 			xtraTabControl.TabPages
 				.Where(tabPage => tabPage != e.Page)
 				.ToList()
@@ -123,6 +128,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				.ToList()
 				.ForEach(tabPage => tabPage.PageEnabled = true);
 			Application.DoEvents();
+			xtraTabControl.SelectedPageChanged += OnSelectedSlideChanged;
+			OnSelectedSlideChanged(sender, e);
 		}
 
 		private void OnSelectedSlideChanged(object sender, TabPageChangedEventArgs e)

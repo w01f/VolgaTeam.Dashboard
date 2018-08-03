@@ -121,6 +121,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			Application.DoEvents();
 
 			xtraTabControl.SelectedPageChanging += OnSelectedSlideChanging;
+			xtraTabControl.SelectedPageChanged += OnSelectedSlideChanged;
 
 			if (showSplash)
 			{
@@ -149,11 +150,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			if (tabPageContainer.ContentControl != null) return;
 
 			xtraTabControl.SelectedPageChanging -= OnSelectedSlideChanging;
-
-			xtraTabControl.TabPages
-				.Where(tabPage => tabPage != tabPageContainer)
-				.ToList()
-				.ForEach(tabPage => tabPage.PageEnabled = false);
+			xtraTabControl.Selecting += OnTabPageSelecting;
 
 			if (showSplash)
 			{
@@ -169,13 +166,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				tabPageContainer.ContentControl?.LoadData();
 			}
 
-			xtraTabControl.TabPages
-				.ToList()
-				.ForEach(tabPage => tabPage.PageEnabled = true);
-
+			xtraTabControl.Selecting -= OnTabPageSelecting;
 			xtraTabControl.SelectedTabPage = (XtraTabPage)tabPageContainer;
-
 			xtraTabControl.SelectedPageChanging += OnSelectedSlideChanging;
+		}
+
+		private void OnTabPageSelecting(Object sender, TabPageCancelEventArgs e)
+		{
+			e.Cancel = true;
 		}
 
 		public void AssignCloseActiveEditorsOnOutsideClick(Control control)
@@ -200,6 +198,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			var tabPageContainer = e.Page as IStarAppTabPageContainer;
 			LoadTabPage(tabPageContainer, true);
+		}
+
+		private void OnSelectedSlideChanged(Object sender, TabPageChangedEventArgs e)
+		{
 			RaiseSlideTypeChanged();
 			RaiseOutputStatuesChanged();
 		}

@@ -30,7 +30,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		public void LoadContent()
 		{
 			if (_contentControl != null) return;
-			TabControl.BeginUpdate();
 			_contentControl = (TChildTabControl)Activator.CreateInstance(typeof(TChildTabControl), this, TabInfo);
 			_contentControl.Dock = DockStyle.Fill;
 			_contentControl.Visible = false;
@@ -39,7 +38,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			_contentControl.Visible = true;
 			_contentControl.BringToFront();
 			_contentControl.ApplyBackground();
-			TabControl.EndUpdate();
 			Application.DoEvents();
 		}
 

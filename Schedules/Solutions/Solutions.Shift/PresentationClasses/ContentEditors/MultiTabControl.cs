@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
-using System.Windows.Forms;
 using Asa.Business.Solutions.Shift.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
@@ -36,12 +35,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			xtraTabControl.TabPages.AddRange(GetChildTabPages().OfType<XtraTabPage>().ToArray());
 
 			var defaultPage = xtraTabControl.TabPages.FirstOrDefault() as IChildTabPageContainer;
-			defaultPage?.LoadContent();
-			Application.DoEvents();
-			xtraTabControl.SelectedTabPage = xtraTabControl.TabPages.FirstOrDefault();
+			LoadTabPage(defaultPage, false);
+			LoadChildTabData();
 
-			xtraTabControl.SelectedPageChanged += OnSelectedTabPageChanged;
 			xtraTabControl.SelectedPageChanging += OnSelectedTabPageChanging;
+			xtraTabControl.SelectedPageChanged += OnSelectedTabPageChanged;
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemOutputToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOutputToggle.MaxSize, scaleFactor);
@@ -69,7 +67,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				.ToList()
 				.ForEach(control => control.LoadData());
 
-			LoadChildTabaData();
+			LoadChildTabData();
 		}
 
 		public override void ApplyChanges()
@@ -87,7 +85,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			throw new NotImplementedException();
 		}
 
-		private void LoadChildTabaData()
+		private void LoadChildTabData()
 		{
 			_allowToSave = false;
 
@@ -127,6 +125,33 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			}
 		}
 
+		private void LoadTabPage(IChildTabPageContainer tabPageContainer, bool showSplash)
+		{
+			if (tabPageContainer == null) return;
+			if (tabPageContainer.ContentControl != null) return;
+			
+			xtraTabControl.SelectedPageChanging -= OnSelectedTabPageChanging;
+			xtraTabControl.Selecting += OnTabPageSelecting;
+
+			if (showSplash)
+			{
+				FormProgress.ShowProgress("Loading data...", () =>
+				{
+					tabPageContainer?.LoadContent();
+					tabPageContainer?.ContentControl?.LoadData();
+				});
+			}
+			else
+			{
+				tabPageContainer.LoadContent();
+				tabPageContainer.ContentControl?.LoadData();
+			}
+
+			xtraTabControl.Selecting -= OnTabPageSelecting;
+			xtraTabControl.SelectedTabPage = (XtraTabPage)tabPageContainer;
+			xtraTabControl.SelectedPageChanging += OnSelectedTabPageChanging;
+		}
+
 		private void OnOutputToggled(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
@@ -136,41 +161,23 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			RaiseDataChanged();
 		}
 
+		private void OnTabPageSelecting(Object sender, TabPageCancelEventArgs e)
+		{
+			e.Cancel = true;
+		}
+
 		private void OnSelectedTabPageChanging(object sender, TabPageChangingEventArgs e)
 		{
 			if (_allowToSave)
 				ApplyChanges();
 
 			var tabPageContainer = e.Page as IChildTabPageContainer;
-			if (tabPageContainer?.ContentControl != null) return;
-
-			xtraTabControl.SelectedPageChanged -= OnSelectedTabPageChanged;
-			xtraTabControl.TabPages
-				.Where(tabPage => tabPage != e.Page)
-				.ToList()
-				.ForEach(tabPage => tabPage.PageEnabled = false);
-
-			FormProgress.SetTitle("Loading data...");
-			FormProgress.ShowProgress();
-			Application.DoEvents();
-
-			tabPageContainer?.LoadContent();
-			tabPageContainer?.ContentControl?.LoadData();
-
-			FormProgress.CloseProgress();
-			Application.DoEvents();
-
-			xtraTabControl.TabPages
-				.ToList()
-				.ForEach(tabPage => tabPage.PageEnabled = true);
-			Application.DoEvents();
-			xtraTabControl.SelectedPageChanged += OnSelectedTabPageChanged;
-			OnSelectedTabPageChanged(sender, e);
+			LoadTabPage(tabPageContainer, true);
 		}
 
-		private void OnSelectedTabPageChanged(object sender, TabPageChangedEventArgs e)
+		private void OnSelectedTabPageChanged(Object sender, TabPageChangedEventArgs e)
 		{
-			LoadChildTabaData();
+			LoadChildTabData();
 			SlideContainer.RaiseOutputStatuesChanged();
 			SlideContainer.RaiseSlideTypeChanged();
 		}

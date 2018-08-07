@@ -25,13 +25,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		public void LoadContent()
 		{
 			if (_contentControl != null) return;
+
 			_contentControl = (TShiftControl)Activator.CreateInstance(typeof(TShiftControl), _slideContainer, _tabInfo);
 			_contentControl.Dock = DockStyle.Fill;
-			Controls.Add(_contentControl);
 			_slideContainer.AssignCloseActiveEditorsOnOutsideClick(_contentControl);
+			Controls.Add(_contentControl);
 			_contentControl.InitControls();
-			_contentControl.BringToFront();
-			Application.DoEvents();
 		}
 	}
 }

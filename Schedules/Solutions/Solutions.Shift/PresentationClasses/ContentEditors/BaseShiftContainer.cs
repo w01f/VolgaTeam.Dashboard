@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
-using Asa.Business.Solutions.Common.Interfaces;
 using Asa.Business.Solutions.Shift.Configuration;
 using Asa.Business.Solutions.Shift.Entities.NonPersistent;
 using Asa.Business.Solutions.Shift.Enums;
@@ -16,6 +16,8 @@ using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Agenda;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Intro;
+using DevExpress.LookAndFeel;
+using DevExpress.Skins;
 using DevExpress.XtraTab;
 using DevExpress.XtraEditors;
 
@@ -54,6 +56,13 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		#region GUI Processing
 		public override void InitControl(bool showSplash)
 		{
+			if (ResourceManager.SolutionToggleSwitchSkinElement != null)
+			{
+				var element = SkinManager.GetSkinElement(SkinProductId.Editors, UserLookAndFeel.Default, "ToggleSwitch");
+				element.Image.SetImage(ResourceManager.SolutionToggleSwitchSkinElement, Color.Transparent);
+				LookAndFeelHelper.ForceDefaultLookAndFeelChanged();
+			}
+
 			if (showSplash)
 			{
 				FormProgress.SetTitle("Loading data...");
@@ -117,9 +126,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			if (tabPageContainer == null) return;
 			if (tabPageContainer.ContentControl != null) return;
 
-			xtraTabControl.SelectedPageChanging -= OnSelectedSlideChanging;
 			xtraTabControl.Selecting += OnTabPageSelecting;
-			
 			if (showSplash)
 			{
 				FormProgress.ShowProgress("Loading data...", () =>
@@ -133,15 +140,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				tabPageContainer.LoadContent();
 				tabPageContainer.ContentControl?.LoadData();
 			}
-
 			xtraTabControl.Selecting -= OnTabPageSelecting;
-			xtraTabControl.SelectedTabPage = (XtraTabPage)tabPageContainer;
-			xtraTabControl.SelectedPageChanging += OnSelectedSlideChanging;
-		}
-
-		private void OnTabPageSelecting(Object sender, TabPageCancelEventArgs e)
-		{
-			e.Cancel = true;
 		}
 
 		public void AssignCloseActiveEditorsOnOutsideClick(Control control)
@@ -172,6 +171,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		{
 			RaiseSlideTypeChanged();
 			RaiseOutputStatuesChanged();
+		}
+
+		private void OnTabPageSelecting(Object sender, TabPageCancelEventArgs e)
+		{
+			e.Cancel = true;
 		}
 		#endregion
 

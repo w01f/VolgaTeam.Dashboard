@@ -32,13 +32,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			if (_contentControl != null) return;
 			_contentControl = (TChildTabControl)Activator.CreateInstance(typeof(TChildTabControl), this, TabInfo);
 			_contentControl.Dock = DockStyle.Fill;
-			_contentControl.Visible = false;
-			Controls.Add(_contentControl);
 			ParentControl.SlideContainer.AssignCloseActiveEditorsOnOutsideClick(ContentControl);
-			_contentControl.Visible = true;
-			_contentControl.BringToFront();
+			Controls.Add(_contentControl);
 			_contentControl.ApplyBackground();
-			Application.DoEvents();
 		}
 
 		public void FormatSlideHeader()

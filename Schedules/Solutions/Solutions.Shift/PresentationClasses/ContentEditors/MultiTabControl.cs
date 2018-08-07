@@ -47,13 +47,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			emptySpaceItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(emptySpaceItemSlideHeader.MaxSize, scaleFactor);
 			emptySpaceItemSlideHeader.MinSize = RectangleHelper.ScaleSize(emptySpaceItemSlideHeader.MinSize, scaleFactor);
 
-			if (SlideContainer.ResourceManager.SolutionToggleSwitchSkinElement != null)
-			{
-				var element = SkinManager.GetSkinElement(SkinProductId.Editors, UserLookAndFeel.Default, "ToggleSwitch");
-				element.Image.SetImage(SlideContainer.ResourceManager.SolutionToggleSwitchSkinElement, Color.Transparent);
-				LookAndFeelHelper.ForceDefaultLookAndFeelChanged();
-			}
-
 			OnResize(this, EventArgs.Empty);
 			Resize += OnResize;
 		}
@@ -129,16 +122,14 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		{
 			if (tabPageContainer == null) return;
 			if (tabPageContainer.ContentControl != null) return;
-			
-			xtraTabControl.SelectedPageChanging -= OnSelectedTabPageChanging;
-			xtraTabControl.Selecting += OnTabPageSelecting;
 
+			xtraTabControl.Selecting += OnTabPageSelecting;
 			if (showSplash)
 			{
 				FormProgress.ShowProgress("Loading data...", () =>
 				{
-					tabPageContainer?.LoadContent();
-					tabPageContainer?.ContentControl?.LoadData();
+					tabPageContainer.LoadContent();
+					tabPageContainer.ContentControl?.LoadData();
 				});
 			}
 			else
@@ -146,10 +137,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				tabPageContainer.LoadContent();
 				tabPageContainer.ContentControl?.LoadData();
 			}
-
 			xtraTabControl.Selecting -= OnTabPageSelecting;
-			xtraTabControl.SelectedTabPage = (XtraTabPage)tabPageContainer;
-			xtraTabControl.SelectedPageChanging += OnSelectedTabPageChanging;
 		}
 
 		private void OnOutputToggled(object sender, EventArgs e)
@@ -159,11 +147,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			if (selectedContentControl == null) return;
 			selectedContentControl.ApplyOutputEnableState(toggleSwitchOutput.IsOn);
 			RaiseDataChanged();
-		}
-
-		private void OnTabPageSelecting(Object sender, TabPageCancelEventArgs e)
-		{
-			e.Cancel = true;
 		}
 
 		private void OnSelectedTabPageChanging(object sender, TabPageChangingEventArgs e)
@@ -180,6 +163,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			LoadChildTabData();
 			SlideContainer.RaiseOutputStatuesChanged();
 			SlideContainer.RaiseSlideTypeChanged();
+		}
+
+		private void OnTabPageSelecting(Object sender, TabPageCancelEventArgs e)
+		{
+			e.Cancel = true;
 		}
 
 		private void OnResize(object sender, EventArgs e)

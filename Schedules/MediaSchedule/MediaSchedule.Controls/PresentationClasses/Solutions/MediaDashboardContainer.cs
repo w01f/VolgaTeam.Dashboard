@@ -8,11 +8,12 @@ using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Solutions;
 using Asa.Business.Solutions.Common.Configuration;
-using Asa.Business.Solutions.Common.Entities.NonPersistent;
+using Asa.Business.Solutions.Common.Interfaces;
 using Asa.Business.Solutions.Dashboard.Configuration;
 using Asa.Business.Solutions.Dashboard.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.FormStyle;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Common.GUI.Preview;
@@ -32,6 +33,8 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		public override IDashboardSettingsContainer SettingsContainer => MediaMetaData.Instance.SettingsManager;
 		public override Form MainForm => Controller.Instance.FormMain;
 		public override Color? AccentColor => BusinessObjects.Instance.FormStyleManager.Style.AccentColor;
+		public override MainFormStyleConfiguration StyleConfiguration => BusinessObjects.Instance.FormStyleManager.Style;
+		public override ISolutionsResourceManager ResourceManager => BusinessObjects.Instance.ImageResourcesManager;
 
 		public override void LoadData()
 		{

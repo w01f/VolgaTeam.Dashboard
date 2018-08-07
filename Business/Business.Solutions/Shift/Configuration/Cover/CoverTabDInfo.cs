@@ -9,14 +9,19 @@ namespace Asa.Business.Solutions.Shift.Configuration.Cover
 	public class CoverTabDInfo : ShiftTabWithHeaderInfo
 	{
 		public Image Clipart1Image { get; private set; }
-
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
+
 		public string SubHeader1DefaultValue { get; private set; }
 		public string SubHeader1Placeholder { get; private set; }
+		public TextEditorConfiguration SubHeader1Configuration { get; set; }
+
+		public TextEditorConfiguration Calendar1Configuration { get; set; }
 
 		public CoverTabDInfo() : base(ShiftChildTabType.D)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
+			SubHeader1Configuration = TextEditorConfiguration.Empty();
+			Calendar1Configuration = TextEditorConfiguration.Empty();
 		}
 
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
@@ -64,7 +69,10 @@ namespace Asa.Business.Solutions.Shift.Configuration.Cover
 
 			Clipart1Configuration = ClipartConfiguration.FromXml(node, "SHIFT01DClipart1");
 
-			EditorConfiguration = TextEditorConfiguration.FromXml(node);
+			CommonEditorConfiguration = TextEditorConfiguration.FromXml(node);
+			HeadersEditorConfiguration = TextEditorConfiguration.FromXml(node, "SHIFT01DHeader");
+			SubHeader1Configuration = TextEditorConfiguration.FromXml(node, "SHIFT01DSubheader1");
+			Calendar1Configuration = TextEditorConfiguration.FromXml(node, "Calendar1");
 		}
 	}
 }

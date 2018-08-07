@@ -12,13 +12,13 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public Image BackgroundLogo { get; protected set; }
 		public virtual bool IsRegularChildTab => false;
 		public bool EnableOutput { get; protected set; }
-		public TextEditorConfiguration EditorConfiguration { get; set; }
+		public TextEditorConfiguration CommonEditorConfiguration { get; set; }
 
 		protected ShiftChildTabInfo(ShiftChildTabType tabType)
 		{
 			TabType = tabType;
 			EnableOutput = true;
-			EditorConfiguration = TextEditorConfiguration.Empty();
+			CommonEditorConfiguration = TextEditorConfiguration.Empty();
 		}
 	}
 }

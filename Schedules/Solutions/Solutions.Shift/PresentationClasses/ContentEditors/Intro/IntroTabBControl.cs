@@ -8,6 +8,7 @@ using Asa.Business.Solutions.Shift.Configuration.Intro;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
+using Asa.Solutions.Common.Helpers;
 using Asa.Solutions.Common.PresentationClasses.Output;
 
 namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Intro
@@ -21,7 +22,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Intro
 		{
 			InitializeComponent();
 
-			comboBoxEditSlideHeader.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
+			comboBoxEditSlideHeader.EnableSelectAll().RaiseNullValueIfEditorEmpty().AssignConfiguration(CustomTabInfo.HeadersEditorConfiguration);
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(CustomTabInfo.HeadersItems

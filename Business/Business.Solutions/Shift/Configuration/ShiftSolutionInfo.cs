@@ -4,10 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using Asa.Business.Solutions.Common.Configuration;
+using Asa.Business.Solutions.Common.Dictionaries;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Shift.Configuration.Agenda;
 using Asa.Business.Solutions.Shift.Configuration.Cleanslate;
 using Asa.Business.Solutions.Shift.Configuration.Cover;
+using Asa.Business.Solutions.Shift.Configuration.Goals;
 using Asa.Business.Solutions.Shift.Configuration.Intro;
 using Asa.Business.Solutions.Shift.Enums;
 using Asa.Common.Core.Objects.RemoteStorage;
@@ -18,11 +20,17 @@ namespace Asa.Business.Solutions.Shift.Configuration
 	{
 		public List<ShiftTopTabInfo> TabsInfo { get; }
 
+		public ClientGoalsLists ClientGoalsLists { get; }
+		public TargetCustomersLists TargetCustomersLists { get; }
+
 		public ShiftSolutionInfo()
 		{
 			Type = SolutionType.Shift;
 
 			TabsInfo = new List<ShiftTopTabInfo>();
+
+			ClientGoalsLists = new ClientGoalsLists();
+			TargetCustomersLists = new TargetCustomersLists();
 		}
 
 		public override void LoadData(StorageDirectory holderAppDataFolder)
@@ -73,7 +81,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							tabInfo = new AgendaTabInfo();
 							break;
 						case "goals":
-							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Goals);
+							tabInfo = new GoalsTabInfo();
 							break;
 						case "market":
 							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Market);
@@ -109,6 +117,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					TabsInfo.Add(tabInfo);
 				}
 			}
+
+			ClientGoalsLists.Load(resourceManager.DataClientGoalsFile);
+			TargetCustomersLists.LoadHHIData(resourceManager.DataHHIFile);
+			TargetCustomersLists.LoadDemoData(resourceManager.DataDemoFile);
+			TargetCustomersLists.LoadGeographyData(resourceManager.DataGeographyFile);
 		}
 	}
 }

@@ -33,9 +33,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			TabPageContainer = tabPageContainer;
 			TabInfo = tabInfo;
 
-			if (TabInfo.EditorConfiguration.FontSize.HasValue)
+			if (TabInfo.CommonEditorConfiguration.FontSize.HasValue)
 			{
-				var fontSizeDelte = TabInfo.EditorConfiguration.FontSize.Value - TextEditorConfiguration.DefaultFontSize;
+				var fontSizeDelte = TabInfo.CommonEditorConfiguration.FontSize.Value - TextEditorConfiguration.DefaultFontSize;
 				layoutControl.Appearance.Control.FontSizeDelta = fontSizeDelte;
 				layoutControl.Appearance.ControlFocused.FontSizeDelta = fontSizeDelte;
 				layoutControl.Appearance.ControlDropDown.FontSizeDelta = fontSizeDelte;
@@ -43,20 +43,20 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				layoutControl.Appearance.ControlDisabled.FontSizeDelta = fontSizeDelte;
 				layoutControl.Appearance.ControlReadOnly.FontSizeDelta = fontSizeDelte;
 			}
-			if (!TabInfo.EditorConfiguration.BackColor.IsEmpty)
+			if (!TabInfo.CommonEditorConfiguration.BackColor.IsEmpty)
 			{
-				layoutControl.Appearance.Control.BackColor = TabInfo.EditorConfiguration.BackColor;
-				layoutControl.Appearance.ControlFocused.BackColor = TabInfo.EditorConfiguration.BackColor;
+				layoutControl.Appearance.Control.BackColor = TabInfo.CommonEditorConfiguration.BackColor;
+				layoutControl.Appearance.ControlFocused.BackColor = TabInfo.CommonEditorConfiguration.BackColor;
 			}
-			if (!TabInfo.EditorConfiguration.ForeColor.IsEmpty)
+			if (!TabInfo.CommonEditorConfiguration.ForeColor.IsEmpty)
 			{
-				layoutControl.Appearance.Control.ForeColor = TabInfo.EditorConfiguration.ForeColor;
-				layoutControl.Appearance.ControlFocused.ForeColor = TabInfo.EditorConfiguration.ForeColor;
+				layoutControl.Appearance.Control.ForeColor = TabInfo.CommonEditorConfiguration.ForeColor;
+				layoutControl.Appearance.ControlFocused.ForeColor = TabInfo.CommonEditorConfiguration.ForeColor;
 			}
-			if (!TabInfo.EditorConfiguration.DropdownForeColor.IsEmpty)
+			if (!TabInfo.CommonEditorConfiguration.DropdownForeColor.IsEmpty)
 			{
-				layoutControl.Appearance.ControlDropDown.ForeColor = TabInfo.EditorConfiguration.DropdownForeColor;
-				layoutControl.Appearance.ControlDropDownHeader.ForeColor = TabInfo.EditorConfiguration.DropdownForeColor;
+				layoutControl.Appearance.ControlDropDown.ForeColor = TabInfo.CommonEditorConfiguration.DropdownForeColor;
+				layoutControl.Appearance.ControlDropDownHeader.ForeColor = TabInfo.CommonEditorConfiguration.DropdownForeColor;
 			}
 		}
 

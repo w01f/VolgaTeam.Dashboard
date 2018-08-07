@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
+using Asa.Business.Solutions.Common.Interfaces;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Business.Solutions.StarApp.Entities.NonPersistent;
 using Asa.Business.Solutions.StarApp.Enums;
@@ -38,7 +38,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public abstract IStarAppSettingsContainer SettingsContainer { get; }
 		public StarAppControl ActiveSlideContent => (xtraTabControl.SelectedTabPage as IStarAppTabPageContainer)?.ContentControl;
 		public override SlideType SelectedSlideType => ActiveSlideContent?.SlideType ?? SlideType.Cleanslate;
-		public abstract Image ToggleSwitchSkinElement { get; }
 		public override string HelpKey
 		{
 			get

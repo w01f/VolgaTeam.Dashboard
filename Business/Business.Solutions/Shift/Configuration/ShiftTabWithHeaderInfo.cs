@@ -7,11 +7,14 @@ namespace Asa.Business.Solutions.Shift.Configuration
 	public abstract class ShiftTabWithHeaderInfo : ShiftChildTabInfo
 	{
 		public override bool IsRegularChildTab => true;
+
 		public List<ListDataItem> HeadersItems { get; set; }
+		public TextEditorConfiguration HeadersEditorConfiguration { get; set; }
 
 		protected ShiftTabWithHeaderInfo(ShiftChildTabType tabType) : base(tabType)
 		{
 			HeadersItems = new List<ListDataItem>();
+			HeadersEditorConfiguration = TextEditorConfiguration.Empty();
 		}
 	}
 }

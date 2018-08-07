@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -27,6 +28,7 @@ namespace Asa.Solutions.Common.InteropClasses
 					var presentation = target.PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					foreach (Slide slide in presentation.Slides)
 					{
+						var clipartShapes = new List<Shape>();
 						foreach (Shape shape in slide.Shapes)
 						{
 							for (var i = 1; i <= shape.Tags.Count; i++)
@@ -37,7 +39,9 @@ namespace Asa.Solutions.Common.InteropClasses
 									if (dataPackage.ClipartItems.ContainsKey(tagName.ToUpper()))
 									{
 										var clipartObject = dataPackage.ClipartItems[tagName.ToUpper()];
-										slide.Shapes.AddClipartObject(clipartObject, shape);
+										var newShape = slide.Shapes.AddClipartObject(clipartObject, shape);
+										if (newShape != null)
+											clipartShapes.Add(newShape);
 									}
 									shape.Visible = MsoTriState.msoFalse;
 								}
@@ -50,6 +54,10 @@ namespace Asa.Solutions.Common.InteropClasses
 								}
 							}
 						}
+
+						foreach (var clipartShape in clipartShapes)
+							clipartShape.ZOrder(MsoZOrderCmd.msoSendToBack);
+
 					}
 					var selectedTheme = dataPackage.Theme;
 					if (selectedTheme != null)
@@ -73,8 +81,9 @@ namespace Asa.Solutions.Common.InteropClasses
 			target.PreparePresentation(fileName, presentation => target.AppendSolutionCommonSlide(dataPackage, presentation));
 		}
 
-		private static void AddClipartObject(this Shapes shapes, ClipartObject clipartObject, Shape shapeTemplate)
+		private static Shape AddClipartObject(this Shapes shapes, ClipartObject clipartObject, Shape shapeTemplate)
 		{
+			Shape shape = null;
 			switch (clipartObject.Type)
 			{
 				case ClipartObjectType.Image:
@@ -93,7 +102,7 @@ namespace Asa.Solutions.Common.InteropClasses
 							var width = (Int32)(originalWidth * percent);
 							var height = (Int32)(originalHeight * percent);
 
-							shapes.AddPicture(fileName,
+							shape = shapes.AddPicture(fileName,
 								MsoTriState.msoFalse,
 								MsoTriState.msoCTrue,
 								shapeTemplate.Left + (shapeTemplate.Width - width) / 2,
@@ -116,7 +125,7 @@ namespace Asa.Solutions.Common.InteropClasses
 						var width = (Int32)(originalWidth * percent);
 						var height = (Int32)(originalHeight * percent);
 
-						var shape = shapes.AddMediaObject2(videoClipartObject.SourceFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue,
+						shape = shapes.AddMediaObject2(videoClipartObject.SourceFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue,
 							shapeTemplate.Left + (shapeTemplate.Width - width) / 2,
 							shapeTemplate.Top + (shapeTemplate.Height - height) / 2,
 							width,
@@ -137,7 +146,7 @@ namespace Asa.Solutions.Common.InteropClasses
 
 						var youTubeTag = String.Format("<object><embed src='{0}' type='application/x-shockwave-flash'></embed></object>", youTubeObject.EmbeddedUrl);
 
-						shapes.AddMediaObjectFromEmbedTag(youTubeTag,
+						shape = shapes.AddMediaObjectFromEmbedTag(youTubeTag,
 							shapeTemplate.Left + (shapeTemplate.Width - width) / 2,
 							shapeTemplate.Top + (shapeTemplate.Height - height) / 2,
 							width,
@@ -147,6 +156,7 @@ namespace Asa.Solutions.Common.InteropClasses
 				default:
 					throw new ArgumentOutOfRangeException("Undefined clipart type found");
 			}
+			return shape;
 		}
 	}
 }

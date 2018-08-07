@@ -12,12 +12,14 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public CoverState CoverState { get; }
 		public IntroState IntroState { get; }
 		public AgendaState AgendaState { get; }
+		public GoalsState GoalsState { get; }
 
 		protected ShiftContent()
 		{
 			CoverState = new CoverState();
 			IntroState = new IntroState();
 			AgendaState = new AgendaState();
+			GoalsState = new GoalsState();
 		}
 
 		protected override void AfterCreate()

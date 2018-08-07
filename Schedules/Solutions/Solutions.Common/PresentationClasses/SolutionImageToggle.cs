@@ -3,7 +3,6 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
-using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Common.GUI.Common;
 using DevExpress.Utils.Svg;
 using DevExpress.XtraEditors;

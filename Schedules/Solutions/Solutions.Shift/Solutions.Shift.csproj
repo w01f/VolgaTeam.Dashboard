@@ -132,6 +132,33 @@
     <Compile Include="PresentationClasses\ContentEditors\Cover\CoverTabAControl.Designer.cs">
       <DependentUpon>CoverTabAControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Goals\GoalsTabDControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Goals\GoalsTabDControl.Designer.cs">
+      <DependentUpon>GoalsTabDControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Goals\GoalsTabCControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Goals\GoalsTabCControl.Designer.cs">
+      <DependentUpon>GoalsTabCControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Goals\GoalsTabBControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Goals\GoalsTabBControl.Designer.cs">
+      <DependentUpon>GoalsTabBControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Goals\GoalsTabAControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Goals\GoalsTabAControl.Designer.cs">
+      <DependentUpon>GoalsTabAControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Goals\GoalsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\IChildTabPageContainer.cs" />
     <Compile Include="PresentationClasses\ContentEditors\Intro\IntroControl.cs">
       <SubType>UserControl</SubType>
@@ -230,6 +257,18 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Cover\CoverTabAControl.resx">
       <DependentUpon>CoverTabAControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Goals\GoalsTabDControl.resx">
+      <DependentUpon>GoalsTabDControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Goals\GoalsTabCControl.resx">
+      <DependentUpon>GoalsTabCControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Goals\GoalsTabBControl.resx">
+      <DependentUpon>GoalsTabBControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Goals\GoalsTabAControl.resx">
+      <DependentUpon>GoalsTabAControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Intro\IntroTabDControl.resx">
       <DependentUpon>IntroTabDControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -313,5 +352,6 @@
   <ItemGroup>
     <None Include="Resources\ButtonCalendar.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

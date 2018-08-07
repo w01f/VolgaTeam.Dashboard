@@ -4,7 +4,9 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
+using Asa.Business.Solutions.Common.Interfaces;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.Objects.FormStyle;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Slides;
@@ -24,6 +26,9 @@ namespace Asa.Solutions.Common.PresentationClasses
 
 		public abstract Form MainForm { get; }
 		public abstract Color? AccentColor { get; }
+
+		public abstract MainFormStyleConfiguration StyleConfiguration { get; }
+		public abstract ISolutionsResourceManager ResourceManager { get; }
 
 		public event EventHandler<EventArgs> DataChanged;
 		public event EventHandler<SelectedSlideTypeChanged> SlideTypeChanged;

@@ -67,6 +67,7 @@
     <Compile Include="Common\Enums\SolutionType.cs" />
     <Compile Include="Common\Helpers\SolutionsManager.cs" />
     <Compile Include="Common\Interfaces\IScheduleSolution.cs" />
+    <Compile Include="Common\Interfaces\ISolutionsResourceManager.cs" />
     <Compile Include="Dashboard\Configuration\IDashboardSettingsContainer.cs" />
     <Compile Include="Dashboard\Configuration\ResourceManager.cs" />
     <Compile Include="Common\Dictionaries\ClientGoalsLists.cs" />
@@ -98,6 +99,11 @@
     <Compile Include="Shift\Configuration\Cover\CoverTabBInfo.cs" />
     <Compile Include="Shift\Configuration\Cover\CoverTabAInfo.cs" />
     <Compile Include="Shift\Configuration\Cover\CoverTabInfo.cs" />
+    <Compile Include="Shift\Configuration\Goals\GoalsTabDInfo.cs" />
+    <Compile Include="Shift\Configuration\Goals\GoalsTabCInfo.cs" />
+    <Compile Include="Shift\Configuration\Goals\GoalsTabBInfo.cs" />
+    <Compile Include="Shift\Configuration\Goals\GoalsTabAInfo.cs" />
+    <Compile Include="Shift\Configuration\Goals\GoalsTabInfo.cs" />
     <Compile Include="Shift\Configuration\Intro\IntroTabInfo.cs" />
     <Compile Include="Shift\Configuration\Intro\IntroTabDInfo.cs" />
     <Compile Include="Shift\Configuration\Intro\IntroTabCInfo.cs" />
@@ -113,6 +119,7 @@
     <Compile Include="Shift\Configuration\ShiftSolutionInfo.cs" />
     <Compile Include="Shift\Configuration\ShiftTabWithHeaderInfo.cs" />
     <Compile Include="Shift\Entities\NonPersistent\AgendaState.cs" />
+    <Compile Include="Shift\Entities\NonPersistent\GoalsState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\IntroState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\CoverState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\ShiftContent.cs" />

@@ -23,7 +23,7 @@ namespace Asa.Business.Solutions.Common.Dictionaries
 			CombinedList = new List<ListDataItem>();
 		}
 
-		public void Load(StorageFile dataFile)
+		public void LoadCombinedData(StorageFile dataFile)
 		{
 			var document = new XmlDocument();
 			document.Load(dataFile.LocalPath);
@@ -52,6 +52,60 @@ namespace Asa.Business.Solutions.Common.Dictionaries
 			CombinedList.AddRange(Demos);
 			CombinedList.AddRange(HHIs);
 			CombinedList.AddRange(Geographies);
+		}
+
+		public void LoadDemoData(StorageFile dataFile)
+		{
+			var document = new XmlDocument();
+			document.Load(dataFile.LocalPath);
+
+			var node = document.SelectSingleNode(@"./Age");
+			if (node == null) return;
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "Age":
+						Demos.Add(ListDataItem.FromXml(childNode));
+						break;
+				}
+			}
+		}
+
+		public void LoadHHIData(StorageFile dataFile)
+		{
+			var document = new XmlDocument();
+			document.Load(dataFile.LocalPath);
+
+			var node = document.SelectSingleNode(@"./Income");
+			if (node == null) return;
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "HHI":
+						HHIs.Add(ListDataItem.FromXml(childNode));
+						break;
+				}
+			}
+		}
+
+		public void LoadGeographyData(StorageFile dataFile)
+		{
+			var document = new XmlDocument();
+			document.Load(dataFile.LocalPath);
+
+			var node = document.SelectSingleNode(@"./Age");
+			if (node == null) return;
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "Age":
+						Geographies.Add(ListDataItem.FromXml(childNode));
+						break;
+				}
+			}
 		}
 	}
 }

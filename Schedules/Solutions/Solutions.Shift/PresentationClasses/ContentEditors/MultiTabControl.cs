@@ -47,10 +47,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			emptySpaceItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(emptySpaceItemSlideHeader.MaxSize, scaleFactor);
 			emptySpaceItemSlideHeader.MinSize = RectangleHelper.ScaleSize(emptySpaceItemSlideHeader.MinSize, scaleFactor);
 
-			if (SlideContainer.ToggleSwitchSkinElement != null)
+			if (SlideContainer.ResourceManager.SolutionToggleSwitchSkinElement != null)
 			{
 				var element = SkinManager.GetSkinElement(SkinProductId.Editors, UserLookAndFeel.Default, "ToggleSwitch");
-				element.Image.SetImage(SlideContainer.ToggleSwitchSkinElement, Color.Transparent);
+				element.Image.SetImage(SlideContainer.ResourceManager.SolutionToggleSwitchSkinElement, Color.Transparent);
 				LookAndFeelHelper.ForceDefaultLookAndFeelChanged();
 			}
 

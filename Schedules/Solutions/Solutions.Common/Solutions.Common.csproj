@@ -30,12 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.12, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EO.Base, Version=18.1.75.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\EO.WebBrowser.18.1.75\lib\EO.Base.dll</HintPath>
@@ -48,8 +53,12 @@
     </Reference>
     <Reference Include="ImageListView, Version=11.1.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -62,6 +71,7 @@
     <Compile Include="Common\HomeButtonStatusChangedEventArgs.cs" />
     <Compile Include="Common\OutputStatusChangedEventArgs.cs" />
     <Compile Include="Common\SelectedSlideTypeChanged.cs" />
+    <Compile Include="Helpers\EditorConfigurationHelper.cs" />
     <Compile Include="Helpers\VideoResourceHelper.cs" />
     <Compile Include="InteropClasses\SolutionCommonHelper.cs" />
     <Compile Include="PresentationClasses\BaseSolutionContainerControl.cs">
@@ -106,6 +116,18 @@
     <Compile Include="PresentationClasses\IScheduleResourceHolder.cs" />
     <Compile Include="PresentationClasses\ISolutionEditor.cs" />
     <Compile Include="PresentationClasses\ISolutionToggle.cs" />
+    <Compile Include="PresentationClasses\MemoPopupEdit\FormList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\MemoPopupEdit\FormList.Designer.cs">
+      <DependentUpon>FormList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\MemoPopupEdit\MemoPopupEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\MemoPopupEdit\MemoPopupEdit.Designer.cs">
+      <DependentUpon>MemoPopupEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\Output\OutputDataPackage.cs" />
     <Compile Include="PresentationClasses\SlidesEdit\SlidesEditContainer.cs">
       <SubType>UserControl</SubType>
@@ -142,6 +164,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ClipartEdit\FormYouTubeInsert.resx">
       <DependentUpon>FormYouTubeInsert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\MemoPopupEdit\FormList.resx">
+      <DependentUpon>FormList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\MemoPopupEdit\MemoPopupEdit.resx">
+      <DependentUpon>MemoPopupEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -205,7 +233,15 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\MemoPopupUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MemoPopupList.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MemoPopupDown.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

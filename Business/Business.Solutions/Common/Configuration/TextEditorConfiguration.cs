@@ -21,12 +21,26 @@ namespace Asa.Business.Solutions.Common.Configuration
 			BackColor = Color.Empty;
 		}
 
-		public static TextEditorConfiguration FromXml(XmlNode parentNode)
+		public static TextEditorConfiguration FromXml(XmlNode parentNode, string editorTag = null)
 		{
 			var configuration = Empty();
 
-			var configNode = parentNode?.SelectSingleNode("./ControlStyle");
-			if (configNode?.Attributes == null)
+			var configNodes = (parentNode?.SelectNodes("./ControlStyle")?.OfType<XmlNode>() ?? new XmlNode[] { })
+				.Where(node => node.Attributes != null)
+				.ToList();
+
+			XmlNode configNode = null;
+			if (!String.IsNullOrEmpty(editorTag))
+			{
+				configNode = configNodes.FirstOrDefault(node => node.Attributes.OfType<XmlAttribute>().Any(a =>
+					String.Equals(a.Name, "Control", StringComparison.OrdinalIgnoreCase) &&
+					String.Equals(a.Value, editorTag, StringComparison.OrdinalIgnoreCase)));
+			}
+			if (configNode == null)
+				configNode = configNodes.FirstOrDefault(node => !node.Attributes.OfType<XmlAttribute>().Any(a =>
+					String.Equals(a.Name, "Control", StringComparison.OrdinalIgnoreCase)));
+
+			if (configNode == null)
 				return configuration;
 
 			configuration.FontSize = Int32.Parse(configNode.Attributes

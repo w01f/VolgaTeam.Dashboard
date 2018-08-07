@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
+using Asa.Business.Solutions.Common.Interfaces;
 using Asa.Business.Solutions.Shift.Configuration;
 using Asa.Business.Solutions.Shift.Entities.NonPersistent;
 using Asa.Business.Solutions.Shift.Enums;
@@ -14,6 +14,7 @@ using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Agenda;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover;
+using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Intro;
 using DevExpress.XtraTab;
 using DevExpress.XtraEditors;
@@ -30,7 +31,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		public abstract IShiftSettingsContainer SettingsContainer { get; }
 		public BaseShiftControl ActiveSlideContent => (xtraTabControl.SelectedTabPage as IShiftTabPageContainer)?.ContentControl;
 		public override SlideType SelectedSlideType => ActiveSlideContent?.SlideType ?? SlideType.ShiftCleanslate;
-		public abstract Image ToggleSwitchSkinElement { get; }
 		public override string HelpKey
 		{
 			get
@@ -75,6 +75,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 						break;
 					case ShiftTopTabType.Agenda:
 						_slides.Add(new ShiftTabPageContainerControl<AgendaControl>(this, tabInfo));
+						break;
+					case ShiftTopTabType.Goals:
+						_slides.Add(new ShiftTabPageContainerControl<GoalsControl>(this, tabInfo));
 						break;
 					default:
 						_slides.Add(new ShiftTabPageContainerControl<CommonTopTabControl>(this, tabInfo));

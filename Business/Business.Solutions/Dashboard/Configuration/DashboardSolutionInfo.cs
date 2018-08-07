@@ -87,7 +87,7 @@ namespace Asa.Business.Solutions.Dashboard.Configuration
 			CoverLists.Load(resourceManager.DataCoverFile);
 			ClientGoalsLists.Load(resourceManager.DataClientGoalsFile);
 			LeadoffStatementLists.Load(resourceManager.DataLeadoffStatementFile);
-			TargetCustomersLists.Load(resourceManager.DataTargetCustomersFile);
+			TargetCustomersLists.LoadCombinedData(resourceManager.DataTargetCustomersFile);
 			SimpleSummaryLists.Load(resourceManager.DataSimpleSummaryFile);
 
 			CleanslateHeaderLogo = resourceManager.LogoCleanslateHeaderFile.ExistsLocal()

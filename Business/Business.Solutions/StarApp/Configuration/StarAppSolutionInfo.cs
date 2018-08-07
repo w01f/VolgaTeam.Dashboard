@@ -122,7 +122,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 
 			UsersList.Load(resourceManager.DataUsersFile);
 			ClientGoalsLists.Load(resourceManager.DataClientGoalsFile);
-			TargetCustomersLists.Load(resourceManager.DataTargetCustomersFile);
+			TargetCustomersLists.LoadCombinedData(resourceManager.DataTargetCustomersFile);
 		}
 	}
 }

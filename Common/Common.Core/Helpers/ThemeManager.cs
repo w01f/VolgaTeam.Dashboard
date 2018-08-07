@@ -214,11 +214,32 @@ namespace Asa.Common.Core.Helpers
 					case "Shift_03d_agenda":
 						slideType = SlideType.ShiftAgendaD;
 						break;
-					case "Shift_04_goals":
-						slideType = SlideType.ShiftGoals;
+					case "Shift_04a_goals":
+						slideType = SlideType.ShiftGoalsA;
 						break;
-					case "Shift_05_market_opportunity":
-						slideType = SlideType.ShiftMarket;
+					case "Shift_04b_goals":
+						slideType = SlideType.ShiftGoalsB;
+						break;
+					case "Shift_04c_goals":
+						slideType = SlideType.ShiftGoalsC;
+						break;
+					case "Shift_04d_goals":
+						slideType = SlideType.ShiftGoalsD;
+						break;
+					case "Shift_05a_mktopp":
+						slideType = SlideType.ShiftMarketA;
+						break;
+					case "Shift_05b_mktopp":
+						slideType = SlideType.ShiftMarketB;
+						break;
+					case "Shift_05c_mktopp":
+						slideType = SlideType.ShiftMarketC;
+						break;
+					case "Shift_05d_mktopp":
+						slideType = SlideType.ShiftMarketD;
+						break;
+					case "Shift_05e_mktopp":
+						slideType = SlideType.ShiftMarketE;
 						break;
 					case "Shift_06_our_partnership":
 						slideType = SlideType.ShiftPartnership;

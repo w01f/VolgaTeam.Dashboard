@@ -9,13 +9,15 @@ namespace Asa.Business.Solutions.Shift.Configuration.Intro
 	public class IntroTabCInfo : ShiftTabWithHeaderInfo
 	{
 		public Image Clipart1Image { get; private set; }
-		public Image Clipart2Image { get; private set; }
-		public Image Clipart3Image { get; private set; }
-		public Image Clipart4Image { get; private set; }
-
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
+
+		public Image Clipart2Image { get; private set; }
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
+
+		public Image Clipart3Image { get; private set; }
 		public ClipartConfiguration Clipart3Configuration { get; private set; }
+
+		public Image Clipart4Image { get; private set; }
 		public ClipartConfiguration Clipart4Configuration { get; private set; }
 
 		public IntroTabCInfo() : base(ShiftChildTabType.C)
@@ -77,7 +79,8 @@ namespace Asa.Business.Solutions.Shift.Configuration.Intro
 			Clipart3Configuration = ClipartConfiguration.FromXml(node, "SHIFT02CClipart3");
 			Clipart4Configuration = ClipartConfiguration.FromXml(node, "SHIFT02CClipart4");
 
-			EditorConfiguration = TextEditorConfiguration.FromXml(node);
+			CommonEditorConfiguration = TextEditorConfiguration.FromXml(node);
+			HeadersEditorConfiguration = TextEditorConfiguration.FromXml(node, "SHIFT02CHeader");
 		}
 	}
 }

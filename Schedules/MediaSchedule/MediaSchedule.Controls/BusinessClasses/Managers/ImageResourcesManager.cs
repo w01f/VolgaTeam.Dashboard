@@ -1,10 +1,11 @@
 ﻿using System.Drawing;
 using System.IO;
 using Asa.Business.Media.Configuration;
+using Asa.Business.Solutions.Common.Interfaces;
 
 namespace Asa.Media.Controls.BusinessClasses.Managers
 {
-	public class ImageResourcesManager
+	public class ImageResourcesManager: ISolutionsResourceManager
 	{
 		public Icon MainAppIcon { get; private set; }
 		public Image MainAppRibbonLogo { get; private set; }
@@ -154,6 +155,9 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 
 		#region Solution
 		public Image SolutionToggleSwitchSkinElement { get; private set; }
+		public Image SolutionMemoPopupUp { get; private set; }
+		public Image SolutionMemoPopupDown { get; private set; }
+		public Image SolutionMemoPopupList { get; private set; }
 		#endregion
 
 		public void Load()
@@ -592,6 +596,15 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "toggleswitch.png");
 			if (File.Exists(resourceFile))
 				SolutionToggleSwitchSkinElement = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "memo_popup_up.png");
+			if (File.Exists(resourceFile))
+				SolutionMemoPopupUp = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "memo_popup_down.png");
+			if (File.Exists(resourceFile))
+				SolutionMemoPopupDown = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "memo_popup_list.png");
+			if (File.Exists(resourceFile))
+				SolutionMemoPopupList = Image.FromFile(resourceFile);
 			#endregion
 		}
 	}

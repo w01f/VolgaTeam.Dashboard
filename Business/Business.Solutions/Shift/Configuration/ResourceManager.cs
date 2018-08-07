@@ -7,6 +7,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 	{
 		public StorageFile SettingsFile { get; private set; }
 
+		public StorageFile DataClientGoalsFile { get; private set; }
+		public StorageFile DataHHIFile { get; private set; }
+		public StorageFile DataDemoFile { get; private set; }
+		public StorageFile DataGeographyFile { get; private set; }
+
 		#region Cleanslate
 		public StorageFile LogoCleanslateHeaderFile { get; private set; }
 		public StorageFile LogoCleanslateSplashFile { get; private set; }
@@ -194,6 +199,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 4
+		public StorageFile DataGoalsPartAFile { get; private set; }
+		public StorageFile DataGoalsPartBFile { get; private set; }
+		public StorageFile DataGoalsPartCFile { get; private set; }
+		public StorageFile DataGoalsPartDFile { get; private set; }
+
 		public StorageFile LogoTab4SubARightFile { get; private set; }
 		public StorageFile LogoTab4SubAFooterFile { get; private set; }
 		public StorageFile LogoTab4SubABackgroundFile { get; private set; }
@@ -233,6 +243,19 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab4SubWRightFile { get; private set; }
 		public StorageFile LogoTab4SubWFooterFile { get; private set; }
 		public StorageFile LogoTab4SubWBackgroundFile { get; private set; }
+
+		public StorageFile ClipartTab4SubA1File { get; private set; }
+		public StorageFile ClipartTab4SubA2File { get; private set; }
+		public StorageFile ClipartTab4SubA3File { get; private set; }
+		public StorageFile ClipartTab4SubB1File { get; private set; }
+		public StorageFile ClipartTab4SubB2File { get; private set; }
+		public StorageFile ClipartTab4SubB3File { get; private set; }
+		public StorageFile ClipartTab4SubC1File { get; private set; }
+		public StorageFile ClipartTab4SubC2File { get; private set; }
+		public StorageFile ClipartTab4SubC3File { get; private set; }
+		public StorageFile ClipartTab4SubD1File { get; private set; }
+		public StorageFile ClipartTab4SubD2File { get; private set; }
+		public StorageFile ClipartTab4SubD3File { get; private set; }
 
 		public StorageDirectory Tab4PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab4PartVSlidesFolder { get; private set; }
@@ -657,6 +680,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		{
 			SettingsFile = new StorageFile(dataFolder.RelativePathParts.Merge("settings.xml"));
 
+			DataClientGoalsFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Needs Analysis.xml"));
+			DataHHIFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Income.xml"));
+			DataDemoFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Age.xml"));
+			DataGeographyFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Residence.xml"));
+
 			#region Cleanslate
 			LogoCleanslateHeaderFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "00_shift", "design_branding", "tab_1_header.png" }));
 			LogoCleanslateSplashFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "00_shift", "design_branding", "tab_1.png" }));
@@ -847,6 +875,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			#endregion
 
 			#region Tab 4
+			DataGoalsPartAFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT04A.xml"));
+			DataGoalsPartBFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT04B.xml"));
+			DataGoalsPartCFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT04C.xml"));
+			DataGoalsPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT04D.xml"));
+
 			LogoTab4SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_a", "design_branding", "4a_right.png" }));
 			LogoTab4SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_a", "design_branding", "4a_footer.png" }));
 			LogoTab4SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_b", "design_branding", "4b_right.png" }));
@@ -887,6 +920,19 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab4SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_u", "design_branding", "background.png" }));
 			LogoTab4SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_v", "design_branding", "background.png" }));
 			LogoTab4SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_w", "design_branding", "background.png" }));
+
+			ClipartTab4SubA1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_a", "placeholders", "SHIFT04ACLIPART1.png" }));
+			ClipartTab4SubA2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_a", "placeholders", "SHIFT04ACLIPART2.png" }));
+			ClipartTab4SubA3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_a", "placeholders", "SHIFT04ACLIPART3.png" }));
+			ClipartTab4SubB1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_b", "placeholders", "SHIFT04BCLIPART1.png" }));
+			ClipartTab4SubB2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_b", "placeholders", "SHIFT04BCLIPART2.png" }));
+			ClipartTab4SubB3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_b", "placeholders", "SHIFT04BCLIPART3.png" }));
+			ClipartTab4SubC1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_c", "placeholders", "SHIFT04CCLIPART1.png" }));
+			ClipartTab4SubC2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_c", "placeholders", "SHIFT04CCLIPART2.png" }));
+			ClipartTab4SubC3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_c", "placeholders", "SHIFT04CCLIPART3.png" }));
+			ClipartTab4SubD1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_d", "placeholders", "SHIFT04DCLIPART1.png" }));
+			ClipartTab4SubD2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_d", "placeholders", "SHIFT04DCLIPART2.png" }));
+			ClipartTab4SubD3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_d", "placeholders", "SHIFT04DCLIPART3.png" }));
 
 			Tab4PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_u" }));
 			Tab4PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_v" }));

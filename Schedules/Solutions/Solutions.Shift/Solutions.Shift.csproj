@@ -188,6 +188,39 @@
       <DependentUpon>IntroTabAControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\IShiftTabPageContainer.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\Market\MarketControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Market\MarketTabCControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Market\MarketTabCControl.Designer.cs">
+      <DependentUpon>MarketTabCControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Market\MarketTabBControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Market\MarketTabBControl.Designer.cs">
+      <DependentUpon>MarketTabBControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Market\MarketTabEControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Market\MarketTabEControl.Designer.cs">
+      <DependentUpon>MarketTabEControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Market\MarketTabDControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Market\MarketTabDControl.Designer.cs">
+      <DependentUpon>MarketTabDControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Market\MarketTabAControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Market\MarketTabAControl.Designer.cs">
+      <DependentUpon>MarketTabAControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\MultiTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -280,6 +313,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Intro\IntroTabAControl.resx">
       <DependentUpon>IntroTabAControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Market\MarketTabCControl.resx">
+      <DependentUpon>MarketTabCControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Market\MarketTabBControl.resx">
+      <DependentUpon>MarketTabBControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Market\MarketTabEControl.resx">
+      <DependentUpon>MarketTabEControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Market\MarketTabDControl.resx">
+      <DependentUpon>MarketTabDControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Market\MarketTabAControl.resx">
+      <DependentUpon>MarketTabAControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\MultiTabControl.resx">
       <DependentUpon>MultiTabControl.cs</DependentUpon>

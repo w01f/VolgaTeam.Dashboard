@@ -11,6 +11,7 @@ using Asa.Business.Solutions.Shift.Configuration.Cleanslate;
 using Asa.Business.Solutions.Shift.Configuration.Cover;
 using Asa.Business.Solutions.Shift.Configuration.Goals;
 using Asa.Business.Solutions.Shift.Configuration.Intro;
+using Asa.Business.Solutions.Shift.Configuration.Market;
 using Asa.Business.Solutions.Shift.Enums;
 using Asa.Common.Core.Objects.RemoteStorage;
 
@@ -84,7 +85,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							tabInfo = new GoalsTabInfo();
 							break;
 						case "market":
-							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Market);
+							tabInfo = new MarketTabInfo();
 							break;
 						case "partnership":
 							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Partnership);

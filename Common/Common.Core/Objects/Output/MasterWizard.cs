@@ -258,6 +258,11 @@ namespace Asa.Common.Core.Objects.Output
 		{
 			return GetShiftSolutionTemplateFile(new[] { "04_your_goals", fileName });
 		}
+
+		public string GetShiftMarketFile(string fileName)
+		{
+			return GetShiftSolutionTemplateFile(new[] { "05_market_opportunity", fileName });
+		}
 		#endregion
 
 		#region Newspapaer Slides

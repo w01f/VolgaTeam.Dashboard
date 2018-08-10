@@ -13,7 +13,6 @@ using Asa.Common.GUI.FavoriteImages;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.Helpers;
 using DevExpress.XtraBars;
-using DevExpress.XtraEditors.Controls;
 
 namespace Asa.Solutions.Common.PresentationClasses.ClipartEdit
 {

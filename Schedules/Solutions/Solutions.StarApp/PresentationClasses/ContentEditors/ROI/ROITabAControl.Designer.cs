@@ -483,7 +483,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			this.checkEditTabAGroup1.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup1.EditValue = true;
-			this.checkEditTabAGroup1.Location = new System.Drawing.Point(2, 4);
+			this.checkEditTabAGroup1.Location = new System.Drawing.Point(2, -128);
 			this.checkEditTabAGroup1.Name = "checkEditTabAGroup1";
 			this.checkEditTabAGroup1.Properties.Caption = "";
 			this.checkEditTabAGroup1.Size = new System.Drawing.Size(19, 19);
@@ -493,7 +493,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader1
 			// 
-			this.textEditTabASubheader1.Location = new System.Drawing.Point(85, 2);
+			this.textEditTabASubheader1.Location = new System.Drawing.Point(85, -130);
 			this.textEditTabASubheader1.Name = "textEditTabASubheader1";
 			this.textEditTabASubheader1.Properties.NullText = "Type here";
 			this.textEditTabASubheader1.Size = new System.Drawing.Size(315, 22);
@@ -503,7 +503,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader3
 			// 
-			this.textEditTabASubheader3.Location = new System.Drawing.Point(530, 2);
+			this.textEditTabASubheader3.Location = new System.Drawing.Point(530, -130);
 			this.textEditTabASubheader3.Name = "textEditTabASubheader3";
 			this.textEditTabASubheader3.Properties.NullText = "Type here";
 			this.textEditTabASubheader3.Size = new System.Drawing.Size(130, 22);
@@ -515,7 +515,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			this.checkEditTabAGroup2.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup2.EditValue = true;
-			this.checkEditTabAGroup2.Location = new System.Drawing.Point(2, 112);
+			this.checkEditTabAGroup2.Location = new System.Drawing.Point(2, -20);
 			this.checkEditTabAGroup2.Name = "checkEditTabAGroup2";
 			this.checkEditTabAGroup2.Properties.Caption = "";
 			this.checkEditTabAGroup2.Size = new System.Drawing.Size(19, 19);
@@ -525,7 +525,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader4
 			// 
-			this.textEditTabASubheader4.Location = new System.Drawing.Point(85, 110);
+			this.textEditTabASubheader4.Location = new System.Drawing.Point(85, -22);
 			this.textEditTabASubheader4.Name = "textEditTabASubheader4";
 			this.textEditTabASubheader4.Properties.NullText = "Type here";
 			this.textEditTabASubheader4.Size = new System.Drawing.Size(136, 22);
@@ -535,7 +535,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader6
 			// 
-			this.textEditTabASubheader6.Location = new System.Drawing.Point(357, 110);
+			this.textEditTabASubheader6.Location = new System.Drawing.Point(357, -22);
 			this.textEditTabASubheader6.Name = "textEditTabASubheader6";
 			this.textEditTabASubheader6.Properties.NullText = "Type here";
 			this.textEditTabASubheader6.Size = new System.Drawing.Size(303, 22);
@@ -547,7 +547,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			this.checkEditTabAGroup3.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup3.EditValue = true;
-			this.checkEditTabAGroup3.Location = new System.Drawing.Point(2, 220);
+			this.checkEditTabAGroup3.Location = new System.Drawing.Point(2, 88);
 			this.checkEditTabAGroup3.Name = "checkEditTabAGroup3";
 			this.checkEditTabAGroup3.Properties.Caption = "";
 			this.checkEditTabAGroup3.Size = new System.Drawing.Size(19, 19);
@@ -557,7 +557,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader7
 			// 
-			this.textEditTabASubheader7.Location = new System.Drawing.Point(85, 218);
+			this.textEditTabASubheader7.Location = new System.Drawing.Point(85, 86);
 			this.textEditTabASubheader7.Name = "textEditTabASubheader7";
 			this.textEditTabASubheader7.Properties.NullText = "Type here";
 			this.textEditTabASubheader7.Size = new System.Drawing.Size(136, 22);
@@ -567,7 +567,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader9
 			// 
-			this.textEditTabASubheader9.Location = new System.Drawing.Point(357, 218);
+			this.textEditTabASubheader9.Location = new System.Drawing.Point(357, 86);
 			this.textEditTabASubheader9.Name = "textEditTabASubheader9";
 			this.textEditTabASubheader9.Properties.NullText = "Type here";
 			this.textEditTabASubheader9.Size = new System.Drawing.Size(303, 22);
@@ -579,7 +579,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			this.checkEditTabAGroup6.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup6.EditValue = true;
-			this.checkEditTabAGroup6.Location = new System.Drawing.Point(2, 544);
+			this.checkEditTabAGroup6.Location = new System.Drawing.Point(2, 412);
 			this.checkEditTabAGroup6.Name = "checkEditTabAGroup6";
 			this.checkEditTabAGroup6.Properties.Caption = "";
 			this.checkEditTabAGroup6.Size = new System.Drawing.Size(19, 19);
@@ -591,7 +591,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			this.checkEditTabASubheader14.AutoSizeInLayoutControl = true;
 			this.checkEditTabASubheader14.EditValue = true;
-			this.checkEditTabASubheader14.Location = new System.Drawing.Point(85, 584);
+			this.checkEditTabASubheader14.Location = new System.Drawing.Point(85, 452);
 			this.checkEditTabASubheader14.Name = "checkEditTabASubheader14";
 			this.checkEditTabASubheader14.Properties.Caption = "";
 			this.checkEditTabASubheader14.Size = new System.Drawing.Size(19, 19);
@@ -601,7 +601,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader13
 			// 
-			this.textEditTabASubheader13.Location = new System.Drawing.Point(85, 542);
+			this.textEditTabASubheader13.Location = new System.Drawing.Point(85, 410);
 			this.textEditTabASubheader13.Name = "textEditTabASubheader13";
 			this.textEditTabASubheader13.Properties.NullText = "Type here";
 			this.textEditTabASubheader13.Size = new System.Drawing.Size(575, 22);
@@ -613,7 +613,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			this.checkEditTabASubheader15.AutoSizeInLayoutControl = true;
 			this.checkEditTabASubheader15.EditValue = true;
-			this.checkEditTabASubheader15.Location = new System.Drawing.Point(399, 584);
+			this.checkEditTabASubheader15.Location = new System.Drawing.Point(399, 452);
 			this.checkEditTabASubheader15.Name = "checkEditTabASubheader15";
 			this.checkEditTabASubheader15.Properties.Caption = "";
 			this.checkEditTabASubheader15.Size = new System.Drawing.Size(19, 19);
@@ -623,7 +623,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader15
 			// 
-			this.textEditTabASubheader15.Location = new System.Drawing.Point(422, 583);
+			this.textEditTabASubheader15.Location = new System.Drawing.Point(422, 451);
 			this.textEditTabASubheader15.Name = "textEditTabASubheader15";
 			this.textEditTabASubheader15.Properties.NullText = "Type here";
 			this.textEditTabASubheader15.Size = new System.Drawing.Size(199, 22);
@@ -633,7 +633,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader12
 			// 
-			this.textEditTabASubheader12.Location = new System.Drawing.Point(85, 434);
+			this.textEditTabASubheader12.Location = new System.Drawing.Point(85, 302);
 			this.textEditTabASubheader12.Name = "textEditTabASubheader12";
 			this.textEditTabASubheader12.Properties.NullText = "Type here";
 			this.textEditTabASubheader12.Size = new System.Drawing.Size(401, 22);
@@ -645,7 +645,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			this.checkEditTabAGroup5.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup5.EditValue = true;
-			this.checkEditTabAGroup5.Location = new System.Drawing.Point(2, 436);
+			this.checkEditTabAGroup5.Location = new System.Drawing.Point(2, 304);
 			this.checkEditTabAGroup5.Name = "checkEditTabAGroup5";
 			this.checkEditTabAGroup5.Properties.Caption = "";
 			this.checkEditTabAGroup5.Size = new System.Drawing.Size(19, 19);
@@ -657,7 +657,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			this.checkEditTabAGroup4.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup4.EditValue = true;
-			this.checkEditTabAGroup4.Location = new System.Drawing.Point(2, 328);
+			this.checkEditTabAGroup4.Location = new System.Drawing.Point(2, 196);
 			this.checkEditTabAGroup4.Name = "checkEditTabAGroup4";
 			this.checkEditTabAGroup4.Properties.Caption = "";
 			this.checkEditTabAGroup4.Size = new System.Drawing.Size(19, 19);
@@ -667,7 +667,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader10
 			// 
-			this.textEditTabASubheader10.Location = new System.Drawing.Point(85, 326);
+			this.textEditTabASubheader10.Location = new System.Drawing.Point(85, 194);
 			this.textEditTabASubheader10.Name = "textEditTabASubheader10";
 			this.textEditTabASubheader10.Properties.NullText = "Type here";
 			this.textEditTabASubheader10.Size = new System.Drawing.Size(136, 22);
@@ -677,7 +677,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader11
 			// 
-			this.textEditTabASubheader11.Location = new System.Drawing.Point(357, 326);
+			this.textEditTabASubheader11.Location = new System.Drawing.Point(357, 194);
 			this.textEditTabASubheader11.Name = "textEditTabASubheader11";
 			this.textEditTabASubheader11.Properties.NullText = "Type here";
 			this.textEditTabASubheader11.Size = new System.Drawing.Size(303, 22);
@@ -692,7 +692,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
             0,
             0,
             0});
-			this.spinEditTabASubheader2.Location = new System.Drawing.Point(414, 2);
+			this.spinEditTabASubheader2.Location = new System.Drawing.Point(414, -130);
 			this.spinEditTabASubheader2.Name = "spinEditTabASubheader2";
 			this.spinEditTabASubheader2.Properties.DisplayFormat.FormatString = "$#,##0";
 			this.spinEditTabASubheader2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
@@ -718,7 +718,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
             0,
             0,
             0});
-			this.spinEditTabASubheader5.Location = new System.Drawing.Point(235, 110);
+			this.spinEditTabASubheader5.Location = new System.Drawing.Point(235, -22);
 			this.spinEditTabASubheader5.Name = "spinEditTabASubheader5";
 			this.spinEditTabASubheader5.Properties.DisplayFormat.FormatString = "N00";
 			this.spinEditTabASubheader5.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -744,7 +744,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
             0,
             0,
             0});
-			this.spinEditTabASubheader8.Location = new System.Drawing.Point(235, 218);
+			this.spinEditTabASubheader8.Location = new System.Drawing.Point(235, 86);
 			this.spinEditTabASubheader8.Name = "spinEditTabASubheader8";
 			this.spinEditTabASubheader8.Properties.DisplayFormat.FormatString = "##0\'%\'";
 			this.spinEditTabASubheader8.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
@@ -770,7 +770,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
             0,
             0,
             0});
-			this.spinEditTabASubheader14.Location = new System.Drawing.Point(108, 583);
+			this.spinEditTabASubheader14.Location = new System.Drawing.Point(108, 451);
 			this.spinEditTabASubheader14.Name = "spinEditTabASubheader14";
 			this.spinEditTabASubheader14.Properties.DisplayFormat.FormatString = "$#,##0";
 			this.spinEditTabASubheader14.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
@@ -809,7 +809,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI
 			this.layoutControlGroupRootInner.GroupBordersVisible = false;
 			this.layoutControlGroupRootInner.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroupTabAInner});
-			this.layoutControlGroupRootInner.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupRootInner.Location = new System.Drawing.Point(0, -132);
 			this.layoutControlGroupRootInner.Name = "Root";
 			this.layoutControlGroupRootInner.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 40, 0, 0);
 			this.layoutControlGroupRootInner.Size = new System.Drawing.Size(702, 612);

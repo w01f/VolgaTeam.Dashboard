@@ -38,13 +38,13 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals
 			clipartEditContainer3.Init(ImageClipartObject.FromImage(CustomTabInfo.Clipart3Image), CustomTabInfo.Clipart3Configuration, TabPageContainer.ParentControl);
 			clipartEditContainer3.EditValueChanged += OnEditValueChanged;
 
-			memoPopupEdit1.Init(SlideContainer.ShiftInfo.ClientGoalsLists.Goals, CustomTabInfo.Combo1DefaultItem, CustomTabInfo.Combo1Configuration, SlideContainer.StyleConfiguration, SlideContainer.ResourceManager);
+			memoPopupEdit1.Init(SlideContainer.ShiftInfo.ClientGoalsLists.Goals, CustomTabInfo.MemoPopup1DefaultItem, CustomTabInfo.MemoPopup1Configuration, SlideContainer.StyleConfiguration, SlideContainer.ResourceManager);
 			memoPopupEdit1.EditValueChanged += OnEditValueChanged;
 
-			memoPopupEdit2.Init(SlideContainer.ShiftInfo.ClientGoalsLists.Goals, CustomTabInfo.Combo2DefaultItem, CustomTabInfo.Combo2Configuration, SlideContainer.StyleConfiguration, SlideContainer.ResourceManager);
+			memoPopupEdit2.Init(SlideContainer.ShiftInfo.ClientGoalsLists.Goals, CustomTabInfo.MemoPopup2DefaultItem, CustomTabInfo.MemoPopup2Configuration, SlideContainer.StyleConfiguration, SlideContainer.ResourceManager);
 			memoPopupEdit2.EditValueChanged += OnEditValueChanged;
 
-			memoPopupEdit3.Init(SlideContainer.ShiftInfo.ClientGoalsLists.Goals, CustomTabInfo.Combo3DefaultItem, CustomTabInfo.Combo3Configuration, SlideContainer.StyleConfiguration, SlideContainer.ResourceManager);
+			memoPopupEdit3.Init(SlideContainer.ShiftInfo.ClientGoalsLists.Goals, CustomTabInfo.MemoPopup3DefaultItem, CustomTabInfo.MemoPopup3Configuration, SlideContainer.StyleConfiguration, SlideContainer.ResourceManager);
 			memoPopupEdit3.EditValueChanged += OnEditValueChanged;
 		}
 
@@ -59,9 +59,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals
 			comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.GoalsState.TabC.SlideHeader ??
 				CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
 
-			memoPopupEdit1.LoadData(SlideContainer.EditedContent.GoalsState.TabC.Combo1);
-			memoPopupEdit2.LoadData(SlideContainer.EditedContent.GoalsState.TabC.Combo2);
-			memoPopupEdit3.LoadData(SlideContainer.EditedContent.GoalsState.TabC.Combo3);
+			memoPopupEdit1.LoadData(SlideContainer.EditedContent.GoalsState.TabC.MemoPopup1);
+			memoPopupEdit2.LoadData(SlideContainer.EditedContent.GoalsState.TabC.MemoPopup2);
+			memoPopupEdit3.LoadData(SlideContainer.EditedContent.GoalsState.TabC.MemoPopup3);
 
 			_allowToSave = true;
 		}
@@ -79,9 +79,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals
 				slideHeaderValue :
 				null;
 
-			SlideContainer.EditedContent.GoalsState.TabC.Combo1 = memoPopupEdit1.GetSelectedItem();
-			SlideContainer.EditedContent.GoalsState.TabC.Combo2 = memoPopupEdit2.GetSelectedItem();
-			SlideContainer.EditedContent.GoalsState.TabC.Combo3 = memoPopupEdit3.GetSelectedItem();
+			SlideContainer.EditedContent.GoalsState.TabC.MemoPopup1 = memoPopupEdit1.GetSelectedItem();
+			SlideContainer.EditedContent.GoalsState.TabC.MemoPopup2 = memoPopupEdit2.GetSelectedItem();
+			SlideContainer.EditedContent.GoalsState.TabC.MemoPopup3 = memoPopupEdit3.GetSelectedItem();
 
 			_dataChanged = false;
 		}
@@ -116,7 +116,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals
 			var clipart1 = SlideContainer.EditedContent.GoalsState.TabC.Clipart1 ??
 						  ImageClipartObject.FromImage(CustomTabInfo.Clipart1Image);
 			if (clipart1 != null)
+			{
+				clipart1.OutputBackground = true;
 				outputDataPackage.ClipartItems.Add("SHIFT04CCLIPART1", clipart1);
+			}
 			var clipart2 = SlideContainer.EditedContent.GoalsState.TabC.Clipart2 ??
 						   ImageClipartObject.FromImage(CustomTabInfo.Clipart2Image);
 			if (clipart2 != null)
@@ -130,9 +133,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals
 				CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;
 			var combos = new[]
 				{
-					(SlideContainer.EditedContent.GoalsState.TabC.Combo1??CustomTabInfo.Combo1DefaultItem)?.Value,
-					(SlideContainer.EditedContent.GoalsState.TabC.Combo2 ?? CustomTabInfo.Combo2DefaultItem)?.Value,
-					(SlideContainer.EditedContent.GoalsState.TabC.Combo3 ?? CustomTabInfo.Combo3DefaultItem)?.Value,
+					(SlideContainer.EditedContent.GoalsState.TabC.MemoPopup1??CustomTabInfo.MemoPopup1DefaultItem)?.Value,
+					(SlideContainer.EditedContent.GoalsState.TabC.MemoPopup2 ?? CustomTabInfo.MemoPopup2DefaultItem)?.Value,
+					(SlideContainer.EditedContent.GoalsState.TabC.MemoPopup3 ?? CustomTabInfo.MemoPopup3DefaultItem)?.Value,
 				}
 				.Where(item => !String.IsNullOrWhiteSpace(item))
 				.ToList();

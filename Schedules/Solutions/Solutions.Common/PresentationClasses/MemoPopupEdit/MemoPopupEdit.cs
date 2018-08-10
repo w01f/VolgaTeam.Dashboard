@@ -40,7 +40,11 @@ namespace Asa.Solutions.Common.PresentationClasses.MemoPopupEdit
 			layoutControlItemDown.MinSize = RectangleHelper.ScaleSize(layoutControlItemDown.MinSize, scaleFactor);
 		}
 
-		public void Init(IList<ListDataItem> sourceList, ListDataItem defaultItem, TextEditorConfiguration editorConfiguration, MainFormStyleConfiguration styleConfiguration, ISolutionsResourceManager resourceManager)
+		public void Init(IList<ListDataItem> sourceList,
+			ListDataItem defaultItem,
+			TextEditorConfiguration editorConfiguration,
+			MainFormStyleConfiguration styleConfiguration,
+			ISolutionsResourceManager resourceManager)
 		{
 			_sourceList.Clear();
 			_sourceList.AddRange(sourceList);
@@ -90,6 +94,10 @@ namespace Asa.Solutions.Common.PresentationClasses.MemoPopupEdit
 					layoutControl.Appearance.ControlDropDownHeader.ForeColor = editorConfiguration.DropdownForeColor;
 				}
 			}
+
+			pictureEditUp.Image = resourceManager?.SolutionMemoPopupUp ?? pictureEditUp.Image;
+			pictureEditDown.Image = resourceManager?.SolutionMemoPopupDown ?? pictureEditDown.Image;
+			pictureEditList.Image = resourceManager?.SolutionMemoPopupList ?? pictureEditList.Image;
 		}
 
 		public void LoadData(ListDataItem selectedItem)

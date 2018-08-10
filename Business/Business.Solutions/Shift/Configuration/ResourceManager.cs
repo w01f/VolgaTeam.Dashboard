@@ -263,6 +263,12 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 5
+		public StorageFile DataMarketPartAFile { get; private set; }
+		public StorageFile DataMarketPartBFile { get; private set; }
+		public StorageFile DataMarketPartCFile { get; private set; }
+		public StorageFile DataMarketPartDFile { get; private set; }
+		public StorageFile DataMarketPartEFile { get; private set; }
+
 		public StorageFile LogoTab5SubARightFile { get; private set; }
 		public StorageFile LogoTab5SubAFooterFile { get; private set; }
 		public StorageFile LogoTab5SubABackgroundFile { get; private set; }
@@ -303,6 +309,29 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab5SubWFooterFile { get; private set; }
 		public StorageFile LogoTab5SubWBackgroundFile { get; private set; }
 
+		public StorageFile ClipartTab5SubA1File { get; private set; }
+		public StorageFile ClipartTab5SubA2File { get; private set; }
+		public StorageFile ClipartTab5SubA3File { get; private set; }
+		public StorageFile ClipartTab5SubA4File { get; private set; }
+		public StorageFile ClipartTab5SubA5File { get; private set; }
+		public StorageFile ClipartTab5SubB1File { get; private set; }
+		public StorageFile ClipartTab5SubB2File { get; private set; }
+		public StorageFile ClipartTab5SubB3File { get; private set; }
+		public StorageFile ClipartTab5SubB4File { get; private set; }
+		public StorageFile ClipartTab5SubB5File { get; private set; }
+		public StorageFile ClipartTab5SubC1File { get; private set; }
+		public StorageFile ClipartTab5SubC2File { get; private set; }
+		public StorageFile ClipartTab5SubC3File { get; private set; }
+		public StorageFile ClipartTab5SubC4File { get; private set; }
+		public StorageFile ClipartTab5SubC5File { get; private set; }
+		public StorageFile ClipartTab5SubD1File { get; private set; }
+		public StorageFile ClipartTab5SubD2File { get; private set; }
+		public StorageFile ClipartTab5SubD3File { get; private set; }
+		public StorageFile ClipartTab5SubD4File { get; private set; }
+		public StorageFile ClipartTab5SubD5File { get; private set; }
+		public StorageFile ClipartTab5SubE1File { get; private set; }
+		public StorageFile ClipartTab5SubE2File { get; private set; }
+		
 		public StorageDirectory Tab5PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab5PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab5PartWSlidesFolder { get; private set; }
@@ -940,6 +969,12 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			#endregion
 
 			#region Tab 5
+			DataMarketPartAFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT05A.xml"));
+			DataMarketPartBFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT05B.xml"));
+			DataMarketPartCFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT05C.xml"));
+			DataMarketPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT05D.xml"));
+			DataMarketPartEFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT05E.xml"));
+
 			LogoTab5SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_a", "design_branding", "5a_right.png" }));
 			LogoTab5SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_a", "design_branding", "5a_footer.png" }));
 			LogoTab5SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_b", "design_branding", "5b_right.png" }));
@@ -981,6 +1016,29 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab5SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_v", "design_branding", "background.png" }));
 			LogoTab5SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_w", "design_branding", "background.png" }));
 
+			ClipartTab5SubA1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_a", "placeholders", "SHIFT05ACLIPART1.png" }));
+			ClipartTab5SubA2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_a", "placeholders", "SHIFT05ACLIPART2.png" }));
+			ClipartTab5SubA3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_a", "placeholders", "SHIFT05ACLIPART3.png" }));
+			ClipartTab5SubA4File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_a", "placeholders", "SHIFT05ACLIPART4.png" }));
+			ClipartTab5SubA5File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_a", "placeholders", "SHIFT05ACLIPART5.png" }));
+			ClipartTab5SubB1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_b", "placeholders", "SHIFT05BCLIPART1.png" }));
+			ClipartTab5SubB2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_b", "placeholders", "SHIFT05BCLIPART2.png" }));
+			ClipartTab5SubB3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_b", "placeholders", "SHIFT05BCLIPART3.png" }));
+			ClipartTab5SubB4File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_b", "placeholders", "SHIFT05BCLIPART4.png" }));
+			ClipartTab5SubB5File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_b", "placeholders", "SHIFT05BCLIPART5.png" }));
+			ClipartTab5SubC1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_c", "placeholders", "SHIFT05CCLIPART1.png" }));
+			ClipartTab5SubC2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_c", "placeholders", "SHIFT05CCLIPART2.png" }));
+			ClipartTab5SubC3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_c", "placeholders", "SHIFT05CCLIPART3.png" }));
+			ClipartTab5SubC4File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_c", "placeholders", "SHIFT05CCLIPART4.png" }));
+			ClipartTab5SubC5File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_c", "placeholders", "SHIFT05CCLIPART5.png" }));
+			ClipartTab5SubD1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_d", "placeholders", "SHIFT05DCLIPART1.png" }));
+			ClipartTab5SubD2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_d", "placeholders", "SHIFT05DCLIPART2.png" }));
+			ClipartTab5SubD3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_d", "placeholders", "SHIFT05DCLIPART3.png" }));
+			ClipartTab5SubD4File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_d", "placeholders", "SHIFT05DCLIPART4.png" }));
+			ClipartTab5SubD5File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_d", "placeholders", "SHIFT05DCLIPART5.png" }));
+			ClipartTab5SubE1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_e", "placeholders", "SHIFT05ECLIPART1.png" }));
+			ClipartTab5SubE2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_e", "placeholders", "SHIFT05ECLIPART2.png" }));
+			
 			Tab5PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_u" }));
 			Tab5PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_v" }));
 			Tab5PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_w" }));

@@ -178,6 +178,12 @@
 			this.pictureEdit.Properties.AllowFocused = false;
 			this.pictureEdit.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
 			this.pictureEdit.Properties.Appearance.Options.UseBackColor = true;
+			this.pictureEdit.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEdit.Properties.AppearanceDisabled.Options.UseBackColor = true;
+			this.pictureEdit.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEdit.Properties.AppearanceFocused.Options.UseBackColor = true;
+			this.pictureEdit.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEdit.Properties.AppearanceReadOnly.Options.UseBackColor = true;
 			this.pictureEdit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEdit.Properties.NullText = " ";
 			this.pictureEdit.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;

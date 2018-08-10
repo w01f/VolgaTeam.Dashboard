@@ -17,14 +17,14 @@ namespace Asa.Business.Solutions.Shift.Configuration.Goals
 		public Image Clipart3Image { get; private set; }
 		public ClipartConfiguration Clipart3Configuration { get; private set; }
 
-		public ListDataItem Combo1DefaultItem { get; private set; }
-		public TextEditorConfiguration Combo1Configuration { get; set; }
+		public ListDataItem MemoPopup1DefaultItem { get; private set; }
+		public TextEditorConfiguration MemoPopup1Configuration { get; set; }
 
-		public ListDataItem Combo2DefaultItem { get; private set; }
-		public TextEditorConfiguration Combo2Configuration { get; set; }
+		public ListDataItem MemoPopup2DefaultItem { get; private set; }
+		public TextEditorConfiguration MemoPopup2Configuration { get; set; }
 
-		public ListDataItem Combo3DefaultItem { get; private set; }
-		public TextEditorConfiguration Combo3Configuration { get; set; }
+		public ListDataItem MemoPopup3DefaultItem { get; private set; }
+		public TextEditorConfiguration MemoPopup3Configuration { get; set; }
 
 		public GoalsTabAInfo() : base(ShiftChildTabType.A)
 		{
@@ -32,9 +32,9 @@ namespace Asa.Business.Solutions.Shift.Configuration.Goals
 			Clipart2Configuration = new ClipartConfiguration();
 			Clipart3Configuration = new ClipartConfiguration();
 
-			Combo1Configuration = TextEditorConfiguration.Empty();
-			Combo2Configuration = TextEditorConfiguration.Empty();
-			Combo3Configuration = TextEditorConfiguration.Empty();
+			MemoPopup1Configuration = TextEditorConfiguration.Empty();
+			MemoPopup2Configuration = TextEditorConfiguration.Empty();
+			MemoPopup3Configuration = TextEditorConfiguration.Empty();
 		}
 
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
@@ -78,13 +78,13 @@ namespace Asa.Business.Solutions.Shift.Configuration.Goals
 							HeadersItems.Add(item);
 						break;
 					case "SHIFT04AMULTIBOX1":
-						Combo1DefaultItem = item;
+						MemoPopup1DefaultItem = item;
 						break;
 					case "SHIFT04AMULTIBOX2":
-						Combo2DefaultItem = item;
+						MemoPopup2DefaultItem = item;
 						break;
 					case "SHIFT04AMULTIBOX3":
-						Combo3DefaultItem = item;
+						MemoPopup3DefaultItem = item;
 						break;
 				}
 			}
@@ -95,9 +95,9 @@ namespace Asa.Business.Solutions.Shift.Configuration.Goals
 			
 			CommonEditorConfiguration = TextEditorConfiguration.FromXml(node);
 			HeadersEditorConfiguration = TextEditorConfiguration.FromXml(node, "SHIFT04AHeader");
-			Combo1Configuration = TextEditorConfiguration.FromXml(node, "SHIFT04AMULTIBOX1");
-			Combo2Configuration = TextEditorConfiguration.FromXml(node, "SHIFT04AMULTIBOX2");
-			Combo3Configuration = TextEditorConfiguration.FromXml(node, "SHIFT04AMULTIBOX3");
+			MemoPopup1Configuration = TextEditorConfiguration.FromXml(node, "SHIFT04AMULTIBOX1");
+			MemoPopup2Configuration = TextEditorConfiguration.FromXml(node, "SHIFT04AMULTIBOX2");
+			MemoPopup3Configuration = TextEditorConfiguration.FromXml(node, "SHIFT04AMULTIBOX3");
 		}
 	}
 }

@@ -57,7 +57,7 @@ namespace Asa.Solutions.Common.Helpers
 			else if (!_configuration.ForeColor.IsEmpty)
 				editor.Properties.Appearance.ForeColor = _configuration.ForeColor;
 			else
-				editor.Properties.Appearance.Reset();
+				editor.Properties.Appearance.ForeColor = editor.Properties.AppearanceFocused.ForeColor;
 		}
 	}
 

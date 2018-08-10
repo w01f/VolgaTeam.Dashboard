@@ -81,7 +81,7 @@
 			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutControl.Location = new System.Drawing.Point(0, 0);
 			this.layoutControl.Name = "layoutControl";
-			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(664, 296, 450, 400);
+			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(664, 299, 450, 400);
 			this.layoutControl.OptionsFocus.ActivateSelectedControlOnGotFocus = false;
 			this.layoutControl.OptionsFocus.AllowFocusGroups = false;
 			this.layoutControl.OptionsFocus.AllowFocusReadonlyEditors = false;
@@ -195,7 +195,10 @@
 			// 
 			// layoutControlGroupRoot
 			// 
+			this.layoutControlGroupRoot.AppearanceGroup.BackColor = System.Drawing.Color.Transparent;
+			this.layoutControlGroupRoot.AppearanceGroup.BackColor2 = System.Drawing.Color.Transparent;
 			this.layoutControlGroupRoot.AppearanceGroup.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.layoutControlGroupRoot.AppearanceGroup.Options.UseBackColor = true;
 			this.layoutControlGroupRoot.AppearanceGroup.Options.UseFont = true;
 			this.layoutControlGroupRoot.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControlGroupRoot.AppearanceItemCaption.Options.UseFont = true;
@@ -255,10 +258,12 @@
 			this.layoutControlItemMemo.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemMemo.FillControlToClientArea = false;
 			this.layoutControlItemMemo.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemMemo.MinSize = new System.Drawing.Size(10, 18);
 			this.layoutControlItemMemo.Name = "layoutControlItemMemo";
 			this.layoutControlItemMemo.OptionsTableLayoutItem.RowSpan = 5;
 			this.layoutControlItemMemo.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
 			this.layoutControlItemMemo.Size = new System.Drawing.Size(428, 211);
+			this.layoutControlItemMemo.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemMemo.Text = "Memo";
 			this.layoutControlItemMemo.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemMemo.TextVisible = false;
@@ -322,8 +327,9 @@
 			// 
 			// MemoPopupEdit
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.BackColor = System.Drawing.Color.Transparent;
 			this.Controls.Add(this.layoutControl);
 			this.Name = "MemoPopupEdit";
 			this.Size = new System.Drawing.Size(457, 211);

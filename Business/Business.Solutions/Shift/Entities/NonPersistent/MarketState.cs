@@ -3,22 +3,24 @@ using Asa.Business.Solutions.Common.Entities.NonPersistent;
 
 namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 {
-	public class GoalsState
+	public class MarketState
 	{
 		public TabAState TabA { get; }
 		public TabBState TabB { get; }
 		public TabCState TabC { get; }
 		public TabDState TabD { get; }
+		public TabEState TabE { get; }
 		public TabUState TabU { get; }
 		public TabVState TabV { get; }
 		public TabWState TabW { get; }
 
-		public GoalsState()
+		public MarketState()
 		{
 			TabA = new TabAState();
 			TabB = new TabBState();
 			TabC = new TabCState();
 			TabD = new TabDState();
+			TabE = new TabEState();
 			TabU = new TabUState();
 			TabV = new TabVState();
 			TabW = new TabWState();
@@ -31,9 +33,17 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			public ClipartObject Clipart1 { get; set; }
 			public ClipartObject Clipart2 { get; set; }
 			public ClipartObject Clipart3 { get; set; }
+			public ClipartObject Clipart4 { get; set; }
+			public ClipartObject Clipart5 { get; set; }
+			public ListDataItem Combo1 { get; set; }
 			public ListDataItem MemoPopup1 { get; set; }
 			public ListDataItem MemoPopup2 { get; set; }
 			public ListDataItem MemoPopup3 { get; set; }
+			public decimal? Subheader1 { get; set; }
+			public string Subheader2 { get; set; }
+			public decimal? Subheader3 { get; set; }
+			public decimal? Subheader4 { get; set; }
+			public decimal? Subheader5 { get; set; }
 		}
 
 		public class TabBState
@@ -43,9 +53,17 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			public ClipartObject Clipart1 { get; set; }
 			public ClipartObject Clipart2 { get; set; }
 			public ClipartObject Clipart3 { get; set; }
+			public ClipartObject Clipart4 { get; set; }
+			public ClipartObject Clipart5 { get; set; }
+			public ListDataItem Combo1 { get; set; }
 			public ListDataItem MemoPopup1 { get; set; }
 			public ListDataItem MemoPopup2 { get; set; }
 			public ListDataItem MemoPopup3 { get; set; }
+			public decimal? Subheader1 { get; set; }
+			public string Subheader2 { get; set; }
+			public decimal? Subheader3 { get; set; }
+			public decimal? Subheader4 { get; set; }
+			public decimal? Subheader5 { get; set; }
 		}
 
 		public class TabCState
@@ -55,9 +73,17 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			public ClipartObject Clipart1 { get; set; }
 			public ClipartObject Clipart2 { get; set; }
 			public ClipartObject Clipart3 { get; set; }
+			public ClipartObject Clipart4 { get; set; }
+			public ClipartObject Clipart5 { get; set; }
+			public ListDataItem Combo1 { get; set; }
 			public ListDataItem MemoPopup1 { get; set; }
 			public ListDataItem MemoPopup2 { get; set; }
 			public ListDataItem MemoPopup3 { get; set; }
+			public decimal? Subheader1 { get; set; }
+			public string Subheader2 { get; set; }
+			public decimal? Subheader3 { get; set; }
+			public decimal? Subheader4 { get; set; }
+			public decimal? Subheader5 { get; set; }
 		}
 
 		public class TabDState
@@ -67,9 +93,44 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			public ClipartObject Clipart1 { get; set; }
 			public ClipartObject Clipart2 { get; set; }
 			public ClipartObject Clipart3 { get; set; }
+			public ClipartObject Clipart4 { get; set; }
+			public ClipartObject Clipart5 { get; set; }
+			public ListDataItem Combo1 { get; set; }
+			public ListDataItem Combo2 { get; set; }
 			public ListDataItem MemoPopup1 { get; set; }
 			public ListDataItem MemoPopup2 { get; set; }
 			public ListDataItem MemoPopup3 { get; set; }
+			public decimal? Subheader1 { get; set; }
+			public string Subheader2 { get; set; }
+			public decimal? Subheader3 { get; set; }
+			public decimal? Subheader4 { get; set; }
+			public decimal? Subheader5 { get; set; }
+		}
+
+		public class TabEState
+		{
+			public ListDataItem SlideHeader { get; set; }
+			public bool? EnableOutput { get; set; }
+			public ClipartObject Clipart1 { get; set; }
+			public ClipartObject Clipart2 { get; set; }
+			public ListDataItem Combo1 { get; set; }
+			public ListDataItem Combo2 { get; set; }
+			public ListDataItem Combo3 { get; set; }
+			public ListDataItem Combo4 { get; set; }
+			public ListDataItem Combo5 { get; set; }
+			public ListDataItem Combo6 { get; set; }
+			public ListDataItem Combo7 { get; set; }
+			public ListDataItem Combo8 { get; set; }
+			public ListDataItem Combo9 { get; set; }
+			public ListDataItem Combo10 { get; set; }
+			public ListDataItem Combo11 { get; set; }
+			public ListDataItem Combo12 { get; set; }
+			public ListDataItem Combo13 { get; set; }
+			public decimal? Subheader1 { get; set; }
+			public string Subheader2 { get; set; }
+			public decimal? Subheader3 { get; set; }
+			public decimal? Subheader4 { get; set; }
+			public decimal? Subheader5 { get; set; }
 		}
 
 		public class TabUState

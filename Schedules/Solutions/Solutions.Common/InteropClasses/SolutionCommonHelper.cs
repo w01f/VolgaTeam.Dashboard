@@ -8,6 +8,7 @@ using Asa.Business.Solutions.Common.Enums;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Solutions.Common.PresentationClasses.Output;
 using Microsoft.Office.Core;
+using Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Interop.PowerPoint;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
@@ -28,7 +29,7 @@ namespace Asa.Solutions.Common.InteropClasses
 					var presentation = target.PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					foreach (Slide slide in presentation.Slides)
 					{
-						var clipartShapes = new List<Shape>();
+						var backgroundClipartShapes = new List<Shape>();
 						foreach (Shape shape in slide.Shapes)
 						{
 							for (var i = 1; i <= shape.Tags.Count; i++)
@@ -40,10 +41,15 @@ namespace Asa.Solutions.Common.InteropClasses
 									{
 										var clipartObject = dataPackage.ClipartItems[tagName.ToUpper()];
 										var newShape = slide.Shapes.AddClipartObject(clipartObject, shape);
-										if (newShape != null)
-											clipartShapes.Add(newShape);
+										if (newShape != null && clipartObject.OutputBackground)
+											backgroundClipartShapes.Add(newShape);
 									}
 									shape.Visible = MsoTriState.msoFalse;
+								}
+								else if (tagName.ToUpper().Contains("CHART"))
+								{
+									if (dataPackage.ChartItems.ContainsKey(tagName.ToUpper()))
+										shape.UpdateChartData(dataPackage.ChartItems[tagName.ToUpper()]);
 								}
 								else if (shape.TextFrame.HasText != MsoTriState.msoFalse)
 								{
@@ -55,7 +61,7 @@ namespace Asa.Solutions.Common.InteropClasses
 							}
 						}
 
-						foreach (var clipartShape in clipartShapes)
+						foreach (var clipartShape in backgroundClipartShapes)
 							clipartShape.ZOrder(MsoZOrderCmd.msoSendToBack);
 
 					}
@@ -157,6 +163,14 @@ namespace Asa.Solutions.Common.InteropClasses
 					throw new ArgumentOutOfRangeException("Undefined clipart type found");
 			}
 			return shape;
+		}
+
+		private static void UpdateChartData(this Shape shape, Dictionary<string, decimal> chartData)
+		{
+			if (shape.HasChart == MsoTriState.msoFalse) return;
+			var dataWorksheet = (Worksheet)((Workbook)shape.Chart.ChartData.Workbook).Worksheets[1];
+			foreach (var chartDataItem in chartData)
+				dataWorksheet.Range[chartDataItem.Key].Value = chartDataItem.Value;
 		}
 	}
 }

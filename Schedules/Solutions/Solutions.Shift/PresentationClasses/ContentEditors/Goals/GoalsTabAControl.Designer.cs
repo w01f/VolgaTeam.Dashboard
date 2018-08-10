@@ -321,6 +321,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals
 			// 
 			// memoPopupEdit3
 			// 
+			this.memoPopupEdit3.BackColor = System.Drawing.Color.Transparent;
 			this.memoPopupEdit3.Location = new System.Drawing.Point(499, 336);
 			this.memoPopupEdit3.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
 			this.memoPopupEdit3.Name = "memoPopupEdit3";
@@ -345,6 +346,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals
 			// 
 			// memoPopupEdit1
 			// 
+			this.memoPopupEdit1.BackColor = System.Drawing.Color.Transparent;
 			this.memoPopupEdit1.Location = new System.Drawing.Point(499, 22);
 			this.memoPopupEdit1.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
 			this.memoPopupEdit1.Name = "memoPopupEdit1";
@@ -368,6 +370,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals
 			// 
 			// memoPopupEdit2
 			// 
+			this.memoPopupEdit2.BackColor = System.Drawing.Color.Transparent;
 			this.memoPopupEdit2.Location = new System.Drawing.Point(499, 179);
 			this.memoPopupEdit2.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
 			this.memoPopupEdit2.Name = "memoPopupEdit2";

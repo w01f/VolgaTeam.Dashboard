@@ -241,8 +241,17 @@ namespace Asa.Common.Core.Helpers
 					case "Shift_05e_mktopp":
 						slideType = SlideType.ShiftMarketE;
 						break;
-					case "Shift_06_our_partnership":
-						slideType = SlideType.ShiftPartnership;
+					case "Shift_06a_prtnr":
+						slideType = SlideType.ShiftPartnershipA;
+						break;
+					case "Shift_06b_prtnr":
+						slideType = SlideType.ShiftPartnershipB;
+						break;
+					case "Shift_06c_prtnr":
+						slideType = SlideType.ShiftPartnershipC;
+						break;
+					case "Shift_06d_prtnr":
+						slideType = SlideType.ShiftPartnershipD;
 						break;
 					case "Shift_07_needs_solutions":
 						slideType = SlideType.ShiftNeedsSolutions;

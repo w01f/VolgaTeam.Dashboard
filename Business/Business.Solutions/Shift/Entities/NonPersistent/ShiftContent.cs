@@ -14,6 +14,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public AgendaState AgendaState { get; }
 		public GoalsState GoalsState { get; }
 		public MarketState MarketState { get; }
+		public PartnershipState PartnershipState { get; }
 
 		protected ShiftContent()
 		{
@@ -22,6 +23,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			AgendaState = new AgendaState();
 			GoalsState = new GoalsState();
 			MarketState = new MarketState();
+			PartnershipState = new PartnershipState();
 		}
 
 		protected override void AfterCreate()

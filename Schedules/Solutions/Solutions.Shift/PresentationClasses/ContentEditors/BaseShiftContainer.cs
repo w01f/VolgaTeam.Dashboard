@@ -17,6 +17,7 @@ using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Intro;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market;
+using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Partnership;
 using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 using DevExpress.XtraTab;
@@ -91,6 +92,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 						break;
 					case ShiftTopTabType.Market:
 						_slides.Add(new ShiftTabPageContainerControl<MarketControl>(this, tabInfo));
+						break;
+					case ShiftTopTabType.Partnership:
+						_slides.Add(new ShiftTabPageContainerControl<PartnershipControl>(this, tabInfo));
 						break;
 					default:
 						_slides.Add(new ShiftTabPageContainerControl<CommonTopTabControl>(this, tabInfo));

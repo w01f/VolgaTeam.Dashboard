@@ -227,6 +227,33 @@
     <Compile Include="PresentationClasses\ContentEditors\MultiTabControl.Designer.cs">
       <DependentUpon>MultiTabControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Partnership\PartnershipControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabBControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabBControl.Designer.cs">
+      <DependentUpon>PartnershipTabBControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabDControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabDControl.Designer.cs">
+      <DependentUpon>PartnershipTabDControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabCControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabCControl.Designer.cs">
+      <DependentUpon>PartnershipTabCControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabAControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabAControl.Designer.cs">
+      <DependentUpon>PartnershipTabAControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\SlidesTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -331,6 +358,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\MultiTabControl.resx">
       <DependentUpon>MultiTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabBControl.resx">
+      <DependentUpon>PartnershipTabBControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabDControl.resx">
+      <DependentUpon>PartnershipTabDControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabCControl.resx">
+      <DependentUpon>PartnershipTabCControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabAControl.resx">
+      <DependentUpon>PartnershipTabAControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\SlidesTabControl.resx">
       <DependentUpon>SlidesTabControl.cs</DependentUpon>

@@ -338,6 +338,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 6
+		public StorageFile DataPartnershipPartAFile { get; private set; }
+		public StorageFile DataPartnershipPartBFile { get; private set; }
+		public StorageFile DataPartnershipPartCFile { get; private set; }
+		public StorageFile DataPartnershipPartDFile { get; private set; }
+
 		public StorageFile LogoTab6SubARightFile { get; private set; }
 		public StorageFile LogoTab6SubAFooterFile { get; private set; }
 		public StorageFile LogoTab6SubABackgroundFile { get; private set; }
@@ -377,6 +382,15 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab6SubWRightFile { get; private set; }
 		public StorageFile LogoTab6SubWFooterFile { get; private set; }
 		public StorageFile LogoTab6SubWBackgroundFile { get; private set; }
+
+		public StorageFile ClipartTab6SubA1File { get; private set; }
+		public StorageFile ClipartTab6SubA2File { get; private set; }
+		public StorageFile ClipartTab6SubB1File { get; private set; }
+		public StorageFile ClipartTab6SubB2File { get; private set; }
+		public StorageFile ClipartTab6SubC1File { get; private set; }
+		public StorageFile ClipartTab6SubC2File { get; private set; }
+		public StorageFile ClipartTab6SubD1File { get; private set; }
+		public StorageFile ClipartTab6SubD2File { get; private set; }
 
 		public StorageDirectory Tab6PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab6PartVSlidesFolder { get; private set; }
@@ -1045,6 +1059,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			#endregion
 
 			#region Tab 6
+			DataPartnershipPartAFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT06A.xml"));
+			DataPartnershipPartBFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT06B.xml"));
+			DataPartnershipPartCFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT06C.xml"));
+			DataPartnershipPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT06D.xml"));
+
 			LogoTab6SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_a", "design_branding", "6a_right.png" }));
 			LogoTab6SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_a", "design_branding", "6a_footer.png" }));
 			LogoTab6SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_b", "design_branding", "6b_right.png" }));
@@ -1085,6 +1104,15 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab6SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_u", "design_branding", "background.png" }));
 			LogoTab6SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_v", "design_branding", "background.png" }));
 			LogoTab6SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_w", "design_branding", "background.png" }));
+
+			ClipartTab6SubA1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_a", "placeholders", "SHIFT06ACLIPART1.png" }));
+			ClipartTab6SubA2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_a", "placeholders", "SHIFT06ACLIPART2.png" }));
+			ClipartTab6SubB1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_b", "placeholders", "SHIFT06BCLIPART1.png" }));
+			ClipartTab6SubB2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_b", "placeholders", "SHIFT06BCLIPART2.png" }));
+			ClipartTab6SubC1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_c", "placeholders", "SHIFT06CCLIPART1.png" }));
+			ClipartTab6SubC2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_c", "placeholders", "SHIFT06CCLIPART2.png" }));
+			ClipartTab6SubD1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_d", "placeholders", "SHIFT06DCLIPART1.png" }));
+			ClipartTab6SubD2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_d", "placeholders", "SHIFT06DCLIPART2.png" }));
 
 			Tab6PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_u" }));
 			Tab6PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_v" }));

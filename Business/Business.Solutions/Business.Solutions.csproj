@@ -115,6 +115,11 @@
     <Compile Include="Shift\Configuration\Market\MarketTabCInfo.cs" />
     <Compile Include="Shift\Configuration\Market\MarketTabBInfo.cs" />
     <Compile Include="Shift\Configuration\Market\MarketTabAInfo.cs" />
+    <Compile Include="Shift\Configuration\Partnership\PartnershipTabInfo.cs" />
+    <Compile Include="Shift\Configuration\Partnership\PartnershipTabDInfo.cs" />
+    <Compile Include="Shift\Configuration\Partnership\PartnershipTabCInfo.cs" />
+    <Compile Include="Shift\Configuration\Partnership\PartnershipTabBInfo.cs" />
+    <Compile Include="Shift\Configuration\Partnership\PartnershipTabAInfo.cs" />
     <Compile Include="Shift\Configuration\SlidesChildTabInfo.cs" />
     <Compile Include="Shift\Configuration\ShiftChildTabInfo.cs" />
     <Compile Include="Shift\Configuration\ShiftChildTabsContainer.cs" />
@@ -124,6 +129,7 @@
     <Compile Include="Shift\Configuration\ResourceManager.cs" />
     <Compile Include="Shift\Configuration\ShiftSolutionInfo.cs" />
     <Compile Include="Shift\Configuration\ShiftTabWithHeaderInfo.cs" />
+    <Compile Include="Shift\Entities\NonPersistent\PartnershipState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\MarketState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\AgendaState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\GoalsState.cs" />

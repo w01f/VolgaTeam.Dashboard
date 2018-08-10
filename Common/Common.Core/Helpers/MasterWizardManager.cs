@@ -40,8 +40,7 @@ namespace Asa.Common.Core.Helpers
 
 		public void SetMasterWizard()
 		{
-			MasterWizard masterWizard;
-			MasterWizards.TryGetValue(SettingsManager.Instance.SelectedWizard, out masterWizard);
+			MasterWizards.TryGetValue(SettingsManager.Instance.SelectedWizard, out var masterWizard);
 			SelectedWizard = masterWizard ?? MasterWizards.FirstOrDefault().Value;
 		}
 	}

@@ -4096,7 +4096,6 @@
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormMainClosing);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormMainClosed);
 			this.Shown += new System.EventHandler(this.OnFormMainShown);
-			this.Resize += new System.EventHandler(this.FormMainResize);
 			this.ribbonControl.ResumeLayout(false);
 			this.ribbonControl.PerformLayout();
 			this.ribbonPanelSolutions.ResumeLayout(false);

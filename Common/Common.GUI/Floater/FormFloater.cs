@@ -23,11 +23,13 @@ namespace Asa.Common.GUI.Floater
 		private void OnHideButtonClick(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.No;
+			Close();
 		}
 
 		private void OnBackButtonClick(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.Yes;
+			Close();
 		}
 
 		private void OnCaptionMouseDown(object sender, MouseEventArgs e)

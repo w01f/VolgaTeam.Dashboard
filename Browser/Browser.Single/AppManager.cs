@@ -33,7 +33,7 @@ namespace Asa.Browser.Single
 			});
 		}
 
-		public void ShowFloater(Form sender, FloaterRequestedEventArgs e)
+		public void ShowFloater(IFloaterSupportedForm sender, FloaterRequestedEventArgs e)
 		{
 			var afterBack = new Action<bool>(b =>
 			{

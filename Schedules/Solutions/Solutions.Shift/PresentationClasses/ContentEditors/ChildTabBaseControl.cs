@@ -18,8 +18,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		protected bool _allowToSave;
 		protected bool _dataChanged;
 
-		protected IChildTabPageContainer TabPageContainer { get; }
-		protected BaseShiftContainer SlideContainer => TabPageContainer.ParentControl.SlideContainer;
+		public IChildTabPageContainer TabPageContainer { get; }
+		public BaseShiftContainer SlideContainer => TabPageContainer.ParentControl.SlideContainer;
 
 		public ShiftChildTabInfo TabInfo { get; }
 
@@ -88,7 +88,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			TabPageContainer.FormatSlideHeader();
 		}
 
-		protected void RaiseEditValueChanged()
+		public void RaiseEditValueChanged()
 		{
 			if (!_allowToSave) return;
 			_dataChanged = true;

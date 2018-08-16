@@ -37,23 +37,23 @@
 			DevExpress.XtraLayout.RowDefinition rowDefinition4 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition5 = new DevExpress.XtraLayout.RowDefinition();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
-			this.pictureEditList = new DevExpress.XtraEditors.PictureEdit();
 			this.memoEdit = new DevExpress.XtraEditors.MemoEdit();
-			this.pictureEditUp = new DevExpress.XtraEditors.PictureEdit();
-			this.pictureEditDown = new DevExpress.XtraEditors.PictureEdit();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemMemo = new DevExpress.XtraLayout.LayoutControlItem();
+			this.pictureEditList = new DevExpress.XtraEditors.PictureEdit();
+			this.pictureEditUp = new DevExpress.XtraEditors.PictureEdit();
+			this.pictureEditDown = new DevExpress.XtraEditors.PictureEdit();
 			this.layoutControlItemDown = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemList = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemUp = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditList.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEdit.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditUp.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditDown.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMemo)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditList.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditUp.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditDown.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemList)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemUp)).BeginInit();
@@ -90,37 +90,6 @@
 			this.layoutControl.Size = new System.Drawing.Size(457, 211);
 			this.layoutControl.TabIndex = 1;
 			// 
-			// pictureEditList
-			// 
-			this.pictureEditList.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditList.EditValue = global::Asa.Solutions.Common.Properties.Resources.MemoPopupList;
-			this.pictureEditList.Location = new System.Drawing.Point(433, 93);
-			this.pictureEditList.Name = "pictureEditList";
-			this.pictureEditList.Properties.AllowFocused = false;
-			this.pictureEditList.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.pictureEditList.Properties.Appearance.Options.UseBackColor = true;
-			this.pictureEditList.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.Transparent;
-			this.pictureEditList.Properties.AppearanceDisabled.Options.UseBackColor = true;
-			this.pictureEditList.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Transparent;
-			this.pictureEditList.Properties.AppearanceFocused.Options.UseBackColor = true;
-			this.pictureEditList.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Transparent;
-			this.pictureEditList.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-			this.pictureEditList.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditList.Properties.NullText = " ";
-			this.pictureEditList.Properties.Padding = new System.Windows.Forms.Padding(2);
-			this.pictureEditList.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditList.Properties.ShowMenu = false;
-			this.pictureEditList.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
-			this.pictureEditList.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditList.Size = new System.Drawing.Size(24, 24);
-			this.pictureEditList.StyleController = this.layoutControl;
-			this.pictureEditList.TabIndex = 7;
-			this.pictureEditList.TabStop = true;
-			this.pictureEditList.Click += new System.EventHandler(this.OnListButtonClick);
-			this.pictureEditList.MouseLeave += new System.EventHandler(this.OnPictureEditMouseLeave);
-			this.pictureEditList.MouseHover += new System.EventHandler(this.OnPictureEditMouseHover);
-			this.pictureEditList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnPictureEditMouseMove);
-			// 
 			// memoEdit
 			// 
 			this.memoEdit.Location = new System.Drawing.Point(0, 0);
@@ -130,68 +99,6 @@
 			this.memoEdit.StyleController = this.layoutControl;
 			this.memoEdit.TabIndex = 5;
 			this.memoEdit.EditValueChanged += new System.EventHandler(this.OnMemoEditValueChanged);
-			// 
-			// pictureEditUp
-			// 
-			this.pictureEditUp.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditUp.EditValue = global::Asa.Solutions.Common.Properties.Resources.MemoPopupUp;
-			this.pictureEditUp.Location = new System.Drawing.Point(433, 0);
-			this.pictureEditUp.Name = "pictureEditUp";
-			this.pictureEditUp.Properties.AllowFocused = false;
-			this.pictureEditUp.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.pictureEditUp.Properties.Appearance.Options.UseBackColor = true;
-			this.pictureEditUp.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.Transparent;
-			this.pictureEditUp.Properties.AppearanceDisabled.Options.UseBackColor = true;
-			this.pictureEditUp.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Transparent;
-			this.pictureEditUp.Properties.AppearanceFocused.Options.UseBackColor = true;
-			this.pictureEditUp.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Transparent;
-			this.pictureEditUp.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-			this.pictureEditUp.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditUp.Properties.NullText = " ";
-			this.pictureEditUp.Properties.Padding = new System.Windows.Forms.Padding(2);
-			this.pictureEditUp.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditUp.Properties.ShowMenu = false;
-			this.pictureEditUp.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
-			this.pictureEditUp.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditUp.Size = new System.Drawing.Size(24, 24);
-			this.pictureEditUp.StyleController = this.layoutControl;
-			this.pictureEditUp.TabIndex = 8;
-			this.pictureEditUp.TabStop = true;
-			this.pictureEditUp.Click += new System.EventHandler(this.OnUpButtonClick);
-			this.pictureEditUp.MouseLeave += new System.EventHandler(this.OnPictureEditMouseLeave);
-			this.pictureEditUp.MouseHover += new System.EventHandler(this.OnPictureEditMouseHover);
-			this.pictureEditUp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnPictureEditMouseMove);
-			// 
-			// pictureEditDown
-			// 
-			this.pictureEditDown.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditDown.EditValue = global::Asa.Solutions.Common.Properties.Resources.MemoPopupDown;
-			this.pictureEditDown.Location = new System.Drawing.Point(433, 187);
-			this.pictureEditDown.Name = "pictureEditDown";
-			this.pictureEditDown.Properties.AllowFocused = false;
-			this.pictureEditDown.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.pictureEditDown.Properties.Appearance.Options.UseBackColor = true;
-			this.pictureEditDown.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.Transparent;
-			this.pictureEditDown.Properties.AppearanceDisabled.Options.UseBackColor = true;
-			this.pictureEditDown.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Transparent;
-			this.pictureEditDown.Properties.AppearanceFocused.Options.UseBackColor = true;
-			this.pictureEditDown.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Transparent;
-			this.pictureEditDown.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-			this.pictureEditDown.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditDown.Properties.NullText = " ";
-			this.pictureEditDown.Properties.Padding = new System.Windows.Forms.Padding(2);
-			this.pictureEditDown.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditDown.Properties.ShowMenu = false;
-			this.pictureEditDown.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
-			this.pictureEditDown.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditDown.Size = new System.Drawing.Size(24, 24);
-			this.pictureEditDown.StyleController = this.layoutControl;
-			this.pictureEditDown.TabIndex = 6;
-			this.pictureEditDown.TabStop = true;
-			this.pictureEditDown.Click += new System.EventHandler(this.OnDownButtonClick);
-			this.pictureEditDown.MouseLeave += new System.EventHandler(this.OnPictureEditMouseLeave);
-			this.pictureEditDown.MouseHover += new System.EventHandler(this.OnPictureEditMouseHover);
-			this.pictureEditDown.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnPictureEditMouseMove);
 			// 
 			// layoutControlGroupRoot
 			// 
@@ -269,6 +176,99 @@
 			this.layoutControlItemMemo.TextVisible = false;
 			this.layoutControlItemMemo.TrimClientAreaToControl = false;
 			// 
+			// pictureEditList
+			// 
+			this.pictureEditList.Cursor = System.Windows.Forms.Cursors.Default;
+			this.pictureEditList.EditValue = global::Asa.Solutions.Common.Properties.Resources.MemoPopupList;
+			this.pictureEditList.Location = new System.Drawing.Point(433, 93);
+			this.pictureEditList.Name = "pictureEditList";
+			this.pictureEditList.Properties.AllowFocused = false;
+			this.pictureEditList.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEditList.Properties.Appearance.Options.UseBackColor = true;
+			this.pictureEditList.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEditList.Properties.AppearanceDisabled.Options.UseBackColor = true;
+			this.pictureEditList.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEditList.Properties.AppearanceFocused.Options.UseBackColor = true;
+			this.pictureEditList.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEditList.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+			this.pictureEditList.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.pictureEditList.Properties.NullText = " ";
+			this.pictureEditList.Properties.Padding = new System.Windows.Forms.Padding(2);
+			this.pictureEditList.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+			this.pictureEditList.Properties.ShowMenu = false;
+			this.pictureEditList.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
+			this.pictureEditList.Properties.ZoomAccelerationFactor = 1D;
+			this.pictureEditList.Size = new System.Drawing.Size(24, 24);
+			this.pictureEditList.StyleController = this.layoutControl;
+			this.pictureEditList.TabIndex = 7;
+			this.pictureEditList.TabStop = true;
+			this.pictureEditList.Click += new System.EventHandler(this.OnListButtonClick);
+			this.pictureEditList.MouseLeave += new System.EventHandler(this.OnPictureEditMouseLeave);
+			this.pictureEditList.MouseHover += new System.EventHandler(this.OnPictureEditMouseHover);
+			this.pictureEditList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnPictureEditMouseMove);
+			// 
+			// pictureEditUp
+			// 
+			this.pictureEditUp.Cursor = System.Windows.Forms.Cursors.Default;
+			this.pictureEditUp.EditValue = global::Asa.Solutions.Common.Properties.Resources.MemoPopupUp;
+			this.pictureEditUp.Location = new System.Drawing.Point(433, 0);
+			this.pictureEditUp.Name = "pictureEditUp";
+			this.pictureEditUp.Properties.AllowFocused = false;
+			this.pictureEditUp.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEditUp.Properties.Appearance.Options.UseBackColor = true;
+			this.pictureEditUp.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEditUp.Properties.AppearanceDisabled.Options.UseBackColor = true;
+			this.pictureEditUp.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEditUp.Properties.AppearanceFocused.Options.UseBackColor = true;
+			this.pictureEditUp.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEditUp.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+			this.pictureEditUp.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.pictureEditUp.Properties.NullText = " ";
+			this.pictureEditUp.Properties.Padding = new System.Windows.Forms.Padding(2);
+			this.pictureEditUp.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+			this.pictureEditUp.Properties.ShowMenu = false;
+			this.pictureEditUp.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
+			this.pictureEditUp.Properties.ZoomAccelerationFactor = 1D;
+			this.pictureEditUp.Size = new System.Drawing.Size(24, 24);
+			this.pictureEditUp.StyleController = this.layoutControl;
+			this.pictureEditUp.TabIndex = 8;
+			this.pictureEditUp.TabStop = true;
+			this.pictureEditUp.Click += new System.EventHandler(this.OnUpButtonClick);
+			this.pictureEditUp.MouseLeave += new System.EventHandler(this.OnPictureEditMouseLeave);
+			this.pictureEditUp.MouseHover += new System.EventHandler(this.OnPictureEditMouseHover);
+			this.pictureEditUp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnPictureEditMouseMove);
+			// 
+			// pictureEditDown
+			// 
+			this.pictureEditDown.Cursor = System.Windows.Forms.Cursors.Default;
+			this.pictureEditDown.EditValue = global::Asa.Solutions.Common.Properties.Resources.MemoPopupDown;
+			this.pictureEditDown.Location = new System.Drawing.Point(433, 187);
+			this.pictureEditDown.Name = "pictureEditDown";
+			this.pictureEditDown.Properties.AllowFocused = false;
+			this.pictureEditDown.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEditDown.Properties.Appearance.Options.UseBackColor = true;
+			this.pictureEditDown.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEditDown.Properties.AppearanceDisabled.Options.UseBackColor = true;
+			this.pictureEditDown.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEditDown.Properties.AppearanceFocused.Options.UseBackColor = true;
+			this.pictureEditDown.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEditDown.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+			this.pictureEditDown.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.pictureEditDown.Properties.NullText = " ";
+			this.pictureEditDown.Properties.Padding = new System.Windows.Forms.Padding(2);
+			this.pictureEditDown.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+			this.pictureEditDown.Properties.ShowMenu = false;
+			this.pictureEditDown.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
+			this.pictureEditDown.Properties.ZoomAccelerationFactor = 1D;
+			this.pictureEditDown.Size = new System.Drawing.Size(24, 24);
+			this.pictureEditDown.StyleController = this.layoutControl;
+			this.pictureEditDown.TabIndex = 6;
+			this.pictureEditDown.TabStop = true;
+			this.pictureEditDown.Click += new System.EventHandler(this.OnDownButtonClick);
+			this.pictureEditDown.MouseLeave += new System.EventHandler(this.OnPictureEditMouseLeave);
+			this.pictureEditDown.MouseHover += new System.EventHandler(this.OnPictureEditMouseHover);
+			this.pictureEditDown.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnPictureEditMouseMove);
+			// 
 			// layoutControlItemDown
 			// 
 			this.layoutControlItemDown.Control = this.pictureEditDown;
@@ -335,12 +335,12 @@
 			this.Size = new System.Drawing.Size(457, 211);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditList.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEdit.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditUp.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditDown.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMemo)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditList.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditUp.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditDown.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDown)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemList)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemUp)).EndInit();

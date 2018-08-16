@@ -11,6 +11,8 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile DataHHIFile { get; private set; }
 		public StorageFile DataDemoFile { get; private set; }
 		public StorageFile DataGeographyFile { get; private set; }
+		public StorageFile DataNeedsCommonFile { get; private set; }
+		public StorageFile DataSolutionsCommonFile { get; private set; }
 
 		#region Cleanslate
 		public StorageFile LogoCleanslateHeaderFile { get; private set; }
@@ -398,6 +400,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 7
+		public StorageFile DataNeedsSolutionsPartAFile { get; private set; }
+		public StorageFile DataNeedsSolutionsPartBFile { get; private set; }
+		public StorageFile DataNeedsSolutionsPartCFile { get; private set; }
+		public StorageFile DataNeedsSolutionsPartDFile { get; private set; }
+
 		public StorageFile LogoTab7SubARightFile { get; private set; }
 		public StorageFile LogoTab7SubAFooterFile { get; private set; }
 		public StorageFile LogoTab7SubABackgroundFile { get; private set; }
@@ -437,6 +444,15 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab7SubWRightFile { get; private set; }
 		public StorageFile LogoTab7SubWFooterFile { get; private set; }
 		public StorageFile LogoTab7SubWBackgroundFile { get; private set; }
+
+		public StorageDirectory ClipartTab7SubAFolder { get; private set; }
+		public StorageFile ClipartTab7SubB1File { get; private set; }
+		public StorageFile ClipartTab7SubB2File { get; private set; }
+		public StorageFile ClipartTab7SubB3File { get; private set; }
+		public StorageDirectory ClipartTab7SubCFolder { get; private set; }
+		public StorageFile ClipartTab7SubD1File { get; private set; }
+		public StorageFile ClipartTab7SubD2File { get; private set; }
+		public StorageFile ClipartTab7SubD3File { get; private set; }
 
 		public StorageDirectory Tab7PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab7PartVSlidesFolder { get; private set; }
@@ -727,6 +743,8 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			DataHHIFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Income.xml"));
 			DataDemoFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Age.xml"));
 			DataGeographyFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Residence.xml"));
+			DataNeedsCommonFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT Common Needs.xml"));
+			DataSolutionsCommonFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT Product List.xml"));
 
 			#region Cleanslate
 			LogoCleanslateHeaderFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "00_shift", "design_branding", "tab_1_header.png" }));
@@ -1120,6 +1138,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			#endregion
 
 			#region Tab 7
+			DataNeedsSolutionsPartAFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT07A.xml"));
+			DataNeedsSolutionsPartBFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT07B.xml"));
+			DataNeedsSolutionsPartCFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT07C.xml"));
+			DataNeedsSolutionsPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT07D.xml"));
+
 			LogoTab7SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_a", "design_branding", "7a_right.png" }));
 			LogoTab7SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_a", "design_branding", "7a_footer.png" }));
 			LogoTab7SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_b", "design_branding", "7b_right.png" }));
@@ -1160,6 +1183,15 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab7SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_u", "design_branding", "background.png" }));
 			LogoTab7SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_v", "design_branding", "background.png" }));
 			LogoTab7SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_w", "design_branding", "background.png" }));
+
+			ClipartTab7SubAFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_a", "placeholders" }));
+			ClipartTab7SubB1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_b", "placeholders", "SHIFT07BCLIPART1.png" }));
+			ClipartTab7SubB2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_b", "placeholders", "SHIFT07BCLIPART2.png" }));
+			ClipartTab7SubB3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_b", "placeholders", "SHIFT07BCLIPART3.png" }));
+			ClipartTab7SubCFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_c", "placeholders" }));
+			ClipartTab7SubD1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_d", "placeholders", "SHIFT07DCLIPART1.png" }));
+			ClipartTab7SubD2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_d", "placeholders", "SHIFT07DCLIPART2.png" }));
+			ClipartTab7SubD3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_d", "placeholders", "SHIFT07DCLIPART3.png" }));
 
 			Tab7PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_u" }));
 			Tab7PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_v" }));

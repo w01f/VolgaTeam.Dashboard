@@ -227,6 +227,95 @@
     <Compile Include="PresentationClasses\ContentEditors\MultiTabControl.Designer.cs">
       <DependentUpon>MultiTabControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabDControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabDControl.Designer.cs">
+      <DependentUpon>NeedsSolutionsTabDControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabCControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabCControl.Designer.cs">
+      <DependentUpon>NeedsSolutionsTabCControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabBControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabBControl.Designer.cs">
+      <DependentUpon>NeedsSolutionsTabBControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabA\BaseTabASubControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabA\ItemControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabA\ItemControl.Designer.cs">
+      <DependentUpon>ItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabA\ContentsItemControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabA\ContentsItemControl.Designer.cs">
+      <DependentUpon>ContentsItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabAControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabAControl.Designer.cs">
+      <DependentUpon>NeedsSolutionsTabAControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabA\ItemButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabA\ItemChangedEventArgs.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabA\ItemSelectorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabA\ItemSelectorControl.Designer.cs">
+      <DependentUpon>ItemSelectorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabB\ItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabB\ItemControl.Designer.cs">
+      <DependentUpon>ItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabC\BaseTabCSubControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabC\ContentsItemControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabC\ContentsItemControl.Designer.cs">
+      <DependentUpon>ContentsItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabC\ItemButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabC\ItemChangedEventArgs.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabC\ItemControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabC\ItemControl.Designer.cs">
+      <DependentUpon>ItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabC\ItemSelectorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabC\ItemSelectorControl.Designer.cs">
+      <DependentUpon>ItemSelectorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabD\ItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabD\ItemControl.Designer.cs">
+      <DependentUpon>ItemControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\Partnership\PartnershipControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -359,6 +448,42 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\MultiTabControl.resx">
       <DependentUpon>MultiTabControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabDControl.resx">
+      <DependentUpon>NeedsSolutionsTabDControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabCControl.resx">
+      <DependentUpon>NeedsSolutionsTabCControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabBControl.resx">
+      <DependentUpon>NeedsSolutionsTabBControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\TabA\ItemControl.resx">
+      <DependentUpon>ItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\TabA\ContentsItemControl.resx">
+      <DependentUpon>ContentsItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabAControl.resx">
+      <DependentUpon>NeedsSolutionsTabAControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\TabA\ItemSelectorControl.resx">
+      <DependentUpon>ItemSelectorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\TabB\ItemControl.resx">
+      <DependentUpon>ItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\TabC\ContentsItemControl.resx">
+      <DependentUpon>ContentsItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\TabC\ItemControl.resx">
+      <DependentUpon>ItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\TabC\ItemSelectorControl.resx">
+      <DependentUpon>ItemSelectorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\TabD\ItemControl.resx">
+      <DependentUpon>ItemControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabBControl.resx">
       <DependentUpon>PartnershipTabBControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -439,6 +564,8 @@
   <ItemGroup>
     <None Include="Resources\ButtonCalendar.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\ButtonWipe.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

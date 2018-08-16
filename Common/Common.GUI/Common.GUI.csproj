@@ -98,6 +98,7 @@
     <Compile Include="FavoriteImages\FormAddFavoriteImage.Designer.cs">
       <DependentUpon>FormAddFavoriteImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Floater\IFloaterSupportedForm.cs" />
     <Compile Include="ImageGallery\ImageGroupPage.cs">
       <SubType>Component</SubType>
     </Compile>

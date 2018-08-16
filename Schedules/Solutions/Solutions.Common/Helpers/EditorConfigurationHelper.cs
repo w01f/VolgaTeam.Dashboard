@@ -47,6 +47,8 @@ namespace Asa.Solutions.Common.Helpers
 				if (_editor is ComboBoxEdit comboEditor)
 					comboEditor.Properties.AppearanceDropDown.ForeColor = _configuration.DropdownForeColor;
 			}
+
+			OnPlaceholderColorEditValueChanged(_editor, EventArgs.Empty);
 		}
 
 		private void OnPlaceholderColorEditValueChanged(object sender, EventArgs e)

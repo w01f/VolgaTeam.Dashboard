@@ -23,7 +23,7 @@ using FormStart = Asa.Media.Controls.ToolForms.FormStart;
 
 namespace Asa.Media.Single
 {
-	public partial class FormMain : RibbonForm
+	public partial class FormMain : RibbonForm, IFloaterSupportedForm
 	{
 		private static FormMain _instance;
 		private bool _processAppClosing = false;
@@ -494,13 +494,6 @@ namespace Asa.Media.Single
 			_processAppClosing = true;
 		}
 
-		private void FormMainResize(object sender, EventArgs e)
-		{
-			var f = sender as Form;
-			if (f.WindowState != FormWindowState.Minimized && f.Tag != FloaterManager.FloatedMarker)
-				Opacity = 1;
-		}
-
 		private void OnFormMainClosing(object sender, FormClosingEventArgs e)
 		{
 			if (!_processAppClosing) return;
@@ -565,7 +558,7 @@ namespace Asa.Media.Single
 
 		private void OnFloaterClick(object sender, EventArgs e)
 		{
-			var formSender = sender as Form;
+			var formSender = sender as IFloaterSupportedForm;
 			AppManager.Instance.ShowFloater(
 				formSender ?? this,
 				new FloaterRequestedEventArgs
@@ -573,7 +566,13 @@ namespace Asa.Media.Single
 					Logo = BusinessObjects.Instance.ImageResourcesManager.FloaterLogo ?? Resources.RibbonLogo
 				});
 		}
-		
+
+		public void ShowAfterFloater()
+		{
+			if (Tag != FloaterManager.FloatedMarker)
+				Opacity = 1;
+		}
+
 		#region Expand/Collapse Processing
 		private bool? _lastRibbonExpanded = true;
 		private bool _allowRibbonStateChangeProcessing = true;

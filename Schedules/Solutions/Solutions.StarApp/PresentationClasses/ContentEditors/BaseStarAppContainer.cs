@@ -70,7 +70,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				element.Image.SetImage(ResourceManager.SolutionToggleSwitchSkinElement, Color.Transparent);
 				LookAndFeelHelper.ForceDefaultLookAndFeelChanged();
 			}
-			
+
 			if (showSplash)
 			{
 				FormProgress.SetTitle("Loading data...");
@@ -130,6 +130,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			xtraTabControl.SelectedPageChanging += OnSelectedSlideChanging;
 			xtraTabControl.SelectedPageChanged += OnSelectedSlideChanged;
+			xtraTabControl.MouseWheel += OnTabControlMouseWheel;
 
 			if (showSplash)
 			{
@@ -207,6 +208,47 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		private void OnTabPageSelecting(Object sender, TabPageCancelEventArgs e)
 		{
 			e.Cancel = true;
+		}
+
+		private void OnTabControlMouseWheel(object sender, MouseEventArgs e)
+		{
+			var point = new Point(e.X, e.Y);
+			var hitInfo = xtraTabControl.CalcHitInfo(point);
+			if (hitInfo?.Page == null)
+				return;
+
+			var currentPageIndex = xtraTabControl.TabPages.IndexOf(hitInfo.Page);
+
+			if (e.Delta < 0 && currentPageIndex < xtraTabControl.TabPages.Count - 1)
+			{
+				var nextPageIndex = currentPageIndex + 1;
+				var moveToPageIndex = nextPageIndex;
+				do
+				{
+					xtraTabControl.MakePageVisible(xtraTabControl.TabPages[moveToPageIndex]);
+					hitInfo = xtraTabControl.CalcHitInfo(point);
+					if (hitInfo?.Page == null)
+						break;
+					currentPageIndex = xtraTabControl.TabPages.IndexOf(hitInfo.Page);
+					moveToPageIndex++;
+
+				} while (nextPageIndex > currentPageIndex && moveToPageIndex <= xtraTabControl.TabPages.Count - 1);
+			}
+			else if (currentPageIndex > 0)
+			{
+				var nextPageIndex = currentPageIndex - 1;
+				var moveToPageIndex = nextPageIndex;
+				do
+				{
+					xtraTabControl.MakePageVisible(xtraTabControl.TabPages[moveToPageIndex]);
+					hitInfo = xtraTabControl.CalcHitInfo(point);
+					if (hitInfo?.Page == null)
+						break;
+					currentPageIndex = xtraTabControl.TabPages.IndexOf(hitInfo.Page);
+					moveToPageIndex--;
+
+				} while (nextPageIndex < currentPageIndex && moveToPageIndex >= 0);
+			}
 		}
 		#endregion
 

@@ -153,7 +153,6 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Helpers
 		public static void OutputPowerPointBeforePopup(PopupOpenEventArgs e)
 		{
 			if (!(_controller.ActiveOutputControl is IMultipleSlidesOutputControl multipleSlidesOutputControl)) return;
-			SaveSchedule(true);
 			multipleSlidesOutputControl.OutputPowerPointBeforePopup(e);
 		}
 

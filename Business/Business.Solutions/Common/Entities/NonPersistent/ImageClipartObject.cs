@@ -35,7 +35,7 @@ namespace Asa.Business.Solutions.Common.Entities.NonPersistent
 		{
 			return new ImageClipartObject
 			{
-				Image = image
+				Image = image?.Clone() as Image
 			};
 		}
 	}

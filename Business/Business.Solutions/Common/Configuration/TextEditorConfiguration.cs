@@ -44,22 +44,22 @@ namespace Asa.Business.Solutions.Common.Configuration
 				return configuration;
 
 			configuration.FontSize = Int32.Parse(configNode.Attributes
-				.OfType<XmlAttribute>()
+				?.OfType<XmlAttribute>()
 				.FirstOrDefault(a => String.Equals(a.Name, "FontSize",
-					StringComparison.OrdinalIgnoreCase))?.Value ?? "10");
+					StringComparison.OrdinalIgnoreCase))?.Value ?? DefaultFontSize.ToString());
 
 			configuration.ForeColor = ColorTranslator.FromHtml(configNode.Attributes
-				.OfType<XmlAttribute>()
+				?.OfType<XmlAttribute>()
 				.FirstOrDefault(a => String.Equals(a.Name, "TextColor",
 					StringComparison.OrdinalIgnoreCase))?.Value);
 
 			configuration.BackColor = ColorTranslator.FromHtml(configNode.Attributes
-				.OfType<XmlAttribute>()
+				?.OfType<XmlAttribute>()
 				.FirstOrDefault(a => String.Equals(a.Name, "BackgroundColor",
 					StringComparison.OrdinalIgnoreCase))?.Value);
 
 			configuration.DropdownForeColor = ColorTranslator.FromHtml(configNode.Attributes
-				.OfType<XmlAttribute>()
+				?.OfType<XmlAttribute>()
 				.FirstOrDefault(a => String.Equals(a.Name, "DropdownColor",
 					StringComparison.OrdinalIgnoreCase))?.Value);
 

@@ -17,6 +17,7 @@ using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Intro;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market;
+using Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Partnership;
 using DevExpress.LookAndFeel;
 using DevExpress.Skins;
@@ -96,6 +97,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 					case ShiftTopTabType.Partnership:
 						_slides.Add(new ShiftTabPageContainerControl<PartnershipControl>(this, tabInfo));
 						break;
+					case ShiftTopTabType.NeedsSolutions:
+						_slides.Add(new ShiftTabPageContainerControl<NeedsSolutionsControl>(this, tabInfo));
+						break;
 					default:
 						_slides.Add(new ShiftTabPageContainerControl<CommonTopTabControl>(this, tabInfo));
 						break;
@@ -107,6 +111,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 			xtraTabControl.SelectedPageChanging += OnSelectedSlideChanging;
 			xtraTabControl.SelectedPageChanged += OnSelectedSlideChanged;
+			xtraTabControl.MouseWheel += OnTabControlMouseWheel;
 
 			if (showSplash)
 			{
@@ -184,6 +189,48 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		private void OnTabPageSelecting(Object sender, TabPageCancelEventArgs e)
 		{
 			e.Cancel = true;
+		}
+
+
+		private void OnTabControlMouseWheel(object sender, MouseEventArgs e)
+		{
+			var point = new Point(e.X, e.Y);
+			var hitInfo = xtraTabControl.CalcHitInfo(point);
+			if (hitInfo?.Page == null)
+				return;
+
+			var currentPageIndex = xtraTabControl.TabPages.IndexOf(hitInfo.Page);
+
+			if (e.Delta < 0 && currentPageIndex < xtraTabControl.TabPages.Count - 1)
+			{
+				var nextPageIndex = currentPageIndex + 1;
+				var moveToPageIndex = nextPageIndex;
+				do
+				{
+					xtraTabControl.MakePageVisible(xtraTabControl.TabPages[moveToPageIndex]);
+					hitInfo = xtraTabControl.CalcHitInfo(point);
+					if (hitInfo?.Page == null)
+						break;
+					currentPageIndex = xtraTabControl.TabPages.IndexOf(hitInfo.Page);
+					moveToPageIndex++;
+
+				} while (nextPageIndex > currentPageIndex && moveToPageIndex <= xtraTabControl.TabPages.Count - 1);
+			}
+			else if (currentPageIndex > 0)
+			{
+				var nextPageIndex = currentPageIndex - 1;
+				var moveToPageIndex = nextPageIndex;
+				do
+				{
+					xtraTabControl.MakePageVisible(xtraTabControl.TabPages[moveToPageIndex]);
+					hitInfo = xtraTabControl.CalcHitInfo(point);
+					if (hitInfo?.Page == null)
+						break;
+					currentPageIndex = xtraTabControl.TabPages.IndexOf(hitInfo.Page);
+					moveToPageIndex--;
+
+				} while (nextPageIndex < currentPageIndex && moveToPageIndex >= 0);
+			}
 		}
 		#endregion
 

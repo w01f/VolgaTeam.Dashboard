@@ -103,7 +103,7 @@ namespace Asa.Common.GUI.OutputColors
 			xtraScrollableControlColors.ResumeLayout();
 		}
 
-		private void OutputColorSelector_Resize(object sender, EventArgs e)
+		private void OnResize(object sender, EventArgs e)
 		{
 			ResizeButtons();
 		}

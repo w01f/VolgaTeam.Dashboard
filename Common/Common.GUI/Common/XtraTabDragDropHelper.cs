@@ -21,29 +21,36 @@ namespace Asa.Common.GUI.Common
 
 		private void SubscribeEvents()
 		{
-			_tabControl.MouseDown += TabControl_MouseDown;
-			_tabControl.MouseMove += TabControl_MouseMove;
-			_tabControl.DragOver += TabControl_DragOver;
+			_tabControl.AllowDrop = true;
+			_tabControl.MouseDown += OnTabControlMouseDown;
+			_tabControl.MouseMove += OnTabControlMouseMove;
+			_tabControl.DragOver += OnTabControlDragOver;
 		}
 
-		private void TabControl_MouseDown(object sender, MouseEventArgs e)
+		private void OnTabControlMouseDown(object sender, MouseEventArgs e)
 		{
-			var c = (XtraTabControl)sender;
-			_point = new Point(e.X, e.Y);
-			var hi = c.CalcHitInfo(_point);
-			_movedPage = hi.Page;
-			if (hi.Page == null)
+			var point = new Point(e.X, e.Y);
+			var hi = _tabControl.CalcHitInfo(point);
+			if (hi.Page is TTabPage)
+			{
+				_movedPage = hi.Page;
+				_point = point;
+			}
+			else
+			{
+				_movedPage = null;
 				_point = Point.Empty;
+			}
 		}
 
-		private void TabControl_MouseMove(object sender, MouseEventArgs e)
+		private void OnTabControlMouseMove(object sender, MouseEventArgs e)
 		{
 			if (e.Button != MouseButtons.Left) return;
-			if ((_point != Point.Empty) && ((Math.Abs(e.X - _point.X) > SystemInformation.DragSize.Width) || (Math.Abs(e.Y - _point.Y) > SystemInformation.DragSize.Height)))
+			if (_movedPage != null && _point != Point.Empty && (Math.Abs(e.X - _point.X) > SystemInformation.DragSize.Width || (Math.Abs(e.Y - _point.Y) > SystemInformation.DragSize.Height)))
 				_tabControl.DoDragDrop(sender, DragDropEffects.Move);
 		}
 
-		private void TabControl_DragOver(object sender, DragEventArgs e)
+		private void OnTabControlDragOver(object sender, DragEventArgs e)
 		{
 			var hi = _tabControl.CalcHitInfo(_tabControl.PointToClient(new Point(e.X, e.Y)));
 			if (hi.Page is TTabPage)

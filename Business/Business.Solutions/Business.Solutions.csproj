@@ -115,6 +115,15 @@
     <Compile Include="Shift\Configuration\Market\MarketTabCInfo.cs" />
     <Compile Include="Shift\Configuration\Market\MarketTabBInfo.cs" />
     <Compile Include="Shift\Configuration\Market\MarketTabAInfo.cs" />
+    <Compile Include="Shift\Configuration\NeedsSolutions\NeedsSolutionsTabDInfo.cs" />
+    <Compile Include="Shift\Configuration\NeedsSolutions\NeedsSolutionsTabCInfo.cs" />
+    <Compile Include="Shift\Configuration\NeedsSolutions\SolutionsItemInfo.cs" />
+    <Compile Include="Shift\Configuration\NeedsSolutions\NeedsItemInfo.cs" />
+    <Compile Include="Shift\Configuration\NeedsSolutions\NeedsSolutionsTabBInfo.cs" />
+    <Compile Include="Shift\Configuration\NeedsSolutions\NeedsSolutionsTabAInfo.cs" />
+    <Compile Include="Shift\Configuration\NeedsSolutions\NeedsSolutionsTabInfo.cs" />
+    <Compile Include="Shift\Configuration\NeedsSolutions\SolutionButtonConfiguration.cs" />
+    <Compile Include="Shift\Configuration\NeedsSolutions\TabSelectorConfiguration.cs" />
     <Compile Include="Shift\Configuration\Partnership\PartnershipTabInfo.cs" />
     <Compile Include="Shift\Configuration\Partnership\PartnershipTabDInfo.cs" />
     <Compile Include="Shift\Configuration\Partnership\PartnershipTabCInfo.cs" />
@@ -129,6 +138,7 @@
     <Compile Include="Shift\Configuration\ResourceManager.cs" />
     <Compile Include="Shift\Configuration\ShiftSolutionInfo.cs" />
     <Compile Include="Shift\Configuration\ShiftTabWithHeaderInfo.cs" />
+    <Compile Include="Shift\Entities\NonPersistent\NeedsSolutionsState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\PartnershipState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\MarketState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\AgendaState.cs" />

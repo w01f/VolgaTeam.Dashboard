@@ -49,7 +49,7 @@
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "OutputColorSelector";
 			this.Size = new System.Drawing.Size(399, 475);
-			this.Resize += new System.EventHandler(this.OutputColorSelector_Resize);
+			this.Resize += new System.EventHandler(this.OnResize);
 			this.ResumeLayout(false);
 
 		}

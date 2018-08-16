@@ -213,7 +213,7 @@ namespace Asa.SlideTemplateViewer
 			});
 		}
 
-		public void ShowFloater(Form sender, FloaterRequestedEventArgs e)
+		public void ShowFloater(IFloaterSupportedForm sender, FloaterRequestedEventArgs e)
 		{
 			var afterBack = new Action<bool>(b => ActivateMainForm());
 			_floater.ShowFloater(sender ?? FormMain.Instance, null, e.Logo ?? ImageResourcesManager.FloaterLogo ?? Resources.AddSlidesLogo, e.AfterShow, null, afterBack);

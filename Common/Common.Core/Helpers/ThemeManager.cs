@@ -253,8 +253,53 @@ namespace Asa.Common.Core.Helpers
 					case "Shift_06d_prtnr":
 						slideType = SlideType.ShiftPartnershipD;
 						break;
-					case "Shift_07_needs_solutions":
-						slideType = SlideType.ShiftNeedsSolutions;
+					case "Shift_07a1_mktneeds":
+						slideType = SlideType.ShiftNeedsSolutionsA1;
+						break;
+					case "Shift_07a2_mktneeds":
+						slideType = SlideType.ShiftNeedsSolutionsA2;
+						break;
+					case "Shift_07a3_mktneeds":
+						slideType = SlideType.ShiftNeedsSolutionsA3;
+						break;
+					case "Shift_07a4_mktneeds":
+						slideType = SlideType.ShiftNeedsSolutionsA4;
+						break;
+					case "Shift_07b1_mktneeds":
+						slideType = SlideType.ShiftNeedsSolutionsB1;
+						break;
+					case "Shift_07b2_mktneeds":
+						slideType = SlideType.ShiftNeedsSolutionsB2;
+						break;
+					case "Shift_07b3_mktneeds":
+						slideType = SlideType.ShiftNeedsSolutionsB3;
+						break;
+					case "Shift_07b4_mktneeds":
+						slideType = SlideType.ShiftNeedsSolutionsB4;
+						break;
+					case "Shift_07c1_our_solutions":
+						slideType = SlideType.ShiftNeedsSolutionsC1;
+						break;
+					case "Shift_07c2_our_solutions":
+						slideType = SlideType.ShiftNeedsSolutionsC2;
+						break;
+					case "Shift_07c3_our_solutions":
+						slideType = SlideType.ShiftNeedsSolutionsC3;
+						break;
+					case "Shift_07c4_our_solutions":
+						slideType = SlideType.ShiftNeedsSolutionsC4;
+						break;
+					case "Shift_07d1_our_solutions":
+						slideType = SlideType.ShiftNeedsSolutionsD1;
+						break;
+					case "Shift_07d2_our_solutions":
+						slideType = SlideType.ShiftNeedsSolutionsD2;
+						break;
+					case "Shift_07d3_our_solutions":
+						slideType = SlideType.ShiftNeedsSolutionsD3;
+						break;
+					case "Shift_07d4_our_solutions":
+						slideType = SlideType.ShiftNeedsSolutionsD4;
 						break;
 					case "Shift_08_cbc":
 						slideType = SlideType.ShiftCBC;

@@ -14,7 +14,7 @@ using DevComponents.DotNetBar.Metro.ColorTables;
 
 namespace Asa.SlideTemplateViewer
 {
-	public partial class FormMain : RibbonForm
+	public partial class FormMain : RibbonForm, IFloaterSupportedForm
 	{
 		private static FormMain _instance;
 
@@ -115,10 +115,9 @@ namespace Asa.SlideTemplateViewer
 			AppManager.Instance.ActivityManager.AddActivity(new UserActivity("Application Closed"));
 		}
 
-		private void FormMain_Resize(object sender, EventArgs e)
+		public void ShowAfterFloater()
 		{
-			var f = sender as Form;
-			if (f.WindowState != FormWindowState.Minimized && f.Tag != FloaterManager.FloatedMarker)
+			if (Tag != FloaterManager.FloatedMarker)
 				Opacity = 1;
 		}
 		#endregion
@@ -126,8 +125,8 @@ namespace Asa.SlideTemplateViewer
 		#region Ribbon Buttons's Clicks Event Handlers
 		public void OnFloaterClick(object sender, EventArgs e)
 		{
-			var formSender = sender as Form;
-			if (formSender != null && formSender.IsDisposed) return;
+			var formSender = sender as IFloaterSupportedForm;
+			if (formSender != null && ((Form)formSender).IsDisposed) return;
 			AppManager.Instance.ShowFloater(
 				formSender,
 				new FloaterRequestedEventArgs());

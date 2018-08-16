@@ -16,7 +16,7 @@ using DevComponents.DotNetBar.Metro.ColorTables;
 
 namespace Asa.Browser.Single
 {
-	public partial class FormMain : RibbonForm
+	public partial class FormMain : RibbonForm, IFloaterSupportedForm
 	{
 		private static FormMain _instance;
 		private readonly SingleSiteContainerControl _siteBundleContainer;
@@ -33,7 +33,6 @@ namespace Asa.Browser.Single
 			Top = (Screen.PrimaryScreen.Bounds.Height - Height) / 2;
 
 			Closing += SaveSettings;
-			Resize += OnFormResize;
 
 			_siteBundleContainer = new SingleSiteContainerControl();
 			_siteBundleContainer.Dock = DockStyle.Fill;
@@ -145,10 +144,9 @@ namespace Asa.Browser.Single
 			barBottom.RecalcLayout();
 		}
 
-		private void OnFormResize(object sender, EventArgs e)
+		public void ShowAfterFloater()
 		{
-			var f = sender as Form;
-			if (f.WindowState != FormWindowState.Minimized && f.Tag != FloaterManager.FloatedMarker)
+			if (Tag != FloaterManager.FloatedMarker)
 				Opacity = 1;
 		}
 

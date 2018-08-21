@@ -106,6 +106,14 @@
 		ShiftNeedsSolutionsD2 = 50842,
 		ShiftNeedsSolutionsD3 = 50843,
 		ShiftNeedsSolutionsD4 = 50844,
+		ShiftNeedsSolutionsE1 = 50851,
+		ShiftNeedsSolutionsE2 = 50852,
+		ShiftNeedsSolutionsE3 = 50853,
+		ShiftNeedsSolutionsE4 = 50854,
+		ShiftNeedsSolutionsF1 = 50861,
+		ShiftNeedsSolutionsF2 = 50862,
+		ShiftNeedsSolutionsF3 = 50863,
+		ShiftNeedsSolutionsF4 = 50864,
 		ShiftCBC = 5090,
 		ShiftIntegratedSolution = 5100,
 		ShiftInvestment = 5110,
@@ -114,5 +122,7 @@
 		ShiftContract = 5140,
 		ShiftSupportMaterials = 5150,
 		#endregion
+
+		CustomSlide = 999999999,
 	}
 }

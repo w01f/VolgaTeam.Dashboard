@@ -21,7 +21,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public BaseStarAppContainer SlideContainer { get; }
 		public StarTopTabInfo TabInfo { get; }
 
-		public virtual SlideType SlideType { get; }
+		public virtual SlideType SlideType => SlideType.None;
 		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType);
 		public BaseScheduleResourceContainer ResourceContainer => SlideContainer.EditedContent.ScheduleResources;
 

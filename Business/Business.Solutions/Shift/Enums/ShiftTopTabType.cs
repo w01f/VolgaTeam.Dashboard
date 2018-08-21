@@ -15,6 +15,7 @@
 		Investment,
 		NextSteps,
 		Contract,
-		SupportMaterials
+		SupportMaterials,
+		SpecBuilder
 	}
 }

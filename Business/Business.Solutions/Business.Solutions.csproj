@@ -115,8 +115,11 @@
     <Compile Include="Shift\Configuration\Market\MarketTabCInfo.cs" />
     <Compile Include="Shift\Configuration\Market\MarketTabBInfo.cs" />
     <Compile Include="Shift\Configuration\Market\MarketTabAInfo.cs" />
+    <Compile Include="Shift\Configuration\NeedsSolutions\NeedsSolutionsTabFInfo.cs" />
+    <Compile Include="Shift\Configuration\NeedsSolutions\NeedsSolutionsTabEInfo.cs" />
     <Compile Include="Shift\Configuration\NeedsSolutions\NeedsSolutionsTabDInfo.cs" />
     <Compile Include="Shift\Configuration\NeedsSolutions\NeedsSolutionsTabCInfo.cs" />
+    <Compile Include="Shift\Configuration\NeedsSolutions\FormListConfiguration.cs" />
     <Compile Include="Shift\Configuration\NeedsSolutions\SolutionsItemInfo.cs" />
     <Compile Include="Shift\Configuration\NeedsSolutions\NeedsItemInfo.cs" />
     <Compile Include="Shift\Configuration\NeedsSolutions\NeedsSolutionsTabBInfo.cs" />

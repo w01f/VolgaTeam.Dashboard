@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Windows.Forms;
 using Asa.Business.Solutions.Shift.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
-using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
@@ -40,6 +40,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 			xtraTabControl.SelectedPageChanging += OnSelectedTabPageChanging;
 			xtraTabControl.SelectedPageChanged += OnSelectedTabPageChanged;
+			xtraTabControl.MouseWheel += OnTabControlMouseWheel;
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemOutputToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOutputToggle.MaxSize, scaleFactor);
@@ -58,7 +59,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				.Where(container => container.ContentControl != null)
 				.Select(container => container.ContentControl)
 				.ToList()
-				.ForEach(control => control.LoadData());
+				.ForEach(control =>
+				{
+					control.LoadData();
+					control.TabPageContainer.FormatSlideHeader();
+				});
 
 			LoadChildTabData();
 		}
@@ -115,6 +120,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				if (tabPageContainer.ContentControl == null)
 					tabPageContainer.LoadContent();
 				tabPageContainer.ContentControl?.LoadData();
+				tabPageContainer.FormatSlideHeader();
 			}
 		}
 
@@ -130,12 +136,14 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				{
 					tabPageContainer.LoadContent();
 					tabPageContainer.ContentControl?.LoadData();
+					tabPageContainer.FormatSlideHeader();
 				});
 			}
 			else
 			{
 				tabPageContainer.LoadContent();
 				tabPageContainer.ContentControl?.LoadData();
+				tabPageContainer.FormatSlideHeader();
 			}
 			xtraTabControl.Selecting -= OnTabPageSelecting;
 		}
@@ -168,6 +176,47 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		private void OnTabPageSelecting(Object sender, TabPageCancelEventArgs e)
 		{
 			e.Cancel = true;
+		}
+
+		private void OnTabControlMouseWheel(object sender, MouseEventArgs e)
+		{
+			var point = new Point(e.X, e.Y);
+			var hitInfo = xtraTabControl.CalcHitInfo(point);
+			if (hitInfo?.Page == null)
+				return;
+
+			var currentPageIndex = xtraTabControl.TabPages.IndexOf(hitInfo.Page);
+
+			if (e.Delta < 0 && currentPageIndex < xtraTabControl.TabPages.Count - 1)
+			{
+				var nextPageIndex = currentPageIndex + 1;
+				var moveToPageIndex = nextPageIndex;
+				do
+				{
+					xtraTabControl.MakePageVisible(xtraTabControl.TabPages[moveToPageIndex]);
+					hitInfo = xtraTabControl.CalcHitInfo(point);
+					if (hitInfo?.Page == null)
+						break;
+					currentPageIndex = xtraTabControl.TabPages.IndexOf(hitInfo.Page);
+					moveToPageIndex++;
+
+				} while (nextPageIndex > currentPageIndex && moveToPageIndex <= xtraTabControl.TabPages.Count - 1);
+			}
+			else if (currentPageIndex > 0)
+			{
+				var nextPageIndex = currentPageIndex - 1;
+				var moveToPageIndex = nextPageIndex;
+				do
+				{
+					xtraTabControl.MakePageVisible(xtraTabControl.TabPages[moveToPageIndex]);
+					hitInfo = xtraTabControl.CalcHitInfo(point);
+					if (hitInfo?.Page == null)
+						break;
+					currentPageIndex = xtraTabControl.TabPages.IndexOf(hitInfo.Page);
+					moveToPageIndex--;
+
+				} while (nextPageIndex < currentPageIndex && moveToPageIndex >= 0);
+			}
 		}
 
 		private void OnResize(object sender, EventArgs e)

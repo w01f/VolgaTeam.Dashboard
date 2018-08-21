@@ -73,6 +73,36 @@ namespace Asa.Solutions.Shift.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ButtonNeedsDown {
+            get {
+                object obj = ResourceManager.GetObject("ButtonNeedsDown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ButtonNeedsList {
+            get {
+                object obj = ResourceManager.GetObject("ButtonNeedsList", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ButtonNeedsUp {
+            get {
+                object obj = ResourceManager.GetObject("ButtonNeedsUp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ButtonWipe {
             get {
                 object obj = ResourceManager.GetObject("ButtonWipe", resourceCulture);

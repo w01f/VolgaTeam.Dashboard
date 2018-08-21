@@ -513,6 +513,43 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
+				case ShiftTopTabType.SpecBuilder:
+					switch (tabId)
+					{
+						case "u":
+							sourceDirectory = resourceManager.Tab14PartUSlidesFolder;
+
+							RightLogo = resourceManager.LogoTab14SubURightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab14SubURightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab14SubUFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab14SubUFooterFile.LocalPath)
+								: null;
+							break;
+						case "v":
+							sourceDirectory = resourceManager.Tab14PartVSlidesFolder;
+
+							RightLogo = resourceManager.LogoTab14SubVRightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab14SubVRightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab14SubVFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab14SubVFooterFile.LocalPath)
+								: null;
+							break;
+						case "w":
+							sourceDirectory = resourceManager.Tab14PartWSlidesFolder;
+
+							RightLogo = resourceManager.LogoTab14SubWRightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab14SubWRightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab14SubWFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab14SubWFooterFile.LocalPath)
+								: null;
+							break;
+						default:
+							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
+					}
+					break;
 				default:
 					throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 			}

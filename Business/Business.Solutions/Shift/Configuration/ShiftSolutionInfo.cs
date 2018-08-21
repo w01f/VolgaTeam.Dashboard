@@ -113,8 +113,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 						case "support-materials":
 							tabInfo = new CommonTopTabInfo(ShiftTopTabType.SupportMaterials);
 							break;
+						case "spec-builder":
+							tabInfo = new CommonTopTabInfo(ShiftTopTabType.SpecBuilder);
+							break;
 						default:
-							throw new ArgumentOutOfRangeException("Star tab type is not defined");
+							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					tabInfo.LoadData(tabConfigNode, resourceManager);
 					TabsInfo.Add(tabInfo);

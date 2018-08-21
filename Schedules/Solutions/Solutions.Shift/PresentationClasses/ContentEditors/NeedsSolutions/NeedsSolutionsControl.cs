@@ -27,6 +27,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions
 					case ShiftChildTabType.D:
 						tabPages.Add(new ChildTabPageContainerControl<NeedsSolutionsTabDControl>(this, tabInfo));
 						break;
+					case ShiftChildTabType.E:
+						tabPages.Add(new ChildTabPageContainerControl<NeedsSolutionsTabEControl>(this, tabInfo));
+						break;
+					case ShiftChildTabType.F:
+						tabPages.Add(new ChildTabPageContainerControl<NeedsSolutionsTabFControl>(this, tabInfo));
+						break;
 					case ShiftChildTabType.U:
 					case ShiftChildTabType.V:
 					case ShiftChildTabType.W:

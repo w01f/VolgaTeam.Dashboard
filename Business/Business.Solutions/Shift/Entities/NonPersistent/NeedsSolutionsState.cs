@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
+using Asa.Business.Solutions.Shift.Configuration.NeedsSolutions;
 
 namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 {
@@ -10,6 +12,8 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public TabBState TabB { get; }
 		public TabCState TabC { get; }
 		public TabDState TabD { get; }
+		public TabEState TabE { get; }
+		public TabFState TabF { get; }
 		public TabUState TabU { get; }
 		public TabVState TabV { get; }
 		public TabWState TabW { get; }
@@ -20,6 +24,8 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			TabB = new TabBState();
 			TabC = new TabCState();
 			TabD = new TabDState();
+			TabE = new TabEState();
+			TabF = new TabFState();
 			TabU = new TabUState();
 			TabV = new TabVState();
 			TabW = new TabWState();
@@ -79,6 +85,30 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			public SolutionsItemState ItemState4 { get; set; }
 		}
 
+		public class TabEState
+		{
+			public ListDataItem SlideHeader { get; set; }
+			public bool? EnableOutput { get; set; }
+			public ListDataItem Combo1 { get; set; }
+
+			public NeedsItemState ItemState1 { get; set; }
+			public NeedsItemState ItemState2 { get; set; }
+			public NeedsItemState ItemState3 { get; set; }
+			public NeedsItemState ItemState4 { get; set; }
+		}
+
+		public class TabFState
+		{
+			public ListDataItem SlideHeader { get; set; }
+			public bool? EnableOutput { get; set; }
+			public ListDataItem Combo1 { get; set; }
+
+			public SolutionsItemState ItemState1 { get; set; }
+			public SolutionsItemState ItemState2 { get; set; }
+			public SolutionsItemState ItemState3 { get; set; }
+			public SolutionsItemState ItemState4 { get; set; }
+		}
+
 		public class TabUState
 		{
 			public SlideObject Slide { get; }
@@ -116,6 +146,30 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			public ClipartObject Clipart { get; set; }
 			public string Title { get; set; }
 			public string Subheader { get; set; }
+
+			public bool IsEmpty()
+			{
+				return Clipart == null || String.IsNullOrWhiteSpace(Title);
+			}
+
+			public static NeedsItemState FromItemInfo(NeedsItemInfo itemInfo)
+			{
+				var itemState = new NeedsItemState();
+				if (itemInfo != null)
+				{
+					itemState.Id = itemInfo.Id;
+					itemState.Clipart = ImageClipartObject.FromImage(itemInfo.ClipartImage);
+					itemState.Title = itemInfo.Title;
+					itemState.Subheader = itemInfo.SubHeaderDefaultValue;
+				}
+				return itemState;
+			}
+
+			public static NeedsItemState Empty()
+			{
+				var itemState = new NeedsItemState();
+				return itemState;
+			}
 		}
 
 		public class SolutionsItemState
@@ -125,6 +179,30 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			public ClipartObject Clipart { get; set; }
 			public string Title { get; set; }
 			public string Subheader { get; set; }
+
+			public bool IsEmpty()
+			{
+				return Clipart == null || String.IsNullOrWhiteSpace(Title);
+			}
+
+			public static SolutionsItemState FromItemInfo(SolutionsItemInfo itemInfo)
+			{
+				var itemState = new SolutionsItemState();
+				if (itemInfo != null)
+				{
+					itemState.Id = itemInfo.Id;
+					itemState.Clipart = ImageClipartObject.FromImage(itemInfo.ClipartImage);
+					itemState.Title = itemInfo.Title;
+					itemState.Subheader = itemInfo.SubHeaderDefaultValue;
+				}
+				return itemState;
+			}
+
+			public static SolutionsItemState Empty()
+			{
+				var itemState = new SolutionsItemState();
+				return itemState;
+			}
 		}
 	}
 }

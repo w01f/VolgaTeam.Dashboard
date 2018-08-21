@@ -124,7 +124,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		#region Output
 		public override bool MultipleSlidesAllowed => false;
 		public override bool ReadyForOutput => GetOutputItem() != null;
-		public override SlideType SlideType => SlideType.ShiftCleanslate;
+		public override SlideType SlideType => SlideType.CustomSlide;
 
 		public override OutputItem GetOutputItem()
 		{

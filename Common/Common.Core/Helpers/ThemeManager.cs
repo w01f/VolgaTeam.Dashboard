@@ -28,6 +28,7 @@ namespace Asa.Common.Core.Helpers
 			var contentFile = new StorageFile(root.RelativePathParts.Merge("ApprovedThemes.xml"));
 
 			ApprovedThemes.Clear();
+			ApprovedThemes.Add(SlideType.CustomSlide, new List<SlideApprovedThemeInfo>());
 
 			if (!contentFile.ExistsLocal()) return;
 
@@ -301,6 +302,30 @@ namespace Asa.Common.Core.Helpers
 					case "Shift_07d4_our_solutions":
 						slideType = SlideType.ShiftNeedsSolutionsD4;
 						break;
+					case "Shift_07e1_mktneeds":
+						slideType = SlideType.ShiftNeedsSolutionsE1;
+						break;
+					case "Shift_07e2_mktneeds":
+						slideType = SlideType.ShiftNeedsSolutionsE2;
+						break;
+					case "Shift_07e3_mktneeds":
+						slideType = SlideType.ShiftNeedsSolutionsE3;
+						break;
+					case "Shift_07e4_mktneeds":
+						slideType = SlideType.ShiftNeedsSolutionsE4;
+						break;
+					case "Shift_07f1_our_solutions":
+						slideType = SlideType.ShiftNeedsSolutionsF1;
+						break;
+					case "Shift_07f2_our_solutions":
+						slideType = SlideType.ShiftNeedsSolutionsF2;
+						break;
+					case "Shift_07f3_our_solutions":
+						slideType = SlideType.ShiftNeedsSolutionsF3;
+						break;
+					case "Shift_07f4_our_solutions":
+						slideType = SlideType.ShiftNeedsSolutionsF4;
+						break;
 					case "Shift_08_cbc":
 						slideType = SlideType.ShiftCBC;
 						break;
@@ -353,14 +378,15 @@ namespace Asa.Common.Core.Helpers
 			ThemesChanged?.Invoke(null, EventArgs.Empty);
 		}
 
-		public IEnumerable<Theme> GetThemes(SlideType slideType)
+		public IList<Theme> GetThemes(SlideType slideType)
 		{
 			if (!ApprovedThemes.ContainsKey(slideType))
 				return _themes;
 			return ApprovedThemes[slideType]
 				.OrderByDescending(themeInfo => themeInfo.IsDefault)
 				.Select(themeInfo => _themes.FirstOrDefault(theme => theme.Name == themeInfo.ThemName))
-				.Where(theme => theme != null);
+				.Where(theme => theme != null)
+				.ToList();
 		}
 	}
 }

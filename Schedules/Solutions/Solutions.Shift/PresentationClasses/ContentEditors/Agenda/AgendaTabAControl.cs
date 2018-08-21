@@ -164,7 +164,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Agenda
 			return SlideContainer.EditedContent.AgendaState.TabA.EnableOutput ?? CustomTabInfo.EnableOutput;
 		}
 
-		public override void ApplyOutputEnableState(Boolean outputEnabled)
+		public override void ApplyOutputEnableState(bool outputEnabled)
 		{
 			SlideContainer.EditedContent.AgendaState.TabA.EnableOutput =
 				outputEnabled != CustomTabInfo.EnableOutput ? outputEnabled : (bool?)null;

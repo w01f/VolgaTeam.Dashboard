@@ -141,7 +141,7 @@ namespace Asa.Business.Media.Configuration
 
 		public string GetSelectedThemeName(SlideType slideType)
 		{
-			return GetSelectedTheme(slideType).Name;
+			return GetSelectedTheme(slideType)?.Name;
 		}
 
 		public Theme GetSelectedTheme(SlideType slideType)

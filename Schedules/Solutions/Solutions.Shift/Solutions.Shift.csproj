@@ -32,9 +32,17 @@
   <ItemGroup>
     <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.12, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04" />
     <Reference Include="DevExpress.Data.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v16.2.Core, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -230,6 +238,18 @@
     <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabFControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabFControl.Designer.cs">
+      <DependentUpon>NeedsSolutionsTabFControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabEControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabEControl.Designer.cs">
+      <DependentUpon>NeedsSolutionsTabEControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabDControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -314,6 +334,30 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabD\ItemControl.Designer.cs">
+      <DependentUpon>ItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabE\FormList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabE\FormList.Designer.cs">
+      <DependentUpon>FormList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabE\ItemControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabE\ItemControl.Designer.cs">
+      <DependentUpon>ItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabF\FormList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabF\FormList.Designer.cs">
+      <DependentUpon>FormList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabF\ItemControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NeedsSolutions\TabF\ItemControl.Designer.cs">
       <DependentUpon>ItemControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\Partnership\PartnershipControl.cs">
@@ -448,6 +492,12 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\MultiTabControl.resx">
       <DependentUpon>MultiTabControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabFControl.resx">
+      <DependentUpon>NeedsSolutionsTabFControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabEControl.resx">
+      <DependentUpon>NeedsSolutionsTabEControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\NeedsSolutionsTabDControl.resx">
       <DependentUpon>NeedsSolutionsTabDControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -482,6 +532,18 @@
       <DependentUpon>ItemSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\TabD\ItemControl.resx">
+      <DependentUpon>ItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\TabE\FormList.resx">
+      <DependentUpon>FormList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\TabE\ItemControl.resx">
+      <DependentUpon>ItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\TabF\FormList.resx">
+      <DependentUpon>FormList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NeedsSolutions\TabF\ItemControl.resx">
       <DependentUpon>ItemControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabBControl.resx">
@@ -566,6 +628,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ButtonWipe.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\ButtonNeedsUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ButtonNeedsList.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ButtonNeedsDown.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

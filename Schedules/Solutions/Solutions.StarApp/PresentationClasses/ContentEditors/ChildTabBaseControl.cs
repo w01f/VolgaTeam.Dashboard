@@ -16,7 +16,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		protected bool _allowToSave;
 		protected bool _dataChanged;
 
-		protected IChildTabPageContainer TabPageContainer { get; }
+		public IChildTabPageContainer TabPageContainer { get; }
 		protected BaseStarAppContainer SlideContainer => TabPageContainer.ParentControl.SlideContainer;
 
 		public StarChildTabInfo TabInfo { get; }

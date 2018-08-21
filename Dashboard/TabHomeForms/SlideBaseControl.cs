@@ -58,7 +58,7 @@ namespace Asa.Dashboard.TabHomeForms
 				ThemeButton,
 				FormMain.Instance,
 				themes,
-				(SettingsManager.Instance.GetSelectedTheme(slideType) ?? new Theme(null)).Name,
+				SettingsManager.Instance.GetSelectedTheme(slideType)?.Name,
 				SettingsManager.Instance,
 				(theme, applyForAllSlideTypes) =>
 				{

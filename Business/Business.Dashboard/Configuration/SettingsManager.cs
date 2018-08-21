@@ -34,7 +34,7 @@ namespace Asa.Business.Dashboard.Configuration
 
 		public String GetSelectedThemeName(SlideType slideType)
 		{
-			return GetSelectedTheme(slideType).Name;
+			return GetSelectedTheme(slideType)?.Name;
 		}
 
 		public void SetSelectedTheme(SlideType slideType, string themeName, bool applyForAllSlidesTypes)

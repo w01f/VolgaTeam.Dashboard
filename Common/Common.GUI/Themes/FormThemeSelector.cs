@@ -8,7 +8,6 @@ using Asa.Common.Core.Interfaces;
 using Asa.Common.Core.Objects.Themes;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro;
-using Asa.Common.GUI.Properties;
 using DevExpress.Skins;
 
 namespace Asa.Common.GUI.Themes
@@ -73,7 +72,7 @@ namespace Asa.Common.GUI.Themes
 		public static void Link(
 			ButtonItem selectorButton,
 			Form parentForm,
-			IEnumerable<Theme> themes,
+			IList<Theme> themes,
 			string selectedThemeName,
 			IThemeSettingsContainer settingsContainer,
 			Action<Theme, bool> themeSelected)
@@ -85,10 +84,35 @@ namespace Asa.Common.GUI.Themes
 			selectorButton.AutoExpandOnClick = false;
 			if (themesExisted)
 			{
-				var currentTheme = themes.FirstOrDefault(t => t.Name.Equals(selectedThemeName) || String.IsNullOrEmpty(selectedThemeName)) ?? themes.FirstOrDefault();
+				var currentTheme =
+					themes.FirstOrDefault(t => t.Name.Equals(selectedThemeName) || String.IsNullOrEmpty(selectedThemeName)) ??
+					themes.FirstOrDefault();
 				if (currentTheme == null) return;
+				selectorButton.Enabled = true;
 				selectorButton.Image = currentTheme.RibbonLogo;
-				((RibbonBar)selectorButton.ContainerControl).Text = String.Format("{0}", currentTheme.Name);
+
+				var ribonBar = (RibbonBar)selectorButton.ContainerControl;
+				if (!ribonBar.Visible && ribonBar.Parent is RibbonPanel ribbonPanel)
+				{
+					var allPanelControls = new List<Control>();
+					foreach (var control in ribbonPanel.Controls
+						.OfType<Control>())
+						allPanelControls.Add(control);
+
+					var invisiblePanelControls = allPanelControls.Where(control => !control.Visible && control != ribonBar).ToList();
+
+					foreach (var control in allPanelControls)
+					{
+						control.Visible = false;
+						control.Visible = true;
+					}
+
+					foreach (var control in invisiblePanelControls)
+						control.Visible = false;
+				}
+
+				ribonBar.Text = String.Format("{0}", currentTheme.Name);
+
 				if (selectorButton.Tag == null)
 				{
 					selectorButton.Tag = new ThemeButtonInfo();
@@ -119,7 +143,9 @@ namespace Asa.Common.GUI.Themes
 			   };
 			}
 			else
-				selectorButton.Image = Resources.OutputDisabled;
+			{
+				((RibbonBar)selectorButton.ContainerControl).Visible = false;
+			}
 		}
 	}
 }

@@ -20,9 +20,9 @@ namespace Asa.Business.Solutions.Shift.Configuration.NeedsSolutions
 				case "d":
 					return new NeedsSolutionsTabDInfo();
 				case "e":
-					return new CommonChildTabInfo(ShiftChildTabType.E, TabType);
+					return new NeedsSolutionsTabEInfo();
 				case "f":
-					return new CommonChildTabInfo(ShiftChildTabType.F, TabType);
+					return new NeedsSolutionsTabFInfo();
 				case "g":
 					return new CommonChildTabInfo(ShiftChildTabType.G, TabType);
 				case "h":

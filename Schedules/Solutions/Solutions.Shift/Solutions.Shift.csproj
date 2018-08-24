@@ -89,6 +89,45 @@
     <Compile Include="PresentationClasses\ContentEditors\BaseShiftContainer.Designer.cs">
       <DependentUpon>BaseShiftContainer.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CBC\CBCTabAControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CBC\CBCTabAControl.Designer.cs">
+      <DependentUpon>CBCTabAControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CBC\CBCTabEControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CBC\CBCTabEControl.Designer.cs">
+      <DependentUpon>CBCTabEControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CBC\CBCTabDControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CBC\CBCTabDControl.Designer.cs">
+      <DependentUpon>CBCTabDControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CBC\CBCTabCControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CBC\CBCTabCControl.Designer.cs">
+      <DependentUpon>CBCTabCControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CBC\CBCTabBControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CBC\CBCTabBControl.Designer.cs">
+      <DependentUpon>CBCTabBControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CBC\CBCControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CBC\StepControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CBC\StepControl.Designer.cs">
+      <DependentUpon>StepControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\ChildTabBaseControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -428,6 +467,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\BaseShiftContainer.resx">
       <DependentUpon>BaseShiftContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\CBC\CBCTabAControl.resx">
+      <DependentUpon>CBCTabAControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\CBC\CBCTabEControl.resx">
+      <DependentUpon>CBCTabEControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\CBC\CBCTabDControl.resx">
+      <DependentUpon>CBCTabDControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\CBC\CBCTabCControl.resx">
+      <DependentUpon>CBCTabCControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\CBC\CBCTabBControl.resx">
+      <DependentUpon>CBCTabBControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\CBC\StepControl.resx">
+      <DependentUpon>StepControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\ChildTabBaseControl.resx">
       <DependentUpon>ChildTabBaseControl.cs</DependentUpon>

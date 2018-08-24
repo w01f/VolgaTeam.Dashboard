@@ -326,8 +326,20 @@ namespace Asa.Common.Core.Helpers
 					case "Shift_07f4_our_solutions":
 						slideType = SlideType.ShiftNeedsSolutionsF4;
 						break;
-					case "Shift_08_cbc":
-						slideType = SlideType.ShiftCBC;
+					case "Shift_08a1_cbc":
+						slideType = SlideType.ShiftCBC_A;
+						break;
+					case "Shift_08b1_cbc":
+						slideType = SlideType.ShiftCBC_B;
+						break;
+					case "Shift_08c1_cbc":
+						slideType = SlideType.ShiftCBC_C;
+						break;
+					case "Shift_08d1_cbc":
+						slideType = SlideType.ShiftCBC_D;
+						break;
+					case "Shift_08e1_cbc":
+						slideType = SlideType.ShiftCBC_E;
 						break;
 					case "Shift_09_integrated_solution":
 						slideType = SlideType.ShiftIntegratedSolution;

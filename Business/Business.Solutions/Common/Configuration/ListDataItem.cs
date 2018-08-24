@@ -42,5 +42,12 @@ namespace Asa.Business.Solutions.Common.Configuration
 			}
 			return listDataItem;
 		}
+
+		public static ListDataItem FromString(string value)
+		{
+			var listDataItem = new ListDataItem();
+			listDataItem.Value = value;
+			return listDataItem;
+		}
 	}
 }

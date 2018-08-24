@@ -13,6 +13,7 @@ using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Agenda;
+using Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Intro;
@@ -99,6 +100,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 						break;
 					case ShiftTopTabType.NeedsSolutions:
 						_slides.Add(new ShiftTabPageContainerControl<NeedsSolutionsControl>(this, tabInfo));
+						break;
+					case ShiftTopTabType.CBC:
+						_slides.Add(new ShiftTabPageContainerControl<CBCControl>(this, tabInfo));
 						break;
 					default:
 						_slides.Add(new ShiftTabPageContainerControl<CommonTopTabControl>(this, tabInfo));

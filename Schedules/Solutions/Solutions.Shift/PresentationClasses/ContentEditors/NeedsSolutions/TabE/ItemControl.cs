@@ -45,6 +45,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 			ItemState = NeedsSolutionsState.NeedsItemState.Empty();
 			ItemState.Index = DefaultItemIndex;
 
+			pictureEditClipart.MouseWheel += OnClipartMouseWheel;
+
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemUp.MaxSize = RectangleHelper.ScaleSize(layoutControlItemUp.MaxSize, scaleFactor);
 			layoutControlItemUp.MinSize = RectangleHelper.ScaleSize(layoutControlItemUp.MinSize, scaleFactor);
@@ -174,6 +176,14 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 
 			UpdateDataControl();
 			RaiseEditValueChanged();
+		}
+
+		private void OnClipartMouseWheel(object sender, MouseEventArgs e)
+		{
+			if (e.Delta < 0)
+				OnUpButtonClick(pictureEditUp, EventArgs.Empty);
+			else
+				OnDownButtonClick(pictureEditDown, EventArgs.Empty);
 		}
 
 		private void OnListButtonClick(object sender, EventArgs e)

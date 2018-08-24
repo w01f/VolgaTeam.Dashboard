@@ -7,6 +7,7 @@ using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Dictionaries;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Shift.Configuration.Agenda;
+using Asa.Business.Solutions.Shift.Configuration.CBC;
 using Asa.Business.Solutions.Shift.Configuration.Cleanslate;
 using Asa.Business.Solutions.Shift.Configuration.Cover;
 using Asa.Business.Solutions.Shift.Configuration.Goals;
@@ -96,7 +97,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							tabInfo = new NeedsSolutionsTabInfo();
 							break;
 						case "cbc":
-							tabInfo = new CommonTopTabInfo(ShiftTopTabType.CBC);
+							tabInfo = new CBCTabInfo();
 							break;
 						case "integrated-solution":
 							tabInfo = new CommonTopTabInfo(ShiftTopTabType.IntegratedSolution);

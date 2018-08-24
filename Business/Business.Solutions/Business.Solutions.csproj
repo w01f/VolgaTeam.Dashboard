@@ -92,6 +92,14 @@
     <Compile Include="Shift\Configuration\Agenda\AgendaTabBInfo.cs" />
     <Compile Include="Shift\Configuration\Agenda\AgendaTabAInfo.cs" />
     <Compile Include="Shift\Configuration\Agenda\AgendaTabInfo.cs" />
+    <Compile Include="Shift\Configuration\CBC\CBCTabEInfo.cs" />
+    <Compile Include="Shift\Configuration\CBC\CBCTabDInfo.cs" />
+    <Compile Include="Shift\Configuration\CBC\CBCTabCInfo.cs" />
+    <Compile Include="Shift\Configuration\CBC\CBCTabBInfo.cs" />
+    <Compile Include="Shift\Configuration\CBC\CBCTabAInfo.cs" />
+    <Compile Include="Shift\Configuration\CBC\CBCTabInfo.cs" />
+    <Compile Include="Shift\Configuration\CBC\StepInfo.cs" />
+    <Compile Include="Shift\Configuration\CBC\TabInfo.cs" />
     <Compile Include="Shift\Configuration\CommonChildTabInfo.cs" />
     <Compile Include="Shift\Configuration\CommonTopTabInfo.cs" />
     <Compile Include="Shift\Configuration\Cover\CoverTabDInfo.cs" />
@@ -141,6 +149,7 @@
     <Compile Include="Shift\Configuration\ResourceManager.cs" />
     <Compile Include="Shift\Configuration\ShiftSolutionInfo.cs" />
     <Compile Include="Shift\Configuration\ShiftTabWithHeaderInfo.cs" />
+    <Compile Include="Shift\Entities\NonPersistent\CBCState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\NeedsSolutionsState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\PartnershipState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\MarketState.cs" />

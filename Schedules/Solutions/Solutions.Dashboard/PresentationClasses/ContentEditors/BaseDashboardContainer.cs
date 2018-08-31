@@ -60,6 +60,11 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		#region GUI Processing
 		public override void InitControl(bool showSplash)
 		{
+			if (showSplash)
+				FormProgress.ShowProgress("Loading data...", DashboardInfo.LoadContentData);
+			else
+				DashboardInfo.LoadContentData();
+
 			_slides.Add(new CleanslateControl(this));
 			_slides.Add(new CoverControl(this));
 			_slides.Add(new LeadoffStatementControl(this));

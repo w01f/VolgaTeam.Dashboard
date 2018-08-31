@@ -16,6 +16,7 @@ using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Agenda;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals;
+using Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolution;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Intro;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions;
@@ -69,11 +70,25 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 			if (showSplash)
 			{
-				FormProgress.SetTitle("Loading data...");
-				FormProgress.ShowProgress();
-				Application.DoEvents();
+				FormProgress.ShowProgress("Loading data...", () =>
+				{
+					ShiftInfo.LoadContentData();
+					BeginInvoke(new MethodInvoker(() =>
+					{
+						Application.DoEvents();
+						InitControlInner();
+					}));
+				}, false);
 			}
+			else
+			{
+				ShiftInfo.LoadContentData();
+				InitControlInner();
+			}
+		}
 
+		private void InitControlInner()
+		{
 			foreach (var tabInfo in ShiftInfo.TabsInfo)
 				switch (tabInfo.TabType)
 				{
@@ -104,6 +119,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 					case ShiftTopTabType.CBC:
 						_slides.Add(new ShiftTabPageContainerControl<CBCControl>(this, tabInfo));
 						break;
+					case ShiftTopTabType.IntegratedSolution:
+						_slides.Add(new ShiftTabPageContainerControl<IntegratedSolutionControl>(this, tabInfo));
+						break;
 					default:
 						_slides.Add(new ShiftTabPageContainerControl<CommonTopTabControl>(this, tabInfo));
 						break;
@@ -113,15 +131,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			xtraTabControl.TabPages.AddRange(_slides.OfType<XtraTabPage>().ToArray());
 			Application.DoEvents();
 
+			xtraTabControl.SelectedTabPage = _slides.FirstOrDefault();
+			LoadTabPage(xtraTabControl.SelectedTabPage as IShiftTabPageContainer, false);
+
 			xtraTabControl.SelectedPageChanging += OnSelectedSlideChanging;
 			xtraTabControl.SelectedPageChanged += OnSelectedSlideChanged;
 			xtraTabControl.MouseWheel += OnTabControlMouseWheel;
-
-			if (showSplash)
-			{
-				FormProgress.CloseProgress();
-				Application.DoEvents();
-			}
 		}
 
 		public override void ShowEditor(bool showSplash)
@@ -132,8 +147,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 		public override void ShowHomeSlide(bool showSplash)
 		{
-			xtraTabControl.SelectedTabPage = _slides.FirstOrDefault();
-			LoadTabPage(xtraTabControl.SelectedTabPage as IShiftTabPageContainer, showSplash);
 			RaiseSlideTypeChanged();
 			RaiseOutputStatuesChanged();
 		}

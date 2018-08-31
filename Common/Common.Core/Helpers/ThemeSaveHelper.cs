@@ -52,8 +52,7 @@ namespace Asa.Common.Core.Helpers
 			_selectedThemes.Clear();
 			foreach (var childNode in nodes)
 			{
-				SlideType temp;
-				if (!Enum.TryParse(childNode.Attributes["SlideType"].Value, out temp) || String.IsNullOrEmpty(childNode.Attributes["Theme"].Value)) continue;
+				if (!Enum.TryParse(childNode.Attributes["SlideType"].Value, out SlideType temp) || String.IsNullOrEmpty(childNode.Attributes["Theme"].Value)) continue;
 				var themeName = childNode.Attributes["Theme"].Value;
 				var availableThemsForSlideType = _themeManager.GetThemes(temp);
 				if (availableThemsForSlideType.Any(t => t.Name.Equals(themeName)))

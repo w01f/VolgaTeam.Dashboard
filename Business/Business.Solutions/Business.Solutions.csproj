@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Configuration\CheckboxInfo.cs" />
     <Compile Include="Common\Configuration\TextEditorConfiguration.cs" />
     <Compile Include="Common\Entities\NonPersistent\BaseSolutionContent.cs" />
     <Compile Include="Common\Configuration\BaseSolutionInfo.cs" />
@@ -112,6 +113,14 @@
     <Compile Include="Shift\Configuration\Goals\GoalsTabBInfo.cs" />
     <Compile Include="Shift\Configuration\Goals\GoalsTabAInfo.cs" />
     <Compile Include="Shift\Configuration\Goals\GoalsTabInfo.cs" />
+    <Compile Include="Shift\Configuration\IntegratedSolution\IntegratedSolutionTabAInfo.cs" />
+    <Compile Include="Shift\Configuration\IntegratedSolution\IProductSubTabInfo.cs" />
+    <Compile Include="Shift\Configuration\IntegratedSolution\IProductToggleContainerInfo.cs" />
+    <Compile Include="Shift\Configuration\IntegratedSolution\IntegratedSolutionTabInfo.cs" />
+    <Compile Include="Shift\Configuration\IntegratedSolution\PositioningInfo.cs" />
+    <Compile Include="Shift\Configuration\IntegratedSolution\ProductInfo.cs" />
+    <Compile Include="Shift\Configuration\IntegratedSolution\ResearchInfo.cs" />
+    <Compile Include="Shift\Configuration\IntegratedSolution\StyleInfo.cs" />
     <Compile Include="Shift\Configuration\Intro\IntroTabInfo.cs" />
     <Compile Include="Shift\Configuration\Intro\IntroTabDInfo.cs" />
     <Compile Include="Shift\Configuration\Intro\IntroTabCInfo.cs" />
@@ -150,6 +159,7 @@
     <Compile Include="Shift\Configuration\ShiftSolutionInfo.cs" />
     <Compile Include="Shift\Configuration\ShiftTabWithHeaderInfo.cs" />
     <Compile Include="Shift\Entities\NonPersistent\CBCState.cs" />
+    <Compile Include="Shift\Entities\NonPersistent\IntegratedSolutionState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\NeedsSolutionsState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\PartnershipState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\MarketState.cs" />

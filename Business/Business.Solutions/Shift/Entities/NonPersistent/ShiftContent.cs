@@ -17,6 +17,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public PartnershipState PartnershipState { get; }
 		public NeedsSolutionsState NeedsSolutionsState { get; }
 		public CBCState CBCState { get; }
+		public IntegratedSolutionState IntegratedSolutionState { get; }
 
 		protected ShiftContent()
 		{
@@ -28,6 +29,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			PartnershipState = new PartnershipState();
 			NeedsSolutionsState = new NeedsSolutionsState();
 			CBCState = new CBCState();
+			IntegratedSolutionState = new IntegratedSolutionState();
 		}
 
 		protected override void AfterCreate()

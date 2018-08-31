@@ -12,6 +12,7 @@ namespace Asa.Business.Solutions.Common.Configuration
 {
 	public abstract class BaseSolutionInfo
 	{
+		protected bool _contentLoaded;
 		protected ArchiveDirectory DataFolder { get; private set; }
 
 		public string Id { get; private set; }
@@ -26,11 +27,13 @@ namespace Asa.Business.Solutions.Common.Configuration
 			Enabled = true;
 		}
 
-		public virtual void LoadData(StorageDirectory holderAppDataFolder)
+		public virtual void LoadToggleData(StorageDirectory holderAppDataFolder)
 		{
 			DataFolder = new ArchiveDirectory(holderAppDataFolder.RelativePathParts.Merge(Id));
 			AsyncHelper.RunSync(() => DataFolder.Download());
 		}
+
+		public abstract void LoadContentData();
 
 		public static BaseSolutionInfo CreateFromConfig(XmlNode configNode)
 		{

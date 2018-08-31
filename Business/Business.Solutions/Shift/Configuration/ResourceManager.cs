@@ -561,6 +561,8 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab9SubWFooterFile { get; private set; }
 		public StorageFile LogoTab9SubWBackgroundFile { get; private set; }
 
+		public StorageDirectory ClipartTab9SharedFolder { get; private set; }
+
 		public StorageDirectory Tab9PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab9PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab9PartWSlidesFolder { get; private set; }
@@ -794,6 +796,52 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageDirectory Tab14PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab14PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab14PartWSlidesFolder { get; private set; }
+		#endregion
+
+		#region Tab 15
+		public StorageFile LogoTab15SubARightFile { get; private set; }
+		public StorageFile LogoTab15SubAFooterFile { get; private set; }
+		public StorageFile LogoTab15SubABackgroundFile { get; private set; }
+		public StorageFile LogoTab15SubBRightFile { get; private set; }
+		public StorageFile LogoTab15SubBFooterFile { get; private set; }
+		public StorageFile LogoTab15SubBBackgroundFile { get; private set; }
+		public StorageFile LogoTab15SubCRightFile { get; private set; }
+		public StorageFile LogoTab15SubCFooterFile { get; private set; }
+		public StorageFile LogoTab15SubCBackgroundFile { get; private set; }
+		public StorageFile LogoTab15SubDRightFile { get; private set; }
+		public StorageFile LogoTab15SubDFooterFile { get; private set; }
+		public StorageFile LogoTab15SubDBackgroundFile { get; private set; }
+		public StorageFile LogoTab15SubERightFile { get; private set; }
+		public StorageFile LogoTab15SubEFooterFile { get; private set; }
+		public StorageFile LogoTab15SubEBackgroundFile { get; private set; }
+		public StorageFile LogoTab15SubFRightFile { get; private set; }
+		public StorageFile LogoTab15SubFFooterFile { get; private set; }
+		public StorageFile LogoTab15SubFBackgroundFile { get; private set; }
+		public StorageFile LogoTab15SubGRightFile { get; private set; }
+		public StorageFile LogoTab15SubGFooterFile { get; private set; }
+		public StorageFile LogoTab15SubGBackgroundFile { get; private set; }
+		public StorageFile LogoTab15SubHRightFile { get; private set; }
+		public StorageFile LogoTab15SubHFooterFile { get; private set; }
+		public StorageFile LogoTab15SubHBackgroundFile { get; private set; }
+		public StorageFile LogoTab15SubIRightFile { get; private set; }
+		public StorageFile LogoTab15SubIFooterFile { get; private set; }
+		public StorageFile LogoTab15SubIBackgroundFile { get; private set; }
+		public StorageFile LogoTab15SubJRightFile { get; private set; }
+		public StorageFile LogoTab15SubJFooterFile { get; private set; }
+		public StorageFile LogoTab15SubJBackgroundFile { get; private set; }
+		public StorageFile LogoTab15SubURightFile { get; private set; }
+		public StorageFile LogoTab15SubUFooterFile { get; private set; }
+		public StorageFile LogoTab15SubUBackgroundFile { get; private set; }
+		public StorageFile LogoTab15SubVRightFile { get; private set; }
+		public StorageFile LogoTab15SubVFooterFile { get; private set; }
+		public StorageFile LogoTab15SubVBackgroundFile { get; private set; }
+		public StorageFile LogoTab15SubWRightFile { get; private set; }
+		public StorageFile LogoTab15SubWFooterFile { get; private set; }
+		public StorageFile LogoTab15SubWBackgroundFile { get; private set; }
+
+		public StorageDirectory Tab15PartUSlidesFolder { get; private set; }
+		public StorageDirectory Tab15PartVSlidesFolder { get; private set; }
+		public StorageDirectory Tab15PartWSlidesFolder { get; private set; }
 		#endregion
 
 		public void Init(StorageDirectory dataFolder)
@@ -1322,285 +1370,334 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			#endregion
 
 			#region Tab 9
-			LogoTab9SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_a", "design_branding", "9a_right.png" }));
-			LogoTab9SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_a", "design_branding", "9a_footer.png" }));
-			LogoTab9SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_b", "design_branding", "9b_right.png" }));
-			LogoTab9SubBFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_b", "design_branding", "9b_footer.png" }));
-			LogoTab9SubCRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_c", "design_branding", "9c_right.png" }));
-			LogoTab9SubCFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_c", "design_branding", "9c_footer.png" }));
-			LogoTab9SubDRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_d", "design_branding", "9d_right.png" }));
-			LogoTab9SubDFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_d", "design_branding", "9d_footer.png" }));
-			LogoTab9SubERightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_e", "design_branding", "9e_right.png" }));
-			LogoTab9SubEFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_e", "design_branding", "9e_footer.png" }));
-			LogoTab9SubFRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_f", "design_branding", "9f_right.png" }));
-			LogoTab9SubFFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_f", "design_branding", "9f_footer.png" }));
-			LogoTab9SubGRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_g", "design_branding", "9g_right.png" }));
-			LogoTab9SubGFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_g", "design_branding", "9g_footer.png" }));
-			LogoTab9SubHRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_h", "design_branding", "9h_right.png" }));
-			LogoTab9SubHFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_h", "design_branding", "9h_footer.png" }));
-			LogoTab9SubIRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_i", "design_branding", "9i_right.png" }));
-			LogoTab9SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_i", "design_branding", "9i_footer.png" }));
-			LogoTab9SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_j", "design_branding", "9j_right.png" }));
-			LogoTab9SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_j", "design_branding", "9j_footer.png" }));
-			LogoTab9SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_u", "design_branding", "9u_right.png" }));
-			LogoTab9SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_u", "design_branding", "9u_footer.png" }));
-			LogoTab9SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_v", "design_branding", "9v_right.png" }));
-			LogoTab9SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_v", "design_branding", "9v_footer.png" }));
-			LogoTab9SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_w", "design_branding", "9w_right.png" }));
-			LogoTab9SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_w", "design_branding", "9w_footer.png" }));
+			LogoTab9SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_a", "design_branding", "9a_right.png" }));
+			LogoTab9SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_a", "design_branding", "9a_footer.png" }));
+			LogoTab9SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_b", "design_branding", "9b_right.png" }));
+			LogoTab9SubBFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_b", "design_branding", "9b_footer.png" }));
+			LogoTab9SubCRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_c", "design_branding", "9c_right.png" }));
+			LogoTab9SubCFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_c", "design_branding", "9c_footer.png" }));
+			LogoTab9SubDRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_d", "design_branding", "9d_right.png" }));
+			LogoTab9SubDFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_d", "design_branding", "9d_footer.png" }));
+			LogoTab9SubERightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_e", "design_branding", "9e_right.png" }));
+			LogoTab9SubEFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_e", "design_branding", "9e_footer.png" }));
+			LogoTab9SubFRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_f", "design_branding", "9f_right.png" }));
+			LogoTab9SubFFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_f", "design_branding", "9f_footer.png" }));
+			LogoTab9SubGRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_g", "design_branding", "9g_right.png" }));
+			LogoTab9SubGFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_g", "design_branding", "9g_footer.png" }));
+			LogoTab9SubHRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_h", "design_branding", "9h_right.png" }));
+			LogoTab9SubHFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_h", "design_branding", "9h_footer.png" }));
+			LogoTab9SubIRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_i", "design_branding", "9i_right.png" }));
+			LogoTab9SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_i", "design_branding", "9i_footer.png" }));
+			LogoTab9SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_j", "design_branding", "9j_right.png" }));
+			LogoTab9SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_j", "design_branding", "9j_footer.png" }));
+			LogoTab9SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_u", "design_branding", "9u_right.png" }));
+			LogoTab9SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_u", "design_branding", "9u_footer.png" }));
+			LogoTab9SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_v", "design_branding", "9v_right.png" }));
+			LogoTab9SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_v", "design_branding", "9v_footer.png" }));
+			LogoTab9SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_w", "design_branding", "9w_right.png" }));
+			LogoTab9SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_w", "design_branding", "9w_footer.png" }));
 
-			LogoTab9SubABackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_a", "design_branding", "background.png" }));
-			LogoTab9SubBBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_b", "design_branding", "background.png" }));
-			LogoTab9SubCBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_c", "design_branding", "background.png" }));
-			LogoTab9SubDBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_d", "design_branding", "background.png" }));
-			LogoTab9SubEBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_e", "design_branding", "background.png" }));
-			LogoTab9SubFBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_f", "design_branding", "background.png" }));
-			LogoTab9SubGBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_g", "design_branding", "background.png" }));
-			LogoTab9SubHBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_h", "design_branding", "background.png" }));
-			LogoTab9SubIBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_i", "design_branding", "background.png" }));
-			LogoTab9SubJBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_j", "design_branding", "background.png" }));
-			LogoTab9SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_u", "design_branding", "background.png" }));
-			LogoTab9SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_v", "design_branding", "background.png" }));
-			LogoTab9SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_w", "design_branding", "background.png" }));
+			LogoTab9SubABackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_a", "design_branding", "background.png" }));
+			LogoTab9SubBBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_b", "design_branding", "background.png" }));
+			LogoTab9SubCBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_c", "design_branding", "background.png" }));
+			LogoTab9SubDBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_d", "design_branding", "background.png" }));
+			LogoTab9SubEBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_e", "design_branding", "background.png" }));
+			LogoTab9SubFBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_f", "design_branding", "background.png" }));
+			LogoTab9SubGBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_g", "design_branding", "background.png" }));
+			LogoTab9SubHBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_h", "design_branding", "background.png" }));
+			LogoTab9SubIBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_i", "design_branding", "background.png" }));
+			LogoTab9SubJBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_j", "design_branding", "background.png" }));
+			LogoTab9SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_u", "design_branding", "background.png" }));
+			LogoTab9SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_v", "design_branding", "background.png" }));
+			LogoTab9SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_w", "design_branding", "background.png" }));
 
-			Tab9PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_u" }));
-			Tab9PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_v" }));
-			Tab9PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_integrated_solution", "subtab_w" }));
+			ClipartTab9SharedFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "shared" }));
+
+			Tab9PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_u" }));
+			Tab9PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_v" }));
+			Tab9PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_w" }));
 			#endregion
 
 			#region Tab 10
-			LogoTab10SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_a", "design_branding", "11a_right.png" }));
-			LogoTab10SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_a", "design_branding", "11a_footer.png" }));
-			LogoTab10SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_b", "design_branding", "11b_right.png" }));
-			LogoTab10SubBFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_b", "design_branding", "11b_footer.png" }));
-			LogoTab10SubCRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_c", "design_branding", "11c_right.png" }));
-			LogoTab10SubCFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_c", "design_branding", "11c_footer.png" }));
-			LogoTab10SubDRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_d", "design_branding", "11d_right.png" }));
-			LogoTab10SubDFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_d", "design_branding", "11d_footer.png" }));
-			LogoTab10SubERightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_e", "design_branding", "11e_right.png" }));
-			LogoTab10SubEFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_e", "design_branding", "11e_footer.png" }));
-			LogoTab10SubFRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_f", "design_branding", "11f_right.png" }));
-			LogoTab10SubFFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_f", "design_branding", "11f_footer.png" }));
-			LogoTab10SubGRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_g", "design_branding", "11g_right.png" }));
-			LogoTab10SubGFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_g", "design_branding", "11g_footer.png" }));
-			LogoTab10SubHRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_h", "design_branding", "11h_right.png" }));
-			LogoTab10SubHFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_h", "design_branding", "11h_footer.png" }));
-			LogoTab10SubIRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_i", "design_branding", "11i_right.png" }));
-			LogoTab10SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_i", "design_branding", "11i_footer.png" }));
-			LogoTab10SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_j", "design_branding", "11j_right.png" }));
-			LogoTab10SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_j", "design_branding", "11j_footer.png" }));
-			LogoTab10SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_u", "design_branding", "11u_right.png" }));
-			LogoTab10SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_u", "design_branding", "11u_footer.png" }));
-			LogoTab10SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_v", "design_branding", "11v_right.png" }));
-			LogoTab10SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_v", "design_branding", "11v_footer.png" }));
-			LogoTab10SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_w", "design_branding", "11w_right.png" }));
-			LogoTab10SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_w", "design_branding", "11w_footer.png" }));
+			LogoTab10SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_a", "design_branding", "12a_right.png" }));
+			LogoTab10SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_a", "design_branding", "12a_footer.png" }));
+			LogoTab10SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_b", "design_branding", "12b_right.png" }));
+			LogoTab10SubBFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_b", "design_branding", "12b_footer.png" }));
+			LogoTab10SubCRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_c", "design_branding", "12c_right.png" }));
+			LogoTab10SubCFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_c", "design_branding", "12c_footer.png" }));
+			LogoTab10SubDRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_d", "design_branding", "12d_right.png" }));
+			LogoTab10SubDFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_d", "design_branding", "12d_footer.png" }));
+			LogoTab10SubERightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_e", "design_branding", "12e_right.png" }));
+			LogoTab10SubEFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_e", "design_branding", "12e_footer.png" }));
+			LogoTab10SubFRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_f", "design_branding", "12f_right.png" }));
+			LogoTab10SubFFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_f", "design_branding", "12f_footer.png" }));
+			LogoTab10SubGRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_g", "design_branding", "12g_right.png" }));
+			LogoTab10SubGFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_g", "design_branding", "12g_footer.png" }));
+			LogoTab10SubHRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_h", "design_branding", "12h_right.png" }));
+			LogoTab10SubHFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_h", "design_branding", "12h_footer.png" }));
+			LogoTab10SubIRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_i", "design_branding", "12i_right.png" }));
+			LogoTab10SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_i", "design_branding", "12i_footer.png" }));
+			LogoTab10SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_j", "design_branding", "12j_right.png" }));
+			LogoTab10SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_j", "design_branding", "12j_footer.png" }));
+			LogoTab10SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_u", "design_branding", "12u_right.png" }));
+			LogoTab10SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_u", "design_branding", "12u_footer.png" }));
+			LogoTab10SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_v", "design_branding", "12v_right.png" }));
+			LogoTab10SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_v", "design_branding", "12v_footer.png" }));
+			LogoTab10SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_w", "design_branding", "12w_right.png" }));
+			LogoTab10SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_w", "design_branding", "12w_footer.png" }));
 
-			LogoTab10SubABackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_a", "design_branding", "background.png" }));
-			LogoTab10SubBBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_b", "design_branding", "background.png" }));
-			LogoTab10SubCBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_c", "design_branding", "background.png" }));
-			LogoTab10SubDBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_d", "design_branding", "background.png" }));
-			LogoTab10SubEBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_e", "design_branding", "background.png" }));
-			LogoTab10SubFBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_f", "design_branding", "background.png" }));
-			LogoTab10SubGBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_g", "design_branding", "background.png" }));
-			LogoTab10SubHBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_h", "design_branding", "background.png" }));
-			LogoTab10SubIBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_i", "design_branding", "background.png" }));
-			LogoTab10SubJBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_j", "design_branding", "background.png" }));
-			LogoTab10SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_u", "design_branding", "background.png" }));
-			LogoTab10SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_v", "design_branding", "background.png" }));
-			LogoTab10SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_w", "design_branding", "background.png" }));
+			LogoTab10SubABackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_a", "design_branding", "background.png" }));
+			LogoTab10SubBBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_b", "design_branding", "background.png" }));
+			LogoTab10SubCBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_c", "design_branding", "background.png" }));
+			LogoTab10SubDBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_d", "design_branding", "background.png" }));
+			LogoTab10SubEBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_e", "design_branding", "background.png" }));
+			LogoTab10SubFBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_f", "design_branding", "background.png" }));
+			LogoTab10SubGBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_g", "design_branding", "background.png" }));
+			LogoTab10SubHBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_h", "design_branding", "background.png" }));
+			LogoTab10SubIBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_i", "design_branding", "background.png" }));
+			LogoTab10SubJBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_j", "design_branding", "background.png" }));
+			LogoTab10SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_u", "design_branding", "background.png" }));
+			LogoTab10SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_v", "design_branding", "background.png" }));
+			LogoTab10SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_w", "design_branding", "background.png" }));
 
-			Tab10PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_u" }));
-			Tab10PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_v" }));
-			Tab10PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_investment", "subtab_w" }));
+			Tab10PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_u" }));
+			Tab10PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_v" }));
+			Tab10PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_w" }));
 			#endregion
 
 			#region Tab 11
-			LogoTab11SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_a", "design_branding", "12a_right.png" }));
-			LogoTab11SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_a", "design_branding", "12a_footer.png" }));
-			LogoTab11SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_b", "design_branding", "12b_right.png" }));
-			LogoTab11SubBFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_b", "design_branding", "12b_footer.png" }));
-			LogoTab11SubCRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_c", "design_branding", "12c_right.png" }));
-			LogoTab11SubCFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_c", "design_branding", "12c_footer.png" }));
-			LogoTab11SubDRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_d", "design_branding", "12d_right.png" }));
-			LogoTab11SubDFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_d", "design_branding", "12d_footer.png" }));
-			LogoTab11SubERightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_e", "design_branding", "12e_right.png" }));
-			LogoTab11SubEFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_e", "design_branding", "12e_footer.png" }));
-			LogoTab11SubFRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_f", "design_branding", "12f_right.png" }));
-			LogoTab11SubFFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_f", "design_branding", "12f_footer.png" }));
-			LogoTab11SubGRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_g", "design_branding", "12g_right.png" }));
-			LogoTab11SubGFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_g", "design_branding", "12g_footer.png" }));
-			LogoTab11SubHRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_h", "design_branding", "12h_right.png" }));
-			LogoTab11SubHFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_h", "design_branding", "12h_footer.png" }));
-			LogoTab11SubIRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_i", "design_branding", "12i_right.png" }));
-			LogoTab11SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_i", "design_branding", "12i_footer.png" }));
-			LogoTab11SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_j", "design_branding", "12j_right.png" }));
-			LogoTab11SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_j", "design_branding", "12j_footer.png" }));
-			LogoTab11SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_u", "design_branding", "12u_right.png" }));
-			LogoTab11SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_u", "design_branding", "12u_footer.png" }));
-			LogoTab11SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_v", "design_branding", "12v_right.png" }));
-			LogoTab11SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_v", "design_branding", "12v_footer.png" }));
-			LogoTab11SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_w", "design_branding", "12w_right.png" }));
-			LogoTab11SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_w", "design_branding", "12w_footer.png" }));
+			LogoTab11SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_a", "design_branding", "13a_right.png" }));
+			LogoTab11SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_a", "design_branding", "13a_footer.png" }));
+			LogoTab11SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_b", "design_branding", "13b_right.png" }));
+			LogoTab11SubBFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_b", "design_branding", "13b_footer.png" }));
+			LogoTab11SubCRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_c", "design_branding", "13c_right.png" }));
+			LogoTab11SubCFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_c", "design_branding", "13c_footer.png" }));
+			LogoTab11SubDRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_d", "design_branding", "13d_right.png" }));
+			LogoTab11SubDFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_d", "design_branding", "13d_footer.png" }));
+			LogoTab11SubERightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_e", "design_branding", "13e_right.png" }));
+			LogoTab11SubEFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_e", "design_branding", "13e_footer.png" }));
+			LogoTab11SubFRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_f", "design_branding", "13f_right.png" }));
+			LogoTab11SubFFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_f", "design_branding", "13f_footer.png" }));
+			LogoTab11SubGRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_g", "design_branding", "13g_right.png" }));
+			LogoTab11SubGFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_g", "design_branding", "13g_footer.png" }));
+			LogoTab11SubHRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_h", "design_branding", "13h_right.png" }));
+			LogoTab11SubHFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_h", "design_branding", "13h_footer.png" }));
+			LogoTab11SubIRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_i", "design_branding", "13i_right.png" }));
+			LogoTab11SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_i", "design_branding", "13i_footer.png" }));
+			LogoTab11SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_j", "design_branding", "13j_right.png" }));
+			LogoTab11SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_j", "design_branding", "13j_footer.png" }));
+			LogoTab11SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_u", "design_branding", "13u_right.png" }));
+			LogoTab11SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_u", "design_branding", "13u_footer.png" }));
+			LogoTab11SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_v", "design_branding", "13v_right.png" }));
+			LogoTab11SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_v", "design_branding", "13v_footer.png" }));
+			LogoTab11SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_w", "design_branding", "13w_right.png" }));
+			LogoTab11SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_w", "design_branding", "13w_footer.png" }));
 
-			LogoTab11SubABackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_a", "design_branding", "background.png" }));
-			LogoTab11SubBBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_b", "design_branding", "background.png" }));
-			LogoTab11SubCBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_c", "design_branding", "background.png" }));
-			LogoTab11SubDBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_d", "design_branding", "background.png" }));
-			LogoTab11SubEBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_e", "design_branding", "background.png" }));
-			LogoTab11SubFBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_f", "design_branding", "background.png" }));
-			LogoTab11SubGBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_g", "design_branding", "background.png" }));
-			LogoTab11SubHBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_h", "design_branding", "background.png" }));
-			LogoTab11SubIBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_i", "design_branding", "background.png" }));
-			LogoTab11SubJBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_j", "design_branding", "background.png" }));
-			LogoTab11SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_u", "design_branding", "background.png" }));
-			LogoTab11SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_v", "design_branding", "background.png" }));
-			LogoTab11SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_w", "design_branding", "background.png" }));
+			LogoTab11SubABackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_a", "design_branding", "background.png" }));
+			LogoTab11SubBBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_b", "design_branding", "background.png" }));
+			LogoTab11SubCBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_c", "design_branding", "background.png" }));
+			LogoTab11SubDBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_d", "design_branding", "background.png" }));
+			LogoTab11SubEBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_e", "design_branding", "background.png" }));
+			LogoTab11SubFBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_f", "design_branding", "background.png" }));
+			LogoTab11SubGBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_g", "design_branding", "background.png" }));
+			LogoTab11SubHBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_h", "design_branding", "background.png" }));
+			LogoTab11SubIBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_i", "design_branding", "background.png" }));
+			LogoTab11SubJBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_j", "design_branding", "background.png" }));
+			LogoTab11SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_u", "design_branding", "background.png" }));
+			LogoTab11SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_v", "design_branding", "background.png" }));
+			LogoTab11SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_w", "design_branding", "background.png" }));
 
-			Tab11PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_u" }));
-			Tab11PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_v" }));
-			Tab11PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_relationship_next_steps", "subtab_w" }));
+			Tab11PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_u" }));
+			Tab11PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_v" }));
+			Tab11PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_w" }));
 			#endregion
 
 			#region Tab 12
-			LogoTab12SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_a", "design_branding", "13a_right.png" }));
-			LogoTab12SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_a", "design_branding", "13a_footer.png" }));
-			LogoTab12SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_b", "design_branding", "13b_right.png" }));
-			LogoTab12SubBFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_b", "design_branding", "13b_footer.png" }));
-			LogoTab12SubCRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_c", "design_branding", "13c_right.png" }));
-			LogoTab12SubCFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_c", "design_branding", "13c_footer.png" }));
-			LogoTab12SubDRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_d", "design_branding", "13d_right.png" }));
-			LogoTab12SubDFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_d", "design_branding", "13d_footer.png" }));
-			LogoTab12SubERightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_e", "design_branding", "13e_right.png" }));
-			LogoTab12SubEFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_e", "design_branding", "13e_footer.png" }));
-			LogoTab12SubFRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_f", "design_branding", "13f_right.png" }));
-			LogoTab12SubFFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_f", "design_branding", "13f_footer.png" }));
-			LogoTab12SubGRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_g", "design_branding", "13g_right.png" }));
-			LogoTab12SubGFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_g", "design_branding", "13g_footer.png" }));
-			LogoTab12SubHRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_h", "design_branding", "13h_right.png" }));
-			LogoTab12SubHFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_h", "design_branding", "13h_footer.png" }));
-			LogoTab12SubIRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_i", "design_branding", "13i_right.png" }));
-			LogoTab12SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_i", "design_branding", "13i_footer.png" }));
-			LogoTab12SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_j", "design_branding", "13j_right.png" }));
-			LogoTab12SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_j", "design_branding", "13j_footer.png" }));
-			LogoTab12SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_u", "design_branding", "13u_right.png" }));
-			LogoTab12SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_u", "design_branding", "13u_footer.png" }));
-			LogoTab12SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_v", "design_branding", "13v_right.png" }));
-			LogoTab12SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_v", "design_branding", "13v_footer.png" }));
-			LogoTab12SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_w", "design_branding", "13w_right.png" }));
-			LogoTab12SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_w", "design_branding", "13w_footer.png" }));
+			LogoTab12SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_a", "design_branding", "14a_right.png" }));
+			LogoTab12SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_a", "design_branding", "14a_footer.png" }));
+			LogoTab12SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_b", "design_branding", "14b_right.png" }));
+			LogoTab12SubBFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_b", "design_branding", "14b_footer.png" }));
+			LogoTab12SubCRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_c", "design_branding", "14c_right.png" }));
+			LogoTab12SubCFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_c", "design_branding", "14c_footer.png" }));
+			LogoTab12SubDRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_d", "design_branding", "14d_right.png" }));
+			LogoTab12SubDFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_d", "design_branding", "14d_footer.png" }));
+			LogoTab12SubERightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_e", "design_branding", "14e_right.png" }));
+			LogoTab12SubEFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_e", "design_branding", "14e_footer.png" }));
+			LogoTab12SubFRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_f", "design_branding", "14f_right.png" }));
+			LogoTab12SubFFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_f", "design_branding", "14f_footer.png" }));
+			LogoTab12SubGRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_g", "design_branding", "14g_right.png" }));
+			LogoTab12SubGFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_g", "design_branding", "14g_footer.png" }));
+			LogoTab12SubHRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_h", "design_branding", "14h_right.png" }));
+			LogoTab12SubHFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_h", "design_branding", "14h_footer.png" }));
+			LogoTab12SubIRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_i", "design_branding", "14i_right.png" }));
+			LogoTab12SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_i", "design_branding", "14i_footer.png" }));
+			LogoTab12SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_j", "design_branding", "14j_right.png" }));
+			LogoTab12SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_j", "design_branding", "14j_footer.png" }));
+			LogoTab12SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_u", "design_branding", "14u_right.png" }));
+			LogoTab12SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_u", "design_branding", "14u_footer.png" }));
+			LogoTab12SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_v", "design_branding", "14v_right.png" }));
+			LogoTab12SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_v", "design_branding", "14v_footer.png" }));
+			LogoTab12SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_w", "design_branding", "14w_right.png" }));
+			LogoTab12SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_w", "design_branding", "14w_footer.png" }));
 
-			LogoTab12SubABackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_a", "design_branding", "background.png" }));
-			LogoTab12SubBBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_b", "design_branding", "background.png" }));
-			LogoTab12SubCBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_c", "design_branding", "background.png" }));
-			LogoTab12SubDBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_d", "design_branding", "background.png" }));
-			LogoTab12SubEBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_e", "design_branding", "background.png" }));
-			LogoTab12SubFBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_f", "design_branding", "background.png" }));
-			LogoTab12SubGBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_g", "design_branding", "background.png" }));
-			LogoTab12SubHBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_h", "design_branding", "background.png" }));
-			LogoTab12SubIBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_i", "design_branding", "background.png" }));
-			LogoTab12SubJBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_j", "design_branding", "background.png" }));
-			LogoTab12SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_u", "design_branding", "background.png" }));
-			LogoTab12SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_v", "design_branding", "background.png" }));
-			LogoTab12SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_w", "design_branding", "background.png" }));
+			LogoTab12SubABackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_a", "design_branding", "background.png" }));
+			LogoTab12SubBBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_b", "design_branding", "background.png" }));
+			LogoTab12SubCBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_c", "design_branding", "background.png" }));
+			LogoTab12SubDBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_d", "design_branding", "background.png" }));
+			LogoTab12SubEBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_e", "design_branding", "background.png" }));
+			LogoTab12SubFBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_f", "design_branding", "background.png" }));
+			LogoTab12SubGBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_g", "design_branding", "background.png" }));
+			LogoTab12SubHBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_h", "design_branding", "background.png" }));
+			LogoTab12SubIBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_i", "design_branding", "background.png" }));
+			LogoTab12SubJBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_j", "design_branding", "background.png" }));
+			LogoTab12SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_u", "design_branding", "background.png" }));
+			LogoTab12SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_v", "design_branding", "background.png" }));
+			LogoTab12SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_w", "design_branding", "background.png" }));
 
-			Tab12PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_u" }));
-			Tab12PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_v" }));
-			Tab12PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_agreement_contract", "subtab_w" }));
+			Tab12PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_u" }));
+			Tab12PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_v" }));
+			Tab12PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_w" }));
 			#endregion
 
 			#region Tab 13
-			LogoTab13SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_a", "design_branding", "14a_right.png" }));
-			LogoTab13SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_a", "design_branding", "14a_footer.png" }));
-			LogoTab13SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_b", "design_branding", "14b_right.png" }));
-			LogoTab13SubBFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_b", "design_branding", "14b_footer.png" }));
-			LogoTab13SubCRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_c", "design_branding", "14c_right.png" }));
-			LogoTab13SubCFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_c", "design_branding", "14c_footer.png" }));
-			LogoTab13SubDRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_d", "design_branding", "14d_right.png" }));
-			LogoTab13SubDFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_d", "design_branding", "14d_footer.png" }));
-			LogoTab13SubERightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_e", "design_branding", "14e_right.png" }));
-			LogoTab13SubEFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_e", "design_branding", "14e_footer.png" }));
-			LogoTab13SubFRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_f", "design_branding", "14f_right.png" }));
-			LogoTab13SubFFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_f", "design_branding", "14f_footer.png" }));
-			LogoTab13SubGRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_g", "design_branding", "14g_right.png" }));
-			LogoTab13SubGFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_g", "design_branding", "14g_footer.png" }));
-			LogoTab13SubHRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_h", "design_branding", "14h_right.png" }));
-			LogoTab13SubHFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_h", "design_branding", "14h_footer.png" }));
-			LogoTab13SubIRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_i", "design_branding", "14i_right.png" }));
-			LogoTab13SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_i", "design_branding", "14i_footer.png" }));
-			LogoTab13SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_j", "design_branding", "14j_right.png" }));
-			LogoTab13SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_j", "design_branding", "14j_footer.png" }));
-			LogoTab13SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_u", "design_branding", "14u_right.png" }));
-			LogoTab13SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_u", "design_branding", "14u_footer.png" }));
-			LogoTab13SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_v", "design_branding", "14v_right.png" }));
-			LogoTab13SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_v", "design_branding", "14v_footer.png" }));
-			LogoTab13SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_w", "design_branding", "14w_right.png" }));
-			LogoTab13SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_w", "design_branding", "14w_footer.png" }));
+			LogoTab13SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_a", "design_branding", "15a_right.png" }));
+			LogoTab13SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_a", "design_branding", "15a_footer.png" }));
+			LogoTab13SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_b", "design_branding", "15b_right.png" }));
+			LogoTab13SubBFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_b", "design_branding", "15b_footer.png" }));
+			LogoTab13SubCRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_c", "design_branding", "15c_right.png" }));
+			LogoTab13SubCFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_c", "design_branding", "15c_footer.png" }));
+			LogoTab13SubDRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_d", "design_branding", "15d_right.png" }));
+			LogoTab13SubDFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_d", "design_branding", "15d_footer.png" }));
+			LogoTab13SubERightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_e", "design_branding", "15e_right.png" }));
+			LogoTab13SubEFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_e", "design_branding", "15e_footer.png" }));
+			LogoTab13SubFRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_f", "design_branding", "15f_right.png" }));
+			LogoTab13SubFFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_f", "design_branding", "15f_footer.png" }));
+			LogoTab13SubGRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_g", "design_branding", "15g_right.png" }));
+			LogoTab13SubGFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_g", "design_branding", "15g_footer.png" }));
+			LogoTab13SubHRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_h", "design_branding", "15h_right.png" }));
+			LogoTab13SubHFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_h", "design_branding", "15h_footer.png" }));
+			LogoTab13SubIRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_i", "design_branding", "15i_right.png" }));
+			LogoTab13SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_i", "design_branding", "15i_footer.png" }));
+			LogoTab13SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_j", "design_branding", "15j_right.png" }));
+			LogoTab13SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_j", "design_branding", "15j_footer.png" }));
+			LogoTab13SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_u", "design_branding", "15u_right.png" }));
+			LogoTab13SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_u", "design_branding", "15u_footer.png" }));
+			LogoTab13SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_v", "design_branding", "15v_right.png" }));
+			LogoTab13SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_v", "design_branding", "15v_footer.png" }));
+			LogoTab13SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_w", "design_branding", "15w_right.png" }));
+			LogoTab13SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_w", "design_branding", "15w_footer.png" }));
 
-			LogoTab13SubABackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_a", "design_branding", "background.png" }));
-			LogoTab13SubBBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_b", "design_branding", "background.png" }));
-			LogoTab13SubCBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_c", "design_branding", "background.png" }));
-			LogoTab13SubDBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_d", "design_branding", "background.png" }));
-			LogoTab13SubEBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_e", "design_branding", "background.png" }));
-			LogoTab13SubFBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_f", "design_branding", "background.png" }));
-			LogoTab13SubGBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_g", "design_branding", "background.png" }));
-			LogoTab13SubHBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_h", "design_branding", "background.png" }));
-			LogoTab13SubIBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_i", "design_branding", "background.png" }));
-			LogoTab13SubJBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_j", "design_branding", "background.png" }));
-			LogoTab13SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_u", "design_branding", "background.png" }));
-			LogoTab13SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_v", "design_branding", "background.png" }));
-			LogoTab13SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_w", "design_branding", "background.png" }));
+			LogoTab13SubABackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_a", "design_branding", "background.png" }));
+			LogoTab13SubBBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_b", "design_branding", "background.png" }));
+			LogoTab13SubCBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_c", "design_branding", "background.png" }));
+			LogoTab13SubDBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_d", "design_branding", "background.png" }));
+			LogoTab13SubEBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_e", "design_branding", "background.png" }));
+			LogoTab13SubFBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_f", "design_branding", "background.png" }));
+			LogoTab13SubGBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_g", "design_branding", "background.png" }));
+			LogoTab13SubHBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_h", "design_branding", "background.png" }));
+			LogoTab13SubIBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_i", "design_branding", "background.png" }));
+			LogoTab13SubJBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_j", "design_branding", "background.png" }));
+			LogoTab13SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_u", "design_branding", "background.png" }));
+			LogoTab13SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_v", "design_branding", "background.png" }));
+			LogoTab13SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_w", "design_branding", "background.png" }));
 
-			Tab13PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_u" }));
-			Tab13PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_v" }));
-			Tab13PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_support_materials", "subtab_w" }));
+			Tab13PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_u" }));
+			Tab13PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_v" }));
+			Tab13PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_w" }));
 			#endregion
 
 			#region Tab 14
-			LogoTab14SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_a", "design_branding", "10a_right.png" }));
-			LogoTab14SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_a", "design_branding", "10a_footer.png" }));
-			LogoTab14SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_b", "design_branding", "10b_right.png" }));
-			LogoTab14SubBFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_b", "design_branding", "10b_footer.png" }));
-			LogoTab14SubCRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_c", "design_branding", "10c_right.png" }));
-			LogoTab14SubCFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_c", "design_branding", "10c_footer.png" }));
-			LogoTab14SubDRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_d", "design_branding", "10d_right.png" }));
-			LogoTab14SubDFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_d", "design_branding", "10d_footer.png" }));
-			LogoTab14SubERightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_e", "design_branding", "10e_right.png" }));
-			LogoTab14SubEFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_e", "design_branding", "10e_footer.png" }));
-			LogoTab14SubFRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_f", "design_branding", "10f_right.png" }));
-			LogoTab14SubFFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_f", "design_branding", "10f_footer.png" }));
-			LogoTab14SubGRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_g", "design_branding", "10g_right.png" }));
-			LogoTab14SubGFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_g", "design_branding", "10g_footer.png" }));
-			LogoTab14SubHRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_h", "design_branding", "10h_right.png" }));
-			LogoTab14SubHFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_h", "design_branding", "10h_footer.png" }));
-			LogoTab14SubIRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_i", "design_branding", "10i_right.png" }));
-			LogoTab14SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_i", "design_branding", "10i_footer.png" }));
-			LogoTab14SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_j", "design_branding", "10j_right.png" }));
-			LogoTab14SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_j", "design_branding", "10j_footer.png" }));
-			LogoTab14SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_u", "design_branding", "10u_right.png" }));
-			LogoTab14SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_u", "design_branding", "10u_footer.png" }));
-			LogoTab14SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_v", "design_branding", "10v_right.png" }));
-			LogoTab14SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_v", "design_branding", "10v_footer.png" }));
-			LogoTab14SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_w", "design_branding", "10w_right.png" }));
-			LogoTab14SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_w", "design_branding", "10w_footer.png" }));
+			LogoTab14SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_a", "design_branding", "11a_right.png" }));
+			LogoTab14SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_a", "design_branding", "11a_footer.png" }));
+			LogoTab14SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_b", "design_branding", "11b_right.png" }));
+			LogoTab14SubBFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_b", "design_branding", "11b_footer.png" }));
+			LogoTab14SubCRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_c", "design_branding", "11c_right.png" }));
+			LogoTab14SubCFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_c", "design_branding", "11c_footer.png" }));
+			LogoTab14SubDRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_d", "design_branding", "11d_right.png" }));
+			LogoTab14SubDFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_d", "design_branding", "11d_footer.png" }));
+			LogoTab14SubERightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_e", "design_branding", "11e_right.png" }));
+			LogoTab14SubEFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_e", "design_branding", "11e_footer.png" }));
+			LogoTab14SubFRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_f", "design_branding", "11f_right.png" }));
+			LogoTab14SubFFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_f", "design_branding", "11f_footer.png" }));
+			LogoTab14SubGRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_g", "design_branding", "11g_right.png" }));
+			LogoTab14SubGFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_g", "design_branding", "11g_footer.png" }));
+			LogoTab14SubHRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_h", "design_branding", "11h_right.png" }));
+			LogoTab14SubHFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_h", "design_branding", "11h_footer.png" }));
+			LogoTab14SubIRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_i", "design_branding", "11i_right.png" }));
+			LogoTab14SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_i", "design_branding", "11i_footer.png" }));
+			LogoTab14SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_j", "design_branding", "11j_right.png" }));
+			LogoTab14SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_j", "design_branding", "11j_footer.png" }));
+			LogoTab14SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_u", "design_branding", "11u_right.png" }));
+			LogoTab14SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_u", "design_branding", "11u_footer.png" }));
+			LogoTab14SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_v", "design_branding", "11v_right.png" }));
+			LogoTab14SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_v", "design_branding", "11v_footer.png" }));
+			LogoTab14SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_w", "design_branding", "11w_right.png" }));
+			LogoTab14SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_w", "design_branding", "11w_footer.png" }));
 
-			LogoTab14SubABackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_a", "design_branding", "background.png" }));
-			LogoTab14SubBBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_b", "design_branding", "background.png" }));
-			LogoTab14SubCBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_c", "design_branding", "background.png" }));
-			LogoTab14SubDBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_d", "design_branding", "background.png" }));
-			LogoTab14SubEBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_e", "design_branding", "background.png" }));
-			LogoTab14SubFBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_f", "design_branding", "background.png" }));
-			LogoTab14SubGBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_g", "design_branding", "background.png" }));
-			LogoTab14SubHBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_h", "design_branding", "background.png" }));
-			LogoTab14SubIBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_i", "design_branding", "background.png" }));
-			LogoTab14SubJBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_j", "design_branding", "background.png" }));
-			LogoTab14SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_u", "design_branding", "background.png" }));
-			LogoTab14SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_v", "design_branding", "background.png" }));
-			LogoTab14SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_w", "design_branding", "background.png" }));
+			LogoTab14SubABackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_a", "design_branding", "background.png" }));
+			LogoTab14SubBBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_b", "design_branding", "background.png" }));
+			LogoTab14SubCBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_c", "design_branding", "background.png" }));
+			LogoTab14SubDBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_d", "design_branding", "background.png" }));
+			LogoTab14SubEBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_e", "design_branding", "background.png" }));
+			LogoTab14SubFBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_f", "design_branding", "background.png" }));
+			LogoTab14SubGBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_g", "design_branding", "background.png" }));
+			LogoTab14SubHBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_h", "design_branding", "background.png" }));
+			LogoTab14SubIBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_i", "design_branding", "background.png" }));
+			LogoTab14SubJBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_j", "design_branding", "background.png" }));
+			LogoTab14SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_u", "design_branding", "background.png" }));
+			LogoTab14SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_v", "design_branding", "background.png" }));
+			LogoTab14SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_w", "design_branding", "background.png" }));
 
-			Tab14PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_u" }));
-			Tab14PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_v" }));
-			Tab14PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_spec_builder", "subtab_w" }));
+			Tab14PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_u" }));
+			Tab14PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_v" }));
+			Tab14PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_w" }));
+			#endregion
+
+			#region Tab 15
+			LogoTab15SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_a", "design_branding", "09a_right.png" }));
+			LogoTab15SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_a", "design_branding", "09a_footer.png" }));
+			LogoTab15SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_b", "design_branding", "09b_right.png" }));
+			LogoTab15SubBFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_b", "design_branding", "09b_footer.png" }));
+			LogoTab15SubCRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_c", "design_branding", "09c_right.png" }));
+			LogoTab15SubCFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_c", "design_branding", "09c_footer.png" }));
+			LogoTab15SubDRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_d", "design_branding", "09d_right.png" }));
+			LogoTab15SubDFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_d", "design_branding", "09d_footer.png" }));
+			LogoTab15SubERightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_e", "design_branding", "09e_right.png" }));
+			LogoTab15SubEFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_e", "design_branding", "09e_footer.png" }));
+			LogoTab15SubFRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_f", "design_branding", "09f_right.png" }));
+			LogoTab15SubFFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_f", "design_branding", "09f_footer.png" }));
+			LogoTab15SubGRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_g", "design_branding", "09g_right.png" }));
+			LogoTab15SubGFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_g", "design_branding", "09g_footer.png" }));
+			LogoTab15SubHRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_h", "design_branding", "09h_right.png" }));
+			LogoTab15SubHFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_h", "design_branding", "09h_footer.png" }));
+			LogoTab15SubIRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_i", "design_branding", "09i_right.png" }));
+			LogoTab15SubIFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_i", "design_branding", "09i_footer.png" }));
+			LogoTab15SubJRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_j", "design_branding", "09j_right.png" }));
+			LogoTab15SubJFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_j", "design_branding", "09j_footer.png" }));
+			LogoTab15SubURightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_u", "design_branding", "09u_right.png" }));
+			LogoTab15SubUFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_u", "design_branding", "09u_footer.png" }));
+			LogoTab15SubVRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_v", "design_branding", "09v_right.png" }));
+			LogoTab15SubVFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_v", "design_branding", "09v_footer.png" }));
+			LogoTab15SubWRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_w", "design_branding", "09w_right.png" }));
+			LogoTab15SubWFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_w", "design_branding", "09w_footer.png" }));
+
+			LogoTab15SubABackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_a", "design_branding", "background.png" }));
+			LogoTab15SubBBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_b", "design_branding", "background.png" }));
+			LogoTab15SubCBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_c", "design_branding", "background.png" }));
+			LogoTab15SubDBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_d", "design_branding", "background.png" }));
+			LogoTab15SubEBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_e", "design_branding", "background.png" }));
+			LogoTab15SubFBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_f", "design_branding", "background.png" }));
+			LogoTab15SubGBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_g", "design_branding", "background.png" }));
+			LogoTab15SubHBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_h", "design_branding", "background.png" }));
+			LogoTab15SubIBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_i", "design_branding", "background.png" }));
+			LogoTab15SubJBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_j", "design_branding", "background.png" }));
+			LogoTab15SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_u", "design_branding", "background.png" }));
+			LogoTab15SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_v", "design_branding", "background.png" }));
+			LogoTab15SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_w", "design_branding", "background.png" }));
+
+			Tab15PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_u" }));
+			Tab15PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_v" }));
+			Tab15PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_w" }));
 			#endregion
 		}
 	}

@@ -16,6 +16,7 @@
 		NextSteps,
 		Contract,
 		SupportMaterials,
-		SpecBuilder
+		SpecBuilder,
+		Approach,
 	}
 }

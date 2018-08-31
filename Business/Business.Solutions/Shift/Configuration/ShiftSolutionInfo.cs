@@ -11,6 +11,7 @@ using Asa.Business.Solutions.Shift.Configuration.CBC;
 using Asa.Business.Solutions.Shift.Configuration.Cleanslate;
 using Asa.Business.Solutions.Shift.Configuration.Cover;
 using Asa.Business.Solutions.Shift.Configuration.Goals;
+using Asa.Business.Solutions.Shift.Configuration.IntegratedSolution;
 using Asa.Business.Solutions.Shift.Configuration.Intro;
 using Asa.Business.Solutions.Shift.Configuration.Market;
 using Asa.Business.Solutions.Shift.Configuration.NeedsSolutions;
@@ -22,6 +23,8 @@ namespace Asa.Business.Solutions.Shift.Configuration
 {
 	public class ShiftSolutionInfo : BaseSolutionInfo
 	{
+		private ResourceManager _resourceManager;
+
 		public List<ShiftTopTabInfo> TabsInfo { get; }
 
 		public ClientGoalsLists ClientGoalsLists { get; }
@@ -37,18 +40,18 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			TargetCustomersLists = new TargetCustomersLists();
 		}
 
-		public override void LoadData(StorageDirectory holderAppDataFolder)
+		public override void LoadToggleData(StorageDirectory holderAppDataFolder)
 		{
-			base.LoadData(holderAppDataFolder);
+			base.LoadToggleData(holderAppDataFolder);
 
-			var resourceManager = new ResourceManager();
+			_resourceManager = new ResourceManager();
 
-			resourceManager.Init(DataFolder);
+			_resourceManager.Init(DataFolder);
 
-			if (resourceManager.SettingsFile.ExistsLocal())
+			if (_resourceManager.SettingsFile.ExistsLocal())
 			{
 				var document = new XmlDocument();
-				document.Load(resourceManager.SettingsFile.LocalPath);
+				document.Load(_resourceManager.SettingsFile.LocalPath);
 
 				Enabled = !Boolean.Parse(document.SelectSingleNode(@"//Settings/ButtonDisabled")?.InnerText ?? "false");
 
@@ -64,6 +67,17 @@ namespace Asa.Business.Solutions.Shift.Configuration
 				}
 
 				ToggleTitle = document.SelectSingleNode(@"//Settings/RightPanelButton")?.InnerText ?? ToggleTitle;
+			}
+		}
+
+		public override void LoadContentData()
+		{
+			if (_contentLoaded) return;
+
+			if (_resourceManager.SettingsFile.ExistsLocal())
+			{
+				var document = new XmlDocument();
+				document.Load(_resourceManager.SettingsFile.LocalPath);
 
 				foreach (var tabConfigNode in document.SelectNodes(@"//Settings/Tab")?.OfType<XmlNode>().ToArray() ?? new XmlNode[] { })
 				{
@@ -100,7 +114,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							tabInfo = new CBCTabInfo();
 							break;
 						case "integrated-solution":
-							tabInfo = new CommonTopTabInfo(ShiftTopTabType.IntegratedSolution);
+							tabInfo = new IntegratedSolutionTabInfo();
 							break;
 						case "investment":
 							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Investment);
@@ -117,18 +131,23 @@ namespace Asa.Business.Solutions.Shift.Configuration
 						case "spec-builder":
 							tabInfo = new CommonTopTabInfo(ShiftTopTabType.SpecBuilder);
 							break;
+						case "approach":
+							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Approach);
+							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
-					tabInfo.LoadData(tabConfigNode, resourceManager);
+					tabInfo.LoadData(tabConfigNode, _resourceManager);
 					TabsInfo.Add(tabInfo);
 				}
 			}
 
-			ClientGoalsLists.Load(resourceManager.DataClientGoalsFile);
-			TargetCustomersLists.LoadHHIData(resourceManager.DataHHIFile);
-			TargetCustomersLists.LoadDemoData(resourceManager.DataDemoFile);
-			TargetCustomersLists.LoadGeographyData(resourceManager.DataGeographyFile);
+			ClientGoalsLists.Load(_resourceManager.DataClientGoalsFile);
+			TargetCustomersLists.LoadHHIData(_resourceManager.DataHHIFile);
+			TargetCustomersLists.LoadDemoData(_resourceManager.DataDemoFile);
+			TargetCustomersLists.LoadGeographyData(_resourceManager.DataGeographyFile);
+
+			_contentLoaded = true;
 		}
 	}
 }

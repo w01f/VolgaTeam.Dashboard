@@ -24,13 +24,13 @@ namespace Asa.Solutions.Common.Helpers
 		{
 			if (_configuration.FontSize.HasValue)
 			{
-				var fontSizeDelte = _configuration.FontSize.Value - TextEditorConfiguration.DefaultFontSize;
-				_editor.Properties.Appearance.FontSizeDelta = fontSizeDelte;
-				_editor.Properties.AppearanceFocused.FontSizeDelta = fontSizeDelte;
-				_editor.Properties.AppearanceDisabled.FontSizeDelta = fontSizeDelte;
-				_editor.Properties.AppearanceReadOnly.FontSizeDelta = fontSizeDelte;
+				var fontSizeDelta = (Int32)(_configuration.FontSize.Value - Math.Floor(_editor.Properties.Appearance.Font.Size));
+				_editor.Properties.Appearance.FontSizeDelta = fontSizeDelta;
+				_editor.Properties.AppearanceFocused.FontSizeDelta = fontSizeDelta;
+				_editor.Properties.AppearanceDisabled.FontSizeDelta = fontSizeDelta;
+				_editor.Properties.AppearanceReadOnly.FontSizeDelta = fontSizeDelta;
 				if (_editor is ComboBoxEdit comboEditor)
-					comboEditor.Properties.AppearanceDropDown.FontSizeDelta = fontSizeDelte;
+					comboEditor.Properties.AppearanceDropDown.FontSizeDelta = fontSizeDelta;
 			}
 			if (!_configuration.BackColor.IsEmpty)
 			{

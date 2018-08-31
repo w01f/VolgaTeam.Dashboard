@@ -24,6 +24,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 {
 	public class StarAppSolutionInfo : BaseSolutionInfo
 	{
+		private ResourceManager _resourceManager;
+
 		public List<StarTopTabInfo> TabsInfo { get; }
 
 		public Users UsersList { get; }
@@ -41,18 +43,18 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 			TargetCustomersLists = new TargetCustomersLists();
 		}
 
-		public override void LoadData(StorageDirectory holderAppDataFolder)
+		public override void LoadToggleData(StorageDirectory holderAppDataFolder)
 		{
-			base.LoadData(holderAppDataFolder);
+			base.LoadToggleData(holderAppDataFolder);
 
-			var resourceManager = new ResourceManager();
+			_resourceManager = new ResourceManager();
 
-			resourceManager.Init(DataFolder);
+			_resourceManager.Init(DataFolder);
 
-			if (resourceManager.SettingsFile.ExistsLocal())
+			if (_resourceManager.SettingsFile.ExistsLocal())
 			{
 				var document = new XmlDocument();
-				document.Load(resourceManager.SettingsFile.LocalPath);
+				document.Load(_resourceManager.SettingsFile.LocalPath);
 
 				Enabled = !Boolean.Parse(document.SelectSingleNode(@"//Settings/ButtonDisabled")?.InnerText ?? "false");
 
@@ -68,6 +70,17 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				}
 
 				ToggleTitle = document.SelectSingleNode(@"//Settings/RightPanelButton")?.InnerText ?? ToggleTitle;
+			}
+		}
+
+		public override void LoadContentData()
+		{
+			if (_contentLoaded) return;
+
+			if (_resourceManager.SettingsFile.ExistsLocal())
+			{
+				var document = new XmlDocument();
+				document.Load(_resourceManager.SettingsFile.LocalPath);
 
 				foreach (var tabConfigNode in document.SelectNodes(@"//Settings/Tab")?.OfType<XmlNode>().ToArray() ?? new XmlNode[] { })
 				{
@@ -115,14 +128,16 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
 					}
-					tabInfo.LoadData(tabConfigNode, resourceManager);
+					tabInfo.LoadData(tabConfigNode, _resourceManager);
 					TabsInfo.Add(tabInfo);
 				}
 			}
 
-			UsersList.Load(resourceManager.DataUsersFile);
-			ClientGoalsLists.Load(resourceManager.DataClientGoalsFile);
-			TargetCustomersLists.LoadCombinedData(resourceManager.DataTargetCustomersFile);
+			UsersList.Load(_resourceManager.DataUsersFile);
+			ClientGoalsLists.Load(_resourceManager.DataClientGoalsFile);
+			TargetCustomersLists.LoadCombinedData(_resourceManager.DataTargetCustomersFile);
+
+			_contentLoaded = true;
 		}
 	}
 }

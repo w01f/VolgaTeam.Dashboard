@@ -88,6 +88,108 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 					}
 					slidesEditContainer.LoadData(_sourceSlideObject);
 					break;
+				case ShiftTopTabType.Goals:
+					switch (CustomTabInfo.TabType)
+					{
+						case ShiftChildTabType.U:
+							_sourceSlideObject = SlideContainer.EditedContent.GoalsState.TabU.Slide;
+							break;
+						case ShiftChildTabType.V:
+							_sourceSlideObject = SlideContainer.EditedContent.GoalsState.TabV.Slide;
+							break;
+						case ShiftChildTabType.W:
+							_sourceSlideObject = SlideContainer.EditedContent.GoalsState.TabW.Slide;
+							break;
+						default:
+							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
+					}
+					slidesEditContainer.LoadData(_sourceSlideObject);
+					break;
+				case ShiftTopTabType.Market:
+					switch (CustomTabInfo.TabType)
+					{
+						case ShiftChildTabType.U:
+							_sourceSlideObject = SlideContainer.EditedContent.MarketState.TabU.Slide;
+							break;
+						case ShiftChildTabType.V:
+							_sourceSlideObject = SlideContainer.EditedContent.MarketState.TabV.Slide;
+							break;
+						case ShiftChildTabType.W:
+							_sourceSlideObject = SlideContainer.EditedContent.MarketState.TabW.Slide;
+							break;
+						default:
+							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
+					}
+					slidesEditContainer.LoadData(_sourceSlideObject);
+					break;
+				case ShiftTopTabType.Partnership:
+					switch (CustomTabInfo.TabType)
+					{
+						case ShiftChildTabType.U:
+							_sourceSlideObject = SlideContainer.EditedContent.PartnershipState.TabU.Slide;
+							break;
+						case ShiftChildTabType.V:
+							_sourceSlideObject = SlideContainer.EditedContent.PartnershipState.TabV.Slide;
+							break;
+						case ShiftChildTabType.W:
+							_sourceSlideObject = SlideContainer.EditedContent.PartnershipState.TabW.Slide;
+							break;
+						default:
+							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
+					}
+					slidesEditContainer.LoadData(_sourceSlideObject);
+					break;
+				case ShiftTopTabType.NeedsSolutions:
+					switch (CustomTabInfo.TabType)
+					{
+						case ShiftChildTabType.U:
+							_sourceSlideObject = SlideContainer.EditedContent.NeedsSolutionsState.TabU.Slide;
+							break;
+						case ShiftChildTabType.V:
+							_sourceSlideObject = SlideContainer.EditedContent.NeedsSolutionsState.TabV.Slide;
+							break;
+						case ShiftChildTabType.W:
+							_sourceSlideObject = SlideContainer.EditedContent.NeedsSolutionsState.TabW.Slide;
+							break;
+						default:
+							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
+					}
+					slidesEditContainer.LoadData(_sourceSlideObject);
+					break;
+				case ShiftTopTabType.CBC:
+					switch (CustomTabInfo.TabType)
+					{
+						case ShiftChildTabType.U:
+							_sourceSlideObject = SlideContainer.EditedContent.CBCState.TabU.Slide;
+							break;
+						case ShiftChildTabType.V:
+							_sourceSlideObject = SlideContainer.EditedContent.CBCState.TabV.Slide;
+							break;
+						case ShiftChildTabType.W:
+							_sourceSlideObject = SlideContainer.EditedContent.CBCState.TabW.Slide;
+							break;
+						default:
+							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
+					}
+					slidesEditContainer.LoadData(_sourceSlideObject);
+					break;
+				case ShiftTopTabType.IntegratedSolution:
+					switch (CustomTabInfo.TabType)
+					{
+						case ShiftChildTabType.U:
+							_sourceSlideObject = SlideContainer.EditedContent.IntegratedSolutionState.TabU.Slide;
+							break;
+						case ShiftChildTabType.V:
+							_sourceSlideObject = SlideContainer.EditedContent.IntegratedSolutionState.TabV.Slide;
+							break;
+						case ShiftChildTabType.W:
+							_sourceSlideObject = SlideContainer.EditedContent.IntegratedSolutionState.TabW.Slide;
+							break;
+						default:
+							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
+					}
+					slidesEditContainer.LoadData(_sourceSlideObject);
+					break;
 				default:
 					_sourceSlideObject = new SlideObject();
 					slidesEditContainer.LoadData(_sourceSlideObject);

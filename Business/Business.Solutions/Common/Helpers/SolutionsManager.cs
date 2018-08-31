@@ -38,7 +38,8 @@ namespace Asa.Business.Solutions.Common.Helpers
 
 		public void LoadSolutionData(StorageDirectory holderAppDataFolder)
 		{
-			Solutions.ForEach(s => s.LoadData(holderAppDataFolder));
+			Solutions.ForEach(s => s.LoadToggleData(holderAppDataFolder));
+			Solutions.FirstOrDefault()?.LoadContentData();
 
 			if (FileStorageManager.Instance.DataState != DataActualityState.Updated)
 			{

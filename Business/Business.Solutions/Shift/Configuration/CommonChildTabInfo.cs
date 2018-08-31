@@ -1659,6 +1659,123 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
+				case ShiftTopTabType.Approach:
+					switch (tabId)
+					{
+						case "a":
+							RightLogo = resourceManager.LogoTab15SubARightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubARightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab15SubAFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubAFooterFile.LocalPath)
+								: null;
+							BackgroundLogo = resourceManager.LogoTab15SubABackgroundFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubABackgroundFile.LocalPath)
+								: null;
+							break;
+						case "b":
+							RightLogo = resourceManager.LogoTab15SubBRightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubBRightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab15SubBFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubBFooterFile.LocalPath)
+								: null;
+							BackgroundLogo = resourceManager.LogoTab15SubBBackgroundFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubBBackgroundFile.LocalPath)
+								: null;
+							break;
+						case "c":
+							RightLogo = resourceManager.LogoTab15SubCRightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubCRightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab15SubCFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubCFooterFile.LocalPath)
+								: null;
+							BackgroundLogo = resourceManager.LogoTab15SubCBackgroundFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubCBackgroundFile.LocalPath)
+								: null;
+							break;
+						case "d":
+							RightLogo = resourceManager.LogoTab15SubDRightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubDRightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab15SubDFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubDFooterFile.LocalPath)
+								: null;
+							BackgroundLogo = resourceManager.LogoTab15SubDBackgroundFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubDBackgroundFile.LocalPath)
+								: null;
+							break;
+						case "e":
+							RightLogo = resourceManager.LogoTab15SubERightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubERightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab15SubEFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubEFooterFile.LocalPath)
+								: null;
+							BackgroundLogo = resourceManager.LogoTab15SubEBackgroundFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubEBackgroundFile.LocalPath)
+								: null;
+							break;
+						case "f":
+							RightLogo = resourceManager.LogoTab15SubFRightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubFRightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab15SubFFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubFFooterFile.LocalPath)
+								: null;
+							BackgroundLogo = resourceManager.LogoTab15SubFBackgroundFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubFBackgroundFile.LocalPath)
+								: null;
+							break;
+						case "g":
+							RightLogo = resourceManager.LogoTab15SubGRightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubGRightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab15SubGFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubGFooterFile.LocalPath)
+								: null;
+							BackgroundLogo = resourceManager.LogoTab15SubGBackgroundFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubGBackgroundFile.LocalPath)
+								: null;
+							break;
+						case "h":
+							RightLogo = resourceManager.LogoTab15SubHRightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubHRightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab15SubHFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubHFooterFile.LocalPath)
+								: null;
+							BackgroundLogo = resourceManager.LogoTab15SubHBackgroundFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubHBackgroundFile.LocalPath)
+								: null;
+							break;
+						case "i":
+							RightLogo = resourceManager.LogoTab15SubIRightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubIRightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab15SubIFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubIFooterFile.LocalPath)
+								: null;
+							BackgroundLogo = resourceManager.LogoTab15SubIBackgroundFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubIBackgroundFile.LocalPath)
+								: null;
+							break;
+						case "j":
+							RightLogo = resourceManager.LogoTab15SubJRightFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubJRightFile.LocalPath)
+								: null;
+							FooterLogo = resourceManager.LogoTab15SubJFooterFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubJFooterFile.LocalPath)
+								: null;
+							BackgroundLogo = resourceManager.LogoTab15SubJBackgroundFile.ExistsLocal()
+								? Image.FromFile(resourceManager.LogoTab15SubJBackgroundFile.LocalPath)
+								: null;
+							break;
+						default:
+							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
+					}
+					break;
 				default:
 					throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 			}

@@ -4,7 +4,6 @@ using System.IO;
 using System.Xml;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Dictionaries;
-using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Dashboard.Dictionaries;
 using Asa.Common.Core.Objects.RemoteStorage;
@@ -13,6 +12,7 @@ namespace Asa.Business.Solutions.Dashboard.Configuration
 {
 	public class DashboardSolutionInfo : BaseSolutionInfo
 	{
+		private ResourceManager _resourceManager;
 		public Users UsersList { get; }
 		public CoverLists CoverLists { get; }
 		public ClientGoalsLists ClientGoalsLists { get; }
@@ -47,18 +47,18 @@ namespace Asa.Business.Solutions.Dashboard.Configuration
 			SimpleSummaryLists = new SimpleSummaryLists();
 		}
 
-		public override void LoadData(StorageDirectory holderAppDataFolder)
+		public override void LoadToggleData(StorageDirectory holderAppDataFolder)
 		{
-			base.LoadData(holderAppDataFolder);
+			base.LoadToggleData(holderAppDataFolder);
 
-			var resourceManager = new ResourceManager();
+			_resourceManager = new ResourceManager();
 
-			resourceManager.Init(DataFolder);
+			_resourceManager.Init(DataFolder);
 
 			var document = new XmlDocument();
-			if (resourceManager.SettingsFile.ExistsLocal())
+			if (_resourceManager.SettingsFile.ExistsLocal())
 			{
-				document.Load(resourceManager.SettingsFile.LocalPath);
+				document.Load(_resourceManager.SettingsFile.LocalPath);
 
 				Enabled = !Boolean.Parse(document.SelectSingleNode(@"//Settings/ButtonDisabled")?.InnerText ?? "false");
 
@@ -81,36 +81,42 @@ namespace Asa.Business.Solutions.Dashboard.Configuration
 				TargeCustomersTitle = document.SelectSingleNode(@"//Settings/Tab_4/Name")?.InnerText;
 				SimpleSummaryTitle = document.SelectSingleNode(@"//Settings/Tab_5/Name")?.InnerText;
 			}
+		}
 
+		public override void LoadContentData()
+		{
+			if (_contentLoaded) return;
 
-			UsersList.Load(resourceManager.DataUsersFile);
-			CoverLists.Load(resourceManager.DataCoverFile);
-			ClientGoalsLists.Load(resourceManager.DataClientGoalsFile);
-			LeadoffStatementLists.Load(resourceManager.DataLeadoffStatementFile);
-			TargetCustomersLists.LoadCombinedData(resourceManager.DataTargetCustomersFile);
-			SimpleSummaryLists.Load(resourceManager.DataSimpleSummaryFile);
+			UsersList.Load(_resourceManager.DataUsersFile);
+			CoverLists.Load(_resourceManager.DataCoverFile);
+			ClientGoalsLists.Load(_resourceManager.DataClientGoalsFile);
+			LeadoffStatementLists.Load(_resourceManager.DataLeadoffStatementFile);
+			TargetCustomersLists.LoadCombinedData(_resourceManager.DataTargetCustomersFile);
+			SimpleSummaryLists.Load(_resourceManager.DataSimpleSummaryFile);
 
-			CleanslateHeaderLogo = resourceManager.LogoCleanslateHeaderFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoCleanslateHeaderFile.LocalPath)
+			CleanslateHeaderLogo = _resourceManager.LogoCleanslateHeaderFile.ExistsLocal()
+				? Image.FromFile(_resourceManager.LogoCleanslateHeaderFile.LocalPath)
 				: null;
-			CleanslateSplashLogo = resourceManager.LogoCleanslateSplashFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoCleanslateSplashFile.LocalPath)
+			CleanslateSplashLogo = _resourceManager.LogoCleanslateSplashFile.ExistsLocal()
+				? Image.FromFile(_resourceManager.LogoCleanslateSplashFile.LocalPath)
 				: null;
-			CoverSplashLogo = resourceManager.LogoCoverSplashFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoCoverSplashFile.LocalPath)
+			CoverSplashLogo = _resourceManager.LogoCoverSplashFile.ExistsLocal()
+				? Image.FromFile(_resourceManager.LogoCoverSplashFile.LocalPath)
 				: null;
-			LeadoffStatementSplashLogo = resourceManager.LogoLeadoffStatementSplashFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoLeadoffStatementSplashFile.LocalPath)
+			LeadoffStatementSplashLogo = _resourceManager.LogoLeadoffStatementSplashFile.ExistsLocal()
+				? Image.FromFile(_resourceManager.LogoLeadoffStatementSplashFile.LocalPath)
 				: null;
-			ClientGoalsSplashLogo = resourceManager.LogoClientGoalsSplashFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoClientGoalsSplashFile.LocalPath)
+			ClientGoalsSplashLogo = _resourceManager.LogoClientGoalsSplashFile.ExistsLocal()
+				? Image.FromFile(_resourceManager.LogoClientGoalsSplashFile.LocalPath)
 				: null;
-			TargeCustomersSplashLogo = resourceManager.LogoTargetCustomersSplashFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTargetCustomersSplashFile.LocalPath)
+			TargeCustomersSplashLogo = _resourceManager.LogoTargetCustomersSplashFile.ExistsLocal()
+				? Image.FromFile(_resourceManager.LogoTargetCustomersSplashFile.LocalPath)
 				: null;
-			SimpleSummarySplashLogo = resourceManager.LogoSimpleSummarySplashFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoSimpleSummarySplashFile.LocalPath)
+			SimpleSummarySplashLogo = _resourceManager.LogoSimpleSummarySplashFile.ExistsLocal()
+				? Image.FromFile(_resourceManager.LogoSimpleSummarySplashFile.LocalPath)
 				: null;
+
+			_contentLoaded = true;
 		}
 	}
 }

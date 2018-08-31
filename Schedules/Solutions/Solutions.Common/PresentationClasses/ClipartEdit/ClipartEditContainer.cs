@@ -42,32 +42,37 @@ namespace Asa.Solutions.Common.PresentationClasses.ClipartEdit
 
 		public void LoadData(ClipartObject clipartObject)
 		{
-			if (_currentClipartObject != null && _currentClipartObject != _defaultClipartObject && _currentClipartObject.Type == ClipartObjectType.Video)
+			if (_currentClipartObject != null && _currentClipartObject != _defaultClipartObject)
 			{
-				var videoCipartObject = (VideoClipartObject)_currentClipartObject;
-				var videoResource = _resourceHolder.ResourceContainer.Items.FirstOrDefault(item => item.Id == videoCipartObject.ResourceId);
-				if (videoResource != null)
-					_resourceHolder.ResourceContainer.RemoveResource(videoResource);
+				if (_currentClipartObject.Type == ClipartObjectType.Video)
+				{
+					var videoCipartObject = (VideoClipartObject)_currentClipartObject;
+					var videoResource =
+						_resourceHolder.ResourceContainer.Items.FirstOrDefault(item => item.Id == videoCipartObject.ResourceId);
+					if (videoResource != null)
+						_resourceHolder.ResourceContainer.RemoveResource(videoResource);
+				}
 			}
 			_currentClipartObject = clipartObject ?? _defaultClipartObject;
 			pictureEdit.Tag = _currentClipartObject;
-			switch (_currentClipartObject.Type)
-			{
-				case ClipartObjectType.Image:
-					var imageObject = (ImageClipartObject)_currentClipartObject;
-					pictureEdit.Image = imageObject.Image;
-					break;
-				case ClipartObjectType.Video:
-					var videoClipartObject = (VideoClipartObject)_currentClipartObject;
-					pictureEdit.Image = videoClipartObject.Thumbnail;
-					break;
-				case ClipartObjectType.YouTube:
-					var youtubeObject = (YouTubeClipartObject)_currentClipartObject;
-					pictureEdit.Image = youtubeObject.Thumbnail;
-					break;
-				default:
-					throw new ArgumentOutOfRangeException("Undefined clipart type found");
-			}
+			if (_currentClipartObject != null)
+				switch (_currentClipartObject.Type)
+				{
+					case ClipartObjectType.Image:
+						var imageObject = (ImageClipartObject)_currentClipartObject;
+						pictureEdit.Image = imageObject.Image;
+						break;
+					case ClipartObjectType.Video:
+						var videoClipartObject = (VideoClipartObject)_currentClipartObject;
+						pictureEdit.Image = videoClipartObject.Thumbnail;
+						break;
+					case ClipartObjectType.YouTube:
+						var youtubeObject = (YouTubeClipartObject)_currentClipartObject;
+						pictureEdit.Image = youtubeObject.Thumbnail;
+						break;
+					default:
+						throw new ArgumentOutOfRangeException("Undefined clipart type found");
+				}
 		}
 
 		public ClipartObject GetActiveClipartObject()

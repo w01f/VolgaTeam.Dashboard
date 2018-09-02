@@ -74,6 +74,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		{
 			if (_contentLoaded) return;
 
+			ClientGoalsLists.Load(_resourceManager.DataClientGoalsFile);
+			TargetCustomersLists.LoadHHIData(_resourceManager.DataHHIFile);
+			TargetCustomersLists.LoadDemoData(_resourceManager.DataDemoFile);
+			TargetCustomersLists.LoadGeographyData(_resourceManager.DataGeographyFile);
+
 			if (_resourceManager.SettingsFile.ExistsLocal())
 			{
 				var document = new XmlDocument();
@@ -141,11 +146,6 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					TabsInfo.Add(tabInfo);
 				}
 			}
-
-			ClientGoalsLists.Load(_resourceManager.DataClientGoalsFile);
-			TargetCustomersLists.LoadHHIData(_resourceManager.DataHHIFile);
-			TargetCustomersLists.LoadDemoData(_resourceManager.DataDemoFile);
-			TargetCustomersLists.LoadGeographyData(_resourceManager.DataGeographyFile);
 
 			_contentLoaded = true;
 		}

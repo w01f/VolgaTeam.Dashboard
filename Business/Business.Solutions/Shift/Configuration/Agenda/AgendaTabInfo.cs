@@ -20,7 +20,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Agenda
 				case "d":
 					return new AgendaTabDInfo();
 				case "e":
-					return new CommonChildTabInfo(ShiftChildTabType.E, TabType);
+					return new AgendaTabEInfo();
 				case "f":
 					return new CommonChildTabInfo(ShiftChildTabType.F, TabType);
 				case "g":

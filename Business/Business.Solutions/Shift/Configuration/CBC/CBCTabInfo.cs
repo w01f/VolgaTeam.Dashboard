@@ -22,7 +22,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.CBC
 				case "e":
 					return new CBCTabEInfo();
 				case "f":
-					return new CommonChildTabInfo(ShiftChildTabType.F, TabType);
+					return new CBCTabFInfo();
 				case "g":
 					return new CommonChildTabInfo(ShiftChildTabType.G, TabType);
 				case "h":

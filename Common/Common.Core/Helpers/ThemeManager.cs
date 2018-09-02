@@ -191,6 +191,9 @@ namespace Asa.Common.Core.Helpers
 					case "Shift_01d_cover":
 						slideType = SlideType.ShiftCoverD;
 						break;
+					case "Shift_01e_cover":
+						slideType = SlideType.ShiftCoverE;
+						break;
 					case "Shift_02a_intro":
 						slideType = SlideType.ShiftIntroA;
 						break;
@@ -214,6 +217,9 @@ namespace Asa.Common.Core.Helpers
 						break;
 					case "Shift_03d_agenda":
 						slideType = SlideType.ShiftAgendaD;
+						break;
+					case "Shift_03e_agenda":
+						slideType = SlideType.ShiftAgendaE;
 						break;
 					case "Shift_04a_goals":
 						slideType = SlideType.ShiftGoalsA;
@@ -340,6 +346,9 @@ namespace Asa.Common.Core.Helpers
 						break;
 					case "Shift_08e1_cbc":
 						slideType = SlideType.ShiftCBC_E;
+						break;
+					case "Shift_08f1_cbc":
+						slideType = SlideType.ShiftCBC_F;
 						break;
 					case "Shift_09_integrated_solution":
 						slideType = SlideType.ShiftIntegratedSolution;

@@ -34,6 +34,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition4 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition5 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition6 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition2 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition3 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition4 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition5 = new DevExpress.XtraLayout.RowDefinition();
@@ -43,7 +44,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition1 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition2 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition1 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition2 = new DevExpress.XtraLayout.RowDefinition();
 			this.clipartEditContainer2 = new Asa.Solutions.Common.PresentationClasses.ClipartEdit.ClipartEditContainer();
 			this.comboBoxEditSlideHeader = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.clipartEditContainer3 = new Asa.Solutions.Common.PresentationClasses.ClipartEdit.ClipartEditContainer();
@@ -133,19 +133,22 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC
             columnDefinition4,
             columnDefinition5,
             columnDefinition6});
-			rowDefinition3.Height = 10D;
+			rowDefinition2.Height = 10D;
+			rowDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition3.Height = 5D;
 			rowDefinition3.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition4.Height = 5D;
+			rowDefinition4.Height = 25D;
 			rowDefinition4.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition5.Height = 23D;
+			rowDefinition5.Height = 5D;
 			rowDefinition5.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition6.Height = 5D;
+			rowDefinition6.Height = 50D;
 			rowDefinition6.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition7.Height = 50D;
+			rowDefinition7.Height = 5D;
 			rowDefinition7.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition8.Height = 7D;
-			rowDefinition8.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition8.Height = 20D;
+			rowDefinition8.SizeType = System.Windows.Forms.SizeType.Absolute;
 			this.layoutControlGroupRoot.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
+            rowDefinition2,
             rowDefinition3,
             rowDefinition4,
             rowDefinition5,
@@ -160,14 +163,14 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC
 			this.clipartEditContainer2.AllowDrop = true;
 			this.clipartEditContainer2.BackColor = System.Drawing.Color.Transparent;
 			this.clipartEditContainer2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.clipartEditContainer2.Location = new System.Drawing.Point(20, 575);
+			this.clipartEditContainer2.Location = new System.Drawing.Point(20, 568);
 			this.clipartEditContainer2.Name = "clipartEditContainer2";
-			this.clipartEditContainer2.Size = new System.Drawing.Size(329, 23);
+			this.clipartEditContainer2.Size = new System.Drawing.Size(329, 30);
 			this.clipartEditContainer2.TabIndex = 8;
 			// 
 			// comboBoxEditSlideHeader
 			// 
-			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(492, 20);
+			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(492, 18);
 			this.comboBoxEditSlideHeader.Name = "comboBoxEditSlideHeader";
 			this.comboBoxEditSlideHeader.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -181,9 +184,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC
 			this.clipartEditContainer3.AllowDrop = true;
 			this.clipartEditContainer3.BackColor = System.Drawing.Color.Transparent;
 			this.clipartEditContainer3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.clipartEditContainer3.Location = new System.Drawing.Point(349, 575);
+			this.clipartEditContainer3.Location = new System.Drawing.Point(349, 568);
 			this.clipartEditContainer3.Name = "clipartEditContainer3";
-			this.clipartEditContainer3.Size = new System.Drawing.Size(612, 23);
+			this.clipartEditContainer3.Size = new System.Drawing.Size(612, 30);
 			this.clipartEditContainer3.TabIndex = 9;
 			// 
 			// layoutControlGroupFooter
@@ -193,7 +196,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC
             this.layoutControlItemClipart2,
             this.layoutControlItemClipart3});
 			this.layoutControlGroupFooter.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
-			this.layoutControlGroupFooter.Location = new System.Drawing.Point(20, 575);
+			this.layoutControlGroupFooter.Location = new System.Drawing.Point(20, 568);
 			this.layoutControlGroupFooter.Name = "layoutControlGroupFooter";
 			columnDefinition1.SizeType = System.Windows.Forms.SizeType.Percent;
 			columnDefinition1.Width = 35D;
@@ -204,15 +207,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC
             columnDefinition2});
 			rowDefinition1.Height = 100D;
 			rowDefinition1.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition2.Height = 20D;
-			rowDefinition2.SizeType = System.Windows.Forms.SizeType.Absolute;
 			this.layoutControlGroupFooter.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition1,
-            rowDefinition2});
+            rowDefinition1});
 			this.layoutControlGroupFooter.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupFooter.OptionsTableLayoutItem.ColumnSpan = 2;
 			this.layoutControlGroupFooter.OptionsTableLayoutItem.RowIndex = 5;
-			this.layoutControlGroupFooter.Size = new System.Drawing.Size(941, 43);
+			this.layoutControlGroupFooter.Size = new System.Drawing.Size(941, 30);
 			this.layoutControlGroupFooter.Text = "Footer";
 			// 
 			// layoutControlItemClipart2
@@ -224,7 +224,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC
 			this.layoutControlItemClipart2.MinSize = new System.Drawing.Size(10, 10);
 			this.layoutControlItemClipart2.Name = "layoutControlItemClipart2";
 			this.layoutControlItemClipart2.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemClipart2.Size = new System.Drawing.Size(329, 23);
+			this.layoutControlItemClipart2.Size = new System.Drawing.Size(329, 30);
 			this.layoutControlItemClipart2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemClipart2.Text = "Clipart 2";
 			this.layoutControlItemClipart2.TextSize = new System.Drawing.Size(0, 0);
@@ -241,7 +241,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC
 			this.layoutControlItemClipart3.Name = "layoutControlItemClipart3";
 			this.layoutControlItemClipart3.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemClipart3.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemClipart3.Size = new System.Drawing.Size(612, 23);
+			this.layoutControlItemClipart3.Size = new System.Drawing.Size(612, 30);
 			this.layoutControlItemClipart3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemClipart3.Text = "Clipart 3";
 			this.layoutControlItemClipart3.TextSize = new System.Drawing.Size(0, 0);
@@ -257,7 +257,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC
 			this.layoutControlItemSlideHeader.MinSize = new System.Drawing.Size(10, 26);
 			this.layoutControlItemSlideHeader.Name = "layoutControlItemSlideHeader";
 			this.layoutControlItemSlideHeader.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.layoutControlItemSlideHeader.Size = new System.Drawing.Size(471, 62);
+			this.layoutControlItemSlideHeader.Size = new System.Drawing.Size(471, 59);
 			this.layoutControlItemSlideHeader.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemSlideHeader.Text = "Slide Header";
 			this.layoutControlItemSlideHeader.TextSize = new System.Drawing.Size(0, 0);
@@ -269,9 +269,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC
 			this.clipartEditContainer1.AllowDrop = true;
 			this.clipartEditContainer1.BackColor = System.Drawing.Color.Transparent;
 			this.clipartEditContainer1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.clipartEditContainer1.Location = new System.Drawing.Point(20, 266);
+			this.clipartEditContainer1.Location = new System.Drawing.Point(20, 269);
 			this.clipartEditContainer1.Name = "clipartEditContainer1";
-			this.clipartEditContainer1.Size = new System.Drawing.Size(941, 309);
+			this.clipartEditContainer1.Size = new System.Drawing.Size(941, 299);
 			this.clipartEditContainer1.TabIndex = 10;
 			// 
 			// layoutControlItemClipart1
@@ -279,13 +279,13 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC
 			this.layoutControlItemClipart1.Control = this.clipartEditContainer1;
 			this.layoutControlItemClipart1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemClipart1.FillControlToClientArea = false;
-			this.layoutControlItemClipart1.Location = new System.Drawing.Point(20, 266);
+			this.layoutControlItemClipart1.Location = new System.Drawing.Point(20, 269);
 			this.layoutControlItemClipart1.Name = "layoutControlItemClipart1";
 			this.layoutControlItemClipart1.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemClipart1.OptionsTableLayoutItem.ColumnSpan = 2;
 			this.layoutControlItemClipart1.OptionsTableLayoutItem.RowIndex = 4;
 			this.layoutControlItemClipart1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemClipart1.Size = new System.Drawing.Size(941, 309);
+			this.layoutControlItemClipart1.Size = new System.Drawing.Size(941, 299);
 			this.layoutControlItemClipart1.Text = "Clipart 1";
 			this.layoutControlItemClipart1.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemClipart1.TextVisible = false;
@@ -294,10 +294,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC
 			// memoPopupEdit1
 			// 
 			this.memoPopupEdit1.BackColor = System.Drawing.Color.Transparent;
-			this.memoPopupEdit1.Location = new System.Drawing.Point(492, 95);
+			this.memoPopupEdit1.Location = new System.Drawing.Point(492, 91);
 			this.memoPopupEdit1.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
 			this.memoPopupEdit1.Name = "memoPopupEdit1";
-			this.memoPopupEdit1.Size = new System.Drawing.Size(467, 138);
+			this.memoPopupEdit1.Size = new System.Drawing.Size(467, 146);
 			this.memoPopupEdit1.TabIndex = 35;
 			// 
 			// layoutControlItemMemoPopup1
@@ -305,12 +305,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC
 			this.layoutControlItemMemoPopup1.Control = this.memoPopupEdit1;
 			this.layoutControlItemMemoPopup1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemMemoPopup1.FillControlToClientArea = false;
-			this.layoutControlItemMemoPopup1.Location = new System.Drawing.Point(490, 93);
+			this.layoutControlItemMemoPopup1.Location = new System.Drawing.Point(490, 89);
 			this.layoutControlItemMemoPopup1.MinSize = new System.Drawing.Size(10, 24);
 			this.layoutControlItemMemoPopup1.Name = "layoutControlItemMemoPopup1";
 			this.layoutControlItemMemoPopup1.OptionsTableLayoutItem.ColumnIndex = 2;
 			this.layoutControlItemMemoPopup1.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlItemMemoPopup1.Size = new System.Drawing.Size(471, 142);
+			this.layoutControlItemMemoPopup1.Size = new System.Drawing.Size(471, 150);
 			this.layoutControlItemMemoPopup1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemMemoPopup1.Text = "MemoPopup 1";
 			this.layoutControlItemMemoPopup1.TextSize = new System.Drawing.Size(0, 0);

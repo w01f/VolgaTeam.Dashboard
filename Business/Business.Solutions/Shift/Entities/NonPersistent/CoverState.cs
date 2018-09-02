@@ -13,6 +13,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public TabUState TabU { get; }
 		public TabVState TabV { get; }
 		public TabWState TabW { get; }
+		public TabEState TabE { get; }
 
 		public CoverState()
 		{
@@ -20,6 +21,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			TabB = new TabBState();
 			TabC = new TabCState();
 			TabD = new TabDState();
+			TabE = new TabEState();
 			TabU = new TabUState();
 			TabV = new TabVState();
 			TabW = new TabWState();
@@ -57,6 +59,16 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			public ListDataItem SlideHeader { get; set; }
 			public bool? EnableOutput { get; set; }
 			public ClipartObject Clipart1 { get; set; }
+			public string Subheader1 { get; set; }
+			public DateTime? Calendar1 { get; set; }
+		}
+
+		public class TabEState
+		{
+			public ListDataItem SlideHeader { get; set; }
+			public bool? EnableOutput { get; set; }
+			public ClipartObject Clipart1 { get; set; }
+			public ClipartObject Clipart2 { get; set; }
 			public string Subheader1 { get; set; }
 			public DateTime? Calendar1 { get; set; }
 		}

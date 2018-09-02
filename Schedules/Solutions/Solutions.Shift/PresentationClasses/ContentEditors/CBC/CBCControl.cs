@@ -30,6 +30,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC
 					case ShiftChildTabType.E:
 						tabPages.Add(new ChildTabPageContainerControl<CBCTabEControl>(this, tabInfo));
 						break;
+					case ShiftChildTabType.F:
+						tabPages.Add(new ChildTabPageContainerControl<CBCTabFControl>(this, tabInfo));
+						break;
 					case ShiftChildTabType.U:
 					case ShiftChildTabType.V:
 					case ShiftChildTabType.W:

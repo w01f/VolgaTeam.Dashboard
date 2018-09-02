@@ -74,7 +74,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 
 			_allowHandleEvents = false;
 
-			toggleSwitch.IsOn = TabState.Toggled;
+			if (TabState.Combo1 != null || TabState.Bullets.Any())
+				toggleSwitch.IsOn = TabState.Toggled;
+			else
+				toggleSwitch.IsOn = TabInfo.ToggleSwitch.Value;
 
 			comboBoxEditCombo1.EnableSelectAll().RaiseNullValueIfEditorEmpty().AssignConfiguration(TabInfo.Combo1Configuration);
 			comboBoxEditCombo1.Properties.Items.Clear();
@@ -146,7 +149,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 				{
 					TabState.Combo1 = TabInfo.Combo1Items.FirstOrDefault(h => h.IsDefault) != comboBoxEditCombo1.EditValue
 						? comboBoxEditCombo1.EditValue as ListDataItem ??
-						  new ListDataItem {Value = comboBoxEditCombo1.EditValue as String}
+						  new ListDataItem { Value = comboBoxEditCombo1.EditValue as String }
 						: null;
 				}
 				else if (checkEditCombo1.Checked != TabInfo.Checkbox1.Value)
@@ -184,7 +187,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 				for (var i = 0; i < bulletCombos.Length; i++)
 				{
 					TabState.Bullets.Add(bulletComboLists[i].FirstOrDefault(h => h.IsDefault) != bulletCombos[i].EditValue
-						? bulletCombos[i].EditValue as ListDataItem ?? new ListDataItem {Value = bulletCombos[i].EditValue as String}
+						? bulletCombos[i].EditValue as ListDataItem ?? new ListDataItem { Value = bulletCombos[i].EditValue as String }
 						: null);
 				}
 			}

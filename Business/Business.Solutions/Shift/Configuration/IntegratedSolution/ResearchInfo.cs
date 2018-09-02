@@ -27,7 +27,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 		{
 			var researchInfo = Empty();
 
-			researchInfo.Title = configNode.SelectSingleNode("./Title")?.InnerText?? researchInfo.Title;
+			researchInfo.Title = configNode.SelectSingleNode("./Title")?.InnerText ?? researchInfo.Title;
 
 			foreach (var node in configNode.SelectNodes("./Tabs/Tab")?.OfType<XmlNode>().ToArray() ?? new XmlNode[] { })
 			{
@@ -79,7 +79,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 				var tabInfo = Empty();
 				if (configNode != null)
 				{
-					tabInfo.Title = configNode.SelectSingleNode("./Title")?.InnerText?? tabInfo.Title;
+					tabInfo.Title = configNode.SelectSingleNode("./Title")?.InnerText ?? tabInfo.Title;
 
 					tabInfo.ToggleSwitch = CheckboxInfo.FromXml(configNode.SelectSingleNode("./ToggleSwitch"));
 
@@ -140,7 +140,9 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 				var listDataItem = new BundleListItem();
 				if (node != null)
 				{
-					listDataItem.IsDefault = Boolean.Parse(node.SelectSingleNode("./IsDefault")?.InnerText ?? "false");
+					listDataItem.IsDefault = Boolean.Parse(node.Attributes?.OfType<XmlAttribute>()
+						.FirstOrDefault(a => String.Equals(a.Name, "IsDefault", StringComparison.OrdinalIgnoreCase))?.Value ?? "false");
+
 					listDataItem.Value1 = node.SelectSingleNode("./Item1")?.InnerText;
 					listDataItem.Value2 = node.SelectSingleNode("./Item2")?.InnerText;
 					listDataItem.Value3 = node.SelectSingleNode("./Item3")?.InnerText;

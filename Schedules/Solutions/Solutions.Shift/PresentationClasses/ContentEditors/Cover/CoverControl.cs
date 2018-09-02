@@ -27,6 +27,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover
 					case ShiftChildTabType.D:
 						tabPages.Add(new ChildTabPageContainerControl<CoverTabDControl>(this, tabInfo));
 						break;
+					case ShiftChildTabType.E:
+						tabPages.Add(new ChildTabPageContainerControl<CoverTabEControl>(this, tabInfo));
+						break;
 					case ShiftChildTabType.U:
 					case ShiftChildTabType.V:
 					case ShiftChildTabType.W:

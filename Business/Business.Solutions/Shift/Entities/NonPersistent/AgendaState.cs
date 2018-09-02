@@ -9,6 +9,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public TabBState TabB { get; }
 		public TabCState TabC { get; }
 		public TabDState TabD { get; }
+		public TabEState TabE { get; }
 		public TabUState TabU { get; }
 		public TabVState TabV { get; }
 		public TabWState TabW { get; }
@@ -19,6 +20,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			TabB = new TabBState();
 			TabC = new TabCState();
 			TabD = new TabDState();
+			TabE = new TabEState();
 			TabU = new TabUState();
 			TabV = new TabVState();
 			TabW = new TabWState();
@@ -77,6 +79,30 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			public ListDataItem Combo3 { get; set; }
 			public ListDataItem Combo4 { get; set; }
 			public ListDataItem Combo5 { get; set; }
+		}
+
+		public class TabEState
+		{
+			public ListDataItem SlideHeader { get; set; }
+			public bool? EnableOutput { get; set; }
+			public ClipartObject Clipart1 { get; set; }
+			public ClipartObject Clipart2 { get; set; }
+			public ClipartObject Clipart3 { get; set; }
+
+			public ListDataItem MemoPopup1 { get; set; }
+			public ListDataItem MemoPopup2 { get; set; }
+			public ListDataItem MemoPopup3 { get; set; }
+			public ListDataItem MemoPopup4 { get; set; }
+			public ListDataItem MemoPopup5 { get; set; }
+			public ListDataItem MemoPopup6 { get; set; }
+
+			public ListDataItem Combo1 { get; set; }
+			public ListDataItem Combo2 { get; set; }
+			public ListDataItem Combo3 { get; set; }
+			public ListDataItem Combo4 { get; set; }
+			public ListDataItem Combo5 { get; set; }
+			public ListDataItem Combo6 { get; set; }
+			public ListDataItem Combo7 { get; set; }
 		}
 
 		public class TabUState

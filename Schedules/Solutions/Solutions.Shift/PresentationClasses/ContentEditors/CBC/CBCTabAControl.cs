@@ -125,7 +125,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC
 				MasterWizardManager.Instance.SelectedWizard.GetShiftCBCFile("050_cbc_a1.pptx");
 
 			outputDataPackage.TextItems.Add("SHIFT08AHEADER".ToUpper(), (SlideContainer.EditedContent.CBCState.TabA.SlideHeader ?? CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value);
-			outputDataPackage.TextItems.Add("SHIFT08AMULTIBOX1".ToUpper(), (SlideContainer.EditedContent.GoalsState.TabA.MemoPopup1 ?? CustomTabInfo.MemoPopup1Items.FirstOrDefault(item => item.IsDefault && !item.IsPlaceholder))?.Value);
+			outputDataPackage.TextItems.Add("SHIFT08AMULTIBOX1".ToUpper(), (SlideContainer.EditedContent.CBCState.TabA.MemoPopup1 ?? CustomTabInfo.MemoPopup1Items.FirstOrDefault(item => item.IsDefault && !item.IsPlaceholder))?.Value);
 
 			return outputDataPackage;
 		}

@@ -135,6 +135,8 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 		{
 			public string Title { get; private set; }
 
+			public CheckboxInfo ToggleSwitch { get; private set; }
+
 			public CheckboxInfo Checkbox1 { get; private set; }
 			public List<ListDataItem> Combo1Items { get; }
 			public TextEditorConfiguration Combo1Configuration { get; set; }
@@ -152,6 +154,9 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 			private Tab2Info()
 			{
 				Title = "bulletpoints";
+
+				ToggleSwitch = CheckboxInfo.Empty();
+
 				Checkbox1 = CheckboxInfo.Empty();
 				Combo1Items = new List<ListDataItem>();
 				Combo1Configuration = TextEditorConfiguration.Empty();
@@ -173,6 +178,8 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 				if (configNode != null)
 				{
 					tabInfo.Title = configNode.SelectSingleNode("./Title")?.InnerText?? tabInfo.Title;
+
+					tabInfo.ToggleSwitch = CheckboxInfo.FromXml(configNode.SelectSingleNode("./ToggleSwitch"));
 
 					tabInfo.Checkbox1 = CheckboxInfo.FromXml(configNode.SelectSingleNode("./Checkbox1"));
 

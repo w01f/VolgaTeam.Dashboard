@@ -27,6 +27,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Agenda
 					case ShiftChildTabType.D:
 						tabPages.Add(new ChildTabPageContainerControl<AgendaTabDControl>(this, tabInfo));
 						break;
+					case ShiftChildTabType.E:
+						tabPages.Add(new ChildTabPageContainerControl<AgendaTabEControl>(this, tabInfo));
+						break;
 					case ShiftChildTabType.U:
 					case ShiftChildTabType.V:
 					case ShiftChildTabType.W:

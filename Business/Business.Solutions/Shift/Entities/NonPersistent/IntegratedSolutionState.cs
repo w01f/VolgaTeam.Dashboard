@@ -151,7 +151,6 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 
 			public BulletsTabState()
 			{
-				Toggled = true;
 				Bullets = new List<ListDataItem>();
 			}
 		}

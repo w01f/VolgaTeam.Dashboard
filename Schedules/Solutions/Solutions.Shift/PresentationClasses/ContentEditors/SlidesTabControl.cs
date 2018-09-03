@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
@@ -225,10 +226,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 		#region Output
 		public override bool MultipleSlidesAllowed => false;
-		public override bool ReadyForOutput => GetOutputItem() != null;
+		public override bool ReadyForOutput => GetOutputItems() != null;
 		public override SlideType SlideType => SlideType.CustomSlide;
 
-		public override OutputItem GetOutputItem()
+		public override IList<OutputItem> GetOutputItems()
 		{
 			if (_sourceSlideObject == null)
 				return null;
@@ -240,7 +241,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 				if (targetSlideMaster != null)
 				{
-					return new OutputItem
+					return new[]{ new OutputItem
 					{
 						Name = slideMasterName,
 						PresentationSourcePath = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName())),
@@ -255,11 +256,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 							processor.PreparePresentation(presentationSourcePath,
 								presentation => processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), presentation));
 						}
-					};
+					}};
 				}
 			}
 
-			return null;
+			return new List<OutputItem>();
 		}
 		#endregion
 	}

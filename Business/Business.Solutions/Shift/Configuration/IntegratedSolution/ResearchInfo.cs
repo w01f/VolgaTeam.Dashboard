@@ -156,6 +156,13 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 					   String.Equals(item1?.Value2, item2?.Value2, StringComparison.OrdinalIgnoreCase) &&
 					   String.Equals(item1?.Value3, item2?.Value3, StringComparison.OrdinalIgnoreCase);
 			}
+
+			public bool IsEmpty()
+			{
+				return String.IsNullOrWhiteSpace(Value1) &&
+					   String.IsNullOrWhiteSpace(Value2) &&
+					   String.IsNullOrWhiteSpace(Value3);
+			}
 		}
 	}
 }

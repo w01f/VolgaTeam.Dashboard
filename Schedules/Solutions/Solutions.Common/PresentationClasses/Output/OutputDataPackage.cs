@@ -13,6 +13,7 @@ namespace Asa.Solutions.Common.PresentationClasses.Output
 		public Dictionary<string, string> TextItems { get; set; }
 		public Theme Theme { get; set; }
 		public bool AddAsFirtsPage { get; set; }
+		public string LayoutName { get; set; }
 
 		public OutputDataPackage()
 		{

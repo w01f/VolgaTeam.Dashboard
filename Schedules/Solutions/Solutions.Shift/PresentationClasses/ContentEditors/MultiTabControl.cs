@@ -255,15 +255,13 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				outputItems.AddRange(xtraTabControl.TabPages
 					.OfType<IChildTabPageContainer>()
 					.Where(tabContainer => tabContainer.TabInfo.IsRegularChildTab && tabContainer.OutputEnabled && tabContainer.ContentControl != null && tabContainer.ContentControl.ReadyForOutput && tabContainer.ContentControl.MultipleSlidesAllowed)
-					.Select(tabContainer => tabContainer.ContentControl.GetOutputItem())
+					.SelectMany(tabContainer => tabContainer.ContentControl.GetOutputItems())
 					.Where(outputItem => outputItem != null));
 			}
 			else
 			{
 				var selectedContentControl = (xtraTabControl.SelectedTabPage as IChildTabPageContainer)?.ContentControl;
-				var outputItem = selectedContentControl?.GetOutputItem();
-				if (outputItem != null)
-					outputItems.Add(outputItem);
+				outputItems.AddRange(selectedContentControl?.GetOutputItems());
 			}
 
 			return new OutputGroup

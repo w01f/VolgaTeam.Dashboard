@@ -32,6 +32,11 @@ namespace Asa.Common.GUI.Preview
 			Width = (Int32)(_parentForm.Width * 0.8);
 			Height = (Int32)(_parentForm.Height * 0.8);
 
+			Left = _parentForm.Left + (_parentForm.Width - Width) / 2;
+			Top = _parentForm.Top + (_parentForm.Height - Height) / 2;
+
+			Opacity = 0;
+
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemEnableOutput.MaxSize = RectangleHelper.ScaleSize(layoutControlItemEnableOutput.MaxSize, scaleFactor);
 			layoutControlItemEnableOutput.MinSize = RectangleHelper.ScaleSize(layoutControlItemEnableOutput.MinSize, scaleFactor);
@@ -100,7 +105,7 @@ namespace Asa.Common.GUI.Preview
 					.ForEach(tabPage => tabPage.PageEnabled = false);
 				Application.DoEvents();
 
-				LoadPreviewGroup((PreviewGroupControl) xtraTabControlGroups.SelectedTabPage);
+				LoadPreviewGroup((PreviewGroupControl)xtraTabControlGroups.SelectedTabPage);
 
 				xtraTabControlGroups.TabPages
 					.ToList()

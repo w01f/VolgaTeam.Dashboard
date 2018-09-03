@@ -28,9 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition7 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition8 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition9 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition10 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition11 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition9 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition10 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition11 = new DevExpress.XtraLayout.RowDefinition();
@@ -39,10 +39,12 @@
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition1 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition2 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition3 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition1 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition4 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition5 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition1 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition6 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition7 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition8 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition2 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition3 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition4 = new DevExpress.XtraLayout.RowDefinition();
@@ -51,6 +53,7 @@
 			DevExpress.XtraLayout.RowDefinition rowDefinition7 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition8 = new DevExpress.XtraLayout.RowDefinition();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
+			this.toggleSwitchOutput = new DevExpress.XtraEditors.ToggleSwitch();
 			this.buttonXToggle3 = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXToggle2 = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXToggle1 = new DevComponents.DotNetBar.ButtonX();
@@ -61,6 +64,7 @@
 			this.layoutControlGroupHeader = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemHeader = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemCombo1 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemOutputToggle = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlGroupToggles = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemTabs = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemToggle1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -68,6 +72,7 @@
 			this.layoutControlItemToggle3 = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.toggleSwitchOutput.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditCombo1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditHeader.Properties)).BeginInit();
@@ -75,6 +80,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupHeader)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemHeader)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCombo1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOutputToggle)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupToggles)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabs)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemToggle1)).BeginInit();
@@ -97,6 +103,7 @@
 			this.layoutControl.Appearance.ControlFocused.Options.UseFont = true;
 			this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
+			this.layoutControl.Controls.Add(this.toggleSwitchOutput);
 			this.layoutControl.Controls.Add(this.buttonXToggle3);
 			this.layoutControl.Controls.Add(this.buttonXToggle2);
 			this.layoutControl.Controls.Add(this.buttonXToggle1);
@@ -114,6 +121,19 @@
 			this.layoutControl.Root = this.layoutControlGroupRoot;
 			this.layoutControl.Size = new System.Drawing.Size(761, 479);
 			this.layoutControl.TabIndex = 0;
+			// 
+			// toggleSwitchOutput
+			// 
+			this.toggleSwitchOutput.Location = new System.Drawing.Point(627, 29);
+			this.toggleSwitchOutput.Name = "toggleSwitchOutput";
+			this.toggleSwitchOutput.Properties.AllowFocused = false;
+			this.toggleSwitchOutput.Properties.AutoWidth = true;
+			this.toggleSwitchOutput.Properties.OffText = "Off";
+			this.toggleSwitchOutput.Properties.OnText = "On";
+			this.toggleSwitchOutput.Size = new System.Drawing.Size(94, 25);
+			this.toggleSwitchOutput.StyleController = this.layoutControl;
+			this.toggleSwitchOutput.TabIndex = 34;
+			this.toggleSwitchOutput.Toggled += new System.EventHandler(this.OnOutputToggled);
 			// 
 			// buttonXToggle3
 			// 
@@ -187,12 +207,12 @@
 			// 
 			// comboBoxEditCombo1
 			// 
-			this.comboBoxEditCombo1.Location = new System.Drawing.Point(416, 31);
+			this.comboBoxEditCombo1.Location = new System.Drawing.Point(333, 31);
 			this.comboBoxEditCombo1.Name = "comboBoxEditCombo1";
 			this.comboBoxEditCombo1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditCombo1.Properties.NullText = "Select or type";
-			this.comboBoxEditCombo1.Size = new System.Drawing.Size(305, 22);
+			this.comboBoxEditCombo1.Size = new System.Drawing.Size(231, 22);
 			this.comboBoxEditCombo1.StyleController = this.layoutControl;
 			this.comboBoxEditCombo1.TabIndex = 13;
 			this.comboBoxEditCombo1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -204,7 +224,7 @@
 			this.comboBoxEditHeader.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditHeader.Properties.NullText = "Select or type";
-			this.comboBoxEditHeader.Size = new System.Drawing.Size(304, 22);
+			this.comboBoxEditHeader.Size = new System.Drawing.Size(230, 22);
 			this.comboBoxEditHeader.StyleController = this.layoutControl;
 			this.comboBoxEditHeader.TabIndex = 12;
 			this.comboBoxEditHeader.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -233,16 +253,16 @@
 			this.layoutControlGroupRoot.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
-			columnDefinition7.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition7.Width = 5D;
-			columnDefinition8.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition8.Width = 90D;
 			columnDefinition9.SizeType = System.Windows.Forms.SizeType.Percent;
 			columnDefinition9.Width = 5D;
+			columnDefinition10.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition10.Width = 90D;
+			columnDefinition11.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition11.Width = 5D;
 			this.layoutControlGroupRoot.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition7,
-            columnDefinition8,
-            columnDefinition9});
+            columnDefinition9,
+            columnDefinition10,
+            columnDefinition11});
 			rowDefinition9.Height = 20D;
 			rowDefinition9.SizeType = System.Windows.Forms.SizeType.Absolute;
 			rowDefinition10.Height = 10D;
@@ -268,20 +288,27 @@
 			this.layoutControlGroupHeader.GroupBordersVisible = false;
 			this.layoutControlGroupHeader.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemHeader,
-            this.layoutControlItemCombo1});
+            this.layoutControlItemCombo1,
+            this.layoutControlItemOutputToggle});
 			this.layoutControlGroupHeader.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupHeader.Location = new System.Drawing.Point(38, 20);
 			this.layoutControlGroupHeader.Name = "layoutControlGroupHeader";
 			columnDefinition1.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition1.Width = 45D;
+			columnDefinition1.Width = 40D;
 			columnDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
 			columnDefinition2.Width = 10D;
 			columnDefinition3.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition3.Width = 45D;
+			columnDefinition3.Width = 40D;
+			columnDefinition4.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition4.Width = 10D;
+			columnDefinition5.SizeType = System.Windows.Forms.SizeType.AutoSize;
+			columnDefinition5.Width = 98D;
 			this.layoutControlGroupHeader.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
             columnDefinition1,
             columnDefinition2,
-            columnDefinition3});
+            columnDefinition3,
+            columnDefinition4,
+            columnDefinition5});
 			rowDefinition1.Height = 100D;
 			rowDefinition1.SizeType = System.Windows.Forms.SizeType.Percent;
 			this.layoutControlGroupHeader.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
@@ -296,10 +323,11 @@
 			// 
 			this.layoutControlItemHeader.Control = this.comboBoxEditHeader;
 			this.layoutControlItemHeader.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemHeader.Enabled = false;
 			this.layoutControlItemHeader.FillControlToClientArea = false;
 			this.layoutControlItemHeader.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemHeader.Name = "layoutControlItemHeader";
-			this.layoutControlItemHeader.Size = new System.Drawing.Size(308, 44);
+			this.layoutControlItemHeader.Size = new System.Drawing.Size(234, 44);
 			this.layoutControlItemHeader.Text = "Header";
 			this.layoutControlItemHeader.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemHeader.TextVisible = false;
@@ -309,18 +337,36 @@
 			// 
 			this.layoutControlItemCombo1.Control = this.comboBoxEditCombo1;
 			this.layoutControlItemCombo1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemCombo1.Enabled = false;
 			this.layoutControlItemCombo1.FillControlToClientArea = false;
-			this.layoutControlItemCombo1.Location = new System.Drawing.Point(376, 0);
+			this.layoutControlItemCombo1.Location = new System.Drawing.Point(293, 0);
 			this.layoutControlItemCombo1.Name = "layoutControlItemCombo1";
 			this.layoutControlItemCombo1.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.layoutControlItemCombo1.Size = new System.Drawing.Size(309, 44);
+			this.layoutControlItemCombo1.Size = new System.Drawing.Size(235, 44);
 			this.layoutControlItemCombo1.Text = "Combo 1";
 			this.layoutControlItemCombo1.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemCombo1.TextVisible = false;
 			this.layoutControlItemCombo1.TrimClientAreaToControl = false;
 			// 
+			// layoutControlItemOutputToggle
+			// 
+			this.layoutControlItemOutputToggle.Control = this.toggleSwitchOutput;
+			this.layoutControlItemOutputToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleRight;
+			this.layoutControlItemOutputToggle.FillControlToClientArea = false;
+			this.layoutControlItemOutputToggle.Location = new System.Drawing.Point(587, 0);
+			this.layoutControlItemOutputToggle.MaxSize = new System.Drawing.Size(98, 29);
+			this.layoutControlItemOutputToggle.MinSize = new System.Drawing.Size(98, 29);
+			this.layoutControlItemOutputToggle.Name = "layoutControlItemOutputToggle";
+			this.layoutControlItemOutputToggle.OptionsTableLayoutItem.ColumnIndex = 4;
+			this.layoutControlItemOutputToggle.Size = new System.Drawing.Size(98, 44);
+			this.layoutControlItemOutputToggle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemOutputToggle.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemOutputToggle.TextVisible = false;
+			this.layoutControlItemOutputToggle.TrimClientAreaToControl = false;
+			// 
 			// layoutControlGroupToggles
 			// 
+			this.layoutControlGroupToggles.Enabled = false;
 			this.layoutControlGroupToggles.GroupBordersVisible = false;
 			this.layoutControlGroupToggles.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabs,
@@ -330,16 +376,16 @@
 			this.layoutControlGroupToggles.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupToggles.Location = new System.Drawing.Point(38, 108);
 			this.layoutControlGroupToggles.Name = "layoutControlGroupToggles";
-			columnDefinition4.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition4.Width = 25D;
-			columnDefinition5.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition5.Width = 5D;
 			columnDefinition6.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition6.Width = 70D;
+			columnDefinition6.Width = 25D;
+			columnDefinition7.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition7.Width = 5D;
+			columnDefinition8.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition8.Width = 70D;
 			this.layoutControlGroupToggles.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition4,
-            columnDefinition5,
-            columnDefinition6});
+            columnDefinition6,
+            columnDefinition7,
+            columnDefinition8});
 			rowDefinition2.Height = 50D;
 			rowDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
 			rowDefinition3.Height = 50D;
@@ -442,6 +488,7 @@
 			this.Size = new System.Drawing.Size(761, 479);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.toggleSwitchOutput.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditCombo1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditHeader.Properties)).EndInit();
@@ -449,6 +496,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupHeader)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemHeader)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCombo1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOutputToggle)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupToggles)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabs)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemToggle1)).EndInit();
@@ -475,5 +523,7 @@
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemToggle1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemToggle2;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemToggle3;
+		private DevExpress.XtraEditors.ToggleSwitch toggleSwitchOutput;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemOutputToggle;
 	}
 }

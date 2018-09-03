@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
@@ -103,10 +104,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		public virtual SlideType SlideType => SlideType.ShiftCleanslate;
 		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType);
 
-		public virtual OutputItem GetOutputItem()
+		public virtual IList<OutputItem> GetOutputItems()
 		{
 			var outputData = GetOutputData();
-			return new OutputItem
+			return new[] { new OutputItem
 			{
 				Name = OutputName,
 				PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath,
@@ -121,7 +122,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				{
 					processor.PrepareSolutionCommonSlide(presentationSourcePath, outputData);
 				}
-			};
+			}};
 		}
 
 		protected virtual OutputDataPackage GetOutputData()

@@ -76,6 +76,7 @@ namespace Asa.Common.GUI.Preview
 				});
 				Utilities.ActivateForm(_parentForm.Handle, _parentForm.WindowState == FormWindowState.Maximized, false);
 				Utilities.ActivateForm(_previewForm.Handle, _previewForm.WindowState == FormWindowState.Maximized, false);
+				_previewForm.Opacity = 1;
 
 				_previewForm.CalculateSlides();
 			}

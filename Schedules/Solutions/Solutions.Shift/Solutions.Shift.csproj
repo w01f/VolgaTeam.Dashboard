@@ -286,6 +286,12 @@
     <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\FormResearchBundleList.Designer.cs">
       <DependentUpon>FormResearchBundleList.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\LayoutTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\LayoutTabControl.Designer.cs">
+      <DependentUpon>LayoutTabControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ProductItemButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -664,6 +670,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\FormResearchBundleList.resx">
       <DependentUpon>FormResearchBundleList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\LayoutTabControl.resx">
+      <DependentUpon>LayoutTabControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ImageTabControl.resx">
       <DependentUpon>ImageTabControl.cs</DependentUpon>

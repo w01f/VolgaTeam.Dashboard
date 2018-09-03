@@ -69,7 +69,10 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 
 		public class ProductItemState
 		{
+			public Guid ItemId { get; private set; }
 			public string ProductId { get; private set; }
+
+			public bool? EnableOutput { get; set; }
 
 			public ListDataItem Header { get; set; }
 			public ListDataItem Combo1 { get; set; }
@@ -88,6 +91,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 
 			public ProductItemState(string productId) : this()
 			{
+				ItemId = Guid.NewGuid();
 				ProductId = productId;
 			}
 		}
@@ -122,12 +126,12 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public class StyleToggleState : ProductToggleState
 		{
 			public ImageTabState ImageTab { get; }
-			public ImageTabState LayoutTab { get; }
+			public LayoutTabState LayoutTab { get; }
 
 			public StyleToggleState()
 			{
 				ImageTab = new ImageTabState();
-				LayoutTab = new ImageTabState();
+				LayoutTab = new LayoutTabState();
 			}
 		}
 
@@ -165,6 +169,11 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public class ImageTabState
 		{
 			public ClipartObject Clipart { get; set; }
+		}
+
+		public class LayoutTabState
+		{
+			public LayoutItem SavedLayout { get; set; }
 		}
 
 		public class StatementItemState

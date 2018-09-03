@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -6,7 +7,9 @@ using System.Windows.Forms;
 using Asa.Business.Solutions.Shift.Configuration;
 using Asa.Business.Solutions.Shift.Configuration.IntegratedSolution;
 using Asa.Business.Solutions.Shift.Entities.NonPersistent;
+using Asa.Common.Core.Enums;
 using Asa.Common.GUI.Common;
+using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses.Output;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolution.TabA;
@@ -23,6 +26,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 
 		public IntegratedSolutionTabAInfo CustomTabInfo => (IntegratedSolutionTabAInfo)TabInfo;
 
+		private ProductItemControl SelectedProduct => xtraTabControl.SelectedTabPage as ProductItemControl;
+
 		public IntegratedSolutionTabAControl(IChildTabPageContainer slideContainer, ShiftChildTabInfo tabInfo) : base(slideContainer, tabInfo)
 		{
 			InitializeComponent();
@@ -31,6 +36,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 			Contents.ItemClicked += OnProductItemClicked;
 
 			xtraTabControl.SelectedPageChanging += OnSelectedTabPageChanging;
+			xtraTabControl.SelectedPageChanged += OnSelectedTabPageChanged;
 			xtraTabControl.CloseButtonClick += OnTabClose;
 			xtraTabControl.MouseWheel += OnTabControlMouseWheel;
 			_tabDragDropHelper = new XtraTabDragDropHelper<ProductItemControl>(xtraTabControl);
@@ -41,19 +47,41 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 		{
 			_allowToSave = false;
 
-			foreach (var itemControl in xtraTabControl.TabPages.OfType<ProductItemControl>().ToList())
+			xtraTabControl.SuspendLayout();
+
+			var selectedItemId = (xtraTabControl.SelectedTabPage as ProductItemControl)?.ItemState?.ItemId;
+
+			foreach (var itemControl in xtraTabControl.TabPages
+				.OfType<ProductItemControl>()
+				.Where(productControl => SlideContainer.EditedContent.IntegratedSolutionState.TabA.Products.All(product => product.ItemId != productControl.ItemState.ItemId))
+				.ToList())
 				xtraTabControl.TabPages.Remove(itemControl);
 
 			foreach (var itemState in SlideContainer.EditedContent.IntegratedSolutionState.TabA.Products)
 			{
-				var itemInfo = CustomTabInfo.Products.FirstOrDefault(item =>
-					String.Equals(item.ProductId, itemState.ProductId, StringComparison.OrdinalIgnoreCase));
-				if (itemInfo != null)
+				var itemControl = xtraTabControl.TabPages
+					.OfType<ProductItemControl>()
+					.FirstOrDefault(productControl => itemState.ItemId == productControl.ItemState.ItemId);
+				if (itemControl == null)
 				{
-					var itemControl = new ProductItemControl(itemInfo, itemState, this);
-					xtraTabControl.TabPages.Add(itemControl);
+					var itemInfo = CustomTabInfo.Products.FirstOrDefault(item =>
+						String.Equals(item.ProductId, itemState.ProductId, StringComparison.OrdinalIgnoreCase));
+					if (itemInfo != null)
+					{
+						itemControl = new ProductItemControl(itemInfo, itemState, this);
+						xtraTabControl.TabPages.Add(itemControl);
+					}
 				}
 			}
+
+			if (selectedItemId != null)
+				xtraTabControl.SelectedTabPage = xtraTabControl.TabPages
+													 .OfType<ProductItemControl>()
+													 .FirstOrDefault(productTabControl =>
+														 productTabControl.ItemState.ItemId == selectedItemId)
+												 ?? xtraTabControl.SelectedTabPage;
+
+			xtraTabControl.ResumeLayout();
 
 			var itemControls = xtraTabControl.TabPages.OfType<ProductItemControl>().ToList();
 
@@ -119,6 +147,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 			});
 		}
 
+		private void OnSelectedTabPageChanged(object sender, TabPageChangedEventArgs e)
+		{
+			if (!_allowToSave) return;
+			SlideContainer.RaiseSlideTypeChanged();
+		}
+
 		private void OnTabClose(object sender, EventArgs e)
 		{
 			var arg = (ClosePageButtonEventArgs)e;
@@ -178,78 +212,18 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 		}
 
 		#region Output
-		public override bool ReadyForOutput => xtraTabControl.TabPages.Count > 1;
+		public override bool ReadyForOutput => xtraTabControl.TabPages.OfType<ProductItemControl>().Any(item => item.ReadyForOutput);
 
-		//public override SlideType SlideType
-		//{
-		//	get
-		//	{
-		//		switch (xtraTabControl.TabPages.Count - 1)
-		//		{
-		//			case 1:
-		//				return SlideType.ShiftIntegratedSolutionA4;
-		//			case 2:
-		//				return SlideType.ShiftIntegratedSolutionA3;
-		//			case 3:
-		//				return SlideType.ShiftIntegratedSolutionA2;
-		//			case 4:
-		//				return SlideType.ShiftIntegratedSolutionA1;
-		//			default:
-		//				return SlideType.ShiftIntegratedSolutionA4;
-		//		}
-		//	}
-		//}
+		public override SlideType SlideType => SelectedProduct?.SlideType ?? SlideType.CustomSlide;
 
-		protected override OutputDataPackage GetOutputData()
+		public override IList<OutputItem> GetOutputItems()
 		{
-			var outputDataPackage = new OutputDataPackage();
-
-			//outputDataPackage.Theme = SelectedTheme;
-
-			//switch (SlideContainer.EditedContent.IntegratedSolutionState.TabA.Items.Count)
-			//{
-			//	case 1:
-			//		outputDataPackage.TemplateName =
-			//			MasterWizardManager.Instance.SelectedWizard.GetShiftIntegratedSolutionFile("029_marketing_needs_a4.pptx");
-			//		break;
-			//	case 2:
-			//		outputDataPackage.TemplateName =
-			//			MasterWizardManager.Instance.SelectedWizard.GetShiftIntegratedSolutionFile("028_marketing_needs_a3.pptx");
-			//		break;
-			//	case 3:
-			//		outputDataPackage.TemplateName =
-			//			MasterWizardManager.Instance.SelectedWizard.GetShiftIntegratedSolutionFile("027_marketing_needs_a2.pptx");
-			//		break;
-			//	case 4:
-			//		outputDataPackage.TemplateName =
-			//			MasterWizardManager.Instance.SelectedWizard.GetShiftIntegratedSolutionFile("026_marketing_needs_a1.pptx");
-			//		break;
-			//	default:
-			//		outputDataPackage.TemplateName =
-			//			MasterWizardManager.Instance.SelectedWizard.GetShiftIntegratedSolutionFile("029_marketing_needs_a4.pptx");
-			//		break;
-			//}
-
-			//outputDataPackage.TextItems.Add("SHIFT09AHEADER".ToUpper(), (SlideContainer.EditedContent.IntegratedSolutionState.TabA.SlideHeader ?? CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value);
-			//outputDataPackage.TextItems.Add("SHIFT09ACOMBO1".ToUpper(), (SlideContainer.EditedContent.IntegratedSolutionState.TabA.Combo1 ?? CustomTabInfo.Combo1Items.FirstOrDefault(h => h.IsDefault))?.Value);
-
-			//var itemStateList = SlideContainer.EditedContent.IntegratedSolutionState.TabA.Items.OrderBy(itemState => itemState.Index).ToList();
-			//for (var i = 0; i < itemStateList.Count; i++)
-			//{
-			//	var itemState = SlideContainer.EditedContent.IntegratedSolutionState.TabA.Items[i];
-			//	var itemInfo = CustomTabInfo.NeedsList.FirstOrDefault(item =>
-			//		String.Equals(item.Id, itemState.Id, StringComparison.OrdinalIgnoreCase));
-
-			//	if (itemInfo == null) continue;
-
-			//	var clipart = ImageClipartObject.FromImage(itemInfo.ClipartImage);
-			//	clipart.OutputBackground = true;
-			//	outputDataPackage.ClipartItems.Add(String.Format("SHIFT09ATAB{0}CLIPART{0}", i + 1).ToUpper(), clipart);
-
-			//	outputDataPackage.TextItems.Add(String.Format("SHIFT09ATAB{0}SUBHEADER{0}", i + 1).ToUpper(), itemState.Subheader ?? itemInfo.SubHeaderDefaultValue);
-			//}
-
-			return outputDataPackage;
+			return xtraTabControl.TabPages
+				.OfType<ProductItemControl>()
+				.Where(item => item.ReadyForOutput)
+				.Select(item => item.GetOutputItem())
+				.Where(item => item != null)
+				.ToList();
 		}
 		#endregion
 	}

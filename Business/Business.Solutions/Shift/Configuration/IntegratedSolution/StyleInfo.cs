@@ -14,13 +14,13 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 		public string Title { get; private set; }
 
 		public ImageTabInfo Tab1 { get; private set; }
-		public ImageTabInfo Tab2 { get; private set; }
+		public LayoutTabInfo Tab2 { get; private set; }
 
 		private StyleInfo()
 		{
 			Title = "style";
 			Tab1 = ImageTabInfo.Empty();
-			Tab2 = ImageTabInfo.Empty();
+			Tab2 = LayoutTabInfo.Empty();
 		}
 
 		public IList<IProductSubTabInfo> GetSubTabInfoList()
@@ -45,7 +45,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 							new StorageDirectory(sharedImagesFolder.RelativePathParts.Merge(new[] { "product_images", productId })));
 						break;
 					case "LAYOUT":
-						styleInfo.Tab2 = ImageTabInfo.FromXml(node,
+						styleInfo.Tab2 = LayoutTabInfo.FromXml(node,
 							new StorageDirectory(sharedImagesFolder.RelativePathParts.Merge("layout_images")));
 						break;
 				}
@@ -82,9 +82,9 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 
 				if (configNode != null)
 				{
-					tabInfo.Title = configNode.SelectSingleNode("./Title")?.InnerText ?? tabInfo.Title;
+					tabInfo.Title = configNode.SelectSingleNode("./Title")?.InnerText ?? "image";
 					tabInfo.DefaultImagePath = tabInfo.ImageFiles.FirstOrDefault(imageFile =>
-												   String.Equals(configNode.SelectSingleNode("./Title")?.InnerText,
+												   String.Equals(configNode.SelectSingleNode("./Image")?.InnerText,
 													   Path.GetFileName(imageFile), StringComparison.OrdinalIgnoreCase)) ??
 											   tabInfo.ImageFiles.FirstOrDefault();
 				}
@@ -95,6 +95,48 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 			public static ImageTabInfo Empty()
 			{
 				return new ImageTabInfo();
+			}
+		}
+
+		public class LayoutTabInfo : IProductSubTabInfo
+		{
+			public string Title { get; private set; }
+
+			public List<LayoutItem> LayoutItems { get; }
+
+			public LayoutItem DefaultItem { get; private set; }
+
+			private LayoutTabInfo()
+			{
+				LayoutItems = new List<LayoutItem>();
+			}
+
+			public static LayoutTabInfo FromXml(XmlNode configNode, StorageDirectory imageFolder)
+			{
+				var tabInfo = Empty();
+
+				if (imageFolder.ExistsLocal())
+				{
+					var layoutFiles = Directory.GetFiles(imageFolder.LocalPath, "*.png").ToList();
+					layoutFiles.Sort(WinAPIHelper.StrCmpLogicalW);
+					tabInfo.LayoutItems.AddRange(layoutFiles.Select(file => LayoutItem.FromFile(file)));
+				}
+
+				if (configNode != null)
+				{
+					tabInfo.Title = configNode.SelectSingleNode("./Title")?.InnerText ?? "layout";
+					tabInfo.DefaultItem = tabInfo.LayoutItems.FirstOrDefault(layoutItem =>
+												   String.Equals(configNode.SelectSingleNode("./Image")?.InnerText,
+													   Path.GetFileName(layoutItem.FilePath), StringComparison.OrdinalIgnoreCase)) ??
+											   tabInfo.LayoutItems.FirstOrDefault();
+				}
+
+				return tabInfo;
+			}
+
+			public static LayoutTabInfo Empty()
+			{
+				return new LayoutTabInfo();
 			}
 		}
 	}

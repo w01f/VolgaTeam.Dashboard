@@ -120,8 +120,10 @@
     <Compile Include="Shift\Configuration\IntegratedSolution\IProductSubTabInfo.cs" />
     <Compile Include="Shift\Configuration\IntegratedSolution\IProductToggleContainerInfo.cs" />
     <Compile Include="Shift\Configuration\IntegratedSolution\IntegratedSolutionTabInfo.cs" />
+    <Compile Include="Shift\Configuration\IntegratedSolution\LayoutItem.cs" />
     <Compile Include="Shift\Configuration\IntegratedSolution\PositioningInfo.cs" />
     <Compile Include="Shift\Configuration\IntegratedSolution\ProductInfo.cs" />
+    <Compile Include="Shift\Configuration\IntegratedSolution\ProductOutputCondition.cs" />
     <Compile Include="Shift\Configuration\IntegratedSolution\ResearchInfo.cs" />
     <Compile Include="Shift\Configuration\IntegratedSolution\StyleInfo.cs" />
     <Compile Include="Shift\Configuration\Intro\IntroTabInfo.cs" />
@@ -171,6 +173,7 @@
     <Compile Include="Shift\Entities\NonPersistent\IntroState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\CoverState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\ShiftContent.cs" />
+    <Compile Include="Shift\Enums\ProductLayoutType.cs" />
     <Compile Include="Shift\Enums\ShiftChildTabType.cs" />
     <Compile Include="Shift\Enums\ShiftTopTabType.cs" />
     <Compile Include="StarApp\Configuration\Audience\AudienceTabCInfo.cs" />

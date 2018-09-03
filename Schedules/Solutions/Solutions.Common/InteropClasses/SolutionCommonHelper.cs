@@ -60,11 +60,20 @@ namespace Asa.Solutions.Common.InteropClasses
 								}
 							}
 						}
+						if (!String.IsNullOrEmpty(dataPackage.LayoutName))
+							foreach (CustomLayout customLayout in slide.Design.SlideMaster.CustomLayouts)
+							{
+								if (!String.Equals(dataPackage.LayoutName, customLayout.Name, StringComparison.OrdinalIgnoreCase))
+									continue;
+
+								slide.CustomLayout = customLayout;
+								break;
+							}
 
 						foreach (var clipartShape in backgroundClipartShapes)
 							clipartShape.ZOrder(MsoZOrderCmd.msoSendToBack);
-
 					}
+
 					var selectedTheme = dataPackage.Theme;
 					if (selectedTheme != null)
 						presentation.ApplyTheme(selectedTheme.GetThemePath());

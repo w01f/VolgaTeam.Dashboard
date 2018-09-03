@@ -13,10 +13,12 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 		public override bool IsRegularChildTab => true;
 
 		public List<ProductInfo> Products { get; }
+		public List<ProductOutputCondition> OutputConditions { get; }
 
 		public IntegratedSolutionTabAInfo() : base(ShiftChildTabType.A)
 		{
 			Products = new List<ProductInfo>();
+			OutputConditions = new List<ProductOutputCondition>();
 		}
 
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
@@ -53,6 +55,16 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 								resourceManager.ClipartTab9SharedFolder));
 					}
 				}
+			}
+
+			if (resourceManager.DataIntegratedSolutionPartAOutputConditionsFile.ExistsLocal())
+			{
+				var document = new XmlDocument();
+				document.Load(resourceManager.DataIntegratedSolutionPartAOutputConditionsFile.LocalPath);
+
+				var outputConditionNodes = document.SelectNodes("//SlideOutputRules/SourceOutput")?.OfType<XmlNode>().ToArray() ?? new XmlNode[] { };
+				foreach (var outputConditionNode in outputConditionNodes)
+					OutputConditions.Add(ProductOutputCondition.FromXml(outputConditionNode));
 			}
 		}
 	}

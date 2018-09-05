@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition1 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition2 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition3 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition4 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition5 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition1 = new DevExpress.XtraLayout.RowDefinition();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.toggleSwitchOutput = new DevExpress.XtraEditors.ToggleSwitch();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
@@ -124,12 +123,13 @@
 			// 
 			// toggleSwitchOutput
 			// 
-			this.toggleSwitchOutput.Location = new System.Drawing.Point(563, 27);
+			this.toggleSwitchOutput.AutoSizeInLayoutControl = true;
+			this.toggleSwitchOutput.Location = new System.Drawing.Point(581, 27);
 			this.toggleSwitchOutput.Name = "toggleSwitchOutput";
 			this.toggleSwitchOutput.Properties.AllowFocused = false;
 			this.toggleSwitchOutput.Properties.OffText = "Off";
 			this.toggleSwitchOutput.Properties.OnText = "On";
-			this.toggleSwitchOutput.Size = new System.Drawing.Size(112, 25);
+			this.toggleSwitchOutput.Size = new System.Drawing.Size(94, 25);
 			this.toggleSwitchOutput.StyleController = this.layoutControl;
 			this.toggleSwitchOutput.TabIndex = 31;
 			this.toggleSwitchOutput.Toggled += new System.EventHandler(this.OnOutputToggled);

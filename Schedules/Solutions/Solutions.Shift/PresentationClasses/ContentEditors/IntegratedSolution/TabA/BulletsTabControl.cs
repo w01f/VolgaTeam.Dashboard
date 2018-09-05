@@ -74,10 +74,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 
 			_allowHandleEvents = false;
 
-			if (TabState.Combo1 != null || TabState.Bullets.Any())
-				toggleSwitch.IsOn = TabState.Toggled;
-			else
-				toggleSwitch.IsOn = TabInfo.ToggleSwitch.Value;
+			TabState.Toggled = toggleSwitch.IsOn != TabInfo.ToggleSwitch.Value ? toggleSwitch.IsOn : (bool?)null;
 
 			comboBoxEditCombo1.EnableSelectAll().RaiseNullValueIfEditorEmpty().AssignConfiguration(TabInfo.Combo1Configuration);
 			comboBoxEditCombo1.Properties.Items.Clear();

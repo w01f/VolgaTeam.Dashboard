@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition1 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition2 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition1 = new DevExpress.XtraLayout.RowDefinition();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.toggleSwitchOutput = new DevExpress.XtraEditors.ToggleSwitch();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
@@ -110,12 +111,13 @@
 			// 
 			// toggleSwitchOutput
 			// 
+			this.toggleSwitchOutput.AutoSizeInLayoutControl = true;
 			this.toggleSwitchOutput.Location = new System.Drawing.Point(42, 7);
 			this.toggleSwitchOutput.Name = "toggleSwitchOutput";
 			this.toggleSwitchOutput.Properties.AllowFocused = false;
 			this.toggleSwitchOutput.Properties.OffText = "Off";
 			this.toggleSwitchOutput.Properties.OnText = "On";
-			this.toggleSwitchOutput.Size = new System.Drawing.Size(506, 25);
+			this.toggleSwitchOutput.Size = new System.Drawing.Size(94, 25);
 			this.toggleSwitchOutput.StyleController = this.layoutControl;
 			this.toggleSwitchOutput.TabIndex = 31;
 			this.toggleSwitchOutput.Toggled += new System.EventHandler(this.OnOutputToggled);
@@ -218,7 +220,7 @@
 			// layoutControlItemOutputToggle
 			// 
 			this.layoutControlItemOutputToggle.Control = this.toggleSwitchOutput;
-			this.layoutControlItemOutputToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleRight;
+			this.layoutControlItemOutputToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemOutputToggle.FillControlToClientArea = false;
 			this.layoutControlItemOutputToggle.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemOutputToggle.MaxSize = new System.Drawing.Size(0, 40);

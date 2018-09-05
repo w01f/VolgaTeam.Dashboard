@@ -38,10 +38,6 @@ namespace Asa.Common.GUI.Preview
 			Opacity = 0;
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
-			layoutControlItemEnableOutput.MaxSize = RectangleHelper.ScaleSize(layoutControlItemEnableOutput.MaxSize, scaleFactor);
-			layoutControlItemEnableOutput.MinSize = RectangleHelper.ScaleSize(layoutControlItemEnableOutput.MinSize, scaleFactor);
-			layoutControlItemDisableOutput.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDisableOutput.MaxSize, scaleFactor);
-			layoutControlItemDisableOutput.MinSize = RectangleHelper.ScaleSize(layoutControlItemDisableOutput.MinSize, scaleFactor);
 			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, scaleFactor);
 			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, scaleFactor);
 			layoutControlItemCancel.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MaxSize, scaleFactor);
@@ -68,8 +64,7 @@ namespace Asa.Common.GUI.Preview
 
 			CalculateSlides();
 
-			layoutControlItemDisableOutput.Visibility =
-				layoutControlItemEnableOutput.Visibility =
+			layoutControlItemOutputToggle.Visibility =
 					outputGroups.SelectMany(outputGroup => outputGroup.Items).Count(item => item.Enabled) > 1 ? LayoutVisibility.Always : LayoutVisibility.Never;
 		}
 
@@ -141,26 +136,14 @@ namespace Asa.Common.GUI.Preview
 		private void OnPreviewItemChanged(Object sender, PreviewItemChangedEventArgs e)
 		{
 			_allowHandleButtonEvents = false;
-			buttonXEnableOutput.Checked = e.OutputItem.Enabled;
-			buttonXDisableOutput.Checked = !e.OutputItem.Enabled;
+			toggleSwitchOutput.IsOn = e.OutputItem.Enabled;
 			_allowHandleButtonEvents = true;
 		}
 
-		private void OnOutputButtonClick(object sender, EventArgs e)
-		{
-			var button = (ButtonX)sender;
-			if (button.Checked) return;
-			buttonXEnableOutput.Checked = false;
-			buttonXDisableOutput.Checked = false;
-			button.Checked = true;
-		}
-
-		private void OnOutputButtonCheckedChanged(object sender, EventArgs e)
+		private void OnOutputToggled(object sender, EventArgs e)
 		{
 			if (!_allowHandleButtonEvents) return;
-			var button = (ButtonX)sender;
-			if (!button.Checked) return;
-			SelectedGroupControl.SelectedPreviewControl.IsEnabled = buttonXEnableOutput.Checked;
+			SelectedGroupControl.SelectedPreviewControl.IsEnabled = toggleSwitchOutput.IsOn;
 			CalculateSlides();
 		}
 	}

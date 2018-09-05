@@ -368,6 +368,15 @@ namespace Asa.Common.Core.Helpers
 					case "Shift_13_support_materials":
 						slideType = SlideType.ShiftSupportMaterials;
 						break;
+					case "Shift_9a_approach":
+						slideType = SlideType.ShiftApproachA;
+						break;
+					case "Shift_9b_approach":
+						slideType = SlideType.ShiftApproachB;
+						break;
+					case "Shift_9c_approach":
+						slideType = SlideType.ShiftApproachC;
+						break;
 						#endregion
 				}
 				if (slideType == SlideType.None) continue;

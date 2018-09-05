@@ -23,8 +23,6 @@ using Asa.Solutions.StarApp.PresentationClasses.ContentEditors.ROI;
 using Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Share;
 using Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Solution;
 using Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Video;
-using DevExpress.LookAndFeel;
-using DevExpress.Skins;
 using DevExpress.XtraTab;
 using DevExpress.XtraEditors;
 
@@ -64,13 +62,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public override void InitControl(bool showSplash)
 		{
-			if (ResourceManager.SolutionToggleSwitchSkinElement != null)
-			{
-				var element = SkinManager.GetSkinElement(SkinProductId.Editors, UserLookAndFeel.Default, "ToggleSwitch");
-				element.Image.SetImage(ResourceManager.SolutionToggleSwitchSkinElement, Color.Transparent);
-				LookAndFeelHelper.ForceDefaultLookAndFeelChanged();
-			}
-
 			if (showSplash)
 			{
 				FormProgress.ShowProgress("Loading data...", () =>

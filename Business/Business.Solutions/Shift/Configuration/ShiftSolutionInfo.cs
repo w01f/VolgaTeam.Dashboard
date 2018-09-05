@@ -7,6 +7,7 @@ using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Dictionaries;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Shift.Configuration.Agenda;
+using Asa.Business.Solutions.Shift.Configuration.Approach;
 using Asa.Business.Solutions.Shift.Configuration.CBC;
 using Asa.Business.Solutions.Shift.Configuration.Cleanslate;
 using Asa.Business.Solutions.Shift.Configuration.Cover;
@@ -137,7 +138,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							tabInfo = new CommonTopTabInfo(ShiftTopTabType.SpecBuilder);
 							break;
 						case "approach":
-							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Approach);
+							tabInfo = new ApproachTabInfo();
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");

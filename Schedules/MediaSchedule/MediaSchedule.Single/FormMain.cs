@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Common.Enums;
@@ -17,6 +18,7 @@ using Asa.Schedules.Common.Controls.ContentEditors.Events;
 using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro.ColorTables;
+using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 using DevExpress.XtraLayout.Utils;
 using FormStart = Asa.Media.Controls.ToolForms.FormStart;
@@ -191,6 +193,13 @@ namespace Asa.Media.Single
 				styleManager.MetroColorParameters = new MetroColorGeneratorParameters(
 						styleManager.MetroColorParameters.CanvasColor,
 						BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value);
+
+			if (BusinessObjects.Instance.ImageResourcesManager.ToggleSwitchSkinElement != null)
+			{
+				var element = SkinManager.GetSkinElement(SkinProductId.Editors, UserLookAndFeel.Default, "ToggleSwitch");
+				element.Image.SetImage(BusinessObjects.Instance.ImageResourcesManager.ToggleSwitchSkinElement, Color.Transparent);
+				LookAndFeelHelper.ForceDefaultLookAndFeelChanged();
+			}
 
 			Controller.Instance.FormMain = this;
 			Controller.Instance.MainPanelContainer = layoutControlGroupContainer;

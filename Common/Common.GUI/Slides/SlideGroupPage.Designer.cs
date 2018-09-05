@@ -28,12 +28,11 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SlideGroupPage));
-			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
 			this.toolStripMenuItemOutput = new System.Windows.Forms.ToolStripMenuItem();
 			this.slidesListView = new Manina.Windows.Forms.ImageListView();
-			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			this.contextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -59,7 +58,7 @@
 			this.slidesListView.ColumnHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
 			this.slidesListView.ContextMenuStrip = this.contextMenuStrip;
 			this.slidesListView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.slidesListView.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.slidesListView.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.slidesListView.GroupHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
 			this.slidesListView.Location = new System.Drawing.Point(0, 0);
 			this.slidesListView.MultiSelect = false;
@@ -80,7 +79,6 @@
 			// 
 			this.Controls.Add(this.slidesListView);
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.Name = "SlideGroupPage";
 			this.Size = new System.Drawing.Size(521, 446);
 			this.contextMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);

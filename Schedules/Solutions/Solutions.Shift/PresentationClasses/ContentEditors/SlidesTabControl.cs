@@ -191,6 +191,23 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 					}
 					slidesEditContainer.LoadData(_sourceSlideObject);
 					break;
+				case ShiftTopTabType.Approach:
+					switch (CustomTabInfo.TabType)
+					{
+						case ShiftChildTabType.U:
+							_sourceSlideObject = SlideContainer.EditedContent.ApproachState.TabU.Slide;
+							break;
+						case ShiftChildTabType.V:
+							_sourceSlideObject = SlideContainer.EditedContent.ApproachState.TabV.Slide;
+							break;
+						case ShiftChildTabType.W:
+							_sourceSlideObject = SlideContainer.EditedContent.ApproachState.TabW.Slide;
+							break;
+						default:
+							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
+					}
+					slidesEditContainer.LoadData(_sourceSlideObject);
+					break;
 				default:
 					_sourceSlideObject = new SlideObject();
 					slidesEditContainer.LoadData(_sourceSlideObject);

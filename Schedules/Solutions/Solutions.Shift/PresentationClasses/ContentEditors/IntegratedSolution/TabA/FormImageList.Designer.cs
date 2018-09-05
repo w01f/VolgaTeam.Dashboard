@@ -84,9 +84,10 @@
 			// 
 			this.imageListView.BackColor = System.Drawing.Color.White;
 			this.imageListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.imageListView.Colors = new Manina.Windows.Forms.ImageListViewColor(resources.GetString("imageListView.Colors"));
 			this.imageListView.ColumnHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-			this.imageListView.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.imageListView.ForeColor = System.Drawing.Color.Gray;
+			this.imageListView.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.imageListView.ForeColor = System.Drawing.Color.Black;
 			this.imageListView.GroupHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
 			this.imageListView.Location = new System.Drawing.Point(12, 12);
 			this.imageListView.MultiSelect = false;
@@ -240,6 +241,7 @@
 			this.Controls.Add(this.layoutControl);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ForeColor = System.Drawing.Color.Black;
 			this.MinimizeBox = false;
 			this.Name = "FormImageList";
 			this.ShowIcon = false;

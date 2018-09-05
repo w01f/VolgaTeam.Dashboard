@@ -13,6 +13,7 @@ using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Agenda;
+using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Approach;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals;
@@ -21,8 +22,6 @@ using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Intro;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Partnership;
-using DevExpress.LookAndFeel;
-using DevExpress.Skins;
 using DevExpress.XtraTab;
 using DevExpress.XtraEditors;
 
@@ -61,13 +60,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		#region GUI Processing
 		public override void InitControl(bool showSplash)
 		{
-			if (ResourceManager.SolutionToggleSwitchSkinElement != null)
-			{
-				var element = SkinManager.GetSkinElement(SkinProductId.Editors, UserLookAndFeel.Default, "ToggleSwitch");
-				element.Image.SetImage(ResourceManager.SolutionToggleSwitchSkinElement, Color.Transparent);
-				LookAndFeelHelper.ForceDefaultLookAndFeelChanged();
-			}
-
 			if (showSplash)
 			{
 				FormProgress.ShowProgress("Loading data...", () =>
@@ -121,6 +113,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 						break;
 					case ShiftTopTabType.IntegratedSolution:
 						_slides.Add(new ShiftTabPageContainerControl<IntegratedSolutionControl>(this, tabInfo));
+						break;
+					case ShiftTopTabType.Approach:
+						_slides.Add(new ShiftTabPageContainerControl<ApproachControl>(this, tabInfo));
 						break;
 					default:
 						_slides.Add(new ShiftTabPageContainerControl<CommonTopTabControl>(this, tabInfo));

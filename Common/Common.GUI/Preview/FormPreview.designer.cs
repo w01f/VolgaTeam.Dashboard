@@ -30,8 +30,6 @@
         {
 			this.xtraTabControlGroups = new DevExpress.XtraTab.XtraTabControl();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
-			this.buttonXDisableOutput = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXEnableOutput = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXContinue = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXClose = new DevComponents.DotNetBar.ButtonX();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -41,11 +39,10 @@
 			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemGroups = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemEnableOutput = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemDisableOutput = new DevExpress.XtraLayout.LayoutControlItem();
-			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.simpleLabelItemSlideCount = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.toggleSwitchOutput = new DevExpress.XtraEditors.ToggleSwitch();
+			this.layoutControlItemOutputToggle = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlGroups)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
@@ -56,11 +53,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemGroups)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemEnableOutput)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDisableOutput)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSlideCount)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.toggleSwitchOutput.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOutputToggle)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// xtraTabControlGroups
@@ -108,8 +104,7 @@
 			this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
 			this.layoutControl.BackColor = System.Drawing.Color.White;
-			this.layoutControl.Controls.Add(this.buttonXDisableOutput);
-			this.layoutControl.Controls.Add(this.buttonXEnableOutput);
+			this.layoutControl.Controls.Add(this.toggleSwitchOutput);
 			this.layoutControl.Controls.Add(this.xtraTabControlGroups);
 			this.layoutControl.Controls.Add(this.buttonXContinue);
 			this.layoutControl.Controls.Add(this.buttonXClose);
@@ -123,36 +118,6 @@
 			this.layoutControl.Size = new System.Drawing.Size(934, 562);
 			this.layoutControl.TabIndex = 68;
 			this.layoutControl.Text = "layoutControl1";
-			// 
-			// buttonXDisableOutput
-			// 
-			this.buttonXDisableOutput.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXDisableOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.buttonXDisableOutput.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDisableOutput.Location = new System.Drawing.Point(152, 514);
-			this.buttonXDisableOutput.Name = "buttonXDisableOutput";
-			this.buttonXDisableOutput.Size = new System.Drawing.Size(116, 36);
-			this.buttonXDisableOutput.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXDisableOutput.TabIndex = 12;
-			this.buttonXDisableOutput.Text = "Nah...";
-			this.buttonXDisableOutput.TextColor = System.Drawing.Color.Black;
-			this.buttonXDisableOutput.CheckedChanged += new System.EventHandler(this.OnOutputButtonCheckedChanged);
-			this.buttonXDisableOutput.Click += new System.EventHandler(this.OnOutputButtonClick);
-			// 
-			// buttonXEnableOutput
-			// 
-			this.buttonXEnableOutput.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXEnableOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.buttonXEnableOutput.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXEnableOutput.Location = new System.Drawing.Point(12, 514);
-			this.buttonXEnableOutput.Name = "buttonXEnableOutput";
-			this.buttonXEnableOutput.Size = new System.Drawing.Size(116, 36);
-			this.buttonXEnableOutput.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXEnableOutput.TabIndex = 11;
-			this.buttonXEnableOutput.Text = "Yep!";
-			this.buttonXEnableOutput.TextColor = System.Drawing.Color.Black;
-			this.buttonXEnableOutput.CheckedChanged += new System.EventHandler(this.OnOutputButtonCheckedChanged);
-			this.buttonXEnableOutput.Click += new System.EventHandler(this.OnOutputButtonClick);
 			// 
 			// buttonXContinue
 			// 
@@ -206,11 +171,9 @@
             this.emptySpaceItem1,
             this.emptySpaceItem7,
             this.layoutControlItemGroups,
-            this.layoutControlItemEnableOutput,
-            this.layoutControlItemDisableOutput,
-            this.emptySpaceItem2,
             this.simpleLabelItemSlideCount,
-            this.emptySpaceItem3});
+            this.emptySpaceItem3,
+            this.layoutControlItemOutputToggle});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Size = new System.Drawing.Size(934, 562);
@@ -273,9 +236,9 @@
 			// emptySpaceItem7
 			// 
 			this.emptySpaceItem7.AllowHotTrack = false;
-			this.emptySpaceItem7.Location = new System.Drawing.Point(260, 502);
+			this.emptySpaceItem7.Location = new System.Drawing.Point(98, 502);
 			this.emptySpaceItem7.Name = "emptySpaceItem7";
-			this.emptySpaceItem7.Size = new System.Drawing.Size(394, 40);
+			this.emptySpaceItem7.Size = new System.Drawing.Size(556, 40);
 			this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemGroups
@@ -289,49 +252,6 @@
 			this.layoutControlItemGroups.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemGroups.TextVisible = false;
 			this.layoutControlItemGroups.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemEnableOutput
-			// 
-			this.layoutControlItemEnableOutput.Control = this.buttonXEnableOutput;
-			this.layoutControlItemEnableOutput.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemEnableOutput.FillControlToClientArea = false;
-			this.layoutControlItemEnableOutput.Location = new System.Drawing.Point(0, 502);
-			this.layoutControlItemEnableOutput.MaxSize = new System.Drawing.Size(120, 40);
-			this.layoutControlItemEnableOutput.MinSize = new System.Drawing.Size(120, 40);
-			this.layoutControlItemEnableOutput.Name = "layoutControlItemEnableOutput";
-			this.layoutControlItemEnableOutput.Size = new System.Drawing.Size(120, 40);
-			this.layoutControlItemEnableOutput.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.layoutControlItemEnableOutput.Text = "Enable Output";
-			this.layoutControlItemEnableOutput.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemEnableOutput.TextVisible = false;
-			this.layoutControlItemEnableOutput.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemDisableOutput
-			// 
-			this.layoutControlItemDisableOutput.Control = this.buttonXDisableOutput;
-			this.layoutControlItemDisableOutput.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemDisableOutput.FillControlToClientArea = false;
-			this.layoutControlItemDisableOutput.Location = new System.Drawing.Point(140, 502);
-			this.layoutControlItemDisableOutput.MaxSize = new System.Drawing.Size(120, 40);
-			this.layoutControlItemDisableOutput.MinSize = new System.Drawing.Size(120, 40);
-			this.layoutControlItemDisableOutput.Name = "layoutControlItemDisableOutput";
-			this.layoutControlItemDisableOutput.Size = new System.Drawing.Size(120, 40);
-			this.layoutControlItemDisableOutput.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.layoutControlItemDisableOutput.Text = "Disable Output";
-			this.layoutControlItemDisableOutput.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemDisableOutput.TextVisible = false;
-			this.layoutControlItemDisableOutput.TrimClientAreaToControl = false;
-			// 
-			// emptySpaceItem2
-			// 
-			this.emptySpaceItem2.AllowHotTrack = false;
-			this.emptySpaceItem2.Location = new System.Drawing.Point(120, 502);
-			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(20, 0);
-			this.emptySpaceItem2.MinSize = new System.Drawing.Size(20, 10);
-			this.emptySpaceItem2.Name = "emptySpaceItem2";
-			this.emptySpaceItem2.Size = new System.Drawing.Size(20, 40);
-			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// simpleLabelItemSlideCount
 			// 
@@ -353,6 +273,31 @@
 			this.emptySpaceItem3.Size = new System.Drawing.Size(914, 10);
 			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// toggleSwitchOutput
+			// 
+			this.toggleSwitchOutput.AutoSizeInLayoutControl = true;
+			this.toggleSwitchOutput.Location = new System.Drawing.Point(12, 519);
+			this.toggleSwitchOutput.Name = "toggleSwitchOutput";
+			this.toggleSwitchOutput.Properties.AllowFocused = false;
+			this.toggleSwitchOutput.Properties.OffText = "Off";
+			this.toggleSwitchOutput.Properties.OnText = "On";
+			this.toggleSwitchOutput.Size = new System.Drawing.Size(94, 25);
+			this.toggleSwitchOutput.StyleController = this.layoutControl;
+			this.toggleSwitchOutput.TabIndex = 32;
+			this.toggleSwitchOutput.Toggled += new System.EventHandler(this.OnOutputToggled);
+			// 
+			// layoutControlItemOutputToggle
+			// 
+			this.layoutControlItemOutputToggle.Control = this.toggleSwitchOutput;
+			this.layoutControlItemOutputToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemOutputToggle.FillControlToClientArea = false;
+			this.layoutControlItemOutputToggle.Location = new System.Drawing.Point(0, 502);
+			this.layoutControlItemOutputToggle.Name = "layoutControlItemOutputToggle";
+			this.layoutControlItemOutputToggle.Size = new System.Drawing.Size(98, 40);
+			this.layoutControlItemOutputToggle.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemOutputToggle.TextVisible = false;
+			this.layoutControlItemOutputToggle.TrimClientAreaToControl = false;
 			// 
 			// FormPreview
 			// 
@@ -380,11 +325,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemGroups)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemEnableOutput)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDisableOutput)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSlideCount)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.toggleSwitchOutput.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOutputToggle)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -392,8 +336,6 @@
         #endregion
 		private DevExpress.XtraTab.XtraTabControl xtraTabControlGroups;
 		private DevExpress.XtraLayout.LayoutControl layoutControl;
-		public DevComponents.DotNetBar.ButtonX buttonXDisableOutput;
-		public DevComponents.DotNetBar.ButtonX buttonXEnableOutput;
 		public DevComponents.DotNetBar.ButtonX buttonXContinue;
 		private DevComponents.DotNetBar.ButtonX buttonXClose;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;
@@ -403,10 +345,9 @@
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemGroups;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemEnableOutput;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemDisableOutput;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
 		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemSlideCount;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
+		private DevExpress.XtraEditors.ToggleSwitch toggleSwitchOutput;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemOutputToggle;
 	}
 }

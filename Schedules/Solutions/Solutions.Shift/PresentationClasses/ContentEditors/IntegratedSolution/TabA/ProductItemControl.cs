@@ -298,7 +298,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 			var outputDataPackage = new OutputDataPackage();
 
 			//outputDataPackage.Theme = SlideContainer.GetSelectedTheme(SlideType);
-			
+
 			var tab1Combo1 = (ItemState.PositionToggle.Statements.Items.ElementAtOrDefault(0)?.Combo ??
 							  (ItemInfo.Positioning.Tab1.ComboCheckbox1.Value
 								  ? ItemInfo.Positioning.Tab1.Combo1Items.FirstOrDefault(h => h.IsDefault)
@@ -320,35 +320,35 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 			var bullets = new[]
 			{
 				(ItemState.PositionToggle.Bullets.Bullets.ElementAtOrDefault(0) ??
-				 (ItemInfo.Positioning.Tab2.ToggleSwitch.Value?
+				 (ItemState.PositionToggle.Bullets.Toggled ?? ItemInfo.Positioning.Tab2.ToggleSwitch.Value?
 					ItemInfo.Positioning.Tab2.BulletCombo1Items.FirstOrDefault(item =>item.IsDefault && !item.IsPlaceholder):
 					null))?.Value,
 				(ItemState.PositionToggle.Bullets.Bullets.ElementAtOrDefault(1) ??
-				 (ItemInfo.Positioning.Tab2.ToggleSwitch.Value?
+				 (ItemState.PositionToggle.Bullets.Toggled ?? ItemInfo.Positioning.Tab2.ToggleSwitch.Value?
 					 ItemInfo.Positioning.Tab2.BulletCombo2Items.FirstOrDefault(item =>item.IsDefault && !item.IsPlaceholder):
 					 null))?.Value,
 				(ItemState.PositionToggle.Bullets.Bullets.ElementAtOrDefault(2) ??
-				 (ItemInfo.Positioning.Tab2.ToggleSwitch.Value?
+				 (ItemState.PositionToggle.Bullets.Toggled ?? ItemInfo.Positioning.Tab2.ToggleSwitch.Value?
 					 ItemInfo.Positioning.Tab2.BulletCombo3Items.FirstOrDefault(item =>item.IsDefault && !item.IsPlaceholder):
 					 null))?.Value,
 				(ItemState.PositionToggle.Bullets.Bullets.ElementAtOrDefault(3) ??
-				 (ItemInfo.Positioning.Tab2.ToggleSwitch.Value?
+				 (ItemState.PositionToggle.Bullets.Toggled ?? ItemInfo.Positioning.Tab2.ToggleSwitch.Value?
 					 ItemInfo.Positioning.Tab2.BulletCombo4Items.FirstOrDefault(item =>item.IsDefault && !item.IsPlaceholder):
 					 null))?.Value,
 				(ItemState.PositionToggle.Bullets.Bullets.ElementAtOrDefault(4) ??
-				 (ItemInfo.Positioning.Tab2.ToggleSwitch.Value?
+				 (ItemState.PositionToggle.Bullets.Toggled ?? ItemInfo.Positioning.Tab2.ToggleSwitch.Value?
 					 ItemInfo.Positioning.Tab2.BulletCombo5Items.FirstOrDefault(item =>item.IsDefault && !item.IsPlaceholder):
 					 null))?.Value,
 				(ItemState.PositionToggle.Bullets.Bullets.ElementAtOrDefault(5) ??
-				 (ItemInfo.Positioning.Tab2.ToggleSwitch.Value?
+				 (ItemState.PositionToggle.Bullets.Toggled ?? ItemInfo.Positioning.Tab2.ToggleSwitch.Value?
 					 ItemInfo.Positioning.Tab2.BulletCombo6Items.FirstOrDefault(item =>item.IsDefault && !item.IsPlaceholder):
 					 null))?.Value,
 				(ItemState.PositionToggle.Bullets.Bullets.ElementAtOrDefault(6) ??
-				 (ItemInfo.Positioning.Tab2.ToggleSwitch.Value?
+				 (ItemState.PositionToggle.Bullets.Toggled ?? ItemInfo.Positioning.Tab2.ToggleSwitch.Value?
 					 ItemInfo.Positioning.Tab2.BulletCombo7Items.FirstOrDefault(item =>item.IsDefault && !item.IsPlaceholder):
 					 null))?.Value,
 				(ItemState.PositionToggle.Bullets.Bullets.ElementAtOrDefault(7) ??
-				 (ItemInfo.Positioning.Tab2.ToggleSwitch.Value?
+				 (ItemState.PositionToggle.Bullets.Toggled ?? ItemInfo.Positioning.Tab2.ToggleSwitch.Value?
 					 ItemInfo.Positioning.Tab2.BulletCombo8Items.FirstOrDefault(item =>item.IsDefault && !item.IsPlaceholder):
 					 null))?.Value
 			}
@@ -356,7 +356,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 			.ToList();
 
 			var bundleItem = ItemState.ResearchToggle.Data.BundleState?.ToLitsItem() ??
-							 (ItemInfo.Research.Tab1.ToggleSwitch.Value ?
+							 (ItemState.ResearchToggle.Data.Toggled ?? ItemInfo.Research.Tab1.ToggleSwitch.Value ?
 								ItemInfo.Research.Tab1.BundleInfo.Items.FirstOrDefault(item => item.IsDefault) :
 								null);
 

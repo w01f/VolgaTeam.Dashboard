@@ -81,10 +81,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 			memoEditBundleLine2.Properties.NullText = TabInfo.Placeholder2 ?? memoEditBundleLine2.Properties.NullText;
 			memoEditBundleLine3.Properties.NullText = TabInfo.Placeholder3 ?? memoEditBundleLine3.Properties.NullText;
 
-			if (TabState.BundleState != null)
-				toggleSwitch.IsOn = !TabState.BundleState.IsEmpty();
-			else
-				toggleSwitch.IsOn = TabInfo.ToggleSwitch.Value;
+			toggleSwitch.IsOn = TabState.Toggled ?? TabInfo.ToggleSwitch.Value;
 
 			var savedListItem = TabState.BundleState?.ToLitsItem();
 			_defaultItem = TabInfo.BundleInfo.Items.FirstOrDefault(item => item.IsDefault);
@@ -105,7 +102,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 		{
 			if (!_dataChanged) return;
 
-			TabState.Toggled = toggleSwitch.IsOn;
+			TabState.Toggled = toggleSwitch.IsOn != TabInfo.ToggleSwitch.Value ? toggleSwitch.IsOn : (bool?)null;
 
 			if (toggleSwitch.IsOn)
 			{

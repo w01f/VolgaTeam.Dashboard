@@ -129,6 +129,9 @@
 		ShiftNextSteps = 5130,
 		ShiftContract = 5140,
 		ShiftSupportMaterials = 5150,
+		ShiftApproachA = 5161,
+		ShiftApproachB = 5162,
+		ShiftApproachC = 5163,
 		#endregion
 
 		CustomSlide = 999999999,

@@ -525,7 +525,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile ClipartTab8SubA3File { get; private set; }
 		public StorageFile ClipartTab8SubF1File { get; private set; }
 		public StorageFile ClipartTab8SubF2File { get; private set; }
-		
+
 		public StorageDirectory Tab8PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab8PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab8PartWSlidesFolder { get; private set; }
@@ -812,6 +812,10 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 15
+		public StorageFile DataApproachPartAFile { get; private set; }
+		public StorageFile DataApproachPartBFile { get; private set; }
+		public StorageFile DataApproachPartCFile { get; private set; }
+
 		public StorageFile LogoTab15SubARightFile { get; private set; }
 		public StorageFile LogoTab15SubAFooterFile { get; private set; }
 		public StorageFile LogoTab15SubABackgroundFile { get; private set; }
@@ -851,6 +855,12 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile LogoTab15SubWRightFile { get; private set; }
 		public StorageFile LogoTab15SubWFooterFile { get; private set; }
 		public StorageFile LogoTab15SubWBackgroundFile { get; private set; }
+
+		public StorageDirectory ClipartTab15SubAFolder { get; private set; }
+		public StorageFile ClipartTab15SubB1File { get; private set; }
+		public StorageFile ClipartTab15SubB2File { get; private set; }
+		public StorageFile ClipartTab15SubB3File { get; private set; }
+		public StorageDirectory ClipartTab15SubCFolder { get; private set; }
 
 		public StorageDirectory Tab15PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab15PartVSlidesFolder { get; private set; }
@@ -1680,6 +1690,10 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			#endregion
 
 			#region Tab 15
+			DataApproachPartAFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT09A.xml"));
+			DataApproachPartBFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT09B.xml"));
+			DataApproachPartCFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT09C.xml"));
+
 			LogoTab15SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_a", "design_branding", "09a_right.png" }));
 			LogoTab15SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_a", "design_branding", "09a_footer.png" }));
 			LogoTab15SubBRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_b", "design_branding", "09b_right.png" }));
@@ -1720,6 +1734,12 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			LogoTab15SubUBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_u", "design_branding", "background.png" }));
 			LogoTab15SubVBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_v", "design_branding", "background.png" }));
 			LogoTab15SubWBackgroundFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_w", "design_branding", "background.png" }));
+
+			ClipartTab15SubAFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "shared", "approach" }));
+			ClipartTab15SubB1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_b", "placeholders", "SHIFT09BCLIPART1.png" }));
+			ClipartTab15SubB2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_b", "placeholders", "SHIFT09BCLIPART2.png" }));
+			ClipartTab15SubB3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_b", "placeholders", "SHIFT09BCLIPART3.png" }));
+			ClipartTab15SubCFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "shared", "approach" }));
 
 			Tab15PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_u" }));
 			Tab15PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_v" }));

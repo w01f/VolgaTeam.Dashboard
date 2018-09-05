@@ -147,7 +147,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 
 		public class BulletsTabState
 		{
-			public bool Toggled { get; set; }
+			public bool? Toggled { get; set; }
 
 			public ListDataItem Combo1 { get; set; }
 
@@ -161,7 +161,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 
 		public class ResearchDataTabState
 		{
-			public bool Toggled { get; set; }
+			public bool? Toggled { get; set; }
 
 			public ResearchBundleState BundleState { get; set; }
 		}

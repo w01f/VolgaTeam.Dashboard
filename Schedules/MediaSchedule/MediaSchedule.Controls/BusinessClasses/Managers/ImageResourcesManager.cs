@@ -10,6 +10,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Icon MainAppIcon { get; private set; }
 		public Image MainAppRibbonLogo { get; private set; }
 		public Image FloaterLogo { get; private set; }
+		public Image ToggleSwitchSkinElement { get; private set; }
 
 		#region Start Form
 		public Image StartFormBackgroundLogo { get; private set; }
@@ -154,7 +155,6 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		#endregion
 
 		#region Solution
-		public Image SolutionToggleSwitchSkinElement { get; private set; }
 		public Image SolutionMemoPopupUp { get; private set; }
 		public Image SolutionMemoPopupDown { get; private set; }
 		public Image SolutionMemoPopupList { get; private set; }
@@ -173,6 +173,10 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "branding_image.png");
 			if (File.Exists(resourceFile))
 				FloaterLogo = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "toggleswitch.png");
+			if (File.Exists(resourceFile))
+				ToggleSwitchSkinElement = Image.FromFile(resourceFile);
 
 			#region Start Form
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "launch_brand_large.png");
@@ -593,9 +597,6 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			#endregion
 
 			#region Solution
-			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "toggleswitch.png");
-			if (File.Exists(resourceFile))
-				SolutionToggleSwitchSkinElement = Image.FromFile(resourceFile);
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "memo_popup_up.png");
 			if (File.Exists(resourceFile))
 				SolutionMemoPopupUp = Image.FromFile(resourceFile);

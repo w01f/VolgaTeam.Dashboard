@@ -283,6 +283,11 @@ namespace Asa.Common.Core.Objects.Output
 		{
 			return GetShiftSolutionTemplateFile(new[] { "10_integrated_solution", fileName });
 		}
+
+		public string GetShiftApproachFile(string fileName)
+		{
+			return GetShiftSolutionTemplateFile(new[] { "09_our_approach", fileName });
+		}
 		#endregion
 
 		#region Newspapaer Slides

@@ -94,6 +94,13 @@
     <Compile Include="Shift\Configuration\Agenda\AgendaTabBInfo.cs" />
     <Compile Include="Shift\Configuration\Agenda\AgendaTabAInfo.cs" />
     <Compile Include="Shift\Configuration\Agenda\AgendaTabInfo.cs" />
+    <Compile Include="Shift\Configuration\Approach\ApproachItemInfo.cs" />
+    <Compile Include="Shift\Configuration\Approach\ApproachTabAInfo.cs" />
+    <Compile Include="Shift\Configuration\Approach\ApproachTabBInfo.cs" />
+    <Compile Include="Shift\Configuration\Approach\ApproachTabCInfo.cs" />
+    <Compile Include="Shift\Configuration\Approach\FormListConfiguration.cs" />
+    <Compile Include="Shift\Configuration\Approach\ApproachTabInfo.cs" />
+    <Compile Include="Shift\Configuration\Approach\TabSelectorConfiguration.cs" />
     <Compile Include="Shift\Configuration\CBC\CBCTabFInfo.cs" />
     <Compile Include="Shift\Configuration\CBC\CBCTabEInfo.cs" />
     <Compile Include="Shift\Configuration\CBC\CBCTabDInfo.cs" />
@@ -165,6 +172,7 @@
     <Compile Include="Shift\Configuration\ShiftTabWithHeaderInfo.cs" />
     <Compile Include="Shift\Entities\NonPersistent\CBCState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\IntegratedSolutionState.cs" />
+    <Compile Include="Shift\Entities\NonPersistent\ApproachState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\NeedsSolutionsState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\PartnershipState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\MarketState.cs" />

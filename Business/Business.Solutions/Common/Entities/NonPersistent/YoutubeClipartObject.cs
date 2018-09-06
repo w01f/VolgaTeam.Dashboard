@@ -10,7 +10,6 @@ namespace Asa.Business.Solutions.Common.Entities.NonPersistent
 	public class YouTubeClipartObject : ClipartObject
 	{
 		public override ClipartObjectType Type => ClipartObjectType.YouTube;
-
 		public string BaseUrl { get; set; }
 		public string EmbeddedUrl { get; set; }
 		public Image Thumbnail { get; set; }
@@ -41,6 +40,15 @@ namespace Asa.Business.Solutions.Common.Entities.NonPersistent
 				EmbeddedUrl = embeddedUrl,
 				Thumbnail = thumbnailImage
 			};
+		}
+
+		public override ClipartObject Clone()
+		{
+			var cloned  = new YouTubeClipartObject();
+			cloned.BaseUrl = BaseUrl;
+			cloned.EmbeddedUrl = EmbeddedUrl;
+			cloned.Thumbnail = Thumbnail?.Clone() as Image;
+			return cloned;
 		}
 	}
 }

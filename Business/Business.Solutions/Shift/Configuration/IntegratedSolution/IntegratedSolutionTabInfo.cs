@@ -14,13 +14,13 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 				case "a":
 					return new IntegratedSolutionTabAInfo();
 				case "b":
-					return new CommonChildTabInfo(ShiftChildTabType.B, TabType);
+					return new IntegratedSolutionTabBInfo();
 				case "c":
-					return new CommonChildTabInfo(ShiftChildTabType.C, TabType);
+					return new IntegratedSolutionTabCInfo();
 				case "d":
-					return new CommonChildTabInfo(ShiftChildTabType.D, TabType);
+					return new IntegratedSolutionTabDInfo();
 				case "e":
-					return new CommonChildTabInfo(ShiftChildTabType.E, TabType);
+					return new IntegratedSolutionTabEInfo();
 				case "f":
 					return new CommonChildTabInfo(ShiftChildTabType.F, TabType);
 				case "g":

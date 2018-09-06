@@ -123,6 +123,11 @@
     <Compile Include="Shift\Configuration\Goals\GoalsTabBInfo.cs" />
     <Compile Include="Shift\Configuration\Goals\GoalsTabAInfo.cs" />
     <Compile Include="Shift\Configuration\Goals\GoalsTabInfo.cs" />
+    <Compile Include="Shift\Configuration\IntegratedSolution\IntegratedSolutionSubTabInfo.cs" />
+    <Compile Include="Shift\Configuration\IntegratedSolution\IntegratedSolutionTabEInfo.cs" />
+    <Compile Include="Shift\Configuration\IntegratedSolution\IntegratedSolutionTabDInfo.cs" />
+    <Compile Include="Shift\Configuration\IntegratedSolution\IntegratedSolutionTabCInfo.cs" />
+    <Compile Include="Shift\Configuration\IntegratedSolution\IntegratedSolutionTabBInfo.cs" />
     <Compile Include="Shift\Configuration\IntegratedSolution\IntegratedSolutionTabAInfo.cs" />
     <Compile Include="Shift\Configuration\IntegratedSolution\IProductSubTabInfo.cs" />
     <Compile Include="Shift\Configuration\IntegratedSolution\IProductToggleContainerInfo.cs" />

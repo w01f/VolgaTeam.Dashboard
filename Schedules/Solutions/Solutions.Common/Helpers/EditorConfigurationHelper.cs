@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using Asa.Business.Solutions.Common.Configuration;
+using DevExpress.LookAndFeel;
+using DevExpress.Skins;
 using DevExpress.XtraEditors;
 
 namespace Asa.Solutions.Common.Helpers
@@ -36,11 +38,13 @@ namespace Asa.Solutions.Common.Helpers
 			{
 				_editor.Properties.Appearance.BackColor = _configuration.BackColor;
 				_editor.Properties.AppearanceFocused.BackColor = _configuration.BackColor;
+				_editor.Properties.AppearanceDisabled.BackColor = CommonSkins.GetSkin(UserLookAndFeel.Default).Colors.GetColor(CommonColors.DisabledControl); ;
 			}
 			if (!_configuration.ForeColor.IsEmpty)
 			{
 				_editor.Properties.Appearance.ForeColor = _configuration.ForeColor;
 				_editor.Properties.AppearanceFocused.ForeColor = _configuration.ForeColor;
+				_editor.Properties.AppearanceDisabled.ForeColor = CommonSkins.GetSkin(UserLookAndFeel.Default).Colors.GetColor(CommonColors.DisabledText);
 			}
 			if (!_configuration.DropdownForeColor.IsEmpty)
 			{

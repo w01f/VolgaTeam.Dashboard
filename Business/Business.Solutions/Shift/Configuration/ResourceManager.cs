@@ -532,7 +532,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 9
-		public StorageFile DataIntegratedSolutionPartAOutputConditionsFile { get; private set; }
+		public StorageFile DataIntegratedSolutionOutputConditionsFile { get; private set; }
 
 		public StorageFile LogoTab9SubARightFile { get; private set; }
 		public StorageFile LogoTab9SubAFooterFile { get; private set; }
@@ -1404,7 +1404,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			#endregion
 
 			#region Tab 9
-			DataIntegratedSolutionPartAOutputConditionsFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT10 Slide Output Rules.xml"));
+			DataIntegratedSolutionOutputConditionsFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT10 Slide Output Rules.xml"));
 
 			LogoTab9SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_a", "design_branding", "9a_right.png" }));
 			LogoTab9SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_a", "design_branding", "9a_footer.png" }));

@@ -28,7 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.components = new System.ComponentModel.Container();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.xtraTabControlContentEditors = new DevExpress.XtraTab.XtraTabControl();
 			this.retractableBarControl = new Asa.Common.GUI.RetractableBar.RetractableBarLeft();
 			this.settingsContainer = new Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings.SettingsContainer();
@@ -36,7 +37,7 @@
 			this.layoutControlData = new DevExpress.XtraLayout.LayoutControl();
 			this.layoutControlGroupRootData = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemEditors = new DevExpress.XtraLayout.LayoutControlItem();
-			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemClone = new System.Windows.Forms.ToolStripMenuItem();
 			this.layoutControlMain = new DevExpress.XtraLayout.LayoutControl();
@@ -113,10 +114,9 @@
 			// retractableBarControl.Content
 			// 
 			this.retractableBarControl.Content.Controls.Add(this.settingsContainer);
-			this.retractableBarControl.Content.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.retractableBarControl.Content.Location = new System.Drawing.Point(2, 42);
 			this.retractableBarControl.Content.Name = "Content";
-			this.retractableBarControl.Content.Size = new System.Drawing.Size(296, 529);
+			this.retractableBarControl.Content.Size = new System.Drawing.Size(292, 525);
 			this.retractableBarControl.Content.TabIndex = 1;
 			this.retractableBarControl.ContentSize = 300;
 			this.retractableBarControl.Dock = System.Windows.Forms.DockStyle.Left;
@@ -124,10 +124,9 @@
 			// 
 			// retractableBarControl.Header
 			// 
-			this.retractableBarControl.Header.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.retractableBarControl.Header.Location = new System.Drawing.Point(49, 2);
 			this.retractableBarControl.Header.Name = "Header";
-			this.retractableBarControl.Header.Size = new System.Drawing.Size(245, 36);
+			this.retractableBarControl.Header.Size = new System.Drawing.Size(245, 40);
 			this.retractableBarControl.Header.TabIndex = 2;
 			this.retractableBarControl.Location = new System.Drawing.Point(0, 0);
 			this.retractableBarControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -143,7 +142,7 @@
 			this.settingsContainer.Location = new System.Drawing.Point(0, 0);
 			this.settingsContainer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.settingsContainer.Name = "settingsContainer";
-			this.settingsContainer.Size = new System.Drawing.Size(296, 529);
+			this.settingsContainer.Size = new System.Drawing.Size(292, 525);
 			this.settingsContainer.TabIndex = 0;
 			// 
 			// pnData

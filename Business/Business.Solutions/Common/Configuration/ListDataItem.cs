@@ -55,6 +55,7 @@ namespace Asa.Business.Solutions.Common.Configuration
 
 		public static ListDataItem Clone(ListDataItem source)
 		{
+			if (source == null) return null;
 			var listDataItem = new ListDataItem();
 			listDataItem.Value = source.Value;
 			listDataItem.IsDefault = source.IsDefault;

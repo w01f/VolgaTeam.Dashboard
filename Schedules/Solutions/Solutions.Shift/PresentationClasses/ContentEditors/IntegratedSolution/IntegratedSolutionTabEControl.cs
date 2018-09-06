@@ -3,11 +3,11 @@ using Asa.Business.Solutions.Shift.Entities.NonPersistent;
 
 namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolution
 {
-	class IntegratedSolutionTabAControl: IntegratedSolutionSubTabControl
+	class IntegratedSolutionTabEControl: IntegratedSolutionSubTabControl
 	{
 		protected override IntegratedSolutionState.SubTabState TabState =>
-			SlideContainer.EditedContent.IntegratedSolutionState.TabA;
+			SlideContainer.EditedContent.IntegratedSolutionState.TabE;
 		
-		public IntegratedSolutionTabAControl(IChildTabPageContainer slideContainer, ShiftChildTabInfo tabInfo) : base(slideContainer, tabInfo){}
+		public IntegratedSolutionTabEControl(IChildTabPageContainer slideContainer, ShiftChildTabInfo tabInfo) : base(slideContainer, tabInfo){}
 	}
 }

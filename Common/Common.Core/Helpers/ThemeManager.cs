@@ -351,10 +351,18 @@ namespace Asa.Common.Core.Helpers
 						slideType = SlideType.ShiftCBC_F;
 						break;
 					case "Shift_10a_left_product":
-						slideType = SlideType.ShiftIntegratedSolutionA_Left;
+					case "Shift_10b_left_product":
+					case "Shift_10c_left_product":
+					case "Shift_10d_left_product":
+					case "Shift_10e_left_product":
+						slideType = SlideType.ShiftIntegratedSolutionLeft;
 						break;
 					case "Shift_10a_right_product":
-						slideType = SlideType.ShiftIntegratedSolutionA_Right;
+					case "Shift_10b_right_product":
+					case "Shift_10c_right_product":
+					case "Shift_10d_right_product":
+					case "Shift_10e_right_product":
+						slideType = SlideType.ShiftIntegratedSolutionRight;
 						break;
 					case "Shift_10_investment":
 						slideType = SlideType.ShiftInvestment;

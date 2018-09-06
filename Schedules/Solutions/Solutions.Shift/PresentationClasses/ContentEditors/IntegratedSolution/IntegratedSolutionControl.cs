@@ -18,6 +18,18 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 					case ShiftChildTabType.A:
 						tabPages.Add(new ChildTabPageContainerControl<IntegratedSolutionTabAControl>(this, tabInfo));
 						break;
+					case ShiftChildTabType.B:
+						tabPages.Add(new ChildTabPageContainerControl<IntegratedSolutionTabBControl>(this, tabInfo));
+						break;
+					case ShiftChildTabType.C:
+						tabPages.Add(new ChildTabPageContainerControl<IntegratedSolutionTabCControl>(this, tabInfo));
+						break;
+					case ShiftChildTabType.D:
+						tabPages.Add(new ChildTabPageContainerControl<IntegratedSolutionTabDControl>(this, tabInfo));
+						break;
+					case ShiftChildTabType.E:
+						tabPages.Add(new ChildTabPageContainerControl<IntegratedSolutionTabEControl>(this, tabInfo));
+						break;
 					case ShiftChildTabType.U:
 					case ShiftChildTabType.V:
 					case ShiftChildTabType.W:

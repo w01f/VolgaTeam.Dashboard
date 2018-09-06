@@ -38,6 +38,11 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 
 			return layoutItem;
 		}
+
+		public LayoutItem Clone()
+		{
+			return FromFile(FilePath);
+		}
 	}
 
 }

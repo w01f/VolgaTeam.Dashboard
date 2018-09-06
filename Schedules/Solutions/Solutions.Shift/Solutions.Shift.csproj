@@ -320,86 +320,101 @@
     <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\IntegratedSolutionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\BaseToggleTabControl.cs">
-      <SubType>Component</SubType>
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\IntegratedSolutionTabEControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\BaseTabASubControl.cs">
-      <SubType>Component</SubType>
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\IntegratedSolutionTabDControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ContentsItemControl.cs">
-      <SubType>Component</SubType>
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\IntegratedSolutionTabCControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ContentsItemControl.Designer.cs">
-      <DependentUpon>ContentsItemControl.cs</DependentUpon>
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\IntegratedSolutionTabBControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\IntegratedSolutionTabAControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\IntegratedSolutionTabAControl.Designer.cs">
-      <DependentUpon>IntegratedSolutionTabAControl.cs</DependentUpon>
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\BaseToggleTabControl.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\FormImageList.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\BaseSubTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ContentsItemControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ContentsItemControl.Designer.cs">
+      <DependentUpon>ContentsItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\IntegratedSolutionSubTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\IntegratedSolutionSubTabControl.Designer.cs">
+      <DependentUpon>IntegratedSolutionSubTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\FormImageList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\FormImageList.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\FormImageList.Designer.cs">
       <DependentUpon>FormImageList.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\FormResearchBundleList.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\FormResearchBundleList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\FormResearchBundleList.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\FormResearchBundleList.Designer.cs">
       <DependentUpon>FormResearchBundleList.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\LayoutTabControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\LayoutTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\LayoutTabControl.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\LayoutTabControl.Designer.cs">
       <DependentUpon>LayoutTabControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ProductItemButton.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ProductItemButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ProductClickedEventArgs.cs" />
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ImageTabControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ProductClickedEventArgs.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ImageTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ImageTabControl.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ImageTabControl.Designer.cs">
       <DependentUpon>ImageTabControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\StatementItemControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\StatementItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\StatementItemControl.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\StatementItemControl.Designer.cs">
       <DependentUpon>StatementItemControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\BulletsTabControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\BulletsTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\BulletsTabControl.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\BulletsTabControl.Designer.cs">
       <DependentUpon>BulletsTabControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ResearchDataTabControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ResearchDataTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ResearchDataTabControl.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ResearchDataTabControl.Designer.cs">
       <DependentUpon>ResearchDataTabControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\StatementsTabControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\StatementsTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\StatementsTabControl.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\StatementsTabControl.Designer.cs">
       <DependentUpon>StatementsTabControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ProductItemControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ProductItemControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ProductItemControl.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ProductItemControl.Designer.cs">
       <DependentUpon>ProductItemControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ProductSelectorControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ProductSelectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ProductSelectorControl.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ProductSelectorControl.Designer.cs">
       <DependentUpon>ProductSelectorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\Intro\IntroControl.cs">
@@ -750,40 +765,40 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Goals\GoalsTabAControl.resx">
       <DependentUpon>GoalsTabAControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ContentsItemControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ContentsItemControl.resx">
       <DependentUpon>ContentsItemControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\IntegratedSolutionTabAControl.resx">
-      <DependentUpon>IntegratedSolutionTabAControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\IntegratedSolutionSubTabControl.resx">
+      <DependentUpon>IntegratedSolutionSubTabControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\FormImageList.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\FormImageList.resx">
       <DependentUpon>FormImageList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\FormResearchBundleList.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\FormResearchBundleList.resx">
       <DependentUpon>FormResearchBundleList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\LayoutTabControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\LayoutTabControl.resx">
       <DependentUpon>LayoutTabControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ImageTabControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ImageTabControl.resx">
       <DependentUpon>ImageTabControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\StatementItemControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\StatementItemControl.resx">
       <DependentUpon>StatementItemControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\BulletsTabControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\BulletsTabControl.resx">
       <DependentUpon>BulletsTabControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ResearchDataTabControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ResearchDataTabControl.resx">
       <DependentUpon>ResearchDataTabControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\StatementsTabControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\StatementsTabControl.resx">
       <DependentUpon>StatementsTabControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ProductItemControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ProductItemControl.resx">
       <DependentUpon>ProductItemControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\TabA\ProductSelectorControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\IntegratedSolution\SubTab\ProductSelectorControl.resx">
       <DependentUpon>ProductSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Intro\IntroTabDControl.resx">

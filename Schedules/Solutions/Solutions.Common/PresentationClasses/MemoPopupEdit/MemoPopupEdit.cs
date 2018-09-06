@@ -8,6 +8,7 @@ using Asa.Business.Solutions.Common.Interfaces;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.FormStyle;
 using Asa.Common.GUI.Common;
+using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 using DevExpress.XtraEditors;
 
@@ -82,11 +83,13 @@ namespace Asa.Solutions.Common.PresentationClasses.MemoPopupEdit
 				{
 					layoutControl.Appearance.Control.BackColor = editorConfiguration.BackColor;
 					layoutControl.Appearance.ControlFocused.BackColor = editorConfiguration.BackColor;
+					layoutControl.Appearance.ControlDisabled.BackColor = CommonSkins.GetSkin(UserLookAndFeel.Default).Colors.GetColor(CommonColors.DisabledControl); ;
 				}
 				if (!editorConfiguration.ForeColor.IsEmpty)
 				{
 					layoutControl.Appearance.Control.ForeColor = editorConfiguration.ForeColor;
 					layoutControl.Appearance.ControlFocused.ForeColor = editorConfiguration.ForeColor;
+					layoutControl.Appearance.ControlDisabled.ForeColor = CommonSkins.GetSkin(UserLookAndFeel.Default).Colors.GetColor(CommonColors.DisabledText);
 				}
 				if (!editorConfiguration.DropdownForeColor.IsEmpty)
 				{

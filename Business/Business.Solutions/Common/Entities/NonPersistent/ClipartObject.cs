@@ -7,5 +7,6 @@ namespace Asa.Business.Solutions.Common.Entities.NonPersistent
 		public string Name { get; set; }
 		public bool OutputBackground { get; set; }
 		public abstract ClipartObjectType Type { get; }
+		public abstract ClipartObject Clone();
 	}
 }

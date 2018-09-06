@@ -8,7 +8,7 @@ namespace Asa.Business.Solutions.Common.Entities.NonPersistent
 	public class ImageClipartObject : ClipartObject
 	{
 		public override ClipartObjectType Type => ClipartObjectType.Image;
-
+		
 		public Image Image { get; set; }
 		public string FilePath { get; set; }
 
@@ -45,5 +45,11 @@ namespace Asa.Business.Solutions.Common.Entities.NonPersistent
 				Image = image?.Clone() as Image
 			};
 		}
+
+		public override ClipartObject Clone()
+		{
+			return FromFile(FilePath);
+		}
+
 	}
 }

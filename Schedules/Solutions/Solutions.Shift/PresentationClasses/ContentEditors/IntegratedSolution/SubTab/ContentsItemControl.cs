@@ -53,7 +53,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 
 		public void UpdateSlideCount(int slideCount)
 		{
-			simpleLabelItemSlideCount.Text = String.Format("<size=+2><color=gray>Slide Count: {0}</color></size>", slideCount);
+			simpleLabelItemSlideCount.Text = slideCount > 0 ? 
+				String.Format("<size=+2><color=gray>Slide Count: {0}</color></size>", slideCount) : 
+				" ";
 		}
 
 		private void OnProductClicked(object sender, ProductClickedEventArgs e)

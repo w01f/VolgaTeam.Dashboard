@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using Asa.Business.Solutions.Common.Configuration;
@@ -56,6 +57,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 
 			Text = ItemInfo.Title;
 			ShowCloseButton = DefaultBoolean.True;
+
+			UpdateTabPageHeaderState(ItemState.EnableOutput ?? true);
 
 			if (Container.TabInfo.CommonEditorConfiguration.FontSize.HasValue)
 			{
@@ -212,6 +215,16 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 			Container.RaiseEditValueChanged();
 		}
 
+		private void UpdateTabPageHeaderState(bool enabled)
+		{
+			if (!enabled)
+				Appearance.Header.ForeColor =
+					Appearance.HeaderActive.ForeColor =
+						Appearance.HeaderHotTracked.ForeColor = Color.Gray;
+			else
+				Appearance.Reset();
+		}
+
 		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			RaiseEditValueChanged();
@@ -245,6 +258,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 		{
 			layoutControlItemHeader.Enabled =
 				layoutControlItemCombo1.Enabled = layoutControlGroupToggles.Enabled = toggleSwitchOutput.IsOn;
+			UpdateTabPageHeaderState(toggleSwitchOutput.IsOn);
 			if (!_allowToHandleEvents) return;
 			OnEditValueChanged(sender, e);
 			SlideContainer.RaiseOutputStatuesChanged();

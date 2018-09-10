@@ -44,6 +44,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 				button.TextAlignment = eButtonTextAlignment.Center;
 				button.ColorTable = eButtonColor.OrangeWithBackground;
 				button.Style = eDotNetBarStyle.StyleManagerControlled;
+				button.UseMnemonic = false;
 				button.Click += (sender, e) =>
 				{
 					var clickedButton = (ItemButton)sender;
@@ -58,6 +59,45 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 							.Count(itemButton => itemButton.Checked);
 						if (alreadyCheckedButtonsCount < maxCheckedItems)
 							clickedButton.Checked = true;
+						else
+						{
+							var maxCheckedItemsWord = String.Empty;
+							switch (maxCheckedItems)
+							{
+								case 1:
+									maxCheckedItemsWord = "one";
+									break;
+								case 2:
+									maxCheckedItemsWord = "two";
+									break;
+								case 3:
+									maxCheckedItemsWord = "three";
+									break;
+								case 4:
+									maxCheckedItemsWord = "four";
+									break;
+								case 5:
+									maxCheckedItemsWord = "five";
+									break;
+								case 6:
+									maxCheckedItemsWord = "six";
+									break;
+								case 7:
+									maxCheckedItemsWord = "seven";
+									break;
+								case 8:
+									maxCheckedItemsWord = "eight";
+									break;
+								case 9:
+									maxCheckedItemsWord = "nine";
+									break;
+								case 10:
+									maxCheckedItemsWord = "ten";
+									break;
+
+							}
+							PopupMessageHelper.Instance.ShowWarning(String.Format("Only {0} ({1}) items are allowed.{2}{2}If you want to add another item, first remove one…", maxCheckedItems, maxCheckedItemsWord, Environment.NewLine));
+						}
 					}
 				};
 				button.CheckedChanged += (sender, e) =>

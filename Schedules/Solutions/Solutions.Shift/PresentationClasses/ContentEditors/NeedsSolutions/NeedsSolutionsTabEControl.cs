@@ -46,40 +46,28 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions
 				CustomTabInfo.Combo1Items.FirstOrDefault(item => item.IsPlaceholder)?.Value ??
 				comboBoxEditCombo1.Properties.NullText;
 
-			_item1Control = new Item1Control();
+			_item1Control = new Item1Control(this);
 			_item1Control.Init(
-				CustomTabInfo.NeedsList,
 				CustomTabInfo.Tab1DefaultName,
-				CustomTabInfo.SubHeader1Configuration,
-				SlideContainer.StyleConfiguration,
-				CustomTabInfo.FormListConfiguration);
+				CustomTabInfo.SubHeader1Configuration);
 			_item1Control.EditValueChanged += OnEditValueChanged;
 
-			_item2Control = new Item2Control();
+			_item2Control = new Item2Control(this);
 			_item2Control.Init(
-				CustomTabInfo.NeedsList,
 				CustomTabInfo.Tab2DefaultName,
-				CustomTabInfo.SubHeader2Configuration,
-				SlideContainer.StyleConfiguration,
-				CustomTabInfo.FormListConfiguration);
+				CustomTabInfo.SubHeader2Configuration);
 			_item2Control.EditValueChanged += OnEditValueChanged;
 
-			_item3Control = new Item3Control();
+			_item3Control = new Item3Control(this);
 			_item3Control.Init(
-				CustomTabInfo.NeedsList,
 				CustomTabInfo.Tab3DefaultName,
-				CustomTabInfo.SubHeader3Configuration,
-				SlideContainer.StyleConfiguration,
-				CustomTabInfo.FormListConfiguration);
+				CustomTabInfo.SubHeader3Configuration);
 			_item3Control.EditValueChanged += OnEditValueChanged;
 
-			_item4Control = new Item4Control();
+			_item4Control = new Item4Control(this);
 			_item4Control.Init(
-				CustomTabInfo.NeedsList,
 				CustomTabInfo.Tab4DefaultName,
-				CustomTabInfo.SubHeader4Configuration,
-				SlideContainer.StyleConfiguration,
-				CustomTabInfo.FormListConfiguration);
+				CustomTabInfo.SubHeader4Configuration);
 			_item4Control.EditValueChanged += OnEditValueChanged;
 
 			_tabDragDropHelper = new XtraTabDragDropHelper<ItemControl>(xtraTabControl);

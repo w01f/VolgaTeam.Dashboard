@@ -8,7 +8,6 @@ using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Shift.Configuration.NeedsSolutions;
 using Asa.Business.Solutions.Shift.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
-using Asa.Common.Core.Objects.FormStyle;
 using Asa.Common.GUI.Common;
 using DevExpress.Skins;
 using DevExpress.XtraEditors;
@@ -20,14 +19,13 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 	//public partial class ItemControl : UserControl
 	public partial class ItemControl : XtraTabPage
 	{
+		private readonly NeedsSolutionsTabEControl _container;
 		private const string EmptyTabNameFormat = "Need #{0}";
 
 		private bool _allowHandleEvents;
 
 		private readonly List<NeedsItemInfo> _sourceList = new List<NeedsItemInfo>();
 		private NeedsItemInfo _currentItemInfo;
-		private MainFormStyleConfiguration _mainFormConfiguration;
-		private FormListConfiguration _formListConfiguration;
 		private string _defaultTabName;
 
 		protected virtual int DefaultItemIndex { get; }
@@ -36,8 +34,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 
 		public event EventHandler<EventArgs> EditValueChanged;
 
-		public ItemControl()
+		public ItemControl(NeedsSolutionsTabEControl container)
 		{
+			_container = container;
 			InitializeComponent();
 
 			memoEditSubheader.EnableSelectAll().RaiseNullValueIfEditorEmpty();
@@ -46,6 +45,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 			ItemState.Index = DefaultItemIndex;
 
 			pictureEditClipart.MouseWheel += OnClipartMouseWheel;
+
+			pictureEditUp.Image = _container.CustomTabInfo.ListUpImage;
+			pictureEditDown.Image = _container.CustomTabInfo.ListDownImage;
+			pictureEditList.Image = _container.CustomTabInfo.ListPopupImage;
+			pictureEditWipe.Image = _container.CustomTabInfo.ListWipeImage;
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemUp.MaxSize = RectangleHelper.ScaleSize(layoutControlItemUp.MaxSize, scaleFactor);
@@ -60,19 +64,13 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 			emptySpaceItemWipe.MinSize = RectangleHelper.ScaleSize(emptySpaceItemWipe.MinSize, scaleFactor);
 		}
 
-		public void Init(IList<NeedsItemInfo> sourceList,
-			string defaultTabName,
-			TextEditorConfiguration editorConfiguration,
-			MainFormStyleConfiguration mainFormConfiguration,
-			FormListConfiguration formListConfiguration)
+		public void Init(string defaultTabName,
+			TextEditorConfiguration editorConfiguration)
 		{
 			_sourceList.Clear();
-			_sourceList.AddRange(sourceList);
+			_sourceList.AddRange(_container.CustomTabInfo.NeedsList);
 
 			_defaultTabName = defaultTabName;
-
-			_mainFormConfiguration = mainFormConfiguration;
-			_formListConfiguration = formListConfiguration;
 
 			UpdateDataControl();
 
@@ -192,7 +190,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 
 			using (var form = new FormList())
 			{
-				form.LoadData(_sourceList, _currentItemInfo, _formListConfiguration);
+				form.LoadData(_sourceList, _currentItemInfo, _container.CustomTabInfo.FormListConfiguration);
 				if (form.ShowDialog() == DialogResult.OK)
 				{
 					_currentItemInfo = form.SelectedItem;
@@ -218,7 +216,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 			var pictureEdit = (PictureEdit)sender;
 			pictureEdit.Properties.Appearance.BackColor =
 				pictureEdit.Properties.AppearanceFocused.BackColor =
-					_mainFormConfiguration.ToggleHoverColor ?? pictureEdit.BackColor;
+					_container.SlideContainer.StyleConfiguration.ToggleHoverColor ?? pictureEdit.BackColor;
 		}
 
 		private void OnPictureEditMouseMove(object sender, MouseEventArgs e)
@@ -237,20 +235,28 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 	public class Item1Control : ItemControl
 	{
 		protected override int DefaultItemIndex => 0;
+
+		public Item1Control(NeedsSolutionsTabEControl container) : base(container) { }
 	}
 
 	public class Item2Control : ItemControl
 	{
 		protected override int DefaultItemIndex => 1;
+
+		public Item2Control(NeedsSolutionsTabEControl container) : base(container) { }
 	}
 
 	public class Item3Control : ItemControl
 	{
 		protected override int DefaultItemIndex => 2;
+
+		public Item3Control(NeedsSolutionsTabEControl container) : base(container) { }
 	}
 
 	public class Item4Control : ItemControl
 	{
 		protected override int DefaultItemIndex => 3;
+
+		public Item4Control(NeedsSolutionsTabEControl container) : base(container) { }
 	}
 }

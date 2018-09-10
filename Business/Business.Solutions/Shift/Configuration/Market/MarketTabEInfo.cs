@@ -10,10 +10,10 @@ namespace Asa.Business.Solutions.Shift.Configuration.Market
 {
 	public class MarketTabEInfo : ShiftTabWithHeaderInfo
 	{
-		public Image Clipart1Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab5_E_Clipart1;
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 
-		public Image Clipart2Image { get; private set; }
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab5_E_Clipart2;
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
 
 		public List<ListDataItem> Combo1Items { get; }
@@ -59,7 +59,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Market
 		public decimal? SubHeader5DefaultValue { get; private set; }
 		public TextEditorConfiguration SubHeader5Configuration { get; set; }
 
-		public MarketTabEInfo() : base(ShiftChildTabType.E)
+		public MarketTabEInfo() : base(ShiftChildTabType.E, ShiftTopTabType.Market)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -101,23 +101,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.Market
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab5SubERightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab5SubERightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab5SubEFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab5SubEFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab5SubEBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab5SubEBackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab5SubE1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab5SubE1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab5SubE2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab5SubE2File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataMarketPartEFile.ExistsLocal()) return;
 

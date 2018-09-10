@@ -9,17 +9,17 @@ namespace Asa.Business.Solutions.Shift.Configuration.CBC
 {
 	public class CBCTabAInfo : ShiftTabWithHeaderInfo
 	{
-		public Image Clipart1Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab8_A_Clipart1;
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
-		public Image Clipart2Image { get; private set; }
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab8_A_Clipart2;
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
-		public Image Clipart3Image { get; private set; }
+		public Image Clipart3Image => _resourceManager.GraphicResources?.Tab8_A_Clipart3;
 		public ClipartConfiguration Clipart3Configuration { get; private set; }
 
 		public List<ListDataItem> MemoPopup1Items { get; }
 		public TextEditorConfiguration MemoPopup1Configuration { get; set; }
 
-		public CBCTabAInfo() : base(ShiftChildTabType.A)
+		public CBCTabAInfo() : base(ShiftChildTabType.A, ShiftTopTabType.CBC)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -32,26 +32,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.CBC
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab8SubARightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab8SubARightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab8SubAFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab8SubAFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab8SubABackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab8SubABackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab8SubA1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab8SubA1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab8SubA2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab8SubA2File.LocalPath)
-				: null;
-			Clipart3Image = resourceManager.ClipartTab8SubA3File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab8SubA3File.LocalPath)
-				: null;
 
 			if (resourceManager.DataCBCPartAFile.ExistsLocal())
 			{

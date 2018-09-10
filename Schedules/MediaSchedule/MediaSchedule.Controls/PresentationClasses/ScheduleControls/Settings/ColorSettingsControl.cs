@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.Properties;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
@@ -31,7 +30,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			};
 			BarButton = new ButtonInfo
 			{
-				Logo = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleRetractableBarColorsImage ?? Resources.SectionSettingsStyle,
+				Logo = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleRetractableBarColorsImage ?? Properties.Resources.SectionSettingsStyle,
 				Tooltip = "Open Slide Style",
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};

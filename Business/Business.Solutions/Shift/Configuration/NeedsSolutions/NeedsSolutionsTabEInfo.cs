@@ -10,6 +10,11 @@ namespace Asa.Business.Solutions.Shift.Configuration.NeedsSolutions
 {
 	public class NeedsSolutionsTabEInfo : ShiftTabWithHeaderInfo
 	{
+		public Image ListUpImage => _resourceManager.GraphicResources?.Tab7ListUp;
+		public Image ListDownImage => _resourceManager.GraphicResources?.Tab7ListDown;
+		public Image ListPopupImage => _resourceManager.GraphicResources?.Tab7ListPopup;
+		public Image ListWipeImage => _resourceManager.GraphicResources?.Tab7ListWipe;
+
 		public List<NeedsItemInfo> NeedsList { get; }
 
 		public List<ListDataItem> Combo1Items { get; }
@@ -32,7 +37,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.NeedsSolutions
 
 		public FormListConfiguration FormListConfiguration { get; set; }
 
-		public NeedsSolutionsTabEInfo() : base(ShiftChildTabType.E)
+		public NeedsSolutionsTabEInfo() : base(ShiftChildTabType.E, ShiftTopTabType.IntegratedSolution)
 		{
 			NeedsList = new List<NeedsItemInfo>();
 
@@ -50,16 +55,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.NeedsSolutions
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab7SubERightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab7SubERightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab7SubEFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab7SubEFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab7SubEBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab7SubEBackgroundFile.LocalPath)
-				: null;
 
 			if (resourceManager.DataNeedsCommonFile.ExistsLocal())
 			{

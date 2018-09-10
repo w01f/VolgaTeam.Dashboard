@@ -9,9 +9,9 @@ namespace Asa.Business.Solutions.Shift.Configuration.CBC
 {
 	public class CBCTabFInfo : ShiftTabWithHeaderInfo
 	{
-		public Image Clipart1Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab8_F_Clipart1;
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
-		public Image Clipart2Image { get; private set; }
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab8_F_Clipart2;
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
 
 		public List<ListDataItem> Combo1Items { get; }
@@ -37,7 +37,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.CBC
 		public string SubHeader5Placeholder { get; private set; }
 		public TextEditorConfiguration SubHeader5Configuration { get; set; }
 
-		public CBCTabFInfo() : base(ShiftChildTabType.F)
+		public CBCTabFInfo() : base(ShiftChildTabType.F, ShiftTopTabType.CBC)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -55,23 +55,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.CBC
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab8SubFRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab8SubFRightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab8SubFFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab8SubFFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab8SubFBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab8SubFBackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab8SubF1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab8SubF1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab8SubF2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab8SubF2File.LocalPath)
-				: null;
 
 			if (resourceManager.DataCBCPartFFile.ExistsLocal())
 			{

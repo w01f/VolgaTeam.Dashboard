@@ -8,7 +8,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Cover
 {
 	public class CoverTabAInfo : ShiftTabWithHeaderInfo
 	{
-		public Image Clipart1Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab1_A_Clipart1;
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 
 		public string SubHeader1DefaultValue { get; private set; }
@@ -17,7 +17,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Cover
 
 		public TextEditorConfiguration Calendar1Configuration { get; set; }
 
-		public CoverTabAInfo() : base(ShiftChildTabType.A)
+		public CoverTabAInfo() : base(ShiftChildTabType.A, ShiftTopTabType.Cover)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			SubHeader1Configuration = TextEditorConfiguration.Empty();
@@ -27,20 +27,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.Cover
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab1SubARightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab1SubARightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab1SubAFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab1SubAFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab1SubABackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab1SubABackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab1SubA1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab1SubA1File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataCoverPartAFile.ExistsLocal()) return;
 

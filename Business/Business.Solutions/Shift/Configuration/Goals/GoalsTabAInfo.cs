@@ -8,13 +8,13 @@ namespace Asa.Business.Solutions.Shift.Configuration.Goals
 {
 	public class GoalsTabAInfo : ShiftTabWithHeaderInfo
 	{
-		public Image Clipart1Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab4_A_Clipart1;
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 
-		public Image Clipart2Image { get; private set; }
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab4_A_Clipart2;
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
 
-		public Image Clipart3Image { get; private set; }
+		public Image Clipart3Image => _resourceManager.GraphicResources?.Tab4_A_Clipart3;
 		public ClipartConfiguration Clipart3Configuration { get; private set; }
 
 		public ListDataItem MemoPopup1DefaultItem { get; private set; }
@@ -26,7 +26,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Goals
 		public ListDataItem MemoPopup3DefaultItem { get; private set; }
 		public TextEditorConfiguration MemoPopup3Configuration { get; set; }
 
-		public GoalsTabAInfo() : base(ShiftChildTabType.A)
+		public GoalsTabAInfo() : base(ShiftChildTabType.A, ShiftTopTabType.Goals)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -41,26 +41,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.Goals
 		{
 			base.LoadData(configNode, resourceManager);
 
-			RightLogo = resourceManager.LogoTab4SubARightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab4SubARightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab4SubAFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab4SubAFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab4SubABackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab4SubABackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab4SubA1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab4SubA1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab4SubA2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab4SubA2File.LocalPath)
-				: null;
-			Clipart3Image = resourceManager.ClipartTab4SubA3File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab4SubA3File.LocalPath)
-				: null;
-			
 			if (!resourceManager.DataGoalsPartAFile.ExistsLocal()) return;
 
 			var document = new XmlDocument();
@@ -92,7 +72,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Goals
 			Clipart1Configuration = ClipartConfiguration.FromXml(node, "SHIFT04AClipart1");
 			Clipart2Configuration = ClipartConfiguration.FromXml(node, "SHIFT04AClipart2");
 			Clipart3Configuration = ClipartConfiguration.FromXml(node, "SHIFT04AClipart3");
-			
+
 			CommonEditorConfiguration = TextEditorConfiguration.FromXml(node);
 			HeadersEditorConfiguration = TextEditorConfiguration.FromXml(node, "SHIFT04AHeader");
 			MemoPopup1Configuration = TextEditorConfiguration.FromXml(node, "SHIFT04AMULTIBOX1");

@@ -98,6 +98,17 @@ namespace Asa.Solutions.Common.PresentationClasses
 				ActiveSolutionEditor.LoadData();
 			}
 			ActiveSolutionEditor.ShowEditor(showSplash);
+
+			var rareUsedEditors = SolutionEditors.OrderByDescending(editor => editor.LastToggled).Skip(3).ToList();
+			foreach (var editor in rareUsedEditors)
+			{
+				var editorControl = (Control)editor;
+				pnContent.Controls.Remove(editorControl);
+				SolutionEditors.Remove(editor);
+				editor.Release();
+				editorControl.Dispose();
+				editorControl = null;
+			}
 		}
 
 		protected abstract ISolutionEditor CreateSolutionEditor(BaseSolutionInfo solutionInfo);

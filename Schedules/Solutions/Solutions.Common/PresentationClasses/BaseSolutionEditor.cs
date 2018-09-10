@@ -19,6 +19,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 		public BaseSolutionInfo SolutionInfo { get; }
 
 		public string SolutionId => SolutionInfo.Id;
+		public DateTime LastToggled { get; set; }
 		public abstract SlideType SelectedSlideType { get; }
 		public abstract string HelpKey { get; }
 
@@ -38,6 +39,11 @@ namespace Asa.Solutions.Common.PresentationClasses
 		{
 			Dock = DockStyle.Fill;
 			SolutionInfo = solutionInfo;
+			LastToggled = DateTime.Now;
+		}
+
+		public virtual void Release()
+		{
 		}
 
 		#region GUI Methods
@@ -45,6 +51,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 
 		public virtual void ShowEditor(bool showSplash)
 		{
+			LastToggled = DateTime.Now;
 			BringToFront();
 			RaiseSlideTypeChanged();
 			RaiseOutputStatuesChanged();

@@ -12,7 +12,6 @@ namespace Asa.Common.GUI.Themes
 	public partial class ThemeContainerControl : UserControl
 	{
 		private readonly List<Theme> _themes = new List<Theme>();
-		private ThemeAdaptor _themeAdaptor;
 		public event EventHandler<ThemeEventArgs> ThemeChanged;
 		public event EventHandler<ThemeEventArgs> ThemeSelected;
 		public Theme SelectedTheme => themesListView.SelectedItems.Count > 0 ?
@@ -30,17 +29,15 @@ namespace Asa.Common.GUI.Themes
 			_themes.Clear();
 			_themes.AddRange(themes);
 			var minOrder = _themes.Min(s => s.Order);
-			_themeAdaptor = new ThemeAdaptor(_themes);
 			themesListView.Items.Clear();
 			themesListView.Items.AddRange(
 				_themes
-					.Select(theme => new ImageListViewItem(theme.Identifier)
+					.Select(theme => new ImageListViewItem(theme.LocalPath)
 					{
 						Text = theme.Name,
 						Tag = theme,
 						Selected = theme.Order == minOrder,
-					}).ToArray(),
-				_themeAdaptor);
+					}).ToArray());
 		}
 
 		public void SelectTheme(string themeName)
@@ -55,8 +52,6 @@ namespace Asa.Common.GUI.Themes
 		{
 			themesListView.ClearSelection();
 			themesListView.Items.Clear();
-			_themeAdaptor.Dispose();
-			_themeAdaptor = null;
 			_themes.Clear();
 		}
 

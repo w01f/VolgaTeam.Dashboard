@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using Asa.Common.Core.Enums;
-using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Common.Core.Objects.Slides
@@ -15,8 +13,6 @@ namespace Asa.Common.Core.Objects.Slides
 		private readonly StorageDirectory _root;
 		private StorageFile _masterFile;
 
-		protected Size _thumbnailSize = Size.Empty;
-
 		public Guid Identifier { get; set; }
 		public string Name { get; private set; }
 		public string ToolTipHeader { get; private set; }
@@ -25,10 +21,6 @@ namespace Asa.Common.Core.Objects.Slides
 		public SlideFormatEnum Format { get; set; }
 		public int Order { get; private set; }
 		public StorageFile LogoFile { get; private set; }
-		public Image Logo { get; private set; }
-		public Image BrowseLogo { get; private set; }
-		public Image RibbonLogo { get; private set; }
-		public Image AdBarLogo { get; private set; }
 
 		public SlideMaster(StorageDirectory root)
 		{
@@ -61,32 +53,7 @@ namespace Asa.Common.Core.Objects.Slides
 				String.Equals(file.Extension, ".JPG", StringComparison.OrdinalIgnoreCase) ||
 				String.Equals(file.Extension, ".JPEG", StringComparison.OrdinalIgnoreCase)) &&
 				!file.Name.Contains("_rbn"));
-			if (LogoFile != null)
-			{
-				Logo = new Bitmap(LogoFile.LocalPath);
-
-				Int32 browseLogoWidth;
-				Int32 browseLogoHeight;
-				if (_thumbnailSize == Size.Empty)
-				{
-					browseLogoWidth = (Int32)(Logo.Width * DefaultThumbnailHeight) / Logo.Height;
-					browseLogoHeight = DefaultThumbnailHeight;
-				}
-				else
-				{
-					var persentWidth = _thumbnailSize.Width > 0 ? (float)_thumbnailSize.Width / Logo.Width : 1;
-					var persentHeight = _thumbnailSize.Height > 0 ? (float)_thumbnailSize.Height / Logo.Height : 1;
-					var percentFinal = new[] { persentWidth, persentHeight }.Min();
-					browseLogoWidth = (Int32)(Logo.Width * percentFinal);
-					browseLogoHeight = (Int32)(Logo.Height * percentFinal);
-				}
-				BrowseLogo = Logo.GetThumbnailImage(browseLogoWidth, browseLogoHeight, null, IntPtr.Zero);
-
-				var borderedLogo = Logo.DrawBorder();
-
-				RibbonLogo = borderedLogo.GetThumbnailImage((borderedLogo.Width * 72) / borderedLogo.Height, 72, null, IntPtr.Zero);
-				AdBarLogo = borderedLogo.GetThumbnailImage((borderedLogo.Width * 86) / borderedLogo.Height, 86, null, IntPtr.Zero);
-			}
+			
 			_masterFile = files.FirstOrDefault(file => String.Equals(file.Extension, ".PPTX", StringComparison.OrdinalIgnoreCase));
 		}
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Xml;
 using Asa.Business.Solutions.Common.Configuration;
@@ -17,7 +16,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Approach
 
 		public List<ApproachItemInfo> ApproachItems { get; }
 
-		public ApproachTabAInfo() : base(ShiftChildTabType.A)
+		public ApproachTabAInfo() : base(ShiftChildTabType.A, ShiftTopTabType.Approach)
 		{
 			TabSelector = TabSelectorConfiguration.Empty();
 			Combo1Items = new List<ListDataItem>();
@@ -28,16 +27,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.Approach
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab15SubARightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab15SubARightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab15SubAFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab15SubAFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab15SubABackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab15SubABackgroundFile.LocalPath)
-				: null;
 
 			if (resourceManager.DataApproachesCommonFile.ExistsLocal())
 			{

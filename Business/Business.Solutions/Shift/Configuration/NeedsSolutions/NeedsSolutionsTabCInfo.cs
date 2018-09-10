@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Xml;
 using Asa.Business.Solutions.Common.Configuration;
@@ -17,7 +16,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.NeedsSolutions
 
 		public List<SolutionsItemInfo> SolutionsList { get; }
 
-		public NeedsSolutionsTabCInfo() : base(ShiftChildTabType.C)
+		public NeedsSolutionsTabCInfo() : base(ShiftChildTabType.C, ShiftTopTabType.IntegratedSolution)
 		{
 			TabSelector = TabSelectorConfiguration.Empty();
 			Combo1Items = new List<ListDataItem>();
@@ -28,16 +27,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.NeedsSolutions
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab7SubCRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab7SubCRightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab7SubCFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab7SubCFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab7SubCBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab7SubCBackgroundFile.LocalPath)
-				: null;
 
 			if (resourceManager.DataSolutionsCommonFile.ExistsLocal())
 			{

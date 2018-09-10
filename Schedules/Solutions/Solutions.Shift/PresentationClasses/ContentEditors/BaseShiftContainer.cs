@@ -57,6 +57,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			InitializeComponent();
 		}
 
+		public override void Release()
+		{
+			ShiftInfo.ReleaseContentData();
+		}
+
 		#region GUI Processing
 		public override void InitControl(bool showSplash)
 		{
@@ -202,8 +207,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		{
 			e.Cancel = true;
 		}
-
-
+		
 		private void OnTabControlMouseWheel(object sender, MouseEventArgs e)
 		{
 			var point = new Point(e.X, e.Y);

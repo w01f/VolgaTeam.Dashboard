@@ -283,6 +283,7 @@
 			// 
 			this.BackColor = System.Drawing.Color.Transparent;
 			this.Controls.Add(this.layoutControl);
+			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "ItemControl";
 			this.Size = new System.Drawing.Size(396, 111);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();

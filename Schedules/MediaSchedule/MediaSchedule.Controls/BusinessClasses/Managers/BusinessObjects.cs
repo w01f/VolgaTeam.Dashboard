@@ -79,8 +79,6 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 
 			TextResourcesManager.LoadTabPageSettings(ResourceManager.Instance.TextResourcesFile);
 
-			ImageResourcesManager.Load();
-
 			BrowserManager.Init(ResourceManager.Instance.BrowserConfigFile);
 
 			IdleManager.LoadSettings(ResourceManager.Instance.IdleSettingsFile);

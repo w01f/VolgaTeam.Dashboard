@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Xml;
 using Asa.Business.Solutions.Common.Configuration;
@@ -13,21 +12,11 @@ namespace Asa.Business.Solutions.Shift.Configuration.CBC
 		public TabInfo Tab1Info { get; private set; }
 		public TabInfo Tab2Info { get; private set; }
 
-		public CBCTabCInfo() : base(ShiftChildTabType.C) { }
+		public CBCTabCInfo() : base(ShiftChildTabType.C, ShiftTopTabType.CBC) { }
 
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab8SubCRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab8SubCRightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab8SubCFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab8SubCFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab8SubCBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab8SubCBackgroundFile.LocalPath)
-				: null;
 
 			var steps = new List<StepInfo>();
 			if (resourceManager.DataCBCCommonFile.ExistsLocal())

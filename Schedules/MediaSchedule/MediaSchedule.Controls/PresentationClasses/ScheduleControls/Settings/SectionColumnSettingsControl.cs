@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.Properties;
 using DevExpress.Skins;
 using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
@@ -31,8 +29,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			BarButton = new ButtonInfo
 			{
 				Logo = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleRetractableBarColumnsImage ?? (MediaMetaData.Instance.DataType == MediaDataType.TVSchedule
-					? Resources.SectionSettingsTV
-					: Resources.SectionSettingsRadio),
+					? Properties.Resources.SectionSettingsTV
+					: Properties.Resources.SectionSettingsRadio),
 				Tooltip = String.Format("Open {0} Schedule Settings",
 					MediaMetaData.Instance.DataTypeString),
 				Action = () => { TabControl.SelectedTabPage = this; }

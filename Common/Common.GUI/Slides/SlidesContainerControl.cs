@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
@@ -29,7 +30,7 @@ namespace Asa.Common.GUI.Slides
 			Dock = DockStyle.Fill;
 		}
 
-		public void InitSlides(SlideManager slideManager)
+		public void InitSlides(SlideManager slideManager, Size thumbnailSize)
 		{
 			_slideManager = slideManager;
 			xtraTabControlSlides.TabPages.OfType<SlideGroupPage>().ToList().ForEach(g => g.Release());
@@ -43,7 +44,8 @@ namespace Asa.Common.GUI.Slides
 			{
 				var groupPage = new SlideGroupPage(
 					group,
-					_slideManager.Slides.Where(s => s.Group.Equals(group) && s.Format == SlideSettingsManager.Instance.SlideSettings.Format).ToList());
+					_slideManager.Slides.Where(s => s.Group.Equals(group) && s.Format == SlideSettingsManager.Instance.SlideSettings.Format).ToList(),
+					thumbnailSize);
 				groupPage.SlideOutput += OnSlideOutput;
 				groupPage.SelectionChanged += OnSelectionChanged;
 				xtraTabControlSlides.TabPages.Add(groupPage);

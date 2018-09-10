@@ -3,7 +3,6 @@ using Asa.Business.Media.Entities.NonPersistent.Option;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo;
-using Asa.Media.Controls.Properties;
 
 namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
 {
@@ -21,7 +20,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
 		{
 			BarButton = new ButtonInfo
 			{
-				Logo = BusinessObjects.Instance.ImageResourcesManager.OptionsRetractableBarDigitalImage ?? Resources.SectionSettingsInfo,
+				Logo = BusinessObjects.Instance.ImageResourcesManager.OptionsRetractableBarDigitalImage ?? Properties.Resources.SectionSettingsInfo,
 				Tooltip = "Open Digital Settings",
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};

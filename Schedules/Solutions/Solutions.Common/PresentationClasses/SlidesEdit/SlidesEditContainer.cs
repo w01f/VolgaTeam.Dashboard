@@ -13,13 +13,13 @@ namespace Asa.Solutions.Common.PresentationClasses.SlidesEdit
 	public class SlidesEditContainer : SlidesContainerControl
 	{
 		private SlideObject _slideObject;
-		private SlideManager _slideManager;
+		private SolutionSlideManager _slideManager;
 
-		public void Init(SlideManager slideManager)
+		public void Init(SolutionSlideManager slideManager)
 		{
 			_slideManager = slideManager;
 
-			InitSlides(_slideManager);
+			InitSlides(_slideManager, _slideManager.ThumbnailSize);
 			SlideSettingsManager.Instance.SettingsChanging += OnSlideFormatSettingsChanging;
 			SlideSettingsManager.Instance.SettingsChanged += OnSlideFormatSettingsChanged;
 		}
@@ -80,7 +80,7 @@ namespace Asa.Solutions.Common.PresentationClasses.SlidesEdit
 
 		private void OnSlideFormatSettingsChanged(object sender, EventArgs e)
 		{
-			InitSlides(_slideManager);
+			InitSlides(_slideManager, _slideManager.ThumbnailSize);
 			ApplySavedState();
 		}
 	}

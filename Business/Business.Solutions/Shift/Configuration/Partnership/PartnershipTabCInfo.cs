@@ -8,9 +8,9 @@ namespace Asa.Business.Solutions.Shift.Configuration.Partnership
 {
 	public class PartnershipTabCInfo : ShiftTabWithHeaderInfo
 	{
-		public Image Clipart1Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab6_C_Clipart1;
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
-		public Image Clipart2Image { get; private set; }
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab6_C_Clipart2;
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
 
 		public string SubHeader1DefaultValue { get; private set; }
@@ -45,7 +45,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Partnership
 		public string SubHeader8Placeholder { get; private set; }
 		public TextEditorConfiguration SubHeader8Configuration { get; set; }
 
-		public PartnershipTabCInfo() : base(ShiftChildTabType.C)
+		public PartnershipTabCInfo() : base(ShiftChildTabType.C, ShiftTopTabType.Partnership)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -63,23 +63,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.Partnership
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab6SubCRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab6SubCRightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab6SubCFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab6SubCFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab6SubCBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab6SubCBackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab6SubC1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab6SubC1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab6SubC2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab6SubC2File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataPartnershipPartCFile.ExistsLocal()) return;
 

@@ -158,7 +158,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 				if (itemInfo != null)
 				{
 					itemState.Id = itemInfo.Id;
-					itemState.Clipart = ImageClipartObject.FromImage(itemInfo.ClipartImage);
+					itemState.Clipart = ImageClipartObject.FromFile(itemInfo.ImagePath);
 					itemState.Title = itemInfo.Title;
 					itemState.Subheader = itemInfo.SubHeaderDefaultValue;
 				}
@@ -191,7 +191,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 				if (itemInfo != null)
 				{
 					itemState.Id = itemInfo.Id;
-					itemState.Clipart = ImageClipartObject.FromImage(itemInfo.ClipartImage);
+					itemState.Clipart = ImageClipartObject.FromFile(itemInfo.ImagePath);
 					itemState.Title = itemInfo.Title;
 					itemState.Subheader = itemInfo.SubHeaderDefaultValue;
 				}

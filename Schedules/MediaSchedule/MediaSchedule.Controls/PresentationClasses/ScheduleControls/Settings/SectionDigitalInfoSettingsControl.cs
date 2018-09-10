@@ -3,7 +3,6 @@ using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo;
-using Asa.Media.Controls.Properties;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 {
@@ -21,7 +20,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 		{
 			BarButton = new ButtonInfo
 			{
-				Logo = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleRetractableBarDigitalImage ?? Resources.SectionSettingsInfo,
+				Logo = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleRetractableBarDigitalImage ?? Properties.Resources.SectionSettingsInfo,
 				Tooltip = "Open Digital Settings",
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};

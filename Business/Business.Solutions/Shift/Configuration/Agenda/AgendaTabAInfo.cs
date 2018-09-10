@@ -9,7 +9,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Agenda
 {
 	public class AgendaTabAInfo : ShiftTabWithHeaderInfo
 	{
-		public Image Clipart1Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab3_A_Clipart1;
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 
 		public List<ListDataItem> Combo1Items { get; }
@@ -36,7 +36,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Agenda
 		public List<ListDataItem> Combo8Items { get; }
 		public TextEditorConfiguration Combo8Configuration { get; set; }
 
-		public AgendaTabAInfo() : base(ShiftChildTabType.A)
+		public AgendaTabAInfo() : base(ShiftChildTabType.A, ShiftTopTabType.Agenda)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 
@@ -68,20 +68,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.Agenda
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab3SubARightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab3SubARightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab3SubAFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab3SubAFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab3SubABackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab3SubABackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab3SubA1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab3SubA1File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataAgendaPartAFile.ExistsLocal()) return;
 

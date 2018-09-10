@@ -8,9 +8,9 @@ namespace Asa.Business.Solutions.Shift.Configuration.Cover
 {
 	public class CoverTabEInfo : ShiftTabWithHeaderInfo
 	{
-		public Image Clipart1Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab1_E_Clipart1;
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
-		public Image Clipart2Image { get; private set; }
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab1_E_Clipart2;
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
 
 		public string SubHeader1DefaultValue { get; private set; }
@@ -19,7 +19,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Cover
 
 		public TextEditorConfiguration Calendar1Configuration { get; set; }
 
-		public CoverTabEInfo() : base(ShiftChildTabType.E)
+		public CoverTabEInfo() : base(ShiftChildTabType.E, ShiftTopTabType.Cover)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -30,23 +30,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.Cover
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab1SubERightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab1SubERightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab1SubEFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab1SubEFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab1SubEBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab1SubEBackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab1SubE1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab1SubE1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab1SubE2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab1SubE2File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataCoverPartEFile.ExistsLocal()) return;
 

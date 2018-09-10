@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Shift.Configuration.Approach;
@@ -62,7 +64,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Approach.TabA
 			var savedState = SlideContainer.EditedContent.ApproachState.TabA.Items.FirstOrDefault(item =>
 				String.Equals(item.Id, ItemInfo.Id, StringComparison.OrdinalIgnoreCase));
 
-			pictureEdit.Image = ItemInfo.ClipartImage;
+			if (File.Exists(ItemInfo.ImagePath))
+				pictureEdit.Image = Image.FromFile(ItemInfo.ImagePath);
 			memoEditSubheader.EditValue = savedState?.Subheader ?? ItemInfo.SubHeaderDefaultValue;
 
 			_allowToSave = true;

@@ -73,6 +73,8 @@ namespace Asa.Business.Solutions.Shift.Configuration
 
 		public override void LoadContentData()
 		{
+			_resourceManager.LoadGraphicResources();
+
 			if (_contentLoaded) return;
 
 			ClientGoalsLists.Load(_resourceManager.DataClientGoalsFile);
@@ -149,6 +151,12 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			}
 
 			_contentLoaded = true;
+		}
+
+
+		public void ReleaseContentData()
+		{
+			_resourceManager. ReleaseGraphicResources();
 		}
 	}
 }

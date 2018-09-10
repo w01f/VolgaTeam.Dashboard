@@ -13,7 +13,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.NeedsSolutions
 		public string Title { get; private set; }
 		public string ButtonHeader { get; private set; }
 
-		public Image ClipartImage { get; private set; }
+		public string ImagePath { get; private set; }
 		public ClipartConfiguration ClipartConfiguration { get; }
 
 		public string SubHeaderDefaultValue { get; private set; }
@@ -41,15 +41,10 @@ namespace Asa.Business.Solutions.Shift.Configuration.NeedsSolutions
 			itemInfo.Id = configNode.SelectSingleNode("./ProductButton")?.InnerText;
 			itemInfo.Title = configNode.SelectSingleNode("./Name")?.InnerText;
 			itemInfo.ButtonHeader = configNode.SelectSingleNode("./BenefitHeader")?.InnerText;
-			
+
 			var imageFileName = configNode.SelectSingleNode("./StaticImage")?.InnerText;
 			if (!String.IsNullOrEmpty(imageFileName))
-			{
-				var imageFilePath = Path.Combine(imageFolder.LocalPath, imageFileName);
-				itemInfo.ClipartImage = File.Exists(imageFilePath)
-					? Image.FromFile(imageFilePath)
-					: null;
-			}
+				itemInfo.ImagePath = Path.Combine(imageFolder.LocalPath, imageFileName);
 
 			itemInfo.SubHeaderDefaultValue = configNode.SelectSingleNode("./BenefitDetails")?.InnerText;
 

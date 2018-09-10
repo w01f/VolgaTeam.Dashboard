@@ -187,7 +187,6 @@
     <Compile Include="Slides\SlideGroupPage.Designer.cs">
       <DependentUpon>SlideGroupPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Slides\SlideAdaptor.cs" />
     <Compile Include="Slides\SlideMasterEventArgs.cs" />
     <Compile Include="Slides\SlidesContainerControl.cs">
       <SubType>UserControl</SubType>
@@ -203,7 +202,6 @@
     <Compile Include="Themes\FormThemeSelector.Designer.cs">
       <DependentUpon>FormThemeSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="Themes\ThemeAdaptor.cs" />
     <Compile Include="Themes\ThemeButtonInfo.cs" />
     <Compile Include="Themes\ThemeContainerControl.cs">
       <SubType>UserControl</SubType>

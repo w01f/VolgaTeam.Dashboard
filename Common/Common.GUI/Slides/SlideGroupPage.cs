@@ -13,9 +13,7 @@ namespace Asa.Common.GUI.Slides
 	//public partial class SlideGroupPage : UserControl
 	public partial class SlideGroupPage : XtraTabPage
 	{
-		private bool _allowHandleEvents;
 		private readonly List<SlideMaster> _slideMasters = new List<SlideMaster>();
-		private SlideAdaptor _slideAdaptor;
 		private ImageListView.HitInfo _menuHitInfo;
 
 		public event EventHandler<SlideMasterEventArgs> SlideOutput;
@@ -33,7 +31,23 @@ namespace Asa.Common.GUI.Slides
 			}
 		}
 
-		public SlideGroupPage(string groupName, IEnumerable<SlideMaster> slides)
+		public SlideGroupPage(string groupName, IList<SlideMaster> slides, Size thumbnailSize) : this(groupName, slides)
+		{
+			if (!thumbnailSize.IsEmpty)
+			{
+				var persentWidth = thumbnailSize.Width > 0 ? (float)thumbnailSize.Width / slidesListView.ThumbnailSize.Width : 1;
+				var persentHeight = thumbnailSize.Height > 0
+					? (float)thumbnailSize.Height / slidesListView.ThumbnailSize.Height
+					: 1;
+				var percentFinal = new[] { persentWidth, persentHeight }.Min();
+				var finalWidth = (Int32)(slidesListView.ThumbnailSize.Width * percentFinal);
+				var finalHeight = (Int32)(slidesListView.ThumbnailSize.Height * percentFinal);
+
+				slidesListView.ThumbnailSize = new Size(finalWidth, finalHeight);
+			}
+		}
+
+		public SlideGroupPage(string groupName, IList<SlideMaster> slides)
 		{
 			InitializeComponent();
 			SlideGroupName = groupName;
@@ -41,26 +55,18 @@ namespace Asa.Common.GUI.Slides
 
 			_slideMasters.AddRange(slides);
 
-			_allowHandleEvents = false;
 			if (_slideMasters.Any())
 			{
-				var defaultSlideMaster = _slideMasters.First();
-				slidesListView.ThumbnailSize = new Size(defaultSlideMaster.BrowseLogo.Width + 26, defaultSlideMaster.BrowseLogo.Height + 26);
-
 				var minOrder = _slideMasters.Min(s => s.Order);
-				_slideAdaptor = new SlideAdaptor(_slideMasters);
+
 				slidesListView.Items.Clear();
-				slidesListView.Items.AddRange(
-					_slideMasters
-						.Select(slideMaster => new ImageListViewItem(slideMaster.Identifier)
-						{
-							Text = slideMaster.Name,
-							Tag = slideMaster,
-							Selected = slideMaster.Order == minOrder,
-						}).ToArray(),
-					_slideAdaptor);
+				slidesListView.Items.AddRange(_slideMasters.Select(slideMaster => new ImageListViewItem(slideMaster.LogoFile.LocalPath)
+				{
+					Text = slideMaster.Name,
+					Tag = slideMaster,
+					Selected = slideMaster.Order == minOrder
+				}).ToArray());
 			}
-			_allowHandleEvents = true;
 
 			slidesListView.ClearSelection();
 			slidesListView.SelectionChanged += OnListViewSelectionChanged;
@@ -73,29 +79,21 @@ namespace Asa.Common.GUI.Slides
 
 		public void ResetSelection()
 		{
-			_allowHandleEvents = false;
 			slidesListView.ClearSelection();
-			_allowHandleEvents = true;
 		}
 
 		public void SelectSlide(SlideMaster slideMaster)
 		{
-			_allowHandleEvents = false;
-
 			ResetSelection();
 			var itemToSelect = slidesListView.Items.FirstOrDefault(item => item.Tag == slideMaster);
 			if (itemToSelect != null)
 				itemToSelect.Selected = true;
-
-			_allowHandleEvents = true;
 		}
 
 		public void Release()
 		{
 			slidesListView.ClearSelection();
 			slidesListView.Items.Clear();
-			_slideAdaptor.Dispose();
-			_slideAdaptor = null;
 			_slideMasters.Clear();
 
 			SlideOutput = null;

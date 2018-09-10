@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -48,7 +49,7 @@ namespace Asa.SlideTemplateViewer
 
 			_slideContainer = new SlidesContainerControl();
 			_slideContainer.BackColor = BackColor;
-			_slideContainer.InitSlides(AppManager.Instance.SlideManager);
+			_slideContainer.InitSlides(AppManager.Instance.SlideManager, new Size());
 			_slideContainer.SlideOutput += (o, e) => GenerateOutput(e.SlideMaster);
 			pnMain.Controls.Add(_slideContainer);
 			_slideContainer.BringToFront();

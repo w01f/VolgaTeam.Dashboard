@@ -1098,6 +1098,10 @@
       <Project>{d3c4fe3f-d410-4fdf-abfe-4359487db9db}</Project>
       <Name>Solutions.StarApp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MediaSchedule.Resources\Media.Resources.csproj">
+      <Project>{33cd8f07-000e-4f97-a1c2-0f39c73967ce}</Project>
+      <Name>Media.Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

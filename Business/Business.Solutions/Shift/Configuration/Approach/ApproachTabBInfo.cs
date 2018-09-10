@@ -33,7 +33,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Approach
 		public TextEditorConfiguration SubHeader3Configuration { get; set; }
 		public TextEditorConfiguration SubHeader4Configuration { get; set; }
 
-		public ApproachTabBInfo() : base(ShiftChildTabType.B)
+		public ApproachTabBInfo() : base(ShiftChildTabType.B, ShiftTopTabType.Approach)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -56,25 +56,9 @@ namespace Asa.Business.Solutions.Shift.Configuration.Approach
 		{
 			base.LoadData(configNode, resourceManager);
 
-			RightLogo = resourceManager.LogoTab15SubBRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab15SubBRightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab15SubBFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab15SubBFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab15SubBBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab15SubBBackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab15SubB1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab15SubB1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab15SubB2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab15SubB2File.LocalPath)
-				: null;
-			Clipart3Image = resourceManager.ClipartTab15SubB3File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab15SubB3File.LocalPath)
-				: null;
+			Clipart1Image = resourceManager.GraphicResources?.Tab9_B_Clipart1;
+			Clipart2Image = resourceManager.GraphicResources?.Tab9_B_Clipart2;
+			Clipart3Image = resourceManager.GraphicResources?.Tab9_B_Clipart3;
 
 			if (resourceManager.DataApproachesCommonFile.ExistsLocal())
 			{

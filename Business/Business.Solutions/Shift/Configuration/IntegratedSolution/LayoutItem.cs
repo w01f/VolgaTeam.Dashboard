@@ -9,7 +9,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 	{
 		private const string FilePrefix = "layout_";
 
-		public string FilePath { get; private set; }
+		public string FilePath { get; }
 		public ProductLayoutType LayoutType { get; private set; }
 		public int LayoutIndex { get; private set; }
 

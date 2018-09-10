@@ -10,19 +10,19 @@ namespace Asa.Business.Solutions.Shift.Configuration.Market
 {
 	public class MarketTabAInfo : ShiftTabWithHeaderInfo
 	{
-		public Image Clipart1Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab5_A_Clipart1;
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 
-		public Image Clipart2Image { get; private set; }
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab5_A_Clipart2;
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
 
-		public Image Clipart3Image { get; private set; }
+		public Image Clipart3Image => _resourceManager.GraphicResources?.Tab5_A_Clipart3;
 		public ClipartConfiguration Clipart3Configuration { get; private set; }
 
-		public Image Clipart4Image { get; private set; }
+		public Image Clipart4Image => _resourceManager.GraphicResources?.Tab5_A_Clipart4;
 		public ClipartConfiguration Clipart4Configuration { get; private set; }
 
-		public Image Clipart5Image { get; private set; }
+		public Image Clipart5Image => _resourceManager.GraphicResources?.Tab5_A_Clipart5;
 		public ClipartConfiguration Clipart5Configuration { get; private set; }
 
 		public List<ListDataItem> Combo1Items { get; }
@@ -53,7 +53,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Market
 		public decimal? SubHeader5DefaultValue { get; private set; }
 		public TextEditorConfiguration SubHeader5Configuration { get; set; }
 
-		public MarketTabAInfo() : base(ShiftChildTabType.A)
+		public MarketTabAInfo() : base(ShiftChildTabType.A, ShiftTopTabType.Market)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -78,33 +78,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Market
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab5SubARightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab5SubARightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab5SubAFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab5SubAFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab5SubABackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab5SubABackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab5SubA1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab5SubA1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab5SubA2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab5SubA2File.LocalPath)
-				: null;
-			Clipart3Image = resourceManager.ClipartTab5SubA3File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab5SubA3File.LocalPath)
-				: null;
-			Clipart4Image = resourceManager.ClipartTab5SubA4File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab5SubA4File.LocalPath)
-				: null;
-			Clipart5Image = resourceManager.ClipartTab5SubA5File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab5SubA5File.LocalPath)
-				: null;
-
+			
 			if (!resourceManager.DataMarketPartAFile.ExistsLocal()) return;
 
 			var document = new XmlDocument();

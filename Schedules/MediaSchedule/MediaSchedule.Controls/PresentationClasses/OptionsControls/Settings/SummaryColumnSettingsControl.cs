@@ -5,7 +5,6 @@ using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.Properties;
 using DevExpress.Skins;
 using DevExpress.XtraTab;
 
@@ -29,7 +28,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
 			Text = "Info";
 			BarButton = new ButtonInfo
 			{
-				Logo = BusinessObjects.Instance.ImageResourcesManager.OptionsRetractableBarSummaryImage ?? Resources.SectionSettingsInfo,
+				Logo = BusinessObjects.Instance.ImageResourcesManager.OptionsRetractableBarSummaryImage ?? Properties.Resources.SectionSettingsInfo,
 				Tooltip = "Open Schedule Info",
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};

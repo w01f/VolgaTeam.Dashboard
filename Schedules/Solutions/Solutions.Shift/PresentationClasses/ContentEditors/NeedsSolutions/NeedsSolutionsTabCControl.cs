@@ -181,7 +181,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions
 
 				if (itemInfo == null) continue;
 
-				var clipart = ImageClipartObject.FromImage(itemInfo.ClipartImage);
+				var clipart = ImageClipartObject.FromFile(itemInfo.ImagePath);
 				clipart.OutputBackground = true;
 				outputDataPackage.ClipartItems.Add(String.Format("SHIFT07CTAB{0}CLIPART{0}", i + 1).ToUpper(), clipart);
 

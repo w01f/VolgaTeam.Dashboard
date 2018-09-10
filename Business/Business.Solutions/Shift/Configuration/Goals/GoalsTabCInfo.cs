@@ -8,13 +8,13 @@ namespace Asa.Business.Solutions.Shift.Configuration.Goals
 {
 	public class GoalsTabCInfo : ShiftTabWithHeaderInfo
 	{
-		public Image Clipart1Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab4_C_Clipart1;
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 
-		public Image Clipart2Image { get; private set; }
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab4_C_Clipart2;
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
 
-		public Image Clipart3Image { get; private set; }
+		public Image Clipart3Image => _resourceManager.GraphicResources?.Tab4_C_Clipart3;
 		public ClipartConfiguration Clipart3Configuration { get; private set; }
 
 		public ListDataItem MemoPopup1DefaultItem { get; private set; }
@@ -26,7 +26,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Goals
 		public ListDataItem MemoPopup3DefaultItem { get; private set; }
 		public TextEditorConfiguration MemoPopup3Configuration { get; set; }
 
-		public GoalsTabCInfo() : base(ShiftChildTabType.C)
+		public GoalsTabCInfo() : base(ShiftChildTabType.C, ShiftTopTabType.Goals)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -40,26 +40,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.Goals
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab4SubCRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab4SubCRightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab4SubCFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab4SubCFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab4SubCBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab4SubCBackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab4SubC1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab4SubC1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab4SubC2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab4SubC2File.LocalPath)
-				: null;
-			Clipart3Image = resourceManager.ClipartTab4SubC3File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab4SubC3File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataGoalsPartCFile.ExistsLocal()) return;
 

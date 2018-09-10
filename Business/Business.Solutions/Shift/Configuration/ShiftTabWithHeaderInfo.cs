@@ -11,7 +11,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public List<ListDataItem> HeadersItems { get; set; }
 		public TextEditorConfiguration HeadersEditorConfiguration { get; set; }
 
-		protected ShiftTabWithHeaderInfo(ShiftChildTabType tabType) : base(tabType)
+		protected ShiftTabWithHeaderInfo(ShiftChildTabType tabType, ShiftTopTabType topTabInfo) : base(tabType, topTabInfo)
 		{
 			HeadersItems = new List<ListDataItem>();
 			HeadersEditorConfiguration = TextEditorConfiguration.Empty();

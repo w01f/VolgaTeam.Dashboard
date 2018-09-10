@@ -89,7 +89,7 @@ namespace Asa.Common.GUI.Themes
 					themes.FirstOrDefault();
 				if (currentTheme == null) return;
 				selectorButton.Enabled = true;
-				selectorButton.Image = currentTheme.RibbonLogo;
+				selectorButton.Image = currentTheme.GetRibbonLogo();
 
 				var ribonBar = (RibbonBar)selectorButton.ContainerControl;
 				if (!ribonBar.Visible && ribonBar.Parent is RibbonPanel ribbonPanel)
@@ -135,7 +135,7 @@ namespace Asa.Common.GUI.Themes
 					   if (form.ShowDialog(parentForm) != DialogResult.OK) return;
 					   var selectedTheme = form.SelectedTheme;
 					   if (selectedTheme == null) return;
-					   selectorButton.Image = selectedTheme.RibbonLogo;
+					   selectorButton.Image = selectedTheme.GetRibbonLogo();
 					   ((RibbonBar)selectorButton.ContainerControl).Text = String.Format("{0}", selectedTheme.Name);
 					   ((ThemeButtonInfo)selectorButton.Tag).CurrentTheme = selectedTheme;
 					   themeSelected(selectedTheme, form.ApplyThemeForAllSlideTypes);

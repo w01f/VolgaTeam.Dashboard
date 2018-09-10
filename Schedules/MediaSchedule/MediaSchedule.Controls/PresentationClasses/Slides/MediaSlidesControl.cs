@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -46,7 +47,7 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 
 			_slideContainer = new SlidesContainerControl();
 			_slideContainer.BackColor = BackColor;
-			_slideContainer.InitSlides(BusinessObjects.Instance.SlideManager);
+			_slideContainer.InitSlides(BusinessObjects.Instance.SlideManager, new Size());
 			_slideContainer.SlideOutput += (o, e) => OutputPowerPoint(e.SlideMaster);
 			pnMain.Controls.Add(_slideContainer);
 			_slideContainer.BringToFront();

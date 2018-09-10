@@ -9,6 +9,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 	public interface ISolutionEditor
 	{
 		string SolutionId { get; }
+		DateTime LastToggled { get; set; }
 		SlideType SelectedSlideType { get; }
 		string HelpKey { get; }
 		bool MultipleSlidesAllowed { get; }
@@ -24,6 +25,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 		void OutputPowerPointCustom(IList<OutputItem> outputItems);
 		void OutputPdf();
 		void Email();
+		void Release();
 		event EventHandler<EventArgs> DataChanged;
 		event EventHandler<SelectedSlideTypeChanged> SlideTypeChanged;
 		event EventHandler<OutputStatusChangedEventArgs> OutputStatusChanged;

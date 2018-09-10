@@ -7,7 +7,6 @@ using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Interfaces;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.Properties;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
@@ -35,7 +34,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			BarButton = new ButtonInfo
 			{
 				Tooltip = "Edit Summary Settings",
-				Logo = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleRetractableBarSummaryImage ?? Resources.SummaryOptionsInfo,
+				Logo = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleRetractableBarSummaryImage ?? Properties.Resources.SummaryOptionsInfo,
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};
 		}

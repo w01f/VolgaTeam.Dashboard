@@ -6,16 +6,17 @@ using Asa.Common.Core.Enums;
 using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.RemoteStorage;
+using Asa.Common.Core.Objects.Slides;
 
 namespace Asa.Business.Solutions.Common.Entities.NonPersistent
 {
 	public class SolutionSlideManager : SlideManager
 	{
-		private Size _thumbnailSize;
+		public Size ThumbnailSize { get; private set; }
 
 		public void InitThumbnailSize(Size thumbnailSize)
 		{
-			_thumbnailSize = thumbnailSize;
+			ThumbnailSize = thumbnailSize;
 		}
 
 		protected override void ProcessSlideSizeFolder(StorageDirectory sizeFolder, SlideFormatEnum format)
@@ -29,7 +30,7 @@ namespace Asa.Business.Solutions.Common.Entities.NonPersistent
 				var slideFolder = new StorageDirectory(sizeFolder.RelativePathParts.Merge(folderName));
 				if (slideFolder.ExistsLocal())
 				{
-					var slideMaster = new SolutionSlideMaster(slideFolder, _thumbnailSize)
+					var slideMaster = new SlideMaster(slideFolder)
 					{
 						Group = "Default",
 						Format = format

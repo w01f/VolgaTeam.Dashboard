@@ -5,7 +5,6 @@ using Asa.Business.Media.Entities.NonPersistent.Snapshot;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.Properties;
 using DevExpress.Skins;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraLayout.Utils;
@@ -32,7 +31,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 			Text = "Active Weeks";
 			BarButton = new ButtonInfo
 			{
-				Logo = BusinessObjects.Instance.ImageResourcesManager.SnapshotsRetractableBarActiveWeeksImage ?? Resources.SnapshotSettingsActiveWeeks,
+				Logo = BusinessObjects.Instance.ImageResourcesManager.SnapshotsRetractableBarActiveWeeksImage ?? Properties.Resources.SnapshotSettingsActiveWeeks,
 				Tooltip = "Open Calendar Info",
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};

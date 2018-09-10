@@ -8,7 +8,6 @@ using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.Properties;
 using DevExpress.Skins;
 using DevExpress.XtraTab;
 
@@ -31,7 +30,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 			Text = "Info";
 			BarButton = new ButtonInfo
 			{
-				Logo = BusinessObjects.Instance.ImageResourcesManager.DigitalRetractableBarListImage ?? Resources.DigitalSettingsList,
+				Logo = BusinessObjects.Instance.ImageResourcesManager.DigitalRetractableBarListImage ?? Properties.Resources.DigitalSettingsList,
 				Tooltip = String.Format("Open {0} Schedule Settings",
 					MediaMetaData.Instance.DataTypeString),
 				Action = () => { TabControl.SelectedTabPage = this; }

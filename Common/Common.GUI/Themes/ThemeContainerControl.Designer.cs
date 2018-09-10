@@ -36,7 +36,7 @@
 			this.themesListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.themesListView.ColumnHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
 			this.themesListView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.themesListView.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.themesListView.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.themesListView.GroupHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
 			this.themesListView.Location = new System.Drawing.Point(0, 0);
 			this.themesListView.MultiSelect = false;
@@ -46,6 +46,7 @@
 			this.themesListView.Size = new System.Drawing.Size(728, 527);
 			this.themesListView.TabIndex = 41;
 			this.themesListView.ThumbnailSize = new System.Drawing.Size(255, 170);
+			this.themesListView.UseWIC = true;
 			this.themesListView.ItemDoubleClick += new Manina.Windows.Forms.ItemDoubleClickEventHandler(this.OnListViewItemDoubleClick);
 			this.themesListView.SelectionChanged += new System.EventHandler(this.OnListViewSelectionChanged);
 			// 

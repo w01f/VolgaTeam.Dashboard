@@ -8,19 +8,19 @@ namespace Asa.Business.Solutions.Shift.Configuration.Intro
 {
 	public class IntroTabDInfo : ShiftTabWithHeaderInfo
 	{
-		public Image Clipart1Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab2_D_Clipart1;
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 
-		public Image Clipart2Image { get; private set; }
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab2_D_Clipart2;
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
 
-		public Image Clipart3Image { get; private set; }
+		public Image Clipart3Image => _resourceManager.GraphicResources?.Tab2_D_Clipart3;
 		public ClipartConfiguration Clipart3Configuration { get; private set; }
 
-		public Image Clipart4Image { get; private set; }
+		public Image Clipart4Image => _resourceManager.GraphicResources?.Tab2_D_Clipart4;
 		public ClipartConfiguration Clipart4Configuration { get; private set; }
 
-		public IntroTabDInfo() : base(ShiftChildTabType.D)
+		public IntroTabDInfo() : base(ShiftChildTabType.D, ShiftTopTabType.Intro)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -31,29 +31,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.Intro
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab2SubDRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab2SubDRightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab2SubDFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab2SubDFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab2SubDBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab2SubDBackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab2SubD1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab2SubD1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab2SubD2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab2SubD2File.LocalPath)
-				: null;
-			Clipart3Image = resourceManager.ClipartTab2SubD3File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab2SubD3File.LocalPath)
-				: null;
-			Clipart4Image = resourceManager.ClipartTab2SubD4File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab2SubD4File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataIntroPartDFile.ExistsLocal()) return;
 

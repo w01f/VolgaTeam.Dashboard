@@ -9,9 +9,9 @@ namespace Asa.Business.Solutions.Shift.Configuration.Partnership
 {
 	public class PartnershipTabAInfo : ShiftTabWithHeaderInfo
 	{
-		public Image Clipart1Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab6_A_Clipart1;
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
-		public Image Clipart2Image { get; private set; }
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab6_A_Clipart2;
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
 
 		public List<ListDataItem> Combo1Items { get; }
@@ -42,7 +42,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Partnership
 		public string SubHeader4Placeholder { get; private set; }
 		public TextEditorConfiguration SubHeader4Configuration { get; set; }
 
-		public PartnershipTabAInfo() : base(ShiftChildTabType.A)
+		public PartnershipTabAInfo() : base(ShiftChildTabType.A, ShiftTopTabType.Partnership)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -68,23 +68,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.Partnership
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab6SubARightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab6SubARightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab6SubAFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab6SubAFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab6SubABackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab6SubABackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab6SubA1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab6SubA1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab6SubA2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab6SubA2File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataPartnershipPartAFile.ExistsLocal()) return;
 

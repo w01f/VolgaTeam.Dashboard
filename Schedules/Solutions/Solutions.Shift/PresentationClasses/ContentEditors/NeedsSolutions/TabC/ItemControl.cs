@@ -1,6 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
-using System.Windows.Forms;
+using System.Drawing;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Shift.Configuration.NeedsSolutions;
 using Asa.Business.Solutions.Shift.Entities.NonPersistent;
@@ -63,7 +64,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 			var savedState = SlideContainer.EditedContent.NeedsSolutionsState.TabC.Items.FirstOrDefault(item =>
 				String.Equals(item.Id, ItemInfo.Id, StringComparison.OrdinalIgnoreCase));
 
-			pictureEdit.Image = ItemInfo.ClipartImage;
+			if (File.Exists(ItemInfo.ImagePath))
+				pictureEdit.Image = Image.FromFile(ItemInfo.ImagePath);
 			memoEditSubheader.EditValue = savedState?.Subheader ?? ItemInfo.SubHeaderDefaultValue;
 
 			_allowToSave = true;

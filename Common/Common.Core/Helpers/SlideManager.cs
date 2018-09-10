@@ -15,7 +15,7 @@ namespace Asa.Common.Core.Helpers
 			Slides = new List<SlideMaster>();
 		}
 
-		public void LoadSlides(StorageDirectory storageDirectory)
+		public virtual void LoadSlides(StorageDirectory storageDirectory)
 		{
 			if (!storageDirectory.ExistsLocal()) return;
 			foreach (var sizeFolder in storageDirectory.GetLocalFolders())

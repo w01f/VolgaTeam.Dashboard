@@ -10,6 +10,10 @@ namespace Asa.Business.Solutions.Shift.Configuration.Approach
 {
 	public class ApproachTabCInfo : ShiftTabWithHeaderInfo
 	{
+		public Image ListUpImage => _resourceManager.GraphicResources?.Tab9ListUp;
+		public Image ListDownImage => _resourceManager.GraphicResources?.Tab9ListDown;
+		public Image ListPopupImage => _resourceManager.GraphicResources?.Tab9ListPopup;
+
 		public List<ApproachItemInfo> ApproachItems { get; }
 
 		public List<ListDataItem> Combo1Items { get; }
@@ -32,7 +36,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.Approach
 
 		public FormListConfiguration FormListConfiguration { get; set; }
 
-		public ApproachTabCInfo() : base(ShiftChildTabType.C)
+		public ApproachTabCInfo() : base(ShiftChildTabType.C, ShiftTopTabType.Approach)
 		{
 			ApproachItems = new List<ApproachItemInfo>();
 
@@ -50,16 +54,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.Approach
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab15SubCRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab15SubCRightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab15SubCFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab15SubCFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab15SubCBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab15SubCBackgroundFile.LocalPath)
-				: null;
 
 			if (resourceManager.DataApproachesCommonFile.ExistsLocal())
 			{

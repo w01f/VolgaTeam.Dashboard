@@ -59,7 +59,6 @@
     <Compile Include="Common\Entities\NonPersistent\ClipartObject.cs" />
     <Compile Include="Common\Entities\NonPersistent\SlideObject.cs" />
     <Compile Include="Common\Entities\NonPersistent\SolutionSlideManager.cs" />
-    <Compile Include="Common\Entities\NonPersistent\SolutionSlideMaster.cs" />
     <Compile Include="Common\Entities\NonPersistent\VideoClipartObject.cs" />
     <Compile Include="Common\Entities\NonPersistent\VideoResourceItem.cs" />
     <Compile Include="Common\Entities\NonPersistent\YoutubeClipartObject.cs" />
@@ -271,6 +270,10 @@
     <ProjectReference Include="..\..\Common\Common.Core\Common.Core.csproj">
       <Project>{ADEB2DFE-615C-4D0C-A283-A155B55E443D}</Project>
       <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.Resources\Common.Resources.csproj">
+      <Project>{45474e44-2de4-4e27-ada2-b17edfc431b2}</Project>
+      <Name>Common.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\Business.Common\Business.Common.csproj">
       <Project>{ccfad4da-48c4-454b-930d-6a81d2626e76}</Project>

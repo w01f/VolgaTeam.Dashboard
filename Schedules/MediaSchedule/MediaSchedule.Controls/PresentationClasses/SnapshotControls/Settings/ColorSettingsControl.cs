@@ -5,7 +5,6 @@ using Asa.Business.Media.Configuration;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.Properties;
 using DevExpress.Skins;
 using DevExpress.XtraTab;
 
@@ -33,7 +32,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 			};
 			BarButton = new ButtonInfo
 			{
-				Logo = BusinessObjects.Instance.ImageResourcesManager.SnapshotsRetractableBarColorsImage ?? Resources.SectionSettingsStyle,
+				Logo = BusinessObjects.Instance.ImageResourcesManager.SnapshotsRetractableBarColorsImage ?? Properties.Resources.SectionSettingsStyle,
 				Tooltip = "Open Slide Style",
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};

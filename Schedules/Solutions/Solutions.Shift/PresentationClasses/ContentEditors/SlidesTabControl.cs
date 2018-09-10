@@ -21,6 +21,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		{
 			InitializeComponent();
 
+			CustomTabInfo.LoadSlides();
 			slidesEditContainer.Init(CustomTabInfo.Slides);
 			slidesEditContainer.SelectionChanged += OnEditValueChanged;
 			slidesEditContainer.SlideOutput += SlideContainer.OnCustomSlideOutput;

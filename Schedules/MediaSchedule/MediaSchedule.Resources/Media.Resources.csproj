@@ -1,0 +1,588 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{33CD8F07-000E-4F97-A1C2-0F39C73967CE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Asa.Media.Resources</RootNamespace>
+    <AssemblyName>Asa.Media.Resources</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Browser\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Calendar\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Common\RetractableBar\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Digital\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Home\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OpenForm\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Options\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Schedule\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Snapshots\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Solutions\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StartForm\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ribbon\Calendar\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Common\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Digital\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Home\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Menu\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Options\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\QuickAccessBar\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Schedule\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Snapshots\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Common\Output.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Common\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Browser\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Calendar\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Common\RetractableBar\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Digital\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Home\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\OpenForm\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Options\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Schedule\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Snapshots\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Solutions\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\StartForm\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Calendar\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Common\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Digital\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Home\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Menu\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Options\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\QuickAccessBar\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Schedule\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Snapshots\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Schedule\DefaultDigital.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\AppLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\BrandingImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\ToggleSwitch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\FormIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Common\Settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\StartForm\BackgroundLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\StartForm\Cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\StartForm\FormLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\StartForm\New.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\StartForm\Open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\StartForm\QuickEditSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Common\RetractableBar\Collapse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Common\RetractableBar\Expand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Menu\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Menu\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Menu\New.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Menu\Open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Menu\Preferences.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Menu\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Menu\SaveAs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Menu\SavePdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Menu\SendEmail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\QuickAccessBar\Floater.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\QuickAccessBar\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\QuickAccessBar\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\QuickAccessBar\SaveAs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Browser\AddAll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Browser\AddSlide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Browser\Chrome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Browser\Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Browser\Edge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Browser\Email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Browser\Firefox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Browser\Floater.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Browser\IE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Browser\Back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Browser\Printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Browser\Refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Browser\Forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Browser\AddVideo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Solutions\MemoPopupDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Solutions\MemoPopupList.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Solutions\MemoPopupUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\OpenForm\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\OpenForm\FileName.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\OpenForm\Open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Home\Bottom1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Home\Bottom2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Home\Bottom3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Home\BottomRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Home\Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Home\DefaultBottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Home\PopupDates.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Home\PreferencesCalendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Home\PreferencesDayparts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Home\PreferencesDemo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Home\Subtab1Bottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Home\Subtab1Top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Home\Top1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Home\Top2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Home\DateEnd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Home\DateStart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Schedule\New.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Schedule\DefaultSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Schedule\DefaultTVRadio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Schedule\PopupNewSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Schedule\RetractableBarColors.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Schedule\RetractableBarDigitalInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Schedule\RetractableBarSummaryInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Schedule\RetractableBarTVRadioColumns.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Schedule\RetractableBarTVRadioTotals.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Controls\Snapshots\DefaultDigital.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Snapshots\DefaultProgram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Snapshots\DefaultSnapshot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Snapshots\PopupSnapshotNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Snapshots\RetractableBarActiveWeeks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Snapshots\RetractableBarColors.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Snapshots\RetractableBarColumns.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Snapshots\RetractableBarDigitalInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Snapshots\RetractableBarSummaryInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Snapshots\New.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Options\DefaultDigital.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Options\DefaultOptions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Options\DefaultProgram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Options\PopupOptionsNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Options\RetractableBarColors.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Options\RetractableBarColumns.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Options\RetractableBarDigitalInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Options\RetractableBarSummaryInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Options\New.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Digital\DefaultHome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Digital\DefaultHomeBottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Digital\DefaultHomeRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Digital\DefaultProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Digital\RetractableBarAlacarte.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Digital\RetractableBarAlacarteFormula.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Digital\RetractableBarList.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Digital\RetractableBarPackage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Digital\RetractableBarPackageFormula.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Digital\New.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Calendar\Clone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Calendar\Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Calendar\Custom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Calendar\ImportFromSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Calendar\ImportFromSnapshots.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Calendar\Paste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\Calendar\Reset.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Calendar\DefaultCalendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Calendar\RetractableBarComments.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Calendar\RetractableBarGallery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Calendar\RetractableBarStyle.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -14,7 +14,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.IntegratedSolution
 		public List<ProductInfo> Products { get; }
 		public List<ProductOutputCondition> OutputConditions { get; }
 
-		protected IntegratedSolutionSubTabInfo(ShiftChildTabType tabType) : base(tabType)
+		protected IntegratedSolutionSubTabInfo(ShiftChildTabType tabType) : base(tabType, ShiftTopTabType.IntegratedSolution)
 		{
 			Products = new List<ProductInfo>();
 			OutputConditions = new List<ProductOutputCondition>();

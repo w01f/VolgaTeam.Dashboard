@@ -417,7 +417,6 @@ namespace Asa.SlideTemplateViewer
 			this.Text = "Add Slides";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
 			this.Shown += new System.EventHandler(this.FormMain_Shown);
-			this.Resize += new System.EventHandler(this.FormMain_Resize);
 			this.ribbonControl.ResumeLayout(false);
 			this.ribbonControl.PerformLayout();
 			this.ribbonPanelSlides.ResumeLayout(false);

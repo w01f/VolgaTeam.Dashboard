@@ -37,7 +37,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.NeedsSolutions
 
 		public FormListConfiguration FormListConfiguration { get; set; }
 
-		public NeedsSolutionsTabEInfo() : base(ShiftChildTabType.E, ShiftTopTabType.IntegratedSolution)
+		public NeedsSolutionsTabEInfo() : base(ShiftChildTabType.E, ShiftTopTabType.NeedsSolutions)
 		{
 			NeedsList = new List<NeedsItemInfo>();
 

@@ -52,7 +52,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			comboBoxEditGoal5.Properties.Items.Clear();
 			comboBoxEditGoal5.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Goals.Where(item => !item.IsPlaceholder).ToArray());
 
-			pictureEditSplash.Image = SlideContainer.DashboardInfo.ClientGoalsSplashLogo;
+			pictureEditSplash.Image = SlideContainer.DashboardInfo.GraphicResources?.ClientGoalsSplashLogo;
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControl.MaximumSize = RectangleHelper.ScaleSize(layoutControl.MaximumSize, scaleFactor);

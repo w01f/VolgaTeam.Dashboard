@@ -45,7 +45,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			checkedListBoxControlGeographicResidence.Items.Clear();
 			checkedListBoxControlGeographicResidence.Items.AddRange(SlideContainer.DashboardInfo.TargetCustomersLists.Geographies.Where(item => !item.IsPlaceholder).ToArray());
 
-			pictureEditSplash.Image = SlideContainer.DashboardInfo.TargeCustomersSplashLogo;
+			pictureEditSplash.Image = SlideContainer.DashboardInfo.GraphicResources?.TargeCustomersSplashLogo;
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControl.MaximumSize = RectangleHelper.ScaleSize(layoutControl.MaximumSize, scaleFactor);

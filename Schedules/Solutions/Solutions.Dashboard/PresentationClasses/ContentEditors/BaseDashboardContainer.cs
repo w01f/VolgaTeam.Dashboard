@@ -57,6 +57,11 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			InitializeComponent();
 		}
 
+		public override void Release()
+		{
+			DashboardInfo.ReleaseContentData();
+		}
+
 		#region GUI Processing
 		public override void InitControl(bool showSplash)
 		{

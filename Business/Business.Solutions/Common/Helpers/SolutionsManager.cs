@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using Asa.Business.Solutions.Common.Configuration;
-using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.RemoteStorage;
@@ -39,7 +38,6 @@ namespace Asa.Business.Solutions.Common.Helpers
 		public void LoadSolutionData(StorageDirectory holderAppDataFolder)
 		{
 			Solutions.ForEach(s => s.LoadToggleData(holderAppDataFolder));
-			Solutions.FirstOrDefault()?.LoadContentData();
 
 			if (FileStorageManager.Instance.DataState != DataActualityState.Updated)
 			{

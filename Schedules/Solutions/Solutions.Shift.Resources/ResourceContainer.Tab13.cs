@@ -4,7 +4,7 @@ namespace Asa.Solutions.Shift.Resources
 {
 	public partial class ResourceContainer
 	{
-		public Image Tab13_A_Backgroound => null;
+		public Image Tab13_A_Backgroound => Resources.Tab13.A.Resource.Background;
 		public Image Tab13_A_RightLogo => Resources.Tab13.A.Resource.Right;
 		public Image Tab13_A_FooterLogo => Resources.Tab13.A.Resource.Footer;
 
@@ -35,14 +35,15 @@ namespace Asa.Solutions.Shift.Resources
 		public Image Tab13_J_Backgroound => null;
 		public Image Tab13_J_RightLogo => null;
 		public Image Tab13_J_FooterLogo => null;
-		public Image Tab13_U_Backgroound => null;
-		public Image Tab13_U_RightLogo => null;
-		public Image Tab13_U_FooterLogo => null;
-		public Image Tab13_V_Backgroound => null;
-		public Image Tab13_V_RightLogo => null;
-		public Image Tab13_V_FooterLogo => null;
-		public Image Tab13_W_Backgroound => null;
-		public Image Tab13_W_RightLogo => null;
-		public Image Tab13_W_FooterLogo => null;
+
+		public Image Tab13_U_Backgroound => Resources.Tab13.U.Resource.Background;
+		public Image Tab13_U_RightLogo => Resources.Tab13.U.Resource.Right;
+		public Image Tab13_U_FooterLogo => Resources.Tab13.U.Resource.Footer;
+		public Image Tab13_V_Backgroound => Resources.Tab13.V.Resource.Background;
+		public Image Tab13_V_RightLogo => Resources.Tab13.V.Resource.Right;
+		public Image Tab13_V_FooterLogo => Resources.Tab13.V.Resource.Footer;
+		public Image Tab13_W_Backgroound => Resources.Tab13.W.Resource.Background;
+		public Image Tab13_W_RightLogo => Resources.Tab13.W.Resource.Right;
+		public Image Tab13_W_FooterLogo => Resources.Tab13.W.Resource.Footer;
 	}
 }

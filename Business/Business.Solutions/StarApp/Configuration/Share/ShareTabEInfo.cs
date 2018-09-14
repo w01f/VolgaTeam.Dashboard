@@ -12,9 +12,9 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Share
 	{
 		public override StarChildTabType TabType => StarChildTabType.E;
 
-		public Image Clipart1Image { get; private set; }
-		public Image Clipart2Image { get; private set; }
-		public Image Clipart3Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab5_E_Clipart1;
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab5_E_Clipart2;
+		public Image Clipart3Image => _resourceManager.GraphicResources?.Tab5_E_Clipart3;
 
 		public List<ListDataItem> Combo1Items { get; }
 		public List<ListDataItem> Combo2Items { get; }
@@ -45,7 +45,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Share
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
 		public ClipartConfiguration Clipart3Configuration { get; private set; }
 
-		public ShareTabEInfo()
+		public ShareTabEInfo() : base(StarTopTabType.Share)
 		{
 			Combo1Items = new List<ListDataItem>();
 			Combo2Items = new List<ListDataItem>();
@@ -59,26 +59,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Share
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab5SubERightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab5SubERightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab5SubEFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab5SubEFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab5SubEBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab5SubEBackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab5SubE1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab5SubE1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab5SubE2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab5SubE2File.LocalPath)
-				: null;
-			Clipart3Image = resourceManager.ClipartTab5SubE3File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab5SubE3File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataSharePartEFile.ExistsLocal()) return;
 			var document = new XmlDocument();

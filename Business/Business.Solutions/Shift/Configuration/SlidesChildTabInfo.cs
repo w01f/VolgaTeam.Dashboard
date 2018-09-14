@@ -164,10 +164,10 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							_sourceDirectory = _resourceManager.Tab9PartUSlidesFolder;
 							break;
 						case "v":
-							_sourceDirectory = _resourceManager.Tab10PartVSlidesFolder;
+							_sourceDirectory = _resourceManager.Tab9PartVSlidesFolder;
 							break;
 						case "w":
-							_sourceDirectory = _resourceManager.Tab10PartWSlidesFolder;
+							_sourceDirectory = _resourceManager.Tab9PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -180,10 +180,10 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							_sourceDirectory = _resourceManager.Tab10PartUSlidesFolder;
 							break;
 						case "v":
-							_sourceDirectory = _resourceManager.Tab12PartVSlidesFolder;
+							_sourceDirectory = _resourceManager.Tab10PartVSlidesFolder;
 							break;
 						case "w":
-							_sourceDirectory = _resourceManager.Tab12PartWSlidesFolder;
+							_sourceDirectory = _resourceManager.Tab10PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -196,10 +196,10 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							_sourceDirectory = _resourceManager.Tab11PartUSlidesFolder;
 							break;
 						case "v":
-							_sourceDirectory = _resourceManager.Tab13PartVSlidesFolder;
+							_sourceDirectory = _resourceManager.Tab11PartVSlidesFolder;
 							break;
 						case "w":
-							_sourceDirectory = _resourceManager.Tab13PartWSlidesFolder;
+							_sourceDirectory = _resourceManager.Tab11PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -212,10 +212,10 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							_sourceDirectory = _resourceManager.Tab12PartUSlidesFolder;
 							break;
 						case "v":
-							_sourceDirectory = _resourceManager.Tab14PartVSlidesFolder;
+							_sourceDirectory = _resourceManager.Tab12PartVSlidesFolder;
 							break;
 						case "w":
-							_sourceDirectory = _resourceManager.Tab14PartWSlidesFolder;
+							_sourceDirectory = _resourceManager.Tab12PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -228,10 +228,10 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							_sourceDirectory = _resourceManager.Tab13PartUSlidesFolder;
 							break;
 						case "v":
-							_sourceDirectory = _resourceManager.Tab15PartVSlidesFolder;
+							_sourceDirectory = _resourceManager.Tab13PartVSlidesFolder;
 							break;
 						case "w":
-							_sourceDirectory = _resourceManager.Tab15PartWSlidesFolder;
+							_sourceDirectory = _resourceManager.Tab13PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -244,10 +244,10 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							_sourceDirectory = _resourceManager.Tab14PartUSlidesFolder;
 							break;
 						case "v":
-							_sourceDirectory = _resourceManager.Tab11PartVSlidesFolder;
+							_sourceDirectory = _resourceManager.Tab14PartVSlidesFolder;
 							break;
 						case "w":
-							_sourceDirectory = _resourceManager.Tab11PartWSlidesFolder;
+							_sourceDirectory = _resourceManager.Tab14PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -260,10 +260,10 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							_sourceDirectory = _resourceManager.Tab15PartUSlidesFolder;
 							break;
 						case "v":
-							_sourceDirectory = _resourceManager.Tab9PartVSlidesFolder;
+							_sourceDirectory = _resourceManager.Tab15PartVSlidesFolder;
 							break;
 						case "w":
-							_sourceDirectory = _resourceManager.Tab9PartWSlidesFolder;
+							_sourceDirectory = _resourceManager.Tab15PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");

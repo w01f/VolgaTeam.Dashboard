@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Xml;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.StarApp.Enums;
@@ -17,19 +16,11 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Customer
 		public string SubHeader2Placeholder { get; private set; }
 		public string SubHeader3Placeholder { get; private set; }
 
+		public CustomerTabCInfo() : base(StarTopTabType.Customer) { }
+
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab4SubCRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab4SubCRightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab4SubCFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab4SubCFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab4SubCBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab4SubCBackgroundFile.LocalPath)
-				: null;
 
 			if (!resourceManager.DataCustomerPartCFile.ExistsLocal()) return;
 			var document = new XmlDocument();

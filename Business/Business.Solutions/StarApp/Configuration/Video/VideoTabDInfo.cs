@@ -10,13 +10,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Video
 	{
 		public override StarChildTabType TabType => StarChildTabType.D;
 
-		public Image Clipart1Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab8_D_Clipart1;
 
 		public string SubHeader1DefaultValue { get; private set; }
 		public string SubHeader1Placeholder { get; private set; }
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 
-		public VideoTabDInfo()
+		public VideoTabDInfo() : base(StarTopTabType.Video)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 		}
@@ -24,20 +24,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Video
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab8SubDRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab8SubDRightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab8SubDFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab8SubDFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab8SubDBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab8SubDBackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab8SubD1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab8SubD1File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataVideoPartDFile.ExistsLocal()) return;
 			var document = new XmlDocument();

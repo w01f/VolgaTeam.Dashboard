@@ -16,8 +16,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		{
 			InitializeComponent();
 			Text = SlideContainer.DashboardInfo.CleanslateTitle;
-			pictureEditHeader.Image = SlideContainer.DashboardInfo.CleanslateHeaderLogo;
-			pictureEditSplash.Image = SlideContainer.DashboardInfo.CleanslateSplashLogo;
+			pictureEditHeader.Image = SlideContainer.DashboardInfo.GraphicResources?.CleanslateHeaderLogo;
+			pictureEditSplash.Image = SlideContainer.DashboardInfo.GraphicResources?.CleanslateSplashLogo;
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControl.MaximumSize = RectangleHelper.ScaleSize(layoutControl.MaximumSize, scaleFactor);

@@ -9,7 +9,6 @@ namespace Asa.Business.Solutions.Shift.Configuration
 	public abstract class ShiftChildTabInfo : ShiftTabInfo
 	{
 		protected string _tabId;
-		protected ResourceManager _resourceManager;
 
 		public ShiftChildTabType TabType { get; }
 		public ShiftTopTabType TopTabType { get; }
@@ -1495,7 +1494,6 @@ namespace Asa.Business.Solutions.Shift.Configuration
 
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
-			_resourceManager = resourceManager;
 			base.LoadData(configNode, resourceManager);
 			_tabId = configNode.SelectSingleNode("./Type")?.InnerText?.ToLower();
 		}

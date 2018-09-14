@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using System.Xml;
 using Asa.Business.Solutions.Common.Configuration;
@@ -7,6 +6,7 @@ using Asa.Business.Solutions.Common.Dictionaries;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Dashboard.Dictionaries;
 using Asa.Common.Core.Objects.RemoteStorage;
+using Asa.Common.Resources.Solutions.Dashboard;
 
 namespace Asa.Business.Solutions.Dashboard.Configuration
 {
@@ -27,13 +27,7 @@ namespace Asa.Business.Solutions.Dashboard.Configuration
 		public string TargeCustomersTitle { get; private set; }
 		public string SimpleSummaryTitle { get; private set; }
 
-		public Image CleanslateHeaderLogo { get; private set; }
-		public Image CleanslateSplashLogo { get; private set; }
-		public Image CoverSplashLogo { get; private set; }
-		public Image LeadoffStatementSplashLogo { get; private set; }
-		public Image ClientGoalsSplashLogo { get; private set; }
-		public Image TargeCustomersSplashLogo { get; private set; }
-		public Image SimpleSummarySplashLogo { get; private set; }
+		public IDashboardGraphicResources GraphicResources => _resourceManager.GraphicResources;
 
 		public DashboardSolutionInfo()
 		{
@@ -85,6 +79,8 @@ namespace Asa.Business.Solutions.Dashboard.Configuration
 
 		public override void LoadContentData()
 		{
+			_resourceManager.LoadGraphicResources();
+
 			if (_contentLoaded) return;
 
 			UsersList.Load(_resourceManager.DataUsersFile);
@@ -94,29 +90,12 @@ namespace Asa.Business.Solutions.Dashboard.Configuration
 			TargetCustomersLists.LoadCombinedData(_resourceManager.DataTargetCustomersFile);
 			SimpleSummaryLists.Load(_resourceManager.DataSimpleSummaryFile);
 
-			CleanslateHeaderLogo = _resourceManager.LogoCleanslateHeaderFile.ExistsLocal()
-				? Image.FromFile(_resourceManager.LogoCleanslateHeaderFile.LocalPath)
-				: null;
-			CleanslateSplashLogo = _resourceManager.LogoCleanslateSplashFile.ExistsLocal()
-				? Image.FromFile(_resourceManager.LogoCleanslateSplashFile.LocalPath)
-				: null;
-			CoverSplashLogo = _resourceManager.LogoCoverSplashFile.ExistsLocal()
-				? Image.FromFile(_resourceManager.LogoCoverSplashFile.LocalPath)
-				: null;
-			LeadoffStatementSplashLogo = _resourceManager.LogoLeadoffStatementSplashFile.ExistsLocal()
-				? Image.FromFile(_resourceManager.LogoLeadoffStatementSplashFile.LocalPath)
-				: null;
-			ClientGoalsSplashLogo = _resourceManager.LogoClientGoalsSplashFile.ExistsLocal()
-				? Image.FromFile(_resourceManager.LogoClientGoalsSplashFile.LocalPath)
-				: null;
-			TargeCustomersSplashLogo = _resourceManager.LogoTargetCustomersSplashFile.ExistsLocal()
-				? Image.FromFile(_resourceManager.LogoTargetCustomersSplashFile.LocalPath)
-				: null;
-			SimpleSummarySplashLogo = _resourceManager.LogoSimpleSummarySplashFile.ExistsLocal()
-				? Image.FromFile(_resourceManager.LogoSimpleSummarySplashFile.LocalPath)
-				: null;
-
 			_contentLoaded = true;
+		}
+
+		public void ReleaseContentData()
+		{
+			_resourceManager.ReleaseGraphicResources();
 		}
 	}
 }

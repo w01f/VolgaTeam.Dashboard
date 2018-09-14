@@ -10,7 +10,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration.CNA
 	{
 		public override StarChildTabType TabType => StarChildTabType.A;
 
-		public Image Clipart1Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab2_A_Clipart1;
 
 		public string SubHeader1DefaultValue { get; private set; }
 		public string SubHeader2DefaultValue { get; private set; }
@@ -18,7 +18,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration.CNA
 		public string SubHeader2Placeholder { get; private set; }
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 
-		public CNATabAInfo()
+		public CNATabAInfo() : base(StarTopTabType.CNA)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 		}
@@ -26,20 +26,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration.CNA
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab2SubARightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab2SubARightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab2SubAFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab2SubAFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab2SubABackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab2SubABackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab2SubA1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab2SubA1File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataCNAPartAFile.ExistsLocal()) return;
 			var document = new XmlDocument();

@@ -10,13 +10,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Solution
 	{
 		public override StarChildTabType TabType => StarChildTabType.A;
 
-		public Image Clipart1Image { get; private set; }
-		
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab10_A_Clipart1;
+
 		public string SubHeader1DefaultValue { get; private set; }
 		public string SubHeader1Placeholder { get; private set; }
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 
-		public SolutionTabAInfo()
+		public SolutionTabAInfo() : base(StarTopTabType.Solution)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 		}
@@ -24,20 +24,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Solution
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab10SubARightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab10SubARightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab10SubAFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab10SubAFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab10SubABackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab10SubABackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab10SubA1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab10SubA1File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataSolutionPartAFile.ExistsLocal()) return;
 			var document = new XmlDocument();

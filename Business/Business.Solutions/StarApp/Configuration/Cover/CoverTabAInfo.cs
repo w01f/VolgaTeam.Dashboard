@@ -10,13 +10,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Cover
 	{
 		public override StarChildTabType TabType => StarChildTabType.A;
 
-		public Image Clipart1Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab1_A_Clipart1;
 
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 		public string SubHeader1DefaultValue { get; private set; }
 		public string SubHeader1Placeholder { get; private set; }
 
-		public CoverTabAInfo()
+		public CoverTabAInfo() : base(StarTopTabType.Cover)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 		}
@@ -24,20 +24,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Cover
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab1SubARightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab1SubARightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab1SubAFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab1SubAFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab1SubABackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab1SubABackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab1SubA1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab1SubA1File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataCoverPartAFile.ExistsLocal()) return;
 

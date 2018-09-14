@@ -349,8 +349,8 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		{
 			if (GraphicResources != null) return;
 			if (!_graphicResourcesFile.ExistsLocal()) return;
-			var assembly = Assembly.LoadFrom(_graphicResourcesFile.LocalPath);
-			GraphicResources = Activator.CreateInstance(assembly.GetType("Asa.Solutions.Shift.Resources.ResourceContainer")) as IShiftGraphicResources;
+			var assembly = Assembly.LoadFile(_graphicResourcesFile.LocalPath);
+			GraphicResources = assembly.CreateInstance("Asa.Solutions.Shift.Resources.ResourceContainer") as IShiftGraphicResources;
 		}
 
 		public void ReleaseGraphicResources()

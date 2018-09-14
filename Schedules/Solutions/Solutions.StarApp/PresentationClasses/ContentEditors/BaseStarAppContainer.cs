@@ -58,8 +58,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			InitializeComponent();
 		}
 
-		#region GUI Processing
+		public override void Release()
+		{
+			StarInfo.ReleaseContentData();
+		}
 
+		#region GUI Processing
 		public override void InitControl(bool showSplash)
 		{
 			if (showSplash)

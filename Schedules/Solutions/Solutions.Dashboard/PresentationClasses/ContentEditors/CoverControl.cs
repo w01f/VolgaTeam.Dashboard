@@ -44,7 +44,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			comboBoxEditSalesRep.Properties.Items.Clear();
 			comboBoxEditSalesRep.Properties.Items.AddRange(_users);
 
-			pictureEditSplash.Image = SlideContainer.DashboardInfo.CoverSplashLogo;
+			pictureEditSplash.Image = SlideContainer.DashboardInfo.GraphicResources?.CoverSplashLogo;
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControl.MaximumSize = RectangleHelper.ScaleSize(layoutControl.MaximumSize, scaleFactor);

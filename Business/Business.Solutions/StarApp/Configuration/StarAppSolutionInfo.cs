@@ -75,6 +75,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 
 		public override void LoadContentData()
 		{
+			_resourceManager.LoadGraphicResources();
+
 			if (_contentLoaded) return;
 
 			if (_resourceManager.SettingsFile.ExistsLocal())
@@ -138,6 +140,11 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 			TargetCustomersLists.LoadCombinedData(_resourceManager.DataTargetCustomersFile);
 
 			_contentLoaded = true;
+		}
+
+		public void ReleaseContentData()
+		{
+			_resourceManager.ReleaseGraphicResources();
 		}
 	}
 }

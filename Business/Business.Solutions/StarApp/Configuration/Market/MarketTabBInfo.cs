@@ -10,11 +10,11 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Market
 	{
 		public override StarChildTabType TabType => StarChildTabType.B;
 
-		public Image Clipart1Image { get; private set; }
-		public Image Clipart2Image { get; private set; }
-		public Image Clipart3Image { get; private set; }
-		public Image Clipart4Image { get; private set; }
-		public Image Clipart5Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab7_B_Clipart1;
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab7_B_Clipart2;
+		public Image Clipart3Image => _resourceManager.GraphicResources?.Tab7_B_Clipart3;
+		public Image Clipart4Image => _resourceManager.GraphicResources?.Tab7_B_Clipart4;
+		public Image Clipart5Image => _resourceManager.GraphicResources?.Tab7_B_Clipart5;
 
 		public string SubHeader1DefaultValue { get; private set; }
 		public string SubHeader2DefaultValue { get; private set; }
@@ -26,7 +26,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Market
 		public ClipartConfiguration Clipart4Configuration { get; private set; }
 		public ClipartConfiguration Clipart5Configuration { get; private set; }
 
-		public MarketTabBInfo()
+		public MarketTabBInfo() : base(StarTopTabType.Market)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -38,32 +38,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Market
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab7SubBRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab7SubBRightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab7SubBFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab7SubBFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab7SubBBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab7SubBBackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab7SubB1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab7SubB1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab7SubB2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab7SubB2File.LocalPath)
-				: null;
-			Clipart3Image = resourceManager.ClipartTab7SubB3File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab7SubB3File.LocalPath)
-				: null;
-			Clipart4Image = resourceManager.ClipartTab7SubB4File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab7SubB4File.LocalPath)
-				: null;
-			Clipart5Image = resourceManager.ClipartTab7SubB5File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab7SubB5File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataMarketPartBFile.ExistsLocal()) return;
 			var document = new XmlDocument();

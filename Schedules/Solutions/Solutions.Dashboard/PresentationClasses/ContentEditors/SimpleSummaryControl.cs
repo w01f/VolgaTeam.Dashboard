@@ -45,7 +45,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 				comboBoxEditSlideHeader.SelectedIndex = 0;
 
 			simpleSummaryItemContainer.ItemCollectionChanged += OnItemCollectionChanged;
-			pictureEditSplash.Image = SlideContainer.DashboardInfo.SimpleSummarySplashLogo;
+			pictureEditSplash.Image = SlideContainer.DashboardInfo.GraphicResources?.SimpleSummarySplashLogo;
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControl.MaximumSize = RectangleHelper.ScaleSize(layoutControl.MaximumSize, scaleFactor);

@@ -10,8 +10,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Customer
 	{
 		public override StarChildTabType TabType => StarChildTabType.B;
 
-		public Image Clipart1Image { get; private set; }
-		public Image Clipart2Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab4_B_Clipart1;
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab4_B_Clipart2;
 
 		public string SubHeader1DefaultValue { get; private set; }
 		public string SubHeader2DefaultValue { get; private set; }
@@ -20,7 +20,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Customer
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
 
-		public CustomerTabBInfo()
+		public CustomerTabBInfo() : base(StarTopTabType.Customer)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -29,23 +29,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Customer
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab4SubBRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab4SubBRightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab4SubBFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab4SubBFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab4SubBBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab4SubBBackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab4SubB1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab4SubB1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab4SubB2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab4SubB2File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataCustomerPartBFile.ExistsLocal()) return;
 			var document = new XmlDocument();

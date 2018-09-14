@@ -4,11 +4,11 @@ namespace Asa.Solutions.Shift.Resources
 {
 	public partial class ResourceContainer
 	{
-		public Image Tab14_A_Backgroound => null;
+		public Image Tab14_A_Backgroound => Resources.Tab14.A.Resource.Background;
 		public Image Tab14_A_RightLogo => Resources.Tab14.A.Resource.Right;
 		public Image Tab14_A_FooterLogo => Resources.Tab14.A.Resource.Footer;
 
-		public Image Tab14_B_Backgroound => null;
+		public Image Tab14_B_Backgroound => Resources.Tab14.B.Resource.Background;
 		public Image Tab14_B_RightLogo => Resources.Tab14.B.Resource.Right;
 		public Image Tab14_B_FooterLogo => Resources.Tab14.B.Resource.Footer;
 
@@ -36,14 +36,15 @@ namespace Asa.Solutions.Shift.Resources
 		public Image Tab14_J_Backgroound => null;
 		public Image Tab14_J_RightLogo => null;
 		public Image Tab14_J_FooterLogo => null;
-		public Image Tab14_U_Backgroound => null;
-		public Image Tab14_U_RightLogo => null;
-		public Image Tab14_U_FooterLogo => null;
-		public Image Tab14_V_Backgroound => null;
-		public Image Tab14_V_RightLogo => null;
-		public Image Tab14_V_FooterLogo => null;
-		public Image Tab14_W_Backgroound => null;
-		public Image Tab14_W_RightLogo => null;
-		public Image Tab14_W_FooterLogo => null;
+
+		public Image Tab14_U_Backgroound => Resources.Tab14.U.Resource.Background;
+		public Image Tab14_U_RightLogo => Resources.Tab14.U.Resource.Right;
+		public Image Tab14_U_FooterLogo => Resources.Tab14.U.Resource.Footer;
+		public Image Tab14_V_Backgroound => Resources.Tab14.V.Resource.Background;
+		public Image Tab14_V_RightLogo => Resources.Tab14.V.Resource.Right;
+		public Image Tab14_V_FooterLogo => Resources.Tab14.V.Resource.Footer;
+		public Image Tab14_W_Backgroound => Resources.Tab14.W.Resource.Background;
+		public Image Tab14_W_RightLogo => Resources.Tab14.W.Resource.Right;
+		public Image Tab14_W_FooterLogo => Resources.Tab14.W.Resource.Footer;
 	}
 }

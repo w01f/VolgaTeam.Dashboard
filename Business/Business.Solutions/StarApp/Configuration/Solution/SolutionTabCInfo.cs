@@ -10,8 +10,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Solution
 	{
 		public override StarChildTabType TabType => StarChildTabType.C;
 
-		public Image Clipart1Image { get; private set; }
-		public Image Clipart2Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab10_C_Clipart1;
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab10_C_Clipart2;
 
 		public string SubHeader1DefaultValue { get; private set; }
 		public string SubHeader2DefaultValue { get; private set; }
@@ -20,7 +20,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Solution
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
 
-		public SolutionTabCInfo()
+		public SolutionTabCInfo() : base(StarTopTabType.Solution)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -29,23 +29,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Solution
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab10SubCRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab10SubCRightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab10SubCFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab10SubCFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab10SubCBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab10SubCBackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab10SubC1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab10SubC1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab10SubC2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab10SubC2File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataSolutionPartCFile.ExistsLocal()) return;
 			var document = new XmlDocument();

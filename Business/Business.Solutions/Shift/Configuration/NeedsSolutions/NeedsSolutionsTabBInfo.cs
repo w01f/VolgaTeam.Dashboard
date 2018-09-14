@@ -33,7 +33,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.NeedsSolutions
 		public TextEditorConfiguration SubHeader3Configuration { get; set; }
 		public TextEditorConfiguration SubHeader4Configuration { get; set; }
 
-		public NeedsSolutionsTabBInfo() : base(ShiftChildTabType.B, ShiftTopTabType.IntegratedSolution)
+		public NeedsSolutionsTabBInfo() : base(ShiftChildTabType.B, ShiftTopTabType.NeedsSolutions)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();

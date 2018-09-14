@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.Xml;
 using Asa.Business.Solutions.StarApp.Enums;
 
 namespace Asa.Business.Solutions.StarApp.Configuration.Cleanslate
@@ -8,23 +7,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Cleanslate
 	{
 		public override StarTopTabType TabType => StarTopTabType.Cleanslate;
 
-		public Image HeaderLogo { get; private set; }
-		public Image SplashLogo { get; private set; }
-		public Image BackgroundLogo { get; private set; }
-
-		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
-		{
-			base.LoadData(configNode, resourceManager);
-
-			HeaderLogo = resourceManager.LogoCleanslateHeaderFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoCleanslateHeaderFile.LocalPath)
-				: null;
-			SplashLogo = resourceManager.LogoCleanslateSplashFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoCleanslateSplashFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoCleanslateBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoCleanslateBackgroundFile.LocalPath)
-				: null;
-		}
+		public Image HeaderLogo => _resourceManager.GraphicResources?.MainHeader;
+		public Image SplashLogo => _resourceManager.GraphicResources?.MainSplash;
+		public Image BackgroundLogo => _resourceManager.GraphicResources?.MainBackground;
 	}
 }

@@ -37,7 +37,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.DashboardInfo.LeadoffStatementLists.Headers.Select(item => item.Value).ToArray());
 
-			pictureEditSplash.Image = SlideContainer.DashboardInfo.LeadoffStatementSplashLogo;
+			pictureEditSplash.Image = SlideContainer.DashboardInfo.GraphicResources?.LeadoffStatementSplashLogo;
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControl.MaximumSize = RectangleHelper.ScaleSize(layoutControl.MaximumSize, scaleFactor);

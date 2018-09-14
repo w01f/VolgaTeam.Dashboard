@@ -10,13 +10,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Fishing
 	{
 		public override StarChildTabType TabType => StarChildTabType.B;
 
-		public Image Clipart1Image { get; private set; }
-		public Image Clipart2Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab3_B_Clipart1;
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab3_B_Clipart2;
 
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
 
-		public FishingTabBInfo()
+		public FishingTabBInfo() : base(StarTopTabType.Fishing)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -25,23 +25,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Fishing
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab3SubBRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab3SubBRightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab3SubBFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab3SubBFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab3SubBBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab3SubBBackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab3SubB1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab3SubB1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab3SubB2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab3SubB2File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataFishingPartBFile.ExistsLocal()) return;
 			var document = new XmlDocument();

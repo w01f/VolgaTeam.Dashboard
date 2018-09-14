@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Xml;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.StarApp.Enums;
@@ -17,19 +16,11 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Fishing
 		public string SubHeader2Placeholder { get; private set; }
 		public string SubHeader3Placeholder { get; private set; }
 
+		public FishingTabCInfo() : base(StarTopTabType.Fishing) { }
+
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab3SubCRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab3SubCRightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab3SubCFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab3SubCFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab3SubCBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab3SubCBackgroundFile.LocalPath)
-				: null;
 
 			if (!resourceManager.DataFishingPartCFile.ExistsLocal()) return;
 			var document = new XmlDocument();

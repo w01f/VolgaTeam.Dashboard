@@ -16,7 +16,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.NeedsSolutions
 
 		public List<NeedsItemInfo> NeedsList { get; }
 
-		public NeedsSolutionsTabAInfo() : base(ShiftChildTabType.A, ShiftTopTabType.IntegratedSolution)
+		public NeedsSolutionsTabAInfo() : base(ShiftChildTabType.A, ShiftTopTabType.NeedsSolutions)
 		{
 			TabSelector = TabSelectorConfiguration.Empty();
 			Combo1Items = new List<ListDataItem>();

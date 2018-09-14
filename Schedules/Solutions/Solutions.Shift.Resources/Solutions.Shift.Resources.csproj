@@ -94,6 +94,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tab10\V\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab10\W\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tab11\A\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -119,6 +129,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tab11\U\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab11\V\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab11\W\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tab12\A\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -129,7 +154,37 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tab12\U\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab12\V\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab12\W\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tab13\A\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab13\U\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab13\V\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab13\W\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
@@ -140,6 +195,21 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Tab14\B\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab14\U\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab14\V\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab14\W\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
@@ -160,6 +230,21 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Tab15\D\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab15\U\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab15\V\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab15\W\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
@@ -194,6 +279,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tab1\V\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab1\W\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tab2\A\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -215,6 +310,16 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Tab2\U\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab2\V\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab2\W\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
@@ -249,6 +354,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tab3\V\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab3\W\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tab4\A\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -270,6 +385,16 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Tab4\U\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab4\V\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab4\W\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
@@ -304,6 +429,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tab5\V\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab5\W\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tab6\A\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -325,6 +460,16 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Tab6\U\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab6\V\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab6\W\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
@@ -374,6 +519,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tab7\W\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tab8\A\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -409,6 +559,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tab8\V\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab8\W\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tab9\A\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -429,6 +589,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tab9\U\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab9\V\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab9\W\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Common.Resources\Common.Resources.csproj">
@@ -436,7 +611,9 @@
       <Name>Common.Resources</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Tab9\B\Clipart1.png" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Main\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -466,6 +643,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab10\V\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab10\W\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tab11\A\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
@@ -486,6 +671,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab11\U\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab11\V\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab11\W\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tab12\A\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
@@ -494,7 +691,31 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab12\U\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab12\V\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab12\W\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tab13\A\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab13\U\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab13\V\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab13\W\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -503,6 +724,18 @@
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tab14\B\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab14\U\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab14\V\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab14\W\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -519,6 +752,18 @@
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tab15\D\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab15\U\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab15\V\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab15\W\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -546,6 +791,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab1\V\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab1\W\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tab2\A\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
@@ -563,6 +816,14 @@
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tab2\U\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab2\V\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab2\W\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -590,6 +851,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab3\V\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab3\W\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tab4\A\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
@@ -607,6 +876,14 @@
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tab4\U\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab4\V\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab4\W\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -634,6 +911,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab5\V\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab5\W\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tab6\A\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
@@ -651,6 +936,14 @@
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tab6\U\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab6\V\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab6\W\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -690,6 +983,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab7\W\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tab8\A\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
@@ -718,6 +1015,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab8\V\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab8\W\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tab9\A\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
@@ -731,6 +1036,18 @@
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tab9\C\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab9\U\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab9\V\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab9\W\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -1526,6 +1843,450 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Tab7\Common\ListWipe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab9\B\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab9\B\Clipart3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab9\W\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab1\U\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab1\V\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab1\V\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab1\V\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab1\W\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab1\W\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab1\W\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab10\A\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab10\B\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab10\C\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab10\D\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab10\E\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab10\U\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab10\V\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab10\V\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab10\V\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab10\W\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab10\W\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab10\W\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab11\A\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab11\B\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab11\C\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab11\D\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab11\E\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab11\U\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab11\U\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab11\U\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab11\V\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab11\V\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab11\V\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab11\W\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab11\W\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab11\W\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\A\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\B\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\U\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\U\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\U\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\V\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\V\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\V\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\W\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\W\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\W\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab13\A\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab13\U\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab13\U\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab13\U\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab13\V\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab13\V\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab13\V\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab13\W\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab13\W\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab13\W\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\A\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\B\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\U\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\U\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\U\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\V\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\V\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\V\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\W\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\W\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\W\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\A\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\B\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\C\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\D\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\U\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\U\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\U\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\V\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\V\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\V\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\W\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\W\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\W\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab2\U\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab2\V\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab2\V\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab2\V\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab2\W\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab2\W\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab2\W\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab3\U\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab3\V\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab3\V\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab3\V\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab3\W\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab3\W\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab3\W\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab4\U\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab4\V\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab4\V\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab4\V\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab4\W\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab4\W\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab4\W\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab5\U\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab5\V\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab5\V\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab5\V\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab5\W\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab5\W\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab5\W\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab6\U\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab6\V\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab6\V\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab6\V\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab6\W\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab6\W\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab6\W\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab7\A\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab7\C\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab7\E\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab7\F\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab7\U\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab7\V\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab7\W\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab7\W\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab7\W\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab8\A\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab8\B\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab8\C\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab8\D\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab8\E\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab8\U\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab8\V\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab8\V\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab8\V\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab8\W\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab8\W\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab8\W\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab9\A\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab9\B\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab9\C\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab9\U\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab9\U\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab9\U\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab9\V\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab9\V\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab9\V\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab9\W\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab9\W\Right.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

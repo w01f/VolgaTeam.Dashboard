@@ -10,15 +10,15 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Closers
 	{
 		public override StarChildTabType TabType => StarChildTabType.A;
 
-		public Image Clipart1Image { get; private set; }
-		public Image Clipart2Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab11_A_Clipart1;
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab11_A_Clipart2;
 
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
 		public string SubHeader1DefaultValue { get; private set; }
 		public string SubHeader1Placeholder { get; private set; }
 
-		public ClosersTabAInfo()
+		public ClosersTabAInfo() : base(StarTopTabType.Closers)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -27,23 +27,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Closers
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab11SubARightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab11SubARightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab11SubAFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab11SubAFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab11SubABackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab11SubABackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab11SubA1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab11SubA1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab11SubA2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab11SubA2File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataClosersPartAFile.ExistsLocal()) return;
 			var document = new XmlDocument();

@@ -10,8 +10,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Closers
 	{
 		public override StarChildTabType TabType => StarChildTabType.C;
 
-		public Image Clipart1Image { get; private set; }
-		public Image Clipart2Image { get; private set; }
+		public Image Clipart1Image => _resourceManager.GraphicResources?.Tab11_C_Clipart1;
+		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab11_C_Clipart2;
 
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
@@ -20,7 +20,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Closers
 		public string SubHeader1Placeholder { get; private set; }
 		public string SubHeader2Placeholder { get; private set; }
 
-		public ClosersTabCInfo()
+		public ClosersTabCInfo() : base(StarTopTabType.Closers)
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
@@ -29,23 +29,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration.Closers
 		public override void LoadData(XmlNode configNode, ResourceManager resourceManager)
 		{
 			base.LoadData(configNode, resourceManager);
-
-			RightLogo = resourceManager.LogoTab11SubCRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab11SubCRightFile.LocalPath)
-				: null;
-			FooterLogo = resourceManager.LogoTab11SubCFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab11SubCFooterFile.LocalPath)
-				: null;
-			BackgroundLogo = resourceManager.LogoTab11SubCBackgroundFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab11SubCBackgroundFile.LocalPath)
-				: null;
-
-			Clipart1Image = resourceManager.ClipartTab11SubC1File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab11SubC1File.LocalPath)
-				: null;
-			Clipart2Image = resourceManager.ClipartTab11SubC2File.ExistsLocal()
-				? Image.FromFile(resourceManager.ClipartTab11SubC2File.LocalPath)
-				: null;
 
 			if (!resourceManager.DataClosersPartCFile.ExistsLocal()) return;
 			var document = new XmlDocument();

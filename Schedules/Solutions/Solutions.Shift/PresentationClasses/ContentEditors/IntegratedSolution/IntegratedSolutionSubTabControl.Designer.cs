@@ -28,10 +28,12 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.layoutControlItemTabControl = new DevExpress.XtraLayout.LayoutControlItem();
-			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemClone = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
@@ -119,6 +121,7 @@
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.Size = new System.Drawing.Size(937, 574);
 			this.xtraTabControl.TabIndex = 30;
+			this.xtraTabControl.ToolTipController = this.toolTipController;
 			this.xtraTabControl.UseMnemonic = false;
 			// 
 			// layoutControlItemTabControl
@@ -139,16 +142,20 @@
 			this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemClone});
 			this.contextMenuStrip.Name = "contextMenuStripSnapshot";
-			this.contextMenuStrip.Size = new System.Drawing.Size(181, 48);
+			this.contextMenuStrip.Size = new System.Drawing.Size(106, 26);
 			// 
 			// toolStripMenuItemClone
 			// 
 			this.toolStripMenuItemClone.Name = "toolStripMenuItemClone";
-			this.toolStripMenuItemClone.Size = new System.Drawing.Size(180, 22);
+			this.toolStripMenuItemClone.Size = new System.Drawing.Size(105, 22);
 			this.toolStripMenuItemClone.Text = "Clone";
 			this.toolStripMenuItemClone.Click += new System.EventHandler(this.OnMenuItemCloneClick);
 			// 
-			// IntegratedSolutionTabAControl
+			// toolTipController
+			// 
+			this.toolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.OnToolTipControllerGetActiveObjectInfo);
+			// 
+			// IntegratedSolutionSubTabControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.Name = "IntegratedSolutionSubTabControl";
@@ -170,5 +177,6 @@
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabControl;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemClone;
+		private DevExpress.Utils.ToolTipController toolTipController;
 	}
 }

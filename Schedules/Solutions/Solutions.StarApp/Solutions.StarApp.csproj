@@ -337,6 +337,12 @@
     <Compile Include="PresentationClasses\ContentEditors\StarAppControl.Designer.cs">
       <DependentUpon>StarAppControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\TilesTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\TilesTabControl.Designer.cs">
+      <DependentUpon>TilesTabControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\Video\VideoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -489,6 +495,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\StarAppControl.resx">
       <DependentUpon>StarAppControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\TilesTabControl.resx">
+      <DependentUpon>TilesTabControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Video\VideoTabDControl.resx">
       <DependentUpon>VideoTabDControl.cs</DependentUpon>

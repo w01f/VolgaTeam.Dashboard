@@ -28,6 +28,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab1_V_Right;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab1_W_Right;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab1_X_Right;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab1_Y_Right;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab1_Z_Right;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -44,6 +50,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab2_V_Right;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab2_W_Right;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab2_X_Right;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab2_Y_Right;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab2_Z_Right;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -62,6 +74,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab3_V_Right;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab3_W_Right;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab3_X_Right;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab3_Y_Right;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab3_Z_Right;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -80,6 +98,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab4_V_Right;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab4_W_Right;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab4_X_Right;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab4_Y_Right;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab4_Z_Right;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -102,6 +126,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab5_V_Right;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab5_W_Right;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab5_X_Right;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab5_Y_Right;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab5_Z_Right;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -122,6 +152,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab6_V_Right;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab6_W_Right;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab6_X_Right;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab6_Y_Right;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab6_Z_Right;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -140,6 +176,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab7_V_Right;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab7_W_Right;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab7_X_Right;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab7_Y_Right;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab7_Z_Right;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -160,6 +202,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab8_V_Right;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab8_W_Right;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab8_X_Right;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab8_Y_Right;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab8_Z_Right;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -178,6 +226,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab9_V_Right;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab9_W_Right;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab8_X_Right;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab8_Y_Right;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab8_Z_Right;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -198,6 +252,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab10_V_Right;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab10_W_Right;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab10_X_Right;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab10_Y_Right;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab10_Z_Right;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -216,6 +276,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab11_V_Right;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab11_W_Right;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab11_X_Right;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab11_Y_Right;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab11_Z_Right;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -242,6 +308,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab1_V_Footer;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab1_W_Footer;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab1_X_Footer;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab1_Y_Footer;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab1_Z_Footer;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -258,6 +330,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab2_V_Footer;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab2_W_Footer;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab2_X_Footer;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab2_Y_Footer;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab2_Z_Footer;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -276,6 +354,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab3_V_Footer;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab3_W_Footer;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab3_X_Footer;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab3_Y_Footer;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab3_Z_Footer;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -294,6 +378,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab4_V_Footer;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab4_W_Footer;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab4_X_Footer;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab4_Y_Footer;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab4_Z_Footer;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -316,6 +406,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab5_V_Footer;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab5_W_Footer;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab5_X_Footer;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab5_Y_Footer;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab5_Z_Footer;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -336,6 +432,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab6_V_Footer;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab6_W_Footer;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab6_X_Footer;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab6_Y_Footer;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab6_Z_Footer;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -354,6 +456,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab7_V_Footer;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab7_W_Footer;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab7_X_Footer;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab7_Y_Footer;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab7_Z_Footer;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -374,6 +482,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab8_V_Footer;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab8_W_Footer;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab8_X_Footer;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab8_Y_Footer;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab8_Z_Footer;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -392,6 +506,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab9_V_Footer;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab9_W_Footer;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab8_X_Footer;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab8_Y_Footer;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab8_Z_Footer;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -412,6 +532,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab10_V_Footer;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab10_W_Footer;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab10_X_Footer;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab10_Y_Footer;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab10_Z_Footer;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -430,6 +556,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab11_V_Footer;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab11_W_Footer;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab11_X_Footer;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab11_Y_Footer;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab11_Z_Footer;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -456,6 +588,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab1_V_Background;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab1_W_Background;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab1_X_Background;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab1_Y_Background;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab1_Z_Background;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -472,6 +610,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab2_V_Background;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab2_W_Background;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab2_X_Background;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab2_Y_Background;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab2_Z_Background;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -490,6 +634,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab3_V_Background;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab3_W_Background;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab3_X_Background;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab3_Y_Background;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab3_Z_Background;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -508,6 +658,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab4_V_Background;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab4_W_Background;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab4_X_Background;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab4_Y_Background;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab4_Z_Background;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -530,6 +686,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab5_V_Background;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab5_W_Background;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab5_X_Background;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab5_Y_Background;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab5_Z_Background;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -550,6 +712,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab6_V_Background;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab6_W_Background;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab6_X_Background;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab6_Y_Background;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab6_Z_Background;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -568,6 +736,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab7_V_Background;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab7_W_Background;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab7_X_Background;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab7_Y_Background;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab7_Z_Background;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -588,6 +762,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab8_V_Background;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab8_W_Background;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab8_X_Background;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab8_Y_Background;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab8_Z_Background;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -606,6 +786,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab9_V_Background;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab9_W_Background;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab8_X_Background;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab8_Y_Background;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab8_Z_Background;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -626,6 +812,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab10_V_Background;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab10_W_Background;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab10_X_Background;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab10_Y_Background;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab10_Z_Background;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}
@@ -644,6 +836,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								return _resourceManager.GraphicResources?.Tab11_V_Background;
 							case StarChildTabType.W:
 								return _resourceManager.GraphicResources?.Tab11_W_Background;
+							case StarChildTabType.X:
+								return _resourceManager.GraphicResources?.Tab11_X_Background;
+							case StarChildTabType.Y:
+								return _resourceManager.GraphicResources?.Tab11_Y_Background;
+							case StarChildTabType.Z:
+								return _resourceManager.GraphicResources?.Tab11_Z_Background;
 							default:
 								throw new ArgumentOutOfRangeException("Star tab type is not defined");
 						}

@@ -34,6 +34,15 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					case "w":
 						childTabInfo = new SlidesChildTabInfo(ShiftChildTabType.W, TabType);
 						break;
+					case "x":
+						childTabInfo = new TilesChildTabInfo(ShiftChildTabType.X, TabType);
+						break;
+					case "y":
+						childTabInfo = new TilesChildTabInfo(ShiftChildTabType.Y, TabType);
+						break;
+					case "z":
+						childTabInfo = new TilesChildTabInfo(ShiftChildTabType.Z, TabType);
+						break;
 					default:
 						childTabInfo = CreatChildTab(tabId);
 						break;

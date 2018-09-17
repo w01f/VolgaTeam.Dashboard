@@ -34,6 +34,15 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					case "w":
 						childTabInfo = new SlidesChildTabInfo(TabType, StarChildTabType.W);
 						break;
+					case "x":
+						childTabInfo = new TilesChildTabInfo(TabType, StarChildTabType.X);
+						break;
+					case "y":
+						childTabInfo = new TilesChildTabInfo(TabType, StarChildTabType.Y);
+						break;
+					case "z":
+						childTabInfo = new TilesChildTabInfo(TabType, StarChildTabType.Z);
+						break;
 					default:
 						childTabInfo = CreatChildTab(tabId);
 						break;

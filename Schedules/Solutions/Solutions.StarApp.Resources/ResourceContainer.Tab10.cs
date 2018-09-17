@@ -36,5 +36,15 @@ namespace Asa.Solutions.StarApp.Resources
 		public Image Tab10_W_Right => Resources.Tab10.W.Resource.Right;
 		public Image Tab10_W_Footer => Resources.Tab10.W.Resource.Footer;
 		public Image Tab10_W_Background => Resources.Tab10.W.Resource.Background;
+
+		public Image Tab10_X_Right => Resources.Tab10.X.Resource.Right;
+		public Image Tab10_X_Footer => Resources.Tab10.X.Resource.Footer;
+		public Image Tab10_X_Background => Resources.Tab10.X.Resource.Background;
+		public Image Tab10_Y_Right => Resources.Tab10.Y.Resource.Right;
+		public Image Tab10_Y_Footer => Resources.Tab10.Y.Resource.Footer;
+		public Image Tab10_Y_Background => Resources.Tab10.Y.Resource.Background;
+		public Image Tab10_Z_Right => Resources.Tab10.Z.Resource.Right;
+		public Image Tab10_Z_Footer => Resources.Tab10.Z.Resource.Footer;
+		public Image Tab10_Z_Background => Resources.Tab10.Z.Resource.Background;
 	}
 }

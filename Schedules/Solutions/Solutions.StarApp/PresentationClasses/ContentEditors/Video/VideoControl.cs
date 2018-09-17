@@ -39,6 +39,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.Video
 					case StarChildTabType.W:
 						tabPages.Add(new ChildTabPageContainerControl<SlidesTabControl>(this, tabInfo));
 						break;
+					case StarChildTabType.X:
+					case StarChildTabType.Y:
+					case StarChildTabType.Z:
+						tabPages.Add(new ChildTabPageContainerControl<TilesTabControl>(this, tabInfo));
+						break;
 					default:
 						throw new ArgumentOutOfRangeException("Star tab type is not defined");
 				}

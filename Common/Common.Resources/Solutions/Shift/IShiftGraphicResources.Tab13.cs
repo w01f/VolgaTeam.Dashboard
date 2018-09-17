@@ -55,5 +55,17 @@ namespace Asa.Common.Resources.Solutions.Shift
 		Image Tab13_W_Backgroound { get; }
 		Image Tab13_W_RightLogo { get; }
 		Image Tab13_W_FooterLogo { get; }
+
+		Image Tab13_X_Backgroound { get; }
+		Image Tab13_X_RightLogo { get; }
+		Image Tab13_X_FooterLogo { get; }
+
+		Image Tab13_Y_Backgroound { get; }
+		Image Tab13_Y_RightLogo { get; }
+		Image Tab13_Y_FooterLogo { get; }
+
+		Image Tab13_Z_Backgroound { get; }
+		Image Tab13_Z_RightLogo { get; }
+		Image Tab13_Z_FooterLogo { get; }
 	}
 }

@@ -19,6 +19,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 		private const int ColumnsCount = 3;
 
 		private bool _allowToSave;
+		private Int32 _maxCheckedItems;
 
 		public event EventHandler<ItemChangedEventArgs> ItemStateChanged;
 
@@ -29,6 +30,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 
 		public void Init(IList<NeedsItemInfo> itemInfoList, int maxCheckedItems)
 		{
+			_maxCheckedItems = maxCheckedItems;
 			ItemStateChanged = null;
 			if (!itemInfoList.Any()) return;
 			xtraScrollableControl.Controls.Clear();
@@ -57,12 +59,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 						var alreadyCheckedButtonsCount = xtraScrollableControl.Controls
 							.OfType<ItemButton>()
 							.Count(itemButton => itemButton.Checked);
-						if (alreadyCheckedButtonsCount < maxCheckedItems)
+						if (alreadyCheckedButtonsCount < _maxCheckedItems)
 							clickedButton.Checked = true;
 						else
 						{
 							var maxCheckedItemsWord = String.Empty;
-							switch (maxCheckedItems)
+							switch (_maxCheckedItems)
 							{
 								case 1:
 									maxCheckedItemsWord = "one";
@@ -96,7 +98,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 									break;
 
 							}
-							PopupMessageHelper.Instance.ShowWarning(String.Format("Only {0} ({1}) items are allowed.{2}{2}If you want to add another item, first remove one…", maxCheckedItems, maxCheckedItemsWord, Environment.NewLine));
+							PopupMessageHelper.Instance.ShowWarning(String.Format("Only {0} ({1}) items are allowed.{2}{2}If you want to add another item, first remove one…", _maxCheckedItems, maxCheckedItemsWord, Environment.NewLine));
 						}
 					}
 				};
@@ -110,6 +112,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 							Checked = clickedButton.Checked,
 							ItemInfo = clickedButton.ItemInfo
 						});
+
+					UpdateButtonsTooltips();
 				};
 				xtraScrollableControl.Controls.Add(button);
 
@@ -136,7 +140,27 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 				itemButton.Checked = itemState != null;
 			}
 
+			UpdateButtonsTooltips();
+
 			_allowToSave = true;
+		}
+
+		private void UpdateButtonsTooltips()
+		{
+			var buttons = xtraScrollableControl.Controls.OfType<ItemButton>().ToList();
+			if (buttons.Count(button => button.Checked) < _maxCheckedItems)
+			{
+				buttons
+					.Where(button => !button.Checked)
+					.ToList()
+					.ForEach(button => button.Tooltip = "Add this one");
+				buttons
+					.Where(button => button.Checked)
+					.ToList()
+					.ForEach(button => button.Tooltip = "");
+			}
+			else
+				buttons.ForEach(button => button.Tooltip = "");
 		}
 
 		private void ResizeButtons()

@@ -61,5 +61,15 @@ namespace Asa.Solutions.Shift.Resources
 		public Image Tab7_W_Backgroound => Resources.Tab7.W.Resource.Background;
 		public Image Tab7_W_RightLogo => Resources.Tab7.W.Resource.Right;
 		public Image Tab7_W_FooterLogo => Resources.Tab7.W.Resource.Footer;
+
+		public Image Tab7_X_Backgroound => Resources.Tab7.X.Resource.Background;
+		public Image Tab7_X_RightLogo => Resources.Tab7.X.Resource.Right;
+		public Image Tab7_X_FooterLogo => Resources.Tab7.X.Resource.Footer;
+		public Image Tab7_Y_Backgroound => Resources.Tab7.Y.Resource.Background;
+		public Image Tab7_Y_RightLogo => Resources.Tab7.Y.Resource.Right;
+		public Image Tab7_Y_FooterLogo => Resources.Tab7.Y.Resource.Footer;
+		public Image Tab7_Z_Backgroound => Resources.Tab7.Z.Resource.Background;
+		public Image Tab7_Z_RightLogo => Resources.Tab7.Z.Resource.Right;
+		public Image Tab7_Z_FooterLogo => Resources.Tab7.Z.Resource.Footer;
 	}
 }

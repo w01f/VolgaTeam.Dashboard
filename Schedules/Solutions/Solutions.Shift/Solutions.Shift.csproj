@@ -636,6 +636,12 @@
     <Compile Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabAControl.Designer.cs">
       <DependentUpon>PartnershipTabAControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\TilesTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\TilesTabControl.Designer.cs">
+      <DependentUpon>TilesTabControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\SlidesTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -896,6 +902,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabAControl.resx">
       <DependentUpon>PartnershipTabAControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\TilesTabControl.resx">
+      <DependentUpon>TilesTabControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\SlidesTabControl.resx">
       <DependentUpon>SlidesTabControl.cs</DependentUpon>

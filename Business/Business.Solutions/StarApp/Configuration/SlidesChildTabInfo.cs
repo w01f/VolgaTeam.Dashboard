@@ -9,6 +9,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 {
 	public class SlidesChildTabInfo : StarChildTabInfo
 	{
+		private StorageDirectory _sourceDirectory;
 		public override StarChildTabType TabType { get; }
 
 		public SolutionSlideManager Slides { get; }
@@ -28,20 +29,19 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 			var thumbnailHeight = Int32.Parse(configNode.SelectSingleNode("./ThumbnailSize/Height")?.InnerText ?? "0");
 			Slides.InitThumbnailSize(new Size(thumbnailWidth, thumbnailHeight));
 
-			StorageDirectory sourceDirectory;
 			switch (TopTabType)
 			{
 				case StarTopTabType.Cover:
 					switch (TabType)
 					{
 						case StarChildTabType.U:
-							sourceDirectory = resourceManager.Tab1PartUSlidesFolder;
+							_sourceDirectory = resourceManager.Tab1PartUSlidesFolder;
 							break;
 						case StarChildTabType.V:
-							sourceDirectory = resourceManager.Tab1PartVSlidesFolder;
+							_sourceDirectory = resourceManager.Tab1PartVSlidesFolder;
 							break;
 						case StarChildTabType.W:
-							sourceDirectory = resourceManager.Tab1PartWSlidesFolder;
+							_sourceDirectory = resourceManager.Tab1PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -51,13 +51,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.U:
-							sourceDirectory = resourceManager.Tab2PartUSlidesFolder;
+							_sourceDirectory = resourceManager.Tab2PartUSlidesFolder;
 							break;
 						case StarChildTabType.V:
-							sourceDirectory = resourceManager.Tab2PartVSlidesFolder;
+							_sourceDirectory = resourceManager.Tab2PartVSlidesFolder;
 							break;
 						case StarChildTabType.W:
-							sourceDirectory = resourceManager.Tab2PartWSlidesFolder;
+							_sourceDirectory = resourceManager.Tab2PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -67,13 +67,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.U:
-							sourceDirectory = resourceManager.Tab3PartUSlidesFolder;
+							_sourceDirectory = resourceManager.Tab3PartUSlidesFolder;
 							break;
 						case StarChildTabType.V:
-							sourceDirectory = resourceManager.Tab3PartVSlidesFolder;
+							_sourceDirectory = resourceManager.Tab3PartVSlidesFolder;
 							break;
 						case StarChildTabType.W:
-							sourceDirectory = resourceManager.Tab3PartWSlidesFolder;
+							_sourceDirectory = resourceManager.Tab3PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -83,13 +83,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.U:
-							sourceDirectory = resourceManager.Tab4PartUSlidesFolder;
+							_sourceDirectory = resourceManager.Tab4PartUSlidesFolder;
 							break;
 						case StarChildTabType.V:
-							sourceDirectory = resourceManager.Tab4PartVSlidesFolder;
+							_sourceDirectory = resourceManager.Tab4PartVSlidesFolder;
 							break;
 						case StarChildTabType.W:
-							sourceDirectory = resourceManager.Tab4PartWSlidesFolder;
+							_sourceDirectory = resourceManager.Tab4PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -99,13 +99,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.U:
-							sourceDirectory = resourceManager.Tab5PartUSlidesFolder;
+							_sourceDirectory = resourceManager.Tab5PartUSlidesFolder;
 							break;
 						case StarChildTabType.V:
-							sourceDirectory = resourceManager.Tab5PartVSlidesFolder;
+							_sourceDirectory = resourceManager.Tab5PartVSlidesFolder;
 							break;
 						case StarChildTabType.W:
-							sourceDirectory = resourceManager.Tab5PartWSlidesFolder;
+							_sourceDirectory = resourceManager.Tab5PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -115,13 +115,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.U:
-							sourceDirectory = resourceManager.Tab6PartUSlidesFolder;
+							_sourceDirectory = resourceManager.Tab6PartUSlidesFolder;
 							break;
 						case StarChildTabType.V:
-							sourceDirectory = resourceManager.Tab6PartVSlidesFolder;
+							_sourceDirectory = resourceManager.Tab6PartVSlidesFolder;
 							break;
 						case StarChildTabType.W:
-							sourceDirectory = resourceManager.Tab6PartWSlidesFolder;
+							_sourceDirectory = resourceManager.Tab6PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -131,13 +131,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.U:
-							sourceDirectory = resourceManager.Tab7PartUSlidesFolder;
+							_sourceDirectory = resourceManager.Tab7PartUSlidesFolder;
 							break;
 						case StarChildTabType.V:
-							sourceDirectory = resourceManager.Tab7PartVSlidesFolder;
+							_sourceDirectory = resourceManager.Tab7PartVSlidesFolder;
 							break;
 						case StarChildTabType.W:
-							sourceDirectory = resourceManager.Tab7PartWSlidesFolder;
+							_sourceDirectory = resourceManager.Tab7PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -147,13 +147,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.U:
-							sourceDirectory = resourceManager.Tab8PartUSlidesFolder;
+							_sourceDirectory = resourceManager.Tab8PartUSlidesFolder;
 							break;
 						case StarChildTabType.V:
-							sourceDirectory = resourceManager.Tab8PartVSlidesFolder;
+							_sourceDirectory = resourceManager.Tab8PartVSlidesFolder;
 							break;
 						case StarChildTabType.W:
-							sourceDirectory = resourceManager.Tab8PartWSlidesFolder;
+							_sourceDirectory = resourceManager.Tab8PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -163,13 +163,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.U:
-							sourceDirectory = resourceManager.Tab9PartUSlidesFolder;
+							_sourceDirectory = resourceManager.Tab9PartUSlidesFolder;
 							break;
 						case StarChildTabType.V:
-							sourceDirectory = resourceManager.Tab9PartVSlidesFolder;
+							_sourceDirectory = resourceManager.Tab9PartVSlidesFolder;
 							break;
 						case StarChildTabType.W:
-							sourceDirectory = resourceManager.Tab9PartWSlidesFolder;
+							_sourceDirectory = resourceManager.Tab9PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -179,13 +179,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.U:
-							sourceDirectory = resourceManager.Tab10PartUSlidesFolder;
+							_sourceDirectory = resourceManager.Tab10PartUSlidesFolder;
 							break;
 						case StarChildTabType.V:
-							sourceDirectory = resourceManager.Tab10PartVSlidesFolder;
+							_sourceDirectory = resourceManager.Tab10PartVSlidesFolder;
 							break;
 						case StarChildTabType.W:
-							sourceDirectory = resourceManager.Tab10PartWSlidesFolder;
+							_sourceDirectory = resourceManager.Tab10PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -195,13 +195,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.U:
-							sourceDirectory = resourceManager.Tab11PartUSlidesFolder;
+							_sourceDirectory = resourceManager.Tab11PartUSlidesFolder;
 							break;
 						case StarChildTabType.V:
-							sourceDirectory = resourceManager.Tab11PartVSlidesFolder;
+							_sourceDirectory = resourceManager.Tab11PartVSlidesFolder;
 							break;
 						case StarChildTabType.W:
-							sourceDirectory = resourceManager.Tab11PartWSlidesFolder;
+							_sourceDirectory = resourceManager.Tab11PartWSlidesFolder;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -210,7 +210,11 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				default:
 					throw new ArgumentOutOfRangeException("Star tab type is not defined");
 			}
-			Slides.LoadSlides(sourceDirectory);
+		}
+
+		public void LoadSlides()
+		{
+			Slides.LoadSlides(_sourceDirectory);
 		}
 	}
 }

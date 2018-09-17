@@ -13,6 +13,7 @@ using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolution.SubTab;
+using DevExpress.Utils;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
 
@@ -241,6 +242,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolut
 
 				} while (nextPageIndex < currentPageIndex && moveToPageIndex >= 0);
 			}
+		}
+
+		private void OnToolTipControllerGetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)
+		{
+			if (e.SelectedControl == xtraTabControl && String.Equals(e.Info?.Text, "Close", StringComparison.OrdinalIgnoreCase))
+				e.Info.Text = "Delete";
 		}
 
 		#region Output

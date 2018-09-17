@@ -38,6 +38,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions
 					case ShiftChildTabType.W:
 						tabPages.Add(new ChildTabPageContainerControl<SlidesTabControl>(this, tabInfo));
 						break;
+					case ShiftChildTabType.X:
+					case ShiftChildTabType.Y:
+					case ShiftChildTabType.Z:
+						tabPages.Add(new ChildTabPageContainerControl<TilesTabControl>(this, tabInfo));
+						break;
 					default:
 						tabPages.Add(new ChildTabPageContainerControl<CommonChildTabControl>(this, tabInfo));
 						break;

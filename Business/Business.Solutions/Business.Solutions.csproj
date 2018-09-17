@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.12, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -54,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Common\Configuration\CheckboxInfo.cs" />
     <Compile Include="Common\Configuration\TextEditorConfiguration.cs" />
+    <Compile Include="Common\Configuration\TileConfiguration.cs" />
     <Compile Include="Common\Entities\NonPersistent\BaseSolutionContent.cs" />
     <Compile Include="Common\Configuration\BaseSolutionInfo.cs" />
     <Compile Include="Common\Entities\NonPersistent\ClipartObject.cs" />
@@ -165,6 +167,7 @@
     <Compile Include="Shift\Configuration\Partnership\PartnershipTabCInfo.cs" />
     <Compile Include="Shift\Configuration\Partnership\PartnershipTabBInfo.cs" />
     <Compile Include="Shift\Configuration\Partnership\PartnershipTabAInfo.cs" />
+    <Compile Include="Shift\Configuration\TilesChildTabInfo.cs" />
     <Compile Include="Shift\Configuration\SlidesChildTabInfo.cs" />
     <Compile Include="Shift\Configuration\ShiftChildTabInfo.cs" />
     <Compile Include="Shift\Configuration\ShiftChildTabsContainer.cs" />
@@ -241,6 +244,7 @@
     <Compile Include="StarApp\Configuration\StarTabWithHeaderInfo.cs" />
     <Compile Include="StarApp\Configuration\StarTopTabInfo.cs" />
     <Compile Include="StarApp\Configuration\StarTabInfo.cs" />
+    <Compile Include="StarApp\Configuration\TilesChildTabInfo.cs" />
     <Compile Include="StarApp\Configuration\Video\VideoTabInfo.cs" />
     <Compile Include="StarApp\Configuration\Video\VideoTabDInfo.cs" />
     <Compile Include="StarApp\Configuration\Video\VideoTabCInfo.cs" />

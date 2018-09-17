@@ -50,5 +50,17 @@ namespace Asa.Common.Resources.Solutions.StarApp
 		Image Tab5_W_Right { get; }
 		Image Tab5_W_Footer { get; }
 		Image Tab5_W_Background { get; }
+
+		Image Tab5_X_Right { get; }
+		Image Tab5_X_Footer { get; }
+		Image Tab5_X_Background { get; }
+
+		Image Tab5_Y_Right { get; }
+		Image Tab5_Y_Footer { get; }
+		Image Tab5_Y_Background { get; }
+
+		Image Tab5_Z_Right { get; }
+		Image Tab5_Z_Footer { get; }
+		Image Tab5_Z_Background { get; }
 	}
 }

@@ -28,10 +28,17 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors.CNA
 					case StarChildTabType.B:
 						tabPages.Add(new ChildTabPageContainerControl<CNATabBControl>(this, tabInfo));
 						break;
+					case StarChildTabType.K:
+					case StarChildTabType.L:
+					case StarChildTabType.M:
+					case StarChildTabType.N:
+					case StarChildTabType.O:
+						tabPages.Add(new ChildTabPageContainerControl<SingleSlidesTabControl>(this, tabInfo));
+						break;
 					case StarChildTabType.U:
 					case StarChildTabType.V:
 					case StarChildTabType.W:
-						tabPages.Add(new ChildTabPageContainerControl<SlidesTabControl>(this, tabInfo));
+						tabPages.Add(new ChildTabPageContainerControl<MultiSlidesTabControl>(this, tabInfo));
 						break;
 					case StarChildTabType.X:
 					case StarChildTabType.Y:

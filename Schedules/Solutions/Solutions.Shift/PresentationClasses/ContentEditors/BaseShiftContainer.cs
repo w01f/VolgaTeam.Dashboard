@@ -22,6 +22,7 @@ using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Intro;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Partnership;
+using Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI;
 using DevExpress.XtraTab;
 using DevExpress.XtraEditors;
 
@@ -122,6 +123,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 					case ShiftTopTabType.Approach:
 						_slides.Add(new ShiftTabPageContainerControl<ApproachControl>(this, tabInfo));
 						break;
+					case ShiftTopTabType.ROI:
+						_slides.Add(new ShiftTabPageContainerControl<ROIControl>(this, tabInfo));
+						break;
 					default:
 						_slides.Add(new ShiftTabPageContainerControl<CommonTopTabControl>(this, tabInfo));
 						break;
@@ -207,7 +211,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		{
 			e.Cancel = true;
 		}
-		
+
 		private void OnTabControlMouseWheel(object sender, MouseEventArgs e)
 		{
 			var point = new Point(e.X, e.Y);

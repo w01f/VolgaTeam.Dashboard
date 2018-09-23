@@ -25,6 +25,21 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				StarChildTabInfo childTabInfo;
 				switch (tabId)
 				{
+					case "k":
+						childTabInfo = new SlidesChildTabInfo(TabType, StarChildTabType.K);
+						break;
+					case "l":
+						childTabInfo = new SlidesChildTabInfo(TabType, StarChildTabType.L);
+						break;
+					case "m":
+						childTabInfo = new SlidesChildTabInfo(TabType, StarChildTabType.M);
+						break;
+					case "n":
+						childTabInfo = new SlidesChildTabInfo(TabType, StarChildTabType.N);
+						break;
+					case "o":
+						childTabInfo = new SlidesChildTabInfo(TabType, StarChildTabType.O);
+						break;
 					case "u":
 						childTabInfo = new SlidesChildTabInfo(TabType, StarChildTabType.U);
 						break;

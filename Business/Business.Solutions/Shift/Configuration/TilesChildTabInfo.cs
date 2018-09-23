@@ -266,6 +266,22 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
 					break;
+				case ShiftTopTabType.ROI:
+					switch (TabType)
+					{
+						case ShiftChildTabType.X:
+							_sourceDirectory = _resourceManager.Tab16PartXTilesFolder;
+							break;
+						case ShiftChildTabType.Y:
+							_sourceDirectory = _resourceManager.Tab16PartYTilesFolder;
+							break;
+						case ShiftChildTabType.Z:
+							_sourceDirectory = _resourceManager.Tab16PartZTilesFolder;
+							break;
+						default:
+							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
+					}
+					break;
 				default:
 					throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 			}

@@ -445,6 +445,39 @@
       <DependentUpon>IntroTabAControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\IShiftTabPageContainer.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\ROI\ROIControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ROI\ROITabAControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ROI\ROITabAControl.Designer.cs">
+      <DependentUpon>ROITabAControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ROI\ROITabBControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ROI\ROITabBControl.Designer.cs">
+      <DependentUpon>ROITabBControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ROI\ROITabCControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ROI\ROITabCControl.Designer.cs">
+      <DependentUpon>ROITabCControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ROI\ROITabDControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ROI\ROITabDControl.Designer.cs">
+      <DependentUpon>ROITabDControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\SingleSlidesTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\SingleSlidesTabControl.Designer.cs">
+      <DependentUpon>SingleSlidesTabControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\Market\MarketControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -642,11 +675,11 @@
     <Compile Include="PresentationClasses\ContentEditors\TilesTabControl.Designer.cs">
       <DependentUpon>TilesTabControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\SlidesTabControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\MultiSlidesTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\SlidesTabControl.Designer.cs">
-      <DependentUpon>SlidesTabControl.cs</DependentUpon>
+    <Compile Include="PresentationClasses\ContentEditors\MultiSlidesTabControl.Designer.cs">
+      <DependentUpon>MultiSlidesTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\BaseShiftControl.cs">
       <SubType>UserControl</SubType>
@@ -819,6 +852,21 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Intro\IntroTabAControl.resx">
       <DependentUpon>IntroTabAControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\ROI\ROITabAControl.resx">
+      <DependentUpon>ROITabAControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\ROI\ROITabBControl.resx">
+      <DependentUpon>ROITabBControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\ROI\ROITabCControl.resx">
+      <DependentUpon>ROITabCControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\ROI\ROITabDControl.resx">
+      <DependentUpon>ROITabDControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\SingleSlidesTabControl.resx">
+      <DependentUpon>SingleSlidesTabControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Market\MarketTabCControl.resx">
       <DependentUpon>MarketTabCControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -906,8 +954,8 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\TilesTabControl.resx">
       <DependentUpon>TilesTabControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\SlidesTabControl.resx">
-      <DependentUpon>SlidesTabControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\MultiSlidesTabControl.resx">
+      <DependentUpon>MultiSlidesTabControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\BaseShiftControl.resx">
       <DependentUpon>BaseShiftControl.cs</DependentUpon>

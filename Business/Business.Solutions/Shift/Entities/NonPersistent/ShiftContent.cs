@@ -19,6 +19,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public CBCState CBCState { get; }
 		public IntegratedSolutionState IntegratedSolutionState { get; }
 		public ApproachState ApproachState { get; }
+		public ROIState ROIState { get; }
 
 		protected ShiftContent()
 		{
@@ -32,6 +33,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			CBCState = new CBCState();
 			IntegratedSolutionState = new IntegratedSolutionState();
 			ApproachState = new ApproachState();
+			ROIState = new ROIState();
 		}
 
 		protected override void AfterCreate()

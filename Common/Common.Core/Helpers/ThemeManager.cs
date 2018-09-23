@@ -385,6 +385,12 @@ namespace Asa.Common.Core.Helpers
 					case "Shift_9c_approach":
 						slideType = SlideType.ShiftApproachC;
 						break;
+					case "Shift_13a_roi":
+					case "Shift_13b_roi":
+					case "Shift_13c_roi":
+					case "Shift_13d_roi":
+						slideType = SlideType.ShiftROI;
+						break;
 						#endregion
 				}
 				if (slideType == SlideType.None) continue;

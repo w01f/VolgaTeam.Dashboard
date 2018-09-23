@@ -4,6 +4,10 @@ namespace Asa.Common.Resources.Solutions.StarApp
 {
 	public partial interface IStarAppGraphicResources
 	{
+		Image Tab7ListUp { get; }
+		Image Tab7ListDown { get; }
+		Image Tab7ListPopup { get; }
+
 		Image Tab7_A_Right { get; }
 		Image Tab7_A_Footer { get; }
 		Image Tab7_A_Background { get; }
@@ -25,6 +29,26 @@ namespace Asa.Common.Resources.Solutions.StarApp
 		Image Tab7_C_Clipart2 { get; }
 		Image Tab7_C_Clipart3 { get; }
 		Image Tab7_C_Clipart4 { get; }
+
+		Image Tab7_K_Background { get; }
+		Image Tab7_K_Right { get; }
+		Image Tab7_K_Footer { get; }
+
+		Image Tab7_L_Background { get; }
+		Image Tab7_L_Right { get; }
+		Image Tab7_L_Footer { get; }
+
+		Image Tab7_M_Background { get; }
+		Image Tab7_M_Right { get; }
+		Image Tab7_M_Footer { get; }
+
+		Image Tab7_N_Background { get; }
+		Image Tab7_N_Right { get; }
+		Image Tab7_N_Footer { get; }
+
+		Image Tab7_O_Background { get; }
+		Image Tab7_O_Right { get; }
+		Image Tab7_O_Footer { get; }
 
 		Image Tab7_U_Right { get; }
 		Image Tab7_U_Footer { get; }

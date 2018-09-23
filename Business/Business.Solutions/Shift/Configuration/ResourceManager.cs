@@ -30,6 +30,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile DataCoverPartDFile { get; private set; }
 		public StorageFile DataCoverPartEFile { get; private set; }
 
+		public StorageDirectory Tab1PartKSlidesFolder { get; private set; }
+		public StorageDirectory Tab1PartLSlidesFolder { get; private set; }
+		public StorageDirectory Tab1PartMSlidesFolder { get; private set; }
+		public StorageDirectory Tab1PartNSlidesFolder { get; private set; }
+		public StorageDirectory Tab1PartOSlidesFolder { get; private set; }
 		public StorageDirectory Tab1PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab1PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab1PartWSlidesFolder { get; private set; }
@@ -44,6 +49,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile DataIntroPartCFile { get; private set; }
 		public StorageFile DataIntroPartDFile { get; private set; }
 
+		public StorageDirectory Tab2PartKSlidesFolder { get; private set; }
+		public StorageDirectory Tab2PartLSlidesFolder { get; private set; }
+		public StorageDirectory Tab2PartMSlidesFolder { get; private set; }
+		public StorageDirectory Tab2PartNSlidesFolder { get; private set; }
+		public StorageDirectory Tab2PartOSlidesFolder { get; private set; }
 		public StorageDirectory Tab2PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab2PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab2PartWSlidesFolder { get; private set; }
@@ -59,6 +69,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile DataAgendaPartDFile { get; private set; }
 		public StorageFile DataAgendaPartEFile { get; private set; }
 
+		public StorageDirectory Tab3PartKSlidesFolder { get; private set; }
+		public StorageDirectory Tab3PartLSlidesFolder { get; private set; }
+		public StorageDirectory Tab3PartMSlidesFolder { get; private set; }
+		public StorageDirectory Tab3PartNSlidesFolder { get; private set; }
+		public StorageDirectory Tab3PartOSlidesFolder { get; private set; }
 		public StorageDirectory Tab3PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab3PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab3PartWSlidesFolder { get; private set; }
@@ -73,6 +88,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile DataGoalsPartCFile { get; private set; }
 		public StorageFile DataGoalsPartDFile { get; private set; }
 
+		public StorageDirectory Tab4PartKSlidesFolder { get; private set; }
+		public StorageDirectory Tab4PartLSlidesFolder { get; private set; }
+		public StorageDirectory Tab4PartMSlidesFolder { get; private set; }
+		public StorageDirectory Tab4PartNSlidesFolder { get; private set; }
+		public StorageDirectory Tab4PartOSlidesFolder { get; private set; }
 		public StorageDirectory Tab4PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab4PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab4PartWSlidesFolder { get; private set; }
@@ -88,6 +108,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile DataMarketPartDFile { get; private set; }
 		public StorageFile DataMarketPartEFile { get; private set; }
 
+		public StorageDirectory Tab5PartKSlidesFolder { get; private set; }
+		public StorageDirectory Tab5PartLSlidesFolder { get; private set; }
+		public StorageDirectory Tab5PartMSlidesFolder { get; private set; }
+		public StorageDirectory Tab5PartNSlidesFolder { get; private set; }
+		public StorageDirectory Tab5PartOSlidesFolder { get; private set; }
 		public StorageDirectory Tab5PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab5PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab5PartWSlidesFolder { get; private set; }
@@ -102,6 +127,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile DataPartnershipPartCFile { get; private set; }
 		public StorageFile DataPartnershipPartDFile { get; private set; }
 
+		public StorageDirectory Tab6PartKSlidesFolder { get; private set; }
+		public StorageDirectory Tab6PartLSlidesFolder { get; private set; }
+		public StorageDirectory Tab6PartMSlidesFolder { get; private set; }
+		public StorageDirectory Tab6PartNSlidesFolder { get; private set; }
+		public StorageDirectory Tab6PartOSlidesFolder { get; private set; }
 		public StorageDirectory Tab6PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab6PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab6PartWSlidesFolder { get; private set; }
@@ -123,6 +153,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageDirectory ClipartTab7SubEFolder { get; private set; }
 		public StorageDirectory ClipartTab7SubFFolder { get; private set; }
 
+		public StorageDirectory Tab7PartKSlidesFolder { get; private set; }
+		public StorageDirectory Tab7PartLSlidesFolder { get; private set; }
+		public StorageDirectory Tab7PartMSlidesFolder { get; private set; }
+		public StorageDirectory Tab7PartNSlidesFolder { get; private set; }
+		public StorageDirectory Tab7PartOSlidesFolder { get; private set; }
 		public StorageDirectory Tab7PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab7PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab7PartWSlidesFolder { get; private set; }
@@ -139,6 +174,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile DataCBCPartEFile { get; private set; }
 		public StorageFile DataCBCPartFFile { get; private set; }
 
+		public StorageDirectory Tab8PartKSlidesFolder { get; private set; }
+		public StorageDirectory Tab8PartLSlidesFolder { get; private set; }
+		public StorageDirectory Tab8PartMSlidesFolder { get; private set; }
+		public StorageDirectory Tab8PartNSlidesFolder { get; private set; }
+		public StorageDirectory Tab8PartOSlidesFolder { get; private set; }
 		public StorageDirectory Tab8PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab8PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab8PartWSlidesFolder { get; private set; }
@@ -152,6 +192,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 
 		public StorageDirectory ClipartTab9SharedFolder { get; private set; }
 
+		public StorageDirectory Tab9PartKSlidesFolder { get; private set; }
+		public StorageDirectory Tab9PartLSlidesFolder { get; private set; }
+		public StorageDirectory Tab9PartMSlidesFolder { get; private set; }
+		public StorageDirectory Tab9PartNSlidesFolder { get; private set; }
+		public StorageDirectory Tab9PartOSlidesFolder { get; private set; }
 		public StorageDirectory Tab9PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab9PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab9PartWSlidesFolder { get; private set; }
@@ -161,6 +206,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 10
+		public StorageDirectory Tab10PartKSlidesFolder { get; private set; }
+		public StorageDirectory Tab10PartLSlidesFolder { get; private set; }
+		public StorageDirectory Tab10PartMSlidesFolder { get; private set; }
+		public StorageDirectory Tab10PartNSlidesFolder { get; private set; }
+		public StorageDirectory Tab10PartOSlidesFolder { get; private set; }
 		public StorageDirectory Tab10PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab10PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab10PartWSlidesFolder { get; private set; }
@@ -170,6 +220,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 11
+		public StorageDirectory Tab11PartKSlidesFolder { get; private set; }
+		public StorageDirectory Tab11PartLSlidesFolder { get; private set; }
+		public StorageDirectory Tab11PartMSlidesFolder { get; private set; }
+		public StorageDirectory Tab11PartNSlidesFolder { get; private set; }
+		public StorageDirectory Tab11PartOSlidesFolder { get; private set; }
 		public StorageDirectory Tab11PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab11PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab11PartWSlidesFolder { get; private set; }
@@ -179,6 +234,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 12
+		public StorageDirectory Tab12PartKSlidesFolder { get; private set; }
+		public StorageDirectory Tab12PartLSlidesFolder { get; private set; }
+		public StorageDirectory Tab12PartMSlidesFolder { get; private set; }
+		public StorageDirectory Tab12PartNSlidesFolder { get; private set; }
+		public StorageDirectory Tab12PartOSlidesFolder { get; private set; }
 		public StorageDirectory Tab12PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab12PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab12PartWSlidesFolder { get; private set; }
@@ -188,6 +248,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 13
+		public StorageDirectory Tab13PartKSlidesFolder { get; private set; }
+		public StorageDirectory Tab13PartLSlidesFolder { get; private set; }
+		public StorageDirectory Tab13PartMSlidesFolder { get; private set; }
+		public StorageDirectory Tab13PartNSlidesFolder { get; private set; }
+		public StorageDirectory Tab13PartOSlidesFolder { get; private set; }
 		public StorageDirectory Tab13PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab13PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab13PartWSlidesFolder { get; private set; }
@@ -197,6 +262,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 14
+		public StorageDirectory Tab14PartKSlidesFolder { get; private set; }
+		public StorageDirectory Tab14PartLSlidesFolder { get; private set; }
+		public StorageDirectory Tab14PartMSlidesFolder { get; private set; }
+		public StorageDirectory Tab14PartNSlidesFolder { get; private set; }
+		public StorageDirectory Tab14PartOSlidesFolder { get; private set; }
 		public StorageDirectory Tab14PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab14PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab14PartWSlidesFolder { get; private set; }
@@ -213,12 +283,36 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageDirectory ClipartTab15SubAFolder { get; private set; }
 		public StorageDirectory ClipartTab15SubCFolder { get; private set; }
 
+		public StorageDirectory Tab15PartKSlidesFolder { get; private set; }
+		public StorageDirectory Tab15PartLSlidesFolder { get; private set; }
+		public StorageDirectory Tab15PartMSlidesFolder { get; private set; }
+		public StorageDirectory Tab15PartNSlidesFolder { get; private set; }
+		public StorageDirectory Tab15PartOSlidesFolder { get; private set; }
 		public StorageDirectory Tab15PartUSlidesFolder { get; private set; }
 		public StorageDirectory Tab15PartVSlidesFolder { get; private set; }
 		public StorageDirectory Tab15PartWSlidesFolder { get; private set; }
 		public StorageDirectory Tab15PartXTilesFolder { get; private set; }
 		public StorageDirectory Tab15PartYTilesFolder { get; private set; }
 		public StorageDirectory Tab15PartZTilesFolder { get; private set; }
+		#endregion
+
+		#region Tab 16
+		public StorageFile DataROIPartAFile { get; private set; }
+		public StorageFile DataROIPartBFile { get; private set; }
+		public StorageFile DataROIPartCFile { get; private set; }
+		public StorageFile DataROIPartDFile { get; private set; }
+
+		public StorageDirectory Tab16PartKSlidesFolder { get; private set; }
+		public StorageDirectory Tab16PartLSlidesFolder { get; private set; }
+		public StorageDirectory Tab16PartMSlidesFolder { get; private set; }
+		public StorageDirectory Tab16PartNSlidesFolder { get; private set; }
+		public StorageDirectory Tab16PartOSlidesFolder { get; private set; }
+		public StorageDirectory Tab16PartUSlidesFolder { get; private set; }
+		public StorageDirectory Tab16PartVSlidesFolder { get; private set; }
+		public StorageDirectory Tab16PartWSlidesFolder { get; private set; }
+		public StorageDirectory Tab16PartXTilesFolder { get; private set; }
+		public StorageDirectory Tab16PartYTilesFolder { get; private set; }
+		public StorageDirectory Tab16PartZTilesFolder { get; private set; }
 		#endregion
 
 		public void Init(StorageDirectory dataFolder)
@@ -243,6 +337,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			DataCoverPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT01D.xml"));
 			DataCoverPartEFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT01E.xml"));
 
+			Tab1PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_k" }));
+			Tab1PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_l" }));
+			Tab1PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_m" }));
+			Tab1PartNSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_n" }));
+			Tab1PartOSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_o" }));
 			Tab1PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_u" }));
 			Tab1PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_v" }));
 			Tab1PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_w" }));
@@ -257,6 +356,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			DataIntroPartCFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT02C.xml"));
 			DataIntroPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT02D.xml"));
 
+			Tab2PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_k" }));
+			Tab2PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_l" }));
+			Tab2PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_m" }));
+			Tab2PartNSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_n" }));
+			Tab2PartOSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_o" }));
 			Tab2PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_u" }));
 			Tab2PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_v" }));
 			Tab2PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "subtab_w" }));
@@ -272,6 +376,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			DataAgendaPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT03D.xml"));
 			DataAgendaPartEFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT03E.xml"));
 
+			Tab3PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_k" }));
+			Tab3PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_l" }));
+			Tab3PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_m" }));
+			Tab3PartNSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_n" }));
+			Tab3PartOSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_o" }));
 			Tab3PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_u" }));
 			Tab3PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_v" }));
 			Tab3PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "03_agenda", "subtab_w" }));
@@ -286,6 +395,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			DataGoalsPartCFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT04C.xml"));
 			DataGoalsPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT04D.xml"));
 
+			Tab4PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_k" }));
+			Tab4PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_l" }));
+			Tab4PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_m" }));
+			Tab4PartNSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_n" }));
+			Tab4PartOSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_o" }));
 			Tab4PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_u" }));
 			Tab4PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_v" }));
 			Tab4PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "04_goals", "subtab_w" }));
@@ -301,12 +415,17 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			DataMarketPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT05D.xml"));
 			DataMarketPartEFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT05E.xml"));
 
+			Tab5PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_k" }));
+			Tab5PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_l" }));
+			Tab5PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_m" }));
+			Tab5PartNSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_n" }));
+			Tab5PartOSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_o" }));
 			Tab5PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_u" }));
 			Tab5PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_v" }));
 			Tab5PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_w" }));
-			Tab5PartXTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market", "subtab_x" }));
-			Tab5PartYTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market", "subtab_y" }));
-			Tab5PartZTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market", "subtab_z" }));
+			Tab5PartXTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_x" }));
+			Tab5PartYTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_y" }));
+			Tab5PartZTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "05_market_opportunity", "subtab_z" }));
 			#endregion
 
 			#region Tab 6
@@ -315,6 +434,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			DataPartnershipPartCFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT06C.xml"));
 			DataPartnershipPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT06D.xml"));
 
+			Tab6PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_k" }));
+			Tab6PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_l" }));
+			Tab6PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_m" }));
+			Tab6PartNSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_n" }));
+			Tab6PartOSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_o" }));
 			Tab6PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_u" }));
 			Tab6PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_v" }));
 			Tab6PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "06_our_partnership", "subtab_w" }));
@@ -336,6 +460,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			ClipartTab7SubEFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "shared", "needs" }));
 			ClipartTab7SubFFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "shared", "benefits" }));
 
+			Tab7PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_k" }));
+			Tab7PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_l" }));
+			Tab7PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_m" }));
+			Tab7PartNSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_n" }));
+			Tab7PartOSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_o" }));
 			Tab7PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_u" }));
 			Tab7PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_v" }));
 			Tab7PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "07_needs_solutions", "subtab_w" }));
@@ -352,6 +481,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			DataCBCPartEFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT08E.xml"));
 			DataCBCPartFFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT08F.xml"));
 
+			Tab8PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "08_cbc", "subtab_k" }));
+			Tab8PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "08_cbc", "subtab_l" }));
+			Tab8PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "08_cbc", "subtab_m" }));
+			Tab8PartNSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "08_cbc", "subtab_n" }));
+			Tab8PartOSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "08_cbc", "subtab_o" }));
 			Tab8PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "08_cbc", "subtab_u" }));
 			Tab8PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "08_cbc", "subtab_v" }));
 			Tab8PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "08_cbc", "subtab_w" }));
@@ -365,6 +499,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 
 			ClipartTab9SharedFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "shared" }));
 
+			Tab9PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_k" }));
+			Tab9PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_l" }));
+			Tab9PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_m" }));
+			Tab9PartNSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_n" }));
+			Tab9PartOSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_o" }));
 			Tab9PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_u" }));
 			Tab9PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_v" }));
 			Tab9PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "10_integrated_solution", "subtab_w" }));
@@ -374,6 +513,11 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			#endregion
 
 			#region Tab 10
+			Tab10PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_k" }));
+			Tab10PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_l" }));
+			Tab10PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_m" }));
+			Tab10PartNSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_n" }));
+			Tab10PartOSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_o" }));
 			Tab10PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_u" }));
 			Tab10PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_v" }));
 			Tab10PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_w" }));
@@ -383,33 +527,53 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			#endregion
 
 			#region Tab 11
-			Tab11PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_u" }));
-			Tab11PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_v" }));
-			Tab11PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_w" }));
-			Tab11PartXTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_x" }));
-			Tab11PartYTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_y" }));
-			Tab11PartZTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_relationship_next_steps", "subtab_z" }));
+			Tab11PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_relationship_next_steps", "subtab_k" }));
+			Tab11PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_relationship_next_steps", "subtab_l" }));
+			Tab11PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_relationship_next_steps", "subtab_m" }));
+			Tab11PartNSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_relationship_next_steps", "subtab_n" }));
+			Tab11PartOSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_relationship_next_steps", "subtab_o" }));
+			Tab11PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_relationship_next_steps", "subtab_u" }));
+			Tab11PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_relationship_next_steps", "subtab_v" }));
+			Tab11PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_relationship_next_steps", "subtab_w" }));
+			Tab11PartXTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_relationship_next_steps", "subtab_x" }));
+			Tab11PartYTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_relationship_next_steps", "subtab_y" }));
+			Tab11PartZTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_relationship_next_steps", "subtab_z" }));
 			#endregion
 
 			#region Tab 12
-			Tab12PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_u" }));
-			Tab12PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_v" }));
-			Tab12PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_w" }));
-			Tab12PartXTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_x" }));
-			Tab12PartYTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_y" }));
-			Tab12PartZTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_agreement_contract", "subtab_z" }));
+			Tab12PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_agreement_contract", "subtab_k" }));
+			Tab12PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_agreement_contract", "subtab_l" }));
+			Tab12PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_agreement_contract", "subtab_m" }));
+			Tab12PartNSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_agreement_contract", "subtab_n" }));
+			Tab12PartOSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_agreement_contract", "subtab_o" }));
+			Tab12PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_agreement_contract", "subtab_u" }));
+			Tab12PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_agreement_contract", "subtab_v" }));
+			Tab12PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_agreement_contract", "subtab_w" }));
+			Tab12PartXTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_agreement_contract", "subtab_x" }));
+			Tab12PartYTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_agreement_contract", "subtab_y" }));
+			Tab12PartZTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_agreement_contract", "subtab_z" }));
 			#endregion
 
 			#region Tab 13
-			Tab13PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_u" }));
-			Tab13PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_v" }));
-			Tab13PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_w" }));
-			Tab13PartXTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_x" }));
-			Tab13PartYTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_y" }));
-			Tab13PartZTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_support_materials", "subtab_z" }));
+			Tab13PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "16_support_materials", "subtab_k" }));
+			Tab13PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "16_support_materials", "subtab_l" }));
+			Tab13PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "16_support_materials", "subtab_m" }));
+			Tab13PartNSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "16_support_materials", "subtab_n" }));
+			Tab13PartOSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "16_support_materials", "subtab_o" }));
+			Tab13PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "16_support_materials", "subtab_u" }));
+			Tab13PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "16_support_materials", "subtab_v" }));
+			Tab13PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "16_support_materials", "subtab_w" }));
+			Tab13PartXTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "16_support_materials", "subtab_x" }));
+			Tab13PartYTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "16_support_materials", "subtab_y" }));
+			Tab13PartZTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "16_support_materials", "subtab_z" }));
 			#endregion
 
 			#region Tab 14
+			Tab14PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_k" }));
+			Tab14PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_l" }));
+			Tab14PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_m" }));
+			Tab14PartNSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_n" }));
+			Tab14PartOSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_o" }));
 			Tab14PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_u" }));
 			Tab14PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_v" }));
 			Tab14PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "11_spec_builder", "subtab_w" }));
@@ -426,12 +590,36 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			ClipartTab15SubAFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "shared", "approach" }));
 			ClipartTab15SubCFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "shared", "approach" }));
 
+			Tab15PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_k" }));
+			Tab15PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_l" }));
+			Tab15PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_m" }));
+			Tab15PartNSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_n" }));
+			Tab15PartOSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_o" }));
 			Tab15PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_u" }));
 			Tab15PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_v" }));
 			Tab15PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_w" }));
 			Tab15PartXTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_x" }));
 			Tab15PartYTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_y" }));
 			Tab15PartZTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "09_our_approach", "subtab_z" }));
+			#endregion
+
+			#region Tab 16
+			DataROIPartAFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("CP06A.xml"));
+			DataROIPartBFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("CP06B.xml"));
+			DataROIPartCFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("CP06C.xml"));
+			DataROIPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("CP06D.xml"));
+
+			Tab16PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_roi", "subtab_k" }));
+			Tab16PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_roi", "subtab_l" }));
+			Tab16PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_roi", "subtab_m" }));
+			Tab16PartNSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_roi", "subtab_n" }));
+			Tab16PartOSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_roi", "subtab_o" }));
+			Tab16PartUSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_roi", "subtab_u" }));
+			Tab16PartVSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_roi", "subtab_v" }));
+			Tab16PartWSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_roi", "subtab_w" }));
+			Tab16PartXTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_roi", "subtab_x" }));
+			Tab16PartYTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_roi", "subtab_y" }));
+			Tab16PartZTilesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "13_roi", "subtab_z" }));
 			#endregion
 		}
 

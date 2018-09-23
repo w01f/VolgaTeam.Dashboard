@@ -18,5 +18,6 @@
 		SupportMaterials,
 		SpecBuilder,
 		Approach,
+		ROI,
 	}
 }

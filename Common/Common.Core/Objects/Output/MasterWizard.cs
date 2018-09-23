@@ -288,6 +288,11 @@ namespace Asa.Common.Core.Objects.Output
 		{
 			return GetShiftSolutionTemplateFile(new[] { "09_our_approach", fileName });
 		}
+
+		public string GetShiftROIFile(string fileName)
+		{
+			return GetShiftSolutionTemplateFile(new[] { "13_roi", fileName });
+		}
 		#endregion
 
 		#region Newspapaer Slides

@@ -4,6 +4,10 @@ namespace Asa.Solutions.StarApp.Resources
 {
 	public partial class ResourceContainer
 	{
+		public Image Tab4ListUp => Resources.Tab4.Common.Resource.ListUp;
+		public Image Tab4ListDown => Resources.Tab4.Common.Resource.ListDown;
+		public Image Tab4ListPopup => Resources.Tab4.Common.Resource.ListPopup;
+
 		public Image Tab4_A_Right => Resources.Tab4.A.Resource.Right;
 		public Image Tab4_A_Footer => Resources.Tab4.A.Resource.Footer;
 		public Image Tab4_A_Background => Resources.Tab4.A.Resource.Background;
@@ -19,7 +23,23 @@ namespace Asa.Solutions.StarApp.Resources
 		public Image Tab4_C_Right => Resources.Tab4.C.Resource.Right;
 		public Image Tab4_C_Footer => Resources.Tab4.C.Resource.Footer;
 		public Image Tab4_C_Background => Resources.Tab4.C.Resource.Background;
-		
+
+		public Image Tab4_K_Background => Resources.Tab4.K.Resource.Background;
+		public Image Tab4_K_Right => Resources.Tab4.K.Resource.Right;
+		public Image Tab4_K_Footer => Resources.Tab4.K.Resource.Footer;
+		public Image Tab4_L_Background => Resources.Tab4.L.Resource.Background;
+		public Image Tab4_L_Right => Resources.Tab4.L.Resource.Right;
+		public Image Tab4_L_Footer => Resources.Tab4.L.Resource.Footer;
+		public Image Tab4_M_Background => Resources.Tab4.M.Resource.Background;
+		public Image Tab4_M_Right => Resources.Tab4.M.Resource.Right;
+		public Image Tab4_M_Footer => Resources.Tab4.M.Resource.Footer;
+		public Image Tab4_N_Background => Resources.Tab4.N.Resource.Background;
+		public Image Tab4_N_Right => Resources.Tab4.N.Resource.Right;
+		public Image Tab4_N_Footer => Resources.Tab4.N.Resource.Footer;
+		public Image Tab4_O_Background => Resources.Tab4.O.Resource.Background;
+		public Image Tab4_O_Right => Resources.Tab4.O.Resource.Right;
+		public Image Tab4_O_Footer => Resources.Tab4.O.Resource.Footer;
+
 		public Image Tab4_U_Right => Resources.Tab4.U.Resource.Right;
 		public Image Tab4_U_Footer=> Resources.Tab4.U.Resource.Footer;
 		public Image Tab4_U_Background => Resources.Tab4.U.Resource.Background;

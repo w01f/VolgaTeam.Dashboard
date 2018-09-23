@@ -60,6 +60,7 @@
     <Compile Include="Common\Configuration\BaseSolutionInfo.cs" />
     <Compile Include="Common\Entities\NonPersistent\ClipartObject.cs" />
     <Compile Include="Common\Entities\NonPersistent\SlideObject.cs" />
+    <Compile Include="Common\Entities\NonPersistent\SlidesTabState.cs" />
     <Compile Include="Common\Entities\NonPersistent\SolutionSlideManager.cs" />
     <Compile Include="Common\Entities\NonPersistent\VideoClipartObject.cs" />
     <Compile Include="Common\Entities\NonPersistent\VideoResourceItem.cs" />
@@ -167,6 +168,11 @@
     <Compile Include="Shift\Configuration\Partnership\PartnershipTabCInfo.cs" />
     <Compile Include="Shift\Configuration\Partnership\PartnershipTabBInfo.cs" />
     <Compile Include="Shift\Configuration\Partnership\PartnershipTabAInfo.cs" />
+    <Compile Include="Shift\Configuration\ROI\ROITabInfo.cs" />
+    <Compile Include="Shift\Configuration\ROI\ROITabAInfo.cs" />
+    <Compile Include="Shift\Configuration\ROI\ROITabBInfo.cs" />
+    <Compile Include="Shift\Configuration\ROI\ROITabCInfo.cs" />
+    <Compile Include="Shift\Configuration\ROI\ROITabDInfo.cs" />
     <Compile Include="Shift\Configuration\TilesChildTabInfo.cs" />
     <Compile Include="Shift\Configuration\SlidesChildTabInfo.cs" />
     <Compile Include="Shift\Configuration\ShiftChildTabInfo.cs" />
@@ -187,6 +193,7 @@
     <Compile Include="Shift\Entities\NonPersistent\GoalsState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\IntroState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\CoverState.cs" />
+    <Compile Include="Shift\Entities\NonPersistent\ROIState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\ShiftContent.cs" />
     <Compile Include="Shift\Enums\ProductLayoutType.cs" />
     <Compile Include="Shift\Enums\ShiftChildTabType.cs" />

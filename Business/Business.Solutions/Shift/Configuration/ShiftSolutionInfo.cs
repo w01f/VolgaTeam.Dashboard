@@ -17,6 +17,7 @@ using Asa.Business.Solutions.Shift.Configuration.Intro;
 using Asa.Business.Solutions.Shift.Configuration.Market;
 using Asa.Business.Solutions.Shift.Configuration.NeedsSolutions;
 using Asa.Business.Solutions.Shift.Configuration.Partnership;
+using Asa.Business.Solutions.Shift.Configuration.ROI;
 using Asa.Business.Solutions.Shift.Enums;
 using Asa.Common.Core.Objects.RemoteStorage;
 
@@ -142,6 +143,9 @@ namespace Asa.Business.Solutions.Shift.Configuration
 						case "approach":
 							tabInfo = new ApproachTabInfo();
 							break;
+						case "roi":
+							tabInfo = new ROITabInfo();
+							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
 					}
@@ -156,7 +160,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 
 		public void ReleaseContentData()
 		{
-			_resourceManager. ReleaseGraphicResources();
+			_resourceManager.ReleaseGraphicResources();
 		}
 	}
 }

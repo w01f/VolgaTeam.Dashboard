@@ -17,10 +17,17 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			foreach (var tabInfo in TabContainerInfo.ChildTabs)
 				switch (tabInfo.TabType)
 				{
+					case ShiftChildTabType.K:
+					case ShiftChildTabType.L:
+					case ShiftChildTabType.M:
+					case ShiftChildTabType.N:
+					case ShiftChildTabType.O:
+						tabPages.Add(new ChildTabPageContainerControl<SingleSlidesTabControl>(this, tabInfo));
+						break;
 					case ShiftChildTabType.U:
 					case ShiftChildTabType.V:
 					case ShiftChildTabType.W:
-						tabPages.Add(new ChildTabPageContainerControl<SlidesTabControl>(this, tabInfo));
+						tabPages.Add(new ChildTabPageContainerControl<MultiSlidesTabControl>(this, tabInfo));
 						break;
 					case ShiftChildTabType.X:
 					case ShiftChildTabType.Y:

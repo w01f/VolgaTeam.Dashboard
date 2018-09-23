@@ -4,6 +4,10 @@ namespace Asa.Solutions.StarApp.Resources
 {
 	public partial class ResourceContainer
 	{
+		public Image Tab5ListUp => Resources.Tab5.Common.Resource.ListUp;
+		public Image Tab5ListDown => Resources.Tab5.Common.Resource.ListDown;
+		public Image Tab5ListPopup => Resources.Tab5.Common.Resource.ListPopup;
+
 		public Image Tab5_A_Right => Resources.Tab5.A.Resource.Right;
 		public Image Tab5_A_Footer => Resources.Tab5.A.Resource.Footer;
 		public Image Tab5_A_Background => Resources.Tab5.A.Resource.Background;
@@ -38,6 +42,22 @@ namespace Asa.Solutions.StarApp.Resources
 		public Image Tab5_E_Clipart1 => Resources.Tab5.E.Resource.Clipart1;
 		public Image Tab5_E_Clipart2 => Resources.Tab5.E.Resource.Clipart2;
 		public Image Tab5_E_Clipart3 => Resources.Tab5.E.Resource.Clipart3;
+
+		public Image Tab5_K_Background => Resources.Tab5.K.Resource.Background;
+		public Image Tab5_K_Right => Resources.Tab5.K.Resource.Right;
+		public Image Tab5_K_Footer => Resources.Tab5.K.Resource.Footer;
+		public Image Tab5_L_Background => Resources.Tab5.L.Resource.Background;
+		public Image Tab5_L_Right => Resources.Tab5.L.Resource.Right;
+		public Image Tab5_L_Footer => Resources.Tab5.L.Resource.Footer;
+		public Image Tab5_M_Background => Resources.Tab5.M.Resource.Background;
+		public Image Tab5_M_Right => Resources.Tab5.M.Resource.Right;
+		public Image Tab5_M_Footer => Resources.Tab5.M.Resource.Footer;
+		public Image Tab5_N_Background => Resources.Tab5.N.Resource.Background;
+		public Image Tab5_N_Right => Resources.Tab5.N.Resource.Right;
+		public Image Tab5_N_Footer => Resources.Tab5.N.Resource.Footer;
+		public Image Tab5_O_Background => Resources.Tab5.O.Resource.Background;
+		public Image Tab5_O_Right => Resources.Tab5.O.Resource.Right;
+		public Image Tab5_O_Footer => Resources.Tab5.O.Resource.Footer;
 
 		public Image Tab5_U_Right => Resources.Tab5.U.Resource.Right;
 		public Image Tab5_U_Footer=> Resources.Tab5.U.Resource.Footer;

@@ -254,11 +254,11 @@
     <Compile Include="PresentationClasses\ContentEditors\Share\ShareTabEControl.Designer.cs">
       <DependentUpon>ShareTabEControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\SlidesTabControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\MultiSlidesTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\SlidesTabControl.Designer.cs">
-      <DependentUpon>SlidesTabControl.cs</DependentUpon>
+    <Compile Include="PresentationClasses\ContentEditors\MultiSlidesTabControl.Designer.cs">
+      <DependentUpon>MultiSlidesTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CNA\CNATabBControl.cs">
       <SubType>UserControl</SubType>
@@ -298,6 +298,12 @@
       <DependentUpon>ChildTabPageContainerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\IStarAppTabPageContainer.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\SingleSlidesTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\SingleSlidesTabControl.Designer.cs">
+      <DependentUpon>SingleSlidesTabControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\Solution\SolutionTabDControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -403,6 +409,9 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Closers\ClosersTabAControl.resx">
       <DependentUpon>ClosersTabAControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Cover\CoverControl.resx">
+      <DependentUpon>CoverControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Customer\CustomerTabCControl.resx">
       <DependentUpon>CustomerTabCControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -457,8 +466,8 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Share\ShareTabEControl.resx">
       <DependentUpon>ShareTabEControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\SlidesTabControl.resx">
-      <DependentUpon>SlidesTabControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\MultiSlidesTabControl.resx">
+      <DependentUpon>MultiSlidesTabControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\CNA\CNATabBControl.resx">
       <DependentUpon>CNATabBControl.cs</DependentUpon>
@@ -477,6 +486,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\ChildTabPageContainerControl.resx">
       <DependentUpon>ChildTabPageContainerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\SingleSlidesTabControl.resx">
+      <DependentUpon>SingleSlidesTabControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Solution\SolutionTabDControl.resx">
       <DependentUpon>SolutionTabDControl.cs</DependentUpon>

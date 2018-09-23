@@ -4,6 +4,10 @@ namespace Asa.Solutions.StarApp.Resources
 {
 	public partial class ResourceContainer
 	{
+		public Image Tab10ListUp => Resources.Tab10.Common.Resource.ListUp;
+		public Image Tab10ListDown => Resources.Tab10.Common.Resource.ListDown;
+		public Image Tab10ListPopup => Resources.Tab10.Common.Resource.ListPopup;
+
 		public Image Tab10_A_Right => Resources.Tab10.A.Resource.Right;
 		public Image Tab10_A_Footer => Resources.Tab10.A.Resource.Footer;
 		public Image Tab10_A_Background => Resources.Tab10.A.Resource.Background;
@@ -26,6 +30,22 @@ namespace Asa.Solutions.StarApp.Resources
 		public Image Tab10_D_Footer => Resources.Tab10.D.Resource.Footer;
 		public Image Tab10_D_Background => Resources.Tab10.D.Resource.Background;
 		public Image Tab10_D_Clipart1 => Resources.Tab10.D.Resource.Clipart1;
+
+		public Image Tab10_K_Background => Resources.Tab10.K.Resource.Background;
+		public Image Tab10_K_Right => Resources.Tab10.K.Resource.Right;
+		public Image Tab10_K_Footer => Resources.Tab10.K.Resource.Footer;
+		public Image Tab10_L_Background => Resources.Tab10.L.Resource.Background;
+		public Image Tab10_L_Right => Resources.Tab10.L.Resource.Right;
+		public Image Tab10_L_Footer => Resources.Tab10.L.Resource.Footer;
+		public Image Tab10_M_Background => Resources.Tab10.M.Resource.Background;
+		public Image Tab10_M_Right => Resources.Tab10.M.Resource.Right;
+		public Image Tab10_M_Footer => Resources.Tab10.M.Resource.Footer;
+		public Image Tab10_N_Background => Resources.Tab10.N.Resource.Background;
+		public Image Tab10_N_Right => Resources.Tab10.N.Resource.Right;
+		public Image Tab10_N_Footer => Resources.Tab10.N.Resource.Footer;
+		public Image Tab10_O_Background => Resources.Tab10.O.Resource.Background;
+		public Image Tab10_O_Right => Resources.Tab10.O.Resource.Right;
+		public Image Tab10_O_Footer => Resources.Tab10.O.Resource.Footer;
 
 		public Image Tab10_U_Right => Resources.Tab10.U.Resource.Right;
 		public Image Tab10_U_Footer=> Resources.Tab10.U.Resource.Footer;

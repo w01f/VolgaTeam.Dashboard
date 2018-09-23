@@ -10,9 +10,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.NeedsSolutions
 {
 	public class NeedsSolutionsTabFInfo : ShiftTabWithHeaderInfo
 	{
-		public Image ListUpImage => _resourceManager.GraphicResources?.Tab7ListUp;
-		public Image ListDownImage => _resourceManager.GraphicResources?.Tab7ListDown;
-		public Image ListPopupImage => _resourceManager.GraphicResources?.Tab7ListPopup;
 		public Image ListWipeImage => _resourceManager.GraphicResources?.Tab7ListWipe;
 
 		public List<SolutionsItemInfo> SolutionsList { get; }

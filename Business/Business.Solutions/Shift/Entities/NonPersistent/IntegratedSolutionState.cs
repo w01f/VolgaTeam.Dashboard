@@ -16,11 +16,15 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public SubTabState TabC { get; }
 		public SubTabState TabD { get; }
 		public SubTabState TabE { get; }
-
-		public TabUState TabU { get; }
-		public TabVState TabV { get; }
-		public TabWState TabW { get; }
-
+		public SlidesTabState TabK { get; }
+		public SlidesTabState TabL { get; }
+		public SlidesTabState TabM { get; }
+		public SlidesTabState TabN { get; }
+		public SlidesTabState TabO { get; }
+		public SlidesTabState TabU { get; }
+		public SlidesTabState TabV { get; }
+		public SlidesTabState TabW { get; }
+		
 		public IntegratedSolutionState()
 		{
 			TabA = new SubTabState();
@@ -28,10 +32,14 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			TabC = new SubTabState();
 			TabD = new SubTabState();
 			TabE = new SubTabState();
-
-			TabU = new TabUState();
-			TabV = new TabVState();
-			TabW = new TabWState();
+			TabK = new SlidesTabState();
+			TabL = new SlidesTabState();
+			TabM = new SlidesTabState();
+			TabN = new SlidesTabState();
+			TabO = new SlidesTabState();
+			TabU = new SlidesTabState();
+			TabV = new SlidesTabState();
+			TabW = new SlidesTabState();
 		}
 
 		public class SubTabState
@@ -43,36 +51,6 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			public SubTabState()
 			{
 				Products = new List<ProductItemState>();
-			}
-		}
-
-		public class TabUState
-		{
-			public SlideObject Slide { get; }
-
-			public TabUState()
-			{
-				Slide = new SlideObject();
-			}
-		}
-
-		public class TabVState
-		{
-			public SlideObject Slide { get; }
-
-			public TabVState()
-			{
-				Slide = new SlideObject();
-			}
-		}
-
-		public class TabWState
-		{
-			public SlideObject Slide { get; }
-
-			public TabWState()
-			{
-				Slide = new SlideObject();
 			}
 		}
 

@@ -10,10 +10,6 @@ namespace Asa.Business.Solutions.Shift.Configuration.Approach
 {
 	public class ApproachTabCInfo : ShiftTabWithHeaderInfo
 	{
-		public Image ListUpImage => _resourceManager.GraphicResources?.Tab9ListUp;
-		public Image ListDownImage => _resourceManager.GraphicResources?.Tab9ListDown;
-		public Image ListPopupImage => _resourceManager.GraphicResources?.Tab9ListPopup;
-
 		public List<ApproachItemInfo> ApproachItems { get; }
 
 		public List<ListDataItem> Combo1Items { get; }

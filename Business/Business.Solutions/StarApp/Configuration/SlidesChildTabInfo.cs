@@ -34,6 +34,21 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				case StarTopTabType.Cover:
 					switch (TabType)
 					{
+						case StarChildTabType.K:
+							_sourceDirectory = resourceManager.Tab1PartKSlidesFolder;
+							break;
+						case StarChildTabType.L:
+							_sourceDirectory = resourceManager.Tab1PartLSlidesFolder;
+							break;
+						case StarChildTabType.M:
+							_sourceDirectory = resourceManager.Tab1PartMSlidesFolder;
+							break;
+						case StarChildTabType.N:
+							_sourceDirectory = resourceManager.Tab1PartNSlidesFolder;
+							break;
+						case StarChildTabType.O:
+							_sourceDirectory = resourceManager.Tab1PartOSlidesFolder;
+							break;
 						case StarChildTabType.U:
 							_sourceDirectory = resourceManager.Tab1PartUSlidesFolder;
 							break;
@@ -50,6 +65,21 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				case StarTopTabType.CNA:
 					switch (TabType)
 					{
+						case StarChildTabType.K:
+							_sourceDirectory = resourceManager.Tab2PartKSlidesFolder;
+							break;
+						case StarChildTabType.L:
+							_sourceDirectory = resourceManager.Tab2PartLSlidesFolder;
+							break;
+						case StarChildTabType.M:
+							_sourceDirectory = resourceManager.Tab2PartMSlidesFolder;
+							break;
+						case StarChildTabType.N:
+							_sourceDirectory = resourceManager.Tab2PartNSlidesFolder;
+							break;
+						case StarChildTabType.O:
+							_sourceDirectory = resourceManager.Tab2PartOSlidesFolder;
+							break;
 						case StarChildTabType.U:
 							_sourceDirectory = resourceManager.Tab2PartUSlidesFolder;
 							break;
@@ -66,6 +96,21 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				case StarTopTabType.Fishing:
 					switch (TabType)
 					{
+						case StarChildTabType.K:
+							_sourceDirectory = resourceManager.Tab3PartKSlidesFolder;
+							break;
+						case StarChildTabType.L:
+							_sourceDirectory = resourceManager.Tab3PartLSlidesFolder;
+							break;
+						case StarChildTabType.M:
+							_sourceDirectory = resourceManager.Tab3PartMSlidesFolder;
+							break;
+						case StarChildTabType.N:
+							_sourceDirectory = resourceManager.Tab3PartNSlidesFolder;
+							break;
+						case StarChildTabType.O:
+							_sourceDirectory = resourceManager.Tab3PartOSlidesFolder;
+							break;
 						case StarChildTabType.U:
 							_sourceDirectory = resourceManager.Tab3PartUSlidesFolder;
 							break;
@@ -82,6 +127,21 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				case StarTopTabType.Customer:
 					switch (TabType)
 					{
+						case StarChildTabType.K:
+							_sourceDirectory = resourceManager.Tab4PartKSlidesFolder;
+							break;
+						case StarChildTabType.L:
+							_sourceDirectory = resourceManager.Tab4PartLSlidesFolder;
+							break;
+						case StarChildTabType.M:
+							_sourceDirectory = resourceManager.Tab4PartMSlidesFolder;
+							break;
+						case StarChildTabType.N:
+							_sourceDirectory = resourceManager.Tab4PartNSlidesFolder;
+							break;
+						case StarChildTabType.O:
+							_sourceDirectory = resourceManager.Tab4PartOSlidesFolder;
+							break;
 						case StarChildTabType.U:
 							_sourceDirectory = resourceManager.Tab4PartUSlidesFolder;
 							break;
@@ -98,6 +158,21 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				case StarTopTabType.Share:
 					switch (TabType)
 					{
+						case StarChildTabType.K:
+							_sourceDirectory = resourceManager.Tab5PartKSlidesFolder;
+							break;
+						case StarChildTabType.L:
+							_sourceDirectory = resourceManager.Tab5PartLSlidesFolder;
+							break;
+						case StarChildTabType.M:
+							_sourceDirectory = resourceManager.Tab5PartMSlidesFolder;
+							break;
+						case StarChildTabType.N:
+							_sourceDirectory = resourceManager.Tab5PartNSlidesFolder;
+							break;
+						case StarChildTabType.O:
+							_sourceDirectory = resourceManager.Tab5PartOSlidesFolder;
+							break;
 						case StarChildTabType.U:
 							_sourceDirectory = resourceManager.Tab5PartUSlidesFolder;
 							break;
@@ -114,6 +189,21 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				case StarTopTabType.ROI:
 					switch (TabType)
 					{
+						case StarChildTabType.K:
+							_sourceDirectory = resourceManager.Tab6PartKSlidesFolder;
+							break;
+						case StarChildTabType.L:
+							_sourceDirectory = resourceManager.Tab6PartLSlidesFolder;
+							break;
+						case StarChildTabType.M:
+							_sourceDirectory = resourceManager.Tab6PartMSlidesFolder;
+							break;
+						case StarChildTabType.N:
+							_sourceDirectory = resourceManager.Tab6PartNSlidesFolder;
+							break;
+						case StarChildTabType.O:
+							_sourceDirectory = resourceManager.Tab6PartOSlidesFolder;
+							break;
 						case StarChildTabType.U:
 							_sourceDirectory = resourceManager.Tab6PartUSlidesFolder;
 							break;
@@ -130,6 +220,21 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				case StarTopTabType.Market:
 					switch (TabType)
 					{
+						case StarChildTabType.K:
+							_sourceDirectory = resourceManager.Tab7PartKSlidesFolder;
+							break;
+						case StarChildTabType.L:
+							_sourceDirectory = resourceManager.Tab7PartLSlidesFolder;
+							break;
+						case StarChildTabType.M:
+							_sourceDirectory = resourceManager.Tab7PartMSlidesFolder;
+							break;
+						case StarChildTabType.N:
+							_sourceDirectory = resourceManager.Tab7PartNSlidesFolder;
+							break;
+						case StarChildTabType.O:
+							_sourceDirectory = resourceManager.Tab7PartOSlidesFolder;
+							break;
 						case StarChildTabType.U:
 							_sourceDirectory = resourceManager.Tab7PartUSlidesFolder;
 							break;
@@ -146,6 +251,21 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				case StarTopTabType.Video:
 					switch (TabType)
 					{
+						case StarChildTabType.K:
+							_sourceDirectory = resourceManager.Tab8PartKSlidesFolder;
+							break;
+						case StarChildTabType.L:
+							_sourceDirectory = resourceManager.Tab8PartLSlidesFolder;
+							break;
+						case StarChildTabType.M:
+							_sourceDirectory = resourceManager.Tab8PartMSlidesFolder;
+							break;
+						case StarChildTabType.N:
+							_sourceDirectory = resourceManager.Tab8PartNSlidesFolder;
+							break;
+						case StarChildTabType.O:
+							_sourceDirectory = resourceManager.Tab8PartOSlidesFolder;
+							break;
 						case StarChildTabType.U:
 							_sourceDirectory = resourceManager.Tab8PartUSlidesFolder;
 							break;
@@ -162,6 +282,21 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				case StarTopTabType.Audience:
 					switch (TabType)
 					{
+						case StarChildTabType.K:
+							_sourceDirectory = resourceManager.Tab9PartKSlidesFolder;
+							break;
+						case StarChildTabType.L:
+							_sourceDirectory = resourceManager.Tab9PartLSlidesFolder;
+							break;
+						case StarChildTabType.M:
+							_sourceDirectory = resourceManager.Tab9PartMSlidesFolder;
+							break;
+						case StarChildTabType.N:
+							_sourceDirectory = resourceManager.Tab9PartNSlidesFolder;
+							break;
+						case StarChildTabType.O:
+							_sourceDirectory = resourceManager.Tab9PartOSlidesFolder;
+							break;
 						case StarChildTabType.U:
 							_sourceDirectory = resourceManager.Tab9PartUSlidesFolder;
 							break;
@@ -178,6 +313,21 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				case StarTopTabType.Solution:
 					switch (TabType)
 					{
+						case StarChildTabType.K:
+							_sourceDirectory = resourceManager.Tab10PartKSlidesFolder;
+							break;
+						case StarChildTabType.L:
+							_sourceDirectory = resourceManager.Tab10PartLSlidesFolder;
+							break;
+						case StarChildTabType.M:
+							_sourceDirectory = resourceManager.Tab10PartMSlidesFolder;
+							break;
+						case StarChildTabType.N:
+							_sourceDirectory = resourceManager.Tab10PartNSlidesFolder;
+							break;
+						case StarChildTabType.O:
+							_sourceDirectory = resourceManager.Tab10PartOSlidesFolder;
+							break;
 						case StarChildTabType.U:
 							_sourceDirectory = resourceManager.Tab10PartUSlidesFolder;
 							break;
@@ -194,6 +344,21 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 				case StarTopTabType.Closers:
 					switch (TabType)
 					{
+						case StarChildTabType.K:
+							_sourceDirectory = resourceManager.Tab11PartKSlidesFolder;
+							break;
+						case StarChildTabType.L:
+							_sourceDirectory = resourceManager.Tab11PartLSlidesFolder;
+							break;
+						case StarChildTabType.M:
+							_sourceDirectory = resourceManager.Tab11PartMSlidesFolder;
+							break;
+						case StarChildTabType.N:
+							_sourceDirectory = resourceManager.Tab11PartNSlidesFolder;
+							break;
+						case StarChildTabType.O:
+							_sourceDirectory = resourceManager.Tab11PartOSlidesFolder;
+							break;
 						case StarChildTabType.U:
 							_sourceDirectory = resourceManager.Tab11PartUSlidesFolder;
 							break;

@@ -9,9 +9,14 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public TabBState TabB { get; }
 		public TabCState TabC { get; }
 		public TabDState TabD { get; }
-		public TabUState TabU { get; }
-		public TabVState TabV { get; }
-		public TabWState TabW { get; }
+		public SlidesTabState TabK { get; }
+		public SlidesTabState TabL { get; }
+		public SlidesTabState TabM { get; }
+		public SlidesTabState TabN { get; }
+		public SlidesTabState TabO { get; }
+		public SlidesTabState TabU { get; }
+		public SlidesTabState TabV { get; }
+		public SlidesTabState TabW { get; }
 
 		public SolutionState()
 		{
@@ -19,9 +24,14 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			TabB = new TabBState();
 			TabC = new TabCState();
 			TabD = new TabDState();
-			TabU = new TabUState();
-			TabV = new TabVState();
-			TabW = new TabWState();
+			TabK = new SlidesTabState();
+			TabL = new SlidesTabState();
+			TabM = new SlidesTabState();
+			TabN = new SlidesTabState();
+			TabO = new SlidesTabState();
+			TabU = new SlidesTabState();
+			TabV = new SlidesTabState();
+			TabW = new SlidesTabState();
 		}
 
 		public class TabAState
@@ -58,36 +68,6 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			public bool? EnableOutput { get; set; }
 			public ClipartObject Clipart1 { get; set; }
 			public string Subheader1 { get; set; }
-		}
-
-		public class TabUState
-		{
-			public SlideObject Slide { get; }
-
-			public TabUState()
-			{
-				Slide = new SlideObject();
-			}
-		}
-
-		public class TabVState
-		{
-			public SlideObject Slide { get; }
-
-			public TabVState()
-			{
-				Slide = new SlideObject();
-			}
-		}
-
-		public class TabWState
-		{
-			public SlideObject Slide { get; }
-
-			public TabWState()
-			{
-				Slide = new SlideObject();
-			}
 		}
 	}
 }

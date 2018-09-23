@@ -21,8 +21,14 @@ namespace Asa.Business.Solutions.Common.Entities.NonPersistent
 
 		protected override void ProcessSlideSizeFolder(StorageDirectory sizeFolder, SlideFormatEnum format)
 		{
-			var orderFile = Path.Combine(sizeFolder.LocalPath, "thumb_order.txt");
-			if (!File.Exists(orderFile)) return;
+			var orderFiles = new[]
+			{
+				Path.Combine(sizeFolder.LocalPath, "thumb_order.txt"),
+				Path.Combine(sizeFolder.LocalPath, "slide_order.txt")
+			};
+
+			var orderFile = orderFiles.FirstOrDefault(File.Exists);
+			if (orderFile == null) return;
 
 			var folderNames = File.ReadAllLines(orderFile).Where(line => !String.IsNullOrWhiteSpace(line)).ToList();
 			foreach (var folderName in folderNames)

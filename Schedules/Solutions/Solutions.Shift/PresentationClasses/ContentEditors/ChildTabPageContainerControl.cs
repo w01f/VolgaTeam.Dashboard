@@ -236,6 +236,20 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 						default:
 							return TabInfo.EnableOutput;
 					}
+				case ShiftTopTabType.ROI:
+					switch (TabInfo.TabType)
+					{
+						case ShiftChildTabType.A:
+							return ParentControl.SlideContainer.EditedContent.ROIState.TabA.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.B:
+							return ParentControl.SlideContainer.EditedContent.ROIState.TabB.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.C:
+							return ParentControl.SlideContainer.EditedContent.ROIState.TabC.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.D:
+							return ParentControl.SlideContainer.EditedContent.ROIState.TabD.EnableOutput ?? TabInfo.EnableOutput;
+						default:
+							return TabInfo.EnableOutput;
+					}
 				default:
 					return TabInfo.EnableOutput;
 			}

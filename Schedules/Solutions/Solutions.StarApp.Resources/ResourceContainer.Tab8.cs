@@ -4,6 +4,10 @@ namespace Asa.Solutions.StarApp.Resources
 {
 	public partial class ResourceContainer
 	{
+		public Image Tab8ListUp => Resources.Tab8.Common.Resource.ListUp;
+		public Image Tab8ListDown => Resources.Tab8.Common.Resource.ListDown;
+		public Image Tab8ListPopup => Resources.Tab8.Common.Resource.ListPopup;
+
 		public Image Tab8_A_Right => Resources.Tab8.A.Resource.Right;
 		public Image Tab8_A_Footer => Resources.Tab8.A.Resource.Footer;
 		public Image Tab8_A_Background => Resources.Tab8.A.Resource.Background;
@@ -23,6 +27,22 @@ namespace Asa.Solutions.StarApp.Resources
 		public Image Tab8_D_Footer => Resources.Tab8.D.Resource.Footer;
 		public Image Tab8_D_Background => Resources.Tab8.D.Resource.Background;
 		public Image Tab8_D_Clipart1 => Resources.Tab8.D.Resource.Clipart1;
+
+		public Image Tab8_K_Background => Resources.Tab8.K.Resource.Background;
+		public Image Tab8_K_Right => Resources.Tab8.K.Resource.Right;
+		public Image Tab8_K_Footer => Resources.Tab8.K.Resource.Footer;
+		public Image Tab8_L_Background => Resources.Tab8.L.Resource.Background;
+		public Image Tab8_L_Right => Resources.Tab8.L.Resource.Right;
+		public Image Tab8_L_Footer => Resources.Tab8.L.Resource.Footer;
+		public Image Tab8_M_Background => Resources.Tab8.M.Resource.Background;
+		public Image Tab8_M_Right => Resources.Tab8.M.Resource.Right;
+		public Image Tab8_M_Footer => Resources.Tab8.M.Resource.Footer;
+		public Image Tab8_N_Background => Resources.Tab8.N.Resource.Background;
+		public Image Tab8_N_Right => Resources.Tab8.N.Resource.Right;
+		public Image Tab8_N_Footer => Resources.Tab8.N.Resource.Footer;
+		public Image Tab8_O_Background => Resources.Tab8.O.Resource.Background;
+		public Image Tab8_O_Right => Resources.Tab8.O.Resource.Right;
+		public Image Tab8_O_Footer => Resources.Tab8.O.Resource.Footer;
 
 		public Image Tab8_U_Right => Resources.Tab8.U.Resource.Right;
 		public Image Tab8_U_Footer=> Resources.Tab8.U.Resource.Footer;

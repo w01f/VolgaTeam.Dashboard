@@ -47,6 +47,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			layoutControlItemOutputToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemOutputToggle.MinSize, scaleFactor);
 			emptySpaceItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(emptySpaceItemSlideHeader.MaxSize, scaleFactor);
 			emptySpaceItemSlideHeader.MinSize = RectangleHelper.ScaleSize(emptySpaceItemSlideHeader.MinSize, scaleFactor);
+			simpleLabelItemSlideDescriptionLeft.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemSlideDescriptionLeft.MaxSize, scaleFactor);
+			simpleLabelItemSlideDescriptionLeft.MinSize = RectangleHelper.ScaleSize(simpleLabelItemSlideDescriptionLeft.MinSize, scaleFactor);
+			simpleLabelItemSlideDescriptionRight.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemSlideDescriptionRight.MaxSize, scaleFactor);
+			simpleLabelItemSlideDescriptionRight.MinSize = RectangleHelper.ScaleSize(simpleLabelItemSlideDescriptionRight.MinSize, scaleFactor);
 
 			OnResize(this, EventArgs.Empty);
 			Resize += OnResize;
@@ -96,9 +100,15 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				toggleSwitchOutput.IsOn = selectedContentControl.TabInfo.IsRegularChildTab && selectedContentControl.GetOutputEnableState();
 
 				if (selectedContentControl.TabInfo.IsRegularChildTab)
+				{
 					layoutControlItemOutputToggle.Visibility = LayoutVisibility.Always;
+					simpleLabelItemSlideDescriptionLeft.Visibility = LayoutVisibility.Never;
+					simpleLabelItemSlideDescriptionRight.Visibility = LayoutVisibility.Never;
+				}
 				else
 					layoutControlItemOutputToggle.Visibility = LayoutVisibility.Never;
+
+				selectedContentControl.RaiseSlideDescriptionChanged();
 			}
 
 			_allowToSave = true;
@@ -119,7 +129,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			{
 				if (tabPageContainer.ContentControl == null)
 					tabPageContainer.LoadContent();
-				tabPageContainer.ContentControl?.LoadData();
+				tabPageContainer.ContentControl.LoadData();
+				tabPageContainer.ContentControl.SlideDescriptionChanged += OnSlideDescriptionChanged;
 				tabPageContainer.FormatSlideHeader();
 			}
 		}
@@ -135,17 +146,46 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				FormProgress.ShowProgress("Loading data...", () =>
 				{
 					tabPageContainer.LoadContent();
-					tabPageContainer.ContentControl?.LoadData();
+					if (tabPageContainer.ContentControl != null)
+					{
+						tabPageContainer.ContentControl.LoadData();
+						tabPageContainer.ContentControl.SlideDescriptionChanged += OnSlideDescriptionChanged;
+					}
 					tabPageContainer.FormatSlideHeader();
 				});
 			}
 			else
 			{
 				tabPageContainer.LoadContent();
-				tabPageContainer.ContentControl?.LoadData();
+				if (tabPageContainer.ContentControl != null)
+				{
+					tabPageContainer.ContentControl.LoadData();
+					tabPageContainer.ContentControl.SlideDescriptionChanged += OnSlideDescriptionChanged;
+				}
 				tabPageContainer.FormatSlideHeader();
 			}
 			xtraTabControl.Selecting -= OnTabPageSelecting;
+		}
+
+		private void OnSlideDescriptionChanged(Object sender, SlideDescriptionChangedEventArgs e)
+		{
+			if (!String.IsNullOrWhiteSpace(e.SlideDescription.LeftText))
+			{
+				simpleLabelItemSlideDescriptionLeft.Visibility = LayoutVisibility.Always;
+				simpleLabelItemSlideDescriptionLeft.Text =
+					String.Format("<size=11><color=gray>{0}</color></size>", e.SlideDescription.LeftText);
+			}
+			else
+				simpleLabelItemSlideDescriptionLeft.Visibility = LayoutVisibility.Never;
+
+			if (!String.IsNullOrWhiteSpace(e.SlideDescription.RightText))
+			{
+				simpleLabelItemSlideDescriptionRight.Visibility = LayoutVisibility.Always;
+				simpleLabelItemSlideDescriptionRight.Text =
+					String.Format("<size=11><color=gray>{0}</color></size>", e.SlideDescription.RightText);
+			}
+			else
+				simpleLabelItemSlideDescriptionRight.Visibility = LayoutVisibility.Never;
 		}
 
 		private void OnOutputToggled(object sender, EventArgs e)

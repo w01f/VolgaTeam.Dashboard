@@ -85,6 +85,31 @@ namespace Asa.Solutions.Common.PresentationClasses
 		{
 			if (!CheckPowerPointRunning()) return;
 			if (e.SlideMaster == null) return;
+
+			OutputPowerPointCustom(new[] {
+				new OutputItem
+			{
+				Name = e.SlideMaster.Name,
+				IsCurrent = true,
+				SlidesCount = 1,
+				PresentationSourcePath = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
+					Path.GetFileName(Path.GetTempFileName())),
+				SlideGeneratingAction = (processor, destinationPresentation) =>
+				{
+					processor.AppendSlideMaster(e.SlideMaster.GetMasterPath(), destinationPresentation);
+				},
+				PreviewGeneratingAction = (processor, presentationSourcePath) =>
+				{
+					processor.PreparePresentation(presentationSourcePath,
+						presentation => processor.AppendSlideMaster(e.SlideMaster.GetMasterPath(), presentation));
+				}
+			}});
+		}
+
+		public void OnCustomSlidePreview(object sender, SlideMasterEventArgs e)
+		{
+			if (!CheckPowerPointRunning()) return;
+			if (e.SlideMaster == null) return;
 			var previewGroup = new OutputGroup
 			{
 				Name = e.SlideMaster.Name,

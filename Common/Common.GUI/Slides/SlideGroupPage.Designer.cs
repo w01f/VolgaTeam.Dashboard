@@ -28,28 +28,28 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SlideGroupPage));
 			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
 			this.toolStripMenuItemOutput = new System.Windows.Forms.ToolStripMenuItem();
 			this.slidesListView = new Manina.Windows.Forms.ImageListView();
 			this.toolTipController = new DevExpress.Utils.ToolTipController();
+			this.toolStripMenuItemPreview = new System.Windows.Forms.ToolStripMenuItem();
 			this.contextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// contextMenuStrip
 			// 
 			this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemPreview,
             this.toolStripMenuItemOutput});
 			this.contextMenuStrip.Name = "contextMenuStrip";
-			this.contextMenuStrip.Size = new System.Drawing.Size(144, 26);
+			this.contextMenuStrip.Size = new System.Drawing.Size(147, 48);
 			this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.OnContextMenuOpening);
 			// 
 			// toolStripMenuItemOutput
 			// 
-			this.toolStripMenuItemOutput.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemOutput.Image")));
 			this.toolStripMenuItemOutput.Name = "toolStripMenuItemOutput";
-			this.toolStripMenuItemOutput.Size = new System.Drawing.Size(143, 22);
-			this.toolStripMenuItemOutput.Text = "Insert slide(s)";
+			this.toolStripMenuItemOutput.Size = new System.Drawing.Size(146, 22);
+			this.toolStripMenuItemOutput.Text = "Add this Slide";
 			this.toolStripMenuItemOutput.Click += new System.EventHandler(this.OnMenuItemOutputClick);
 			// 
 			// slidesListView
@@ -75,6 +75,13 @@
 			this.slidesListView.MouseLeave += new System.EventHandler(this.OnListViewMouseLeave);
 			this.slidesListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnListViewMouseMove);
 			// 
+			// toolStripMenuItemPreview
+			// 
+			this.toolStripMenuItemPreview.Name = "toolStripMenuItemPreview";
+			this.toolStripMenuItemPreview.Size = new System.Drawing.Size(146, 22);
+			this.toolStripMenuItemPreview.Text = "Preview Slide";
+			this.toolStripMenuItemPreview.Click += new System.EventHandler(this.OnMenuItemPreviewClick);
+			// 
 			// SlideGroupPage
 			// 
 			this.Controls.Add(this.slidesListView);
@@ -91,5 +98,6 @@
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOutput;
 		private DevExpress.Utils.ToolTipController toolTipController;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPreview;
 	}
 }

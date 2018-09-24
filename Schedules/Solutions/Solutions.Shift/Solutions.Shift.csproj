@@ -669,6 +669,8 @@
     <Compile Include="PresentationClasses\ContentEditors\Partnership\PartnershipTabAControl.Designer.cs">
       <DependentUpon>PartnershipTabAControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\SlideDescriptionChangedEventArgs.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\SlideInfo.cs" />
     <Compile Include="PresentationClasses\ContentEditors\TilesTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

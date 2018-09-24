@@ -24,6 +24,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 
 		public ShiftChildTabInfo TabInfo { get; }
 
+		public event EventHandler<SlideDescriptionChangedEventArgs> SlideDescriptionChanged;	
+
 		public ChildTabBaseControl()
 		{
 			InitializeComponent();
@@ -89,6 +91,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			TabPageContainer.FormatSlideHeader();
 		}
 
+		protected virtual SlideDescription GetSlideDescription()
+		{
+			return new SlideDescription();
+		}
+
 		public void RaiseEditValueChanged()
 		{
 			if (!_allowToSave) return;
@@ -96,6 +103,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			TabPageContainer.ParentControl.RaiseDataChanged();
 		}
 
+		public void RaiseSlideDescriptionChanged()
+		{
+			SlideDescriptionChanged?.Invoke(this, new SlideDescriptionChangedEventArgs { SlideDescription = GetSlideDescription() });
+		}
+		
 		#region Output
 		public virtual string OutputName => TabInfo.Title;
 		public virtual int SlidesCount => 1;

@@ -304,6 +304,8 @@
     <Compile Include="PresentationClasses\ContentEditors\SingleSlidesTabControl.Designer.cs">
       <DependentUpon>SingleSlidesTabControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\SlideDescriptionChangedEventArgs.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\SlideInfo.cs" />
     <Compile Include="PresentationClasses\ContentEditors\Solution\SolutionTabDControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

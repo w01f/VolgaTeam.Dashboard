@@ -16,6 +16,7 @@ namespace Asa.Common.GUI.Slides
 		private readonly List<SlideMaster> _slideMasters = new List<SlideMaster>();
 		private ImageListView.HitInfo _menuHitInfo;
 
+		public event EventHandler<SlideMasterEventArgs> SlidePreview;
 		public event EventHandler<SlideMasterEventArgs> SlideOutput;
 		public event EventHandler<EventArgs> SelectionChanged;
 
@@ -151,7 +152,7 @@ namespace Asa.Common.GUI.Slides
 			{
 				case MouseButtons.Right:
 					_menuHitInfo = hitInfo;
-					if (SlideOutput != null)
+					if (SlideOutput != null || SlidePreview != null)
 						contextMenuStrip.Show(MousePosition);
 					break;
 			}
@@ -159,14 +160,22 @@ namespace Asa.Common.GUI.Slides
 
 		private void OnContextMenuOpening(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			e.Cancel = SlideOutput == null ||
+			e.Cancel = (SlideOutput == null && SlidePreview == null) ||
 				!(_menuHitInfo != null && _menuHitInfo.InItemArea && _menuHitInfo.ItemIndex >= 0);
+			toolStripMenuItemOutput.Visible = SlideOutput != null;
+			toolStripMenuItemPreview.Visible = SlidePreview != null;
 		}
 
 		private void OnMenuItemOutputClick(object sender, EventArgs e)
 		{
 			var slideMaster = (SlideMaster)slidesListView.Items[_menuHitInfo.ItemIndex].Tag;
 			SlideOutput?.Invoke(this, new SlideMasterEventArgs { SlideMaster = slideMaster });
+		}
+
+		private void OnMenuItemPreviewClick(object sender, EventArgs e)
+		{
+			var slideMaster = (SlideMaster)slidesListView.Items[_menuHitInfo.ItemIndex].Tag;
+			SlidePreview?.Invoke(this, new SlideMasterEventArgs { SlideMaster = slideMaster });
 		}
 	}
 }

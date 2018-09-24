@@ -22,9 +22,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			InitializeComponent();
 
 			CustomTabInfo.LoadSlides();
+			slidesEditContainer.SlideOutput += SlideContainer.OnCustomSlideOutput;
+			slidesEditContainer.SlidePreview += SlideContainer.OnCustomSlidePreview;
 			slidesEditContainer.Init(CustomTabInfo.Slides);
 			slidesEditContainer.SelectionChanged += OnEditValueChanged;
-			slidesEditContainer.SlideOutput += SlideContainer.OnCustomSlideOutput;
 		}
 
 		public override void ApplyBackground()

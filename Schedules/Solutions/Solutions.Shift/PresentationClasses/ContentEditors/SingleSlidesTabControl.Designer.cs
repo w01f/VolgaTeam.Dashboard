@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition2 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition3 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition4 = new DevExpress.XtraLayout.ColumnDefinition();
@@ -48,6 +49,9 @@
 			this.pictureEditList = new DevExpress.XtraEditors.PictureEdit();
 			this.pictureEditUp = new DevExpress.XtraEditors.PictureEdit();
 			this.pictureEditClipart = new DevExpress.XtraEditors.PictureEdit();
+			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.toolStripMenuItemPreview = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItemOutput = new System.Windows.Forms.ToolStripMenuItem();
 			this.layoutControlGroupListButtons = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemUp = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemList = new DevExpress.XtraLayout.LayoutControlItem();
@@ -60,6 +64,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditList.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditUp.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditClipart.Properties)).BeginInit();
+			this.contextMenuStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupListButtons)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemUp)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemList)).BeginInit();
@@ -252,6 +257,7 @@
 			this.pictureEditClipart.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Transparent;
 			this.pictureEditClipart.Properties.AppearanceReadOnly.Options.UseBackColor = true;
 			this.pictureEditClipart.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.pictureEditClipart.Properties.ContextMenuStrip = this.contextMenuStrip;
 			this.pictureEditClipart.Properties.NullText = " ";
 			this.pictureEditClipart.Properties.PictureAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.pictureEditClipart.Properties.ReadOnly = true;
@@ -262,6 +268,28 @@
 			this.pictureEditClipart.Size = new System.Drawing.Size(435, 439);
 			this.pictureEditClipart.StyleController = this.layoutControl;
 			this.pictureEditClipart.TabIndex = 11;
+			// 
+			// contextMenuStrip
+			// 
+			this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemPreview,
+            this.toolStripMenuItemOutput});
+			this.contextMenuStrip.Name = "contextMenuStrip";
+			this.contextMenuStrip.Size = new System.Drawing.Size(147, 48);
+			// 
+			// toolStripMenuItemPreview
+			// 
+			this.toolStripMenuItemPreview.Name = "toolStripMenuItemPreview";
+			this.toolStripMenuItemPreview.Size = new System.Drawing.Size(146, 22);
+			this.toolStripMenuItemPreview.Text = "Preview Slide";
+			this.toolStripMenuItemPreview.Click += new System.EventHandler(this.OnPreviewClick);
+			// 
+			// toolStripMenuItemOutput
+			// 
+			this.toolStripMenuItemOutput.Name = "toolStripMenuItemOutput";
+			this.toolStripMenuItemOutput.Size = new System.Drawing.Size(146, 22);
+			this.toolStripMenuItemOutput.Text = "Add this Slide";
+			this.toolStripMenuItemOutput.Click += new System.EventHandler(this.OnOutputClick);
 			// 
 			// layoutControlGroupListButtons
 			// 
@@ -381,6 +409,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.Name = "SingleSlidesTabControl";
 			this.Size = new System.Drawing.Size(587, 479);
+			this.Controls.SetChildIndex(this.layoutControl, 0);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
@@ -388,6 +417,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditList.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditUp.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditClipart.Properties)).EndInit();
+			this.contextMenuStrip.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupListButtons)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemUp)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemList)).EndInit();
@@ -407,5 +437,8 @@
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemList;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemDown;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemClipart;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPreview;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOutput;
 	}
 }

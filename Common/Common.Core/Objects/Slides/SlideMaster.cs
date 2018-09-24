@@ -61,5 +61,10 @@ namespace Asa.Common.Core.Objects.Slides
 		{
 			return _masterFile.LocalPath;
 		}
+
+		public string GetMasterName()
+		{
+			return Path.GetFileName(_masterFile.LocalPath);
+		}
 	}
 }

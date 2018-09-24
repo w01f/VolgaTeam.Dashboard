@@ -22,7 +22,6 @@ namespace Asa.Solutions.Common.PresentationClasses.SlidesEdit
 
 			slidesContainerControl.InitSlides(slideManager, slideManager.ThumbnailSize);
 			slidesContainerControl.SelectSlide(currentSlide);
-			slidesContainerControl.DoubleClick += OnSlideDoubleClick;
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 
@@ -30,11 +29,6 @@ namespace Asa.Solutions.Common.PresentationClasses.SlidesEdit
 			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, scaleFactor);
 			layoutControlItemCancel.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MaxSize, scaleFactor);
 			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, scaleFactor);
-		}
-
-		private void OnSlideDoubleClick(object sender, EventArgs e)
-		{
-			DialogResult = DialogResult.OK;
 		}
 	}
 }

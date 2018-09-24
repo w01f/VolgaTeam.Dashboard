@@ -36,7 +36,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			SlideSettingsManager.Instance.SettingsChanging += OnSlideFormatSettingsChanging;
 			SlideSettingsManager.Instance.SettingsChanged += OnSlideFormatSettingsChanged;
 
-			pictureEditClipart.DoubleClick += OnClipartDoubleClick;
+			pictureEditClipart.DoubleClick += OnOutputClick;
 			pictureEditClipart.MouseWheel += OnClipartMouseWheel;
 
 			pictureEditUp.Image = CustomTabInfo.ListUpImage;
@@ -339,6 +339,17 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 		{
 		}
 
+		protected override SlideDescription GetSlideDescription()
+		{
+			if (_currentSlide == null)
+				return base.GetSlideDescription();
+			return new SlideDescription
+			{
+				LeftText = _currentSlide.GetMasterName(),
+				RightText = String.Format("{0} of {1}", CustomTabInfo.Slides.Slides.IndexOf(_currentSlide) + 1, CustomTabInfo.Slides.Slides.Count)
+			};
+		}
+
 		private void SaveSlideObject()
 		{
 			if (_savedSlideObject == null)
@@ -355,6 +366,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			pictureEditClipart.Image = _currentSlide != null ?
 				Image.FromFile(_currentSlide.LogoFile.LocalPath) :
 				null;
+			RaiseSlideDescriptionChanged();
 		}
 
 		private void OnSlideFormatSettingsChanging(object sender, SlideSettingsChangingEventArgs e)
@@ -417,7 +429,17 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 			}
 		}
 
-		private void OnClipartDoubleClick(object sender, EventArgs e)
+		private void OnPreviewClick(object sender, EventArgs e)
+		{
+			if (_currentSlide == null) return;
+			SaveSlideObject();
+			SlideContainer.OnCustomSlidePreview(sender, new SlideMasterEventArgs
+			{
+				SlideMaster = _currentSlide
+			});
+		}
+
+		private void OnOutputClick(object sender, EventArgs e)
 		{
 			if (_currentSlide == null) return;
 			SaveSlideObject();

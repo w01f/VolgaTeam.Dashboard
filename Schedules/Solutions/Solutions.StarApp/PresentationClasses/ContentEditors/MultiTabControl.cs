@@ -113,7 +113,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				{
 					layoutControlItemSlideHeader.Visibility = LayoutVisibility.Always;
 					layoutControlItemOutputToggle.Visibility = LayoutVisibility.Always;
-
+					simpleLabelItemSlideDescriptionItemLeft.Visibility = LayoutVisibility.Never;
+					simpleLabelItemSlideDescriptionItemRight.Visibility = LayoutVisibility.Never;
+					layoutControlGroupSlideInfo.OptionsTableLayoutItem.ColumnSpan = 1;
+					layoutControlGroupSlideInfo.OptionsTableLayoutItem.ColumnIndex = 2;
+					
 					var slideHaederTabInfo = (StarTabWithHeaderInfo)selectedContentControl.TabInfo;
 					comboBoxEditSlideHeader.Properties.Items.Clear();
 					comboBoxEditSlideHeader.Properties.Items.AddRange(slideHaederTabInfo.HeadersItems
@@ -127,7 +131,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				{
 					layoutControlItemSlideHeader.Visibility = LayoutVisibility.Never;
 					layoutControlItemOutputToggle.Visibility = LayoutVisibility.Never;
+
+					layoutControlGroupSlideInfo.OptionsTableLayoutItem.ColumnIndex = 0;
+					layoutControlGroupSlideInfo.OptionsTableLayoutItem.ColumnSpan = 3;
 				}
+
+				selectedContentControl.RaiseSlideDescriptionChanged();
 			}
 
 			_allowToSave = true;
@@ -148,7 +157,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				if (tabPageContainer.ContentControl == null)
 					tabPageContainer.LoadContent();
-				tabPageContainer.ContentControl?.LoadData();
+
+				tabPageContainer.ContentControl.LoadData();
+				tabPageContainer.ContentControl.SlideDescriptionChanged += OnSlideDescriptionChanged;
 				tabPageContainer.FormatSlideHeader();
 			}
 		}
@@ -169,18 +180,47 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 				FormProgress.ShowProgress("Loading data...", () =>
 				{
-					tabPageContainer?.LoadContent();
-					tabPageContainer?.ContentControl?.LoadData();
+					tabPageContainer.LoadContent();
+					if (tabPageContainer.ContentControl != null)
+					{
+						tabPageContainer.ContentControl.LoadData();
+						tabPageContainer.ContentControl.SlideDescriptionChanged += OnSlideDescriptionChanged;
+					}
 					tabPageContainer.FormatSlideHeader();
 				});
 			}
 			else
 			{
 				tabPageContainer.LoadContent();
-				tabPageContainer.ContentControl?.LoadData();
+				if (tabPageContainer.ContentControl != null)
+				{
+					tabPageContainer.ContentControl.LoadData();
+					tabPageContainer.ContentControl.SlideDescriptionChanged += OnSlideDescriptionChanged;
+				}
 				tabPageContainer.FormatSlideHeader();
 			}
 			xtraTabControl.Selecting -= OnTabPageSelecting;
+		}
+
+		private void OnSlideDescriptionChanged(object sender, SlideDescriptionChangedEventArgs e)
+		{
+			if (!String.IsNullOrWhiteSpace(e.SlideDescription.LeftText))
+			{
+				simpleLabelItemSlideDescriptionItemLeft.Visibility = LayoutVisibility.Always;
+				simpleLabelItemSlideDescriptionItemLeft.Text =
+					String.Format("<size=11><color=gray>{0}</color></size>", e.SlideDescription.LeftText);
+			}
+			else
+				simpleLabelItemSlideDescriptionItemLeft.Visibility = LayoutVisibility.Never;
+
+			if (!String.IsNullOrWhiteSpace(e.SlideDescription.RightText))
+			{
+				simpleLabelItemSlideDescriptionItemRight.Visibility = LayoutVisibility.Always;
+				simpleLabelItemSlideDescriptionItemRight.Text =
+					String.Format("<size=11><color=gray>{0}</color></size>", e.SlideDescription.RightText);
+			}
+			else
+				simpleLabelItemSlideDescriptionItemRight.Visibility = LayoutVisibility.Never;
 		}
 
 		private void OnOutputToggled(object sender, EventArgs e)

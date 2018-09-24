@@ -28,17 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition1 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition2 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition1 = new DevExpress.XtraLayout.RowDefinition();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.toggleSwitchOutput = new DevExpress.XtraEditors.ToggleSwitch();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemTabPages = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlGroupSlideHeader = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.simpleLabelItemSlideDescriptionRight = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.simpleLabelItemSlideDescriptionLeft = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.layoutControlItemOutputToggle = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItemSlideHeader = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.pictureEditLogoRight = new DevExpress.XtraEditors.PictureEdit();
@@ -52,7 +49,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabPages)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSlideHeader)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSlideDescriptionRight)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSlideDescriptionLeft)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOutputToggle)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItemSlideHeader)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).BeginInit();
@@ -98,7 +96,7 @@
 			this.layoutControl.ForeColor = System.Drawing.Color.Black;
 			this.layoutControl.Location = new System.Drawing.Point(0, 0);
 			this.layoutControl.Name = "layoutControl";
-			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
+			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 384, 250, 350);
 			this.layoutControl.OptionsFocus.ActivateSelectedControlOnGotFocus = false;
 			this.layoutControl.OptionsFocus.AllowFocusGroups = false;
 			this.layoutControl.OptionsFocus.AllowFocusReadonlyEditors = false;
@@ -112,7 +110,7 @@
 			// toggleSwitchOutput
 			// 
 			this.toggleSwitchOutput.AutoSizeInLayoutControl = true;
-			this.toggleSwitchOutput.Location = new System.Drawing.Point(42, 7);
+			this.toggleSwitchOutput.Location = new System.Drawing.Point(210, 12);
 			this.toggleSwitchOutput.Name = "toggleSwitchOutput";
 			this.toggleSwitchOutput.Properties.AllowFocused = false;
 			this.toggleSwitchOutput.Properties.OffText = "Off";
@@ -148,9 +146,9 @@
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseTextOptions = true;
 			this.xtraTabControl.AppearancePage.PageClient.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
-			this.xtraTabControl.Location = new System.Drawing.Point(40, 40);
+			this.xtraTabControl.Location = new System.Drawing.Point(40, 50);
 			this.xtraTabControl.Name = "xtraTabControl";
-			this.xtraTabControl.Size = new System.Drawing.Size(637, 372);
+			this.xtraTabControl.Size = new System.Drawing.Size(637, 362);
 			this.xtraTabControl.TabIndex = 29;
 			// 
 			// layoutControlGroupRoot
@@ -172,7 +170,10 @@
 			this.layoutControlGroupRoot.GroupBordersVisible = false;
 			this.layoutControlGroupRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabPages,
-            this.layoutControlGroupSlideHeader});
+            this.simpleLabelItemSlideDescriptionRight,
+            this.simpleLabelItemSlideDescriptionLeft,
+            this.layoutControlItemOutputToggle,
+            this.emptySpaceItemSlideHeader});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(40, 0, 0, 0);
@@ -184,49 +185,63 @@
 			this.layoutControlItemTabPages.Control = this.xtraTabControl;
 			this.layoutControlItemTabPages.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemTabPages.FillControlToClientArea = false;
-			this.layoutControlItemTabPages.Location = new System.Drawing.Point(0, 40);
+			this.layoutControlItemTabPages.Location = new System.Drawing.Point(0, 50);
 			this.layoutControlItemTabPages.Name = "layoutControlItemTabPages";
 			this.layoutControlItemTabPages.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemTabPages.Size = new System.Drawing.Size(637, 372);
+			this.layoutControlItemTabPages.Size = new System.Drawing.Size(637, 362);
 			this.layoutControlItemTabPages.Text = "Tab Pages";
 			this.layoutControlItemTabPages.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabPages.TextVisible = false;
 			this.layoutControlItemTabPages.TrimClientAreaToControl = false;
 			// 
-			// layoutControlGroupSlideHeader
+			// simpleLabelItemSlideDescriptionRight
 			// 
-			this.layoutControlGroupSlideHeader.GroupBordersVisible = false;
-			this.layoutControlGroupSlideHeader.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItemOutputToggle,
-            this.emptySpaceItemSlideHeader});
-			this.layoutControlGroupSlideHeader.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
-			this.layoutControlGroupSlideHeader.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlGroupSlideHeader.Name = "layoutControlGroupSlideHeader";
-			columnDefinition1.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition1.Width = 80D;
-			columnDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition2.Width = 20D;
-			this.layoutControlGroupSlideHeader.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition1,
-            columnDefinition2});
-			rowDefinition1.Height = 100D;
-			rowDefinition1.SizeType = System.Windows.Forms.SizeType.Percent;
-			this.layoutControlGroupSlideHeader.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition1});
-			this.layoutControlGroupSlideHeader.Size = new System.Drawing.Size(637, 40);
-			this.layoutControlGroupSlideHeader.Text = "Slide Header";
-			this.layoutControlGroupSlideHeader.TextVisible = false;
+			this.simpleLabelItemSlideDescriptionRight.AllowHotTrack = false;
+			this.simpleLabelItemSlideDescriptionRight.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemSlideDescriptionRight.AppearanceItemCaption.Options.UseTextOptions = true;
+			this.simpleLabelItemSlideDescriptionRight.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.simpleLabelItemSlideDescriptionRight.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.simpleLabelItemSlideDescriptionRight.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.simpleLabelItemSlideDescriptionRight.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.simpleLabelItemSlideDescriptionRight.Location = new System.Drawing.Point(360, 0);
+			this.simpleLabelItemSlideDescriptionRight.MaxSize = new System.Drawing.Size(0, 50);
+			this.simpleLabelItemSlideDescriptionRight.MinSize = new System.Drawing.Size(4, 50);
+			this.simpleLabelItemSlideDescriptionRight.Name = "simpleLabelItemSlideDescriptionRight";
+			this.simpleLabelItemSlideDescriptionRight.Size = new System.Drawing.Size(277, 50);
+			this.simpleLabelItemSlideDescriptionRight.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemSlideDescriptionRight.Text = " ";
+			this.simpleLabelItemSlideDescriptionRight.TextSize = new System.Drawing.Size(0, 16);
+			this.simpleLabelItemSlideDescriptionRight.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+			// 
+			// simpleLabelItemSlideDescriptionLeft
+			// 
+			this.simpleLabelItemSlideDescriptionLeft.AllowHotTrack = false;
+			this.simpleLabelItemSlideDescriptionLeft.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemSlideDescriptionLeft.AppearanceItemCaption.Options.UseTextOptions = true;
+			this.simpleLabelItemSlideDescriptionLeft.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.simpleLabelItemSlideDescriptionLeft.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.simpleLabelItemSlideDescriptionLeft.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.simpleLabelItemSlideDescriptionLeft.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.simpleLabelItemSlideDescriptionLeft.Location = new System.Drawing.Point(0, 0);
+			this.simpleLabelItemSlideDescriptionLeft.MaxSize = new System.Drawing.Size(0, 50);
+			this.simpleLabelItemSlideDescriptionLeft.MinSize = new System.Drawing.Size(4, 50);
+			this.simpleLabelItemSlideDescriptionLeft.Name = "simpleLabelItemSlideDescriptionLeft";
+			this.simpleLabelItemSlideDescriptionLeft.Size = new System.Drawing.Size(168, 50);
+			this.simpleLabelItemSlideDescriptionLeft.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemSlideDescriptionLeft.Text = " ";
+			this.simpleLabelItemSlideDescriptionLeft.TextSize = new System.Drawing.Size(0, 16);
+			this.simpleLabelItemSlideDescriptionLeft.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 			// 
 			// layoutControlItemOutputToggle
 			// 
 			this.layoutControlItemOutputToggle.Control = this.toggleSwitchOutput;
 			this.layoutControlItemOutputToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemOutputToggle.FillControlToClientArea = false;
-			this.layoutControlItemOutputToggle.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlItemOutputToggle.MaxSize = new System.Drawing.Size(0, 40);
-			this.layoutControlItemOutputToggle.MinSize = new System.Drawing.Size(98, 40);
+			this.layoutControlItemOutputToggle.Location = new System.Drawing.Point(168, 0);
+			this.layoutControlItemOutputToggle.MaxSize = new System.Drawing.Size(110, 50);
+			this.layoutControlItemOutputToggle.MinSize = new System.Drawing.Size(110, 50);
 			this.layoutControlItemOutputToggle.Name = "layoutControlItemOutputToggle";
-			this.layoutControlItemOutputToggle.Size = new System.Drawing.Size(510, 40);
+			this.layoutControlItemOutputToggle.Size = new System.Drawing.Size(110, 50);
 			this.layoutControlItemOutputToggle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemOutputToggle.Text = "Output Toggle";
 			this.layoutControlItemOutputToggle.TextSize = new System.Drawing.Size(0, 0);
@@ -237,12 +252,12 @@
 			// emptySpaceItemSlideHeader
 			// 
 			this.emptySpaceItemSlideHeader.AllowHotTrack = false;
-			this.emptySpaceItemSlideHeader.Location = new System.Drawing.Point(510, 0);
-			this.emptySpaceItemSlideHeader.MaxSize = new System.Drawing.Size(0, 40);
-			this.emptySpaceItemSlideHeader.MinSize = new System.Drawing.Size(10, 40);
+			this.emptySpaceItemSlideHeader.Location = new System.Drawing.Point(278, 0);
+			this.emptySpaceItemSlideHeader.MaxSize = new System.Drawing.Size(0, 50);
+			this.emptySpaceItemSlideHeader.MinSize = new System.Drawing.Size(10, 50);
 			this.emptySpaceItemSlideHeader.Name = "emptySpaceItemSlideHeader";
 			this.emptySpaceItemSlideHeader.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.emptySpaceItemSlideHeader.Size = new System.Drawing.Size(127, 40);
+			this.emptySpaceItemSlideHeader.Size = new System.Drawing.Size(82, 50);
 			this.emptySpaceItemSlideHeader.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItemSlideHeader.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -323,7 +338,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabPages)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSlideHeader)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSlideDescriptionRight)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSlideDescriptionLeft)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOutputToggle)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItemSlideHeader)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).EndInit();
@@ -347,7 +363,8 @@
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabPages;
 		private DevExpress.XtraEditors.ToggleSwitch toggleSwitchOutput;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemOutputToggle;
-		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupSlideHeader;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItemSlideHeader;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemSlideDescriptionRight;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemSlideDescriptionLeft;
 	}
 }

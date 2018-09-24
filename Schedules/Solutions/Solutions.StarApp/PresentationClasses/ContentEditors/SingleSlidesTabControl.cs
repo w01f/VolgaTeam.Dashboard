@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -7,7 +6,6 @@ using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Business.Solutions.StarApp.Enums;
-using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Output;
 using Asa.Common.Core.Objects.Slides;
@@ -36,7 +34,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			SlideSettingsManager.Instance.SettingsChanging += OnSlideFormatSettingsChanging;
 			SlideSettingsManager.Instance.SettingsChanged += OnSlideFormatSettingsChanged;
 
-			pictureEditClipart.DoubleClick += OnClipartDoubleClick;
+			pictureEditClipart.DoubleClick += OnOutputClick;
 			pictureEditClipart.MouseWheel += OnClipartMouseWheel;
 
 			pictureEditUp.Image = CustomTabInfo.ListUpImage;
@@ -339,6 +337,17 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 		}
 
+		protected override SlideDescription GetSlideDescription()
+		{
+			if (_currentSlide == null)
+				return base.GetSlideDescription();
+			return new SlideDescription
+			{
+				LeftText = _currentSlide.GetMasterName(),
+				RightText = String.Format("{0} of {1}", CustomTabInfo.Slides.Slides.IndexOf(_currentSlide) + 1, CustomTabInfo.Slides.Slides.Count)
+			};
+		}
+
 		private void SaveSlideObject()
 		{
 			if (_savedSlideObject == null)
@@ -355,6 +364,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			pictureEditClipart.Image = _currentSlide != null ?
 				Image.FromFile(_currentSlide.LogoFile.LocalPath) :
 				null;
+			RaiseSlideDescriptionChanged();
 		}
 
 		private void OnSlideFormatSettingsChanging(object sender, SlideSettingsChangingEventArgs e)
@@ -417,7 +427,17 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			}
 		}
 
-		private void OnClipartDoubleClick(object sender, EventArgs e)
+		private void OnPreviewClick(object sender, EventArgs e)
+		{
+			if (_currentSlide == null) return;
+			SaveSlideObject();
+			SlideContainer.OnCustomSlidePreview(sender, new SlideMasterEventArgs
+			{
+				SlideMaster = _currentSlide
+			});
+		}
+
+		private void OnOutputClick(object sender, EventArgs e)
 		{
 			if (_currentSlide == null) return;
 			SaveSlideObject();

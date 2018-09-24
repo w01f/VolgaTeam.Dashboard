@@ -21,6 +21,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public StarChildTabInfo TabInfo { get; }
 
+		public event EventHandler<SlideDescriptionChangedEventArgs> SlideDescriptionChanged;
+
 		public ChildTabBaseControl()
 		{
 			InitializeComponent();
@@ -71,11 +73,21 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			TabPageContainer.FormatSlideHeader();
 		}
 
+		protected virtual SlideDescription GetSlideDescription()
+		{
+			return new SlideDescription();
+		}
+
 		protected void RaiseEditValueChanged()
 		{
 			if (!_allowToSave) return;
 			_dataChanged = true;
 			TabPageContainer.ParentControl.RaiseDataChanged();
+		}
+
+		public void RaiseSlideDescriptionChanged()
+		{
+			SlideDescriptionChanged?.Invoke(this, new SlideDescriptionChangedEventArgs { SlideDescription = GetSlideDescription() });
 		}
 
 		#region Output

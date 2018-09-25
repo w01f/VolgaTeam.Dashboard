@@ -425,6 +425,41 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tab14\C\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab14\D\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab14\E\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab14\F\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab14\G\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab14\H\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab14\I\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tab14\K\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1690,6 +1725,34 @@
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tab14\Common\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab14\C\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab14\D\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab14\E\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab14\F\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab14\G\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab14\H\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab14\I\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -5229,6 +5292,126 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Tab12\F\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\A\Clipart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\A\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\A\Clipart3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\B\Clipart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\B\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\C\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\C\Clipart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\C\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\C\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\C\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\D\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\D\Clipart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\D\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\D\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\D\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\E\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\E\Clipart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\E\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\E\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\E\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\F\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\F\Clipart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\F\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\F\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\F\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\G\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\G\Clipart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\G\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\G\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\G\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\H\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\H\Clipart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\H\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\H\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\H\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\I\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\I\Clipart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\I\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\I\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\I\Right.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

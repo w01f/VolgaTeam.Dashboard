@@ -20,6 +20,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile DataApproachesCommonFile { get; private set; }
 		public StorageFile DataCBCCommonFile { get; private set; }
 		public StorageFile DataProofOfPerformanceCommonFile { get; private set; }
+		public StorageFile DataNextStepsCommonFile { get; private set; }
 
 		public IShiftGraphicResources GraphicResources { get; private set; }
 
@@ -227,6 +228,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 11
+		public StorageFile DataNextStepsPartAFile { get; private set; }
+		public StorageFile DataNextStepsPartBFile { get; private set; }
+		public StorageFile DataNextStepsPartCFile { get; private set; }
+		public StorageFile DataNextStepsPartDFile { get; private set; }
+		public StorageFile DataNextStepsPartEFile { get; private set; }
+		public StorageFile DataNextStepsPartFFile { get; private set; }
+		public StorageFile DataNextStepsPartGFile { get; private set; }
+		public StorageFile DataNextStepsPartHFile { get; private set; }
+		public StorageFile DataNextStepsPartIFile { get; private set; }
+
 		public StorageDirectory Tab11PartKSlidesFolder { get; private set; }
 		public StorageDirectory Tab11PartLSlidesFolder { get; private set; }
 		public StorageDirectory Tab11PartMSlidesFolder { get; private set; }
@@ -337,6 +348,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			DataApproachesCommonFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT Approach List.xml"));
 			DataCBCCommonFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT CBC.xml"));
 			DataProofOfPerformanceCommonFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT Proof of Performance.xml"));
+			DataNextStepsCommonFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT Next Steps.xml"));
 
 			#region Tab 1
 			DataCoverPartAFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT01A.xml"));
@@ -542,6 +554,16 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			#endregion
 
 			#region Tab 11
+			DataNextStepsPartAFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT14A.xml"));
+			DataNextStepsPartBFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT14B.xml"));
+			DataNextStepsPartCFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT14C.xml"));
+			DataNextStepsPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT14D.xml"));
+			DataNextStepsPartEFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT14E.xml"));
+			DataNextStepsPartFFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT14F.xml"));
+			DataNextStepsPartGFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT14G.xml"));
+			DataNextStepsPartHFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT14H.xml"));
+			DataNextStepsPartIFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT14I.xml"));
+
 			Tab11PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_relationship_next_steps", "subtab_k" }));
 			Tab11PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_relationship_next_steps", "subtab_l" }));
 			Tab11PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "14_relationship_next_steps", "subtab_m" }));

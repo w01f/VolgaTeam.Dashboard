@@ -484,6 +484,63 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\IShiftTabPageContainer.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabIControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabIControl.Designer.cs">
+      <DependentUpon>NextStepsTabIControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabHControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabHControl.Designer.cs">
+      <DependentUpon>NextStepsTabHControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabGControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabGControl.Designer.cs">
+      <DependentUpon>NextStepsTabGControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabFControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabFControl.Designer.cs">
+      <DependentUpon>NextStepsTabFControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabAControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabAControl.Designer.cs">
+      <DependentUpon>NextStepsTabAControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabBControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabBControl.Designer.cs">
+      <DependentUpon>NextStepsTabBControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabCControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabCControl.Designer.cs">
+      <DependentUpon>NextStepsTabCControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabEControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabEControl.Designer.cs">
+      <DependentUpon>NextStepsTabEControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabDControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabDControl.Designer.cs">
+      <DependentUpon>NextStepsTabDControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\ROI\ROIControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -910,6 +967,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Investment\InvestmentTabAControl.resx">
       <DependentUpon>InvestmentTabAControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabIControl.resx">
+      <DependentUpon>NextStepsTabIControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabHControl.resx">
+      <DependentUpon>NextStepsTabHControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabGControl.resx">
+      <DependentUpon>NextStepsTabGControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabFControl.resx">
+      <DependentUpon>NextStepsTabFControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabAControl.resx">
+      <DependentUpon>NextStepsTabAControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabBControl.resx">
+      <DependentUpon>NextStepsTabBControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabCControl.resx">
+      <DependentUpon>NextStepsTabCControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabEControl.resx">
+      <DependentUpon>NextStepsTabEControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabDControl.resx">
+      <DependentUpon>NextStepsTabDControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\ROI\ROITabAControl.resx">
       <DependentUpon>ROITabAControl.cs</DependentUpon>

@@ -372,7 +372,15 @@ namespace Asa.Common.Core.Helpers
 					case "Shift_12f_inv":
 						slideType = SlideType.ShiftInvestment;
 						break;
-					case "Shift_11_relationship_next_steps":
+					case "Shift_14a_relationship":
+					case "Shift_14b_relationship":
+					case "Shift_14c_relationship":
+					case "Shift_14d_relationship":
+					case "Shift_14e_relationship":
+					case "Shift_14f_relationship":
+					case "Shift_14g_relationship":
+					case "Shift_14h_relationship":
+					case "Shift_14i_relationship":
 						slideType = SlideType.ShiftNextSteps;
 						break;
 					case "Shift_12_agreement_contract":

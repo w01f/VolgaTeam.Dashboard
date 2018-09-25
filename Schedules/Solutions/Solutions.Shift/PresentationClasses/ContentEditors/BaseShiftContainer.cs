@@ -22,6 +22,7 @@ using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Intro;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Investment;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions;
+using Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Partnership;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI;
 using DevExpress.XtraTab;
@@ -123,6 +124,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 						break;
 					case ShiftTopTabType.Investment:
 						_slides.Add(new ShiftTabPageContainerControl<InvestmentControl>(this, tabInfo));
+						break;
+					case ShiftTopTabType.NextSteps:
+						_slides.Add(new ShiftTabPageContainerControl<NextStepsControl>(this, tabInfo));
 						break;
 					case ShiftTopTabType.Approach:
 						_slides.Add(new ShiftTabPageContainerControl<ApproachControl>(this, tabInfo));

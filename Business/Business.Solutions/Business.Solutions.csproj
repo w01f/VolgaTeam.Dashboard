@@ -170,6 +170,16 @@
     <Compile Include="Shift\Configuration\NeedsSolutions\NeedsSolutionsTabInfo.cs" />
     <Compile Include="Shift\Configuration\NeedsSolutions\SolutionButtonConfiguration.cs" />
     <Compile Include="Shift\Configuration\NeedsSolutions\TabSelectorConfiguration.cs" />
+    <Compile Include="Shift\Configuration\NextSteps\NextStepsTabInfo.cs" />
+    <Compile Include="Shift\Configuration\NextSteps\NextStepsTabAInfo.cs" />
+    <Compile Include="Shift\Configuration\NextSteps\NextStepsTabCInfo.cs" />
+    <Compile Include="Shift\Configuration\NextSteps\NextStepsTabBInfo.cs" />
+    <Compile Include="Shift\Configuration\NextSteps\NextStepsTabIInfo.cs" />
+    <Compile Include="Shift\Configuration\NextSteps\NextStepsTabHInfo.cs" />
+    <Compile Include="Shift\Configuration\NextSteps\NextStepsTabGInfo.cs" />
+    <Compile Include="Shift\Configuration\NextSteps\NextStepsTabFInfo.cs" />
+    <Compile Include="Shift\Configuration\NextSteps\NextStepsTabEInfo.cs" />
+    <Compile Include="Shift\Configuration\NextSteps\NextStepsTabDInfo.cs" />
     <Compile Include="Shift\Configuration\Partnership\PartnershipTabInfo.cs" />
     <Compile Include="Shift\Configuration\Partnership\PartnershipTabDInfo.cs" />
     <Compile Include="Shift\Configuration\Partnership\PartnershipTabCInfo.cs" />
@@ -195,6 +205,7 @@
     <Compile Include="Shift\Entities\NonPersistent\ApproachState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\InvestmentState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\NeedsSolutionsState.cs" />
+    <Compile Include="Shift\Entities\NonPersistent\NextStepsState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\PartnershipState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\MarketState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\AgendaState.cs" />

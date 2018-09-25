@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Xml;
 using Asa.Business.Solutions.Common.Configuration;
-using Asa.Business.Solutions.Shift.Configuration.CBC;
 using Asa.Business.Solutions.Shift.Enums;
 
 namespace Asa.Business.Solutions.Shift.Configuration.Investment

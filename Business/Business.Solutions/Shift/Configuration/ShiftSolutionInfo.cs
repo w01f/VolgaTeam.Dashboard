@@ -17,6 +17,7 @@ using Asa.Business.Solutions.Shift.Configuration.Intro;
 using Asa.Business.Solutions.Shift.Configuration.Investment;
 using Asa.Business.Solutions.Shift.Configuration.Market;
 using Asa.Business.Solutions.Shift.Configuration.NeedsSolutions;
+using Asa.Business.Solutions.Shift.Configuration.NextSteps;
 using Asa.Business.Solutions.Shift.Configuration.Partnership;
 using Asa.Business.Solutions.Shift.Configuration.ROI;
 using Asa.Business.Solutions.Shift.Enums;
@@ -130,7 +131,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							tabInfo = new InvestmentTabInfo();
 							break;
 						case "next-steps":
-							tabInfo = new CommonTopTabInfo(ShiftTopTabType.NextSteps);
+							tabInfo = new NextStepsTabInfo();
 							break;
 						case "contract":
 							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Contract);

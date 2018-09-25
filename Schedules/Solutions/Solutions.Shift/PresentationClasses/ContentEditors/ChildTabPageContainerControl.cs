@@ -215,6 +215,24 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				case ShiftTopTabType.NextSteps:
 					switch (TabInfo.TabType)
 					{
+						case ShiftChildTabType.A:
+							return ParentControl.SlideContainer.EditedContent.NextStepsState.TabA.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.B:
+							return ParentControl.SlideContainer.EditedContent.NextStepsState.TabB.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.C:
+							return ParentControl.SlideContainer.EditedContent.NextStepsState.TabC.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.D:
+							return ParentControl.SlideContainer.EditedContent.NextStepsState.TabD.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.E:
+							return ParentControl.SlideContainer.EditedContent.NextStepsState.TabE.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.F:
+							return ParentControl.SlideContainer.EditedContent.NextStepsState.TabF.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.G:
+							return ParentControl.SlideContainer.EditedContent.NextStepsState.TabG.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.H:
+							return ParentControl.SlideContainer.EditedContent.NextStepsState.TabH.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.I:
+							return ParentControl.SlideContainer.EditedContent.NextStepsState.TabI.EnableOutput ?? TabInfo.EnableOutput;
 						default:
 							return TabInfo.EnableOutput;
 					}

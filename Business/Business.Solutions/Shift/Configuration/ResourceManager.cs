@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Objects.RemoteStorage;
 using Asa.Common.Resources.Solutions.Shift;
@@ -20,6 +19,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile DataSolutionsCommonFile { get; private set; }
 		public StorageFile DataApproachesCommonFile { get; private set; }
 		public StorageFile DataCBCCommonFile { get; private set; }
+		public StorageFile DataProofOfPerformanceCommonFile { get; private set; }
 
 		public IShiftGraphicResources GraphicResources { get; private set; }
 
@@ -206,6 +206,13 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 10
+		public StorageFile DataInvestmentPartAFile { get; private set; }
+		public StorageFile DataInvestmentPartBFile { get; private set; }
+		public StorageFile DataInvestmentPartCFile { get; private set; }
+		public StorageFile DataInvestmentPartDFile { get; private set; }
+		public StorageFile DataInvestmentPartEFile { get; private set; }
+		public StorageFile DataInvestmentPartFFile { get; private set; }
+
 		public StorageDirectory Tab10PartKSlidesFolder { get; private set; }
 		public StorageDirectory Tab10PartLSlidesFolder { get; private set; }
 		public StorageDirectory Tab10PartMSlidesFolder { get; private set; }
@@ -329,6 +336,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			DataSolutionsCommonFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT Product List.xml"));
 			DataApproachesCommonFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT Approach List.xml"));
 			DataCBCCommonFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT CBC.xml"));
+			DataProofOfPerformanceCommonFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT Proof of Performance.xml"));
 
 			#region Tab 1
 			DataCoverPartAFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT01A.xml"));
@@ -513,6 +521,13 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			#endregion
 
 			#region Tab 10
+			DataInvestmentPartAFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT12A.xml"));
+			DataInvestmentPartBFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT12B.xml"));
+			DataInvestmentPartCFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT12C.xml"));
+			DataInvestmentPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT12D.xml"));
+			DataInvestmentPartEFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT12E.xml"));
+			DataInvestmentPartFFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT12F.xml"));
+
 			Tab10PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_k" }));
 			Tab10PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_l" }));
 			Tab10PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "12_investment", "subtab_m" }));

@@ -18,6 +18,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public NeedsSolutionsState NeedsSolutionsState { get; }
 		public CBCState CBCState { get; }
 		public IntegratedSolutionState IntegratedSolutionState { get; }
+		public InvestmentState InvestmentState { get; }
 		public ApproachState ApproachState { get; }
 		public ROIState ROIState { get; }
 
@@ -32,6 +33,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			NeedsSolutionsState = new NeedsSolutionsState();
 			CBCState = new CBCState();
 			IntegratedSolutionState = new IntegratedSolutionState();
+			InvestmentState = new InvestmentState();
 			ApproachState = new ApproachState();
 			ROIState = new ROIState();
 		}

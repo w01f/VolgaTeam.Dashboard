@@ -444,6 +444,45 @@
     <Compile Include="PresentationClasses\ContentEditors\Intro\IntroTabAControl.Designer.cs">
       <DependentUpon>IntroTabAControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Investment\InvestmentTabFControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Investment\InvestmentTabFControl.Designer.cs">
+      <DependentUpon>InvestmentTabFControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Investment\InvestmentTabEControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Investment\InvestmentTabEControl.Designer.cs">
+      <DependentUpon>InvestmentTabEControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Investment\InvestmentTabDControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Investment\InvestmentTabDControl.Designer.cs">
+      <DependentUpon>InvestmentTabDControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Investment\InvestmentTabCControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Investment\InvestmentTabCControl.Designer.cs">
+      <DependentUpon>InvestmentTabCControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Investment\InvestmentTabBControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Investment\InvestmentTabBControl.Designer.cs">
+      <DependentUpon>InvestmentTabBControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Investment\InvestmentTabAControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Investment\InvestmentTabAControl.Designer.cs">
+      <DependentUpon>InvestmentTabAControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Investment\InvestmentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\IShiftTabPageContainer.cs" />
     <Compile Include="PresentationClasses\ContentEditors\ROI\ROIControl.cs">
       <SubType>UserControl</SubType>
@@ -853,6 +892,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Intro\IntroTabAControl.resx">
       <DependentUpon>IntroTabAControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Investment\InvestmentTabFControl.resx">
+      <DependentUpon>InvestmentTabFControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Investment\InvestmentTabEControl.resx">
+      <DependentUpon>InvestmentTabEControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Investment\InvestmentTabDControl.resx">
+      <DependentUpon>InvestmentTabDControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Investment\InvestmentTabCControl.resx">
+      <DependentUpon>InvestmentTabCControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Investment\InvestmentTabBControl.resx">
+      <DependentUpon>InvestmentTabBControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Investment\InvestmentTabAControl.resx">
+      <DependentUpon>InvestmentTabAControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\ROI\ROITabAControl.resx">
       <DependentUpon>ROITabAControl.cs</DependentUpon>

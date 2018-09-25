@@ -145,6 +145,13 @@
     <Compile Include="Shift\Configuration\Intro\IntroTabCInfo.cs" />
     <Compile Include="Shift\Configuration\Intro\IntroTabBInfo.cs" />
     <Compile Include="Shift\Configuration\Intro\IntroTabAInfo.cs" />
+    <Compile Include="Shift\Configuration\Investment\InvestmentTabFInfo.cs" />
+    <Compile Include="Shift\Configuration\Investment\InvestmentTabEInfo.cs" />
+    <Compile Include="Shift\Configuration\Investment\InvestmentTabDInfo.cs" />
+    <Compile Include="Shift\Configuration\Investment\InvestmentTabCInfo.cs" />
+    <Compile Include="Shift\Configuration\Investment\InvestmentTabBInfo.cs" />
+    <Compile Include="Shift\Configuration\Investment\InvestmentTabAInfo.cs" />
+    <Compile Include="Shift\Configuration\Investment\InvestmentTabInfo.cs" />
     <Compile Include="Shift\Configuration\Market\MarketTabInfo.cs" />
     <Compile Include="Shift\Configuration\Market\MarketTabEInfo.cs" />
     <Compile Include="Shift\Configuration\Market\MarketTabDInfo.cs" />
@@ -186,6 +193,7 @@
     <Compile Include="Shift\Entities\NonPersistent\CBCState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\IntegratedSolutionState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\ApproachState.cs" />
+    <Compile Include="Shift\Entities\NonPersistent\InvestmentState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\NeedsSolutionsState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\PartnershipState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\MarketState.cs" />

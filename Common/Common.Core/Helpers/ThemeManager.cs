@@ -364,7 +364,12 @@ namespace Asa.Common.Core.Helpers
 					case "Shift_10e_right_product":
 						slideType = SlideType.ShiftIntegratedSolutionRight;
 						break;
-					case "Shift_10_investment":
+					case "Shift_12a_inv":
+					case "Shift_12b_inv":
+					case "Shift_12c_inv":
+					case "Shift_12d_inv":
+					case "Shift_12e_inv":
+					case "Shift_12f_inv":
 						slideType = SlideType.ShiftInvestment;
 						break;
 					case "Shift_11_relationship_next_steps":

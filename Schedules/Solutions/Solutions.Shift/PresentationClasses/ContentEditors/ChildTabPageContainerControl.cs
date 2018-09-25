@@ -197,6 +197,18 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				case ShiftTopTabType.Investment:
 					switch (TabInfo.TabType)
 					{
+						case ShiftChildTabType.A:
+							return ParentControl.SlideContainer.EditedContent.InvestmentState.TabA.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.B:
+							return ParentControl.SlideContainer.EditedContent.InvestmentState.TabB.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.C:
+							return ParentControl.SlideContainer.EditedContent.InvestmentState.TabC.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.D:
+							return ParentControl.SlideContainer.EditedContent.InvestmentState.TabD.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.E:
+							return ParentControl.SlideContainer.EditedContent.InvestmentState.TabE.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.F:
+							return ParentControl.SlideContainer.EditedContent.InvestmentState.TabF.EnableOutput ?? TabInfo.EnableOutput;
 						default:
 							return TabInfo.EnableOutput;
 					}

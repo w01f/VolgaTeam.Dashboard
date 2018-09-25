@@ -250,6 +250,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tab12\C\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab12\D\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab12\E\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tab12\F\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tab12\K\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1530,6 +1550,22 @@
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tab12\Common\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab12\C\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab12\D\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab12\E\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tab12\F\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -5079,6 +5115,120 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Tab16\Z\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\A\Clipart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\A\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\A\Clipart3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\A\Clipart4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\A\Clipart5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\B\Clipart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\B\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\B\Clipart3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\B\Clipart4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\B\Clipart5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\C\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\C\Clipart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\C\Clipart3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\C\Clipart4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\C\Clipart5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\C\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\C\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\C\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\D\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\D\Clipart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\D\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\D\Clipart3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\D\Clipart4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\D\Clipart5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\D\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\D\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\E\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\E\Clipart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\E\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\E\Clipart3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\E\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\E\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\F\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\F\Clipart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\F\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\F\Clipart3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\F\Footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab12\F\Right.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

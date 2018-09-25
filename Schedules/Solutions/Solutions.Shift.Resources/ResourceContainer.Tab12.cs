@@ -11,23 +11,53 @@ namespace Asa.Solutions.Shift.Resources
 		public Image Tab12_A_Background => Resources.Tab12.A.Resource.Background;
 		public Image Tab12_A_RightLogo => Resources.Tab12.A.Resource.Right;
 		public Image Tab12_A_FooterLogo => Resources.Tab12.A.Resource.Footer;
+		public Image Tab12_A_Clipart1 => Resources.Tab12.A.Resource.Clipart1;
+		public Image Tab12_A_Clipart2 => Resources.Tab12.A.Resource.Clipart2;
+		public Image Tab12_A_Clipart3 => Resources.Tab12.A.Resource.Clipart3;
+		public Image Tab12_A_Clipart4 => Resources.Tab12.A.Resource.Clipart4;
+		public Image Tab12_A_Clipart5 => Resources.Tab12.A.Resource.Clipart5;
 
 		public Image Tab12_B_Background => Resources.Tab12.B.Resource.Background;
 		public Image Tab12_B_RightLogo => Resources.Tab12.B.Resource.Right;
 		public Image Tab12_B_FooterLogo => Resources.Tab12.B.Resource.Footer;
+		public Image Tab12_B_Clipart1 => Resources.Tab12.B.Resource.Clipart1;
+		public Image Tab12_B_Clipart2 => Resources.Tab12.B.Resource.Clipart2;
+		public Image Tab12_B_Clipart3 => Resources.Tab12.B.Resource.Clipart3;
+		public Image Tab12_B_Clipart4 => Resources.Tab12.B.Resource.Clipart4;
+		public Image Tab12_B_Clipart5 => Resources.Tab12.B.Resource.Clipart5;
 
-		public Image Tab12_C_Background => null;
-		public Image Tab12_C_RightLogo => null;
-		public Image Tab12_C_FooterLogo => null;
-		public Image Tab12_D_Background => null;
-		public Image Tab12_D_RightLogo => null;
-		public Image Tab12_D_FooterLogo => null;
-		public Image Tab12_E_Background => null;
-		public Image Tab12_E_RightLogo => null;
-		public Image Tab12_E_FooterLogo => null;
-		public Image Tab12_F_Background => null;
-		public Image Tab12_F_RightLogo => null;
-		public Image Tab12_F_FooterLogo => null;
+		public Image Tab12_C_Background => Resources.Tab12.C.Resource.Background;
+		public Image Tab12_C_RightLogo => Resources.Tab12.C.Resource.Right;
+		public Image Tab12_C_FooterLogo => Resources.Tab12.C.Resource.Footer;
+		public Image Tab12_C_Clipart1 => Resources.Tab12.C.Resource.Clipart1;
+		public Image Tab12_C_Clipart2 => Resources.Tab12.C.Resource.Clipart2;
+		public Image Tab12_C_Clipart3 => Resources.Tab12.C.Resource.Clipart3;
+		public Image Tab12_C_Clipart4 => Resources.Tab12.C.Resource.Clipart4;
+		public Image Tab12_C_Clipart5 => Resources.Tab12.C.Resource.Clipart5;
+
+		public Image Tab12_D_Background => Resources.Tab12.D.Resource.Background;
+		public Image Tab12_D_RightLogo => Resources.Tab12.D.Resource.Right;
+		public Image Tab12_D_FooterLogo => Resources.Tab12.D.Resource.Footer;
+		public Image Tab12_D_Clipart1 => Resources.Tab12.D.Resource.Clipart1;
+		public Image Tab12_D_Clipart2 => Resources.Tab12.D.Resource.Clipart2;
+		public Image Tab12_D_Clipart3 => Resources.Tab12.D.Resource.Clipart3;
+		public Image Tab12_D_Clipart4 => Resources.Tab12.D.Resource.Clipart4;
+		public Image Tab12_D_Clipart5 => Resources.Tab12.D.Resource.Clipart5;
+
+		public Image Tab12_E_Background => Resources.Tab12.E.Resource.Background;
+		public Image Tab12_E_RightLogo => Resources.Tab12.E.Resource.Right;
+		public Image Tab12_E_FooterLogo => Resources.Tab12.E.Resource.Footer;
+		public Image Tab12_E_Clipart1 => Resources.Tab12.E.Resource.Clipart1;
+		public Image Tab12_E_Clipart2 => Resources.Tab12.E.Resource.Clipart2;
+		public Image Tab12_E_Clipart3 => Resources.Tab12.E.Resource.Clipart3;
+
+		public Image Tab12_F_Background => Resources.Tab12.F.Resource.Background;
+		public Image Tab12_F_RightLogo => Resources.Tab12.F.Resource.Right;
+		public Image Tab12_F_FooterLogo => Resources.Tab12.F.Resource.Footer;
+		public Image Tab12_F_Clipart1 => Resources.Tab12.F.Resource.Clipart1;
+		public Image Tab12_F_Clipart2 => Resources.Tab12.F.Resource.Clipart2;
+		public Image Tab12_F_Clipart3 => Resources.Tab12.F.Resource.Clipart3;
+
 		public Image Tab12_G_Background => null;
 		public Image Tab12_G_RightLogo => null;
 		public Image Tab12_G_FooterLogo => null;

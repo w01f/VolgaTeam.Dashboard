@@ -19,6 +19,7 @@ using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolution;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Intro;
+using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Investment;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Partnership;
@@ -119,6 +120,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 						break;
 					case ShiftTopTabType.IntegratedSolution:
 						_slides.Add(new ShiftTabPageContainerControl<IntegratedSolutionControl>(this, tabInfo));
+						break;
+					case ShiftTopTabType.Investment:
+						_slides.Add(new ShiftTabPageContainerControl<InvestmentControl>(this, tabInfo));
 						break;
 					case ShiftTopTabType.Approach:
 						_slides.Add(new ShiftTabPageContainerControl<ApproachControl>(this, tabInfo));

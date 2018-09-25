@@ -200,6 +200,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market
             this.layoutControlGroupBottom,
             this.layoutControlGroupTop});
 			this.layoutControlGroupRoot.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
+			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, -3);
 			this.layoutControlGroupRoot.Name = "Root";
 			columnDefinition30.SizeType = System.Windows.Forms.SizeType.Percent;
 			columnDefinition30.Width = 100D;
@@ -226,7 +227,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market
 			this.clipartEditContainer1.AllowDrop = true;
 			this.clipartEditContainer1.BackColor = System.Drawing.Color.Transparent;
 			this.clipartEditContainer1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.clipartEditContainer1.Location = new System.Drawing.Point(0, 0);
+			this.clipartEditContainer1.Location = new System.Drawing.Point(0, -3);
 			this.clipartEditContainer1.Name = "clipartEditContainer1";
 			this.clipartEditContainer1.Size = new System.Drawing.Size(194, 141);
 			this.clipartEditContainer1.TabIndex = 1;
@@ -236,7 +237,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market
 			this.clipartEditContainer4.AllowDrop = true;
 			this.clipartEditContainer4.BackColor = System.Drawing.Color.Transparent;
 			this.clipartEditContainer4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.clipartEditContainer4.Location = new System.Drawing.Point(20, 398);
+			this.clipartEditContainer4.Location = new System.Drawing.Point(20, 395);
 			this.clipartEditContainer4.Name = "clipartEditContainer4";
 			this.clipartEditContainer4.Size = new System.Drawing.Size(344, 10);
 			this.clipartEditContainer4.TabIndex = 30;
@@ -257,7 +258,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market
 			// 
 			// comboBoxEditSlideHeader
 			// 
-			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(22, 151);
+			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(22, 148);
 			this.comboBoxEditSlideHeader.Name = "comboBoxEditSlideHeader";
 			this.comboBoxEditSlideHeader.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -271,7 +272,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market
 			this.clipartEditContainer5.AllowDrop = true;
 			this.clipartEditContainer5.BackColor = System.Drawing.Color.Transparent;
 			this.clipartEditContainer5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.clipartEditContainer5.Location = new System.Drawing.Point(364, 398);
+			this.clipartEditContainer5.Location = new System.Drawing.Point(364, 395);
 			this.clipartEditContainer5.Name = "clipartEditContainer5";
 			this.clipartEditContainer5.Size = new System.Drawing.Size(185, 10);
 			this.clipartEditContainer5.TabIndex = 31;
@@ -279,7 +280,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market
 			// memoPopupEdit3
 			// 
 			this.memoPopupEdit3.BackColor = System.Drawing.Color.Transparent;
-			this.memoPopupEdit3.Location = new System.Drawing.Point(408, 218);
+			this.memoPopupEdit3.Location = new System.Drawing.Point(408, 215);
 			this.memoPopupEdit3.Margin = new System.Windows.Forms.Padding(3, 21, 3, 21);
 			this.memoPopupEdit3.Name = "memoPopupEdit3";
 			this.memoPopupEdit3.Size = new System.Drawing.Size(124, 92);
@@ -288,7 +289,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market
 			// memoPopupEdit1
 			// 
 			this.memoPopupEdit1.BackColor = System.Drawing.Color.Transparent;
-			this.memoPopupEdit1.Location = new System.Drawing.Point(36, 218);
+			this.memoPopupEdit1.Location = new System.Drawing.Point(36, 215);
 			this.memoPopupEdit1.Margin = new System.Windows.Forms.Padding(3, 26, 3, 26);
 			this.memoPopupEdit1.Name = "memoPopupEdit1";
 			this.memoPopupEdit1.Size = new System.Drawing.Size(124, 92);
@@ -297,7 +298,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market
 			// memoPopupEdit2
 			// 
 			this.memoPopupEdit2.BackColor = System.Drawing.Color.Transparent;
-			this.memoPopupEdit2.Location = new System.Drawing.Point(222, 218);
+			this.memoPopupEdit2.Location = new System.Drawing.Point(222, 215);
 			this.memoPopupEdit2.Margin = new System.Windows.Forms.Padding(3, 26, 3, 26);
 			this.memoPopupEdit2.Name = "memoPopupEdit2";
 			this.memoPopupEdit2.Size = new System.Drawing.Size(124, 92);
@@ -308,7 +309,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market
 			this.clipartEditContainer2.AllowDrop = true;
 			this.clipartEditContainer2.BackColor = System.Drawing.Color.Transparent;
 			this.clipartEditContainer2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.clipartEditContainer2.Location = new System.Drawing.Point(194, 0);
+			this.clipartEditContainer2.Location = new System.Drawing.Point(194, -3);
 			this.clipartEditContainer2.Name = "clipartEditContainer2";
 			this.clipartEditContainer2.Size = new System.Drawing.Size(179, 141);
 			this.clipartEditContainer2.TabIndex = 35;
@@ -318,7 +319,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market
 			this.clipartEditContainer3.AllowDrop = true;
 			this.clipartEditContainer3.BackColor = System.Drawing.Color.Transparent;
 			this.clipartEditContainer3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.clipartEditContainer3.Location = new System.Drawing.Point(373, 0);
+			this.clipartEditContainer3.Location = new System.Drawing.Point(373, -3);
 			this.clipartEditContainer3.Name = "clipartEditContainer3";
 			this.clipartEditContainer3.Size = new System.Drawing.Size(196, 141);
 			this.clipartEditContainer3.TabIndex = 36;
@@ -564,7 +565,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market
             0,
             0,
             0});
-			this.spinEditSubheader3.Location = new System.Drawing.Point(71, 344);
+			this.spinEditSubheader3.Location = new System.Drawing.Point(71, 341);
 			this.spinEditSubheader3.Name = "spinEditSubheader3";
 			this.spinEditSubheader3.Properties.Appearance.Options.UseTextOptions = true;
 			this.spinEditSubheader3.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -614,7 +615,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market
             0,
             0,
             0});
-			this.spinEditSubheader4.Location = new System.Drawing.Point(257, 344);
+			this.spinEditSubheader4.Location = new System.Drawing.Point(257, 341);
 			this.spinEditSubheader4.Name = "spinEditSubheader4";
 			this.spinEditSubheader4.Properties.Appearance.Options.UseTextOptions = true;
 			this.spinEditSubheader4.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -664,7 +665,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market
             0,
             0,
             0});
-			this.spinEditSubheader5.Location = new System.Drawing.Point(443, 344);
+			this.spinEditSubheader5.Location = new System.Drawing.Point(443, 341);
 			this.spinEditSubheader5.Name = "spinEditSubheader5";
 			this.spinEditSubheader5.Properties.Appearance.Options.UseTextOptions = true;
 			this.spinEditSubheader5.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -818,7 +819,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market
 			// 
 			// comboBoxEditCombo1
 			// 
-			this.comboBoxEditCombo1.Location = new System.Drawing.Point(259, 98);
+			this.comboBoxEditCombo1.Location = new System.Drawing.Point(259, 95);
 			this.comboBoxEditCombo1.Name = "comboBoxEditCombo1";
 			this.comboBoxEditCombo1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -848,7 +849,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market
 			// 
 			// memoEditSubheader2
 			// 
-			this.memoEditSubheader2.Location = new System.Drawing.Point(22, 37);
+			this.memoEditSubheader2.Location = new System.Drawing.Point(22, 34);
 			this.memoEditSubheader2.Name = "memoEditSubheader2";
 			this.memoEditSubheader2.Properties.NullText = "Type here";
 			this.memoEditSubheader2.Size = new System.Drawing.Size(286, 38);
@@ -877,7 +878,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Market
             0,
             0,
             0});
-			this.spinEditSubheader1.Location = new System.Drawing.Point(22, 6);
+			this.spinEditSubheader1.Location = new System.Drawing.Point(22, 3);
 			this.spinEditSubheader1.Name = "spinEditSubheader1";
 			this.spinEditSubheader1.Properties.Appearance.Options.UseTextOptions = true;
 			this.spinEditSubheader1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;

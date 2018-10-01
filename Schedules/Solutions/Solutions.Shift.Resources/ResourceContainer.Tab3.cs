@@ -33,7 +33,7 @@ namespace Asa.Solutions.Shift.Resources
 		public Image Tab3_E_FooterLogo => Resources.Tab3.E.Resource.Footer;
 		public Image Tab3_E_Clipart1 => Resources.Tab3.E.Resource.Clipart1;
 		public Image Tab3_E_Clipart2 => Resources.Tab3.E.Resource.Clipart2;
-		public Image Tab3_E_Clipart3 => Resources.Tab3.E.Resource.Clipart2;
+		public Image Tab3_E_Clipart3 => Resources.Tab3.E.Resource.Clipart3;
 
 		public Image Tab3_F_Background => null;
 		public Image Tab3_F_RightLogo => null;

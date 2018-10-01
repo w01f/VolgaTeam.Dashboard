@@ -19,10 +19,15 @@ namespace Asa.Common.Resources.Solutions.Shift
 		Image Tab15_C_Background { get; }
 		Image Tab15_C_RightLogo { get; }
 		Image Tab15_C_FooterLogo { get; }
+		Image Tab15_C_Clipart1 { get; }
+		Image Tab15_C_Clipart2 { get; }
+		Image Tab15_C_Clipart3 { get; }
 
 		Image Tab15_D_Background { get; }
 		Image Tab15_D_RightLogo { get; }
 		Image Tab15_D_FooterLogo { get; }
+		Image Tab15_D_Clipart2 { get; }
+		Image Tab15_D_Clipart3 { get; }
 
 		Image Tab15_E_Background { get; }
 		Image Tab15_E_RightLogo { get; }

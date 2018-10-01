@@ -16,7 +16,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.NextSteps
 		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab14_A_Clipart2;
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
 
-		public Image Clipart3Image => _resourceManager.GraphicResources?.Tab12_A_Clipart3;
+		public Image Clipart3Image => _resourceManager.GraphicResources?.Tab14_A_Clipart3;
 		public ClipartConfiguration Clipart3Configuration { get; private set; }
 
 		public List<ListDataItem> Combo1Items { get; }

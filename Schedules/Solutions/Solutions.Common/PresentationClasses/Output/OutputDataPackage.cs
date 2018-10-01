@@ -11,6 +11,7 @@ namespace Asa.Solutions.Common.PresentationClasses.Output
 		public Dictionary<string, ClipartObject> ClipartItems { get; }
 		public Dictionary<string, Dictionary<string, decimal>> ChartItems { get; }
 		public Dictionary<string, string> TextItems { get; set; }
+		public Dictionary<string, string> TableItems { get; set; }
 		public Theme Theme { get; set; }
 		public bool AddAsFirtsPage { get; set; }
 		public string LayoutName { get; set; }
@@ -20,6 +21,7 @@ namespace Asa.Solutions.Common.PresentationClasses.Output
 			ClipartItems = new Dictionary<String, ClipartObject>();
 			ChartItems = new Dictionary<String, Dictionary<string, decimal>>();
 			TextItems = new Dictionary<string, string>();
+			TableItems  =new Dictionary<String, String>();
 		}
 	}
 }

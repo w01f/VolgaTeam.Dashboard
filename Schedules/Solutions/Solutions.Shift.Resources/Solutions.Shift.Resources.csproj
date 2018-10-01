@@ -3765,7 +3765,9 @@
   <ItemGroup>
     <None Include="Resources\Tab9\W\Right.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Tab14\F\Clipart3.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Tab10\X\Background.png" />
   </ItemGroup>
@@ -5412,6 +5414,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Tab14\I\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\G\Clipart3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\H\Clipart3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab14\I\Clipart3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\D\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\D\Clipart3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\C\Clipart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\C\Clipart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tab15\C\Clipart3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

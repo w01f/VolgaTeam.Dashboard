@@ -239,6 +239,14 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				case ShiftTopTabType.Contract:
 					switch (TabInfo.TabType)
 					{
+						case ShiftChildTabType.A:
+							return ParentControl.SlideContainer.EditedContent.ContractState.TabA.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.B:
+							return ParentControl.SlideContainer.EditedContent.ContractState.TabB.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.C:
+							return ParentControl.SlideContainer.EditedContent.ContractState.TabC.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.D:
+							return ParentControl.SlideContainer.EditedContent.ContractState.TabD.EnableOutput ?? TabInfo.EnableOutput;
 						default:
 							return TabInfo.EnableOutput;
 					}

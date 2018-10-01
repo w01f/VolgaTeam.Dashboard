@@ -114,6 +114,17 @@
     <Compile Include="Shift\Configuration\CBC\TabInfo.cs" />
     <Compile Include="Shift\Configuration\CommonChildTabInfo.cs" />
     <Compile Include="Shift\Configuration\CommonTopTabInfo.cs" />
+    <Compile Include="Shift\Configuration\Contract\ContractTabDInfo.cs" />
+    <Compile Include="Shift\Configuration\Contract\ContractTabBInfo.cs" />
+    <Compile Include="Shift\Configuration\Contract\ContractTabCInfo.cs" />
+    <Compile Include="Shift\Configuration\Contract\TabA\FormListConfiguration.cs" />
+    <Compile Include="Shift\Configuration\Contract\ContractTabAInfo.cs" />
+    <Compile Include="Shift\Configuration\Contract\ContractTabInfo.cs" />
+    <Compile Include="Shift\Configuration\Contract\TabA\ProductInfo.cs" />
+    <Compile Include="Shift\Configuration\Contract\TabA\ProductButtonConfiguration.cs" />
+    <Compile Include="Shift\Configuration\Contract\TabA\TabSelectorConfiguration.cs" />
+    <Compile Include="Shift\Configuration\Contract\TabB\TableConfiguration.cs" />
+    <Compile Include="Shift\Configuration\Contract\TabD\UserData.cs" />
     <Compile Include="Shift\Configuration\Cover\CoverTabEInfo.cs" />
     <Compile Include="Shift\Configuration\Cover\CoverTabDInfo.cs" />
     <Compile Include="Shift\Configuration\Cover\CoverTabCInfo.cs" />
@@ -201,6 +212,7 @@
     <Compile Include="Shift\Configuration\ShiftSolutionInfo.cs" />
     <Compile Include="Shift\Configuration\ShiftTabWithHeaderInfo.cs" />
     <Compile Include="Shift\Entities\NonPersistent\CBCState.cs" />
+    <Compile Include="Shift\Entities\NonPersistent\ContractState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\IntegratedSolutionState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\ApproachState.cs" />
     <Compile Include="Shift\Entities\NonPersistent\InvestmentState.cs" />

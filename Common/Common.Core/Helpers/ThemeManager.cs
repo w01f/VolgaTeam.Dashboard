@@ -383,7 +383,10 @@ namespace Asa.Common.Core.Helpers
 					case "Shift_14i_relationship":
 						slideType = SlideType.ShiftNextSteps;
 						break;
-					case "Shift_12_agreement_contract":
+					case "Shift_15a_agreement":
+					case "Shift_15b_agreement":
+					case "Shift_15c_agreement":
+					case "Shift_15d_agreement":
 						slideType = SlideType.ShiftContract;
 						break;
 					case "Shift_13_support_materials":

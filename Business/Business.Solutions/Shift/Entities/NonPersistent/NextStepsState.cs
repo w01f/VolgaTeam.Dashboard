@@ -127,6 +127,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			public bool? EnableOutput { get; set; }
 			public ClipartObject Clipart1 { get; set; }
 			public ClipartObject Clipart2 { get; set; }
+			public ClipartObject Clipart3 { get; set; }
 			public ListDataItem Combo1 { get; set; }
 			public ListDataItem Combo2 { get; set; }
 			public ListDataItem Combo3 { get; set; }
@@ -146,6 +147,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			public bool? EnableOutput { get; set; }
 			public ClipartObject Clipart1 { get; set; }
 			public ClipartObject Clipart2 { get; set; }
+			public ClipartObject Clipart3 { get; set; }
 			public ListDataItem Combo1 { get; set; }
 			public ListDataItem Combo2 { get; set; }
 			public ListDataItem Combo3 { get; set; }
@@ -165,6 +167,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			public bool? EnableOutput { get; set; }
 			public ClipartObject Clipart1 { get; set; }
 			public ClipartObject Clipart2 { get; set; }
+			public ClipartObject Clipart3 { get; set; }
 			public ListDataItem Combo1 { get; set; }
 			public ListDataItem Combo2 { get; set; }
 			public ListDataItem Combo3 { get; set; }
@@ -184,6 +187,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			public bool? EnableOutput { get; set; }
 			public ClipartObject Clipart1 { get; set; }
 			public ClipartObject Clipart2 { get; set; }
+			public ClipartObject Clipart3 { get; set; }
 			public ListDataItem Combo1 { get; set; }
 			public ListDataItem Combo2 { get; set; }
 			public ListDataItem Combo3 { get; set; }

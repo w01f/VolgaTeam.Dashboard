@@ -34,8 +34,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			comboBoxEditCombo4.EnableSelectAll().RaiseNullValueIfEditorEmpty().AssignConfiguration(CustomTabInfo.Combo4Configuration);
 			memoEditSubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().AssignConfiguration(CustomTabInfo.SubHeader1Configuration);
 			memoEditSubheader2.EnableSelectAll().RaiseNullValueIfEditorEmpty().AssignConfiguration(CustomTabInfo.SubHeader2Configuration);
-			memoEditSubheader3.EnableSelectAll().RaiseNullValueIfEditorEmpty().AssignConfiguration(CustomTabInfo.SubHeader3Configuration);
-			textEditSubheader4.EnableSelectAll().RaiseNullValueIfEditorEmpty().AssignConfiguration(CustomTabInfo.SubHeader4Configuration);
+			memoEditSubheader4.EnableSelectAll().RaiseNullValueIfEditorEmpty().AssignConfiguration(CustomTabInfo.SubHeader4Configuration);
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(CustomTabInfo.HeadersItems
@@ -70,8 +69,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 
 			memoEditSubheader1.Properties.NullText = CustomTabInfo.SubHeader1Placeholder ?? memoEditSubheader1.Properties.NullText;
 			memoEditSubheader2.Properties.NullText = CustomTabInfo.SubHeader2Placeholder ?? memoEditSubheader2.Properties.NullText;
-			memoEditSubheader3.Properties.NullText = CustomTabInfo.SubHeader3Placeholder ?? memoEditSubheader3.Properties.NullText;
-			textEditSubheader4.Properties.NullText = CustomTabInfo.SubHeader4Placeholder ?? textEditSubheader4.Properties.NullText;
+			memoEditSubheader4.Properties.NullText = CustomTabInfo.SubHeader4Placeholder ?? memoEditSubheader4.Properties.NullText;
 		}
 
 		public override void LoadData()
@@ -97,9 +95,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 											CustomTabInfo.SubHeader1DefaultValue;
 			memoEditSubheader2.EditValue = SlideContainer.EditedContent.NextStepsState.TabC.Subheader2 ??
 											CustomTabInfo.SubHeader2DefaultValue;
-			memoEditSubheader3.EditValue = SlideContainer.EditedContent.NextStepsState.TabC.Subheader3 ??
-											CustomTabInfo.SubHeader3DefaultValue;
-			textEditSubheader4.EditValue = SlideContainer.EditedContent.NextStepsState.TabC.Subheader4 ??
+			memoEditSubheader4.EditValue = SlideContainer.EditedContent.NextStepsState.TabC.Subheader4 ??
 											CustomTabInfo.SubHeader4DefaultValue;
 
 			_allowToSave = true;
@@ -138,13 +134,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 				memoEditSubheader2.EditValue as String != CustomTabInfo.SubHeader2DefaultValue
 					? memoEditSubheader2.EditValue as String ?? String.Empty
 					: null;
-			SlideContainer.EditedContent.NextStepsState.TabC.Subheader3 =
-				memoEditSubheader3.EditValue as String != CustomTabInfo.SubHeader3DefaultValue
-					? memoEditSubheader3.EditValue as String ?? String.Empty
-					: null;
 			SlideContainer.EditedContent.NextStepsState.TabC.Subheader4 =
-				textEditSubheader4.EditValue as String != CustomTabInfo.SubHeader4DefaultValue
-					? textEditSubheader4.EditValue as String ?? String.Empty
+				memoEditSubheader4.EditValue as String != CustomTabInfo.SubHeader4DefaultValue
+					? memoEditSubheader4.EditValue as String ?? String.Empty
 					: null;
 
 			_dataChanged = false;
@@ -198,7 +190,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 
 			outputDataPackage.TextItems.Add("SHIFT14CSUBHEADER1".ToUpper(), SlideContainer.EditedContent.NextStepsState.TabC.Subheader1 ?? CustomTabInfo.SubHeader1DefaultValue);
 			outputDataPackage.TextItems.Add("SHIFT14CSUBHEADER2".ToUpper(), SlideContainer.EditedContent.NextStepsState.TabC.Subheader2 ?? CustomTabInfo.SubHeader2DefaultValue);
-			outputDataPackage.TextItems.Add("SHIFT14CSUBHEADER3".ToUpper(), SlideContainer.EditedContent.NextStepsState.TabC.Subheader3 ?? CustomTabInfo.SubHeader3DefaultValue);
+			outputDataPackage.TextItems.Add("SHIFT14CSUBHEADER3".ToUpper(), String.Empty);
 			outputDataPackage.TextItems.Add("SHIFT14CSUBHEADER4".ToUpper(), SlideContainer.EditedContent.NextStepsState.TabC.Subheader4 ?? CustomTabInfo.SubHeader4DefaultValue);
 
 			return outputDataPackage;

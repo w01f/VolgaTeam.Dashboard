@@ -40,41 +40,37 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition3 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition4 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition1 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition2 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition5 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition6 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition7 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition8 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition2 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition3 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition9 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition10 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition11 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition12 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition13 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition14 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition3 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition4 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition5 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition6 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition7 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition11 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition12 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition13 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition8 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition9 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition10 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition11 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition14 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition15 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition16 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition17 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition11 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition12 = new DevExpress.XtraLayout.RowDefinition();
 			this.clipartEditContainer1 = new Asa.Solutions.Common.PresentationClasses.ClipartEdit.ClipartEditContainer();
-			this.layoutControlItemSlideHeader = new DevExpress.XtraLayout.LayoutControlItem();
 			this.comboBoxEditSlideHeader = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.clipartEditContainer2 = new Asa.Solutions.Common.PresentationClasses.ClipartEdit.ClipartEditContainer();
-			this.layoutControlGroupSlideHeader = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlGroupFooter = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlGroupArea2 = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.layoutControlItemSubheader4 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.textEditSubheader4 = new DevExpress.XtraEditors.TextEdit();
 			this.layoutControlItemCombo1 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.comboBoxEditCombo1 = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.layoutControlItemCombo4 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -91,21 +87,18 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			this.layoutControlGroupSubheader2 = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemSubheader2 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.memoEditSubheader2 = new DevExpress.XtraEditors.MemoEdit();
-			this.layoutControlGroupSubheader3 = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.layoutControlItemSubheader3 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.memoEditSubheader3 = new DevExpress.XtraEditors.MemoEdit();
+			this.layoutControlItemSubheader4 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.memoEditSubheader4 = new DevExpress.XtraEditors.MemoEdit();
+			this.layoutControlGroupSlideHeader = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemSlideHeader = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlideHeader)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSlideHeader)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupFooter)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupArea2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSubheader4)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditSubheader4.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCombo1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditCombo1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCombo4)).BeginInit();
@@ -122,9 +115,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSubheader2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSubheader2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditSubheader2.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSubheader3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSubheader3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.memoEditSubheader3.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSubheader4)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.memoEditSubheader4.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSlideHeader)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlideHeader)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// layoutControl
@@ -141,10 +135,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			this.layoutControl.Appearance.ControlFocused.Options.UseFont = true;
 			this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
-			this.layoutControl.Controls.Add(this.memoEditSubheader3);
+			this.layoutControl.Controls.Add(this.memoEditSubheader4);
 			this.layoutControl.Controls.Add(this.memoEditSubheader2);
 			this.layoutControl.Controls.Add(this.memoEditSubheader1);
-			this.layoutControl.Controls.Add(this.textEditSubheader4);
 			this.layoutControl.Controls.Add(this.comboBoxEditCombo1);
 			this.layoutControl.Controls.Add(this.comboBoxEditCombo4);
 			this.layoutControl.Controls.Add(this.comboBoxEditCombo3);
@@ -153,7 +146,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			this.layoutControl.Controls.Add(this.clipartEditContainer1);
 			this.layoutControl.Controls.Add(this.comboBoxEditSlideHeader);
 			this.layoutControl.ForeColor = System.Drawing.Color.Black;
-			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(939, 155, 595, 682);
+			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(488, 174, 595, 682);
 			this.layoutControl.OptionsFocus.ActivateSelectedControlOnGotFocus = false;
 			this.layoutControl.OptionsFocus.AllowFocusGroups = false;
 			this.layoutControl.OptionsFocus.AllowFocusReadonlyEditors = false;
@@ -180,10 +173,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			this.layoutControlGroupRoot.AppearanceTabPage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControlGroupRoot.AppearanceTabPage.PageClient.Options.UseFont = true;
 			this.layoutControlGroupRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlGroupSlideHeader,
             this.layoutControlGroupFooter,
             this.layoutControlGroupArea2,
-            this.layoutControlGroupArea1});
+            this.layoutControlGroupArea1,
+            this.layoutControlGroupSlideHeader});
 			this.layoutControlGroupRoot.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupRoot.Name = "Root";
 			columnDefinition18.SizeType = System.Windows.Forms.SizeType.Percent;
@@ -192,9 +185,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
             columnDefinition18});
 			rowDefinition13.Height = 10D;
 			rowDefinition13.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition14.Height = 41D;
+			rowDefinition14.Height = 51D;
 			rowDefinition14.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition15.Height = 42D;
+			rowDefinition15.Height = 32D;
 			rowDefinition15.SizeType = System.Windows.Forms.SizeType.Percent;
 			rowDefinition16.Height = 7D;
 			rowDefinition16.SizeType = System.Windows.Forms.SizeType.Percent;
@@ -215,20 +208,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			this.clipartEditContainer1.Name = "clipartEditContainer1";
 			this.clipartEditContainer1.Size = new System.Drawing.Size(612, 23);
 			this.clipartEditContainer1.TabIndex = 8;
-			// 
-			// layoutControlItemSlideHeader
-			// 
-			this.layoutControlItemSlideHeader.Control = this.comboBoxEditSlideHeader;
-			this.layoutControlItemSlideHeader.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-			this.layoutControlItemSlideHeader.FillControlToClientArea = false;
-			this.layoutControlItemSlideHeader.Location = new System.Drawing.Point(20, 0);
-			this.layoutControlItemSlideHeader.Name = "layoutControlItemSlideHeader";
-			this.layoutControlItemSlideHeader.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemSlideHeader.Size = new System.Drawing.Size(470, 62);
-			this.layoutControlItemSlideHeader.Text = "Slide Header";
-			this.layoutControlItemSlideHeader.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemSlideHeader.TextVisible = false;
-			this.layoutControlItemSlideHeader.TrimClientAreaToControl = false;
 			// 
 			// comboBoxEditSlideHeader
 			// 
@@ -251,35 +230,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			this.clipartEditContainer2.Size = new System.Drawing.Size(329, 23);
 			this.clipartEditContainer2.TabIndex = 9;
 			// 
-			// layoutControlGroupSlideHeader
-			// 
-			this.layoutControlGroupSlideHeader.GroupBordersVisible = false;
-			this.layoutControlGroupSlideHeader.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItemSlideHeader});
-			this.layoutControlGroupSlideHeader.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
-			this.layoutControlGroupSlideHeader.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlGroupSlideHeader.Name = "layoutControlGroupSlideHeader";
-			columnDefinition1.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition1.Width = 20D;
-			columnDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition2.Width = 50D;
-			columnDefinition3.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition3.Width = 50D;
-			columnDefinition4.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition4.Width = 20D;
-			this.layoutControlGroupSlideHeader.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition1,
-            columnDefinition2,
-            columnDefinition3,
-            columnDefinition4});
-			rowDefinition1.Height = 100D;
-			rowDefinition1.SizeType = System.Windows.Forms.SizeType.Percent;
-			this.layoutControlGroupSlideHeader.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition1});
-			this.layoutControlGroupSlideHeader.Size = new System.Drawing.Size(981, 62);
-			this.layoutControlGroupSlideHeader.Text = "Slide Header";
-			this.layoutControlGroupSlideHeader.TextVisible = false;
-			// 
 			// layoutControlGroupFooter
 			// 
 			this.layoutControlGroupFooter.GroupBordersVisible = false;
@@ -289,26 +239,26 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			this.layoutControlGroupFooter.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupFooter.Location = new System.Drawing.Point(0, 575);
 			this.layoutControlGroupFooter.Name = "layoutControlGroupFooter";
-			columnDefinition5.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition5.Width = 20D;
-			columnDefinition6.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition6.Width = 65D;
-			columnDefinition7.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition7.Width = 35D;
-			columnDefinition8.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition8.Width = 20D;
+			columnDefinition1.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition1.Width = 20D;
+			columnDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition2.Width = 65D;
+			columnDefinition3.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition3.Width = 35D;
+			columnDefinition4.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition4.Width = 20D;
 			this.layoutControlGroupFooter.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition5,
-            columnDefinition6,
-            columnDefinition7,
-            columnDefinition8});
-			rowDefinition2.Height = 100D;
-			rowDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition3.Height = 20D;
-			rowDefinition3.SizeType = System.Windows.Forms.SizeType.Absolute;
+            columnDefinition1,
+            columnDefinition2,
+            columnDefinition3,
+            columnDefinition4});
+			rowDefinition1.Height = 100D;
+			rowDefinition1.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition2.Height = 20D;
+			rowDefinition2.SizeType = System.Windows.Forms.SizeType.Absolute;
 			this.layoutControlGroupFooter.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition2,
-            rowDefinition3});
+            rowDefinition1,
+            rowDefinition2});
 			this.layoutControlGroupFooter.OptionsTableLayoutItem.RowIndex = 3;
 			this.layoutControlGroupFooter.Size = new System.Drawing.Size(981, 43);
 			this.layoutControlGroupFooter.Text = "Footer";
@@ -351,95 +301,62 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			// 
 			this.layoutControlGroupArea2.GroupBordersVisible = false;
 			this.layoutControlGroupArea2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItemSubheader4,
             this.layoutControlItemCombo1,
             this.layoutControlItemCombo4,
             this.layoutControlItemCombo3,
             this.layoutControlItemCombo2});
 			this.layoutControlGroupArea2.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
-			this.layoutControlGroupArea2.Location = new System.Drawing.Point(0, 315);
+			this.layoutControlGroupArea2.Location = new System.Drawing.Point(0, 377);
 			this.layoutControlGroupArea2.Name = "layoutControlGroupArea2";
-			columnDefinition9.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition5.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition5.Width = 20D;
+			columnDefinition6.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition6.Width = 40D;
+			columnDefinition7.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition7.Width = 5D;
+			columnDefinition8.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition8.Width = 20D;
+			columnDefinition9.SizeType = System.Windows.Forms.SizeType.Percent;
 			columnDefinition9.Width = 20D;
 			columnDefinition10.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition10.Width = 40D;
-			columnDefinition11.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition11.Width = 5D;
-			columnDefinition12.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition12.Width = 20D;
-			columnDefinition13.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition13.Width = 20D;
-			columnDefinition14.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition14.Width = 15D;
+			columnDefinition10.Width = 15D;
 			this.layoutControlGroupArea2.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
+            columnDefinition5,
+            columnDefinition6,
+            columnDefinition7,
+            columnDefinition8,
             columnDefinition9,
-            columnDefinition10,
-            columnDefinition11,
-            columnDefinition12,
-            columnDefinition13,
-            columnDefinition14});
-			rowDefinition4.Height = 15D;
-			rowDefinition4.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition5.Height = 26D;
-			rowDefinition5.SizeType = System.Windows.Forms.SizeType.AutoSize;
-			rowDefinition6.Height = 20D;
-			rowDefinition6.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition7.Height = 26D;
-			rowDefinition7.SizeType = System.Windows.Forms.SizeType.AutoSize;
-			rowDefinition8.Height = 20D;
-			rowDefinition8.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition9.Height = 26D;
-			rowDefinition9.SizeType = System.Windows.Forms.SizeType.AutoSize;
-			rowDefinition10.Height = 45D;
-			rowDefinition10.SizeType = System.Windows.Forms.SizeType.Percent;
+            columnDefinition10});
+			rowDefinition3.Height = 40D;
+			rowDefinition3.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition4.Height = 26D;
+			rowDefinition4.SizeType = System.Windows.Forms.SizeType.AutoSize;
+			rowDefinition5.Height = 20D;
+			rowDefinition5.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition6.Height = 26D;
+			rowDefinition6.SizeType = System.Windows.Forms.SizeType.AutoSize;
+			rowDefinition7.Height = 40D;
+			rowDefinition7.SizeType = System.Windows.Forms.SizeType.Percent;
 			this.layoutControlGroupArea2.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
+            rowDefinition3,
             rowDefinition4,
             rowDefinition5,
             rowDefinition6,
-            rowDefinition7,
-            rowDefinition8,
-            rowDefinition9,
-            rowDefinition10});
+            rowDefinition7});
 			this.layoutControlGroupArea2.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupArea2.Size = new System.Drawing.Size(981, 260);
+			this.layoutControlGroupArea2.Size = new System.Drawing.Size(981, 198);
 			this.layoutControlGroupArea2.Text = "Area 2";
 			this.layoutControlGroupArea2.TextVisible = false;
-			// 
-			// layoutControlItemSubheader4
-			// 
-			this.layoutControlItemSubheader4.Control = this.textEditSubheader4;
-			this.layoutControlItemSubheader4.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemSubheader4.FillControlToClientArea = false;
-			this.layoutControlItemSubheader4.Location = new System.Drawing.Point(20, 27);
-			this.layoutControlItemSubheader4.Name = "layoutControlItemSubheader4";
-			this.layoutControlItemSubheader4.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemSubheader4.OptionsTableLayoutItem.ColumnSpan = 3;
-			this.layoutControlItemSubheader4.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemSubheader4.Size = new System.Drawing.Size(624, 26);
-			this.layoutControlItemSubheader4.Text = "Subheader 4";
-			this.layoutControlItemSubheader4.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemSubheader4.TextVisible = false;
-			this.layoutControlItemSubheader4.TrimClientAreaToControl = false;
-			// 
-			// textEditSubheader4
-			// 
-			this.textEditSubheader4.Location = new System.Drawing.Point(22, 344);
-			this.textEditSubheader4.Name = "textEditSubheader4";
-			this.textEditSubheader4.Properties.NullText = "Type here";
-			this.textEditSubheader4.Size = new System.Drawing.Size(620, 22);
-			this.textEditSubheader4.StyleController = this.layoutControl;
-			this.textEditSubheader4.TabIndex = 3;
-			this.textEditSubheader4.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// layoutControlItemCombo1
 			// 
 			this.layoutControlItemCombo1.Control = this.comboBoxEditCombo1;
 			this.layoutControlItemCombo1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemCombo1.FillControlToClientArea = false;
-			this.layoutControlItemCombo1.Location = new System.Drawing.Point(20, 89);
+			this.layoutControlItemCombo1.Location = new System.Drawing.Point(20, 58);
 			this.layoutControlItemCombo1.Name = "layoutControlItemCombo1";
 			this.layoutControlItemCombo1.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemCombo1.OptionsTableLayoutItem.RowIndex = 3;
+			this.layoutControlItemCombo1.OptionsTableLayoutItem.RowIndex = 1;
 			this.layoutControlItemCombo1.Size = new System.Drawing.Size(384, 26);
 			this.layoutControlItemCombo1.Text = "Combo 1";
 			this.layoutControlItemCombo1.TextSize = new System.Drawing.Size(0, 0);
@@ -448,7 +365,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			// 
 			// comboBoxEditCombo1
 			// 
-			this.comboBoxEditCombo1.Location = new System.Drawing.Point(22, 406);
+			this.comboBoxEditCombo1.Location = new System.Drawing.Point(22, 437);
 			this.comboBoxEditCombo1.Name = "comboBoxEditCombo1";
 			this.comboBoxEditCombo1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -463,11 +380,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			this.layoutControlItemCombo4.Control = this.comboBoxEditCombo4;
 			this.layoutControlItemCombo4.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemCombo4.FillControlToClientArea = false;
-			this.layoutControlItemCombo4.Location = new System.Drawing.Point(452, 151);
+			this.layoutControlItemCombo4.Location = new System.Drawing.Point(452, 113);
 			this.layoutControlItemCombo4.Name = "layoutControlItemCombo4";
 			this.layoutControlItemCombo4.OptionsTableLayoutItem.ColumnIndex = 3;
 			this.layoutControlItemCombo4.OptionsTableLayoutItem.ColumnSpan = 2;
-			this.layoutControlItemCombo4.OptionsTableLayoutItem.RowIndex = 5;
+			this.layoutControlItemCombo4.OptionsTableLayoutItem.RowIndex = 3;
 			this.layoutControlItemCombo4.Size = new System.Drawing.Size(384, 26);
 			this.layoutControlItemCombo4.Text = "Combo 4";
 			this.layoutControlItemCombo4.TextSize = new System.Drawing.Size(0, 0);
@@ -476,7 +393,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			// 
 			// comboBoxEditCombo4
 			// 
-			this.comboBoxEditCombo4.Location = new System.Drawing.Point(454, 468);
+			this.comboBoxEditCombo4.Location = new System.Drawing.Point(454, 492);
 			this.comboBoxEditCombo4.Name = "comboBoxEditCombo4";
 			this.comboBoxEditCombo4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -491,11 +408,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			this.layoutControlItemCombo3.Control = this.comboBoxEditCombo3;
 			this.layoutControlItemCombo3.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemCombo3.FillControlToClientArea = false;
-			this.layoutControlItemCombo3.Location = new System.Drawing.Point(452, 89);
+			this.layoutControlItemCombo3.Location = new System.Drawing.Point(452, 58);
 			this.layoutControlItemCombo3.Name = "layoutControlItemCombo3";
 			this.layoutControlItemCombo3.OptionsTableLayoutItem.ColumnIndex = 3;
 			this.layoutControlItemCombo3.OptionsTableLayoutItem.ColumnSpan = 2;
-			this.layoutControlItemCombo3.OptionsTableLayoutItem.RowIndex = 3;
+			this.layoutControlItemCombo3.OptionsTableLayoutItem.RowIndex = 1;
 			this.layoutControlItemCombo3.Size = new System.Drawing.Size(384, 26);
 			this.layoutControlItemCombo3.Text = "Combo 3";
 			this.layoutControlItemCombo3.TextSize = new System.Drawing.Size(0, 0);
@@ -504,7 +421,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			// 
 			// comboBoxEditCombo3
 			// 
-			this.comboBoxEditCombo3.Location = new System.Drawing.Point(454, 406);
+			this.comboBoxEditCombo3.Location = new System.Drawing.Point(454, 437);
 			this.comboBoxEditCombo3.Name = "comboBoxEditCombo3";
 			this.comboBoxEditCombo3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -519,10 +436,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			this.layoutControlItemCombo2.Control = this.comboBoxEditCombo2;
 			this.layoutControlItemCombo2.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemCombo2.FillControlToClientArea = false;
-			this.layoutControlItemCombo2.Location = new System.Drawing.Point(20, 151);
+			this.layoutControlItemCombo2.Location = new System.Drawing.Point(20, 113);
 			this.layoutControlItemCombo2.Name = "layoutControlItemCombo2";
 			this.layoutControlItemCombo2.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemCombo2.OptionsTableLayoutItem.RowIndex = 5;
+			this.layoutControlItemCombo2.OptionsTableLayoutItem.RowIndex = 3;
 			this.layoutControlItemCombo2.Size = new System.Drawing.Size(384, 26);
 			this.layoutControlItemCombo2.Text = "Combo 2";
 			this.layoutControlItemCombo2.TextSize = new System.Drawing.Size(0, 0);
@@ -531,7 +448,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			// 
 			// comboBoxEditCombo2
 			// 
-			this.comboBoxEditCombo2.Location = new System.Drawing.Point(22, 468);
+			this.comboBoxEditCombo2.Location = new System.Drawing.Point(22, 492);
 			this.comboBoxEditCombo2.Name = "comboBoxEditCombo2";
 			this.comboBoxEditCombo2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -545,29 +462,36 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			// 
 			this.layoutControlGroupArea1.GroupBordersVisible = false;
 			this.layoutControlGroupArea1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.tabbedControlGroupSubheaders});
+            this.tabbedControlGroupSubheaders,
+            this.layoutControlItemSubheader4});
 			this.layoutControlGroupArea1.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupArea1.Location = new System.Drawing.Point(0, 62);
 			this.layoutControlGroupArea1.Name = "layoutControlGroupArea1";
-			columnDefinition15.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition15.Width = 20D;
-			columnDefinition16.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition16.Width = 55D;
-			columnDefinition17.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition17.Width = 45D;
+			columnDefinition11.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition11.Width = 20D;
+			columnDefinition12.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition12.Width = 55D;
+			columnDefinition13.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition13.Width = 45D;
 			this.layoutControlGroupArea1.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition15,
-            columnDefinition16,
-            columnDefinition17});
-			rowDefinition11.Height = 15D;
+            columnDefinition11,
+            columnDefinition12,
+            columnDefinition13});
+			rowDefinition8.Height = 10D;
+			rowDefinition8.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition9.Height = 55D;
+			rowDefinition9.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition10.Height = 10D;
+			rowDefinition10.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition11.Height = 25D;
 			rowDefinition11.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition12.Height = 85D;
-			rowDefinition12.SizeType = System.Windows.Forms.SizeType.Percent;
 			this.layoutControlGroupArea1.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition11,
-            rowDefinition12});
+            rowDefinition8,
+            rowDefinition9,
+            rowDefinition10,
+            rowDefinition11});
 			this.layoutControlGroupArea1.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlGroupArea1.Size = new System.Drawing.Size(981, 253);
+			this.layoutControlGroupArea1.Size = new System.Drawing.Size(981, 315);
 			this.layoutControlGroupArea1.Text = "Area 1";
 			this.layoutControlGroupArea1.TextVisible = false;
 			// 
@@ -583,17 +507,16 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			this.tabbedControlGroupSubheaders.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
 			this.tabbedControlGroupSubheaders.AppearanceTabPage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.tabbedControlGroupSubheaders.AppearanceTabPage.PageClient.Options.UseFont = true;
-			this.tabbedControlGroupSubheaders.Location = new System.Drawing.Point(20, 38);
+			this.tabbedControlGroupSubheaders.Location = new System.Drawing.Point(20, 31);
 			this.tabbedControlGroupSubheaders.Name = "tabbedControlGroupSubheaders";
 			this.tabbedControlGroupSubheaders.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.tabbedControlGroupSubheaders.OptionsTableLayoutItem.RowIndex = 1;
 			this.tabbedControlGroupSubheaders.SelectedTabPage = this.layoutControlGroupSubheader1;
 			this.tabbedControlGroupSubheaders.SelectedTabPageIndex = 0;
-			this.tabbedControlGroupSubheaders.Size = new System.Drawing.Size(529, 215);
+			this.tabbedControlGroupSubheaders.Size = new System.Drawing.Size(529, 173);
 			this.tabbedControlGroupSubheaders.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroupSubheader1,
-            this.layoutControlGroupSubheader2,
-            this.layoutControlGroupSubheader3});
+            this.layoutControlGroupSubheader2});
 			// 
 			// layoutControlGroupSubheader1
 			// 
@@ -603,7 +526,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			this.layoutControlGroupSubheader1.Name = "layoutControlGroupSubheader1";
 			this.layoutControlGroupSubheader1.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupSubheader1.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlGroupSubheader1.Size = new System.Drawing.Size(505, 166);
+			this.layoutControlGroupSubheader1.Size = new System.Drawing.Size(505, 124);
 			this.layoutControlGroupSubheader1.Text = "1";
 			// 
 			// layoutControlItemSubheader1
@@ -615,7 +538,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			this.layoutControlItemSubheader1.Name = "layoutControlItemSubheader1";
 			this.layoutControlItemSubheader1.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemSubheader1.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemSubheader1.Size = new System.Drawing.Size(505, 166);
+			this.layoutControlItemSubheader1.Size = new System.Drawing.Size(505, 124);
 			this.layoutControlItemSubheader1.Text = "Subheader 1";
 			this.layoutControlItemSubheader1.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemSubheader1.TextVisible = false;
@@ -623,10 +546,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			// 
 			// memoEditSubheader1
 			// 
-			this.memoEditSubheader1.Location = new System.Drawing.Point(34, 139);
+			this.memoEditSubheader1.Location = new System.Drawing.Point(34, 132);
 			this.memoEditSubheader1.Name = "memoEditSubheader1";
 			this.memoEditSubheader1.Properties.NullText = "Type here";
-			this.memoEditSubheader1.Size = new System.Drawing.Size(501, 162);
+			this.memoEditSubheader1.Size = new System.Drawing.Size(501, 120);
 			this.memoEditSubheader1.StyleController = this.layoutControl;
 			this.memoEditSubheader1.TabIndex = 2;
 			this.memoEditSubheader1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -637,7 +560,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
             this.layoutControlItemSubheader2});
 			this.layoutControlGroupSubheader2.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupSubheader2.Name = "layoutControlGroupSubheader2";
-			this.layoutControlGroupSubheader2.Size = new System.Drawing.Size(505, 166);
+			this.layoutControlGroupSubheader2.Size = new System.Drawing.Size(505, 124);
 			this.layoutControlGroupSubheader2.Text = "2";
 			// 
 			// layoutControlItemSubheader2
@@ -649,7 +572,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			this.layoutControlItemSubheader2.Name = "layoutControlItemSubheader2";
 			this.layoutControlItemSubheader2.OptionsTableLayoutItem.ColumnIndex = 3;
 			this.layoutControlItemSubheader2.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemSubheader2.Size = new System.Drawing.Size(505, 166);
+			this.layoutControlItemSubheader2.Size = new System.Drawing.Size(505, 124);
 			this.layoutControlItemSubheader2.Text = "Subheader 2";
 			this.layoutControlItemSubheader2.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemSubheader2.TextVisible = false;
@@ -657,65 +580,95 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			// 
 			// memoEditSubheader2
 			// 
-			this.memoEditSubheader2.Location = new System.Drawing.Point(34, 139);
+			this.memoEditSubheader2.Location = new System.Drawing.Point(34, 132);
 			this.memoEditSubheader2.Name = "memoEditSubheader2";
 			this.memoEditSubheader2.Properties.NullText = "Type here";
-			this.memoEditSubheader2.Size = new System.Drawing.Size(501, 162);
+			this.memoEditSubheader2.Size = new System.Drawing.Size(501, 120);
 			this.memoEditSubheader2.StyleController = this.layoutControl;
 			this.memoEditSubheader2.TabIndex = 1;
 			this.memoEditSubheader2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
-			// layoutControlGroupSubheader3
+			// layoutControlItemSubheader4
 			// 
-			this.layoutControlGroupSubheader3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItemSubheader3});
-			this.layoutControlGroupSubheader3.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlGroupSubheader3.Name = "layoutControlGroupSubheader3";
-			this.layoutControlGroupSubheader3.Size = new System.Drawing.Size(505, 166);
-			this.layoutControlGroupSubheader3.Text = "3";
+			this.layoutControlItemSubheader4.Control = this.memoEditSubheader4;
+			this.layoutControlItemSubheader4.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemSubheader4.FillControlToClientArea = false;
+			this.layoutControlItemSubheader4.Location = new System.Drawing.Point(20, 236);
+			this.layoutControlItemSubheader4.Name = "layoutControlItemSubheader4";
+			this.layoutControlItemSubheader4.OptionsTableLayoutItem.ColumnIndex = 1;
+			this.layoutControlItemSubheader4.OptionsTableLayoutItem.RowIndex = 3;
+			this.layoutControlItemSubheader4.Size = new System.Drawing.Size(529, 79);
+			this.layoutControlItemSubheader4.Text = "Subheader 4";
+			this.layoutControlItemSubheader4.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemSubheader4.TextVisible = false;
+			this.layoutControlItemSubheader4.TrimClientAreaToControl = false;
 			// 
-			// layoutControlItemSubheader3
+			// memoEditSubheader4
 			// 
-			this.layoutControlItemSubheader3.Control = this.memoEditSubheader3;
-			this.layoutControlItemSubheader3.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemSubheader3.FillControlToClientArea = false;
-			this.layoutControlItemSubheader3.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlItemSubheader3.Name = "layoutControlItemSubheader3";
-			this.layoutControlItemSubheader3.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemSubheader3.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemSubheader3.Size = new System.Drawing.Size(505, 166);
-			this.layoutControlItemSubheader3.Text = "Subheader 3";
-			this.layoutControlItemSubheader3.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemSubheader3.TextVisible = false;
-			this.layoutControlItemSubheader3.TrimClientAreaToControl = false;
+			this.memoEditSubheader4.Location = new System.Drawing.Point(22, 300);
+			this.memoEditSubheader4.Name = "memoEditSubheader4";
+			this.memoEditSubheader4.Properties.NullText = "Type here";
+			this.memoEditSubheader4.Size = new System.Drawing.Size(525, 75);
+			this.memoEditSubheader4.StyleController = this.layoutControl;
+			this.memoEditSubheader4.TabIndex = 3;
+			this.memoEditSubheader4.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
-			// memoEditSubheader3
+			// layoutControlGroupSlideHeader
 			// 
-			this.memoEditSubheader3.Location = new System.Drawing.Point(34, 139);
-			this.memoEditSubheader3.Name = "memoEditSubheader3";
-			this.memoEditSubheader3.Properties.NullText = "Type here";
-			this.memoEditSubheader3.Size = new System.Drawing.Size(501, 162);
-			this.memoEditSubheader3.StyleController = this.layoutControl;
-			this.memoEditSubheader3.TabIndex = 1;
-			this.memoEditSubheader3.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
+			this.layoutControlGroupSlideHeader.GroupBordersVisible = false;
+			this.layoutControlGroupSlideHeader.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemSlideHeader});
+			this.layoutControlGroupSlideHeader.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
+			this.layoutControlGroupSlideHeader.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupSlideHeader.Name = "layoutControlGroupSlideHeader";
+			columnDefinition14.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition14.Width = 20D;
+			columnDefinition15.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition15.Width = 50D;
+			columnDefinition16.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition16.Width = 50D;
+			columnDefinition17.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition17.Width = 20D;
+			this.layoutControlGroupSlideHeader.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
+            columnDefinition14,
+            columnDefinition15,
+            columnDefinition16,
+            columnDefinition17});
+			rowDefinition12.Height = 100D;
+			rowDefinition12.SizeType = System.Windows.Forms.SizeType.Percent;
+			this.layoutControlGroupSlideHeader.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
+            rowDefinition12});
+			this.layoutControlGroupSlideHeader.Size = new System.Drawing.Size(981, 62);
+			this.layoutControlGroupSlideHeader.Text = "Slide Header";
+			this.layoutControlGroupSlideHeader.TextVisible = false;
 			// 
-			// PartnershipTabAControl
+			// layoutControlItemSlideHeader
+			// 
+			this.layoutControlItemSlideHeader.Control = this.comboBoxEditSlideHeader;
+			this.layoutControlItemSlideHeader.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemSlideHeader.FillControlToClientArea = false;
+			this.layoutControlItemSlideHeader.Location = new System.Drawing.Point(20, 0);
+			this.layoutControlItemSlideHeader.Name = "layoutControlItemSlideHeader";
+			this.layoutControlItemSlideHeader.OptionsTableLayoutItem.ColumnIndex = 1;
+			this.layoutControlItemSlideHeader.Size = new System.Drawing.Size(470, 62);
+			this.layoutControlItemSlideHeader.Text = "Slide Header";
+			this.layoutControlItemSlideHeader.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemSlideHeader.TextVisible = false;
+			this.layoutControlItemSlideHeader.TrimClientAreaToControl = false;
+			// 
+			// NextStepsTabCControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-			this.Name = "PartnershipTabAControl";
+			this.Name = "NextStepsTabCControl";
 			this.Size = new System.Drawing.Size(981, 618);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlideHeader)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSlideHeader)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupFooter)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupArea2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSubheader4)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditSubheader4.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCombo1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditCombo1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCombo4)).EndInit();
@@ -732,19 +685,18 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSubheader2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSubheader2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditSubheader2.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSubheader3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSubheader3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.memoEditSubheader3.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSubheader4)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.memoEditSubheader4.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSlideHeader)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlideHeader)).EndInit();
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 		protected DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSlideHeader;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemSlideHeader;
 		private ClipartEditContainer clipartEditContainer1;
 		private ClipartEditContainer clipartEditContainer2;
-		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupSlideHeader;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupFooter;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemClipart1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemClipart2;
@@ -756,19 +708,18 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemCombo2;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemCombo3;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemCombo4;
-		private DevExpress.XtraEditors.TextEdit textEditSubheader4;
 		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditCombo1;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemSubheader4;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemCombo1;
-		private DevExpress.XtraEditors.MemoEdit memoEditSubheader3;
 		private DevExpress.XtraEditors.MemoEdit memoEditSubheader2;
 		private DevExpress.XtraEditors.MemoEdit memoEditSubheader1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemSubheader2;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemSubheader3;
 		private DevExpress.XtraLayout.TabbedControlGroup tabbedControlGroupSubheaders;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupSubheader1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemSubheader1;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupSubheader2;
-		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupSubheader3;
+		private DevExpress.XtraEditors.MemoEdit memoEditSubheader4;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemSubheader4;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupSlideHeader;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemSlideHeader;
 	}
 }

@@ -14,6 +14,8 @@ namespace Asa.Business.Solutions.Shift.Configuration.NextSteps
 		public ClipartConfiguration Clipart1Configuration { get; private set; }
 		public Image Clipart2Image => _resourceManager.GraphicResources?.Tab14_G_Clipart2;
 		public ClipartConfiguration Clipart2Configuration { get; private set; }
+		public Image Clipart3Image => _resourceManager.GraphicResources?.Tab14_G_Clipart3;
+		public ClipartConfiguration Clipart3Configuration { get; private set; }
 
 		public List<ListDataItem> Combo1Items { get; }
 		public TextEditorConfiguration Combo1Configuration { get; set; }
@@ -58,6 +60,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.NextSteps
 		{
 			Clipart1Configuration = new ClipartConfiguration();
 			Clipart2Configuration = new ClipartConfiguration();
+			Clipart3Configuration = new ClipartConfiguration();
 
 			Combo1Items = new List<ListDataItem>();
 			Combo1Configuration = TextEditorConfiguration.Empty();
@@ -159,6 +162,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.NextSteps
 
 				Clipart1Configuration = ClipartConfiguration.FromXml(node, "SHIFT14GClipart1");
 				Clipart2Configuration = ClipartConfiguration.FromXml(node, "SHIFT14GClipart2");
+				Clipart3Configuration = ClipartConfiguration.FromXml(node, "SHIFT14GClipart3");
 
 				CommonEditorConfiguration = TextEditorConfiguration.FromXml(node);
 				HeadersEditorConfiguration = TextEditorConfiguration.FromXml(node, "SHIFT14GHeader");

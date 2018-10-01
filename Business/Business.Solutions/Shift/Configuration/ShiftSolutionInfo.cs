@@ -10,6 +10,7 @@ using Asa.Business.Solutions.Shift.Configuration.Agenda;
 using Asa.Business.Solutions.Shift.Configuration.Approach;
 using Asa.Business.Solutions.Shift.Configuration.CBC;
 using Asa.Business.Solutions.Shift.Configuration.Cleanslate;
+using Asa.Business.Solutions.Shift.Configuration.Contract;
 using Asa.Business.Solutions.Shift.Configuration.Cover;
 using Asa.Business.Solutions.Shift.Configuration.Goals;
 using Asa.Business.Solutions.Shift.Configuration.IntegratedSolution;
@@ -134,7 +135,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 							tabInfo = new NextStepsTabInfo();
 							break;
 						case "contract":
-							tabInfo = new CommonTopTabInfo(ShiftTopTabType.Contract);
+							tabInfo = new ContractTabInfo();
 							break;
 						case "support-materials":
 							tabInfo = new CommonTopTabInfo(ShiftTopTabType.SupportMaterials);

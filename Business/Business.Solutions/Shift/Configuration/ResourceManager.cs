@@ -21,6 +21,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		public StorageFile DataCBCCommonFile { get; private set; }
 		public StorageFile DataProofOfPerformanceCommonFile { get; private set; }
 		public StorageFile DataNextStepsCommonFile { get; private set; }
+		public StorageFile DataAgreementCommonFile { get; private set; }
 
 		public IShiftGraphicResources GraphicResources { get; private set; }
 
@@ -252,6 +253,13 @@ namespace Asa.Business.Solutions.Shift.Configuration
 		#endregion
 
 		#region Tab 12
+		public StorageFile DataContractPartAFile { get; private set; }
+		public StorageFile DataContractPartBFile { get; private set; }
+		public StorageFile DataContractPartCFile { get; private set; }
+		public StorageFile DataContractPartDFile { get; private set; }
+
+		public StorageDirectory ClipartTab15DUsersFolder { get; private set; }
+
 		public StorageDirectory Tab12PartKSlidesFolder { get; private set; }
 		public StorageDirectory Tab12PartLSlidesFolder { get; private set; }
 		public StorageDirectory Tab12PartMSlidesFolder { get; private set; }
@@ -349,6 +357,7 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			DataCBCCommonFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT CBC.xml"));
 			DataProofOfPerformanceCommonFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT Proof of Performance.xml"));
 			DataNextStepsCommonFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT Next Steps.xml"));
+			DataAgreementCommonFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT Agreement List.xml"));
 
 			#region Tab 1
 			DataCoverPartAFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT01A.xml"));
@@ -578,6 +587,13 @@ namespace Asa.Business.Solutions.Shift.Configuration
 			#endregion
 
 			#region Tab 12
+			DataContractPartAFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT15A.xml"));
+			DataContractPartBFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT15B.xml"));
+			DataContractPartCFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT15C.xml"));
+			DataContractPartDFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("SHIFT15D.xml"));
+
+			ClipartTab15DUsersFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_agreement_contract", "subtab_d", "Users" }));
+
 			Tab12PartKSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_agreement_contract", "subtab_k" }));
 			Tab12PartLSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_agreement_contract", "subtab_l" }));
 			Tab12PartMSlidesFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge(new[] { "15_agreement_contract", "subtab_m" }));

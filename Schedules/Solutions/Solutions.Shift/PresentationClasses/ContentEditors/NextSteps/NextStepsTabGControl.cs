@@ -84,6 +84,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 
 			clipartEditContainer2.Init(ImageClipartObject.FromImage(CustomTabInfo.Clipart2Image), CustomTabInfo.Clipart2Configuration, TabPageContainer.ParentControl);
 			clipartEditContainer2.EditValueChanged += OnEditValueChanged;
+
+			clipartEditContainer3.Init(ImageClipartObject.FromImage(CustomTabInfo.Clipart3Image), CustomTabInfo.Clipart3Configuration, TabPageContainer.ParentControl);
+			clipartEditContainer3.EditValueChanged += OnEditValueChanged;
 		}
 
 		public override void LoadData()
@@ -92,6 +95,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 
 			clipartEditContainer1.LoadData(SlideContainer.EditedContent.NextStepsState.TabG.Clipart1);
 			clipartEditContainer2.LoadData(SlideContainer.EditedContent.NextStepsState.TabG.Clipart2);
+			clipartEditContainer3.LoadData(SlideContainer.EditedContent.NextStepsState.TabG.Clipart3);
 
 			comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.NextStepsState.TabG.SlideHeader ??
 				CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
@@ -129,6 +133,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 
 			SlideContainer.EditedContent.NextStepsState.TabG.Clipart1 = clipartEditContainer1.GetActiveClipartObject();
 			SlideContainer.EditedContent.NextStepsState.TabG.Clipart2 = clipartEditContainer2.GetActiveClipartObject();
+			SlideContainer.EditedContent.NextStepsState.TabG.Clipart3 = clipartEditContainer3.GetActiveClipartObject();
 
 			var slideHeaderValue = comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String };
 			SlideContainer.EditedContent.NextStepsState.TabG.SlideHeader = slideHeaderValue != CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ?
@@ -215,6 +220,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NextSteps
 						   ImageClipartObject.FromImage(CustomTabInfo.Clipart2Image);
 			if (clipart2 != null)
 				outputDataPackage.ClipartItems.Add("SHIFT14GCLIPART2", clipart2);
+
+			var clipart3 = SlideContainer.EditedContent.NextStepsState.TabF.Clipart3 ??
+			               ImageClipartObject.FromImage(CustomTabInfo.Clipart3Image);
+			if (clipart3 != null)
+				outputDataPackage.ClipartItems.Add("SHIFT14GCLIPART3", clipart3);
 
 			var slideHeader = (SlideContainer.EditedContent.NextStepsState.TabG.SlideHeader ??
 				CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault))?.Value;

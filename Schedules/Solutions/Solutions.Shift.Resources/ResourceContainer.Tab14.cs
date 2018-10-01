@@ -44,24 +44,28 @@ namespace Asa.Solutions.Shift.Resources
 		public Image Tab14_F_FooterLogo => Resources.Tab14.F.Resource.Footer;
 		public Image Tab14_F_Clipart1 => Resources.Tab14.F.Resource.Clipart1;
 		public Image Tab14_F_Clipart2 => Resources.Tab14.F.Resource.Clipart2;
+		public Image Tab14_F_Clipart3 => Resources.Tab14.F.Resource.Clipart3;
 
 		public Image Tab14_G_Background => Resources.Tab14.G.Resource.Background;
 		public Image Tab14_G_RightLogo => Resources.Tab14.G.Resource.Right;
 		public Image Tab14_G_FooterLogo => Resources.Tab14.G.Resource.Footer;
 		public Image Tab14_G_Clipart1 => Resources.Tab14.G.Resource.Clipart1;
 		public Image Tab14_G_Clipart2 => Resources.Tab14.G.Resource.Clipart2;
+		public Image Tab14_G_Clipart3 => Resources.Tab14.G.Resource.Clipart3;
 
 		public Image Tab14_H_Background => Resources.Tab14.H.Resource.Background;
 		public Image Tab14_H_RightLogo => Resources.Tab14.H.Resource.Right;
 		public Image Tab14_H_FooterLogo => Resources.Tab14.H.Resource.Footer;
 		public Image Tab14_H_Clipart1 => Resources.Tab14.H.Resource.Clipart1;
 		public Image Tab14_H_Clipart2 => Resources.Tab14.H.Resource.Clipart2;
+		public Image Tab14_H_Clipart3 => Resources.Tab14.H.Resource.Clipart3;
 
 		public Image Tab14_I_Background => Resources.Tab14.I.Resource.Background;
 		public Image Tab14_I_RightLogo => Resources.Tab14.I.Resource.Right;
 		public Image Tab14_I_FooterLogo => Resources.Tab14.I.Resource.Footer;
 		public Image Tab14_I_Clipart1 => Resources.Tab14.I.Resource.Clipart1;
 		public Image Tab14_I_Clipart2 => Resources.Tab14.I.Resource.Clipart2;
+		public Image Tab14_I_Clipart3 => Resources.Tab14.I.Resource.Clipart3;
 
 		public Image Tab14_J_Background => null;
 		public Image Tab14_J_RightLogo => null;

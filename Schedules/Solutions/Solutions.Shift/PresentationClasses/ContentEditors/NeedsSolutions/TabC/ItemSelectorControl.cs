@@ -103,7 +103,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.NeedsSolutions.
 								case 10:
 									maxCheckedItemsWord = "ten";
 									break;
-
 							}
 							PopupMessageHelper.Instance.ShowWarning(String.Format("Only {0} ({1}) items are allowed.{2}{2}If you want to add another item, first remove one…", _maxCheckedItems, maxCheckedItemsWord, Environment.NewLine));
 						}

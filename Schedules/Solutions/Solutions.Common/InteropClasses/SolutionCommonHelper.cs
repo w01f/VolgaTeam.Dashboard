@@ -60,6 +60,10 @@ namespace Asa.Solutions.Common.InteropClasses
 								}
 							}
 						}
+
+						var tableContainer = slide.Shapes.OfType<Shape>().FirstOrDefault(s => s.HasTable == MsoTriState.msoTrue);
+						tableContainer?.UpdateTableData(dataPackage.TableItems);
+
 						if (!String.IsNullOrEmpty(dataPackage.LayoutName))
 							foreach (CustomLayout customLayout in slide.Design.SlideMaster.CustomLayouts)
 							{
@@ -180,6 +184,33 @@ namespace Asa.Solutions.Common.InteropClasses
 			var dataWorksheet = (Worksheet)((Workbook)shape.Chart.ChartData.Workbook).Worksheets[1];
 			foreach (var chartDataItem in chartData)
 				dataWorksheet.Range[chartDataItem.Key].Value = chartDataItem.Value;
+		}
+
+		private static void UpdateTableData(this Shape shape, Dictionary<string, string> tableData)
+		{
+			if (shape.HasTable == MsoTriState.msoFalse) return;
+			var table = shape.Table;
+
+			var copyOfTableData = new Dictionary<string, string>(tableData);
+
+			var tableRowsCount = table.Rows.Count;
+			for (var i = 1; i <= tableRowsCount; i++)
+			{
+				for (var j = 1; j <= table.Columns.Count; j++)
+				{
+					var tableShape = table.Cell(i, j).Shape;
+					if (tableShape.HasTextFrame != MsoTriState.msoTrue) continue;
+					var cellText = tableShape.TextFrame.TextRange.Text.Trim();
+					var key = copyOfTableData.Keys.FirstOrDefault(k => k.Trim().ToLower().Equals(cellText.ToLower()));
+					if (!String.IsNullOrEmpty(key))
+					{
+						tableShape.TextFrame.TextRange.Text = copyOfTableData[key];
+						copyOfTableData.Remove(key);
+					}
+					else
+						tableShape.TextFrame.TextRange.Text = String.Empty;
+				}
+			}
 		}
 	}
 }

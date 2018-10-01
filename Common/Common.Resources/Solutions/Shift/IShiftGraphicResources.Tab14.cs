@@ -44,24 +44,28 @@ namespace Asa.Common.Resources.Solutions.Shift
 		Image Tab14_F_FooterLogo { get; }
 		Image Tab14_F_Clipart1 { get; }
 		Image Tab14_F_Clipart2 { get; }
+		Image Tab14_F_Clipart3 { get; }
 
 		Image Tab14_G_Background { get; }
 		Image Tab14_G_RightLogo { get; }
 		Image Tab14_G_FooterLogo { get; }
 		Image Tab14_G_Clipart1 { get; }
 		Image Tab14_G_Clipart2 { get; }
+		Image Tab14_G_Clipart3 { get; }
 
 		Image Tab14_H_Background { get; }
 		Image Tab14_H_RightLogo { get; }
 		Image Tab14_H_FooterLogo { get; }
 		Image Tab14_H_Clipart1 { get; }
 		Image Tab14_H_Clipart2 { get; }
+		Image Tab14_H_Clipart3 { get; }
 
 		Image Tab14_I_Background { get; }
 		Image Tab14_I_RightLogo { get; }
 		Image Tab14_I_FooterLogo { get; }
 		Image Tab14_I_Clipart1 { get; }
 		Image Tab14_I_Clipart2 { get; }
+		Image Tab14_I_Clipart3 { get; }
 
 		Image Tab14_J_Background { get; }
 		Image Tab14_J_RightLogo { get; }

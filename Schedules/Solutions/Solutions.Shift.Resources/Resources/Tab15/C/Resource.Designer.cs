@@ -73,6 +73,36 @@ namespace Asa.Solutions.Shift.Resources.Resources.Tab15.C {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Clipart1 {
+            get {
+                object obj = ResourceManager.GetObject("Clipart1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Clipart2 {
+            get {
+                object obj = ResourceManager.GetObject("Clipart2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Clipart3 {
+            get {
+                object obj = ResourceManager.GetObject("Clipart3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Footer {
             get {
                 object obj = ResourceManager.GetObject("Footer", resourceCulture);

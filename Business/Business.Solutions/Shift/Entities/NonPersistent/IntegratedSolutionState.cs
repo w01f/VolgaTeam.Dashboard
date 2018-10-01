@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 
 namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 {
-
 	public class IntegratedSolutionState
 	{
 		public SubTabState TabA { get; }

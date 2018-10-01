@@ -23,6 +23,7 @@ namespace Asa.Business.Solutions.Common.Configuration
 							checkboxInfo.Title = attribute.Value;
 							break;
 						case "DefaultState":
+						case "DefaultValue":
 							{
 								if (Boolean.TryParse(attribute.Value, out var temp))
 									checkboxInfo.Value = temp;

@@ -16,12 +16,19 @@ namespace Asa.Solutions.Shift.Resources
 		public Image Tab15_B_RightLogo => Resources.Tab15.B.Resource.Right;
 		public Image Tab15_B_FooterLogo => Resources.Tab15.B.Resource.Footer;
 
-		public Image Tab15_C_Background => null;
-		public Image Tab15_C_RightLogo => null;
-		public Image Tab15_C_FooterLogo => null;
-		public Image Tab15_D_Background => null;
-		public Image Tab15_D_RightLogo => null;
-		public Image Tab15_D_FooterLogo => null;
+		public Image Tab15_C_Background => Resources.Tab15.C.Resource.Background;
+		public Image Tab15_C_RightLogo => Resources.Tab15.C.Resource.Right;
+		public Image Tab15_C_FooterLogo => Resources.Tab15.C.Resource.Footer;
+		public Image Tab15_C_Clipart1 => Resources.Tab15.C.Resource.Clipart1;
+		public Image Tab15_C_Clipart2 => Resources.Tab15.C.Resource.Clipart2;
+		public Image Tab15_C_Clipart3 => Resources.Tab15.C.Resource.Clipart3;
+
+		public Image Tab15_D_Background => Resources.Tab15.D.Resource.Background;
+		public Image Tab15_D_RightLogo => Resources.Tab15.D.Resource.Right;
+		public Image Tab15_D_FooterLogo => Resources.Tab15.D.Resource.Footer;
+		public Image Tab15_D_Clipart2 => Resources.Tab15.D.Resource.Clipart2;
+		public Image Tab15_D_Clipart3 => Resources.Tab15.D.Resource.Clipart3;
+
 		public Image Tab15_E_Background => null;
 		public Image Tab15_E_RightLogo => null;
 		public Image Tab15_E_FooterLogo => null;

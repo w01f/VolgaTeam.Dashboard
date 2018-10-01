@@ -15,6 +15,7 @@ using Asa.Solutions.Common.PresentationClasses;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Agenda;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Approach;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.CBC;
+using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Contract;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Cover;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.Goals;
 using Asa.Solutions.Shift.PresentationClasses.ContentEditors.IntegratedSolution;
@@ -127,6 +128,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 						break;
 					case ShiftTopTabType.NextSteps:
 						_slides.Add(new ShiftTabPageContainerControl<NextStepsControl>(this, tabInfo));
+						break;
+					case ShiftTopTabType.Contract:
+						_slides.Add(new ShiftTabPageContainerControl<ContractControl>(this, tabInfo));
 						break;
 					case ShiftTopTabType.Approach:
 						_slides.Add(new ShiftTabPageContainerControl<ApproachControl>(this, tabInfo));

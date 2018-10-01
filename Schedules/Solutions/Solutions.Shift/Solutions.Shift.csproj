@@ -256,6 +256,59 @@
     <Compile Include="PresentationClasses\ContentEditors\CommonTopTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\ContractTabBControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\ContractTabBControl.Designer.cs">
+      <DependentUpon>ContractTabBControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\ContractControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\ContractTabDControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\ContractTabDControl.Designer.cs">
+      <DependentUpon>ContractTabDControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\ContractTabCControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\ContractTabCControl.Designer.cs">
+      <DependentUpon>ContractTabCControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\TabA\BaseSubTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\TabA\ContentsItemControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\TabA\ContentsItemControl.Designer.cs">
+      <DependentUpon>ContentsItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\ContractTabAControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\ContractTabAControl.Designer.cs">
+      <DependentUpon>ContractTabAControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\TabA\ProductClickingEventArgs.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\Contract\TabA\ProductClickedEventArgs.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\Contract\TabA\ProductItemButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\TabA\ProductItemControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\TabA\ProductItemControl.Designer.cs">
+      <DependentUpon>ProductItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\TabA\ProductSelectorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\Contract\TabA\ProductSelectorControl.Designer.cs">
+      <DependentUpon>ProductSelectorControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\Cover\CoverControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -487,6 +540,12 @@
     <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabCControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabCControl.Designer.cs">
+      <DependentUpon>NextStepsTabCControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabIControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -522,12 +581,6 @@
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabBControl.Designer.cs">
       <DependentUpon>NextStepsTabBControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabCControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabCControl.Designer.cs">
-      <DependentUpon>NextStepsTabCControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabEControl.cs">
       <SubType>UserControl</SubType>
@@ -875,6 +928,27 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\CleanslateControl.resx">
       <DependentUpon>CleanslateControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Contract\ContractTabBControl.resx">
+      <DependentUpon>ContractTabBControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Contract\ContractTabDControl.resx">
+      <DependentUpon>ContractTabDControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Contract\ContractTabCControl.resx">
+      <DependentUpon>ContractTabCControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Contract\TabA\ContentsItemControl.resx">
+      <DependentUpon>ContentsItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Contract\ContractTabAControl.resx">
+      <DependentUpon>ContractTabAControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Contract\TabA\ProductItemControl.resx">
+      <DependentUpon>ProductItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\Contract\TabA\ProductSelectorControl.resx">
+      <DependentUpon>ProductSelectorControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Cover\CoverTabEControl.resx">
       <DependentUpon>CoverTabEControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -968,6 +1042,9 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\Investment\InvestmentTabAControl.resx">
       <DependentUpon>InvestmentTabAControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabCControl.resx">
+      <DependentUpon>NextStepsTabCControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabIControl.resx">
       <DependentUpon>NextStepsTabIControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -985,9 +1062,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabBControl.resx">
       <DependentUpon>NextStepsTabBControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabCControl.resx">
-      <DependentUpon>NextStepsTabCControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabEControl.resx">
       <DependentUpon>NextStepsTabEControl.cs</DependentUpon>

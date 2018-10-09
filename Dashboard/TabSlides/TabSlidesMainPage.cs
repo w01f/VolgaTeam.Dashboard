@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Asa.Business.Dashboard.Configuration;
 using Asa.Common.Core.Helpers;
@@ -67,7 +68,8 @@ namespace Asa.Dashboard.TabSlides
 			AppManager.Instance.ShowFloater(() =>
 			{
 				FormProgress.ShowProgress();
-				AppManager.Instance.PowerPointManager.Processor.AppendSlideMaster(slideMaster.GetMasterPath());
+				var templatePath = slideMaster.GetMasterPath();
+				AppManager.Instance.PowerPointManager.Processor.AppendSlideMaster(templatePath);
 				FormProgress.CloseProgress();
 			});
 		}

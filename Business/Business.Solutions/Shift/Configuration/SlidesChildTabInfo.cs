@@ -3,13 +3,14 @@ using System.Drawing;
 using System.Xml;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Shift.Enums;
+using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Business.Solutions.Shift.Configuration
 {
 	public class SlidesChildTabInfo : ShiftChildTabInfo
 	{
-		private StorageDirectory _sourceDirectory;
+		private string[] _sourceDirectoryRelativePath;
 
 		public SolutionSlideManager Slides { get; }
 
@@ -33,28 +34,28 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					switch (TabType)
 					{
 						case ShiftChildTabType.K:
-							_sourceDirectory = _resourceManager.Tab1PartKSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab1PartKSlidesRelativePath;
 							break;
 						case ShiftChildTabType.L:
-							_sourceDirectory = _resourceManager.Tab1PartLSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab1PartLSlidesRelativePath;
 							break;
 						case ShiftChildTabType.M:
-							_sourceDirectory = _resourceManager.Tab1PartMSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab1PartMSlidesRelativePath;
 							break;
 						case ShiftChildTabType.N:
-							_sourceDirectory = _resourceManager.Tab1PartNSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab1PartNSlidesRelativePath;
 							break;
 						case ShiftChildTabType.O:
-							_sourceDirectory = _resourceManager.Tab1PartOSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab1PartOSlidesRelativePath;
 							break;
 						case ShiftChildTabType.U:
-							_sourceDirectory = _resourceManager.Tab1PartUSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab1PartUSlidesRelativePath;
 							break;
 						case ShiftChildTabType.V:
-							_sourceDirectory = _resourceManager.Tab1PartVSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab1PartVSlidesRelativePath;
 							break;
 						case ShiftChildTabType.W:
-							_sourceDirectory = _resourceManager.Tab1PartWSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab1PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -64,28 +65,28 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					switch (TabType)
 					{
 						case ShiftChildTabType.K:
-							_sourceDirectory = _resourceManager.Tab2PartKSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab2PartKSlidesRelativePath;
 							break;
 						case ShiftChildTabType.L:
-							_sourceDirectory = _resourceManager.Tab2PartLSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab2PartLSlidesRelativePath;
 							break;
 						case ShiftChildTabType.M:
-							_sourceDirectory = _resourceManager.Tab2PartMSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab2PartMSlidesRelativePath;
 							break;
 						case ShiftChildTabType.N:
-							_sourceDirectory = _resourceManager.Tab2PartNSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab2PartNSlidesRelativePath;
 							break;
 						case ShiftChildTabType.O:
-							_sourceDirectory = _resourceManager.Tab2PartOSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab2PartOSlidesRelativePath;
 							break;
 						case ShiftChildTabType.U:
-							_sourceDirectory = _resourceManager.Tab2PartUSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab2PartUSlidesRelativePath;
 							break;
 						case ShiftChildTabType.V:
-							_sourceDirectory = _resourceManager.Tab2PartVSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab2PartVSlidesRelativePath;
 							break;
 						case ShiftChildTabType.W:
-							_sourceDirectory = _resourceManager.Tab2PartWSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab2PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -95,28 +96,28 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					switch (TabType)
 					{
 						case ShiftChildTabType.K:
-							_sourceDirectory = _resourceManager.Tab3PartKSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab3PartKSlidesRelativePath;
 							break;
 						case ShiftChildTabType.L:
-							_sourceDirectory = _resourceManager.Tab3PartLSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab3PartLSlidesRelativePath;
 							break;
 						case ShiftChildTabType.M:
-							_sourceDirectory = _resourceManager.Tab3PartMSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab3PartMSlidesRelativePath;
 							break;
 						case ShiftChildTabType.N:
-							_sourceDirectory = _resourceManager.Tab3PartNSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab3PartNSlidesRelativePath;
 							break;
 						case ShiftChildTabType.O:
-							_sourceDirectory = _resourceManager.Tab3PartOSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab3PartOSlidesRelativePath;
 							break;
 						case ShiftChildTabType.U:
-							_sourceDirectory = _resourceManager.Tab3PartUSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab3PartUSlidesRelativePath;
 							break;
 						case ShiftChildTabType.V:
-							_sourceDirectory = _resourceManager.Tab3PartVSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab3PartVSlidesRelativePath;
 							break;
 						case ShiftChildTabType.W:
-							_sourceDirectory = _resourceManager.Tab3PartWSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab3PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -126,28 +127,28 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					switch (TabType)
 					{
 						case ShiftChildTabType.K:
-							_sourceDirectory = _resourceManager.Tab4PartKSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab4PartKSlidesRelativePath;
 							break;
 						case ShiftChildTabType.L:
-							_sourceDirectory = _resourceManager.Tab4PartLSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab4PartLSlidesRelativePath;
 							break;
 						case ShiftChildTabType.M:
-							_sourceDirectory = _resourceManager.Tab4PartMSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab4PartMSlidesRelativePath;
 							break;
 						case ShiftChildTabType.N:
-							_sourceDirectory = _resourceManager.Tab4PartNSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab4PartNSlidesRelativePath;
 							break;
 						case ShiftChildTabType.O:
-							_sourceDirectory = _resourceManager.Tab4PartOSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab4PartOSlidesRelativePath;
 							break;
 						case ShiftChildTabType.U:
-							_sourceDirectory = _resourceManager.Tab4PartUSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab4PartUSlidesRelativePath;
 							break;
 						case ShiftChildTabType.V:
-							_sourceDirectory = _resourceManager.Tab4PartVSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab4PartVSlidesRelativePath;
 							break;
 						case ShiftChildTabType.W:
-							_sourceDirectory = _resourceManager.Tab4PartWSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab4PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -157,28 +158,28 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					switch (TabType)
 					{
 						case ShiftChildTabType.K:
-							_sourceDirectory = _resourceManager.Tab5PartKSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab5PartKSlidesRelativePath;
 							break;
 						case ShiftChildTabType.L:
-							_sourceDirectory = _resourceManager.Tab5PartLSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab5PartLSlidesRelativePath;
 							break;
 						case ShiftChildTabType.M:
-							_sourceDirectory = _resourceManager.Tab5PartMSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab5PartMSlidesRelativePath;
 							break;
 						case ShiftChildTabType.N:
-							_sourceDirectory = _resourceManager.Tab5PartNSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab5PartNSlidesRelativePath;
 							break;
 						case ShiftChildTabType.O:
-							_sourceDirectory = _resourceManager.Tab5PartOSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab5PartOSlidesRelativePath;
 							break;
 						case ShiftChildTabType.U:
-							_sourceDirectory = _resourceManager.Tab5PartUSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab5PartUSlidesRelativePath;
 							break;
 						case ShiftChildTabType.V:
-							_sourceDirectory = _resourceManager.Tab5PartVSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab5PartVSlidesRelativePath;
 							break;
 						case ShiftChildTabType.W:
-							_sourceDirectory = _resourceManager.Tab5PartWSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab5PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -188,28 +189,28 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					switch (TabType)
 					{
 						case ShiftChildTabType.K:
-							_sourceDirectory = _resourceManager.Tab6PartKSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab6PartKSlidesRelativePath;
 							break;
 						case ShiftChildTabType.L:
-							_sourceDirectory = _resourceManager.Tab6PartLSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab6PartLSlidesRelativePath;
 							break;
 						case ShiftChildTabType.M:
-							_sourceDirectory = _resourceManager.Tab6PartMSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab6PartMSlidesRelativePath;
 							break;
 						case ShiftChildTabType.N:
-							_sourceDirectory = _resourceManager.Tab6PartNSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab6PartNSlidesRelativePath;
 							break;
 						case ShiftChildTabType.O:
-							_sourceDirectory = _resourceManager.Tab6PartOSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab6PartOSlidesRelativePath;
 							break;
 						case ShiftChildTabType.U:
-							_sourceDirectory = _resourceManager.Tab6PartUSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab6PartUSlidesRelativePath;
 							break;
 						case ShiftChildTabType.V:
-							_sourceDirectory = _resourceManager.Tab6PartVSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab6PartVSlidesRelativePath;
 							break;
 						case ShiftChildTabType.W:
-							_sourceDirectory = _resourceManager.Tab6PartWSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab6PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -219,28 +220,28 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					switch (TabType)
 					{
 						case ShiftChildTabType.K:
-							_sourceDirectory = _resourceManager.Tab7PartKSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab7PartKSlidesRelativePath;
 							break;
 						case ShiftChildTabType.L:
-							_sourceDirectory = _resourceManager.Tab7PartLSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab7PartLSlidesRelativePath;
 							break;
 						case ShiftChildTabType.M:
-							_sourceDirectory = _resourceManager.Tab7PartMSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab7PartMSlidesRelativePath;
 							break;
 						case ShiftChildTabType.N:
-							_sourceDirectory = _resourceManager.Tab7PartNSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab7PartNSlidesRelativePath;
 							break;
 						case ShiftChildTabType.O:
-							_sourceDirectory = _resourceManager.Tab7PartOSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab7PartOSlidesRelativePath;
 							break;
 						case ShiftChildTabType.U:
-							_sourceDirectory = _resourceManager.Tab7PartUSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab7PartUSlidesRelativePath;
 							break;
 						case ShiftChildTabType.V:
-							_sourceDirectory = _resourceManager.Tab7PartVSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab7PartVSlidesRelativePath;
 							break;
 						case ShiftChildTabType.W:
-							_sourceDirectory = _resourceManager.Tab7PartWSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab7PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -250,28 +251,28 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					switch (TabType)
 					{
 						case ShiftChildTabType.K:
-							_sourceDirectory = _resourceManager.Tab8PartKSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab8PartKSlidesRelativePath;
 							break;
 						case ShiftChildTabType.L:
-							_sourceDirectory = _resourceManager.Tab8PartLSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab8PartLSlidesRelativePath;
 							break;
 						case ShiftChildTabType.M:
-							_sourceDirectory = _resourceManager.Tab8PartMSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab8PartMSlidesRelativePath;
 							break;
 						case ShiftChildTabType.N:
-							_sourceDirectory = _resourceManager.Tab8PartNSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab8PartNSlidesRelativePath;
 							break;
 						case ShiftChildTabType.O:
-							_sourceDirectory = _resourceManager.Tab8PartOSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab8PartOSlidesRelativePath;
 							break;
 						case ShiftChildTabType.U:
-							_sourceDirectory = _resourceManager.Tab8PartUSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab8PartUSlidesRelativePath;
 							break;
 						case ShiftChildTabType.V:
-							_sourceDirectory = _resourceManager.Tab8PartVSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab8PartVSlidesRelativePath;
 							break;
 						case ShiftChildTabType.W:
-							_sourceDirectory = _resourceManager.Tab8PartWSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab8PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -281,28 +282,28 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					switch (TabType)
 					{
 						case ShiftChildTabType.K:
-							_sourceDirectory = _resourceManager.Tab9PartKSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab9PartKSlidesRelativePath;
 							break;
 						case ShiftChildTabType.L:
-							_sourceDirectory = _resourceManager.Tab9PartLSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab9PartLSlidesRelativePath;
 							break;
 						case ShiftChildTabType.M:
-							_sourceDirectory = _resourceManager.Tab9PartMSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab9PartMSlidesRelativePath;
 							break;
 						case ShiftChildTabType.N:
-							_sourceDirectory = _resourceManager.Tab9PartNSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab9PartNSlidesRelativePath;
 							break;
 						case ShiftChildTabType.O:
-							_sourceDirectory = _resourceManager.Tab9PartOSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab9PartOSlidesRelativePath;
 							break;
 						case ShiftChildTabType.U:
-							_sourceDirectory = _resourceManager.Tab9PartUSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab9PartUSlidesRelativePath;
 							break;
 						case ShiftChildTabType.V:
-							_sourceDirectory = _resourceManager.Tab9PartVSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab9PartVSlidesRelativePath;
 							break;
 						case ShiftChildTabType.W:
-							_sourceDirectory = _resourceManager.Tab9PartWSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab9PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -312,28 +313,28 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					switch (TabType)
 					{
 						case ShiftChildTabType.K:
-							_sourceDirectory = _resourceManager.Tab10PartKSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab10PartKSlidesRelativePath;
 							break;
 						case ShiftChildTabType.L:
-							_sourceDirectory = _resourceManager.Tab10PartLSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab10PartLSlidesRelativePath;
 							break;
 						case ShiftChildTabType.M:
-							_sourceDirectory = _resourceManager.Tab10PartMSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab10PartMSlidesRelativePath;
 							break;
 						case ShiftChildTabType.N:
-							_sourceDirectory = _resourceManager.Tab10PartNSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab10PartNSlidesRelativePath;
 							break;
 						case ShiftChildTabType.O:
-							_sourceDirectory = _resourceManager.Tab10PartOSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab10PartOSlidesRelativePath;
 							break;
 						case ShiftChildTabType.U:
-							_sourceDirectory = _resourceManager.Tab10PartUSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab10PartUSlidesRelativePath;
 							break;
 						case ShiftChildTabType.V:
-							_sourceDirectory = _resourceManager.Tab10PartVSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab10PartVSlidesRelativePath;
 							break;
 						case ShiftChildTabType.W:
-							_sourceDirectory = _resourceManager.Tab10PartWSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab10PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -343,28 +344,28 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					switch (TabType)
 					{
 						case ShiftChildTabType.K:
-							_sourceDirectory = _resourceManager.Tab11PartKSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab11PartKSlidesRelativePath;
 							break;
 						case ShiftChildTabType.L:
-							_sourceDirectory = _resourceManager.Tab11PartLSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab11PartLSlidesRelativePath;
 							break;
 						case ShiftChildTabType.M:
-							_sourceDirectory = _resourceManager.Tab11PartMSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab11PartMSlidesRelativePath;
 							break;
 						case ShiftChildTabType.N:
-							_sourceDirectory = _resourceManager.Tab11PartNSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab11PartNSlidesRelativePath;
 							break;
 						case ShiftChildTabType.O:
-							_sourceDirectory = _resourceManager.Tab11PartOSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab11PartOSlidesRelativePath;
 							break;
 						case ShiftChildTabType.U:
-							_sourceDirectory = _resourceManager.Tab11PartUSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab11PartUSlidesRelativePath;
 							break;
 						case ShiftChildTabType.V:
-							_sourceDirectory = _resourceManager.Tab11PartVSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab11PartVSlidesRelativePath;
 							break;
 						case ShiftChildTabType.W:
-							_sourceDirectory = _resourceManager.Tab11PartWSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab11PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -374,28 +375,28 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					switch (TabType)
 					{
 						case ShiftChildTabType.K:
-							_sourceDirectory = _resourceManager.Tab12PartKSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab12PartKSlidesRelativePath;
 							break;
 						case ShiftChildTabType.L:
-							_sourceDirectory = _resourceManager.Tab12PartLSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab12PartLSlidesRelativePath;
 							break;
 						case ShiftChildTabType.M:
-							_sourceDirectory = _resourceManager.Tab12PartMSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab12PartMSlidesRelativePath;
 							break;
 						case ShiftChildTabType.N:
-							_sourceDirectory = _resourceManager.Tab12PartNSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab12PartNSlidesRelativePath;
 							break;
 						case ShiftChildTabType.O:
-							_sourceDirectory = _resourceManager.Tab12PartOSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab12PartOSlidesRelativePath;
 							break;
 						case ShiftChildTabType.U:
-							_sourceDirectory = _resourceManager.Tab12PartUSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab12PartUSlidesRelativePath;
 							break;
 						case ShiftChildTabType.V:
-							_sourceDirectory = _resourceManager.Tab12PartVSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab12PartVSlidesRelativePath;
 							break;
 						case ShiftChildTabType.W:
-							_sourceDirectory = _resourceManager.Tab12PartWSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab12PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -405,28 +406,28 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					switch (TabType)
 					{
 						case ShiftChildTabType.K:
-							_sourceDirectory = _resourceManager.Tab13PartKSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab13PartKSlidesRelativePath;
 							break;
 						case ShiftChildTabType.L:
-							_sourceDirectory = _resourceManager.Tab13PartLSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab13PartLSlidesRelativePath;
 							break;
 						case ShiftChildTabType.M:
-							_sourceDirectory = _resourceManager.Tab13PartMSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab13PartMSlidesRelativePath;
 							break;
 						case ShiftChildTabType.N:
-							_sourceDirectory = _resourceManager.Tab13PartNSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab13PartNSlidesRelativePath;
 							break;
 						case ShiftChildTabType.O:
-							_sourceDirectory = _resourceManager.Tab13PartOSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab13PartOSlidesRelativePath;
 							break;
 						case ShiftChildTabType.U:
-							_sourceDirectory = _resourceManager.Tab13PartUSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab13PartUSlidesRelativePath;
 							break;
 						case ShiftChildTabType.V:
-							_sourceDirectory = _resourceManager.Tab13PartVSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab13PartVSlidesRelativePath;
 							break;
 						case ShiftChildTabType.W:
-							_sourceDirectory = _resourceManager.Tab13PartWSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab13PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -436,28 +437,28 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					switch (TabType)
 					{
 						case ShiftChildTabType.K:
-							_sourceDirectory = _resourceManager.Tab14PartKSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab14PartKSlidesRelativePath;
 							break;
 						case ShiftChildTabType.L:
-							_sourceDirectory = _resourceManager.Tab14PartLSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab14PartLSlidesRelativePath;
 							break;
 						case ShiftChildTabType.M:
-							_sourceDirectory = _resourceManager.Tab14PartMSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab14PartMSlidesRelativePath;
 							break;
 						case ShiftChildTabType.N:
-							_sourceDirectory = _resourceManager.Tab14PartNSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab14PartNSlidesRelativePath;
 							break;
 						case ShiftChildTabType.O:
-							_sourceDirectory = _resourceManager.Tab14PartOSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab14PartOSlidesRelativePath;
 							break;
 						case ShiftChildTabType.U:
-							_sourceDirectory = _resourceManager.Tab14PartUSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab14PartUSlidesRelativePath;
 							break;
 						case ShiftChildTabType.V:
-							_sourceDirectory = _resourceManager.Tab14PartVSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab14PartVSlidesRelativePath;
 							break;
 						case ShiftChildTabType.W:
-							_sourceDirectory = _resourceManager.Tab14PartWSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab14PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -467,28 +468,28 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					switch (TabType)
 					{
 						case ShiftChildTabType.K:
-							_sourceDirectory = _resourceManager.Tab15PartKSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab15PartKSlidesRelativePath;
 							break;
 						case ShiftChildTabType.L:
-							_sourceDirectory = _resourceManager.Tab15PartLSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab15PartLSlidesRelativePath;
 							break;
 						case ShiftChildTabType.M:
-							_sourceDirectory = _resourceManager.Tab15PartMSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab15PartMSlidesRelativePath;
 							break;
 						case ShiftChildTabType.N:
-							_sourceDirectory = _resourceManager.Tab15PartNSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab15PartNSlidesRelativePath;
 							break;
 						case ShiftChildTabType.O:
-							_sourceDirectory = _resourceManager.Tab15PartOSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab15PartOSlidesRelativePath;
 							break;
 						case ShiftChildTabType.U:
-							_sourceDirectory = _resourceManager.Tab15PartUSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab15PartUSlidesRelativePath;
 							break;
 						case ShiftChildTabType.V:
-							_sourceDirectory = _resourceManager.Tab15PartVSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab15PartVSlidesRelativePath;
 							break;
 						case ShiftChildTabType.W:
-							_sourceDirectory = _resourceManager.Tab15PartWSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab15PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -498,28 +499,28 @@ namespace Asa.Business.Solutions.Shift.Configuration
 					switch (TabType)
 					{
 						case ShiftChildTabType.K:
-							_sourceDirectory = _resourceManager.Tab16PartKSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab16PartKSlidesRelativePath;
 							break;
 						case ShiftChildTabType.L:
-							_sourceDirectory = _resourceManager.Tab16PartLSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab16PartLSlidesRelativePath;
 							break;
 						case ShiftChildTabType.M:
-							_sourceDirectory = _resourceManager.Tab16PartMSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab16PartMSlidesRelativePath;
 							break;
 						case ShiftChildTabType.N:
-							_sourceDirectory = _resourceManager.Tab16PartNSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab16PartNSlidesRelativePath;
 							break;
 						case ShiftChildTabType.O:
-							_sourceDirectory = _resourceManager.Tab16PartOSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab16PartOSlidesRelativePath;
 							break;
 						case ShiftChildTabType.U:
-							_sourceDirectory = _resourceManager.Tab16PartUSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab16PartUSlidesRelativePath;
 							break;
 						case ShiftChildTabType.V:
-							_sourceDirectory = _resourceManager.Tab16PartVSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab16PartVSlidesRelativePath;
 							break;
 						case ShiftChildTabType.W:
-							_sourceDirectory = _resourceManager.Tab16PartWSlidesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab16PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Shift tab type is not defined");
@@ -532,7 +533,10 @@ namespace Asa.Business.Solutions.Shift.Configuration
 
 		public void LoadSlides()
 		{
-			Slides.LoadSlides(_sourceDirectory);
+			Slides.LoadSlides(
+				new StorageDirectory(_resourceManager.LocalDataFolder.RelativePathParts.Merge(_sourceDirectoryRelativePath)),
+				new StorageDirectory(_resourceManager.RemoteResourcesFolder.RelativePathParts.Merge(_sourceDirectoryRelativePath)));
 		}
 	}
 }
+

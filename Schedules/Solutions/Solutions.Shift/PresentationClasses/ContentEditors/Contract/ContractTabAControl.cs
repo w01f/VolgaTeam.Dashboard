@@ -377,6 +377,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.Contract
 				(SlideContainer.EditedContent.ContractState.TabA.Combo2 ?? CustomTabInfo.Combo2Items.FirstOrDefault(h => h.IsDefault))?.Value);
 			outputDataPackage.TextItems.Add("SHIFT15ASUBHEADER1".ToUpper(), subheader1);
 
+			outputDataPackage.TableWithHeader = true;
 			for (var i = 0; i < outputProductItems.Count; i++)
 			{
 				var productInfo = CustomTabInfo.Products.FirstOrDefault(item =>

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Xml;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Dashboard.Configuration;
 using Asa.Business.Solutions.Shift.Configuration;
 using Asa.Business.Solutions.StarApp.Configuration;
+using Asa.Common.Core.Enums;
 using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.RemoteStorage;
@@ -13,7 +15,8 @@ namespace Asa.Business.Solutions.Common.Configuration
 	public abstract class BaseSolutionInfo
 	{
 		protected bool _contentLoaded;
-		protected ArchiveDirectory DataFolder { get; private set; }
+		protected StorageDirectory DataFolder { get; private set; }
+		protected StorageDirectory RemoteResourceFolder { get; private set; }
 
 		public string Id { get; private set; }
 		public SolutionType Type { get; protected set; }
@@ -29,8 +32,37 @@ namespace Asa.Business.Solutions.Common.Configuration
 
 		public virtual void LoadToggleData(StorageDirectory holderAppDataFolder)
 		{
-			DataFolder = new ArchiveDirectory(holderAppDataFolder.RelativePathParts.Merge(Id));
-			AsyncHelper.RunSync(() => DataFolder.Download());
+			FileStorageManager.Instance.DataState = DataActualityState.Outdated;
+
+			DataFolder = new StorageDirectory(holderAppDataFolder.RelativePathParts.Merge(Id));
+			if (FileStorageManager.Instance.DataState == DataActualityState.Updated ||
+			   FileStorageManager.Instance.UseLocalMode)
+				return;
+
+			AsyncHelper.RunSync(async () =>
+			{
+				var templateVersionFile = new StorageFile(DataFolder.RelativePathParts.Merge("version.txt"));
+				if (!await templateVersionFile.Exists(true) || await templateVersionFile.IsOutOfDate())
+				{
+					await DataFolder.Allocate(false);
+					if (await DataFolder.Exists(true))
+					{
+						var templateFiles = (await DataFolder.GetRemoteFiles()).ToList();
+						foreach (var templateFile in templateFiles)
+						{
+							if (templateFile.Name.Contains(".rar"))
+							{
+								var archiveFolder = new ArchiveDirectory(DataFolder.RelativePathParts.Merge(templateFile.NameOnly));
+								await archiveFolder.Download();
+							}
+							else
+								await templateFile.Download();
+						}
+					}
+				}
+			});
+
+			FileStorageManager.Instance.DataState = DataActualityState.Updated;
 		}
 
 		public abstract void LoadContentData();

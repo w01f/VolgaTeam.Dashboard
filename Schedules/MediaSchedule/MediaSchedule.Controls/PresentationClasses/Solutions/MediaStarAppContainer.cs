@@ -75,13 +75,15 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 
 		public override void OutputPowerPointCustom(IList<OutputItem> outputItems)
 		{
-			if (!outputItems.Any()) return;
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				outputItems.ForEach(item => item.SlideGeneratingAction?.Invoke(BusinessObjects.Instance.PowerPointManager.Processor, null));
-				FormProgress.CloseProgress();
+				FormProgress.ShowProgress(
+					"Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!",
+					() =>
+					{
+						outputItems.ForEach(item =>
+							item.SlideGeneratingAction?.Invoke(BusinessObjects.Instance.PowerPointManager.Processor, null));
+					}, false);
 			});
 		}
 
@@ -90,25 +92,28 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			var outputItems = GetOutputItems(false);
 			if (!outputItems.Any()) return;
 
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				var pdfFileName = Path.Combine(
-					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-					String.Format("{0}-{1:MM-dd-yy-hmmss}.pdf", "star", DateTime.Now));
-				BusinessObjects.Instance.PowerPointManager.Processor.BuildPdf(pdfFileName, presentation =>
-				{
-					foreach (var outputItem in outputItems)
-						outputItem.SlideGeneratingAction?.Invoke(BusinessObjects.Instance.PowerPointManager.Processor, presentation);
-				});
-				FormProgress.CloseProgress();
-				if (File.Exists(pdfFileName))
-					try
+				FormProgress.ShowProgress(
+					"Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!",
+					() =>
 					{
-						Process.Start(pdfFileName);
-					}
-					catch { }
+						var pdfFileName = Path.Combine(
+							Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+							String.Format("{0}-{1:MM-dd-yy-hmmss}.pdf", "star", DateTime.Now));
+						BusinessObjects.Instance.PowerPointManager.Processor.BuildPdf(pdfFileName, presentation =>
+						{
+							foreach (var outputItem in outputItems)
+								outputItem.SlideGeneratingAction?.Invoke(BusinessObjects.Instance.PowerPointManager.Processor, presentation);
+						});
+						FormProgress.CloseProgress();
+						if (File.Exists(pdfFileName))
+							try
+							{
+								Process.Start(pdfFileName);
+							}
+							catch { }
+					}, false);
 			});
 		}
 
@@ -121,25 +126,28 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			{
 				if (form.ShowDialog() == DialogResult.OK)
 				{
-					FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Email...");
-					FormProgress.ShowProgress();
 					Controller.Instance.ShowFloater(() =>
 					{
-						var emailFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1:MM-dd-yy-hmmss}.pdf", SolutionInfo.ToggleTitle, DateTime.Now));
-						var defaultItem = outputItems.First();
-						BusinessObjects.Instance.PowerPointManager.Processor.PreparePresentation(emailFileName, presentation =>
-						{
-							foreach (var outputItem in outputItems)
-								outputItem.SlideGeneratingAction?.Invoke(BusinessObjects.Instance.PowerPointManager.Processor, presentation);
-						});
+						var emailFile = String.Empty;
 
-						var emailFile = Path.Combine(
-							Path.GetFullPath(defaultItem.PresentationSourcePath)
-								.Replace(Path.GetFileName(defaultItem.PresentationSourcePath), string.Empty),
-							form.FileName + ".pptx");
-						File.Copy(emailFileName, emailFile, true);
+						FormProgress.ShowProgress(
+							"Chill-Out for a few seconds...\nPreparing Email...",
+							() =>
+							{
+								var emailFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1:MM-dd-yy-hmmss}.pdf", SolutionInfo.ToggleTitle, DateTime.Now));
+								var defaultItem = outputItems.First();
+								BusinessObjects.Instance.PowerPointManager.Processor.PreparePresentation(emailFileName, presentation =>
+								{
+									foreach (var outputItem in outputItems)
+										outputItem.SlideGeneratingAction?.Invoke(BusinessObjects.Instance.PowerPointManager.Processor, presentation);
+								});
 
-						FormProgress.CloseProgress();
+								emailFile = Path.Combine(
+									Path.GetFullPath(defaultItem.PresentationSourcePath)
+										.Replace(Path.GetFileName(defaultItem.PresentationSourcePath), string.Empty),
+									form.FileName + ".pptx");
+								File.Copy(emailFileName, emailFile, true);
+							}, false);
 
 						try
 						{

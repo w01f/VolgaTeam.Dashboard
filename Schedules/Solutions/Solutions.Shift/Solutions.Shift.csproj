@@ -594,6 +594,12 @@
     <Compile Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabDControl.Designer.cs">
       <DependentUpon>NextStepsTabDControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ROI\ROITabEControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ROI\ROITabEControl.Designer.cs">
+      <DependentUpon>ROITabEControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\ROI\ROIControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1068,6 +1074,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\NextSteps\NextStepsTabDControl.resx">
       <DependentUpon>NextStepsTabDControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\ROI\ROITabEControl.resx">
+      <DependentUpon>ROITabEControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\ROI\ROITabAControl.resx">
       <DependentUpon>ROITabAControl.cs</DependentUpon>

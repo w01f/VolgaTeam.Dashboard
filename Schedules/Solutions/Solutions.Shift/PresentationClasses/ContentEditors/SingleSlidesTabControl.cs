@@ -345,7 +345,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 				return base.GetSlideDescription();
 			return new SlideDescription
 			{
-				LeftText = _currentSlide.GetMasterName(),
+				LeftText = _currentSlide.GetMasterFileName(),
 				RightText = String.Format("{0} of {1}", CustomTabInfo.Slides.Slides.IndexOf(_currentSlide) + 1, CustomTabInfo.Slides.Slides.Count)
 			};
 		}
@@ -494,12 +494,14 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 						IsCurrent = ((XtraTabPage)TabPageContainer).TabControl?.SelectedTabPage == TabPageContainer,
 						SlideGeneratingAction = (processor, destinationPresentation) =>
 						{
-							processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), destinationPresentation);
+							var templatePath = targetSlideMaster.GetMasterPath();
+							processor.AppendSlideMaster(templatePath, destinationPresentation);
 						},
 						PreviewGeneratingAction = (processor, presentationSourcePath) =>
 						{
+							var templatePath = targetSlideMaster.GetMasterPath();
 							processor.PreparePresentation(presentationSourcePath,
-								presentation => processor.AppendSlideMaster(targetSlideMaster.GetMasterPath(), presentation));
+								presentation => processor.AppendSlideMaster(templatePath, presentation));
 						}
 					}};
 				}

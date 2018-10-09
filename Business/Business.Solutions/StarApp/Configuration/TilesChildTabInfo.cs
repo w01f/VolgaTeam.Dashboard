@@ -3,6 +3,7 @@ using System.IO;
 using System.Xml;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.StarApp.Enums;
+using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Business.Solutions.StarApp.Configuration
@@ -11,7 +12,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 	{
 		private const string ConfigFileName = "Config.xml";
 
-		private StorageDirectory _sourceDirectory;
+		private string[] _sourceDirectoryRelativePath;
 
 		public override StarChildTabType TabType { get; }
 
@@ -33,13 +34,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.X:
-							_sourceDirectory = _resourceManager.Tab1PartXTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab1PartXTilesRelativePath;
 							break;
 						case StarChildTabType.Y:
-							_sourceDirectory = _resourceManager.Tab1PartYTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab1PartYTilesRelativePath;
 							break;
 						case StarChildTabType.Z:
-							_sourceDirectory = _resourceManager.Tab1PartZTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab1PartZTilesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -49,13 +50,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.X:
-							_sourceDirectory = _resourceManager.Tab2PartXTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab2PartXTilesRelativePath;
 							break;
 						case StarChildTabType.Y:
-							_sourceDirectory = _resourceManager.Tab2PartYTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab2PartYTilesRelativePath;
 							break;
 						case StarChildTabType.Z:
-							_sourceDirectory = _resourceManager.Tab2PartZTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab2PartZTilesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -65,13 +66,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.X:
-							_sourceDirectory = _resourceManager.Tab3PartXTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab3PartXTilesRelativePath;
 							break;
 						case StarChildTabType.Y:
-							_sourceDirectory = _resourceManager.Tab3PartYTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab3PartYTilesRelativePath;
 							break;
 						case StarChildTabType.Z:
-							_sourceDirectory = _resourceManager.Tab3PartZTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab3PartZTilesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -81,13 +82,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.X:
-							_sourceDirectory = _resourceManager.Tab4PartXTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab4PartXTilesRelativePath;
 							break;
 						case StarChildTabType.Y:
-							_sourceDirectory = _resourceManager.Tab4PartYTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab4PartYTilesRelativePath;
 							break;
 						case StarChildTabType.Z:
-							_sourceDirectory = _resourceManager.Tab4PartZTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab4PartZTilesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -97,13 +98,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.X:
-							_sourceDirectory = _resourceManager.Tab5PartXTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab5PartXTilesRelativePath;
 							break;
 						case StarChildTabType.Y:
-							_sourceDirectory = _resourceManager.Tab5PartYTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab5PartYTilesRelativePath;
 							break;
 						case StarChildTabType.Z:
-							_sourceDirectory = _resourceManager.Tab5PartZTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab5PartZTilesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -113,13 +114,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.X:
-							_sourceDirectory = _resourceManager.Tab6PartXTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab6PartXTilesRelativePath;
 							break;
 						case StarChildTabType.Y:
-							_sourceDirectory = _resourceManager.Tab6PartYTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab6PartYTilesRelativePath;
 							break;
 						case StarChildTabType.Z:
-							_sourceDirectory = _resourceManager.Tab6PartZTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab6PartZTilesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -129,13 +130,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.X:
-							_sourceDirectory = _resourceManager.Tab7PartXTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab7PartXTilesRelativePath;
 							break;
 						case StarChildTabType.Y:
-							_sourceDirectory = _resourceManager.Tab7PartYTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab7PartYTilesRelativePath;
 							break;
 						case StarChildTabType.Z:
-							_sourceDirectory = _resourceManager.Tab7PartZTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab7PartZTilesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -145,13 +146,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.X:
-							_sourceDirectory = _resourceManager.Tab8PartXTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab8PartXTilesRelativePath;
 							break;
 						case StarChildTabType.Y:
-							_sourceDirectory = _resourceManager.Tab8PartYTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab8PartYTilesRelativePath;
 							break;
 						case StarChildTabType.Z:
-							_sourceDirectory = _resourceManager.Tab8PartZTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab8PartZTilesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -161,13 +162,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.X:
-							_sourceDirectory = _resourceManager.Tab9PartXTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab9PartXTilesRelativePath;
 							break;
 						case StarChildTabType.Y:
-							_sourceDirectory = _resourceManager.Tab9PartYTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab9PartYTilesRelativePath;
 							break;
 						case StarChildTabType.Z:
-							_sourceDirectory = _resourceManager.Tab9PartZTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab9PartZTilesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -177,13 +178,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.X:
-							_sourceDirectory = _resourceManager.Tab10PartXTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab10PartXTilesRelativePath;
 							break;
 						case StarChildTabType.Y:
-							_sourceDirectory = _resourceManager.Tab10PartYTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab10PartYTilesRelativePath;
 							break;
 						case StarChildTabType.Z:
-							_sourceDirectory = _resourceManager.Tab10PartZTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab10PartZTilesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -193,13 +194,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.X:
-							_sourceDirectory = _resourceManager.Tab11PartXTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab11PartXTilesRelativePath;
 							break;
 						case StarChildTabType.Y:
-							_sourceDirectory = _resourceManager.Tab11PartYTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab11PartYTilesRelativePath;
 							break;
 						case StarChildTabType.Z:
-							_sourceDirectory = _resourceManager.Tab11PartZTilesFolder;
+							_sourceDirectoryRelativePath = _resourceManager.Tab11PartZTilesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -212,8 +213,9 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 
 		public void LoadTiles()
 		{
-			var configFileName = Path.Combine(_sourceDirectory.LocalPath, ConfigFileName);
-
+			var configFileName = Path.Combine(
+				new StorageFile(_resourceManager.LocalDataFolder.RelativePathParts.Merge(_sourceDirectoryRelativePath)).LocalPath,
+				ConfigFileName);
 			if (!File.Exists(configFileName))
 				return;
 

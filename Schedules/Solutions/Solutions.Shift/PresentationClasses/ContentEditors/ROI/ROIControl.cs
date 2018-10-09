@@ -35,7 +35,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 						tabPages.Add(new ChildTabPageContainerControl<ROITabDControl>(this, tabInfo));
 						break;
 					case ShiftChildTabType.E:
-						tabPages.Add(new ChildTabPageContainerControl<CommonChildTabControl>(this, tabInfo));
+						tabPages.Add(new ChildTabPageContainerControl<ROITabEControl>(this, tabInfo));
 						break;
 					case ShiftChildTabType.K:
 					case ShiftChildTabType.L:

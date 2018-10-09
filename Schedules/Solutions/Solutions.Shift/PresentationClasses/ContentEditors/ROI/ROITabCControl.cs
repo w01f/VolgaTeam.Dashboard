@@ -9,6 +9,7 @@ using Asa.Business.Solutions.Shift.Configuration.ROI;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
+using Asa.Solutions.Common.Helpers;
 using Asa.Solutions.Common.PresentationClasses.Output;
 
 namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
@@ -20,6 +21,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 		public ROITabCControl(IChildTabPageContainer slideContainer, ShiftChildTabInfo tabInfo) : base(slideContainer, tabInfo)
 		{
 			InitializeComponent();
+
+			comboBoxEditSlideHeader.EnableSelectAll().RaiseNullValueIfEditorEmpty().AssignConfiguration(CustomTabInfo.HeadersEditorConfiguration);
 
 			textEditTabCSubheader1.EnableSelectAll().RaiseNullValueIfEditorEmpty().RaiseChangePlaceholderColor();
 			spinEditTabCSubheader2.EnableSelectAll();
@@ -45,6 +48,13 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			clipartEditContainer3.Init(ImageClipartObject.FromImage(CustomTabInfo.Clipart3Image), CustomTabInfo.Clipart3Configuration, TabPageContainer.ParentControl);
 			clipartEditContainer3.EditValueChanged += OnEditValueChanged;
 
+			comboBoxEditSlideHeader.Properties.Items.Clear();
+			comboBoxEditSlideHeader.Properties.Items.AddRange(CustomTabInfo.HeadersItems
+				.Where(item => !item.IsPlaceholder).ToArray());
+			comboBoxEditSlideHeader.Properties.NullText =
+				CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsPlaceholder)?.Value ??
+				"Select or type";
+
 			textEditTabCSubheader1.Properties.NullText = CustomTabInfo.SubHeader1Placeholder ?? textEditTabCSubheader1.Properties.NullText;
 			textEditTabCSubheader3.Properties.NullText = CustomTabInfo.SubHeader3Placeholder ?? textEditTabCSubheader3.Properties.NullText;
 			textEditTabCSubheader5.Properties.NullText = CustomTabInfo.SubHeader5Placeholder ?? textEditTabCSubheader5.Properties.NullText;
@@ -66,6 +76,9 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			clipartEditContainer1.LoadData(SlideContainer.EditedContent.ROIState.TabC.Clipart1);
 			clipartEditContainer2.LoadData(SlideContainer.EditedContent.ROIState.TabC.Clipart2);
 			clipartEditContainer3.LoadData(SlideContainer.EditedContent.ROIState.TabC.Clipart3);
+
+			comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ROIState.TabC.SlideHeader ??
+			                                    CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault);
 
 			checkEditTabCGroup1.Checked = SlideContainer.EditedContent.ROIState.TabC.Group1Toggle;
 			checkEditTabCGroup2.Checked = SlideContainer.EditedContent.ROIState.TabC.Group2Toggle;
@@ -131,6 +144,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			SlideContainer.EditedContent.ROIState.TabC.Clipart1 = clipartEditContainer1.GetActiveClipartObject();
 			SlideContainer.EditedContent.ROIState.TabC.Clipart2 = clipartEditContainer2.GetActiveClipartObject();
 			SlideContainer.EditedContent.ROIState.TabC.Clipart3 = clipartEditContainer3.GetActiveClipartObject();
+
+			var slideHeaderValue = comboBoxEditSlideHeader.EditValue as ListDataItem ?? new ListDataItem { Value = comboBoxEditSlideHeader.EditValue as String };
+			SlideContainer.EditedContent.ROIState.TabC.SlideHeader = slideHeaderValue != CustomTabInfo.HeadersItems.FirstOrDefault(h => h.IsDefault) ?
+				slideHeaderValue :
+				null;
 
 			SlideContainer.EditedContent.ROIState.TabC.Group1Toggle = checkEditTabCGroup1.Checked;
 			SlideContainer.EditedContent.ROIState.TabC.Group2Toggle = checkEditTabCGroup2.Checked;

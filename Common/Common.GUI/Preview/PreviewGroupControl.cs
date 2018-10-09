@@ -73,7 +73,7 @@ namespace Asa.Common.GUI.Preview
 						_previewForm.BeginInvoke(new MethodInvoker(previewControl.Load));
 					else
 						previewControl.Load();
-				});
+				}, false);
 				Utilities.ActivateForm(_parentForm.Handle, _parentForm.WindowState == FormWindowState.Maximized, false);
 				Utilities.ActivateForm(_previewForm.Handle, _previewForm.WindowState == FormWindowState.Maximized, false);
 				_previewForm.Opacity = 1;

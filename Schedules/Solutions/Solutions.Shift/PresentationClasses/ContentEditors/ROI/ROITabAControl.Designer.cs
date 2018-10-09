@@ -30,24 +30,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 		/// </summary>
 		private void InitializeComponent()
 		{
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition34 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition35 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition36 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition26 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition27 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition28 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition29 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition30 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition31 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition32 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition33 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition34 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition35 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition36 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition37 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition38 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition39 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition37 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition38 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition39 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition40 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition41 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition42 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition33 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition9 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition10 = new DevExpress.XtraLayout.RowDefinition();
@@ -106,8 +94,23 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition31 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition32 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition8 = new DevExpress.XtraLayout.RowDefinition();
-			this.layoutControlGroupTabA = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.layoutControlItemTabA = new DevExpress.XtraLayout.LayoutControlItem();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition34 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition35 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition36 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition26 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition27 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition28 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition29 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition30 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition31 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition32 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition33 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition34 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition35 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition36 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition37 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition38 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition39 = new DevExpress.XtraLayout.RowDefinition();
 			this.panelTabAContentContainer = new System.Windows.Forms.Panel();
 			this.layoutControlInner = new DevExpress.XtraLayout.LayoutControl();
 			this.checkEditTabAGroup1 = new DevExpress.XtraEditors.CheckEdit();
@@ -187,17 +190,19 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlItemTabASubheader11 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.simpleLabelItemTabAFormula1 = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlItemClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.clipartEditContainer1 = new Asa.Solutions.Common.PresentationClasses.ClipartEdit.ClipartEditContainer();
-			this.layoutControlItemClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.clipartEditContainer2 = new Asa.Solutions.Common.PresentationClasses.ClipartEdit.ClipartEditContainer();
-			this.layoutControlItemClipart3 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.clipartEditContainer3 = new Asa.Solutions.Common.PresentationClasses.ClipartEdit.ClipartEditContainer();
+			this.layoutControlGroupTabA = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemTabA = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemClipart3 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.comboBoxEditSlideHeader = new DevExpress.XtraEditors.ComboBoxEdit();
+			this.layoutControlItemSlideHeader = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabA)).BeginInit();
 			this.panelTabAContentContainer.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlInner)).BeginInit();
 			this.layoutControlInner.SuspendLayout();
@@ -278,9 +283,13 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabASubheader11)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabAFormula1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabA)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlideHeader)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// layoutControl
@@ -301,7 +310,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControl.Controls.Add(this.clipartEditContainer2);
 			this.layoutControl.Controls.Add(this.clipartEditContainer1);
 			this.layoutControl.Controls.Add(this.panelTabAContentContainer);
-			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(779, 251, 450, 400);
+			this.layoutControl.Controls.Add(this.comboBoxEditSlideHeader);
+			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(779, 252, 450, 400);
 			this.layoutControl.OptionsFocus.ActivateSelectedControlOnGotFocus = false;
 			this.layoutControl.OptionsFocus.AllowFocusGroups = false;
 			this.layoutControl.OptionsFocus.AllowFocusReadonlyEditors = false;
@@ -325,107 +335,40 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlGroupRoot.AppearanceTabPage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControlGroupRoot.AppearanceTabPage.PageClient.Options.UseFont = true;
 			this.layoutControlGroupRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlGroupTabA});
+            this.layoutControlGroupTabA,
+            this.layoutControlItemSlideHeader});
+			this.layoutControlGroupRoot.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupRoot.Name = "Root";
-			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(40, 0, 10, 10);
-			this.layoutControlGroupRoot.Size = new System.Drawing.Size(916, 530);
-			// 
-			// layoutControlGroupTabA
-			// 
-			this.layoutControlGroupTabA.CustomizationFormText = "Tab A";
-			this.layoutControlGroupTabA.GroupBordersVisible = false;
-			this.layoutControlGroupTabA.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItemTabA,
-            this.layoutControlItemClipart1,
-            this.layoutControlItemClipart2,
-            this.layoutControlItemClipart3});
-			this.layoutControlGroupTabA.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
-			this.layoutControlGroupTabA.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlGroupTabA.Name = "layoutControlGroupTabA";
-			columnDefinition34.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition34.Width = 15D;
-			columnDefinition35.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition35.Width = 30D;
-			columnDefinition36.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition36.Width = 85D;
-			this.layoutControlGroupTabA.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition34,
-            columnDefinition35,
-            columnDefinition36});
-			rowDefinition26.Height = 30D;
-			rowDefinition26.SizeType = System.Windows.Forms.SizeType.Absolute;
-			rowDefinition27.Height = 7.1428571428571432D;
-			rowDefinition27.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition28.Height = 7.1428571428571432D;
-			rowDefinition28.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition29.Height = 7.1428571428571432D;
-			rowDefinition29.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition30.Height = 7.1428571428571432D;
-			rowDefinition30.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition31.Height = 7.1428571428571432D;
-			rowDefinition31.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition32.Height = 7.1428571428571432D;
-			rowDefinition32.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition33.Height = 7.1428571428571432D;
-			rowDefinition33.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition34.Height = 7.1428571428571432D;
-			rowDefinition34.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition35.Height = 7.1428571428571432D;
-			rowDefinition35.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition36.Height = 7.1428571428571432D;
-			rowDefinition36.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition37.Height = 7.1428571428571432D;
-			rowDefinition37.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition38.Height = 7.1428571428571432D;
-			rowDefinition38.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition39.Height = 7.1428571428571432D;
-			rowDefinition39.SizeType = System.Windows.Forms.SizeType.Percent;
-			rowDefinition40.Height = 7.1428571428571432D;
+			columnDefinition37.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition37.Width = 20D;
+			columnDefinition38.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition38.Width = 50D;
+			columnDefinition39.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition39.Width = 50D;
+			this.layoutControlGroupRoot.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
+            columnDefinition37,
+            columnDefinition38,
+            columnDefinition39});
+			rowDefinition40.Height = 15D;
 			rowDefinition40.SizeType = System.Windows.Forms.SizeType.Percent;
-			this.layoutControlGroupTabA.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition26,
-            rowDefinition27,
-            rowDefinition28,
-            rowDefinition29,
-            rowDefinition30,
-            rowDefinition31,
-            rowDefinition32,
-            rowDefinition33,
-            rowDefinition34,
-            rowDefinition35,
-            rowDefinition36,
-            rowDefinition37,
-            rowDefinition38,
-            rowDefinition39,
-            rowDefinition40});
-			this.layoutControlGroupTabA.Padding = new DevExpress.XtraLayout.Utils.Padding(9, 9, 9, 9);
-			this.layoutControlGroupTabA.Size = new System.Drawing.Size(876, 510);
-			this.layoutControlGroupTabA.Text = "Tab A";
-			this.layoutControlGroupTabA.TextVisible = false;
-			// 
-			// layoutControlItemTabA
-			// 
-			this.layoutControlItemTabA.Control = this.panelTabAContentContainer;
-			this.layoutControlItemTabA.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemTabA.Location = new System.Drawing.Point(157, 30);
-			this.layoutControlItemTabA.Name = "layoutControlItemTabA";
-			this.layoutControlItemTabA.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.layoutControlItemTabA.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemTabA.OptionsTableLayoutItem.RowSpan = 14;
-			this.layoutControlItemTabA.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemTabA.Size = new System.Drawing.Size(719, 480);
-			this.layoutControlItemTabA.Text = "Tab A Content Container";
-			this.layoutControlItemTabA.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemTabA.TextVisible = false;
-			this.layoutControlItemTabA.TrimClientAreaToControl = false;
+			rowDefinition41.Height = 85D;
+			rowDefinition41.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition42.Height = 10D;
+			rowDefinition42.SizeType = System.Windows.Forms.SizeType.Absolute;
+			this.layoutControlGroupRoot.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
+            rowDefinition40,
+            rowDefinition41,
+            rowDefinition42});
+			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(916, 530);
 			// 
 			// panelTabAContentContainer
 			// 
 			this.panelTabAContentContainer.BackColor = System.Drawing.Color.Transparent;
 			this.panelTabAContentContainer.Controls.Add(this.layoutControlInner);
-			this.panelTabAContentContainer.Location = new System.Drawing.Point(197, 40);
+			this.panelTabAContentContainer.Location = new System.Drawing.Point(180, 78);
 			this.panelTabAContentContainer.Name = "panelTabAContentContainer";
-			this.panelTabAContentContainer.Size = new System.Drawing.Size(719, 480);
+			this.panelTabAContentContainer.Size = new System.Drawing.Size(736, 442);
 			this.panelTabAContentContainer.TabIndex = 4;
 			// 
 			// layoutControlInner
@@ -475,7 +418,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlInner.OptionsFocus.AllowFocusReadonlyEditors = false;
 			this.layoutControlInner.OptionsFocus.AllowFocusTabbedGroups = false;
 			this.layoutControlInner.Root = this.layoutControlGroupRootInner;
-			this.layoutControlInner.Size = new System.Drawing.Size(719, 480);
+			this.layoutControlInner.Size = new System.Drawing.Size(736, 442);
 			this.layoutControlInner.StyleController = this.layoutControl;
 			this.layoutControlInner.TabIndex = 2;
 			// 
@@ -483,7 +426,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			// 
 			this.checkEditTabAGroup1.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup1.EditValue = true;
-			this.checkEditTabAGroup1.Location = new System.Drawing.Point(2, -128);
+			this.checkEditTabAGroup1.Location = new System.Drawing.Point(2, 4);
 			this.checkEditTabAGroup1.Name = "checkEditTabAGroup1";
 			this.checkEditTabAGroup1.Properties.Caption = "";
 			this.checkEditTabAGroup1.Size = new System.Drawing.Size(19, 19);
@@ -493,20 +436,20 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader1
 			// 
-			this.textEditTabASubheader1.Location = new System.Drawing.Point(85, -130);
+			this.textEditTabASubheader1.Location = new System.Drawing.Point(85, 2);
 			this.textEditTabASubheader1.Name = "textEditTabASubheader1";
 			this.textEditTabASubheader1.Properties.NullText = "Type here";
-			this.textEditTabASubheader1.Size = new System.Drawing.Size(315, 22);
+			this.textEditTabASubheader1.Size = new System.Drawing.Size(325, 22);
 			this.textEditTabASubheader1.StyleController = this.layoutControlInner;
 			this.textEditTabASubheader1.TabIndex = 3;
 			this.textEditTabASubheader1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// textEditTabASubheader3
 			// 
-			this.textEditTabASubheader3.Location = new System.Drawing.Point(530, -130);
+			this.textEditTabASubheader3.Location = new System.Drawing.Point(544, 2);
 			this.textEditTabASubheader3.Name = "textEditTabASubheader3";
 			this.textEditTabASubheader3.Properties.NullText = "Type here";
-			this.textEditTabASubheader3.Size = new System.Drawing.Size(130, 22);
+			this.textEditTabASubheader3.Size = new System.Drawing.Size(133, 22);
 			this.textEditTabASubheader3.StyleController = this.layoutControlInner;
 			this.textEditTabASubheader3.TabIndex = 5;
 			this.textEditTabASubheader3.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -515,7 +458,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			// 
 			this.checkEditTabAGroup2.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup2.EditValue = true;
-			this.checkEditTabAGroup2.Location = new System.Drawing.Point(2, -20);
+			this.checkEditTabAGroup2.Location = new System.Drawing.Point(2, 112);
 			this.checkEditTabAGroup2.Name = "checkEditTabAGroup2";
 			this.checkEditTabAGroup2.Properties.Caption = "";
 			this.checkEditTabAGroup2.Size = new System.Drawing.Size(19, 19);
@@ -525,20 +468,20 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader4
 			// 
-			this.textEditTabASubheader4.Location = new System.Drawing.Point(85, -22);
+			this.textEditTabASubheader4.Location = new System.Drawing.Point(85, 110);
 			this.textEditTabASubheader4.Name = "textEditTabASubheader4";
 			this.textEditTabASubheader4.Properties.NullText = "Type here";
-			this.textEditTabASubheader4.Size = new System.Drawing.Size(136, 22);
+			this.textEditTabASubheader4.Size = new System.Drawing.Size(140, 22);
 			this.textEditTabASubheader4.StyleController = this.layoutControlInner;
 			this.textEditTabASubheader4.TabIndex = 7;
 			this.textEditTabASubheader4.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// textEditTabASubheader6
 			// 
-			this.textEditTabASubheader6.Location = new System.Drawing.Point(357, -22);
+			this.textEditTabASubheader6.Location = new System.Drawing.Point(364, 110);
 			this.textEditTabASubheader6.Name = "textEditTabASubheader6";
 			this.textEditTabASubheader6.Properties.NullText = "Type here";
-			this.textEditTabASubheader6.Size = new System.Drawing.Size(303, 22);
+			this.textEditTabASubheader6.Size = new System.Drawing.Size(313, 22);
 			this.textEditTabASubheader6.StyleController = this.layoutControlInner;
 			this.textEditTabASubheader6.TabIndex = 9;
 			this.textEditTabASubheader6.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -547,7 +490,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			// 
 			this.checkEditTabAGroup3.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup3.EditValue = true;
-			this.checkEditTabAGroup3.Location = new System.Drawing.Point(2, 88);
+			this.checkEditTabAGroup3.Location = new System.Drawing.Point(2, 220);
 			this.checkEditTabAGroup3.Name = "checkEditTabAGroup3";
 			this.checkEditTabAGroup3.Properties.Caption = "";
 			this.checkEditTabAGroup3.Size = new System.Drawing.Size(19, 19);
@@ -557,20 +500,20 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader7
 			// 
-			this.textEditTabASubheader7.Location = new System.Drawing.Point(85, 86);
+			this.textEditTabASubheader7.Location = new System.Drawing.Point(85, 218);
 			this.textEditTabASubheader7.Name = "textEditTabASubheader7";
 			this.textEditTabASubheader7.Properties.NullText = "Type here";
-			this.textEditTabASubheader7.Size = new System.Drawing.Size(136, 22);
+			this.textEditTabASubheader7.Size = new System.Drawing.Size(140, 22);
 			this.textEditTabASubheader7.StyleController = this.layoutControlInner;
 			this.textEditTabASubheader7.TabIndex = 11;
 			this.textEditTabASubheader7.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// textEditTabASubheader9
 			// 
-			this.textEditTabASubheader9.Location = new System.Drawing.Point(357, 86);
+			this.textEditTabASubheader9.Location = new System.Drawing.Point(364, 218);
 			this.textEditTabASubheader9.Name = "textEditTabASubheader9";
 			this.textEditTabASubheader9.Properties.NullText = "Type here";
-			this.textEditTabASubheader9.Size = new System.Drawing.Size(303, 22);
+			this.textEditTabASubheader9.Size = new System.Drawing.Size(313, 22);
 			this.textEditTabASubheader9.StyleController = this.layoutControlInner;
 			this.textEditTabASubheader9.TabIndex = 13;
 			this.textEditTabASubheader9.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -579,7 +522,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			// 
 			this.checkEditTabAGroup6.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup6.EditValue = true;
-			this.checkEditTabAGroup6.Location = new System.Drawing.Point(2, 412);
+			this.checkEditTabAGroup6.Location = new System.Drawing.Point(2, 544);
 			this.checkEditTabAGroup6.Name = "checkEditTabAGroup6";
 			this.checkEditTabAGroup6.Properties.Caption = "";
 			this.checkEditTabAGroup6.Size = new System.Drawing.Size(19, 19);
@@ -591,7 +534,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			// 
 			this.checkEditTabASubheader14.AutoSizeInLayoutControl = true;
 			this.checkEditTabASubheader14.EditValue = true;
-			this.checkEditTabASubheader14.Location = new System.Drawing.Point(85, 452);
+			this.checkEditTabASubheader14.Location = new System.Drawing.Point(85, 584);
 			this.checkEditTabASubheader14.Name = "checkEditTabASubheader14";
 			this.checkEditTabASubheader14.Properties.Caption = "";
 			this.checkEditTabASubheader14.Size = new System.Drawing.Size(19, 19);
@@ -601,10 +544,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader13
 			// 
-			this.textEditTabASubheader13.Location = new System.Drawing.Point(85, 410);
+			this.textEditTabASubheader13.Location = new System.Drawing.Point(85, 542);
 			this.textEditTabASubheader13.Name = "textEditTabASubheader13";
 			this.textEditTabASubheader13.Properties.NullText = "Type here";
-			this.textEditTabASubheader13.Size = new System.Drawing.Size(575, 22);
+			this.textEditTabASubheader13.Size = new System.Drawing.Size(592, 22);
 			this.textEditTabASubheader13.StyleController = this.layoutControlInner;
 			this.textEditTabASubheader13.TabIndex = 20;
 			this.textEditTabASubheader13.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -613,7 +556,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			// 
 			this.checkEditTabASubheader15.AutoSizeInLayoutControl = true;
 			this.checkEditTabASubheader15.EditValue = true;
-			this.checkEditTabASubheader15.Location = new System.Drawing.Point(399, 452);
+			this.checkEditTabASubheader15.Location = new System.Drawing.Point(408, 584);
 			this.checkEditTabASubheader15.Name = "checkEditTabASubheader15";
 			this.checkEditTabASubheader15.Properties.Caption = "";
 			this.checkEditTabASubheader15.Size = new System.Drawing.Size(19, 19);
@@ -623,20 +566,20 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader15
 			// 
-			this.textEditTabASubheader15.Location = new System.Drawing.Point(422, 451);
+			this.textEditTabASubheader15.Location = new System.Drawing.Point(431, 583);
 			this.textEditTabASubheader15.Name = "textEditTabASubheader15";
 			this.textEditTabASubheader15.Properties.NullText = "Type here";
-			this.textEditTabASubheader15.Size = new System.Drawing.Size(199, 22);
+			this.textEditTabASubheader15.Size = new System.Drawing.Size(207, 22);
 			this.textEditTabASubheader15.StyleController = this.layoutControlInner;
 			this.textEditTabASubheader15.TabIndex = 24;
 			this.textEditTabASubheader15.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// textEditTabASubheader12
 			// 
-			this.textEditTabASubheader12.Location = new System.Drawing.Point(85, 302);
+			this.textEditTabASubheader12.Location = new System.Drawing.Point(85, 434);
 			this.textEditTabASubheader12.Name = "textEditTabASubheader12";
 			this.textEditTabASubheader12.Properties.NullText = "Type here";
-			this.textEditTabASubheader12.Size = new System.Drawing.Size(401, 22);
+			this.textEditTabASubheader12.Size = new System.Drawing.Size(413, 22);
 			this.textEditTabASubheader12.StyleController = this.layoutControlInner;
 			this.textEditTabASubheader12.TabIndex = 18;
 			this.textEditTabASubheader12.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -645,7 +588,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			// 
 			this.checkEditTabAGroup5.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup5.EditValue = true;
-			this.checkEditTabAGroup5.Location = new System.Drawing.Point(2, 304);
+			this.checkEditTabAGroup5.Location = new System.Drawing.Point(2, 436);
 			this.checkEditTabAGroup5.Name = "checkEditTabAGroup5";
 			this.checkEditTabAGroup5.Properties.Caption = "";
 			this.checkEditTabAGroup5.Size = new System.Drawing.Size(19, 19);
@@ -657,7 +600,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			// 
 			this.checkEditTabAGroup4.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup4.EditValue = true;
-			this.checkEditTabAGroup4.Location = new System.Drawing.Point(2, 196);
+			this.checkEditTabAGroup4.Location = new System.Drawing.Point(2, 328);
 			this.checkEditTabAGroup4.Name = "checkEditTabAGroup4";
 			this.checkEditTabAGroup4.Properties.Caption = "";
 			this.checkEditTabAGroup4.Size = new System.Drawing.Size(19, 19);
@@ -667,20 +610,20 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			// 
 			// textEditTabASubheader10
 			// 
-			this.textEditTabASubheader10.Location = new System.Drawing.Point(85, 194);
+			this.textEditTabASubheader10.Location = new System.Drawing.Point(85, 326);
 			this.textEditTabASubheader10.Name = "textEditTabASubheader10";
 			this.textEditTabASubheader10.Properties.NullText = "Type here";
-			this.textEditTabASubheader10.Size = new System.Drawing.Size(136, 22);
+			this.textEditTabASubheader10.Size = new System.Drawing.Size(140, 22);
 			this.textEditTabASubheader10.StyleController = this.layoutControlInner;
 			this.textEditTabASubheader10.TabIndex = 15;
 			this.textEditTabASubheader10.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// textEditTabASubheader11
 			// 
-			this.textEditTabASubheader11.Location = new System.Drawing.Point(357, 194);
+			this.textEditTabASubheader11.Location = new System.Drawing.Point(364, 326);
 			this.textEditTabASubheader11.Name = "textEditTabASubheader11";
 			this.textEditTabASubheader11.Properties.NullText = "Type here";
-			this.textEditTabASubheader11.Size = new System.Drawing.Size(303, 22);
+			this.textEditTabASubheader11.Size = new System.Drawing.Size(313, 22);
 			this.textEditTabASubheader11.StyleController = this.layoutControlInner;
 			this.textEditTabASubheader11.TabIndex = 16;
 			this.textEditTabASubheader11.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -692,7 +635,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
             0,
             0,
             0});
-			this.spinEditTabASubheader2.Location = new System.Drawing.Point(414, -130);
+			this.spinEditTabASubheader2.Location = new System.Drawing.Point(424, 2);
 			this.spinEditTabASubheader2.Name = "spinEditTabASubheader2";
 			this.spinEditTabASubheader2.Properties.DisplayFormat.FormatString = "$#,##0";
 			this.spinEditTabASubheader2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
@@ -706,7 +649,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
             0,
             0,
             0});
-			this.spinEditTabASubheader2.Size = new System.Drawing.Size(102, 22);
+			this.spinEditTabASubheader2.Size = new System.Drawing.Size(106, 22);
 			this.spinEditTabASubheader2.StyleController = this.layoutControlInner;
 			this.spinEditTabASubheader2.TabIndex = 4;
 			this.spinEditTabASubheader2.EditValueChanged += new System.EventHandler(this.OnTabAFormulaSourceEditValueChanged);
@@ -718,7 +661,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
             0,
             0,
             0});
-			this.spinEditTabASubheader5.Location = new System.Drawing.Point(235, -22);
+			this.spinEditTabASubheader5.Location = new System.Drawing.Point(239, 110);
 			this.spinEditTabASubheader5.Name = "spinEditTabASubheader5";
 			this.spinEditTabASubheader5.Properties.DisplayFormat.FormatString = "N00";
 			this.spinEditTabASubheader5.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -732,7 +675,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
             0,
             0,
             0});
-			this.spinEditTabASubheader5.Size = new System.Drawing.Size(108, 22);
+			this.spinEditTabASubheader5.Size = new System.Drawing.Size(111, 22);
 			this.spinEditTabASubheader5.StyleController = this.layoutControlInner;
 			this.spinEditTabASubheader5.TabIndex = 8;
 			this.spinEditTabASubheader5.EditValueChanged += new System.EventHandler(this.OnTabAFormulaSourceEditValueChanged);
@@ -744,7 +687,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
             0,
             0,
             0});
-			this.spinEditTabASubheader8.Location = new System.Drawing.Point(235, 86);
+			this.spinEditTabASubheader8.Location = new System.Drawing.Point(239, 218);
 			this.spinEditTabASubheader8.Name = "spinEditTabASubheader8";
 			this.spinEditTabASubheader8.Properties.DisplayFormat.FormatString = "##0\'%\'";
 			this.spinEditTabASubheader8.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
@@ -758,7 +701,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
             0,
             0,
             0});
-			this.spinEditTabASubheader8.Size = new System.Drawing.Size(108, 22);
+			this.spinEditTabASubheader8.Size = new System.Drawing.Size(111, 22);
 			this.spinEditTabASubheader8.StyleController = this.layoutControlInner;
 			this.spinEditTabASubheader8.TabIndex = 12;
 			this.spinEditTabASubheader8.EditValueChanged += new System.EventHandler(this.OnTabAFormulaSourceEditValueChanged);
@@ -770,7 +713,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
             0,
             0,
             0});
-			this.spinEditTabASubheader14.Location = new System.Drawing.Point(108, 451);
+			this.spinEditTabASubheader14.Location = new System.Drawing.Point(108, 583);
 			this.spinEditTabASubheader14.Name = "spinEditTabASubheader14";
 			this.spinEditTabASubheader14.Properties.DisplayFormat.FormatString = "$#,##0";
 			this.spinEditTabASubheader14.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
@@ -784,7 +727,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
             0,
             0,
             0});
-			this.spinEditTabASubheader14.Size = new System.Drawing.Size(157, 22);
+			this.spinEditTabASubheader14.Size = new System.Drawing.Size(166, 22);
 			this.spinEditTabASubheader14.StyleController = this.layoutControlInner;
 			this.spinEditTabASubheader14.TabIndex = 22;
 			this.spinEditTabASubheader14.EditValueChanged += new System.EventHandler(this.OnTabAFormulaSourceEditValueChanged);
@@ -809,10 +752,10 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlGroupRootInner.GroupBordersVisible = false;
 			this.layoutControlGroupRootInner.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroupTabAInner});
-			this.layoutControlGroupRootInner.Location = new System.Drawing.Point(0, -132);
+			this.layoutControlGroupRootInner.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRootInner.Name = "Root";
 			this.layoutControlGroupRootInner.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 40, 0, 0);
-			this.layoutControlGroupRootInner.Size = new System.Drawing.Size(702, 612);
+			this.layoutControlGroupRootInner.Size = new System.Drawing.Size(719, 612);
 			this.layoutControlGroupRootInner.TextVisible = false;
 			// 
 			// layoutControlGroupTabAInner
@@ -887,7 +830,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
             rowDefinition24,
             rowDefinition25});
 			this.layoutControlGroupTabAInner.Padding = new DevExpress.XtraLayout.Utils.Padding(9, 9, 9, 9);
-			this.layoutControlGroupTabAInner.Size = new System.Drawing.Size(662, 612);
+			this.layoutControlGroupTabAInner.Size = new System.Drawing.Size(679, 612);
 			this.layoutControlGroupTabAInner.Text = "Tab A";
 			this.layoutControlGroupTabAInner.TextVisible = false;
 			// 
@@ -901,7 +844,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
             this.emptySpaceItem6});
 			this.layoutControlGroupTabAGroup1.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabAGroup1.Name = "layoutControlGroupTabAGroup1";
-			this.layoutControlGroupTabAGroup1.Size = new System.Drawing.Size(662, 36);
+			this.layoutControlGroupTabAGroup1.Size = new System.Drawing.Size(679, 36);
 			this.layoutControlGroupTabAGroup1.Text = "Group 1";
 			this.layoutControlGroupTabAGroup1.TextVisible = false;
 			// 
@@ -954,7 +897,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			rowDefinition1.SizeType = System.Windows.Forms.SizeType.AutoSize;
 			this.layoutControlGroupTabAGroup1Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition1});
-			this.layoutControlGroupTabAGroup1Inner.Size = new System.Drawing.Size(639, 26);
+			this.layoutControlGroupTabAGroup1Inner.Size = new System.Drawing.Size(656, 26);
 			this.layoutControlGroupTabAGroup1Inner.Text = "Group 1 Inner";
 			this.layoutControlGroupTabAGroup1Inner.TextVisible = false;
 			// 
@@ -968,7 +911,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlItemTabASubheader1.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader1.Name = "layoutControlItemTabASubheader1";
 			this.layoutControlItemTabASubheader1.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabASubheader1.Size = new System.Drawing.Size(319, 26);
+			this.layoutControlItemTabASubheader1.Size = new System.Drawing.Size(329, 26);
 			this.layoutControlItemTabASubheader1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader1.Text = "Subheader 1";
 			this.layoutControlItemTabASubheader1.TextSize = new System.Drawing.Size(0, 0);
@@ -995,11 +938,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlItemTabASubheader2.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabASubheader2.CustomizationFormText = "Subheader 2";
 			this.layoutControlItemTabASubheader2.FillControlToClientArea = false;
-			this.layoutControlItemTabASubheader2.Location = new System.Drawing.Point(389, 0);
+			this.layoutControlItemTabASubheader2.Location = new System.Drawing.Point(399, 0);
 			this.layoutControlItemTabASubheader2.MinSize = new System.Drawing.Size(50, 25);
 			this.layoutControlItemTabASubheader2.Name = "layoutControlItemTabASubheader2";
 			this.layoutControlItemTabASubheader2.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlItemTabASubheader2.Size = new System.Drawing.Size(106, 26);
+			this.layoutControlItemTabASubheader2.Size = new System.Drawing.Size(110, 26);
 			this.layoutControlItemTabASubheader2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader2.Text = "Subheader 2";
 			this.layoutControlItemTabASubheader2.TextSize = new System.Drawing.Size(0, 0);
@@ -1012,11 +955,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlItemTabASubheader3.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabASubheader3.CustomizationFormText = "Subheader 3";
 			this.layoutControlItemTabASubheader3.FillControlToClientArea = false;
-			this.layoutControlItemTabASubheader3.Location = new System.Drawing.Point(505, 0);
+			this.layoutControlItemTabASubheader3.Location = new System.Drawing.Point(519, 0);
 			this.layoutControlItemTabASubheader3.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader3.Name = "layoutControlItemTabASubheader3";
 			this.layoutControlItemTabASubheader3.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabASubheader3.Size = new System.Drawing.Size(134, 26);
+			this.layoutControlItemTabASubheader3.Size = new System.Drawing.Size(137, 26);
 			this.layoutControlItemTabASubheader3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader3.Text = "Subheader 3";
 			this.layoutControlItemTabASubheader3.TextSize = new System.Drawing.Size(0, 0);
@@ -1029,7 +972,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.emptySpaceItem6.CustomizationFormText = "emptySpaceItem3";
 			this.emptySpaceItem6.Location = new System.Drawing.Point(23, 26);
 			this.emptySpaceItem6.Name = "emptySpaceItem6";
-			this.emptySpaceItem6.Size = new System.Drawing.Size(639, 10);
+			this.emptySpaceItem6.Size = new System.Drawing.Size(656, 10);
 			this.emptySpaceItem6.Text = "emptySpaceItem3";
 			this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -1044,7 +987,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlGroupTabAGroup2.Location = new System.Drawing.Point(0, 108);
 			this.layoutControlGroupTabAGroup2.Name = "layoutControlGroupTabAGroup2";
 			this.layoutControlGroupTabAGroup2.OptionsTableLayoutItem.RowIndex = 3;
-			this.layoutControlGroupTabAGroup2.Size = new System.Drawing.Size(662, 36);
+			this.layoutControlGroupTabAGroup2.Size = new System.Drawing.Size(679, 36);
 			this.layoutControlGroupTabAGroup2.Text = "Group 2";
 			this.layoutControlGroupTabAGroup2.TextVisible = false;
 			// 
@@ -1098,7 +1041,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlGroupTabAGroup2Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition2});
 			this.layoutControlGroupTabAGroup2Inner.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlGroupTabAGroup2Inner.Size = new System.Drawing.Size(639, 26);
+			this.layoutControlGroupTabAGroup2Inner.Size = new System.Drawing.Size(656, 26);
 			this.layoutControlGroupTabAGroup2Inner.Text = "Group 2 Inner";
 			this.layoutControlGroupTabAGroup2Inner.TextVisible = false;
 			// 
@@ -1112,7 +1055,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlItemTabASubheader4.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader4.Name = "layoutControlItemTabASubheader4";
 			this.layoutControlItemTabASubheader4.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabASubheader4.Size = new System.Drawing.Size(140, 26);
+			this.layoutControlItemTabASubheader4.Size = new System.Drawing.Size(144, 26);
 			this.layoutControlItemTabASubheader4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader4.Text = "Subheader 4";
 			this.layoutControlItemTabASubheader4.TextSize = new System.Drawing.Size(0, 0);
@@ -1138,11 +1081,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlItemTabASubheader5.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabASubheader5.CustomizationFormText = "Subheader 5";
 			this.layoutControlItemTabASubheader5.FillControlToClientArea = false;
-			this.layoutControlItemTabASubheader5.Location = new System.Drawing.Point(210, 0);
+			this.layoutControlItemTabASubheader5.Location = new System.Drawing.Point(214, 0);
 			this.layoutControlItemTabASubheader5.MinSize = new System.Drawing.Size(50, 25);
 			this.layoutControlItemTabASubheader5.Name = "layoutControlItemTabASubheader5";
 			this.layoutControlItemTabASubheader5.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlItemTabASubheader5.Size = new System.Drawing.Size(112, 26);
+			this.layoutControlItemTabASubheader5.Size = new System.Drawing.Size(115, 26);
 			this.layoutControlItemTabASubheader5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader5.Text = "Subheader 5";
 			this.layoutControlItemTabASubheader5.TextSize = new System.Drawing.Size(0, 0);
@@ -1155,11 +1098,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlItemTabASubheader6.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabASubheader6.CustomizationFormText = "Subheader 6";
 			this.layoutControlItemTabASubheader6.FillControlToClientArea = false;
-			this.layoutControlItemTabASubheader6.Location = new System.Drawing.Point(332, 0);
+			this.layoutControlItemTabASubheader6.Location = new System.Drawing.Point(339, 0);
 			this.layoutControlItemTabASubheader6.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader6.Name = "layoutControlItemTabASubheader6";
 			this.layoutControlItemTabASubheader6.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabASubheader6.Size = new System.Drawing.Size(307, 26);
+			this.layoutControlItemTabASubheader6.Size = new System.Drawing.Size(317, 26);
 			this.layoutControlItemTabASubheader6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader6.Text = "Subheader 6";
 			this.layoutControlItemTabASubheader6.TextSize = new System.Drawing.Size(0, 0);
@@ -1173,7 +1116,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.emptySpaceItem7.Location = new System.Drawing.Point(23, 26);
 			this.emptySpaceItem7.Name = "emptySpaceItem7";
 			this.emptySpaceItem7.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.emptySpaceItem7.Size = new System.Drawing.Size(639, 10);
+			this.emptySpaceItem7.Size = new System.Drawing.Size(656, 10);
 			this.emptySpaceItem7.Text = "emptySpaceItem4";
 			this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -1188,7 +1131,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlGroupTabAGroup3.Location = new System.Drawing.Point(0, 216);
 			this.layoutControlGroupTabAGroup3.Name = "layoutControlGroupTabAGroup3";
 			this.layoutControlGroupTabAGroup3.OptionsTableLayoutItem.RowIndex = 6;
-			this.layoutControlGroupTabAGroup3.Size = new System.Drawing.Size(662, 36);
+			this.layoutControlGroupTabAGroup3.Size = new System.Drawing.Size(679, 36);
 			this.layoutControlGroupTabAGroup3.Text = "Group 3";
 			this.layoutControlGroupTabAGroup3.TextVisible = false;
 			// 
@@ -1241,7 +1184,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			rowDefinition3.SizeType = System.Windows.Forms.SizeType.AutoSize;
 			this.layoutControlGroupTabAGroup3Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition3});
-			this.layoutControlGroupTabAGroup3Inner.Size = new System.Drawing.Size(639, 26);
+			this.layoutControlGroupTabAGroup3Inner.Size = new System.Drawing.Size(656, 26);
 			this.layoutControlGroupTabAGroup3Inner.Text = "Group 3 Inner";
 			this.layoutControlGroupTabAGroup3Inner.TextVisible = false;
 			// 
@@ -1255,7 +1198,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlItemTabASubheader7.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader7.Name = "layoutControlItemTabASubheader7";
 			this.layoutControlItemTabASubheader7.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabASubheader7.Size = new System.Drawing.Size(140, 26);
+			this.layoutControlItemTabASubheader7.Size = new System.Drawing.Size(144, 26);
 			this.layoutControlItemTabASubheader7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader7.Text = "Subheader 7";
 			this.layoutControlItemTabASubheader7.TextSize = new System.Drawing.Size(0, 0);
@@ -1281,11 +1224,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlItemTabASubheader8.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabASubheader8.CustomizationFormText = "Subheader 8";
 			this.layoutControlItemTabASubheader8.FillControlToClientArea = false;
-			this.layoutControlItemTabASubheader8.Location = new System.Drawing.Point(210, 0);
+			this.layoutControlItemTabASubheader8.Location = new System.Drawing.Point(214, 0);
 			this.layoutControlItemTabASubheader8.MinSize = new System.Drawing.Size(50, 25);
 			this.layoutControlItemTabASubheader8.Name = "layoutControlItemTabASubheader8";
 			this.layoutControlItemTabASubheader8.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlItemTabASubheader8.Size = new System.Drawing.Size(112, 26);
+			this.layoutControlItemTabASubheader8.Size = new System.Drawing.Size(115, 26);
 			this.layoutControlItemTabASubheader8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader8.Text = "Subheader 8";
 			this.layoutControlItemTabASubheader8.TextSize = new System.Drawing.Size(0, 0);
@@ -1298,11 +1241,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlItemTabASubheader9.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabASubheader9.CustomizationFormText = "Subheader 9";
 			this.layoutControlItemTabASubheader9.FillControlToClientArea = false;
-			this.layoutControlItemTabASubheader9.Location = new System.Drawing.Point(332, 0);
+			this.layoutControlItemTabASubheader9.Location = new System.Drawing.Point(339, 0);
 			this.layoutControlItemTabASubheader9.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader9.Name = "layoutControlItemTabASubheader9";
 			this.layoutControlItemTabASubheader9.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabASubheader9.Size = new System.Drawing.Size(307, 26);
+			this.layoutControlItemTabASubheader9.Size = new System.Drawing.Size(317, 26);
 			this.layoutControlItemTabASubheader9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader9.Text = "Subheader 9";
 			this.layoutControlItemTabASubheader9.TextSize = new System.Drawing.Size(0, 0);
@@ -1315,7 +1258,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.emptySpaceItem8.CustomizationFormText = "emptySpaceItem5";
 			this.emptySpaceItem8.Location = new System.Drawing.Point(23, 26);
 			this.emptySpaceItem8.Name = "emptySpaceItem8";
-			this.emptySpaceItem8.Size = new System.Drawing.Size(639, 10);
+			this.emptySpaceItem8.Size = new System.Drawing.Size(656, 10);
 			this.emptySpaceItem8.Text = "emptySpaceItem5";
 			this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -1331,7 +1274,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlGroupTabAGroup6.Name = "layoutControlGroupTabAGroup6";
 			this.layoutControlGroupTabAGroup6.OptionsTableLayoutItem.RowIndex = 15;
 			this.layoutControlGroupTabAGroup6.OptionsTableLayoutItem.RowSpan = 2;
-			this.layoutControlGroupTabAGroup6.Size = new System.Drawing.Size(662, 72);
+			this.layoutControlGroupTabAGroup6.Size = new System.Drawing.Size(679, 72);
 			this.layoutControlGroupTabAGroup6.Text = "Group 6";
 			this.layoutControlGroupTabAGroup6.TextVisible = false;
 			// 
@@ -1384,7 +1327,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
             rowDefinition4,
             rowDefinition5,
             rowDefinition6});
-			this.layoutControlGroupTabAGroup6Inner.Size = new System.Drawing.Size(639, 67);
+			this.layoutControlGroupTabAGroup6Inner.Size = new System.Drawing.Size(656, 67);
 			this.layoutControlGroupTabAGroup6Inner.Text = "Group 6 Inner";
 			this.layoutControlGroupTabAGroup6Inner.TextVisible = false;
 			// 
@@ -1412,7 +1355,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlGroupTabASubheader14.Name = "layoutControlGroupTabASubheader14";
 			this.layoutControlGroupTabASubheader14.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabASubheader14.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabASubheader14.Size = new System.Drawing.Size(264, 26);
+			this.layoutControlGroupTabASubheader14.Size = new System.Drawing.Size(273, 26);
 			this.layoutControlGroupTabASubheader14.Text = "Subheader 14";
 			this.layoutControlGroupTabASubheader14.TextVisible = false;
 			// 
@@ -1438,7 +1381,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlItemTabASubheader14Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabASubheader14Value.MinSize = new System.Drawing.Size(50, 25);
 			this.layoutControlItemTabASubheader14Value.Name = "layoutControlItemTabASubheader14Value";
-			this.layoutControlItemTabASubheader14Value.Size = new System.Drawing.Size(241, 26);
+			this.layoutControlItemTabASubheader14Value.Size = new System.Drawing.Size(250, 26);
 			this.layoutControlItemTabASubheader14Value.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader14Value.Text = "Per Month";
 			this.layoutControlItemTabASubheader14Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
@@ -1458,7 +1401,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlItemTabASubheader13.Name = "layoutControlItemTabASubheader13";
 			this.layoutControlItemTabASubheader13.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabASubheader13.OptionsTableLayoutItem.ColumnSpan = 3;
-			this.layoutControlItemTabASubheader13.Size = new System.Drawing.Size(579, 26);
+			this.layoutControlItemTabASubheader13.Size = new System.Drawing.Size(596, 26);
 			this.layoutControlItemTabASubheader13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader13.Text = "Subheader 13";
 			this.layoutControlItemTabASubheader13.TextSize = new System.Drawing.Size(0, 0);
@@ -1472,11 +1415,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlGroupTabASubheader15.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabASubheader15Toggle,
             this.layoutControlItemTabASubheader15Value});
-			this.layoutControlGroupTabASubheader15.Location = new System.Drawing.Point(374, 41);
+			this.layoutControlGroupTabASubheader15.Location = new System.Drawing.Point(383, 41);
 			this.layoutControlGroupTabASubheader15.Name = "layoutControlGroupTabASubheader15";
 			this.layoutControlGroupTabASubheader15.OptionsTableLayoutItem.ColumnIndex = 3;
 			this.layoutControlGroupTabASubheader15.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabASubheader15.Size = new System.Drawing.Size(265, 26);
+			this.layoutControlGroupTabASubheader15.Size = new System.Drawing.Size(273, 26);
 			this.layoutControlGroupTabASubheader15.Text = "Subheader 15";
 			this.layoutControlGroupTabASubheader15.TextVisible = false;
 			// 
@@ -1503,7 +1446,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlItemTabASubheader15Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabASubheader15Value.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader15Value.Name = "layoutControlItemTabASubheader15Value";
-			this.layoutControlItemTabASubheader15Value.Size = new System.Drawing.Size(242, 26);
+			this.layoutControlItemTabASubheader15Value.Size = new System.Drawing.Size(250, 26);
 			this.layoutControlItemTabASubheader15Value.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader15Value.Text = "<b>= 0</b>";
 			this.layoutControlItemTabASubheader15Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
@@ -1518,7 +1461,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.emptySpaceItem9.CustomizationFormText = "emptySpaceItem6";
 			this.emptySpaceItem9.Location = new System.Drawing.Point(23, 67);
 			this.emptySpaceItem9.Name = "emptySpaceItem9";
-			this.emptySpaceItem9.Size = new System.Drawing.Size(639, 10);
+			this.emptySpaceItem9.Size = new System.Drawing.Size(656, 10);
 			this.emptySpaceItem9.Text = "emptySpaceItem6";
 			this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -1533,7 +1476,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlGroupTabAGroup5.Location = new System.Drawing.Point(0, 432);
 			this.layoutControlGroupTabAGroup5.Name = "layoutControlGroupTabAGroup5";
 			this.layoutControlGroupTabAGroup5.OptionsTableLayoutItem.RowIndex = 12;
-			this.layoutControlGroupTabAGroup5.Size = new System.Drawing.Size(662, 36);
+			this.layoutControlGroupTabAGroup5.Size = new System.Drawing.Size(679, 36);
 			this.layoutControlGroupTabAGroup5.Text = "Group 5";
 			this.layoutControlGroupTabAGroup5.TextVisible = false;
 			// 
@@ -1567,7 +1510,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlGroupTabAGroup5Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition7});
 			this.layoutControlGroupTabAGroup5Inner.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlGroupTabAGroup5Inner.Size = new System.Drawing.Size(639, 26);
+			this.layoutControlGroupTabAGroup5Inner.Size = new System.Drawing.Size(656, 26);
 			this.layoutControlGroupTabAGroup5Inner.Text = "Group 5 Inner";
 			this.layoutControlGroupTabAGroup5Inner.TextVisible = false;
 			// 
@@ -1581,7 +1524,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlItemTabASubheader12.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader12.Name = "layoutControlItemTabASubheader12";
 			this.layoutControlItemTabASubheader12.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabASubheader12.Size = new System.Drawing.Size(405, 26);
+			this.layoutControlItemTabASubheader12.Size = new System.Drawing.Size(417, 26);
 			this.layoutControlItemTabASubheader12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader12.Text = "Subheader 12";
 			this.layoutControlItemTabASubheader12.TextSize = new System.Drawing.Size(0, 0);
@@ -1608,11 +1551,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.simpleLabelItemTabAFormula2EqualSign.AppearanceItemCaption.Options.UseTextOptions = true;
 			this.simpleLabelItemTabAFormula2EqualSign.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.simpleLabelItemTabAFormula2EqualSign.CustomizationFormText = "<b>=</b>";
-			this.simpleLabelItemTabAFormula2EqualSign.Location = new System.Drawing.Point(465, 0);
+			this.simpleLabelItemTabAFormula2EqualSign.Location = new System.Drawing.Point(477, 0);
 			this.simpleLabelItemTabAFormula2EqualSign.MinSize = new System.Drawing.Size(1, 26);
 			this.simpleLabelItemTabAFormula2EqualSign.Name = "simpleLabelItemTabAFormula2EqualSign";
 			this.simpleLabelItemTabAFormula2EqualSign.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.simpleLabelItemTabAFormula2EqualSign.Size = new System.Drawing.Size(29, 26);
+			this.simpleLabelItemTabAFormula2EqualSign.Size = new System.Drawing.Size(30, 26);
 			this.simpleLabelItemTabAFormula2EqualSign.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTabAFormula2EqualSign.Text = "<b>=</b>";
 			this.simpleLabelItemTabAFormula2EqualSign.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
@@ -1623,11 +1566,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.simpleLabelItemTabAFormula2.AllowHotTrack = false;
 			this.simpleLabelItemTabAFormula2.AllowHtmlStringInCaption = true;
 			this.simpleLabelItemTabAFormula2.CustomizationFormText = "<b>0</b>";
-			this.simpleLabelItemTabAFormula2.Location = new System.Drawing.Point(494, 0);
+			this.simpleLabelItemTabAFormula2.Location = new System.Drawing.Point(507, 0);
 			this.simpleLabelItemTabAFormula2.MinSize = new System.Drawing.Size(1, 26);
 			this.simpleLabelItemTabAFormula2.Name = "simpleLabelItemTabAFormula2";
 			this.simpleLabelItemTabAFormula2.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.simpleLabelItemTabAFormula2.Size = new System.Drawing.Size(145, 26);
+			this.simpleLabelItemTabAFormula2.Size = new System.Drawing.Size(149, 26);
 			this.simpleLabelItemTabAFormula2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTabAFormula2.Text = "<b>0</b>";
 			this.simpleLabelItemTabAFormula2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
@@ -1640,7 +1583,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.emptySpaceItem11.Location = new System.Drawing.Point(0, 26);
 			this.emptySpaceItem11.Name = "emptySpaceItem11";
 			this.emptySpaceItem11.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.emptySpaceItem11.Size = new System.Drawing.Size(662, 10);
+			this.emptySpaceItem11.Size = new System.Drawing.Size(679, 10);
 			this.emptySpaceItem11.Text = "emptySpaceItem4";
 			this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -1670,7 +1613,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlGroupTabAGroup4.Location = new System.Drawing.Point(0, 324);
 			this.layoutControlGroupTabAGroup4.Name = "layoutControlGroupTabAGroup4";
 			this.layoutControlGroupTabAGroup4.OptionsTableLayoutItem.RowIndex = 9;
-			this.layoutControlGroupTabAGroup4.Size = new System.Drawing.Size(662, 36);
+			this.layoutControlGroupTabAGroup4.Size = new System.Drawing.Size(679, 36);
 			this.layoutControlGroupTabAGroup4.Text = "Group 4";
 			this.layoutControlGroupTabAGroup4.TextVisible = false;
 			// 
@@ -1724,7 +1667,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlGroupTabAGroup4Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition8});
 			this.layoutControlGroupTabAGroup4Inner.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlGroupTabAGroup4Inner.Size = new System.Drawing.Size(639, 26);
+			this.layoutControlGroupTabAGroup4Inner.Size = new System.Drawing.Size(656, 26);
 			this.layoutControlGroupTabAGroup4Inner.Text = "Group 4 Inner";
 			this.layoutControlGroupTabAGroup4Inner.TextVisible = false;
 			// 
@@ -1738,7 +1681,7 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlItemTabASubheader10.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader10.Name = "layoutControlItemTabASubheader10";
 			this.layoutControlItemTabASubheader10.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabASubheader10.Size = new System.Drawing.Size(140, 26);
+			this.layoutControlItemTabASubheader10.Size = new System.Drawing.Size(144, 26);
 			this.layoutControlItemTabASubheader10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader10.Text = "Subheader 10";
 			this.layoutControlItemTabASubheader10.TextSize = new System.Drawing.Size(0, 0);
@@ -1764,11 +1707,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.layoutControlItemTabASubheader11.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabASubheader11.CustomizationFormText = "Subheader 11";
 			this.layoutControlItemTabASubheader11.FillControlToClientArea = false;
-			this.layoutControlItemTabASubheader11.Location = new System.Drawing.Point(332, 0);
+			this.layoutControlItemTabASubheader11.Location = new System.Drawing.Point(339, 0);
 			this.layoutControlItemTabASubheader11.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader11.Name = "layoutControlItemTabASubheader11";
 			this.layoutControlItemTabASubheader11.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabASubheader11.Size = new System.Drawing.Size(307, 26);
+			this.layoutControlItemTabASubheader11.Size = new System.Drawing.Size(317, 26);
 			this.layoutControlItemTabASubheader11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader11.Text = "Subheader 11";
 			this.layoutControlItemTabASubheader11.TextSize = new System.Drawing.Size(0, 0);
@@ -1782,11 +1725,11 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.simpleLabelItemTabAFormula1.AppearanceItemCaption.Options.UseTextOptions = true;
 			this.simpleLabelItemTabAFormula1.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.simpleLabelItemTabAFormula1.CustomizationFormText = "<b>0</b>";
-			this.simpleLabelItemTabAFormula1.Location = new System.Drawing.Point(210, 0);
+			this.simpleLabelItemTabAFormula1.Location = new System.Drawing.Point(214, 0);
 			this.simpleLabelItemTabAFormula1.MinSize = new System.Drawing.Size(1, 26);
 			this.simpleLabelItemTabAFormula1.Name = "simpleLabelItemTabAFormula1";
 			this.simpleLabelItemTabAFormula1.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.simpleLabelItemTabAFormula1.Size = new System.Drawing.Size(112, 26);
+			this.simpleLabelItemTabAFormula1.Size = new System.Drawing.Size(115, 26);
 			this.simpleLabelItemTabAFormula1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTabAFormula1.Text = "<b>0</b>";
 			this.simpleLabelItemTabAFormula1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
@@ -1799,84 +1742,197 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			this.emptySpaceItem10.Location = new System.Drawing.Point(23, 26);
 			this.emptySpaceItem10.Name = "emptySpaceItem10";
 			this.emptySpaceItem10.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.emptySpaceItem10.Size = new System.Drawing.Size(639, 10);
+			this.emptySpaceItem10.Size = new System.Drawing.Size(656, 10);
 			this.emptySpaceItem10.Text = "emptySpaceItem4";
 			this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// layoutControlItemClipart1
-			// 
-			this.layoutControlItemClipart1.Control = this.clipartEditContainer1;
-			this.layoutControlItemClipart1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemClipart1.FillControlToClientArea = false;
-			this.layoutControlItemClipart1.Location = new System.Drawing.Point(0, 30);
-			this.layoutControlItemClipart1.Name = "layoutControlItemClipart1";
-			this.layoutControlItemClipart1.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemClipart1.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlItemClipart1.Size = new System.Drawing.Size(127, 136);
-			this.layoutControlItemClipart1.Text = "Clipart 1";
-			this.layoutControlItemClipart1.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemClipart1.TextVisible = false;
-			this.layoutControlItemClipart1.TrimClientAreaToControl = false;
 			// 
 			// clipartEditContainer1
 			// 
 			this.clipartEditContainer1.AllowDrop = true;
 			this.clipartEditContainer1.BackColor = System.Drawing.Color.Transparent;
 			this.clipartEditContainer1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.clipartEditContainer1.Location = new System.Drawing.Point(42, 42);
+			this.clipartEditContainer1.Location = new System.Drawing.Point(22, 80);
 			this.clipartEditContainer1.Name = "clipartEditContainer1";
-			this.clipartEditContainer1.Size = new System.Drawing.Size(123, 132);
+			this.clipartEditContainer1.Size = new System.Drawing.Size(126, 118);
 			this.clipartEditContainer1.TabIndex = 5;
-			// 
-			// layoutControlItemClipart2
-			// 
-			this.layoutControlItemClipart2.Control = this.clipartEditContainer2;
-			this.layoutControlItemClipart2.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemClipart2.FillControlToClientArea = false;
-			this.layoutControlItemClipart2.Location = new System.Drawing.Point(0, 200);
-			this.layoutControlItemClipart2.Name = "layoutControlItemClipart2";
-			this.layoutControlItemClipart2.OptionsTableLayoutItem.RowIndex = 6;
-			this.layoutControlItemClipart2.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlItemClipart2.Size = new System.Drawing.Size(127, 136);
-			this.layoutControlItemClipart2.Text = "Clipart 2";
-			this.layoutControlItemClipart2.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemClipart2.TextVisible = false;
-			this.layoutControlItemClipart2.TrimClientAreaToControl = false;
 			// 
 			// clipartEditContainer2
 			// 
 			this.clipartEditContainer2.AllowDrop = true;
 			this.clipartEditContainer2.BackColor = System.Drawing.Color.Transparent;
 			this.clipartEditContainer2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.clipartEditContainer2.Location = new System.Drawing.Point(42, 212);
+			this.clipartEditContainer2.Location = new System.Drawing.Point(22, 234);
 			this.clipartEditContainer2.Name = "clipartEditContainer2";
-			this.clipartEditContainer2.Size = new System.Drawing.Size(123, 132);
+			this.clipartEditContainer2.Size = new System.Drawing.Size(126, 124);
 			this.clipartEditContainer2.TabIndex = 6;
-			// 
-			// layoutControlItemClipart3
-			// 
-			this.layoutControlItemClipart3.Control = this.clipartEditContainer3;
-			this.layoutControlItemClipart3.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemClipart3.FillControlToClientArea = false;
-			this.layoutControlItemClipart3.Location = new System.Drawing.Point(0, 370);
-			this.layoutControlItemClipart3.Name = "layoutControlItemClipart3";
-			this.layoutControlItemClipart3.OptionsTableLayoutItem.RowIndex = 11;
-			this.layoutControlItemClipart3.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlItemClipart3.Size = new System.Drawing.Size(127, 140);
-			this.layoutControlItemClipart3.Text = "Clipart 3";
-			this.layoutControlItemClipart3.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemClipart3.TextVisible = false;
-			this.layoutControlItemClipart3.TrimClientAreaToControl = false;
 			// 
 			// clipartEditContainer3
 			// 
 			this.clipartEditContainer3.AllowDrop = true;
 			this.clipartEditContainer3.BackColor = System.Drawing.Color.Transparent;
 			this.clipartEditContainer3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.clipartEditContainer3.Location = new System.Drawing.Point(42, 382);
+			this.clipartEditContainer3.Location = new System.Drawing.Point(22, 394);
 			this.clipartEditContainer3.Name = "clipartEditContainer3";
-			this.clipartEditContainer3.Size = new System.Drawing.Size(123, 136);
+			this.clipartEditContainer3.Size = new System.Drawing.Size(126, 124);
 			this.clipartEditContainer3.TabIndex = 7;
+			// 
+			// layoutControlGroupTabA
+			// 
+			this.layoutControlGroupTabA.CustomizationFormText = "Tab A";
+			this.layoutControlGroupTabA.GroupBordersVisible = false;
+			this.layoutControlGroupTabA.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemTabA,
+            this.layoutControlItemClipart1,
+            this.layoutControlItemClipart2,
+            this.layoutControlItemClipart3});
+			this.layoutControlGroupTabA.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
+			this.layoutControlGroupTabA.Location = new System.Drawing.Point(20, 78);
+			this.layoutControlGroupTabA.Name = "layoutControlGroupTabA";
+			columnDefinition34.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition34.Width = 15D;
+			columnDefinition35.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition35.Width = 30D;
+			columnDefinition36.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition36.Width = 85D;
+			this.layoutControlGroupTabA.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
+            columnDefinition34,
+            columnDefinition35,
+            columnDefinition36});
+			rowDefinition26.Height = 7.1428571428571423D;
+			rowDefinition26.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition27.Height = 7.1428571428571423D;
+			rowDefinition27.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition28.Height = 7.1428571428571423D;
+			rowDefinition28.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition29.Height = 7.1428571428571423D;
+			rowDefinition29.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition30.Height = 7.1428571428571423D;
+			rowDefinition30.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition31.Height = 7.1428571428571423D;
+			rowDefinition31.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition32.Height = 7.1428571428571423D;
+			rowDefinition32.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition33.Height = 7.1428571428571423D;
+			rowDefinition33.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition34.Height = 7.1428571428571423D;
+			rowDefinition34.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition35.Height = 7.1428571428571423D;
+			rowDefinition35.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition36.Height = 7.1428571428571423D;
+			rowDefinition36.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition37.Height = 7.1428571428571423D;
+			rowDefinition37.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition38.Height = 7.1428571428571423D;
+			rowDefinition38.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition39.Height = 7.1428571428571423D;
+			rowDefinition39.SizeType = System.Windows.Forms.SizeType.Percent;
+			this.layoutControlGroupTabA.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
+            rowDefinition26,
+            rowDefinition27,
+            rowDefinition28,
+            rowDefinition29,
+            rowDefinition30,
+            rowDefinition31,
+            rowDefinition32,
+            rowDefinition33,
+            rowDefinition34,
+            rowDefinition35,
+            rowDefinition36,
+            rowDefinition37,
+            rowDefinition38,
+            rowDefinition39});
+			this.layoutControlGroupTabA.OptionsTableLayoutItem.ColumnIndex = 1;
+			this.layoutControlGroupTabA.OptionsTableLayoutItem.ColumnSpan = 2;
+			this.layoutControlGroupTabA.OptionsTableLayoutItem.RowIndex = 1;
+			this.layoutControlGroupTabA.Padding = new DevExpress.XtraLayout.Utils.Padding(9, 9, 9, 9);
+			this.layoutControlGroupTabA.Size = new System.Drawing.Size(896, 442);
+			this.layoutControlGroupTabA.Text = "Tab A";
+			this.layoutControlGroupTabA.TextVisible = false;
+			// 
+			// layoutControlItemTabA
+			// 
+			this.layoutControlItemTabA.Control = this.panelTabAContentContainer;
+			this.layoutControlItemTabA.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemTabA.Location = new System.Drawing.Point(160, 0);
+			this.layoutControlItemTabA.Name = "layoutControlItemTabA";
+			this.layoutControlItemTabA.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.layoutControlItemTabA.OptionsTableLayoutItem.RowSpan = 14;
+			this.layoutControlItemTabA.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlItemTabA.Size = new System.Drawing.Size(736, 442);
+			this.layoutControlItemTabA.Text = "Tab A Content Container";
+			this.layoutControlItemTabA.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemTabA.TextVisible = false;
+			this.layoutControlItemTabA.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemClipart1
+			// 
+			this.layoutControlItemClipart1.Control = this.clipartEditContainer1;
+			this.layoutControlItemClipart1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemClipart1.FillControlToClientArea = false;
+			this.layoutControlItemClipart1.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemClipart1.Name = "layoutControlItemClipart1";
+			this.layoutControlItemClipart1.OptionsTableLayoutItem.RowSpan = 4;
+			this.layoutControlItemClipart1.Size = new System.Drawing.Size(130, 122);
+			this.layoutControlItemClipart1.Text = "Clipart 1";
+			this.layoutControlItemClipart1.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemClipart1.TextVisible = false;
+			this.layoutControlItemClipart1.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemClipart2
+			// 
+			this.layoutControlItemClipart2.Control = this.clipartEditContainer2;
+			this.layoutControlItemClipart2.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemClipart2.FillControlToClientArea = false;
+			this.layoutControlItemClipart2.Location = new System.Drawing.Point(0, 154);
+			this.layoutControlItemClipart2.Name = "layoutControlItemClipart2";
+			this.layoutControlItemClipart2.OptionsTableLayoutItem.RowIndex = 5;
+			this.layoutControlItemClipart2.OptionsTableLayoutItem.RowSpan = 4;
+			this.layoutControlItemClipart2.Size = new System.Drawing.Size(130, 128);
+			this.layoutControlItemClipart2.Text = "Clipart 2";
+			this.layoutControlItemClipart2.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemClipart2.TextVisible = false;
+			this.layoutControlItemClipart2.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemClipart3
+			// 
+			this.layoutControlItemClipart3.Control = this.clipartEditContainer3;
+			this.layoutControlItemClipart3.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemClipart3.FillControlToClientArea = false;
+			this.layoutControlItemClipart3.Location = new System.Drawing.Point(0, 314);
+			this.layoutControlItemClipart3.Name = "layoutControlItemClipart3";
+			this.layoutControlItemClipart3.OptionsTableLayoutItem.RowIndex = 10;
+			this.layoutControlItemClipart3.OptionsTableLayoutItem.RowSpan = 4;
+			this.layoutControlItemClipart3.Size = new System.Drawing.Size(130, 128);
+			this.layoutControlItemClipart3.Text = "Clipart 3";
+			this.layoutControlItemClipart3.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemClipart3.TextVisible = false;
+			this.layoutControlItemClipart3.TrimClientAreaToControl = false;
+			// 
+			// comboBoxEditSlideHeader
+			// 
+			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(22, 28);
+			this.comboBoxEditSlideHeader.Name = "comboBoxEditSlideHeader";
+			this.comboBoxEditSlideHeader.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.comboBoxEditSlideHeader.Properties.NullText = "Select or type";
+			this.comboBoxEditSlideHeader.Size = new System.Drawing.Size(444, 22);
+			this.comboBoxEditSlideHeader.StyleController = this.layoutControl;
+			this.comboBoxEditSlideHeader.TabIndex = 12;
+			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
+			// 
+			// layoutControlItemSlideHeader
+			// 
+			this.layoutControlItemSlideHeader.Control = this.comboBoxEditSlideHeader;
+			this.layoutControlItemSlideHeader.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemSlideHeader.CustomizationFormText = "Header";
+			this.layoutControlItemSlideHeader.Location = new System.Drawing.Point(20, 0);
+			this.layoutControlItemSlideHeader.Name = "layoutControlItemSlideHeader";
+			this.layoutControlItemSlideHeader.OptionsTableLayoutItem.ColumnIndex = 1;
+			this.layoutControlItemSlideHeader.Size = new System.Drawing.Size(448, 78);
+			this.layoutControlItemSlideHeader.Text = "Header";
+			this.layoutControlItemSlideHeader.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemSlideHeader.TextVisible = false;
+			this.layoutControlItemSlideHeader.TrimClientAreaToControl = false;
 			// 
 			// ROITabAControl
 			// 
@@ -1888,8 +1944,6 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabA)).EndInit();
 			this.panelTabAContentContainer.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlInner)).EndInit();
 			this.layoutControlInner.ResumeLayout(false);
@@ -1970,19 +2024,21 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabASubheader11)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabAFormula1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabA)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlideHeader)).EndInit();
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
-		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabA;
 		private System.Windows.Forms.Panel panelTabAContentContainer;
 		private DevExpress.XtraLayout.LayoutControl layoutControlInner;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRootInner;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabA;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabAGroup1;
 		private DevExpress.XtraEditors.TextEdit textEditTabASubheader1;
 		private DevExpress.XtraEditors.TextEdit textEditTabASubheader3;
@@ -2062,8 +2118,12 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors.ROI
 		private ClipartEditContainer clipartEditContainer3;
 		private ClipartEditContainer clipartEditContainer2;
 		private ClipartEditContainer clipartEditContainer1;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabA;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabA;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemClipart1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemClipart2;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemClipart3;
+		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSlideHeader;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemSlideHeader;
 	}
 }

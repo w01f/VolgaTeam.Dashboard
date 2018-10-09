@@ -15,13 +15,13 @@ namespace Asa.Common.Core.Helpers
 			Slides = new List<SlideMaster>();
 		}
 
-		public virtual void LoadSlides(StorageDirectory storageDirectory)
+		public virtual void LoadSlides(StorageDirectory slideContentsDirectory)
 		{
-			if (!storageDirectory.ExistsLocal()) return;
-			foreach (var sizeFolder in storageDirectory.GetLocalFolders())
+			if (!slideContentsDirectory.ExistsLocal()) return;
+			foreach (var sizeContentsFolder in slideContentsDirectory.GetLocalFolders())
 			{
 				SlideFormatEnum format;
-				switch (Path.GetFileName(sizeFolder.LocalPath))
+				switch (Path.GetFileName(sizeContentsFolder.LocalPath))
 				{
 					case "4x3":
 						format = SlideFormatEnum.Format4x3;
@@ -36,7 +36,7 @@ namespace Asa.Common.Core.Helpers
 						continue;
 				}
 
-				ProcessSlideSizeFolder(sizeFolder, format);
+				ProcessSlideSizeFolder(sizeContentsFolder, format);
 			}
 		}
 
@@ -44,9 +44,9 @@ namespace Asa.Common.Core.Helpers
 		{
 			foreach (var groupFolder in sizeFolder.GetLocalFolders())
 			{
-				foreach (var slideFolder in groupFolder.GetLocalFolders())
+				foreach (var slideContentsFolder in groupFolder.GetLocalFolders())
 				{
-					var slideMaster = new SlideMaster(slideFolder)
+					var slideMaster = new SlideMaster(slideContentsFolder, slideContentsFolder)
 					{
 						Group = groupFolder.Name,
 						Format = format

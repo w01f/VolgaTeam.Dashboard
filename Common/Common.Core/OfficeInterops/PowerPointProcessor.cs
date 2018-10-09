@@ -507,7 +507,6 @@ namespace Asa.Common.Core.OfficeInterops
 
 					var sourceFileName = Path.GetTempFileName();
 					presentation.SaveAs(sourceFileName);
-					Utilities.ReleaseComObject(presentation);
 					presentation.Close();
 
 					ConvertToPDF(sourceFileName, targetFileName);

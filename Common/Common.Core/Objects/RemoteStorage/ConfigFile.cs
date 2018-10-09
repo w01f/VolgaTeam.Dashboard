@@ -27,8 +27,8 @@ namespace Asa.Common.Core.Objects.RemoteStorage
 			{
 				var client = FileStorageManager.Instance.GetClient();
 				var remoteFile = await client.GetFile(RemotePath);
-				IsOutdated = !(ExistsLocal() && File.GetLastWriteTime(LocalPath) >= remoteFile.LastModified);
-				if (IsOutdated)
+				var isOutdated = !(ExistsLocal() && File.GetLastWriteTime(LocalPath) >= remoteFile.LastModified);
+				if (isOutdated)
 				{
 					AllocateParentFolder();
 					using (var remoteStream = await client.Download(RemotePath))

@@ -24,6 +24,7 @@ namespace Asa.Common.GUI.Floater
 			{
 				parentForm.Tag = FloatedMarker;
 				parentForm.Opacity = 0;
+				Application.DoEvents();
 				afterShow?.Invoke();
 			};
 			form.Closing += (o, e) =>

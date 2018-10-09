@@ -20,7 +20,7 @@ namespace Asa.Business.Solutions.Shift.Configuration.ROI
 				case "d":
 					return new ROITabDInfo();
 				case "e":
-					return new CommonChildTabInfo(ShiftChildTabType.E, TabType);
+					return new ROITabEInfo();
 				case "f":
 					return new CommonChildTabInfo(ShiftChildTabType.F, TabType);
 				case "g":

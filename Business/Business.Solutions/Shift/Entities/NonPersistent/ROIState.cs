@@ -1,4 +1,6 @@
-﻿using Asa.Business.Solutions.Common.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using Asa.Business.Solutions.Common.Configuration;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 
 namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
@@ -9,6 +11,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 		public TabBState TabB { get; }
 		public TabCState TabC { get; }
 		public TabDState TabD { get; }
+		public TabEState TabE { get; }
 		public SlidesTabState TabK { get; }
 		public SlidesTabState TabL { get; }
 		public SlidesTabState TabM { get; }
@@ -24,6 +27,7 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 			TabB = new TabBState();
 			TabC = new TabCState();
 			TabD = new TabDState();
+			TabE = new TabEState();
 			TabK = new SlidesTabState();
 			TabL = new SlidesTabState();
 			TabM = new SlidesTabState();
@@ -273,6 +277,69 @@ namespace Asa.Business.Solutions.Shift.Entities.NonPersistent
 				Formula1Toggle = true;
 				Formula2Toggle = true;
 				Formula3Toggle = true;
+			}
+		}
+
+		public class TabEState
+		{
+			public ListDataItem SlideHeader { get; set; }
+			public bool? EnableOutput { get; set; }
+
+			public Tab1State Tab1 { get; }
+			public Tab2State Tab2 { get; }
+			public Tab3State Tab3 { get; }
+
+			public TabEState()
+			{
+				Tab1 = new Tab1State();
+				Tab2 = new Tab2State();
+				Tab3 = new Tab3State();
+			}
+
+			public class Tab1State
+			{
+				public ListDataItem Combo1 { get; set; }
+				public ListDataItem Combo2 { get; set; }
+
+				public bool? Checkbox1 { get; set; }
+				public bool? Checkbox2 { get; set; }
+
+				public GridState Grid { get; set; }
+
+				public class GridState
+				{
+					public decimal? Prelaunch { get; set; }
+					public List<decimal?> MediaImpressionValues { get; set; }
+					public List<decimal?> DigitalImpressionValues { get; set; }
+					public List<decimal?> InvestmentValues { get; set; }
+
+					public GridState()
+					{
+						MediaImpressionValues = new List<decimal?>();
+						DigitalImpressionValues = new List<decimal?>();
+						InvestmentValues = new List<decimal?>();
+					}
+				}
+			}
+
+			public class Tab2State
+			{
+				public decimal? Subheader1 { get; set; }
+				public decimal? Subheader2 { get; set; }
+				public string Subheader3 { get; set; }
+			}
+
+			public class Tab3State
+			{
+				public ListDataItem Combo1 { get; set; }
+				public ListDataItem Combo2 { get; set; }
+				public ListDataItem Combo3 { get; set; }
+				public ListDataItem Combo4 { get; set; }
+
+				public decimal? Subheader1 { get; set; }
+				public decimal? Subheader2 { get; set; }
+				public decimal? Subheader3 { get; set; }
+				public decimal? Subheader4 { get; set; }
 			}
 		}
 	}

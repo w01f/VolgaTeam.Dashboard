@@ -96,12 +96,14 @@ namespace Asa.Solutions.Common.PresentationClasses
 					Path.GetFileName(Path.GetTempFileName())),
 				SlideGeneratingAction = (processor, destinationPresentation) =>
 				{
-					processor.AppendSlideMaster(e.SlideMaster.GetMasterPath(), destinationPresentation);
+					var templatePath = e.SlideMaster.GetMasterPath();
+					processor.AppendSlideMaster(templatePath, destinationPresentation);
 				},
 				PreviewGeneratingAction = (processor, presentationSourcePath) =>
 				{
+					var templatePath = e.SlideMaster.GetMasterPath();
 					processor.PreparePresentation(presentationSourcePath,
-						presentation => processor.AppendSlideMaster(e.SlideMaster.GetMasterPath(), presentation));
+						presentation => processor.AppendSlideMaster(templatePath, presentation));
 				}
 			}});
 		}
@@ -125,11 +127,14 @@ namespace Asa.Solutions.Common.PresentationClasses
 							Path.GetFileName(Path.GetTempFileName())),
 						SlideGeneratingAction = (processor, destinationPresentation) =>
 						{
-							processor.AppendSlideMaster(e.SlideMaster.GetMasterPath(),destinationPresentation);
+							var templatePath = e.SlideMaster.GetMasterPath();
+							processor.AppendSlideMaster(templatePath, destinationPresentation);
 						},
 						PreviewGeneratingAction = (processor, presentationSourcePath) =>
 						{
-							processor.PreparePresentation(presentationSourcePath, presentation => processor.AppendSlideMaster(e.SlideMaster.GetMasterPath(), presentation));
+							var templatePath = e.SlideMaster.GetMasterPath();
+							processor.PreparePresentation(presentationSourcePath,
+								presentation => processor.AppendSlideMaster(templatePath, presentation));
 						}
 					}
 				})

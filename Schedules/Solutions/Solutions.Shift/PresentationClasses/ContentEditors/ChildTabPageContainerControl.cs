@@ -285,6 +285,8 @@ namespace Asa.Solutions.Shift.PresentationClasses.ContentEditors
 							return ParentControl.SlideContainer.EditedContent.ROIState.TabC.EnableOutput ?? TabInfo.EnableOutput;
 						case ShiftChildTabType.D:
 							return ParentControl.SlideContainer.EditedContent.ROIState.TabD.EnableOutput ?? TabInfo.EnableOutput;
+						case ShiftChildTabType.E:
+							return ParentControl.SlideContainer.EditedContent.ROIState.TabE.EnableOutput ?? TabInfo.EnableOutput;
 						default:
 							return TabInfo.EnableOutput;
 					}

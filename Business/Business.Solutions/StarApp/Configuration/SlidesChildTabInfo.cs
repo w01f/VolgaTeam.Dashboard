@@ -3,13 +3,14 @@ using System.Drawing;
 using System.Xml;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.StarApp.Enums;
+using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Business.Solutions.StarApp.Configuration
 {
 	public class SlidesChildTabInfo : StarChildTabInfo
 	{
-		private StorageDirectory _sourceDirectory;
+		private string[] _sourceDirectoryRelativePath;
 		public override StarChildTabType TabType { get; }
 
 		public SolutionSlideManager Slides { get; }
@@ -35,28 +36,28 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.K:
-							_sourceDirectory = resourceManager.Tab1PartKSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab1PartKSlidesRelativePath;
 							break;
 						case StarChildTabType.L:
-							_sourceDirectory = resourceManager.Tab1PartLSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab1PartLSlidesRelativePath;
 							break;
 						case StarChildTabType.M:
-							_sourceDirectory = resourceManager.Tab1PartMSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab1PartMSlidesRelativePath;
 							break;
 						case StarChildTabType.N:
-							_sourceDirectory = resourceManager.Tab1PartNSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab1PartNSlidesRelativePath;
 							break;
 						case StarChildTabType.O:
-							_sourceDirectory = resourceManager.Tab1PartOSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab1PartOSlidesRelativePath;
 							break;
 						case StarChildTabType.U:
-							_sourceDirectory = resourceManager.Tab1PartUSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab1PartUSlidesRelativePath;
 							break;
 						case StarChildTabType.V:
-							_sourceDirectory = resourceManager.Tab1PartVSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab1PartVSlidesRelativePath;
 							break;
 						case StarChildTabType.W:
-							_sourceDirectory = resourceManager.Tab1PartWSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab1PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -66,28 +67,28 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.K:
-							_sourceDirectory = resourceManager.Tab2PartKSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab2PartKSlidesRelativePath;
 							break;
 						case StarChildTabType.L:
-							_sourceDirectory = resourceManager.Tab2PartLSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab2PartLSlidesRelativePath;
 							break;
 						case StarChildTabType.M:
-							_sourceDirectory = resourceManager.Tab2PartMSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab2PartMSlidesRelativePath;
 							break;
 						case StarChildTabType.N:
-							_sourceDirectory = resourceManager.Tab2PartNSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab2PartNSlidesRelativePath;
 							break;
 						case StarChildTabType.O:
-							_sourceDirectory = resourceManager.Tab2PartOSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab2PartOSlidesRelativePath;
 							break;
 						case StarChildTabType.U:
-							_sourceDirectory = resourceManager.Tab2PartUSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab2PartUSlidesRelativePath;
 							break;
 						case StarChildTabType.V:
-							_sourceDirectory = resourceManager.Tab2PartVSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab2PartVSlidesRelativePath;
 							break;
 						case StarChildTabType.W:
-							_sourceDirectory = resourceManager.Tab2PartWSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab2PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -97,28 +98,28 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.K:
-							_sourceDirectory = resourceManager.Tab3PartKSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab3PartKSlidesRelativePath;
 							break;
 						case StarChildTabType.L:
-							_sourceDirectory = resourceManager.Tab3PartLSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab3PartLSlidesRelativePath;
 							break;
 						case StarChildTabType.M:
-							_sourceDirectory = resourceManager.Tab3PartMSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab3PartMSlidesRelativePath;
 							break;
 						case StarChildTabType.N:
-							_sourceDirectory = resourceManager.Tab3PartNSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab3PartNSlidesRelativePath;
 							break;
 						case StarChildTabType.O:
-							_sourceDirectory = resourceManager.Tab3PartOSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab3PartOSlidesRelativePath;
 							break;
 						case StarChildTabType.U:
-							_sourceDirectory = resourceManager.Tab3PartUSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab3PartUSlidesRelativePath;
 							break;
 						case StarChildTabType.V:
-							_sourceDirectory = resourceManager.Tab3PartVSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab3PartVSlidesRelativePath;
 							break;
 						case StarChildTabType.W:
-							_sourceDirectory = resourceManager.Tab3PartWSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab3PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -128,28 +129,28 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.K:
-							_sourceDirectory = resourceManager.Tab4PartKSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab4PartKSlidesRelativePath;
 							break;
 						case StarChildTabType.L:
-							_sourceDirectory = resourceManager.Tab4PartLSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab4PartLSlidesRelativePath;
 							break;
 						case StarChildTabType.M:
-							_sourceDirectory = resourceManager.Tab4PartMSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab4PartMSlidesRelativePath;
 							break;
 						case StarChildTabType.N:
-							_sourceDirectory = resourceManager.Tab4PartNSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab4PartNSlidesRelativePath;
 							break;
 						case StarChildTabType.O:
-							_sourceDirectory = resourceManager.Tab4PartOSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab4PartOSlidesRelativePath;
 							break;
 						case StarChildTabType.U:
-							_sourceDirectory = resourceManager.Tab4PartUSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab4PartUSlidesRelativePath;
 							break;
 						case StarChildTabType.V:
-							_sourceDirectory = resourceManager.Tab4PartVSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab4PartVSlidesRelativePath;
 							break;
 						case StarChildTabType.W:
-							_sourceDirectory = resourceManager.Tab4PartWSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab4PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -159,28 +160,28 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.K:
-							_sourceDirectory = resourceManager.Tab5PartKSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab5PartKSlidesRelativePath;
 							break;
 						case StarChildTabType.L:
-							_sourceDirectory = resourceManager.Tab5PartLSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab5PartLSlidesRelativePath;
 							break;
 						case StarChildTabType.M:
-							_sourceDirectory = resourceManager.Tab5PartMSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab5PartMSlidesRelativePath;
 							break;
 						case StarChildTabType.N:
-							_sourceDirectory = resourceManager.Tab5PartNSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab5PartNSlidesRelativePath;
 							break;
 						case StarChildTabType.O:
-							_sourceDirectory = resourceManager.Tab5PartOSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab5PartOSlidesRelativePath;
 							break;
 						case StarChildTabType.U:
-							_sourceDirectory = resourceManager.Tab5PartUSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab5PartUSlidesRelativePath;
 							break;
 						case StarChildTabType.V:
-							_sourceDirectory = resourceManager.Tab5PartVSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab5PartVSlidesRelativePath;
 							break;
 						case StarChildTabType.W:
-							_sourceDirectory = resourceManager.Tab5PartWSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab5PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -190,28 +191,28 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.K:
-							_sourceDirectory = resourceManager.Tab6PartKSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab6PartKSlidesRelativePath;
 							break;
 						case StarChildTabType.L:
-							_sourceDirectory = resourceManager.Tab6PartLSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab6PartLSlidesRelativePath;
 							break;
 						case StarChildTabType.M:
-							_sourceDirectory = resourceManager.Tab6PartMSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab6PartMSlidesRelativePath;
 							break;
 						case StarChildTabType.N:
-							_sourceDirectory = resourceManager.Tab6PartNSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab6PartNSlidesRelativePath;
 							break;
 						case StarChildTabType.O:
-							_sourceDirectory = resourceManager.Tab6PartOSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab6PartOSlidesRelativePath;
 							break;
 						case StarChildTabType.U:
-							_sourceDirectory = resourceManager.Tab6PartUSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab6PartUSlidesRelativePath;
 							break;
 						case StarChildTabType.V:
-							_sourceDirectory = resourceManager.Tab6PartVSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab6PartVSlidesRelativePath;
 							break;
 						case StarChildTabType.W:
-							_sourceDirectory = resourceManager.Tab6PartWSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab6PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -221,28 +222,28 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.K:
-							_sourceDirectory = resourceManager.Tab7PartKSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab7PartKSlidesRelativePath;
 							break;
 						case StarChildTabType.L:
-							_sourceDirectory = resourceManager.Tab7PartLSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab7PartLSlidesRelativePath;
 							break;
 						case StarChildTabType.M:
-							_sourceDirectory = resourceManager.Tab7PartMSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab7PartMSlidesRelativePath;
 							break;
 						case StarChildTabType.N:
-							_sourceDirectory = resourceManager.Tab7PartNSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab7PartNSlidesRelativePath;
 							break;
 						case StarChildTabType.O:
-							_sourceDirectory = resourceManager.Tab7PartOSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab7PartOSlidesRelativePath;
 							break;
 						case StarChildTabType.U:
-							_sourceDirectory = resourceManager.Tab7PartUSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab7PartUSlidesRelativePath;
 							break;
 						case StarChildTabType.V:
-							_sourceDirectory = resourceManager.Tab7PartVSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab7PartVSlidesRelativePath;
 							break;
 						case StarChildTabType.W:
-							_sourceDirectory = resourceManager.Tab7PartWSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab7PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -252,28 +253,28 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.K:
-							_sourceDirectory = resourceManager.Tab8PartKSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab8PartKSlidesRelativePath;
 							break;
 						case StarChildTabType.L:
-							_sourceDirectory = resourceManager.Tab8PartLSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab8PartLSlidesRelativePath;
 							break;
 						case StarChildTabType.M:
-							_sourceDirectory = resourceManager.Tab8PartMSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab8PartMSlidesRelativePath;
 							break;
 						case StarChildTabType.N:
-							_sourceDirectory = resourceManager.Tab8PartNSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab8PartNSlidesRelativePath;
 							break;
 						case StarChildTabType.O:
-							_sourceDirectory = resourceManager.Tab8PartOSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab8PartOSlidesRelativePath;
 							break;
 						case StarChildTabType.U:
-							_sourceDirectory = resourceManager.Tab8PartUSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab8PartUSlidesRelativePath;
 							break;
 						case StarChildTabType.V:
-							_sourceDirectory = resourceManager.Tab8PartVSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab8PartVSlidesRelativePath;
 							break;
 						case StarChildTabType.W:
-							_sourceDirectory = resourceManager.Tab8PartWSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab8PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -283,28 +284,28 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.K:
-							_sourceDirectory = resourceManager.Tab9PartKSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab9PartKSlidesRelativePath;
 							break;
 						case StarChildTabType.L:
-							_sourceDirectory = resourceManager.Tab9PartLSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab9PartLSlidesRelativePath;
 							break;
 						case StarChildTabType.M:
-							_sourceDirectory = resourceManager.Tab9PartMSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab9PartMSlidesRelativePath;
 							break;
 						case StarChildTabType.N:
-							_sourceDirectory = resourceManager.Tab9PartNSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab9PartNSlidesRelativePath;
 							break;
 						case StarChildTabType.O:
-							_sourceDirectory = resourceManager.Tab9PartOSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab9PartOSlidesRelativePath;
 							break;
 						case StarChildTabType.U:
-							_sourceDirectory = resourceManager.Tab9PartUSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab9PartUSlidesRelativePath;
 							break;
 						case StarChildTabType.V:
-							_sourceDirectory = resourceManager.Tab9PartVSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab9PartVSlidesRelativePath;
 							break;
 						case StarChildTabType.W:
-							_sourceDirectory = resourceManager.Tab9PartWSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab9PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -314,28 +315,28 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.K:
-							_sourceDirectory = resourceManager.Tab10PartKSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab10PartKSlidesRelativePath;
 							break;
 						case StarChildTabType.L:
-							_sourceDirectory = resourceManager.Tab10PartLSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab10PartLSlidesRelativePath;
 							break;
 						case StarChildTabType.M:
-							_sourceDirectory = resourceManager.Tab10PartMSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab10PartMSlidesRelativePath;
 							break;
 						case StarChildTabType.N:
-							_sourceDirectory = resourceManager.Tab10PartNSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab10PartNSlidesRelativePath;
 							break;
 						case StarChildTabType.O:
-							_sourceDirectory = resourceManager.Tab10PartOSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab10PartOSlidesRelativePath;
 							break;
 						case StarChildTabType.U:
-							_sourceDirectory = resourceManager.Tab10PartUSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab10PartUSlidesRelativePath;
 							break;
 						case StarChildTabType.V:
-							_sourceDirectory = resourceManager.Tab10PartVSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab10PartVSlidesRelativePath;
 							break;
 						case StarChildTabType.W:
-							_sourceDirectory = resourceManager.Tab10PartWSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab10PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -345,28 +346,28 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					switch (TabType)
 					{
 						case StarChildTabType.K:
-							_sourceDirectory = resourceManager.Tab11PartKSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab11PartKSlidesRelativePath;
 							break;
 						case StarChildTabType.L:
-							_sourceDirectory = resourceManager.Tab11PartLSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab11PartLSlidesRelativePath;
 							break;
 						case StarChildTabType.M:
-							_sourceDirectory = resourceManager.Tab11PartMSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab11PartMSlidesRelativePath;
 							break;
 						case StarChildTabType.N:
-							_sourceDirectory = resourceManager.Tab11PartNSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab11PartNSlidesRelativePath;
 							break;
 						case StarChildTabType.O:
-							_sourceDirectory = resourceManager.Tab11PartOSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab11PartOSlidesRelativePath;
 							break;
 						case StarChildTabType.U:
-							_sourceDirectory = resourceManager.Tab11PartUSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab11PartUSlidesRelativePath;
 							break;
 						case StarChildTabType.V:
-							_sourceDirectory = resourceManager.Tab11PartVSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab11PartVSlidesRelativePath;
 							break;
 						case StarChildTabType.W:
-							_sourceDirectory = resourceManager.Tab11PartWSlidesFolder;
+							_sourceDirectoryRelativePath = resourceManager.Tab11PartWSlidesRelativePath;
 							break;
 						default:
 							throw new ArgumentOutOfRangeException("Star tab type is not defined");
@@ -379,7 +380,9 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 
 		public void LoadSlides()
 		{
-			Slides.LoadSlides(_sourceDirectory);
+			Slides.LoadSlides(
+				new StorageDirectory(_resourceManager.LocalDataFolder.RelativePathParts.Merge(_sourceDirectoryRelativePath)),
+				new StorageDirectory(_resourceManager.RemoteResourcesFolder.RelativePathParts.Merge(_sourceDirectoryRelativePath)));
 		}
 	}
 }

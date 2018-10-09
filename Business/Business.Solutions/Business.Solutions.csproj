@@ -196,6 +196,7 @@
     <Compile Include="Shift\Configuration\Partnership\PartnershipTabCInfo.cs" />
     <Compile Include="Shift\Configuration\Partnership\PartnershipTabBInfo.cs" />
     <Compile Include="Shift\Configuration\Partnership\PartnershipTabAInfo.cs" />
+    <Compile Include="Shift\Configuration\ROI\ROITabEInfo.cs" />
     <Compile Include="Shift\Configuration\ROI\ROITabInfo.cs" />
     <Compile Include="Shift\Configuration\ROI\ROITabAInfo.cs" />
     <Compile Include="Shift\Configuration\ROI\ROITabBInfo.cs" />

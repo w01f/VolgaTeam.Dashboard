@@ -405,6 +405,7 @@ namespace Asa.Common.Core.Helpers
 					case "Shift_13b_roi":
 					case "Shift_13c_roi":
 					case "Shift_13d_roi":
+					case "Shift_13e_roi":
 						slideType = SlideType.ShiftROI;
 						break;
 						#endregion

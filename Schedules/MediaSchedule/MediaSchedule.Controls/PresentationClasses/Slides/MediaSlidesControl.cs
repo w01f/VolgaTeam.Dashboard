@@ -99,11 +99,14 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 							Path.GetFileName(Path.GetTempFileName())),
 						SlideGeneratingAction = (processor, destinationPresentation) =>
 						{
-							processor.AppendSlideMaster(selectedSlideMaster.GetMasterPath(),destinationPresentation);
+							var templatePath = selectedSlideMaster.GetMasterPath();
+							processor.AppendSlideMaster(templatePath, destinationPresentation);
 						},
 						PreviewGeneratingAction = (processor, presentationSourcePath) =>
 						{
-							processor.PreparePresentation(presentationSourcePath, presentation => processor.AppendSlideMaster(selectedSlideMaster.GetMasterPath(), presentation));
+							var templatePath = selectedSlideMaster.GetMasterPath();
+							processor.PreparePresentation(presentationSourcePath,
+								presentation => processor.AppendSlideMaster(templatePath, presentation));
 						}
 					}
 				})

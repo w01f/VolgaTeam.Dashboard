@@ -13,7 +13,6 @@ namespace Asa.Common.Core.Objects.RemoteStorage
 	public class StorageFile : StorageItem
 	{
 		private readonly Item _remoteSource;
-		public bool IsOutdated { get; protected set; }
 
 		public string Extension => Path.GetExtension(LocalPath);
 
@@ -67,6 +66,13 @@ namespace Asa.Common.Core.Objects.RemoteStorage
 			catch { }
 		}
 
+		public async Task<bool> IsOutOfDate(bool force = false)
+		{
+			var client = FileStorageManager.Instance.GetClient();
+			var remoteFile = _remoteSource!= null && !force?_remoteSource: await client.GetFile(RemotePath);
+			return !(ExistsLocal() && File.GetLastWriteTime(LocalPath) >= remoteFile.LastModified);
+		}
+
 		public virtual async Task Download(bool force = false)
 		{
 			try
@@ -74,10 +80,11 @@ namespace Asa.Common.Core.Objects.RemoteStorage
 				var client = FileStorageManager.Instance.GetClient();
 				if ((ExistsLocal() && FileStorageManager.Instance.DataState == DataActualityState.Updated && !force) || FileStorageManager.Instance.UseLocalMode)
 					return;
-				var remoteFile = _remoteSource != null && !force ? _remoteSource : await client.GetFile(RemotePath);
-				IsOutdated = !(ExistsLocal() && File.GetLastWriteTime(LocalPath) >= remoteFile.LastModified);
-				if (IsOutdated)
+				var isOutdated = await IsOutOfDate(force);
+				if (isOutdated)
 				{
+					var remoteFile = _remoteSource != null && !force ? _remoteSource : await client.GetFile(RemotePath);
+
 					AllocateParentFolder();
 					var fullyLoaded = false;
 					do

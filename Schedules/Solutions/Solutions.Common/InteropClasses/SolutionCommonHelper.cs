@@ -62,7 +62,7 @@ namespace Asa.Solutions.Common.InteropClasses
 						}
 
 						var tableContainer = slide.Shapes.OfType<Shape>().FirstOrDefault(s => s.HasTable == MsoTriState.msoTrue);
-						tableContainer?.UpdateTableData(dataPackage.TableItems);
+						tableContainer?.UpdateTableData(dataPackage.TableItems, dataPackage.TableWithHeader);
 
 						if (!String.IsNullOrEmpty(dataPackage.LayoutName))
 							foreach (CustomLayout customLayout in slide.Design.SlideMaster.CustomLayouts)
@@ -186,7 +186,7 @@ namespace Asa.Solutions.Common.InteropClasses
 				dataWorksheet.Range[chartDataItem.Key].Value = chartDataItem.Value;
 		}
 
-		private static void UpdateTableData(this Shape shape, Dictionary<string, string> tableData)
+		private static void UpdateTableData(this Shape shape, Dictionary<string, string> tableData, bool tableWithHeader)
 		{
 			if (shape.HasTable == MsoTriState.msoFalse) return;
 			var table = shape.Table;
@@ -194,7 +194,7 @@ namespace Asa.Solutions.Common.InteropClasses
 			var copyOfTableData = new Dictionary<string, string>(tableData);
 
 			var tableRowsCount = table.Rows.Count;
-			for (var i = 1; i <= tableRowsCount; i++)
+			for (var i = tableWithHeader ? 2 : 1; i <= tableRowsCount; i++)
 			{
 				for (var j = 1; j <= table.Columns.Count; j++)
 				{

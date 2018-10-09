@@ -15,6 +15,7 @@ namespace Asa.Solutions.Common.PresentationClasses.Output
 		public Theme Theme { get; set; }
 		public bool AddAsFirtsPage { get; set; }
 		public string LayoutName { get; set; }
+		public bool TableWithHeader { get; set; }
 
 		public OutputDataPackage()
 		{

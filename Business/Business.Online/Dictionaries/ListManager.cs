@@ -21,28 +21,28 @@ namespace Asa.Business.Online.Dictionaries
 	{
 		public List<ImageSourceGroup> Images { get; set; }
 
-		public List<string> SlideHeaders { get; private set; }
-		public List<string> Websites { get; private set; }
-		public List<string> Strengths { get; private set; }
-		public List<string> PricingStrategies { get; private set; }
-		public List<string> ColumnPositions { get; private set; }
-		public List<Category> Categories { get; private set; }
-		public List<ProductSource> ProductSources { get; private set; }
-		public List<string> Statuses { get; private set; }
+		public List<string> SlideHeaders { get; }
+		public List<string> Websites { get; }
+		public List<string> Strengths { get; }
+		public List<string> PricingStrategies { get; }
+		public List<string> ColumnPositions { get; }
+		public List<Category> Categories { get; }
+		public List<ProductSource> ProductSources { get; }
+		public List<string> Statuses { get; }
 		public FormulaType DefaultFormula { get; set; }
 		public bool LockedMode { get; set; }
 		public bool SpecialLinksEnable { get; set; }
 		public string SpecialLinksGroupName { get; set; }
 		public Image SpecialLinksGroupLogo { get; set; }
-		public List<string> SpecialLinkBrowsers { get; private set; }
-		public List<SpecialLinkButton> SpecialLinkButtons { get; private set; }
+		public List<string> SpecialLinkBrowsers { get; }
+		public List<SpecialLinkButton> SpecialLinkButtons { get; }
 		public List<ProductInfo> TargetingRecods { get; set; }
 		public List<ProductInfo> RichMediaRecods { get; set; }
 
-		public DigitalProductListViewSettings DefaultHomeViewSettings { get; private set; }
-		public DigitalProductSettings DefaultDigitalProductSettings { get; private set; }
-		public DigitalPackageSettings DefaultDigitalProductPackageSettings { get; private set; }
-		public DigitalPackageSettings DefaultDigitalStandalonePackageSettings { get; private set; }
+		public DigitalProductListViewSettings DefaultHomeViewSettings { get; }
+		public DigitalProductSettings DefaultDigitalProductSettings { get; }
+		public DigitalPackageSettings DefaultDigitalProductPackageSettings { get; }
+		public DigitalPackageSettings DefaultDigitalStandalonePackageSettings { get; }
 		public DigitalControlsConfiguration DefaultControlsConfiguration { get; private set; }
 
 		public static ListManager Instance { get; } = new ListManager();

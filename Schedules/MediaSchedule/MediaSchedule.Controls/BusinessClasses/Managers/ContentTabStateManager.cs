@@ -30,8 +30,8 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public void UpdateTabState()
 		{
 			MediaScheduleSettings scheduleSettings;
-			if (_contentController.ActiveEditor is HomeControl)
-				scheduleSettings = ((HomeControl)_contentController.ActiveEditor).EditedSettings;
+			if (_contentController.ActiveEditor is HomeControl control)
+				scheduleSettings = control.EditedSettings;
 			else
 				scheduleSettings = BusinessObjects.Instance.ScheduleManager.ActiveSchedule?.Settings;
 

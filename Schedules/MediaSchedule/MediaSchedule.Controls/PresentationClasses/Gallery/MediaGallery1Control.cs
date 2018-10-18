@@ -45,6 +45,11 @@ namespace Asa.Media.Controls.PresentationClasses.Gallery
 
 		public override RibbonTabItem TabPage => Controller.Instance.TabGallery1;
 
+		public override void InitBusinessObjects()
+		{
+			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitailization(Identifier);
+		}
+
 		public override void ShowControl(ContentOpenEventArgs args = null)
 		{
 			Controller.Instance.MenuOutputPdfButton.Enabled = Controller.Instance.MenuEmailButton.Enabled = false;

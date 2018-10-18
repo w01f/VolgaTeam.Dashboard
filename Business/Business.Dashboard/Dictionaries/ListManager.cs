@@ -11,16 +11,5 @@
 		public TargetCustomersLists TargetCustomersLists { get; set; }
 
 		private ListManager() { }
-
-		public void Init()
-		{
-			Common.Dictionaries.ListManager.Instance.Load();
-
-			UsersList = new Users();
-			CoverLists = new CoverLists();
-			ClientGoalsLists = new ClientGoalsLists();
-			LeadoffStatementLists = new LeadoffStatementLists();
-			TargetCustomersLists = new TargetCustomersLists();
-		}
 	}
 }

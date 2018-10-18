@@ -100,6 +100,11 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			editorsContainer.ShowEditor(snapshotOpenEventArgs.EditorType);
 		}
 
+		public override void InitBusinessObjects()
+		{
+			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitailization(Identifier);
+		}
+
 		protected override void UpdateEditedContet()
 		{
 			_allowToSave = false;

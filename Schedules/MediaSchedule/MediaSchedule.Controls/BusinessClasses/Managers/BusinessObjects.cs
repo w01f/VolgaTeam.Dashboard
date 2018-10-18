@@ -1,7 +1,11 @@
-﻿using Asa.Business.Common.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Asa.Business.Common.Helpers;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Contexts;
 using Asa.Business.Solutions.Common.Helpers;
+using Asa.Common.Core.Dictionaries;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Common.GUI.RateCard;
@@ -33,6 +37,8 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 
 		public PowerPointManager<PowerPointSingletonProcessor> PowerPointManager { get; }
 
+		public AdditionalInitializationDispatcher AdditionalInitializator { get; }
+
 		private BusinessObjects()
 		{
 			OutputManager = new OutputManager();
@@ -47,41 +53,135 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			PowerPointManager = new PowerPointManager<PowerPointSingletonProcessor>();
 			BrowserManager = new BrowserManager();
 			IdleManager = new ApplicationIdleManager();
+
+			AdditionalInitializator = new AdditionalInitializationDispatcher();
 		}
 
 		public void Init()
 		{
-			ScheduleManager.Init();
-			AsyncHelper.RunSync(ScheduleTemplatesManager.Init);
-
-			SolutionsManager.LoadSolutions(ResourceManager.Instance.SolutionsConfigFile);
-			SolutionsManager.LoadSolutionData(ResourceManager.Instance.SolutionsDataFolder);
-
-			OutputManager.Init();
-			SlideSettingsManager.Instance.SettingsChanged += (o, e) => OutputManager.UpdateColors();
-
-			HelpManager.LoadHelpLinks();
-
-			PowerPointManager.Init();
-
+			ListManager.Instance.Load();
 			ThemeManager.Load();
 			SlideSettingsManager.Instance.SettingsChanged += (o, e) => ThemeManager.Load();
-
-			SlideManager.LoadSlides(Common.Core.Configuration.ResourceManager.Instance.SlideMastersFolder);
-
+			HelpManager.LoadHelpLinks();
+			PowerPointManager.Init();
 			RibbonTabPageManager = new RibbonTabPageManager(ResourceManager.Instance.TabsConfigFile);
-			FormStyleManager = new FormStyleManager(ResourceManager.Instance.FormStyleConfigFile);
+		    BrowserManager.Init(ResourceManager.Instance.BrowserConfigFile);
+
+            FormStyleManager = new FormStyleManager(ResourceManager.Instance.FormStyleConfigFile);
 			ActivityManager = ActivityManager.OpenStorage();
-			Gallery1Manager = new GalleryManager(ResourceManager.Instance.Gallery1ConfigFile);
-			Gallery2Manager = new GalleryManager(ResourceManager.Instance.Gallery2ConfigFile);
-			RateCardManager = new RateCardManager(Common.Core.Configuration.ResourceManager.Instance.RateCardFolder);
-			RateCardManager.LoadRateCards();
-
 			TextResourcesManager.LoadTabPageSettings(ResourceManager.Instance.TextResourcesFile);
-
-			BrowserManager.Init(ResourceManager.Instance.BrowserConfigFile);
-
 			IdleManager.LoadSettings(ResourceManager.Instance.IdleSettingsFile);
+
+			AdditionalInitializator.Actions.Add(new InitAction(
+				new[]
+				{
+					ContentIdentifiers.ScheduleSettings,
+					ContentIdentifiers.ProgramSchedule,
+					ContentIdentifiers.Snapshots,
+					ContentIdentifiers.Options,
+					ContentIdentifiers.DigitalProducts,
+					ContentIdentifiers.BroadcastCalendar,
+					ContentIdentifiers.CustomCalendar,
+				},
+				() =>
+				{
+					MediaMetaData.Instance.ListManager.Load();
+					Business.Online.Dictionaries.ListManager.Instance.Load(Common.Core.Configuration.ResourceManager.Instance.OnlineListsFile);
+					OutputManager.Init();
+					SlideSettingsManager.Instance.SettingsChanged += (o, e) => OutputManager.UpdateColors();
+				})
+			);
+
+			AdditionalInitializator.Actions.Add(new InitAction(
+				new[]
+				{
+					ContentIdentifiers.Solutions
+				},
+				() =>
+				{
+					SolutionsManager.LoadSolutions(ResourceManager.Instance.SolutionsConfigFile);
+					SolutionsManager.LoadSolutionData(ResourceManager.Instance.SolutionsDataFolder);
+				})
+			);
+
+			AdditionalInitializator.Actions.Add(new InitAction(
+				new[]
+				{
+					ContentIdentifiers.Slides
+				},
+				() =>
+				{
+					SlideManager.LoadSlides(Common.Core.Configuration.ResourceManager.Instance.SlideMastersFolder);
+				})
+			);
+
+			AdditionalInitializator.Actions.Add(new InitAction(
+				new[]
+				{
+					ContentIdentifiers.Gallery1,
+				},
+				() =>
+				{
+					Gallery1Manager = new GalleryManager(ResourceManager.Instance.Gallery1ConfigFile);
+				})
+			);
+
+			AdditionalInitializator.Actions.Add(new InitAction(
+				new[]
+				{
+					ContentIdentifiers.Gallery2,
+				},
+				() =>
+				{
+					Gallery2Manager = new GalleryManager(ResourceManager.Instance.Gallery2ConfigFile);
+				})
+			);
+
+			AdditionalInitializator.Actions.Add(new InitAction(
+				new[]
+				{
+					ContentIdentifiers.RateCard
+				},
+				() =>
+				{
+					RateCardManager = new RateCardManager(Common.Core.Configuration.ResourceManager.Instance.RateCardFolder);
+					RateCardManager.LoadRateCards();
+				})
+			);
+		}
+
+		public class AdditionalInitializationDispatcher
+		{
+			public List<InitAction> Actions { get; }
+
+			public AdditionalInitializationDispatcher()
+			{
+				Actions = new List<InitAction>();
+			}
+
+			public void RequestContentInitailization(string contentIdentifier)
+			{
+				var targetAction = Actions.FirstOrDefault(action =>
+					action.AssignedContentIdentifiers.Any(contentIdentifier.StartsWith));
+				if (targetAction == null)
+					return;
+				targetAction.DoInitialization();
+				Actions.Remove(targetAction);
+			}
+		}
+
+		public class InitAction
+		{
+			public List<string> AssignedContentIdentifiers { get; }
+			public Action DoInitialization { get; }
+
+			public InitAction(IList<string> assignedContentIdentifiers, Action initAction)
+			{
+				AssignedContentIdentifiers = new List<string>();
+				AssignedContentIdentifiers.AddRange(assignedContentIdentifiers);
+
+				DoInitialization = initAction;
+			}
 		}
 	}
 }

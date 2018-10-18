@@ -100,6 +100,11 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			editorsContainer.ShowEditor(optionsSetOpenEventArgs.EditorType);
 		}
 
+		public override void InitBusinessObjects()
+		{
+			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitailization(Identifier);
+		}
+
 		protected override void UpdateEditedContet()
 		{
 			_allowToSave = false;

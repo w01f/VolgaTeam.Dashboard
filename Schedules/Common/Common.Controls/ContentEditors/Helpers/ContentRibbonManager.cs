@@ -39,8 +39,7 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Helpers
 				var nextControl = _controller.ContentControls
 					.First(c => c.Identifier == (String)_controller.ContentRibbon.SelectedRibbonTabItem.Tag);
 
-				var activeEditor = _controller.ActiveControl as IContentEditControl<TChangeInfo>;
-				if (activeEditor != null)
+				if (_controller.ActiveControl is IContentEditControl<TChangeInfo> activeEditor)
 				{
 					var savingArgs = new ContentSavingEventArgs { SavingReason = ContentSavingReason.TabChanged, RequreScheduleInfoValidation = nextControl.RequreScheduleInfo };
 					ContentEditManager<TChangeInfo>.ProcessContentEditChanges(activeEditor, savingArgs);
@@ -62,6 +61,7 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Helpers
 				if (!_controller.MainPanel.Control.Controls.Contains((Control)_controller.ActiveControl))
 				{
 					_controller.MainPanel.Control.Controls.Add((Control)_controller.ActiveControl);
+					_controller.ActiveControl.InitBusinessObjects();
 					_controller.ActiveControl.InitControl();
 				}
 				_controller.ActiveControl.ShowControl(e as ContentOpenEventArgs);

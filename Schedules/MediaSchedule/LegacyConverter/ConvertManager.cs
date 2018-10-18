@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Contexts;
 using Asa.Business.Media.Enums;
+using Asa.Common.Core.Dictionaries;
 using Asa.Common.Core.Helpers;
 using Asa.Legacy.Media.Entities.Schedule;
 using Asa.Media.LegacyConverter.Converters;
@@ -27,7 +28,7 @@ namespace Asa.Media.LegacyConverter
 
 			AsyncHelper.RunSync(() => AppProfileManager.Instance.LoadProfile(false));
 
-			Business.Common.Dictionaries.ListManager.Instance.Load();
+			ListManager.Instance.Load();
 			MediaMetaData.Instance.ListManager.Load();
 			Business.Online.Dictionaries.ListManager.Instance.Load(Common.Core.Configuration.ResourceManager.Instance.OnlineListsFile);
 

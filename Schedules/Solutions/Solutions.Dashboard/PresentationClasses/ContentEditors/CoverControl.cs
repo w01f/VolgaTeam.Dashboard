@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Dictionaries;
 using Asa.Common.Core.Configuration;
+using Asa.Common.Core.Dictionaries;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
@@ -165,11 +166,11 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			SlideContainer.EditedContent.CoverState.DecisionMaker = comboBoxEditDecisionMaker.EditValue as String;
 			SlideContainer.EditedContent.CoverState.AddAsPageOne = checkEditAddAsPageOne.Checked;
 
-			Business.Common.Dictionaries.ListManager.Instance.Advertisers.Add(Advertiser);
-			Business.Common.Dictionaries.ListManager.Instance.Advertisers.Save();
+			ListManager.Instance.Advertisers.Add(Advertiser);
+			ListManager.Instance.Advertisers.Save();
 
-			Business.Common.Dictionaries.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
-			Business.Common.Dictionaries.ListManager.Instance.DecisionMakers.Save();
+			ListManager.Instance.DecisionMakers.Add(DecisionMaker);
+			ListManager.Instance.DecisionMakers.Save();
 
 			SlideContainer.SettingsContainer.SalesRep = (comboBoxEditSalesRep.EditValue as User)?.FullName;
 			SlideContainer.SettingsContainer.SaveSettings();

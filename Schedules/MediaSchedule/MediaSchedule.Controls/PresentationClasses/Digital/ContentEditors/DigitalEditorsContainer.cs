@@ -73,6 +73,11 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				ListManager.Instance.DefaultControlsConfiguration.RibbonGroupDigitalLogoTitle ?? Controller.Instance.DigitalProductLogoBar.Text;
 		}
 
+		public override void InitBusinessObjects()
+		{
+			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitailization(Identifier);
+		}
+
 		protected override void UpdateEditedContet()
 		{
 			EditedContent?.Dispose();

@@ -296,11 +296,11 @@ namespace Asa.Dashboard.TabHomeForms
 
 		protected override void SaveChanges(string fileName = "")
 		{
-			Business.Common.Dictionaries.ListManager.Instance.Advertisers.Add(Advertiser);
-			Business.Common.Dictionaries.ListManager.Instance.Advertisers.Save();
+			Common.Core.Dictionaries.ListManager.Instance.Advertisers.Add(Advertiser);
+			Common.Core.Dictionaries.ListManager.Instance.Advertisers.Save();
 
-			Business.Common.Dictionaries.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
-			Business.Common.Dictionaries.ListManager.Instance.DecisionMakers.Save();
+			Common.Core.Dictionaries.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
+			Common.Core.Dictionaries.ListManager.Instance.DecisionMakers.Save();
 
 			if (!SettingsNotSaved) return;
 			SaveState();

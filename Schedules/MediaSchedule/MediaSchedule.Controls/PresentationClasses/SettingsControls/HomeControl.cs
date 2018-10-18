@@ -120,6 +120,11 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			Controller.Instance.HomePresentationDate.KeyDown += OnSchedulePropertiesEditorKeyDown;
 		}
 
+		public override void InitBusinessObjects()
+		{
+			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitailization(Identifier);
+		}
+
 		protected override void UpdateEditedContet()
 		{
 			_allowToSave = false;

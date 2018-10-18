@@ -43,6 +43,8 @@ namespace Asa.Media.Controls.ToolForms
 		{
 			FormProgress.ShowProgress("Loading Schedule List...", () =>
 			{
+			    BusinessObjects.Instance.ScheduleManager.Init();
+                AsyncHelper.RunSync(BusinessObjects.Instance.ScheduleTemplatesManager.Init);
 				var allSchedules = BusinessObjects.Instance.ScheduleManager.GetScheduleList<MediaScheduleModel>()
 					.Where(scheduleModel => scheduleModel.Parent != BusinessObjects.Instance.ScheduleManager.ActiveSchedule).ToList();
 				_regularScheduleList.AddRange(allSchedules.Where(s => s.EditMode == ScheduleEditMode.Regular));

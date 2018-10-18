@@ -48,6 +48,15 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			}
 		}
 
+		public override void InitBusinessObjects()
+		{
+			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitailization(Identifier);
+
+			_allowToHandleEvents = false;
+			LoadControlPanel();
+			_allowToHandleEvents = true;
+		}
+
 		protected override void UpdateEditedContet()
 		{
 			base.UpdateEditedContet();

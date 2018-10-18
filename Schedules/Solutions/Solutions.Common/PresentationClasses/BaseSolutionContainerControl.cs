@@ -19,7 +19,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 	//public abstract partial class BaseSolutionContainerControl<TChangeInfo> : UserControl where TChangeInfo : BaseScheduleChangeInfo
 	public abstract partial class BaseSolutionContainerControl<TChangeInfo> : BaseContentOutputControl<TChangeInfo>, IMultipleSlidesOutputControl where TChangeInfo : BaseScheduleChangeInfo
 	{
-		private bool _allowToHandleEvents;
+		protected bool _allowToHandleEvents;
 		protected abstract SolutionsManager SolutionManager { get; }
 		protected List<ISolutionToggle> SolutionToggles { get; }
 		protected ISolutionToggle SelectedSolutionToggle => SolutionToggles.FirstOrDefault(st => st.Checked);
@@ -52,11 +52,6 @@ namespace Asa.Solutions.Common.PresentationClasses
 		public override void InitControl()
 		{
 			base.InitControl();
-
-			_allowToHandleEvents = false;
-			LoadControlPanel();
-			_allowToHandleEvents = true;
-
 			Resize += OnResize;
 		}
 
@@ -128,9 +123,11 @@ namespace Asa.Solutions.Common.PresentationClasses
 		#endregion
 
 		#region Solution Toggles
-		private void LoadControlPanel()
+
+		protected void LoadControlPanel()
 		{
-			SolutionToggles.Clear();
+			if(SolutionToggles.Any())
+				return;
 			xtraScrollableControlPageTemplates.Controls.Clear();
 			foreach (var solutionInfo in SolutionManager.Solutions)
 			{

@@ -19,6 +19,11 @@ namespace Asa.Media.Controls.PresentationClasses.RateCard
 			base.InitControl();
 		}
 
+		public override void InitBusinessObjects()
+		{
+			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitailization(Identifier);
+		}
+
 		public override void ShowControl(ContentOpenEventArgs args = null)
 		{
 			Controller.Instance.MenuOutputPdfButton.Enabled = Controller.Instance.MenuEmailButton.Enabled = false;

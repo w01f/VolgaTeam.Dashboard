@@ -63,10 +63,6 @@ namespace Asa.Media.Controls
 
 			MasterWizardManager.Instance.Load();
 
-			Business.Common.Dictionaries.ListManager.Instance.Load();
-			MediaMetaData.Instance.ListManager.Load();
-			Business.Online.Dictionaries.ListManager.Instance.Load(Common.Core.Configuration.ResourceManager.Instance.OnlineListsFile);
-
 			BusinessObjects.Instance.Init();
 			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
 			{

@@ -22,16 +22,18 @@ namespace Asa.Business.Common.Contexts
 		public TContext Context { get; private set; }
 		public TSchedule ActiveSchedule { get; private set; }
 		public abstract TSchedulesContainer SchedulesContainer { get; }
+		public string ContextPath => Path.Combine(
+			AppProfileManager.Instance.AppSaveFolder.LocalPath,
+			Constants.ScheduleStorageFileName);
 
 		public event EventHandler<EventArgs> ScheduleOpened;
 		public event EventHandler<EventArgs> ScheduleNameChanged;
 
 		public void Init()
 		{
-			var storagePath = Path.Combine(
-				AppProfileManager.Instance.AppSaveFolder.LocalPath,
-				Constants.ScheduleStorageFileName);
-			Context = (TContext)Activator.CreateInstance(typeof(TContext), storagePath);
+			if (Context != null)
+				return;
+			Context = (TContext)Activator.CreateInstance(typeof(TContext), ContextPath);
 		}
 
 		public IEnumerable<TScheduleModel> GetScheduleList<TScheduleModel>()

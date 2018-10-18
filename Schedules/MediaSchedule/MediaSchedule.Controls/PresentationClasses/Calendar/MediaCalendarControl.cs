@@ -46,6 +46,11 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			InitSlideInfo<CalendarSlideInfoControl>();
 		}
 
+		public override void InitBusinessObjects()
+		{
+			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitailization(Identifier);
+		}
+
 		protected override void UpdateEditedContet()
 		{
 			if (IsContentChanged)

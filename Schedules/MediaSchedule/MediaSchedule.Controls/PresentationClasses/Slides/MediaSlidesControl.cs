@@ -40,10 +40,7 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 		private void LoadSlides()
 		{
 			if (_slideContainer != null)
-			{
-				pnMain.Controls.Remove(_slideContainer);
-				_slideContainer.Dispose();
-			}
+				return;
 
 			_slideContainer = new SlidesContainerControl();
 			_slideContainer.BackColor = BackColor;
@@ -64,8 +61,21 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 			Controller.Instance.SlidesLogoBar.RecalcLayout();
 			Controller.Instance.SlidesPanel.PerformLayout();
 
+			SlideSettingsManager.Instance.SettingsChanged += (o, e) =>
+			{
+				if (_slideContainer != null)
+				{
+					pnMain.Controls.Remove(_slideContainer);
+					_slideContainer.Dispose();
+				}
+				LoadSlides();
+			};
+		}
+
+		public void InitBusinessObjects()
+		{
+			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitailization(Identifier);
 			LoadSlides();
-			SlideSettingsManager.Instance.SettingsChanged += (o, e) => LoadSlides();
 		}
 
 		public void ShowControl(ContentOpenEventArgs args = null)

@@ -13,6 +13,7 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Interfaces
 		RibbonTabItem TabPage { get; }
 		void InitMetaData();
 		void InitControl();
+		void InitBusinessObjects();
 		void ShowControl(ContentOpenEventArgs args = null);
 		void GetHelp();
 	}

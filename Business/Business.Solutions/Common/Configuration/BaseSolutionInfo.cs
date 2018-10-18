@@ -32,8 +32,6 @@ namespace Asa.Business.Solutions.Common.Configuration
 
 		public virtual void LoadToggleData(StorageDirectory holderAppDataFolder)
 		{
-			FileStorageManager.Instance.DataState = DataActualityState.Outdated;
-
 			DataFolder = new StorageDirectory(holderAppDataFolder.RelativePathParts.Merge(Id));
 			if (FileStorageManager.Instance.DataState == DataActualityState.Updated ||
 			   FileStorageManager.Instance.UseLocalMode)
@@ -61,8 +59,6 @@ namespace Asa.Business.Solutions.Common.Configuration
 					}
 				}
 			});
-
-			FileStorageManager.Instance.DataState = DataActualityState.Updated;
 		}
 
 		public abstract void LoadContentData();

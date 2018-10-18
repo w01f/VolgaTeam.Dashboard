@@ -24,7 +24,7 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Controls
 		protected TChangeInfo ChangeInfo { get; }
 
 		public event EventHandler<ContentSavedEventArgs<TChangeInfo>> ContentChanged;
-
+		public abstract void InitBusinessObjects();
 		protected abstract void UpdateEditedContet();
 		protected abstract void ApplyChanges();
 		public abstract void GetHelp();

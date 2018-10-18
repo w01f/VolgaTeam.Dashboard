@@ -1,19 +1,16 @@
-﻿using Asa.Common.Core.Dictionaries;
-
-namespace Asa.Business.Common.Dictionaries
+﻿namespace Asa.Common.Core.Dictionaries
 {
 	public class ListManager
 	{
-		private static readonly ListManager _instance = new ListManager();
 		public const string DefaultBigLogoFileName = @"Default.png";
 		public const string DefaultSmallLogoFileName = @"Default2.png";
 		public const string DefaultTinyLogoFileName = @"Default3.png";
 
-		public AdvertisersManager Advertisers { get; private set; }
-		public DecisionMakersManager DecisionMakers { get; private set; }
+		public AdvertisersManager Advertisers { get; }
+		public DecisionMakersManager DecisionMakers { get; }
 		public SimpleSummaryLists SimpleSummaryLists { get; set; }
 
-		public static ListManager Instance => _instance;
+		public static ListManager Instance { get; } = new ListManager();
 
 		private ListManager()
 		{

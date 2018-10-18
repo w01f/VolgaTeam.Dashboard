@@ -95,6 +95,8 @@ namespace Asa.Schedules.Common.Controls.Gallery
 			Copy.Click += Copy_Click;
 		}
 
+		public abstract void InitBusinessObjects();
+
 		public virtual void ShowControl(ContentOpenEventArgs args = null)
 		{
 			IsActive = true;

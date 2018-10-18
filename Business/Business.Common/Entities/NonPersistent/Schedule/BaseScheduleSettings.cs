@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Asa.Business.Common.Dictionaries;
 using Asa.Business.Common.Entities.NonPersistent.Common;
 using Asa.Business.Common.Enums;
 using Asa.Business.Common.Interfaces;
+using Asa.Common.Core.Dictionaries;
 using Asa.Common.Core.Interfaces;
 
 namespace Asa.Business.Common.Entities.NonPersistent.Schedule

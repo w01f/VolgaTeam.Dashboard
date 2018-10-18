@@ -87,6 +87,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			Controller.Instance.ProgramScheduleProgramDelete.Click += OnDeleteItem;
 		}
 
+		public override void InitBusinessObjects()
+		{
+			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitailization(Identifier);
+		}
+
 		protected override void UpdateEditedContet()
 		{
 			_allowToSave = false;

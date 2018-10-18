@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Common.Enums;
@@ -438,13 +439,27 @@ namespace Asa.Media.Single
 			{
 				form.pictureEditLogo.Image = BusinessObjects.Instance.ImageResourcesManager.HomeNewSchedulePopupLogo ?? form.pictureEditLogo.Image;
 				if (form.ShowDialog(this) != DialogResult.OK) return;
-				BusinessObjects.Instance.ScheduleManager.AddReqularSchedule(form.ScheduleName);
+				FormProgress.ShowProgress("Creating Schedule...", () =>
+				{
+					BusinessObjects.Instance.ScheduleManager.Init();
+					Invoke(new MethodInvoker(() =>
+					{
+						BusinessObjects.Instance.ScheduleManager.AddReqularSchedule(form.ScheduleName);
+					}));
+				}, false);
 			}
 		}
 
 		private void AddNewQuickEditSchedule()
 		{
-			BusinessObjects.Instance.ScheduleManager.AddQuickEditSchedule();
+			FormProgress.ShowProgress("Creating Schedule...", () =>
+			{
+				BusinessObjects.Instance.ScheduleManager.Init();
+				Invoke(new MethodInvoker(() =>
+				{
+					BusinessObjects.Instance.ScheduleManager.AddQuickEditSchedule();
+				}));
+			}, false);
 		}
 
 		private void OpenSchedule()
@@ -478,8 +493,7 @@ namespace Asa.Media.Single
 
 			using (var formStart = new FormStart())
 			{
-				formStart.buttonXOpen.Enabled = BusinessObjects.Instance.ScheduleManager.GetScheduleList<MediaScheduleModel>().Any() ||
-					!FileStorageManager.Instance.UseLocalMode;
+				formStart.buttonXOpen.Enabled = !FileStorageManager.Instance.UseLocalMode || Directory.Exists(BusinessObjects.Instance.ScheduleManager.ContextPath);
 				var result = formStart.ShowDialog(this);
 				if (result == DialogResult.Yes)
 					AddNewRegularSchedule();
@@ -487,6 +501,9 @@ namespace Asa.Media.Single
 					OpenSchedule();
 				else if (result == DialogResult.Abort)
 					AddNewQuickEditSchedule();
+
+				Application.DoEvents();
+
 				if (BusinessObjects.Instance.ScheduleManager.ActiveSchedule != null)
 				{
 					emptySpaceItem.Visibility = LayoutVisibility.Always;

@@ -43,6 +43,8 @@ namespace Asa.Schedules.Common.Controls.RateCard
 			Disposed += RateCardControl_Disposed;
 		}
 
+		public abstract void InitBusinessObjects();
+
 		public virtual void ShowControl(ContentOpenEventArgs args = null)
 		{
 			IsActive = true;

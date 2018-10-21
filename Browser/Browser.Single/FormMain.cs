@@ -13,6 +13,7 @@ using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.ToolForms;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro.ColorTables;
+using EO.WebBrowser;
 
 namespace Asa.Browser.Single
 {
@@ -42,6 +43,10 @@ namespace Asa.Browser.Single
 		public void InitForm()
 		{
 			FormProgress.Init(this);
+
+			var threadRunner = new ThreadRunner();
+			var webView = threadRunner.CreateWebView();
+			webView.Destroy();
 
 			LoadSettings();
 

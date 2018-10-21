@@ -7,6 +7,8 @@ namespace Asa.Common.Core.Objects.TabPages
 	{
 		public int Order { get; set; }
 		public bool DefaultInQuickMode { get; set; }
+		public bool DefaultForNewSchedule { get; set; }
+		public bool DefaultForOpenSchedule { get; set; }
 
 		public override void Deserialize(XmlNode node)
 		{
@@ -26,6 +28,18 @@ namespace Asa.Common.Core.Objects.TabPages
 						if (Boolean.TryParse(childNode.InnerText, out var temp))
 							DefaultInQuickMode = temp;
 						break;
+					}
+					case "NewDefault":
+					{
+						if (Boolean.TryParse(childNode.InnerText, out var temp))
+							DefaultForNewSchedule = temp;
+						break;
+					}
+					case "OpenDefault":
+					{
+						if (Boolean.TryParse(childNode.InnerText, out var temp))
+							DefaultForOpenSchedule = temp;
+							break;
 					}
 				}
 			}

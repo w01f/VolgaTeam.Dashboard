@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Schedules.Common.Controls.ContentEditors.Enums;
@@ -60,8 +61,8 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Helpers
 				_controller.ActiveControl = nextControl;
 				if (!_controller.MainPanel.Control.Controls.Contains((Control)_controller.ActiveControl))
 				{
-					_controller.MainPanel.Control.Controls.Add((Control)_controller.ActiveControl);
 					_controller.ActiveControl.InitBusinessObjects();
+					_controller.MainPanel.Control.Controls.Add((Control)_controller.ActiveControl);
 					_controller.ActiveControl.InitControl();
 				}
 				_controller.ActiveControl.ShowControl(e as ContentOpenEventArgs);

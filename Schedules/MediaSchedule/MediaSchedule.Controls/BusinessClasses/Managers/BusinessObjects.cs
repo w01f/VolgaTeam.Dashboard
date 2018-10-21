@@ -6,6 +6,7 @@ using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Contexts;
 using Asa.Business.Solutions.Common.Helpers;
 using Asa.Common.Core.Dictionaries;
+using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Common.GUI.RateCard;
@@ -65,9 +66,9 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			HelpManager.LoadHelpLinks();
 			PowerPointManager.Init();
 			RibbonTabPageManager = new RibbonTabPageManager(ResourceManager.Instance.TabsConfigFile);
-		    BrowserManager.Init(ResourceManager.Instance.BrowserConfigFile);
+			BrowserManager.Init(ResourceManager.Instance.BrowserConfigFile);
 
-            FormStyleManager = new FormStyleManager(ResourceManager.Instance.FormStyleConfigFile);
+			FormStyleManager = new FormStyleManager(ResourceManager.Instance.FormStyleConfigFile);
 			ActivityManager = ActivityManager.OpenStorage();
 			TextResourcesManager.LoadTabPageSettings(ResourceManager.Instance.TextResourcesFile);
 			IdleManager.LoadSettings(ResourceManager.Instance.IdleSettingsFile);
@@ -92,17 +93,26 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 				})
 			);
 
-			AdditionalInitializator.Actions.Add(new InitAction(
-				new[]
-				{
-					ContentIdentifiers.Solutions
-				},
-				() =>
-				{
-					SolutionsManager.LoadSolutions(ResourceManager.Instance.SolutionsConfigFile);
-					SolutionsManager.LoadSolutionData(ResourceManager.Instance.SolutionsDataFolder);
-				})
-			);
+			if (FileStorageManager.Instance.DataState == DataActualityState.Updated ||
+				FileStorageManager.Instance.UseLocalMode)
+			{
+				AdditionalInitializator.Actions.Add(new InitAction(
+					new[]
+					{
+						ContentIdentifiers.Solutions
+					},
+					() =>
+					{
+						SolutionsManager.LoadSolutions(ResourceManager.Instance.SolutionsConfigFile);
+						SolutionsManager.LoadSolutionData(ResourceManager.Instance.SolutionsDataFolder);
+					})
+				);
+			}
+			else
+			{
+				SolutionsManager.LoadSolutions(ResourceManager.Instance.SolutionsConfigFile);
+				SolutionsManager.LoadSolutionData(ResourceManager.Instance.SolutionsDataFolder);
+			}
 
 			AdditionalInitializator.Actions.Add(new InitAction(
 				new[]

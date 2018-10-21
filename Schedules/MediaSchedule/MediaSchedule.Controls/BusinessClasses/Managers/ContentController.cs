@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.ToolForms;
@@ -21,6 +23,7 @@ using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
 using Asa.Schedules.Common.Controls.ContentEditors.Objects;
 using DevComponents.DotNetBar;
 using DevExpress.XtraLayout;
+using EO.WebBrowser;
 
 namespace Asa.Media.Controls.BusinessClasses.Managers
 {
@@ -110,12 +113,24 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 
 		public void Init()
 		{
+			if (BusinessObjects.Instance.RibbonTabPageManager.RibbonTabPageSettings.Any(tabPageConfig =>
+				tabPageConfig.Id.StartsWith(ContentIdentifiers.Browser, StringComparison.OrdinalIgnoreCase)))
+			{
+				Task.Run(() =>
+				{
+					var threadRunner = new ThreadRunner();
+					var webView = threadRunner.CreateWebView();
+					webView.Destroy();
+				});
+			}
+
 			foreach (var tabPageConfig in BusinessObjects.Instance.RibbonTabPageManager.RibbonTabPageSettings)
 			{
 				if (tabPageConfig.Id.StartsWith(ContentIdentifiers.Browser, StringComparison.OrdinalIgnoreCase))
 				{
 					var browserControl = CreateBrowser(tabPageConfig.Id);
 					if (browserControl == null) continue;
+
 					browserControl.TabPage.Text = tabPageConfig.Name;
 					browserControl.TabPage.Visible = true;
 					ContentControls.Add(browserControl);
@@ -190,7 +205,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 
 			var browserPanel = new RibbonPanel();
 			browserPanel.ColorSchemeStyle = eDotNetBarStyle.StyleManagerControlled;
-			browserPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			browserPanel.Dock = DockStyle.Fill;
 			ContentRibbon.Controls.Add(browserPanel);
 			var browserTabPage = new RibbonTabItem();
 			browserTabPage.Panel = browserPanel;

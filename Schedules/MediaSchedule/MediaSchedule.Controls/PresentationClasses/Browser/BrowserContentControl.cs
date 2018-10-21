@@ -38,16 +38,19 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 
 		public virtual void InitControl()
 		{
-			if (BrowserSettings.Sites.Any())
-			{
-				_siteBundleControl = new MediaSiteBundleControl(this);
-				_siteBundleControl.Dock = DockStyle.Fill;
-				Controls.Add(_siteBundleControl);
+			if(_siteBundleControl!= null)
+				return;
 
-				_siteBundleControl.LoadSites(BrowserSettings.Sites);
+			if (!BrowserSettings.Sites.Any())
+				return;
 
-				ExternalBrowserManager.Load();
-			}
+			_siteBundleControl = new MediaSiteBundleControl(this);
+			_siteBundleControl.Dock = DockStyle.Fill;
+			Controls.Add(_siteBundleControl);
+
+			_siteBundleControl.LoadSites(BrowserSettings.Sites);
+
+			ExternalBrowserManager.Load();
 		}
 
 		public void InitBusinessObjects()

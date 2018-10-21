@@ -422,15 +422,30 @@ namespace Asa.Media.Single
 				schedule?.Name);
 		}
 
-		private void LoadData()
+		private void LoadData(bool isNewSchedule)
 		{
 			UpdateFormTitle();
+			string defaultTabId = ContentIdentifiers.ScheduleSettings;
 			if (BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.EditMode == ScheduleEditMode.Regular)
-				ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(ContentIdentifiers.ScheduleSettings);
+				defaultTabId = BusinessObjects.Instance.RibbonTabPageManager
+					.RibbonTabPageSettings
+					.Where(item =>
+						(isNewSchedule && item.DefaultForNewSchedule) ||
+						(!isNewSchedule && item.DefaultForOpenSchedule))
+					.Select(item => item.Id).FirstOrDefault() ??
+				ContentIdentifiers.ScheduleSettings;
 			else if (BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.EditMode == ScheduleEditMode.Quick)
-				ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(BusinessObjects.Instance.RibbonTabPageManager.RibbonTabPageSettings
+				defaultTabId = BusinessObjects.Instance.RibbonTabPageManager
+					.RibbonTabPageSettings
 					.Where(item => item.DefaultInQuickMode)
-					.Select(item => item.Id).FirstOrDefault() ?? ContentIdentifiers.ScheduleSettings);
+					.Select(item => item.Id).FirstOrDefault() ??
+				ContentIdentifiers.ScheduleSettings;
+
+			ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(defaultTabId);
+
+			if (BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.EditMode == ScheduleEditMode.Regular &&
+					defaultTabId == ContentIdentifiers.ScheduleSettings)
+				Controller.Instance.CheckPowerPointRunning();
 		}
 
 		private void AddNewRegularSchedule()
@@ -508,11 +523,9 @@ namespace Asa.Media.Single
 				{
 					emptySpaceItem.Visibility = LayoutVisibility.Always;
 					layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Never;
-					LoadData();
+					LoadData(result == DialogResult.Yes);
 					ribbonControl.Expanded = Controller.Instance.ContentController.ActiveControl != null && !Controller.Instance.ContentController.ActiveControl.RibbonAlwaysCollapsed;
 					ribbonControl.Enabled = true;
-					if (BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.EditMode == ScheduleEditMode.Regular)
-						Controller.Instance.CheckPowerPointRunning();
 				}
 				else
 					Close();

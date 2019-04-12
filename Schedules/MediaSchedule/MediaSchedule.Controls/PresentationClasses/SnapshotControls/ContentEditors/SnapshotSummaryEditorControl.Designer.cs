@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.gridControl = new DevExpress.XtraGrid.GridControl();
@@ -47,7 +48,7 @@
 			this.repositoryItemSpinEditRate = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.bandedGridColumnTotalWeeks = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.bandedGridColumnCost = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.toolTipController = new DevExpress.Utils.ToolTipController();
+			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemPrograms = new DevExpress.XtraLayout.LayoutControlItem();
@@ -83,7 +84,9 @@
 			// advBandedGridView
 			// 
 			this.advBandedGridView.Appearance.BandPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+			this.advBandedGridView.Appearance.BandPanel.ForeColor = System.Drawing.Color.DimGray;
 			this.advBandedGridView.Appearance.BandPanel.Options.UseFont = true;
+			this.advBandedGridView.Appearance.BandPanel.Options.UseForeColor = true;
 			this.advBandedGridView.Appearance.BandPanel.Options.UseTextOptions = true;
 			this.advBandedGridView.Appearance.BandPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.advBandedGridView.Appearance.EvenRow.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -103,7 +106,9 @@
 			this.advBandedGridView.Appearance.GroupFooter.Options.UseTextOptions = true;
 			this.advBandedGridView.Appearance.GroupFooter.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.advBandedGridView.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+			this.advBandedGridView.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.DimGray;
 			this.advBandedGridView.Appearance.HeaderPanel.Options.UseFont = true;
+			this.advBandedGridView.Appearance.HeaderPanel.Options.UseForeColor = true;
 			this.advBandedGridView.Appearance.HeaderPanel.Options.UseTextOptions = true;
 			this.advBandedGridView.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.advBandedGridView.Appearance.OddRow.Font = new System.Drawing.Font("Arial", 9.75F);

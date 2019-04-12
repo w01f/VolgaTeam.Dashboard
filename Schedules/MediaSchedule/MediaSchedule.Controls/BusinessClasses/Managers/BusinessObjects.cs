@@ -31,6 +31,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public GalleryManager Gallery1Manager { get; private set; }
 		public GalleryManager Gallery2Manager { get; private set; }
 		public RateCardManager RateCardManager { get; private set; }
+		public ConfigManager ConfigManager { get; }
 		public TextResourcesManager TextResourcesManager { get; }
 		public ImageResourcesManager ImageResourcesManager { get; }
 		public BrowserManager BrowserManager { get; }
@@ -49,6 +50,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			SlideManager = new SlideManager();
 			HelpManager = new HelpManager();
 			ThemeManager = new ThemeManager();
+			ConfigManager = new ConfigManager();
 			TextResourcesManager = new TextResourcesManager();
 			ImageResourcesManager = new ImageResourcesManager();
 			PowerPointManager = new PowerPointManager<PowerPointSingletonProcessor>();
@@ -70,7 +72,9 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 
 			FormStyleManager = new FormStyleManager(ResourceManager.Instance.FormStyleConfigFile);
 			ActivityManager = ActivityManager.OpenStorage();
-			TextResourcesManager.LoadTabPageSettings(ResourceManager.Instance.TextResourcesFile);
+			ConfigManager.LoadConfig(ResourceManager.Instance.ConfigFile);
+			TextResourcesManager.LoadTextResources(ResourceManager.Instance.TextResourcesFile);
+			TextResourcesManager.LoadTabPageSettings(ResourceManager.Instance.AdditionalTextResourcesFile);
 			IdleManager.LoadSettings(ResourceManager.Instance.IdleSettingsFile);
 
 			AdditionalInitializator.Actions.Add(new InitAction(

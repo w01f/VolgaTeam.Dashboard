@@ -127,7 +127,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			// advBandedGridView
 			// 
 			this.advBandedGridView.Appearance.BandPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.advBandedGridView.Appearance.BandPanel.ForeColor = System.Drawing.Color.DimGray;
 			this.advBandedGridView.Appearance.BandPanel.Options.UseFont = true;
+			this.advBandedGridView.Appearance.BandPanel.Options.UseForeColor = true;
 			this.advBandedGridView.Appearance.EvenRow.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.advBandedGridView.Appearance.EvenRow.Options.UseFont = true;
 			this.advBandedGridView.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -135,7 +137,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			this.advBandedGridView.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.advBandedGridView.Appearance.FocusedRow.Options.UseFont = true;
 			this.advBandedGridView.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.advBandedGridView.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.DimGray;
 			this.advBandedGridView.Appearance.HeaderPanel.Options.UseFont = true;
+			this.advBandedGridView.Appearance.HeaderPanel.Options.UseForeColor = true;
 			this.advBandedGridView.Appearance.HeaderPanel.Options.UseTextOptions = true;
 			this.advBandedGridView.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.advBandedGridView.Appearance.OddRow.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -617,7 +621,6 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			// BaseDigitalInfoEditControl
 			// 
 			this.Controls.Add(this.layoutControl);
-			this.Name = "BaseDigitalInfoEditControl";
 			this.Size = new System.Drawing.Size(761, 470);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();

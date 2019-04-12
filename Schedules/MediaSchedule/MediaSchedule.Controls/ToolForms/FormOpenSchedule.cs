@@ -32,6 +32,11 @@ namespace Asa.Media.Controls.ToolForms
 			gridColumnQuickEditSchedulesLastModifiedDate.SortIndex = 0;
 			gridColumnQuickEditSchedulesLastModifiedDate.SortOrder = ColumnSortOrder.Descending;
 
+			Text = BusinessObjects.Instance.TextResourcesManager.FormOpenScheduleMainTitle;
+			xtraTabPageRegularSchedules.Text = BusinessObjects.Instance.TextResourcesManager.FormOpenScheduleTab1Title;
+			xtraTabPageQuickEditSchedules.Text = BusinessObjects.Instance.TextResourcesManager.FormOpenScheduleTab2Title;
+			xtraTabPageTemplates.Text = BusinessObjects.Instance.TextResourcesManager.FormOpenScheduleTab3Title;
+
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemCreateNew.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCreateNew.MaxSize, scaleFactor);
 			layoutControlItemCreateNew.MinSize = RectangleHelper.ScaleSize(layoutControlItemCreateNew.MinSize, scaleFactor);
@@ -41,10 +46,10 @@ namespace Asa.Media.Controls.ToolForms
 
 		private void OnFormLoad(object sender, EventArgs e)
 		{
-			FormProgress.ShowProgress("Loading Schedule List...", () =>
+			FormProgress.ShowProgress("Loading your files...", () =>
 			{
-			    BusinessObjects.Instance.ScheduleManager.Init();
-                AsyncHelper.RunSync(BusinessObjects.Instance.ScheduleTemplatesManager.Init);
+				BusinessObjects.Instance.ScheduleManager.Init();
+				AsyncHelper.RunSync(BusinessObjects.Instance.ScheduleTemplatesManager.Init);
 				var allSchedules = BusinessObjects.Instance.ScheduleManager.GetScheduleList<MediaScheduleModel>()
 					.Where(scheduleModel => scheduleModel.Parent != BusinessObjects.Instance.ScheduleManager.ActiveSchedule).ToList();
 				_regularScheduleList.AddRange(allSchedules.Where(s => s.EditMode == ScheduleEditMode.Regular));
@@ -57,7 +62,7 @@ namespace Asa.Media.Controls.ToolForms
 
 			LoadSchedules();
 			LoadTemplates();
-			
+
 			xtraTabPageRegularSchedules.PageEnabled = _regularScheduleList.Any();
 			xtraTabPageQuickEditSchedules.PageEnabled = _quickScheduleList.Any();
 			xtraTabPageTemplates.PageEnabled = !FileStorageManager.Instance.UseLocalMode && _scheduleTemplateList.Items.Any();

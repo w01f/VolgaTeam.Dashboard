@@ -1,38 +1,15 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
 using Asa.Common.GUI.Common;
 using DevExpress.Utils.Svg;
-using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Controls;
 
 namespace Asa.Solutions.Common.PresentationClasses
 {
-	public class SolutionImageToggle : PictureEdit, ISolutionToggle
+	public class SolutionImageToggle : ImageToggleButton, ISolutionToggle
 	{
 		public BaseSolutionInfo SolutionInfo { get; }
-		public event EventHandler CheckedChanged;
-
-		private bool _checked;
-		public bool Checked
-		{
-			get => _checked;
-			set
-			{
-				var valueChanged = value != _checked;
-				_checked = value;
-				BackColor = _checked ?
-					SelectedColor ?? ColorTranslator.FromHtml("#C6E2FF") :
-					Color.White;
-				if (valueChanged)
-					CheckedChanged?.Invoke(this, EventArgs.Empty);
-			}
-		}
-
-		public Color? SelectedColor { get; set; }
-		public Color? HoverColor { get; set; }
 
 		public SolutionImageToggle(BaseSolutionInfo solutionInfo, int buttonWidth)
 		{
@@ -54,36 +31,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 
 			Height = imageHeight;
 
-			ToolTip = SolutionInfo.ToggleTitle;
-			Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-			Properties.AllowFocused = false;
-			Properties.BorderStyle = BorderStyles.Default;
-			Properties.NullText = " ";
-			Properties.PictureAlignment = ContentAlignment.MiddleCenter;
-			Properties.SizeMode = PictureSizeMode.Squeeze;
-			Properties.ReadOnly = true;
-			Properties.ShowMenu = false;
-			Cursor = Cursors.Hand;
-
 			Enabled = solutionInfo.Enabled;
-
-			MouseHover += OnMouseHover;
-			MouseMove += OnMouseHover;
-			MouseLeave += OnMouseLeave;
-
-			this.Buttonize();
-		}
-
-		private void OnMouseHover(object sender, EventArgs e)
-		{
-			if (Checked) return;
-			BackColor = HoverColor ?? BackColor;
-		}
-
-		private void OnMouseLeave(object sender, EventArgs e)
-		{
-			if (Checked) return;
-			BackColor = Color.White;
 		}
 	}
 }

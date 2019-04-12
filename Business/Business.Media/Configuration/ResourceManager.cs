@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Helpers;
@@ -22,7 +23,11 @@ namespace Asa.Business.Media.Configuration
 		public StorageDirectory SolutionsDataFolder { get; private set; }
 
 		public StorageFile MainAppTitleTextFile { get; private set; }
+		public StorageFile ConfigFile { get; private set; }
 		public StorageFile TextResourcesFile { get; private set; }
+		public StorageFile AdditionalTextResourcesFile { get; private set; }
+		public StorageFile SyncFormColorConfigFile { get; private set; }
+		public StorageFile SyncFormTextConfigFile { get; private set; }
 		public StorageFile IdleSettingsFile { get; private set; }
 		public ArchiveDirectory ImageResourcesFolder { get; private set; }
 
@@ -113,15 +118,55 @@ namespace Asa.Business.Media.Configuration
 			if (await MainAppTitleTextFile.Exists(true))
 				await MainAppTitleTextFile.Download();
 
+			ConfigFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"app_common_config.xml"
+			});
+			if (await ConfigFile.Exists(true))
+				await ConfigFile.Download();
+
 			TextResourcesFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"app_text_config.xml"
+			});
+			if (await TextResourcesFile.Exists(true))
+				await TextResourcesFile.Download();
+
+			AdditionalTextResourcesFile = new StorageFile(new[]
 			{
 				FileStorageManager.IncomingFolderName,
 				AppProfileManager.Instance.AppName,
 				"AppSettings",
 				String.Format("{0}_subtab_names.xml",MediaMetaData.Instance.DataTypeString.ToLower())
 			});
-			if (await TextResourcesFile.Exists(true))
-				await TextResourcesFile.Download();
+			if (await AdditionalTextResourcesFile.Exists(true))
+				await AdditionalTextResourcesFile.Download();
+
+			SyncFormColorConfigFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"sync_color.xml"
+			});
+			if (await SyncFormColorConfigFile.Exists(true))
+				await SyncFormColorConfigFile.Download();
+
+			SyncFormTextConfigFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"sync_text.xml"
+			});
+			if (await SyncFormTextConfigFile.Exists(true))
+				await SyncFormTextConfigFile.Download();
 
 			IdleSettingsFile = new StorageFile(new[]
 			{
@@ -141,6 +186,15 @@ namespace Asa.Business.Media.Configuration
 			});
 			if (await ImageResourcesFolder.Exists(true))
 				await ImageResourcesFolder.Download();
+
+			#region Make local copy
+			
+			if (SyncFormColorConfigFile.ExistsLocal())
+				File.Copy(SyncFormColorConfigFile.LocalPath, Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.AppRootFolderPath, Path.GetFileName(SyncFormColorConfigFile.LocalPath)), true);
+			if (SyncFormTextConfigFile.ExistsLocal())
+				File.Copy(SyncFormTextConfigFile.LocalPath, Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.AppRootFolderPath, Path.GetFileName(SyncFormTextConfigFile.LocalPath)), true);
+
+			#endregion
 		}
 	}
 }

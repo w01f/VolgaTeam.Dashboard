@@ -68,8 +68,11 @@ namespace Asa.Common.Core.Objects.RemoteStorage
 				var isOutdated = false;
 				foreach (var archivePartFile in archivePartFiles)
 				{
-					await archivePartFile.Download(true);
-					isOutdated |= await archivePartFile.IsOutOfDate();
+					var fileOutDated = await archivePartFile.IsOutOfDate(true);
+					isOutdated |= fileOutDated;
+					if (fileOutDated)
+						await archivePartFile.Download(true);
+
 				}
 				if (isOutdated || !TargetExists(targetPath))
 				{

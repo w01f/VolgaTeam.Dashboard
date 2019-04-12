@@ -108,6 +108,7 @@
     <Compile Include="BusinessClasses\Managers\ContentController.cs" />
     <Compile Include="BusinessClasses\Managers\ContentIdentifiers.cs" />
     <Compile Include="BusinessClasses\Managers\ContentTabStateManager.cs" />
+    <Compile Include="BusinessClasses\Managers\ConfigManager.cs" />
     <Compile Include="BusinessClasses\Managers\TextResourcesManager.cs" />
     <Compile Include="BusinessClasses\Managers\ImageResourcesManager.cs" />
     <Compile Include="BusinessClasses\Output\DigitalInfo\BaseDigitalInfoOneSheetOutputModel.cs" />
@@ -592,11 +593,17 @@
     <Compile Include="ToolForms\FormOpenSchedule.Designer.cs">
       <DependentUpon>FormOpenSchedule.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormStart.cs">
+    <Compile Include="ToolForms\FormStartSimple.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ToolForms\FormStart.Designer.cs">
-      <DependentUpon>FormStart.cs</DependentUpon>
+    <Compile Include="ToolForms\FormStartSimple.Designer.cs">
+      <DependentUpon>FormStartSimple.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormStartExtended.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormStartExtended.Designer.cs">
+      <DependentUpon>FormStartExtended.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -791,8 +798,11 @@
     <EmbeddedResource Include="ToolForms\FormOpenSchedule.resx">
       <DependentUpon>FormOpenSchedule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormStart.resx">
-      <DependentUpon>FormStart.cs</DependentUpon>
+    <EmbeddedResource Include="ToolForms\FormStartSimple.resx">
+      <DependentUpon>FormStartSimple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormStartExtended.resx">
+      <DependentUpon>FormStartExtended.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

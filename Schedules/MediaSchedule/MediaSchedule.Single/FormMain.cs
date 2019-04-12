@@ -22,7 +22,7 @@ using DevComponents.DotNetBar.Metro.ColorTables;
 using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 using DevExpress.XtraLayout.Utils;
-using FormStart = Asa.Media.Controls.ToolForms.FormStart;
+using FormStartExtended = Asa.Media.Controls.ToolForms.FormStartExtended;
 
 namespace Asa.Media.Single
 {
@@ -454,7 +454,7 @@ namespace Asa.Media.Single
 			{
 				form.pictureEditLogo.Image = BusinessObjects.Instance.ImageResourcesManager.HomeNewSchedulePopupLogo ?? form.pictureEditLogo.Image;
 				if (form.ShowDialog(this) != DialogResult.OK) return;
-				FormProgress.ShowProgress("Creating Schedule...", () =>
+				FormProgress.ShowProgress("Building your client database...", () =>
 				{
 					BusinessObjects.Instance.ScheduleManager.Init();
 					Invoke(new MethodInvoker(() =>
@@ -467,7 +467,7 @@ namespace Asa.Media.Single
 
 		private void AddNewQuickEditSchedule()
 		{
-			FormProgress.ShowProgress("Creating Schedule...", () =>
+			FormProgress.ShowProgress("Building your client database...", () =>
 			{
 				BusinessObjects.Instance.ScheduleManager.Init();
 				Invoke(new MethodInvoker(() =>
@@ -506,9 +506,11 @@ namespace Asa.Media.Single
 			BusinessObjects.Instance.IdleManager.LinkToApplication(this);
 			BusinessObjects.Instance.IdleManager.BeforeCloseOnTimerExpired += OnCloseOnIdleTimerExpired;
 
-			using (var formStart = new FormStart())
+
+			using (Form formStart = BusinessObjects.Instance.ConfigManager.UserQuickSchedules ?
+				(Form)new FormStartExtended() :
+				(Form)new FormStartSimple())
 			{
-				formStart.buttonXOpen.Enabled = !FileStorageManager.Instance.UseLocalMode || Directory.Exists(BusinessObjects.Instance.ScheduleManager.ContextPath);
 				var result = formStart.ShowDialog(this);
 				if (result == DialogResult.Yes)
 					AddNewRegularSchedule();

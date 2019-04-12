@@ -67,6 +67,8 @@
 			this.gridView.Appearance.FocusedCell.Options.UseFont = true;
 			this.gridView.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.gridView.Appearance.FocusedRow.Options.UseFont = true;
+			this.gridView.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.DimGray;
+			this.gridView.Appearance.HeaderPanel.Options.UseForeColor = true;
 			this.gridView.Appearance.OddRow.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.gridView.Appearance.OddRow.Options.UseFont = true;
 			this.gridView.Appearance.Row.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -197,7 +199,6 @@
 			// DigitalProductInfoGroup
 			// 
 			this.Controls.Add(this.layoutControl);
-			this.Name = "DigitalProductInfoGroup";
 			this.Size = new System.Drawing.Size(616, 463);
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();

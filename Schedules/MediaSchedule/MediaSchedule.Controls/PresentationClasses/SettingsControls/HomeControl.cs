@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ using Asa.Schedules.Common.Controls.ContentEditors.Enums;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
 using DevComponents.DotNetBar;
 using DevExpress.Skins;
+using DevExpress.XtraEditors;
 using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Media.Controls.PresentationClasses.SettingsControls
@@ -93,11 +95,26 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			pictureEditMainScheduleBottomLogo.Image = BusinessObjects.Instance.ImageResourcesManager.HomeSplashBottomLogo;
 			pictureEditScheduleTypeTitle.Image = BusinessObjects.Instance.ImageResourcesManager.HomeTopTitleImage ?? pictureEditScheduleTypeTitle.Image;
 			pictureEditScheduleConceptTypeTitle.Image = BusinessObjects.Instance.ImageResourcesManager.HomeBottomTitleImage ?? pictureEditScheduleConceptTypeTitle.Image;
-			buttonXWeeklySchedule.Image = BusinessObjects.Instance.ImageResourcesManager.HomeWeeklyScheduleImage ?? buttonXWeeklySchedule.Image;
-			buttonXMonthlySchedule.Image = BusinessObjects.Instance.ImageResourcesManager.HomeMonthlyScheduleImage ?? buttonXMonthlySchedule.Image;
-			buttonXSnapshot.Image = BusinessObjects.Instance.ImageResourcesManager.HomeSnaphotShortcutImage ?? buttonXSnapshot.Image;
-			buttonXOptions.Image = BusinessObjects.Instance.ImageResourcesManager.HomeOptionsShortcutImage ?? buttonXOptions.Image;
-			buttonXCalendar.Image = BusinessObjects.Instance.ImageResourcesManager.HomeCalendarShortcutImage ?? buttonXCalendar.Image;
+			pictureEditWeeklySchedule.Image = BusinessObjects.Instance.ImageResourcesManager.HomeWeeklyScheduleImage ?? pictureEditWeeklySchedule.Image;
+			pictureEditMonthlySchedule.Image = BusinessObjects.Instance.ImageResourcesManager.HomeMonthlyScheduleImage ?? pictureEditMonthlySchedule.Image;
+			pictureEditSnapshot.Image = BusinessObjects.Instance.ImageResourcesManager.HomeSnaphotShortcutImage ?? pictureEditSnapshot.Image;
+			pictureEditOptions.Image = BusinessObjects.Instance.ImageResourcesManager.HomeOptionsShortcutImage ?? pictureEditOptions.Image;
+			pictureEditCalendar.Image = BusinessObjects.Instance.ImageResourcesManager.HomeCalendarShortcutImage ?? pictureEditCalendar.Image;
+
+			pictureEditWeeklySchedule.HoverColor = 
+				pictureEditMonthlySchedule.HoverColor =
+					pictureEditSnapshot.HoverColor =
+						pictureEditOptions.HoverColor =
+							pictureEditCalendar.HoverColor =
+				BusinessObjects.Instance.FormStyleManager.Style.ToggleHoverColor;
+			pictureEditWeeklySchedule.SelectedColor = 
+				pictureEditMonthlySchedule.SelectedColor =
+					pictureEditSnapshot.SelectedColor =
+						pictureEditOptions.SelectedColor =
+							pictureEditCalendar.SelectedColor =
+				BusinessObjects.Instance.FormStyleManager.Style.ToggleSelectedColor;
+			pictureEditWeeklySchedule.CheckedChanged += OnScheduleTypeCheckedChanged;
+			pictureEditMonthlySchedule.CheckedChanged += OnScheduleTypeCheckedChanged;
 
 			stationsControl.Changed += (o, e) => { SettingsNotSaved = true; };
 
@@ -149,12 +166,12 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				switch (EditedSettings.SelectedSpotType)
 				{
 					case SpotType.Week:
-						buttonXWeeklySchedule.Checked = true;
-						buttonXMonthlySchedule.Checked = false;
+						pictureEditWeeklySchedule.Checked = true;
+						pictureEditMonthlySchedule.Checked = false;
 						break;
 					case SpotType.Month:
-						buttonXWeeklySchedule.Checked = false;
-						buttonXMonthlySchedule.Checked = true;
+						pictureEditWeeklySchedule.Checked = false;
+						pictureEditMonthlySchedule.Checked = true;
 						break;
 				}
 
@@ -256,8 +273,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				EditedSettings.UserFlightDateStart.HasValue &&
 				EditedSettings.UserFlightDateEnd.HasValue);
 			Controller.Instance.ContentController.UpdateTabsSate();
-			buttonXWeeklySchedule.Enabled = enableSchedules;
-			buttonXMonthlySchedule.Enabled = enableSchedules;
+			pictureEditWeeklySchedule.Enabled = enableSchedules;
+			pictureEditMonthlySchedule.Enabled = enableSchedules;
 			if (enableSchedules)
 			{
 				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Never;
@@ -299,10 +316,10 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 		private void OnRibbonRibbonTabsStateChanged(object sender, EventArgs e)
 		{
-			buttonXSnapshot.Enabled = Controller.Instance.TabSnapshot.Visible && Controller.Instance.TabSnapshot.Enabled;
-			buttonXOptions.Enabled = Controller.Instance.TabOptions.Visible && Controller.Instance.TabOptions.Enabled;
+			pictureEditSnapshot.Enabled = Controller.Instance.TabSnapshot.Visible && Controller.Instance.TabSnapshot.Enabled;
+			pictureEditOptions.Enabled = Controller.Instance.TabOptions.Visible && Controller.Instance.TabOptions.Enabled;
 			layoutControlItemMainScheduleCalendar.Visibility = Controller.Instance.TabCalendar1.Visible || Controller.Instance.TabCalendar2.Visible ? LayoutVisibility.Always : LayoutVisibility.Never;
-			buttonXCalendar.Enabled = Controller.Instance.TabCalendar1.Enabled || Controller.Instance.TabCalendar2.Enabled;
+			pictureEditCalendar.Enabled = Controller.Instance.TabCalendar1.Enabled || Controller.Instance.TabCalendar2.Enabled;
 		}
 		#endregion
 
@@ -391,21 +408,21 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		#region Buttons Clicks Events
 		private void OnScheduleTypeClick(object sender, EventArgs e)
 		{
-			if (!(sender is ButtonX button)) return;
+			if (!(sender is ImageToggleButton button)) return;
 			if (button.Checked) return;
-			buttonXWeeklySchedule.Checked = false;
-			buttonXMonthlySchedule.Checked = false;
+			pictureEditWeeklySchedule.Checked = false;
+			pictureEditMonthlySchedule.Checked = false;
 			button.Checked = true;
 		}
 
 		private void OnScheduleTypeCheckedChanged(object sender, EventArgs e)
 		{
-			if (!(sender is ButtonX button)) return;
+			if (!(sender is ImageToggleButton button)) return;
 			if (!button.Checked) return;
 			if (!_allowToSave) return;
-			if (buttonXWeeklySchedule.Checked)
+			if (pictureEditWeeklySchedule.Checked)
 				EditedSettings.SelectedSpotType = SpotType.Week;
-			else if (buttonXMonthlySchedule.Checked)
+			else if (pictureEditMonthlySchedule.Checked)
 				EditedSettings.SelectedSpotType = SpotType.Month;
 			SettingsNotSaved = true;
 		}

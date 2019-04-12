@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -9,6 +10,7 @@ using Asa.Business.Media.Enums;
 using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.FormStyle;
 using Asa.Common.Core.Objects.Output;
 using Asa.Common.Core.Objects.RemoteStorage;
 using Asa.Common.GUI.Floater;
@@ -35,6 +37,9 @@ namespace Asa.Media.Single
 			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
 
 			LicenseHelper.Register();
+
+			var textSettings = new StartFormTextConfiguration();
+			textSettings.Load(Path.Combine(Common.Core.Configuration.ResourceManager.Instance.AppRootFolderPath, "sync_text.xml"));
 
 			MediaMetaData.Instance.Init(mediaType);
 			var appTitle = String.Format("SellerPoint for {0}", MediaMetaData.Instance.DataTypeString);
@@ -73,13 +78,13 @@ namespace Asa.Media.Single
 			FileStorageManager.Instance.Authorizing += (o, e) =>
 			{
 				var authManager = new AuthManager();
-				FormStart.SetTitle("Checking credentials...");
+				FormStart.SetTitle(textSettings.VersionText ?? "Checking credentials...");
 				e.LightCheck = true;
 				authManager.Auth(e);
 			};
 
 			FormStart.ShowProgress();
-			FormStart.SetTitle("Connecting to adSALEScloud…");
+			FormStart.SetTitle(textSettings.ConnectText ?? "Connecting to adSALEScloud…");
 			var thread = new Thread(() => AsyncHelper.RunSync(() => FileStorageManager.Instance.Init()));
 			thread.Start();
 			while (thread.IsAlive)
@@ -93,9 +98,9 @@ namespace Asa.Media.Single
 			if (FileStorageManager.Instance.Activated)
 			{
 				if (FileStorageManager.Instance.DataState == DataActualityState.NotExisted)
-					FormStart.SetTitle("Syncing adSALEScloud for the 1st time…");
+					FormStart.SetTitle(textSettings.InitialLoadingText ?? "Syncing adSALEScloud for the 1st time…");
 				else if (FileStorageManager.Instance.DataState == DataActualityState.Outdated)
-					FormStart.SetTitle("Refreshing data from adSALEScloud…");
+					FormStart.SetTitle(textSettings.RefreshText ?? "Refreshing data from adSALEScloud…");
 				else
 					FormStart.SetTitle("Loading application data...");
 
@@ -108,7 +113,7 @@ namespace Asa.Media.Single
 				while (thread.IsAlive)
 					Application.DoEvents();
 
-				FormStart.SetTitle("Launching SellerPoint...");
+				FormStart.SetTitle(textSettings.LaunchText ?? "Launching SellerPoint...");
 				Application.DoEvents();
 
 				FormMain.Instance.Init();

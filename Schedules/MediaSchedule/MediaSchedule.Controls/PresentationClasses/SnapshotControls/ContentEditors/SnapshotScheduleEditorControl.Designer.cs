@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.popupContainerControlProgramSource = new DevExpress.XtraEditors.PopupContainerControl();
@@ -79,7 +80,7 @@
 			this.bandedGridColumnTotalSpots = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.bandedGridColumnCost = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemTextEditProgram = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-			this.toolTipController = new DevExpress.Utils.ToolTipController();
+			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
 			this.layoutControlMain = new DevExpress.XtraLayout.LayoutControl();
 			this.pictureEditDefaultLogo = new DevExpress.XtraEditors.PictureEdit();
 			this.layoutControlGroupRootMain = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -340,7 +341,9 @@
 			// advBandedGridView
 			// 
 			this.advBandedGridView.Appearance.BandPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+			this.advBandedGridView.Appearance.BandPanel.ForeColor = System.Drawing.Color.DimGray;
 			this.advBandedGridView.Appearance.BandPanel.Options.UseFont = true;
+			this.advBandedGridView.Appearance.BandPanel.Options.UseForeColor = true;
 			this.advBandedGridView.Appearance.BandPanel.Options.UseTextOptions = true;
 			this.advBandedGridView.Appearance.BandPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.advBandedGridView.Appearance.EvenRow.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -366,7 +369,9 @@
 			this.advBandedGridView.Appearance.GroupFooter.Options.UseTextOptions = true;
 			this.advBandedGridView.Appearance.GroupFooter.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.advBandedGridView.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+			this.advBandedGridView.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.DimGray;
 			this.advBandedGridView.Appearance.HeaderPanel.Options.UseFont = true;
+			this.advBandedGridView.Appearance.HeaderPanel.Options.UseForeColor = true;
 			this.advBandedGridView.Appearance.HeaderPanel.Options.UseTextOptions = true;
 			this.advBandedGridView.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.advBandedGridView.Appearance.OddRow.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -1202,7 +1207,6 @@
 			this.Controls.Add(this.popupContainerControlProgramSource);
 			this.Controls.Add(this.layoutControlMain);
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.Name = "SnapshotScheduleEditorControl";
 			this.Size = new System.Drawing.Size(830, 699);
 			((System.ComponentModel.ISupportInitialize)(this.popupContainerControlProgramSource)).EndInit();
 			this.popupContainerControlProgramSource.ResumeLayout(false);

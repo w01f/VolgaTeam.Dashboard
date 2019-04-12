@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.barManager = new DevExpress.XtraBars.BarManager();
+			this.components = new System.ComponentModel.Container();
+			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
 			this.barToolButtons = new DevExpress.XtraBars.Bar();
 			this.barStaticItemLogo = new DevExpress.XtraBars.BarStaticItem();
 			this.barLargeButtonItemOpen = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemDelete = new DevExpress.XtraBars.BarLargeButtonItem();
-			this.barAndDockingController = new DevExpress.XtraBars.BarAndDockingController();
+			this.barAndDockingController = new DevExpress.XtraBars.BarAndDockingController(this.components);
 			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -70,7 +71,7 @@
 			this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemGrids = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.barAndDockingController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlRegularSchedules)).BeginInit();
@@ -178,7 +179,7 @@
 			this.barDockControlTop.ForeColor = System.Drawing.Color.Black;
 			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
 			this.barDockControlTop.Manager = this.barManager;
-			this.barDockControlTop.Size = new System.Drawing.Size(667, 84);
+			this.barDockControlTop.Size = new System.Drawing.Size(667, 87);
 			// 
 			// barDockControlBottom
 			// 
@@ -194,18 +195,18 @@
 			this.barDockControlLeft.CausesValidation = false;
 			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
 			this.barDockControlLeft.ForeColor = System.Drawing.Color.Black;
-			this.barDockControlLeft.Location = new System.Drawing.Point(0, 84);
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 87);
 			this.barDockControlLeft.Manager = this.barManager;
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 519);
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 516);
 			// 
 			// barDockControlRight
 			// 
 			this.barDockControlRight.CausesValidation = false;
 			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
 			this.barDockControlRight.ForeColor = System.Drawing.Color.Black;
-			this.barDockControlRight.Location = new System.Drawing.Point(667, 84);
+			this.barDockControlRight.Location = new System.Drawing.Point(667, 87);
 			this.barDockControlRight.Manager = this.barManager;
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 519);
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 516);
 			// 
 			// gridControlRegularSchedules
 			// 
@@ -221,7 +222,7 @@
 			this.gridControlRegularSchedules.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit,
             this.repositoryItemComboBoxStatus});
-			this.gridControlRegularSchedules.Size = new System.Drawing.Size(645, 421);
+			this.gridControlRegularSchedules.Size = new System.Drawing.Size(641, 415);
 			this.gridControlRegularSchedules.TabIndex = 40;
 			this.gridControlRegularSchedules.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewRegularSchedules});
@@ -368,7 +369,7 @@
 			this.xtraTabControl.Location = new System.Drawing.Point(10, 10);
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageRegularSchedules;
-			this.xtraTabControl.Size = new System.Drawing.Size(647, 449);
+			this.xtraTabControl.Size = new System.Drawing.Size(647, 446);
 			this.xtraTabControl.TabIndex = 45;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageRegularSchedules,
@@ -382,7 +383,7 @@
 			this.xtraTabPageRegularSchedules.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageRegularSchedules.Controls.Add(this.gridControlRegularSchedules);
 			this.xtraTabPageRegularSchedules.Name = "xtraTabPageRegularSchedules";
-			this.xtraTabPageRegularSchedules.Size = new System.Drawing.Size(645, 421);
+			this.xtraTabPageRegularSchedules.Size = new System.Drawing.Size(641, 415);
 			this.xtraTabPageRegularSchedules.Text = "My Solutions";
 			// 
 			// xtraTabPageQuickEditSchedules
@@ -391,7 +392,7 @@
 			this.xtraTabPageQuickEditSchedules.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageQuickEditSchedules.Controls.Add(this.gridControlQuickEditSchedules);
 			this.xtraTabPageQuickEditSchedules.Name = "xtraTabPageQuickEditSchedules";
-			this.xtraTabPageQuickEditSchedules.Size = new System.Drawing.Size(645, 421);
+			this.xtraTabPageQuickEditSchedules.Size = new System.Drawing.Size(641, 415);
 			this.xtraTabPageQuickEditSchedules.Text = "GitRDun";
 			// 
 			// gridControlQuickEditSchedules
@@ -405,7 +406,7 @@
 			this.gridControlQuickEditSchedules.Location = new System.Drawing.Point(0, 0);
 			this.gridControlQuickEditSchedules.MainView = this.gridViewQuickEditSchedules;
 			this.gridControlQuickEditSchedules.Name = "gridControlQuickEditSchedules";
-			this.gridControlQuickEditSchedules.Size = new System.Drawing.Size(645, 421);
+			this.gridControlQuickEditSchedules.Size = new System.Drawing.Size(641, 415);
 			this.gridControlQuickEditSchedules.TabIndex = 42;
 			this.gridControlQuickEditSchedules.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewQuickEditSchedules});
@@ -478,7 +479,7 @@
 			this.xtraTabPageTemplates.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageTemplates.Controls.Add(this.gridControlTemplates);
 			this.xtraTabPageTemplates.Name = "xtraTabPageTemplates";
-			this.xtraTabPageTemplates.Size = new System.Drawing.Size(645, 421);
+			this.xtraTabPageTemplates.Size = new System.Drawing.Size(641, 415);
 			this.xtraTabPageTemplates.Text = "Public Cloud";
 			// 
 			// gridControlTemplates
@@ -492,7 +493,7 @@
 			this.gridControlTemplates.Location = new System.Drawing.Point(0, 0);
 			this.gridControlTemplates.MainView = this.gridViewTemplates;
 			this.gridControlTemplates.Name = "gridControlTemplates";
-			this.gridControlTemplates.Size = new System.Drawing.Size(645, 421);
+			this.gridControlTemplates.Size = new System.Drawing.Size(641, 415);
 			this.gridControlTemplates.TabIndex = 41;
 			this.gridControlTemplates.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewTemplates});
@@ -580,7 +581,7 @@
 			// 
 			// layoutControl
 			// 
-	        this.layoutControl.AllowCustomization = false;
+			this.layoutControl.AllowCustomization = false;
 			this.layoutControl.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControl.Appearance.Control.Options.UseFont = true;
 			this.layoutControl.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -599,11 +600,11 @@
 			this.layoutControl.Controls.Add(this.buttonXCancel);
 			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutControl.ForeColor = System.Drawing.Color.Black;
-			this.layoutControl.Location = new System.Drawing.Point(0, 84);
+			this.layoutControl.Location = new System.Drawing.Point(0, 87);
 			this.layoutControl.Name = "layoutControl";
 			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
 			this.layoutControl.Root = this.layoutControlGroupRoot;
-			this.layoutControl.Size = new System.Drawing.Size(667, 519);
+			this.layoutControl.Size = new System.Drawing.Size(667, 516);
 			this.layoutControl.StyleController = this.styleController;
 			this.layoutControl.TabIndex = 66;
 			this.layoutControl.Text = "layoutControl1";
@@ -614,7 +615,7 @@
 			this.buttonXCreateNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXCreateNew.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCreateNew.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXCreateNew.Location = new System.Drawing.Point(399, 471);
+			this.buttonXCreateNew.Location = new System.Drawing.Point(399, 468);
 			this.buttonXCreateNew.Name = "buttonXCreateNew";
 			this.buttonXCreateNew.Size = new System.Drawing.Size(116, 36);
 			this.buttonXCreateNew.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -629,7 +630,7 @@
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.buttonXCancel.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXCancel.Location = new System.Drawing.Point(539, 471);
+			this.buttonXCancel.Location = new System.Drawing.Point(539, 468);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(116, 36);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -662,13 +663,13 @@
             this.emptySpaceItem1});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
-			this.layoutControlGroupRoot.Size = new System.Drawing.Size(667, 519);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(667, 516);
 			this.layoutControlGroupRoot.TextVisible = false;
 			// 
 			// emptySpaceItem5
 			// 
 			this.emptySpaceItem5.AllowHotTrack = false;
-			this.emptySpaceItem5.Location = new System.Drawing.Point(0, 459);
+			this.emptySpaceItem5.Location = new System.Drawing.Point(0, 456);
 			this.emptySpaceItem5.Name = "emptySpaceItem5";
 			this.emptySpaceItem5.Size = new System.Drawing.Size(387, 40);
 			this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
@@ -678,7 +679,7 @@
 			this.layoutControlItemCancel.Control = this.buttonXCancel;
 			this.layoutControlItemCancel.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemCancel.FillControlToClientArea = false;
-			this.layoutControlItemCancel.Location = new System.Drawing.Point(527, 459);
+			this.layoutControlItemCancel.Location = new System.Drawing.Point(527, 456);
 			this.layoutControlItemCancel.MaxSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemCancel.MinSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemCancel.Name = "layoutControlItemCancel";
@@ -694,7 +695,7 @@
 			this.layoutControlItemCreateNew.Control = this.buttonXCreateNew;
 			this.layoutControlItemCreateNew.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemCreateNew.FillControlToClientArea = false;
-			this.layoutControlItemCreateNew.Location = new System.Drawing.Point(387, 459);
+			this.layoutControlItemCreateNew.Location = new System.Drawing.Point(387, 456);
 			this.layoutControlItemCreateNew.MaxSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemCreateNew.MinSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemCreateNew.Name = "layoutControlItemCreateNew";
@@ -708,7 +709,7 @@
 			// emptySpaceItem6
 			// 
 			this.emptySpaceItem6.AllowHotTrack = false;
-			this.emptySpaceItem6.Location = new System.Drawing.Point(507, 459);
+			this.emptySpaceItem6.Location = new System.Drawing.Point(507, 456);
 			this.emptySpaceItem6.MaxSize = new System.Drawing.Size(20, 0);
 			this.emptySpaceItem6.MinSize = new System.Drawing.Size(20, 10);
 			this.emptySpaceItem6.Name = "emptySpaceItem6";
@@ -724,7 +725,7 @@
 			this.layoutControlItemGrids.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemGrids.Name = "layoutControlItemGrids";
 			this.layoutControlItemGrids.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemGrids.Size = new System.Drawing.Size(647, 449);
+			this.layoutControlItemGrids.Size = new System.Drawing.Size(647, 446);
 			this.layoutControlItemGrids.Text = "Grids";
 			this.layoutControlItemGrids.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemGrids.TextVisible = false;
@@ -733,7 +734,7 @@
 			// emptySpaceItem1
 			// 
 			this.emptySpaceItem1.AllowHotTrack = false;
-			this.emptySpaceItem1.Location = new System.Drawing.Point(0, 449);
+			this.emptySpaceItem1.Location = new System.Drawing.Point(0, 446);
 			this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 10);
 			this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem1.Name = "emptySpaceItem1";
@@ -769,6 +770,7 @@
 			this.Controls.Add(this.barDockControlTop);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;

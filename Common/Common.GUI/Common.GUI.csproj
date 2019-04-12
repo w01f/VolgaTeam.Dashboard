@@ -76,6 +76,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Common\FormStateHelper.cs" />
+    <Compile Include="Common\ImageToggleButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Common\NoDoubleClickTreeView.cs">
       <SubType>Component</SubType>
     </Compile>

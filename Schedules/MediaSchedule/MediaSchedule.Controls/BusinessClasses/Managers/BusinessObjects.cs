@@ -62,11 +62,11 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 
 		public void Init()
 		{
+		    PowerPointManager.Init();
 			ListManager.Instance.Load();
 			ThemeManager.Load();
 			SlideSettingsManager.Instance.SettingsChanged += (o, e) => ThemeManager.Load();
 			HelpManager.LoadHelpLinks();
-			PowerPointManager.Init();
 			RibbonTabPageManager = new RibbonTabPageManager(ResourceManager.Instance.TabsConfigFile);
 			BrowserManager.Init(ResourceManager.Instance.BrowserConfigFile);
 

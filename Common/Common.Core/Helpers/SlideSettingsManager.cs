@@ -28,7 +28,8 @@ namespace Asa.Common.Core.Helpers
 			SettingsChanging?.Invoke(this, args);
 			if (args.Cancel) return;
 			SlideSettings = newSettings;
-			powerPointProcessor.SetSlideSettings(SlideSettings);
+		    if (powerPointProcessor.Connect())
+			    powerPointProcessor.SetSlideSettings(SlideSettings);
 			SettingsChanged?.Invoke(this, EventArgs.Empty);
 		}
 

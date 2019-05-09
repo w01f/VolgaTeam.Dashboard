@@ -3,12 +3,13 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using Asa.Bar.App.Authorization;
 using Asa.Bar.App.Configuration;
 using DevComponents.DotNetBar;
 
 namespace Asa.Bar.App.Forms
 {
-	public partial class FormLogin : Form
+	public partial class FormLogin : Form, IFormLogin
 	{
 		private const string ErrorTextFormat = "<span align=\"center\"><font color=\"#ED1C24\">{0}</font></span>";
 
@@ -114,19 +115,6 @@ namespace Asa.Bar.App.Forms
 		{
 			if (e.KeyChar == (char)Keys.Return)
 				OnOKClick(sender, e);
-		}
-	}
-
-	public class LoginEventArgs : EventArgs
-	{
-		public string Login { get; private set; }
-		public string Password { get; private set; }
-		public bool Accepted { get; set; }
-
-		public LoginEventArgs(string login, string password)
-		{
-			Login = login;
-			Password = password;
 		}
 	}
 }

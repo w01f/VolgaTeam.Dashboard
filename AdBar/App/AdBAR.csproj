@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppManager.cs" />
+    <Compile Include="Authorization\LoginEventArgs.cs" />
     <Compile Include="BarItems\BarItemsManager.cs" />
     <Compile Include="BarItems\Enums.cs" />
     <Compile Include="BarItems\ExecutableShortcut.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Authorization\AdBarAuthManager.cs" />
     <Compile Include="Common\LoadAtStartupHelper.cs" />
     <Compile Include="Common\MonitorConfigurationWatcher.cs" />
+    <Compile Include="Configuration\GrayConnectConfiguration.cs" />
     <Compile Include="Configuration\PatchUpdaterConfiguration.cs" />
     <Compile Include="Configuration\MaintenanceConfiguration.cs" />
     <Compile Include="Configuration\SuportEmailConfig.cs" />
@@ -87,17 +89,23 @@
     <Compile Include="Configuration\ResourceManager.cs" />
     <Compile Include="Configuration\SettingsManager.cs" />
     <Compile Include="Configuration\UserSettings.cs" />
+    <Compile Include="Forms\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormFloater.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormFloater.designer.cs">
       <DependentUpon>FormFloater.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormLogin.cs">
+    <Compile Include="Forms\FormLoginGrayConnect.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormLogin.Designer.cs">
-      <DependentUpon>FormLogin.cs</DependentUpon>
+    <Compile Include="Forms\FormLoginGrayConnect.Designer.cs">
+      <DependentUpon>FormLoginGrayConnect.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormMain.cs">
       <SubType>Form</SubType>
@@ -136,6 +144,7 @@
     <Compile Include="Forms\FormSplash.designer.cs">
       <DependentUpon>FormSplash.cs</DependentUpon>
     </Compile>
+    <Compile Include="Authorization\IFormLogin.cs" />
     <Compile Include="Forms\PictureBoxButtonizer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,11 +154,14 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormFloater.resx">
       <DependentUpon>FormFloater.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormLogin.resx">
-      <DependentUpon>FormLogin.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormLoginGrayConnect.resx">
+      <DependentUpon>FormLoginGrayConnect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

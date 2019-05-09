@@ -7,31 +7,38 @@ using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Bar.App.Authorization
 {
-	class AdBarAuthManager : AuthManager
-	{
-		public override void Auth(AuthorizingEventArgs authArgs)
-		{
-			base.Auth(authArgs);
-			if (authArgs.Authorized) return;
-			if (SiteCredentialsManager.Instance.SettingsFile.ExistsLocal())
-				File.Delete(SiteCredentialsManager.Instance.SettingsFile.LocalPath);
-			FormStart.CloseProgress();
-			using (var authForm = new FormLogin())
-			{
-				authForm.SetSiteUrl(authArgs.AuthServer);
-				authForm.Logining += (o, e) =>
-				{
-					e.Accepted = IsAuthorized(authArgs.AuthServer, e.Login, e.Password);
-					if (e.Accepted)
-					{
-						SiteCredentialsManager.Instance.Settings.Login = e.Login;
-						SiteCredentialsManager.Instance.Settings.SetPassword(e.Password);
-						SiteCredentialsManager.Instance.Settings.Save();
-					}
-				};
-				authArgs.Authorized = authForm.ShowDialog() == DialogResult.OK;
-			}
-			FormStart.ShowProgress();
-		}
-	}
+    class AdBarAuthManager : AuthManager
+    {
+        public override void Auth(AuthorizingEventArgs authArgs)
+        {
+            base.Auth(authArgs);
+            if (authArgs.Authorized) return;
+            if (SiteCredentialsManager.Instance.SettingsFile.ExistsLocal())
+                File.Delete(SiteCredentialsManager.Instance.SettingsFile.LocalPath);
+            FormStart.CloseProgress();
+
+            using (var form = AppManager.Instance.Settings.GrayConnectConfig.UseGrayConnect ?
+                (Form)new FormLoginGrayConnect() :
+                new FormLogin())
+            {
+                var formLogin = (IFormLogin)form;
+
+                formLogin.SetSiteUrl(authArgs.AuthServer);
+                formLogin.Logining += (o, e) =>
+                {
+                    e.Accepted = IsAuthorized(authArgs.AuthServer, e.Login, e.Password);
+                    if (e.Accepted)
+                    {
+                        SiteCredentialsManager.Instance.Settings.Login = e.Login;
+                        SiteCredentialsManager.Instance.Settings.SetPassword(e.Password);
+                        SiteCredentialsManager.Instance.Settings.Save();
+                    }
+                };
+
+                authArgs.Authorized = form.ShowDialog() == DialogResult.OK;
+            }
+
+            FormStart.ShowProgress();
+        }
+    }
 }

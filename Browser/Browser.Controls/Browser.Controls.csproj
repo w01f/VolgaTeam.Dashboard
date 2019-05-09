@@ -89,6 +89,7 @@
     <Compile Include="BusinessClasses\Objects\LinkViewContent\VideoContent.cs" />
     <Compile Include="BusinessClasses\Objects\LinkViewContent\ViewContent.cs" />
     <Compile Include="BusinessClasses\Objects\LinkViewContent\WordContent.cs" />
+    <Compile Include="BusinessClasses\Objects\SingleSiteSettings.cs" />
     <Compile Include="BusinessClasses\Objects\SiteSettings.cs" />
     <Compile Include="Controls\ISiteContainer.cs" />
     <Compile Include="Controls\WallbinSiteControl.cs">

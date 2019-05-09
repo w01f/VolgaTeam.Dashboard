@@ -1,83 +1,85 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Xml;
-using Asa.Browser.Single.Properties;
+using Asa.Browser.Controls.BusinessClasses.Enums;
+using Asa.Browser.Controls.BusinessClasses.Objects;
 
 namespace Asa.Browser.Single.Configuration
 {
-	class AppSettingsManager
-	{
-		public string BaseUrl { get; private set; }
-		public bool EnableMenu { get; private set; }
-		public bool EnableScroll { get; private set; }
+    class AppSettingsManager
+    {
+        public string AppFileName { get; }
+        public string AppFolderPath { get; }
+        public Icon FormIcon { get; private set; }
+        public string FormText { get; private set; }
 
-		public Image SplashLogo { get; private set; }
-		public Image FloaterLogo { get; private set; }
-		public Icon FormIcon { get; private set; }
-		public string FormText { get; private set; }
-		public string StatusBarTitle { get; private set; }
+        public Color? AccentColor { get; set; }
+        public Color? StatusBarTextColor { get; set; }
 
-		public Color? AccentColor { get; set; }
-		public Color? StatusBarTextColor { get; set; }
+        public List<SingleSiteSettings> Sites { get; } = new List<SingleSiteSettings>();
 
-		public static AppSettingsManager Instance { get; } = new AppSettingsManager();
+        public static AppSettingsManager Instance { get; } = new AppSettingsManager();
 
-		private AppSettingsManager() { }
+        private AppSettingsManager()
+        {
+            AppFileName = Process.GetCurrentProcess().MainModule.FileName;
+            AppFolderPath = Path.GetDirectoryName(AppFileName);
+        }
 
-		public void LoadSettings()
-		{
-			LoadMainSettings();
-			LoadStyleSettings();
-		}
+        public void LoadSettings()
+        {
+            var iconPath = Path.Combine(AppFolderPath, "icon.ico");
+            FormIcon = File.Exists(iconPath) ? new Icon(iconPath) : null;
 
-		private void LoadMainSettings()
-		{
-			EnableMenu = true;
-			EnableScroll = true;
+            var settingsFilePath = Path.ChangeExtension(AppFileName, "xml");
+            if (!File.Exists(settingsFilePath)) return;
+            var document = new XmlDocument();
+            document.Load(settingsFilePath);
 
-			var appFileName = Process.GetCurrentProcess().MainModule.FileName;
-			var appFolderPath = Path.GetDirectoryName(appFileName);
-			var settingsFilePath = Path.ChangeExtension(appFileName, "txt");
-			if (!File.Exists(settingsFilePath)) return;
-			var settingsLines = File.ReadAllLines(settingsFilePath);
-			if (!settingsLines.Any()) return;
-			BaseUrl = settingsLines.ElementAtOrDefault(0);
-			EnableMenu = !(settingsLines.ElementAtOrDefault(1) ?? String.Empty).Contains("nomenu");
-			EnableScroll = (settingsLines.ElementAtOrDefault(1) ?? String.Empty).Contains("noscroll");
+            FormText = document.SelectSingleNode(@"//Root/Title")?.InnerText;
 
-			var splashLogoPath = Path.Combine(appFolderPath, "splash.png");
-			SplashLogo = File.Exists(splashLogoPath) ? Image.FromFile(splashLogoPath) : Resources.ProgressLogo;
+            var colorValue = document.SelectSingleNode(@"//Root/Style/AccentColor")?.InnerText;
+            if (!String.IsNullOrEmpty(colorValue))
+                AccentColor = ColorTranslator.FromHtml(colorValue);
 
-			var floaterLogoPath = Path.Combine(appFolderPath, "floater.png");
-			FloaterLogo = File.Exists(floaterLogoPath) ? Image.FromFile(floaterLogoPath) : Resources.FloaterLogo;
+            colorValue = document.SelectSingleNode(@"//Root/Style/StatusBarTextColor")?.InnerText;
+            if (!String.IsNullOrEmpty(colorValue))
+                StatusBarTextColor = ColorTranslator.FromHtml(colorValue);
 
-			var iconPath = Path.Combine(appFolderPath, "icon.ico");
-			FormIcon = File.Exists(iconPath) ? new Icon(iconPath) : null;
-		}
+            foreach (var browserNode in document.SelectNodes(@"//Root/Browser").OfType<XmlNode>())
+            {
+                var browserId = browserNode.SelectSingleNode(@"./Id")?.InnerText;
+                var statusBarTitle = browserNode.SelectSingleNode(@"./Footer")?.InnerText ?? "Sales Cloud";
 
-		private void LoadStyleSettings()
-		{
-			var appFileName = Process.GetCurrentProcess().MainModule.FileName;
-			var appFolderPath = Path.GetDirectoryName(appFileName);
-			var settingsFilePath = Path.Combine(appFolderPath, "eo_settings.xml");
-			if (!File.Exists(settingsFilePath)) return;
+                foreach (var siteNode in browserNode.SelectNodes(@"./Site").OfType<XmlNode>())
+                {
+                    var siteSettings = new SingleSiteSettings();
 
-			var document = new XmlDocument();
-			document.Load(settingsFilePath);
+                    siteSettings.BrowserId = browserId;
+                    siteSettings.StatusBarTitle = statusBarTitle;
 
-			FormText = document.SelectSingleNode(@"//Config/Title")?.InnerText;
-			StatusBarTitle = document.SelectSingleNode(@"//Config/Footer")?.InnerText ?? "Sales Browser";
-
-			var colorValue = document.SelectSingleNode(@"//Config/Style/AccentColor")?.InnerText;
-			if (!String.IsNullOrEmpty(colorValue))
-				AccentColor = ColorTranslator.FromHtml(colorValue);
-
-			colorValue = document.SelectSingleNode(@"//Config/Style/StatusBarTextColor")?.InnerText;
-			if (!String.IsNullOrEmpty(colorValue))
-				StatusBarTextColor = ColorTranslator.FromHtml(colorValue);
-		}
-	}
+                    switch (siteNode.SelectSingleNode("./Type")?.InnerText.ToLower())
+                    {
+                        case "website":
+                            siteSettings.SiteType = SiteType.SimpleSite;
+                            break;
+                        case "salescloud":
+                            siteSettings.SiteType = SiteType.SalesCloud;
+                            break;
+                        default:
+                            siteSettings.SiteType = SiteType.SalesCloud;
+                            break;
+                    }
+                    siteSettings.BaseUrl = siteNode.SelectSingleNode("./Url")?.InnerText;
+                    siteSettings.Title = siteNode.SelectSingleNode("./ComboName")?.InnerText ?? siteSettings.BaseUrl;
+                    if (!String.IsNullOrEmpty(siteSettings.BaseUrl))
+                        Sites.Add(siteSettings);
+                }
+            }
+        }
+    }
 }

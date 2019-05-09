@@ -8,45 +8,45 @@ namespace Asa.Media.LegacyConverter.Converters
 			this Business.Media.Entities.NonPersistent.Calendar.MediaCalendar target,
 			Legacy.Common.Entities.Calendar.BaseCalendar source)
 		{
-			target.Days.Clear();
-			foreach (var oldCalendarDay in source.Days)
-			{
-				Business.Calendar.Entities.NonPersistent.CalendarDay day;
-				if (target.Schedule.Settings.MondayBased)
-					day = new Business.Calendar.Entities.NonPersistent.CalendarDayMondayBased(target);
-				else
-					day = new Business.Calendar.Entities.NonPersistent.CalendarDaySundayBased(target);
-				day.ImportData(oldCalendarDay);
-				target.Days.Add(day);
-			}
+			//target.Days.Clear();
+			//foreach (var oldCalendarDay in source.Days)
+			//{
+			//	Business.Calendar.Entities.NonPersistent.CalendarDay day;
+			//	if (target.Schedule.Settings.MondayBased)
+			//		day = new Business.Calendar.Entities.NonPersistent.CalendarDayMondayBased(target);
+			//	else
+			//		day = new Business.Calendar.Entities.NonPersistent.CalendarDaySundayBased(target);
+			//	day.ImportData(oldCalendarDay);
+			//	target.Days.Add(day);
+			//}
 
-			target.Months.Clear();
-			foreach (var oldCalendarMonths in source.Months)
-			{
-				Business.Calendar.Entities.NonPersistent.CalendarMonth month;
-				if (target.Schedule.Settings.MondayBased)
-					month = new Business.Media.Entities.NonPersistent.Calendar.CalendarMonthMediaMondayBased(target);
-				else
-					month = new Business.Media.Entities.NonPersistent.Calendar.CalendarMonthMediaSundayBased(target);
-				month.ImportData(oldCalendarMonths);
-				target.Months.Add(month);
-			}
+			//target.Months.Clear();
+			//foreach (var oldCalendarMonths in source.Months)
+			//{
+			//	Business.Calendar.Entities.NonPersistent.CalendarMonth month;
+			//	if (target.Schedule.Settings.MondayBased)
+			//		month = new Business.Media.Entities.NonPersistent.Calendar.CalendarMonthMediaMondayBased(target);
+			//	else
+			//		month = new Business.Media.Entities.NonPersistent.Calendar.CalendarMonthMediaSundayBased(target);
+			//	month.ImportData(oldCalendarMonths);
+			//	target.Months.Add(month);
+			//}
 
-			target.Notes.Clear();
-			foreach (var oldNote in source.Notes)
-			{
-				Business.Calendar.Entities.NonPersistent.CalendarNote note;
-				if (target is Business.Media.Entities.NonPersistent.Calendar.BroadcastCalendar)
-					note = new Business.Media.Entities.NonPersistent.Calendar.MediaDataNote((Business.Media.Entities.NonPersistent.Calendar.BroadcastCalendar)target);
-				else
-					note = new Business.Calendar.Entities.NonPersistent.CommonCalendarNote(target);
-				note.ImportData(oldNote);
-				target.Notes.Add(note);
-			}
+			//target.Notes.Clear();
+			//foreach (var oldNote in source.Notes)
+			//{
+			//	Business.Calendar.Entities.NonPersistent.CalendarNote note;
+			//	if (target is Business.Media.Entities.NonPersistent.Calendar.BroadcastCalendar)
+			//		note = new Business.Media.Entities.NonPersistent.Calendar.MediaDataNote((Business.Media.Entities.NonPersistent.Calendar.BroadcastCalendar)target);
+			//	else
+			//		note = new Business.Calendar.Entities.NonPersistent.CommonCalendarNote(target);
+			//	note.ImportData(oldNote);
+			//	target.Notes.Add(note);
+			//}
 
-			target.UpdateDaysCollection();
-			target.UpdateMonthCollection();
-			target.UpdateNotesCollection();
+			//target.UpdateDaysCollection();
+			//target.UpdateMonthCollection();
+			//target.UpdateNotesCollection();
 		}
 
 		public static void ImportData(

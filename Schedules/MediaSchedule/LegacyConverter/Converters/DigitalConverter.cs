@@ -102,7 +102,7 @@ namespace Asa.Media.LegacyConverter.Converters
 			target.SubCategory = source.SubCategory;
 			target.Name = source.Name;
 			target.Info = source.Info;
-			target.Comments = source.Comments;
+			//target.Comments = source.Comments;
 			target.UseFormula = source.UseFormula;
 			target.Rate = source.Rate;
 			target.Impressions = source.Impressions;

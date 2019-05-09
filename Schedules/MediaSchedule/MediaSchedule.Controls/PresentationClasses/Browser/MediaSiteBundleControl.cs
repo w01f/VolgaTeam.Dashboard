@@ -24,8 +24,6 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 
 		public MediaSiteBundleControl(BrowserContentControl browserControl)
 		{
-			buttonItemFloater.Visible = false;
-
 			_browserControl = browserControl;
 
 			var splashLogoFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, String.Format("eo_splash_{0}.png", _browserControl.BrowserSettings.Id));

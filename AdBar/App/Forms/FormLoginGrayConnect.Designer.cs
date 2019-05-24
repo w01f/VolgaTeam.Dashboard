@@ -105,7 +105,7 @@
             this.labelXUserDescription.Name = "labelXUserDescription";
             this.labelXUserDescription.Size = new System.Drawing.Size(650, 19);
             this.labelXUserDescription.TabIndex = 9;
-            this.labelXUserDescription.Text = "<font color=\"#8C8C8C\">(Type your email address here)</font>";
+            this.labelXUserDescription.Text = "<font color=\"#8C8C8C\">{0}</font>";
             // 
             // labelXUserTitle
             // 
@@ -119,9 +119,9 @@
             this.labelXUserTitle.ForeColor = System.Drawing.Color.Black;
             this.labelXUserTitle.Location = new System.Drawing.Point(82, 104);
             this.labelXUserTitle.Name = "labelXUserTitle";
-            this.labelXUserTitle.Size = new System.Drawing.Size(48, 19);
+            this.labelXUserTitle.Size = new System.Drawing.Size(23, 19);
             this.labelXUserTitle.TabIndex = 7;
-            this.labelXUserTitle.Text = "Email:";
+            this.labelXUserTitle.Text = "{0}";
             // 
             // textBoxXUser
             // 
@@ -156,7 +156,7 @@
             this.labelXPasswordDescription.Name = "labelXPasswordDescription";
             this.labelXPasswordDescription.Size = new System.Drawing.Size(650, 19);
             this.labelXPasswordDescription.TabIndex = 13;
-            this.labelXPasswordDescription.Text = "<font color=\"#8C8C8C\">(Type your account password here)</font>";
+            this.labelXPasswordDescription.Text = "<font color=\"#8C8C8C\">{0}</font>";
             this.labelXPasswordDescription.UseMnemonic = false;
             // 
             // labelXPasswordTitle
@@ -171,9 +171,9 @@
             this.labelXPasswordTitle.ForeColor = System.Drawing.Color.Black;
             this.labelXPasswordTitle.Location = new System.Drawing.Point(82, 201);
             this.labelXPasswordTitle.Name = "labelXPasswordTitle";
-            this.labelXPasswordTitle.Size = new System.Drawing.Size(78, 19);
+            this.labelXPasswordTitle.Size = new System.Drawing.Size(23, 19);
             this.labelXPasswordTitle.TabIndex = 11;
-            this.labelXPasswordTitle.Text = "Password:";
+            this.labelXPasswordTitle.Text = "{0}";
             // 
             // buttonXOK
             // 
@@ -325,7 +325,7 @@
             this.buttonXMainSite.Size = new System.Drawing.Size(110, 33);
             this.buttonXMainSite.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonXMainSite.TabIndex = 21;
-            this.buttonXMainSite.Text = "GraySales.tv";
+            this.buttonXMainSite.Text = "{0}";
             this.buttonXMainSite.Click += new System.EventHandler(this.OnMainSiteClick);
             // 
             // buttonXGrayConnect
@@ -338,7 +338,7 @@
             this.buttonXGrayConnect.Size = new System.Drawing.Size(110, 33);
             this.buttonXGrayConnect.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonXGrayConnect.TabIndex = 22;
-            this.buttonXGrayConnect.Text = "Gray Connect";
+            this.buttonXGrayConnect.Text = "{0}";
             this.buttonXGrayConnect.Click += new System.EventHandler(this.OnGrayConnectClick);
             // 
             // FormLoginGrayConnect

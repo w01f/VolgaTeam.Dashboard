@@ -28,6 +28,13 @@ namespace Asa.Bar.App.Forms
             }
 
             labelXMainTitle.Text = String.Format(labelXMainTitle.Text, AppManager.Instance.Settings.GrayConnectConfig.FormTitle);
+
+            labelXUserTitle.Text = String.Format(labelXUserTitle.Text, AppManager.Instance.Settings.GrayConnectConfig.LoginTitle);
+            labelXUserDescription.Text = String.Format(labelXUserDescription.Text, AppManager.Instance.Settings.GrayConnectConfig.LoginDescription);
+
+            labelXPasswordTitle.Text = String.Format(labelXPasswordTitle.Text, AppManager.Instance.Settings.GrayConnectConfig.PasswordTitle);
+            labelXPasswordDescription.Text = String.Format(labelXPasswordDescription.Text, AppManager.Instance.Settings.GrayConnectConfig.PasswordDescription);
+
             labelXLoginStepsDescription.Text = String.Format(labelXLoginStepsDescription.Text, 
                 AppManager.Instance.Settings.GrayConnectConfig.Step1Title, 
                 AppManager.Instance.Settings.GrayConnectConfig.Step1Url, 
@@ -41,6 +48,12 @@ namespace Asa.Bar.App.Forms
                 AppManager.Instance.Settings.GrayConnectConfig.Step4Title, 
                 AppManager.Instance.Settings.GrayConnectConfig.Step4Url, 
                 AppManager.Instance.Settings.GrayConnectConfig.Step4UrlDescription);
+
+            buttonXMainSite.Visible = AppManager.Instance.Settings.GrayConnectConfig.MainSiteVisible;
+            buttonXMainSite.Text = String.Format(buttonXMainSite.Text, AppManager.Instance.Settings.GrayConnectConfig.MainSiteTitle);
+
+            buttonXGrayConnect.Visible = AppManager.Instance.Settings.GrayConnectConfig.GrayConnectVisible;
+            buttonXGrayConnect.Text = String.Format(buttonXGrayConnect.Text, AppManager.Instance.Settings.GrayConnectConfig.GrayConnectTitle);
 
             if ((CreateGraphics()).DpiX > 96)
             {

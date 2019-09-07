@@ -13,11 +13,13 @@ namespace Asa.Media.Single.TV
 		/// The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		private static void Main()
+		static void Main(string[] args)
 		{
+			var force = args != null && args.Length > 0 && args[0].ToLower().Equals("force");
+
 			bool firstInstance;
 			var mutex = new Mutex(false, "Local\\TVSellerApplication", out firstInstance);
-			if (firstInstance)
+			if (firstInstance || force)
 			{
 				AppDomain.CurrentDomain.AssemblyResolve += SharedAssemblyHelper.OnAssemblyResolve;
 				Application.EnableVisualStyles();

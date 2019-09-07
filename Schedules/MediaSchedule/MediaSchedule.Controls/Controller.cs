@@ -34,7 +34,7 @@ namespace Asa.Media.Controls
 		public LayoutControlGroup MainPanelContainer { get; set; }
 		public LayoutControlItem MainPanel { get; set; }
 		public LayoutControlItem EmptyPanel { get; set; }
-		public SuperTooltip Supertip { get; set; }
+		public SuperTooltip SuperTip { get; set; }
 		public RibbonControl Ribbon { get; set; }
 		public RibbonTabItem TabHome { get; set; }
 		public RibbonTabItem TabProgramSchedule { get; set; }
@@ -48,19 +48,14 @@ namespace Asa.Media.Controls
 		public RibbonTabItem TabOptions { get; set; }
 		public RibbonTabItem TabSolutions { get; set; }
 		public RibbonTabItem TabSlides { get; set; }
-		public List<RibbonTabItem> BrowserTabs { get; } = new List<RibbonTabItem>();
 
 		private Controller()
 		{
 			ContentController = new ContentController();
 		}
 
-		public async Task InitBusinessObjects()
+		public void InitBusinessObjects()
 		{
-			await AppProfileManager.Instance.LoadProfile();
-
-			await ResourceManager.Instance.Load();
-
 			MasterWizardManager.Instance.Load();
 
 			BusinessObjects.Instance.Init();
@@ -238,27 +233,27 @@ namespace Asa.Media.Controls
 				MenuOutputPdfButton.Visible = false;
 
 				((RibbonBar)ProgramSchedulePowerPoint.ContainerControl).Visible = false;
-				Supertip.SetSuperTooltip(ProgramScheduleTheme, selectorToolTip);
+				SuperTip.SetSuperTooltip(ProgramScheduleTheme, selectorToolTip);
 				ProgramScheduleTheme.Click -= OnThemeClick;
 				ProgramScheduleTheme.Click += OnThemeClick;
 
 				((RibbonBar)DigitalProductPowerPoint.ContainerControl).Visible = false;
-				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
+				SuperTip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
 				DigitalProductTheme.Click -= OnThemeClick;
 				DigitalProductTheme.Click += OnThemeClick;
 
 				((RibbonBar)SnapshotPowerPoint.ContainerControl).Visible = false;
-				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
+				SuperTip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
 				SnapshotTheme.Click -= OnThemeClick;
 				SnapshotTheme.Click += OnThemeClick;
 
 				((RibbonBar)OptionsPowerPoint.ContainerControl).Visible = false;
-				Supertip.SetSuperTooltip(OptionsTheme, selectorToolTip);
+				SuperTip.SetSuperTooltip(OptionsTheme, selectorToolTip);
 				OptionsTheme.Click -= OnThemeClick;
 				OptionsTheme.Click += OnThemeClick;
 
 				((RibbonBar)SolutionsPowerPoint.ContainerControl).Visible = false;
-				Supertip.SetSuperTooltip(SolutionsTheme, selectorToolTip);
+				SuperTip.SetSuperTooltip(SolutionsTheme, selectorToolTip);
 				SolutionsTheme.Click -= OnThemeClick;
 				SolutionsTheme.Click += OnThemeClick;
 			}
@@ -279,11 +274,11 @@ namespace Asa.Media.Controls
 				SolutionsTheme.Click -= OnThemeClick;
 
 				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
-				Supertip.SetSuperTooltip(ProgramScheduleTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(OptionsTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(SolutionsTheme, selectorToolTip);
+				SuperTip.SetSuperTooltip(ProgramScheduleTheme, selectorToolTip);
+				SuperTip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
+				SuperTip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
+				SuperTip.SetSuperTooltip(OptionsTheme, selectorToolTip);
+				SuperTip.SetSuperTooltip(SolutionsTheme, selectorToolTip);
 			}
 		}
 
@@ -319,7 +314,7 @@ namespace Asa.Media.Controls
 						Image = Business.Online.Dictionaries.ListManager.Instance.SpecialLinksGroupLogo,
 						AutoExpandOnClick = true
 					};
-					Supertip.SetSuperTooltip(containerButton, new SuperTooltipInfo("Links", "", "Helpful schedule building Links and resources", null, null, eTooltipColor.Gray));
+					SuperTip.SetSuperTooltip(containerButton, new SuperTooltipInfo("Links", "", "Helpful schedule building Links and resources", null, null, eTooltipColor.Gray));
 					ribbonBar.Items.Add(containerButton);
 					foreach (var specialLinkButton in Business.Online.Dictionaries.ListManager.Instance.SpecialLinkButtons)
 					{

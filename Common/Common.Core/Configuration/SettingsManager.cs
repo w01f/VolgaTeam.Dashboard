@@ -14,7 +14,6 @@ namespace Asa.Common.Core.Configuration
 		{
 			SelectedWizard = String.Empty;
 			DashboardName = "adSALESapps.com";
-			DashboardCode = String.Empty;
 		}
 
 		public static SettingsManager Instance
@@ -29,12 +28,9 @@ namespace Asa.Common.Core.Configuration
 
 		public string SelectedWizard { get; set; }
 		public string DashboardName { get; set; }
-		public string DashboardCode { get; set; }
 
 		public void LoadSharedSettings()
 		{
-			LoadDashdoardCode();
-
 			if (ResourceManager.Instance.SharedSettingsFile.ExistsLocal())
 			{
 				var document = new XmlDocument();
@@ -69,17 +65,6 @@ namespace Asa.Common.Core.Configuration
 			{
 				sw.Write(xml);
 				sw.Flush();
-			}
-		}
-
-		private void LoadDashdoardCode()
-		{
-			var document = new XmlDocument();
-			document.Load(ResourceManager.Instance.DashboardCodeFile.LocalPath);
-			var node = document.SelectSingleNode(@"/Settings/dashboard/DashboardCode");
-			if (node != null)
-			{
-				DashboardCode = node.InnerText.Trim().ToLower();
 			}
 		}
 	}

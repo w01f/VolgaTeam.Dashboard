@@ -10,109 +10,148 @@ using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Common.Core.Helpers
 {
-	public class AppProfileManager
-	{
-		public const string UserDataFolderName = "user_data";
-		public const string SavedFilesFolderName = "saved_files";
-		public const string SharedFolderName = "Shared";
+    public class AppProfileManager
+    {
+        public const string UserDataFolderName = "user_data";
+        public const string SavedFilesFolderName = "saved_files";
+        public const string SharedFolderName = "Shared";
 
-		public AppTypeEnum AppType { get; private set; }
-		private Guid _appID;
-		private StorageFile _localAppIdFile;
+        public AppTypeEnum AppType { get; private set; }
+        private Guid _appID;
+        private StorageFile _localAppIdFile;
 
-		public static AppProfileManager Instance { get; } = new AppProfileManager();
+        public static AppProfileManager Instance { get; } = new AppProfileManager();
 
-		public string AppName
-		{
-			get
-			{
-				switch (AppType)
-				{
-					case AppTypeEnum.AdBar:
-						return "app_adsalesapps";
-					case AppTypeEnum.Dashboard:
-						return "app_6ms";
-					case AppTypeEnum.TVSchedule:
-						return "app_sellerpoint_tv";
-					case AppTypeEnum.RadioSchedule:
-						return "app_sellerpoint_radio";
-					case AppTypeEnum.PrintSchedule:
-						return "app_sellerpoint_np";
-				}
-				throw new InvalidEnumArgumentException("Storage Type Undefined");
-			}
-		}
+        private string ProfileName => String.Format("AppID-{0}", _appID);
 
-		private string ProfileName => String.Format("AppID-{0}", _appID);
+        private StorageDirectory ProfilesRootFolder { get; set; }
+        private StorageDirectory ProfileFolder { get; set; }
+        private StorageDirectory AppDataFolder { get; set; }
 
-		public StorageDirectory ProfilesRootFolder { get; private set; }
-		public StorageDirectory ProfileFolder { get; private set; }
-		public StorageDirectory SharedFolder { get; private set; }
-		public StorageDirectory UserDataFolder { get; private set; }
-		public StorageDirectory AppSaveFolder { get; private set; }
-		public StorageDirectory AppDataFolder { get; private set; }
+        public StorageDirectory SharedFolder { get; private set; }
+        public StorageDirectory UserDataFolder { get; private set; }
+        public StorageDirectory AppSaveFolder { get; private set; }
 
-		private AppProfileManager() { }
+        private string AppName
+        {
+            get
+            {
+                switch (AppType)
+                {
+                    case AppTypeEnum.AdBar:
+                        return "app_adsalesapps";
+                    case AppTypeEnum.Dashboard:
+                        return "app_6ms";
+                    case AppTypeEnum.TVSchedule:
+                        return "app_sellerpoint_tv";
+                    case AppTypeEnum.RadioSchedule:
+                        return "app_sellerpoint_radio";
+                    case AppTypeEnum.PrintSchedule:
+                        return "app_sellerpoint_np";
+                }
+                throw new InvalidEnumArgumentException("Storage Type Undefined");
+            }
+        }
 
-		public void InitApplication(AppTypeEnum appType)
-		{
-			AppType = appType;
-		}
+        public string AppSubStorageIndependentFolderName => AppName;
 
-		public async Task LoadProfile(bool useremoteConnection = true)
-		{
-			_localAppIdFile = new StorageFile(new[] { String.Format("{0}_app_id.xml", AppName) });
+        public string AppSubStorageDependentFolderName
+        {
+            get
+            {
+                var suffix = !string.IsNullOrEmpty(SubStorageName) ? "_clients" : string.Empty;
 
-			_appID = Guid.Empty;
-			if (File.Exists(_localAppIdFile.LocalPath))
-			{
-				var document = new XmlDocument();
-				document.Load(_localAppIdFile.LocalPath);
+                switch (AppType)
+                {
+                    case AppTypeEnum.AdBar:
+                        return $"app_adsalesapps{suffix}";
+                    case AppTypeEnum.Dashboard:
+                        return $"app_6ms{suffix}";
+                    case AppTypeEnum.TVSchedule:
+                        return $"app_sellerpoint_tv{suffix}";
+                    case AppTypeEnum.RadioSchedule:
+                        return $"app_sellerpoint_radio{suffix}";
+                    case AppTypeEnum.PrintSchedule:
+                        return $"app_sellerpoint_np{suffix}";
+                }
+                throw new InvalidEnumArgumentException("Storage Type Undefined");
+            }
+        }
 
-				var node = document.SelectSingleNode(@"/AppID");
-				if (!string.IsNullOrEmpty(node?.InnerText))
-					_appID = new Guid(node.InnerText);
-			}
+        public string SubStorageName { get; set; }
 
-			if (_appID.Equals(Guid.Empty))
-				CreateProfile();
+        private AppProfileManager() { }
 
-			ProfilesRootFolder = new StorageDirectory(new[] { FileStorageManager.OutgoingFolderName, AppName });
-			if (!await ProfilesRootFolder.Exists(useremoteConnection))
-				await StorageDirectory.CreateSubFolder(new[] { FileStorageManager.OutgoingFolderName }, AppName, useremoteConnection);
+        public void InitApplication(AppTypeEnum appType)
+        {
+            AppType = appType;
+            _localAppIdFile = new StorageFile(new[] { String.Format("{0}_app_id.xml", AppName) });
+        }
 
-			ProfileFolder = new StorageDirectory(ProfilesRootFolder.RelativePathParts.Merge(ProfileName));
-			if (!await ProfileFolder.Exists(useremoteConnection))
-				await StorageDirectory.CreateSubFolder(ProfilesRootFolder.RelativePathParts, ProfileName, useremoteConnection);
+        public async Task LoadProfile(bool useRemoteConnection = true)
+        {
+            _appID = Guid.Empty;
+            if (File.Exists(_localAppIdFile.LocalPath))
+            {
+                var document = new XmlDocument();
+                document.Load(_localAppIdFile.LocalPath);
 
-			SharedFolder = new StorageDirectory(ProfilesRootFolder.RelativePathParts.Merge(SharedFolderName));
-			if (!await ProfileFolder.Exists(useremoteConnection))
-				await StorageDirectory.CreateSubFolder(ProfilesRootFolder.RelativePathParts, SharedFolderName, useremoteConnection);
+                var node = document.SelectSingleNode(@"//Config/AppID");
+                if (!string.IsNullOrEmpty(node?.InnerText))
+                    _appID = new Guid(node.InnerText);
 
-			UserDataFolder = new StorageDirectory(ProfileFolder.RelativePathParts.Merge(new[] { UserDataFolderName }));
-			if (!await UserDataFolder.Exists(useremoteConnection))
-				await StorageDirectory.CreateSubFolder(ProfileFolder.RelativePathParts, UserDataFolderName, useremoteConnection);
+                SubStorageName = document.SelectSingleNode(@"//Config/SubStorageName")?.InnerText;
+            }
 
-			AppSaveFolder = new StorageDirectory(ProfileFolder.RelativePathParts.Merge(SavedFilesFolderName));
-			if (!await AppSaveFolder.Exists(useremoteConnection))
-				await StorageDirectory.CreateSubFolder(ProfileFolder.RelativePathParts, SavedFilesFolderName, useremoteConnection);
+            if (_appID.Equals(Guid.Empty))
+                SaveProfile();
 
-			AppDataFolder = new StorageDirectory(new[] { FileStorageManager.IncomingFolderName, AppName, "Data" });
-		}
+            ProfilesRootFolder = new StorageDirectory(new[] { FileStorageManager.OutgoingFolderName, AppName });
+            if (!await ProfilesRootFolder.Exists(useRemoteConnection))
+                await StorageDirectory.CreateSubFolder(new[] { FileStorageManager.OutgoingFolderName }, AppName, useRemoteConnection);
 
-		private void CreateProfile()
-		{
-			_appID = Guid.NewGuid();
-			var xml = new StringBuilder();
+            ProfileFolder = new StorageDirectory(ProfilesRootFolder.RelativePathParts.Merge(ProfileName));
+            if (!await ProfileFolder.Exists(useRemoteConnection))
+                await StorageDirectory.CreateSubFolder(ProfilesRootFolder.RelativePathParts, ProfileName, useRemoteConnection);
 
-			xml.AppendLine(@"<AppID>" + _appID + @"</AppID>");
+            SharedFolder = new StorageDirectory(ProfilesRootFolder.RelativePathParts.Merge(SharedFolderName));
+            if (!await ProfileFolder.Exists(useRemoteConnection))
+                await StorageDirectory.CreateSubFolder(ProfilesRootFolder.RelativePathParts, SharedFolderName, useRemoteConnection);
 
-			_localAppIdFile.AllocateParentFolder();
-			using (var sw = new StreamWriter(_localAppIdFile.LocalPath, false))
-			{
-				sw.Write(xml);
-				sw.Flush();
-			}
-		}
-	}
+            UserDataFolder = new StorageDirectory(ProfileFolder.RelativePathParts.Merge(new[] { UserDataFolderName }));
+            if (!await UserDataFolder.Exists(useRemoteConnection))
+                await StorageDirectory.CreateSubFolder(ProfileFolder.RelativePathParts, UserDataFolderName, useRemoteConnection);
+
+            AppSaveFolder = new StorageDirectory(ProfileFolder.RelativePathParts.Merge(SavedFilesFolderName));
+            if (!await AppSaveFolder.Exists(useRemoteConnection))
+                await StorageDirectory.CreateSubFolder(ProfileFolder.RelativePathParts, SavedFilesFolderName, useRemoteConnection);
+
+            AppDataFolder = new StorageDirectory(new[] { FileStorageManager.IncomingFolderName, AppName, "Data" });
+        }
+
+        public void SaveProfile()
+        {
+            if (_appID == Guid.Empty)
+                _appID = Guid.NewGuid();
+            
+            var xml = new StringBuilder();
+
+            xml.AppendLine(@"<Config>");
+
+            xml.AppendLine(@"<AppID>" + _appID + @"</AppID>");
+
+            if (!String.IsNullOrEmpty(SubStorageName))
+                xml.AppendLine(@"<SubStorageName>" + SubStorageName + @"</SubStorageName>");
+
+            xml.AppendLine(@"</Config>");
+
+            _localAppIdFile.AllocateParentFolder();
+
+            using (var sw = new StreamWriter(_localAppIdFile.LocalPath, false))
+            {
+                sw.Write(xml);
+                sw.Flush();
+            }
+        }
+    }
 }

@@ -72,14 +72,17 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="EO.Base, Version=19.1.25.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EO.WebBrowser.19.1.25\lib\EO.Base.dll</HintPath>
+    <Reference Include="EO.Base, Version=19.2.42.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EO.WebBrowser.19.2.42\lib\EO.Base.dll</HintPath>
     </Reference>
-    <Reference Include="EO.WebBrowser, Version=19.1.25.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EO.WebBrowser.19.1.25\lib\EO.WebBrowser.dll</HintPath>
+    <Reference Include="EO.WebBrowser, Version=19.2.42.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EO.WebBrowser.19.2.42\lib\EO.WebBrowser.dll</HintPath>
     </Reference>
-    <Reference Include="EO.WebEngine, Version=19.1.25.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EO.WebBrowser.19.1.25\lib\EO.WebEngine.dll</HintPath>
+    <Reference Include="EO.WebBrowser.WinForm, Version=19.2.42.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EO.WebBrowser.WinForm.19.2.42\lib\EO.WebBrowser.WinForm.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.WebEngine, Version=19.2.42.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EO.WebBrowser.19.2.42\lib\EO.WebEngine.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic">
       <Private>True</Private>

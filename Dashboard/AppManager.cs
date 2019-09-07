@@ -92,7 +92,7 @@ namespace Asa.Dashboard
 
 			FormStart.ShowProgress();
 			FormStart.SetTitle("Connecting to adSALEScloud…");
-			var thread = new Thread(() => AsyncHelper.RunSync(() => FileStorageManager.Instance.Init()));
+			var thread = new Thread(() => AsyncHelper.RunSync(() => FileStorageManager.Instance.InitStorage()));
 			thread.Start();
 			while (thread.IsAlive)
 				Application.DoEvents();
@@ -120,7 +120,7 @@ namespace Asa.Dashboard
 				thread = new Thread(() =>
 				{
 					AsyncHelper.RunSync(Init);
-					AsyncHelper.RunSync(FileStorageManager.Instance.FixDataState);
+					AsyncHelper.RunSync(FileStorageManager.Instance.FixCommonDataState);
 				});
 				thread.Start();
 				while (thread.IsAlive)

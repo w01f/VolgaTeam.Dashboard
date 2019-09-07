@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -18,7 +17,6 @@ using Asa.Schedules.Common.Controls.ContentEditors.Enums;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
 using DevComponents.DotNetBar;
 using DevExpress.Skins;
-using DevExpress.XtraEditors;
 using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Media.Controls.PresentationClasses.SettingsControls

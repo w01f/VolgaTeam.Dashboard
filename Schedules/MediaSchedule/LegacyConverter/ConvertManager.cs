@@ -24,7 +24,7 @@ namespace Asa.Media.LegacyConverter
 			AppProfileManager.Instance.InitApplication(MediaMetaData.Instance.AppType);
 			FileStorageManager.Instance.InitLight(AppSettingsManager.Instance.DataFolderName);
 
-			AsyncHelper.RunSync(ResourceManager.Instance.Load);
+			AsyncHelper.RunSync(ResourceManager.Instance.LoadSubStorageIndependentResources);
 
 			AsyncHelper.RunSync(() => AppProfileManager.Instance.LoadProfile(false));
 

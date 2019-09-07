@@ -54,8 +54,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="ImageListView">
-      <HintPath>..\..\packages\ImageListView.11.1.0\lib\net35\ImageListView.dll</HintPath>
+    <Reference Include="ImageListView, Version=13.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ImageListView.13.4.0\lib\net35\ImageListView.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -67,9 +67,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WPFThumbnailExtractor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ImageListView.11.1.0\lib\net35\WPFThumbnailExtractor.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ComboBoxListEdit.cs">

@@ -201,7 +201,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			Controller.Instance.DigitalProductDelete.Click += OnDeleteProduct;
 
 			if (!String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.RibbonButtonDigitalAddTitle))
-				Controller.Instance.Supertip.SetSuperTooltip(
+				Controller.Instance.SuperTip.SetSuperTooltip(
 						Controller.Instance.DigitalProductAdd,
 						new SuperTooltipInfo(
 							ListManager.Instance.DefaultControlsConfiguration.RibbonButtonDigitalAddTitle,
@@ -211,7 +211,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 							null,
 							eTooltipColor.Gray));
 			if (!String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.RibbonButtonDigitalCloneTitle))
-				Controller.Instance.Supertip.SetSuperTooltip(
+				Controller.Instance.SuperTip.SetSuperTooltip(
 						Controller.Instance.DigitalProductClone,
 						new SuperTooltipInfo(
 							ListManager.Instance.DefaultControlsConfiguration.RibbonButtonDigitalCloneTitle,
@@ -221,7 +221,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 							null,
 							eTooltipColor.Gray));
 			if (!String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.RibbonButtonDigitalDeleteTitle))
-				Controller.Instance.Supertip.SetSuperTooltip(
+				Controller.Instance.SuperTip.SetSuperTooltip(
 						Controller.Instance.DigitalProductDelete,
 						new SuperTooltipInfo(
 							ListManager.Instance.DefaultControlsConfiguration.RibbonButtonDigitalDeleteTitle,

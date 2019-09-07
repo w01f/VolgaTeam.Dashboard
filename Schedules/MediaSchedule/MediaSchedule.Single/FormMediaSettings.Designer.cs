@@ -1,6 +1,6 @@
 ﻿namespace Asa.Media.Single
 {
-    partial class FormExitConfirmation
+    partial class FormMediaSettings
 	{
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMediaSettings));
             this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
             this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
@@ -35,14 +36,20 @@
             this.layoutControlItemCancel = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItemOK = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.simpleLabelItemText = new DevExpress.XtraLayout.SimpleLabelItem();
+            this.styleController = new DevExpress.XtraEditors.StyleController();
+            this.comboBoxEditMedia = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.layoutControlItemMedia = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
             this.layoutControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditMedia.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMedia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl
@@ -63,6 +70,7 @@
             this.layoutControl.BackColor = System.Drawing.Color.White;
             this.layoutControl.Controls.Add(this.buttonXOK);
             this.layoutControl.Controls.Add(this.buttonXCancel);
+            this.layoutControl.Controls.Add(this.comboBoxEditMedia);
             this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl.ForeColor = System.Drawing.Color.Black;
             this.layoutControl.Location = new System.Drawing.Point(0, 0);
@@ -70,6 +78,7 @@
             this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
             this.layoutControl.Root = this.layoutControlGroupRoot;
             this.layoutControl.Size = new System.Drawing.Size(337, 134);
+            this.layoutControl.StyleController = this.styleController;
             this.layoutControl.TabIndex = 66;
             this.layoutControl.Text = "layoutControl1";
             // 
@@ -84,7 +93,7 @@
             this.buttonXOK.Size = new System.Drawing.Size(116, 36);
             this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonXOK.TabIndex = 1;
-            this.buttonXOK.Text = "Exit";
+            this.buttonXOK.Text = "GO!";
             this.buttonXOK.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXCancel
@@ -122,7 +131,8 @@
             this.layoutControlItemCancel,
             this.layoutControlItemOK,
             this.emptySpaceItem5,
-            this.simpleLabelItemText});
+            this.layoutControlItemMedia,
+            this.emptySpaceItem1});
             this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroupRoot.Name = "Root";
             this.layoutControlGroupRoot.Size = new System.Drawing.Size(337, 134);
@@ -168,25 +178,59 @@
             this.emptySpaceItem5.Size = new System.Drawing.Size(77, 40);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // simpleLabelItemText
+            // styleController
             // 
-            this.simpleLabelItemText.AllowHotTrack = false;
-            this.simpleLabelItemText.AllowHtmlStringInCaption = true;
-            this.simpleLabelItemText.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.simpleLabelItemText.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.simpleLabelItemText.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
-            this.simpleLabelItemText.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.simpleLabelItemText.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.simpleLabelItemText.Location = new System.Drawing.Point(0, 0);
-            this.simpleLabelItemText.MinSize = new System.Drawing.Size(1, 1);
-            this.simpleLabelItemText.Name = "simpleLabelItemText";
-            this.simpleLabelItemText.Size = new System.Drawing.Size(317, 74);
-            this.simpleLabelItemText.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.simpleLabelItemText.Text = "<color=gray>Save and Exit?</color><br><br><color=red>Do you want to exit and clos" +
-    "e this app?</color>";
-            this.simpleLabelItemText.TextSize = new System.Drawing.Size(229, 48);
+            this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.styleController.Appearance.Options.UseFont = true;
+            this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.styleController.AppearanceDisabled.Options.UseFont = true;
+            this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.styleController.AppearanceDropDown.Options.UseFont = true;
+            this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
+            this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.styleController.AppearanceFocused.Options.UseFont = true;
+            this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.styleController.AppearanceReadOnly.Options.UseFont = true;
             // 
-            // FormExitConfirmation
+            // comboBoxEditMedia
+            // 
+            this.comboBoxEditMedia.Location = new System.Drawing.Point(12, 33);
+            this.comboBoxEditMedia.Name = "comboBoxEditMedia";
+            this.comboBoxEditMedia.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.comboBoxEditMedia.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.comboBoxEditMedia.Properties.Appearance.Options.UseBackColor = true;
+            this.comboBoxEditMedia.Properties.Appearance.Options.UseForeColor = true;
+            this.comboBoxEditMedia.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEditMedia.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboBoxEditMedia.Size = new System.Drawing.Size(313, 22);
+            this.comboBoxEditMedia.StyleController = this.layoutControl;
+            this.comboBoxEditMedia.TabIndex = 4;
+            // 
+            // layoutControlItemMedia
+            // 
+            this.layoutControlItemMedia.Control = this.comboBoxEditMedia;
+            this.layoutControlItemMedia.FillControlToClientArea = false;
+            this.layoutControlItemMedia.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItemMedia.Name = "layoutControlItemMedia";
+            this.layoutControlItemMedia.Size = new System.Drawing.Size(317, 47);
+            this.layoutControlItemMedia.Text = "Select your Media Property to get started:";
+            this.layoutControlItemMedia.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItemMedia.TextLocation = DevExpress.Utils.Locations.Top;
+            this.layoutControlItemMedia.TextSize = new System.Drawing.Size(243, 16);
+            this.layoutControlItemMedia.TextToControlDistance = 5;
+            this.layoutControlItemMedia.TrimClientAreaToControl = false;
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 47);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(317, 27);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // FormMediaSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -196,19 +240,24 @@
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FormExitConfirmation";
+            this.Name = "FormMediaSettings";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Exit";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Select Media";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
             this.layoutControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditMedia.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMedia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -222,6 +271,9 @@
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemCancel;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemOK;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemText;
-	}
+        private DevExpress.XtraEditors.StyleController styleController;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMedia;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        public DevExpress.XtraEditors.ComboBoxEdit comboBoxEditMedia;
+    }
 }

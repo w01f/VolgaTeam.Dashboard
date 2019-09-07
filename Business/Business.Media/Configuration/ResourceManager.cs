@@ -7,194 +7,187 @@ using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Business.Media.Configuration
 {
-	public class ResourceManager
-	{
-		public static ResourceManager Instance { get; } = new ResourceManager();
+    public class ResourceManager
+    {
+        public static ResourceManager Instance { get; } = new ResourceManager();
 
-		public StorageFile TabsConfigFile { get; private set; }
-		public StorageFile BrowserConfigFile { get; private set; }
-		public StorageFile Gallery1ConfigFile { get; private set; }
-		public StorageFile Gallery2ConfigFile { get; private set; }
-		public StorageFile FormStyleConfigFile { get; private set; }
+        #region Station Independent
+        public StorageFile MainAppTitleTextFile { get; private set; }
+        public StorageFile FormStyleConfigFile { get; private set; }
+        private StorageFile SyncFormColorConfigFile { get; set; }
+        private StorageFile SyncFormTextConfigFile { get; set; }
+        #endregion
 
-		public StorageFile MediaListsFile { get; private set; }
+        #region Station Dependent
+        public StorageFile TabsConfigFile { get; private set; }
+        public StorageFile BrowserConfigFile { get; private set; }
+        public StorageFile Gallery1ConfigFile { get; private set; }
+        public StorageFile Gallery2ConfigFile { get; private set; }
+        public StorageFile MediaListsFile { get; private set; }
+        public StorageFile SolutionsConfigFile { get; private set; }
+        public StorageFile ConfigFile { get; private set; }
+        public StorageFile TextResourcesFile { get; private set; }
+        public StorageFile AdditionalTextResourcesFile { get; private set; }
+        public StorageFile IdleSettingsFile { get; private set; }
 
-		public StorageFile SolutionsConfigFile { get; private set; }
-		public StorageDirectory SolutionsDataFolder { get; private set; }
+        public ArchiveDirectory ImageResourcesFolder { get; private set; }
+        public StorageDirectory SolutionsDataFolder { get; private set; }
+        #endregion
 
-		public StorageFile MainAppTitleTextFile { get; private set; }
-		public StorageFile ConfigFile { get; private set; }
-		public StorageFile TextResourcesFile { get; private set; }
-		public StorageFile AdditionalTextResourcesFile { get; private set; }
-		public StorageFile SyncFormColorConfigFile { get; private set; }
-		public StorageFile SyncFormTextConfigFile { get; private set; }
-		public StorageFile IdleSettingsFile { get; private set; }
-		public ArchiveDirectory ImageResourcesFolder { get; private set; }
+        private ResourceManager() { }
 
-		private ResourceManager() { }
+        public async Task LoadSubStorageIndependentResources()
+        {
+            await Asa.Common.Core.Configuration.ResourceManager.Instance.LoadSubStorageIndependentResources();
 
-		public async Task Load()
-		{
-			await Asa.Common.Core.Configuration.ResourceManager.Instance.Load();
+            await LoadSubStorageDependentResources();
+        }
 
-			await Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.Download();
-			await Asa.Common.Core.Configuration.ResourceManager.Instance.ScheduleSlideTemplatesFolder.Download();
-			await Asa.Common.Core.Configuration.ResourceManager.Instance.CalendarSlideTemplatesFolder.Download();
-			await Asa.Common.Core.Configuration.ResourceManager.Instance.ArtworkFolder.Download();
-			await Asa.Common.Core.Configuration.ResourceManager.Instance.RateCardFolder.Download();
+        private async Task LoadSubStorageDependentResources()
+        {
+            await Asa.Common.Core.Configuration.ResourceManager.Instance.LoadSubStorageDependentResources();
 
-			TabsConfigFile = new StorageFile(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"AppSettings",
-				String.Format("{0}_tab_names.xml",MediaMetaData.Instance.DataTypeString.ToLower())
-			});
-			await TabsConfigFile.Download();
+            await Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.Download();
+            await Asa.Common.Core.Configuration.ResourceManager.Instance.ScheduleSlideTemplatesFolder.Download();
+            await Asa.Common.Core.Configuration.ResourceManager.Instance.CalendarSlideTemplatesFolder.Download();
+            await Asa.Common.Core.Configuration.ResourceManager.Instance.ArtworkFolder.Download();
+            await Asa.Common.Core.Configuration.ResourceManager.Instance.RateCardFolder.Download();
 
-			BrowserConfigFile = new StorageFile(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"AppSettings",
-				"eo.xml"
-			});
-			await BrowserConfigFile.Download();
+            var folderNameParts = !String.IsNullOrEmpty(AppProfileManager.Instance.SubStorageName)
+                ? new[]
+                {
+                    FileStorageManager.IncomingFolderName,
+                    AppProfileManager.Instance.AppSubStorageDependentFolderName,
+                    AppProfileManager.Instance.SubStorageName,
+                }
+                : new[]
+                {
+                    FileStorageManager.IncomingFolderName,
+                    AppProfileManager.Instance.AppSubStorageIndependentFolderName,
+                };
 
-			Gallery1ConfigFile = new StorageFile(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"AppSettings",
-				"Gallery1.xml"
-			});
-			await Gallery1ConfigFile.Download();
+            FormStyleConfigFile = new StorageFile(folderNameParts.Merge(new[]
+                {
+                    "AppSettings",
+                    "style.xml"
+                }));
+            await FormStyleConfigFile.Download();
 
-			Gallery2ConfigFile = new StorageFile(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"AppSettings",
-				"Gallery2.xml"
-			});
-			await Gallery2ConfigFile.Download();
+            MainAppTitleTextFile = new StorageFile(folderNameParts.Merge(new[]
+            {
+                "AppSettings",
+                "app_brand.txt"
+            }));
+            if (await MainAppTitleTextFile.Exists(true))
+                await MainAppTitleTextFile.Download();
 
-			FormStyleConfigFile = new StorageFile(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"AppSettings",
-				"style.xml"
-			});
-			await FormStyleConfigFile.Download();
+            ConfigFile = new StorageFile(folderNameParts.Merge(new[]
+            {
+                "AppSettings",
+                "app_common_config.xml"
+            }));
+            if (await ConfigFile.Exists(true))
+                await ConfigFile.Download();
 
-			MediaListsFile = new StorageFile(
-				Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge(
-					String.Format("{0} Strategy.xml", MediaMetaData.Instance.DataTypeString)));
+            TextResourcesFile = new StorageFile(folderNameParts.Merge(new[]
+            {
+                "AppSettings",
+                "app_text_config.xml"
+            }));
+            if (await TextResourcesFile.Exists(true))
+                await TextResourcesFile.Download();
 
-			SolutionsConfigFile = new StorageFile(new[]
-{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"AppSettings",
-				"solution_templates.xml"
-			});
-			await SolutionsConfigFile.Download();
+            AdditionalTextResourcesFile = new StorageFile(folderNameParts.Merge(new[]
+            {
+                "AppSettings",
+                String.Format("{0}_subtab_names.xml",MediaMetaData.Instance.DataTypeString.ToLower())
+            }));
+            if (await AdditionalTextResourcesFile.Exists(true))
+                await AdditionalTextResourcesFile.Download();
 
-			SolutionsDataFolder = new StorageDirectory(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"Solution Templates"
-			});
+            SyncFormColorConfigFile = new StorageFile(folderNameParts.Merge(new[]
+            {
+                "AppSettings",
+                "sync_color.xml"
+            }));
+            if (await SyncFormColorConfigFile.Exists(true))
+                await SyncFormColorConfigFile.Download();
 
-			MainAppTitleTextFile = new StorageFile(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"AppSettings",
-				"app_brand.txt"
-			});
-			if (await MainAppTitleTextFile.Exists(true))
-				await MainAppTitleTextFile.Download();
+            SyncFormTextConfigFile = new StorageFile(folderNameParts.Merge(new[]
+            {
+                "AppSettings",
+                "sync_text.xml"
+            }));
+            if (await SyncFormTextConfigFile.Exists(true))
+                await SyncFormTextConfigFile.Download();
 
-			ConfigFile = new StorageFile(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"AppSettings",
-				"app_common_config.xml"
-			});
-			if (await ConfigFile.Exists(true))
-				await ConfigFile.Download();
+            TabsConfigFile = new StorageFile(folderNameParts.Merge(new[]
+            {
+                "AppSettings",
+                $"{MediaMetaData.Instance.DataTypeString.ToLower()}_tab_names.xml"
+            }));
+            await TabsConfigFile.Download();
 
-			TextResourcesFile = new StorageFile(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"AppSettings",
-				"app_text_config.xml"
-			});
-			if (await TextResourcesFile.Exists(true))
-				await TextResourcesFile.Download();
+            BrowserConfigFile = new StorageFile(folderNameParts.Merge(new[]
+            {
+                "AppSettings",
+                "eo.xml"
+            }));
+            await BrowserConfigFile.Download();
 
-			AdditionalTextResourcesFile = new StorageFile(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"AppSettings",
-				String.Format("{0}_subtab_names.xml",MediaMetaData.Instance.DataTypeString.ToLower())
-			});
-			if (await AdditionalTextResourcesFile.Exists(true))
-				await AdditionalTextResourcesFile.Download();
+            Gallery1ConfigFile = new StorageFile(folderNameParts.Merge(new[]
+            {
+                "AppSettings",
+                "Gallery1.xml"
+            }));
+            await Gallery1ConfigFile.Download();
 
-			SyncFormColorConfigFile = new StorageFile(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"AppSettings",
-				"sync_color.xml"
-			});
-			if (await SyncFormColorConfigFile.Exists(true))
-				await SyncFormColorConfigFile.Download();
+            Gallery2ConfigFile = new StorageFile(folderNameParts.Merge(new[]
+            {
+                "AppSettings",
+                "Gallery2.xml"
+            }));
+            await Gallery2ConfigFile.Download();
 
-			SyncFormTextConfigFile = new StorageFile(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"AppSettings",
-				"sync_text.xml"
-			});
-			if (await SyncFormTextConfigFile.Exists(true))
-				await SyncFormTextConfigFile.Download();
+            SolutionsConfigFile = new StorageFile(folderNameParts.Merge(new[]
+            {
+                "AppSettings",
+                "solution_templates.xml"
+            }));
+            await SolutionsConfigFile.Download();
 
-			IdleSettingsFile = new StorageFile(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"AppSettings",
-				"autoclose.xml"
-			});
-			if (await IdleSettingsFile.Exists(true))
-				await IdleSettingsFile.Download();
+            IdleSettingsFile = new StorageFile(folderNameParts.Merge(new[]
+            {
+                "AppSettings",
+                "autoclose.xml"
+            }));
+            if (await IdleSettingsFile.Exists(true))
+                await IdleSettingsFile.Download();
 
-			ImageResourcesFolder = new ArchiveDirectory(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"Resources"
-			});
-			if (await ImageResourcesFolder.Exists(true))
-				await ImageResourcesFolder.Download();
+            ImageResourcesFolder = new ArchiveDirectory(folderNameParts.Merge(new[]
+            {
+                "Resources"
+            }));
+            if (await ImageResourcesFolder.Exists(true))
+                await ImageResourcesFolder.Download();
 
-			#region Make local copy
-			
-			if (SyncFormColorConfigFile.ExistsLocal())
-				File.Copy(SyncFormColorConfigFile.LocalPath, Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.AppRootFolderPath, Path.GetFileName(SyncFormColorConfigFile.LocalPath)), true);
-			if (SyncFormTextConfigFile.ExistsLocal())
-				File.Copy(SyncFormTextConfigFile.LocalPath, Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.AppRootFolderPath, Path.GetFileName(SyncFormTextConfigFile.LocalPath)), true);
+            SolutionsDataFolder = new StorageDirectory(folderNameParts.Merge(new[]
+            {
+                "Solution Templates"
+            }));
 
-			#endregion
-		}
-	}
+            MediaListsFile = new StorageFile(
+                Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge(
+                    String.Format("{0} Strategy.xml", MediaMetaData.Instance.DataTypeString)));
+
+            #region Make local copy
+
+            if (SyncFormColorConfigFile.ExistsLocal())
+                File.Copy(SyncFormColorConfigFile.LocalPath, Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.AppRootFolderPath, Path.GetFileName(SyncFormColorConfigFile.LocalPath)), true);
+            if (SyncFormTextConfigFile.ExistsLocal())
+                File.Copy(SyncFormTextConfigFile.LocalPath, Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.AppRootFolderPath, Path.GetFileName(SyncFormTextConfigFile.LocalPath)), true);
+
+            #endregion
+        }
+    }
 }

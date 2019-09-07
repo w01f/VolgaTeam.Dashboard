@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -12,212 +13,227 @@ using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Common.Core.Helpers
 {
-	public class FileStorageManager
-	{
-		private const string RemoteStorageUrlTemplate = @"{0}/remote.php/webdav";
+    public class FileStorageManager
+    {
+        private const string RemoteStorageUrlTemplate = @"{0}/remote.php/webdav";
 
-		private const string LocalAppSettingsFolderName = "adSalesApps Data";
+        private const string LocalAppSettingsFolderName = "adSalesApps Data";
 
-		public const string IncomingFolderName = "outgoing";
-		public const string OutgoingFolderName = "incoming";
-		public const string CommonIncomingFolderName = "common";
-		public const string LocalFilesFolderName = "local";
+        public const string IncomingFolderName = "outgoing";
+        public const string OutgoingFolderName = "incoming";
+        public const string CommonIncomingFolderName = "common";
+        public const string LocalFilesFolderName = "local";
 
-		private string _url;
-		private string _login;
-		private string _password;
-		private string _dataFolderName;
-		private string _authServer;
+        private string _url;
+        private string _login;
+        private string _password;
+        private string _dataFolderName;
+        private string _authServer;
 
-		private StorageFile _versionFile;
+        private StorageFile _versionFile;
 
-		public bool Activated { get; private set; }
-		public string Version { get; private set; }
-		public bool UseLocalMode { get; private set; }
+        public bool Activated { get; private set; }
+        public string Version { get; private set; }
+        public bool UseLocalMode { get; private set; }
+        public List<string> SubStorages { get; } = new List<string>();
 
-		public event EventHandler<FileProcessingProgressEventArgs> Downloading;
-		public event EventHandler<FileProcessingProgressEventArgs> Extracting;
-		public event EventHandler<EventArgs> UsingLocalMode;
-		public event EventHandler<AuthorizingEventArgs> Authorizing;
+        public event EventHandler<FileProcessingProgressEventArgs> Downloading;
+        public event EventHandler<FileProcessingProgressEventArgs> Extracting;
+        public event EventHandler<EventArgs> UsingLocalMode;
+        public event EventHandler<AuthorizingEventArgs> Authorizing;
 
-		public static FileStorageManager Instance { get; } = new FileStorageManager();
+        public static FileStorageManager Instance { get; } = new FileStorageManager();
 
-		public DataActualityState DataState { get; set; }
+        public DataActualityState DataState { get; set; }
 
-		private string RemoteStorageUrl => String.Format(RemoteStorageUrlTemplate, _url);
+        private string RemoteStorageUrl => String.Format(RemoteStorageUrlTemplate, _url);
 
-		public string LocalStoragePath
-		{
-			get
-			{
-				if (Activated)
-					return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), LocalAppSettingsFolderName, _dataFolderName);
-				return Path.GetTempPath();
-			}
-		}
+        public string LocalStoragePath
+        {
+            get
+            {
+                if (Activated)
+                    return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), LocalAppSettingsFolderName, _dataFolderName);
+                return Path.GetTempPath();
+            }
+        }
 
-		private FileStorageManager() { }
+        private FileStorageManager() { }
 
-		public WebDAVClient.Client GetClient()
-		{
-			return GetClient(RemoteStorageUrl, _login, _password);
-		}
+        public WebDAVClient.Client GetClient()
+        {
+            return GetClient(RemoteStorageUrl, _login, _password);
+        }
 
-		private WebDAVClient.Client GetClient(string url, string login, string password)
-		{
-			return new WebDAVClient.Client(
-				new NetworkCredential
-				{
-					UserName = login,
-					Password = password
-				},
-				new TimeSpan(1, 0, 0)
-				)
-			{
-				Server = url,
-			};
-		}
+        private WebDAVClient.Client GetClient(string url, string login, string password)
+        {
+            return new WebDAVClient.Client(
+                new NetworkCredential
+                {
+                    UserName = login,
+                    Password = password
+                },
+                new TimeSpan(1, 0, 0)
+                )
+            {
+                Server = url,
+            };
+        }
 
-		public async Task Init(bool forceUpdateMode = false)
-		{
-			_versionFile = new ConfigFile(new[] { IncomingFolderName, AppProfileManager.Instance.AppName, "version.txt" });
-			await InitCredentials();
-			SiteCredentialsManager.Instance.Init();
-			if (Activated)
-			{
+        public async Task InitStorage()
+        {
+            await InitCredentials();
+            SiteCredentialsManager.Instance.Init();
+            if (Activated)
+                Authorize();
+        }
 
-				if (IsBlockingProcessRunning())
-					DataState = DataActualityState.Updated;
-				else
-				{
-					await CheckDataSate();
-					if (DataState == DataActualityState.Updated && forceUpdateMode)
-						DataState = DataActualityState.Outdated;
-				}
-			}
-			if (Activated)
-				Authorize();
-		}
+        public void InitLight(string dataFolderName)
+        {
+            _dataFolderName = dataFolderName;
+            UseLocalMode = true;
+            Activated = true;
+        }
 
-		public void InitLight(string dataFolderName)
-		{
-			_dataFolderName = dataFolderName;
-			UseLocalMode = true;
-			Activated = true;
-		}
+        private async Task InitCredentials()
+        {
+            var clientConfigPath = Path.Combine(Path.GetDirectoryName(typeof(FileStorageManager).Assembly.Location), "client.txt");
+            if (!File.Exists(clientConfigPath))
+                throw new FileNotFoundException("File client.txt not found");
 
-		private async Task InitCredentials()
-		{
-			var clientConfigPath = Path.Combine(Path.GetDirectoryName(typeof(FileStorageManager).Assembly.Location), "client.txt");
-			if (!File.Exists(clientConfigPath))
-				throw new FileNotFoundException("File client.txt not found");
+            var configLines = File.ReadAllLines(clientConfigPath).Where(line => !String.IsNullOrWhiteSpace(line)).ToList();
 
-			var client = File.ReadAllText(clientConfigPath).Trim();
+            var client = configLines.FirstOrDefault();
 
-			_url = "https://adsalescloud.com";
-			_login = "acct_cred";
-			_password = "SzwX&4.2QF>~q!^L";
+            _url = "https://adsalescloud.com";
+            _login = "acct_cred";
+            _password = "SzwX&4.2QF>~q!^L";
 
-			var credentialsFile = new ConfigFile(new[] { client, "credentials.txt" });
-			await credentialsFile.Download();
-			if (!credentialsFile.ExistsLocal()) return;
-			foreach (var configLine in File.ReadAllLines(credentialsFile.LocalPath))
-			{
-				if (configLine.Contains("Site:"))
-					_url = configLine.Replace("Site:", "").Trim();
-				else if (configLine.Contains("Login:"))
-					_login = configLine.Replace("Login:", "").Trim();
-				else if (configLine.Contains("Password:"))
-					_password = configLine.Replace("Password:", "").Trim();
-				else if (configLine.Contains("DataFolderName:"))
-					_dataFolderName = configLine.Replace("DataFolderName:", "").Trim();
-				else if (configLine.Contains("AuthService:"))
-					_authServer = configLine.Replace("AuthService:", "").Trim();
-			}
+            var credentialsFile = new ConfigFile(new[] { client, "credentials.txt" });
+            await credentialsFile.Download();
+            if (!credentialsFile.ExistsLocal()) return;
+            foreach (var configLine in File.ReadAllLines(credentialsFile.LocalPath))
+            {
+                if (configLine.Contains("Site:"))
+                    _url = configLine.Replace("Site:", "").Trim();
+                else if (configLine.Contains("Login:"))
+                    _login = configLine.Replace("Login:", "").Trim();
+                else if (configLine.Contains("Password:"))
+                    _password = configLine.Replace("Password:", "").Trim();
+                else if (configLine.Contains("DataFolderName:"))
+                    _dataFolderName = configLine.Replace("DataFolderName:", "").Trim();
+                else if (configLine.Contains("AuthService:"))
+                    _authServer = configLine.Replace("AuthService:", "").Trim();
+            }
 
-			Activated = true;
+            Activated = true;
 
-			if (!Directory.Exists(LocalStoragePath))
-				Directory.CreateDirectory(LocalStoragePath);
-		}
+            SubStorages.AddRange(configLines.Skip(1));
 
-		private void Authorize()
-		{
-			if (Authorizing == null) return;
-			var args = new AuthorizingEventArgs(_authServer);
-			Authorizing(this, args);
-			Activated = args.Authorized;
-		}
+            if (!Directory.Exists(LocalStoragePath))
+                Directory.CreateDirectory(LocalStoragePath);
+        }
 
-		private async Task CheckDataSate()
-		{
-			DataState = DataActualityState.NotExisted;
+        private void Authorize()
+        {
+            if (Authorizing == null) return;
+            var args = new AuthorizingEventArgs(_authServer);
+            Authorizing(this, args);
+            Activated = args.Authorized;
+        }
 
-			if (!_versionFile.ExistsLocal())
-			{
-				DataState = DataActualityState.NotExisted;
-			}
-			else
-			{
-				try
-				{
-					var remoteFile = await GetClient().GetFile(_versionFile.RemotePath);
-					DataState = File.GetLastWriteTime(_versionFile.LocalPath) < remoteFile.LastModified ?
-						DataActualityState.Outdated :
-						DataActualityState.Updated;
-				}
-				catch (HttpRequestException e)
-				{
-					DataState = DataActualityState.Updated;
-					SwitchToLocalMode();
-				}
-			}
-		}
+        public async Task CheckDataSate(bool forceUpdateMode = false)
+        {
+            if (!String.IsNullOrEmpty(AppProfileManager.Instance.SubStorageName))
+                _versionFile = new ConfigFile(new[]
+                {
+                    IncomingFolderName,
+                    AppProfileManager.Instance.AppSubStorageDependentFolderName,
+                    AppProfileManager.Instance.SubStorageName,
+                    "version.txt"
+                });
+            else
+                _versionFile = new ConfigFile(new[]
+                {
+                    IncomingFolderName,
+                    AppProfileManager.Instance.AppSubStorageIndependentFolderName,
+                    "version.txt"
+                });
 
-		public async Task FixDataState()
-		{
-			if (DataState != DataActualityState.Updated)
-				await _versionFile.Download();
+            if (IsBlockingProcessRunning())
+                DataState = DataActualityState.Updated;
+            else
+            {
+                DataState = DataActualityState.NotExisted;
 
-			if (_versionFile.ExistsLocal())
-			{
-				Version = File.ReadAllText(_versionFile.LocalPath);
-				DataState = DataActualityState.Updated;
-			}
-			else
-				Activated = false;
+                if (!_versionFile.ExistsLocal())
+                {
+                    DataState = DataActualityState.NotExisted;
+                }
+                else
+                {
+                    try
+                    {
+                        var remoteFile = await GetClient().GetFile(_versionFile.RemotePath);
+                        DataState = File.GetLastWriteTime(_versionFile.LocalPath) < remoteFile.LastModified ?
+                            DataActualityState.Outdated :
+                            DataActualityState.Updated;
+                    }
+                    catch (HttpRequestException e)
+                    {
+                        DataState = DataActualityState.Updated;
+                        SwitchToLocalMode();
+                    }
+                }
+                if (DataState == DataActualityState.Updated && forceUpdateMode)
+                    DataState = DataActualityState.Outdated;
+            }
+        }
 
-		}
+        public async Task FixCommonDataState()
+        {
+            if (DataState != DataActualityState.Updated)
+                await _versionFile.Download();
 
-		public void ShowDownloadProgress(FileProcessingProgressEventArgs eventArgs)
-		{
-			Downloading?.Invoke(this, eventArgs);
-		}
+            if (_versionFile.ExistsLocal())
+            {
+                Version = File.ReadAllText(_versionFile.LocalPath);
+                DataState = DataActualityState.Updated;
+            }
+            else
+                Activated = false;
 
-		public void ShowExtractionProgress(FileProcessingProgressEventArgs eventArgs)
-		{
-			Extracting?.Invoke(this, eventArgs);
-		}
+        }
 
-		public void SwitchToLocalMode()
-		{
-			UsingLocalMode?.Invoke(this, EventArgs.Empty);
-			UseLocalMode = true;
-		}
+        public void ShowDownloadProgress(FileProcessingProgressEventArgs eventArgs)
+        {
+            Downloading?.Invoke(this, eventArgs);
+        }
 
-		private bool IsBlockingProcessRunning()
-		{
-			var blockingProcessesConfigFilePath = Path.Combine(ResourceManager.Instance.AppRootFolderPath, "NoSync.xml");
-			if (!File.Exists(blockingProcessesConfigFilePath)) return false;
-			var document = new XmlDocument();
-			document.Load(blockingProcessesConfigFilePath);
-			var blockingProcessList = document.SelectNodes(@"/Applications/Application")
-				.OfType<XmlNode>()
-				.Select(node => node.InnerText)
-				.ToList();
-			return Process.GetProcesses().Select(process => process.ProcessName).Any(processName =>
-				blockingProcessList.Any(blockingProcessName =>
-					String.Equals(blockingProcessName, processName, StringComparison.OrdinalIgnoreCase)));
-		}
-	}
+        public void ShowExtractionProgress(FileProcessingProgressEventArgs eventArgs)
+        {
+            Extracting?.Invoke(this, eventArgs);
+        }
+
+        public void SwitchToLocalMode()
+        {
+            UsingLocalMode?.Invoke(this, EventArgs.Empty);
+            UseLocalMode = true;
+        }
+
+        private bool IsBlockingProcessRunning()
+        {
+            var blockingProcessesConfigFilePath = Path.Combine(ResourceManager.Instance.AppRootFolderPath, "NoSync.xml");
+            if (!File.Exists(blockingProcessesConfigFilePath)) return false;
+            var document = new XmlDocument();
+            document.Load(blockingProcessesConfigFilePath);
+            var blockingProcessList = document.SelectNodes(@"/Applications/Application")
+                .OfType<XmlNode>()
+                .Select(node => node.InnerText)
+                .ToList();
+            return Process.GetProcesses().Select(process => process.ProcessName).Any(processName =>
+                blockingProcessList.Any(blockingProcessName =>
+                    String.Equals(blockingProcessName, processName, StringComparison.OrdinalIgnoreCase)));
+        }
+    }
 }

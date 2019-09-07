@@ -62,15 +62,15 @@ namespace Asa.Bar.App.Configuration
             AppSettingsFolder = new StorageDirectory(new[]
             {
                 FileStorageManager.LocalFilesFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageDependentFolderName,
             });
             if (!await AppSettingsFolder.Exists())
-                await StorageDirectory.CreateSubFolder(new[] { FileStorageManager.LocalFilesFolderName }, AppProfileManager.Instance.AppName);
+                await StorageDirectory.CreateSubFolder(new[] { FileStorageManager.LocalFilesFolderName }, AppProfileManager.Instance.AppSubStorageIndependentFolderName);
 
             AppSettingsFile = new StorageFile(new[]
             {
                 FileStorageManager.LocalFilesFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "Settings.xml"
             });
             AppSettingsFile.AllocateParentFolder();
@@ -80,7 +80,7 @@ namespace Asa.Bar.App.Configuration
             AppConfigFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "AppSettings",
                 "Config.xml"
             });
@@ -89,7 +89,7 @@ namespace Asa.Bar.App.Configuration
             TabsConfigFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "AppSettings",
                 "TabNames.xml"
             });
@@ -98,7 +98,7 @@ namespace Asa.Bar.App.Configuration
             WatchedProcessesFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "AppSettings",
                 "HideList.xml"
             });
@@ -107,7 +107,7 @@ namespace Asa.Bar.App.Configuration
             MaintenanceConfigFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "AppSettings",
                 "maintenance.xml"
             });
@@ -117,7 +117,7 @@ namespace Asa.Bar.App.Configuration
             PatchUpdaterConfigFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "AppSettings",
                 "sfx_update.xml"
             });
@@ -127,7 +127,7 @@ namespace Asa.Bar.App.Configuration
             UpdaterConfigFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "AppSettings",
                 "updater.xml"
             });
@@ -137,7 +137,7 @@ namespace Asa.Bar.App.Configuration
             NoSyncConfigFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "Resources",
                 "NoSync.xml"
             });
@@ -147,7 +147,7 @@ namespace Asa.Bar.App.Configuration
             SyncFormColorConfigFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "Resources",
                 "sync_color.xml"
             });
@@ -157,7 +157,7 @@ namespace Asa.Bar.App.Configuration
             IconFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "Resources",
                 "icon.ico"
             });
@@ -167,7 +167,7 @@ namespace Asa.Bar.App.Configuration
             LoginLogoFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "Resources",
                 "app_logo.png"
             });
@@ -177,7 +177,7 @@ namespace Asa.Bar.App.Configuration
             SplashLogoFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "Resources",
                 "splash_logo.png"
             });
@@ -187,7 +187,7 @@ namespace Asa.Bar.App.Configuration
             SyncFormCloseImageFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "Resources",
                 "ProgressCancel.png"
             });
@@ -197,7 +197,7 @@ namespace Asa.Bar.App.Configuration
             UndockFormImageFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "Resources",
                 "undock_arrow.png"
             });
@@ -207,7 +207,7 @@ namespace Asa.Bar.App.Configuration
             DockRegularImageFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "Resources",
                 "dock_arrow_ribbon.png"
             });
@@ -217,7 +217,7 @@ namespace Asa.Bar.App.Configuration
             DockFloaterImageFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "Resources",
                 "dock_arrow_floater.png"
             });
@@ -227,7 +227,7 @@ namespace Asa.Bar.App.Configuration
             ExpandFormImageFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "Resources",
                 "undocked_expand.png"
             });
@@ -237,7 +237,7 @@ namespace Asa.Bar.App.Configuration
             CollapseFormImageFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "Resources",
                 "undocked_collapse.png"
             });
@@ -247,7 +247,7 @@ namespace Asa.Bar.App.Configuration
             FloaterLogoFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "Resources",
                 "collapsed_undocked_logo.png"
             });
@@ -257,7 +257,7 @@ namespace Asa.Bar.App.Configuration
             FloaterCancelImageFile = new StorageFile(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "Resources",
                 "undockedCancel.png"
             });
@@ -285,14 +285,14 @@ namespace Asa.Bar.App.Configuration
             DataFolder = new ArchiveDirectory(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "Data",
             });
 
             SyncFilesFolder = new ArchiveDirectory(new[]
             {
                 FileStorageManager.IncomingFolderName,
-                AppProfileManager.Instance.AppName,
+                AppProfileManager.Instance.AppSubStorageIndependentFolderName,
                 "Data",
                 "SyncFiles"
             });

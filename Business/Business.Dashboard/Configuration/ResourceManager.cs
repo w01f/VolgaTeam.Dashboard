@@ -24,7 +24,7 @@ namespace Asa.Business.Dashboard.Configuration
 
 		public async Task Load()
 		{
-			await Asa.Common.Core.Configuration.ResourceManager.Instance.Load();
+			await Asa.Common.Core.Configuration.ResourceManager.Instance.LoadSubStorageIndependentResources();
 
 			await Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.Download();
 
@@ -46,7 +46,7 @@ namespace Asa.Business.Dashboard.Configuration
 			TextResourcesFile = new StorageFile(new[]
 			{
 				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
+				AppProfileManager.Instance.AppSubStorageIndependentFolderName,
 				"AppSettings",
 				"app_branding.xml"
 			});
@@ -56,7 +56,7 @@ namespace Asa.Business.Dashboard.Configuration
 			ImageResourcesFolder = new ArchiveDirectory(new[]
 			{
 				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
+			    AppProfileManager.Instance.AppSubStorageIndependentFolderName,
 				"Resources"
 			});
 			if (await ImageResourcesFolder.Exists(true))
@@ -65,7 +65,7 @@ namespace Asa.Business.Dashboard.Configuration
 			FormStyleConfigFile = new StorageFile(new[]
 			{
 				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
+			    AppProfileManager.Instance.AppSubStorageIndependentFolderName,
 				"AppSettings",
 				"style.xml"
 			});

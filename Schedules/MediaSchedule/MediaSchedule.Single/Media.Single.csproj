@@ -64,6 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppManager.cs" />
+    <Compile Include="FormMediaSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMediaSettings.Designer.cs">
+      <DependentUpon>FormMediaSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormExitConfirmation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormMediaSettings.resx">
+      <DependentUpon>FormMediaSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormExitConfirmation.resx">
       <DependentUpon>FormExitConfirmation.cs</DependentUpon>
     </EmbeddedResource>

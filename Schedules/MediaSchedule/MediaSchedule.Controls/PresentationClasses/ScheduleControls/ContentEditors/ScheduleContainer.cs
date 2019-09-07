@@ -416,7 +416,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 					if (!String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.RibbonButtonMediaDigitalDeleteTooltip))
 						deleteProductTooltip = ListManager.Instance.DefaultControlsConfiguration.RibbonButtonMediaDigitalDeleteTooltip;
 				}
-				Controller.Instance.Supertip.SetSuperTooltip(
+				Controller.Instance.SuperTip.SetSuperTooltip(
 					Controller.Instance.ProgramScheduleProgramAdd,
 					new SuperTooltipInfo(
 						addProductTitle,
@@ -425,7 +425,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 						null,
 						null,
 						eTooltipColor.Gray));
-				Controller.Instance.Supertip.SetSuperTooltip(
+				Controller.Instance.SuperTip.SetSuperTooltip(
 					Controller.Instance.ProgramScheduleProgramDelete,
 					new SuperTooltipInfo(
 						deleteProductTitle,

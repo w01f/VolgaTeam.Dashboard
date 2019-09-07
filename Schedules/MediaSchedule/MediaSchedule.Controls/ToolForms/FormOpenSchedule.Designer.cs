@@ -168,6 +168,7 @@
 			// 
 			// barAndDockingController
 			// 
+			this.barAndDockingController.PropertiesBar.AllowLinkLighting = false;
 			this.barAndDockingController.PropertiesBar.DefaultGlyphSize = new System.Drawing.Size(16, 16);
 			this.barAndDockingController.PropertiesBar.DefaultLargeGlyphSize = new System.Drawing.Size(32, 32);
 			this.barAndDockingController.PropertiesBar.ScaleIcons = false;
@@ -770,7 +771,6 @@
 			this.Controls.Add(this.barDockControlTop);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
@@ -44,7 +45,7 @@
             this.labelItemHomeFlightDatesEndValue = new DevComponents.DotNetBar.LabelItem();
             this.ribbonBarPresentationDate = new DevComponents.DotNetBar.RibbonBar();
             this.dateEditPresentationDate = new Asa.Common.GUI.Common.TabbedDateEdit();
-            this.styleController = new DevExpress.XtraEditors.StyleController();
+            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
             this.labelItemPresentationDateTitle = new DevComponents.DotNetBar.LabelItem();
             this.controlContainerItemPresentationDate = new DevComponents.DotNetBar.ControlContainerItem();
             this.ribbonBarHomeBasicInfo = new DevComponents.DotNetBar.RibbonBar();
@@ -206,6 +207,7 @@
             this.buttonItemApplicationMenuOutputPdf = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItemApplicationMenuEmail = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItemApplicationMenuSlideSettings = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemApplicationMenuMediaSettings = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItemApplicationMenuHelp = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItemApplicationMenuExit = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonTabItemHome = new DevComponents.DotNetBar.RibbonTabItem();
@@ -227,11 +229,11 @@
             this.buttonItemQatSaveAs = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItemQatFloater = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItemQatHelp = new DevComponents.DotNetBar.ButtonItem();
-            this.imageList = new System.Windows.Forms.ImageList();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
             this.pnMain = new System.Windows.Forms.Panel();
-            this.styleManager = new DevComponents.DotNetBar.StyleManager();
+            this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
             this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.pictureEditDefaultLogo = new DevExpress.XtraEditors.PictureEdit();
             this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -248,7 +250,6 @@
             this.itemContainerStatusBarMainContentInfo = new DevComponents.DotNetBar.ItemContainer();
             this.labelItemStatusBarSeparator = new DevComponents.DotNetBar.LabelItem();
             this.itemContainerStatusBarAdditionalContentInfo = new DevComponents.DotNetBar.ItemContainer();
-            this.buttonItemApplicationMenuMediaSettings = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonControl.SuspendLayout();
             this.ribbonPanelHome.SuspendLayout();
             this.ribbonBarPresentationDate.SuspendLayout();
@@ -3639,7 +3640,13 @@
             this.buttonItemApplicationMenuSlideSettings.Name = "buttonItemApplicationMenuSlideSettings";
             this.buttonItemApplicationMenuSlideSettings.Shortcuts.Add(DevComponents.DotNetBar.eShortcut.F2);
             this.buttonItemApplicationMenuSlideSettings.SubItemsExpandWidth = 24;
-            this.buttonItemApplicationMenuSlideSettings.Text = "Slide Settings...";
+            this.buttonItemApplicationMenuSlideSettings.Text = "Slide Settings..";
+            // 
+            // buttonItemApplicationMenuMediaSettings
+            // 
+            this.buttonItemApplicationMenuMediaSettings.Name = "buttonItemApplicationMenuMediaSettings";
+            this.buttonItemApplicationMenuMediaSettings.Text = "Media Property...";
+            this.buttonItemApplicationMenuMediaSettings.Click += new System.EventHandler(this.OnMediaSettingsClick);
             // 
             // buttonItemApplicationMenuHelp
             // 
@@ -4080,12 +4087,6 @@
             // 
             this.itemContainerStatusBarAdditionalContentInfo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.itemContainerStatusBarAdditionalContentInfo.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
-            // 
-            // buttonItemApplicationMenuMediaSettings
-            // 
-            this.buttonItemApplicationMenuMediaSettings.Name = "buttonItemApplicationMenuMediaSettings";
-            this.buttonItemApplicationMenuMediaSettings.Text = "Media Settings...";
-            this.buttonItemApplicationMenuMediaSettings.Click += new System.EventHandler(this.OnMediaSettingsClick);
             // 
             // FormMain
             // 

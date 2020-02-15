@@ -532,6 +532,8 @@ namespace Asa.Common.Core.OfficeInterops
         public void FillContractInfo(Slide slide, ContractSettings contractSettings, StorageDirectory folder)
         {
             var templateFile = new StorageFile(folder.RelativePathParts.Merge(contractSettings.TemplateName));
+            AsyncHelper.RunSync(() => templateFile.Download());
+
             var templatePresentation = _powerPointObject.Presentations.Open(templateFile.LocalPath, WithWindow: MsoTriState.msoFalse);
             foreach (var shape in GetContractInfoShapes(contractSettings, templatePresentation))
             {
@@ -544,6 +546,8 @@ namespace Asa.Common.Core.OfficeInterops
         public void FillContractInfo(Design design, ContractSettings contractSettings, StorageDirectory folder)
         {
             var templateFile = new StorageFile(folder.RelativePathParts.Merge(contractSettings.TemplateName));
+            AsyncHelper.RunSync(() => templateFile.Download());
+
             var templatePresentation = _powerPointObject.Presentations.Open(Path.Combine(templateFile.LocalPath, contractSettings.TemplateName), WithWindow: MsoTriState.msoFalse);
             foreach (var shape in GetContractInfoShapes(contractSettings, templatePresentation))
             {

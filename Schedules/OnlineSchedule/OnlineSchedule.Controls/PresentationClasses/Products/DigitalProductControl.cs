@@ -638,8 +638,8 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 				PresentationSourcePath =
 					Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName())),
 				SlidesCount = 1,
-				IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
-				SlideGeneratingAction = (processor, destinationPresentation) =>
+			    IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
+                SlideGeneratingAction = (processor, destinationPresentation) =>
 				{
 					processor.AppendOneSheet(Product, _container.SelectedTheme, destinationPresentation);
 				},

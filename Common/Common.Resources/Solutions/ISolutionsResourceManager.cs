@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Asa.Business.Solutions.Common.Interfaces
+namespace Asa.Common.Resources.Solutions
 {
 	public interface ISolutionsResourceManager
 	{

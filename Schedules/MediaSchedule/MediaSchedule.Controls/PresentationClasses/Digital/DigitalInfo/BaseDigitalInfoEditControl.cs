@@ -360,6 +360,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 					new OutputItem
 					{
 						Name = "Digital",
+					    Enabled = BusinessObjects.Instance.OutputManager.DigitalSlideOutputConfiguration.EnableProducts,
 						IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
 						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
 							Path.GetFileName(Path.GetTempFileName())),
@@ -380,6 +381,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 					new OutputItem
 					{
 						Name = "Digital Strategies",
+					    Enabled = BusinessObjects.Instance.OutputManager.DigitalSlideOutputConfiguration.EnableStrategies,
 						IsCurrent = false,
 						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
 							Path.GetFileName(Path.GetTempFileName())),

@@ -404,7 +404,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			{
 				Name = SectionData.Name,
 				IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
-				Items = xtraTabControl.TabPages.OfType<ISectionOutputControl>().SelectMany(sectionOutputControl => sectionOutputControl.GetOutputItems()).ToList()
+				Items = xtraTabControl.TabPages
+				    .OfType<ISectionOutputControl>()
+				    .SelectMany(sectionOutputControl => sectionOutputControl.GetOutputItems())
+				    .ToList()
 			};
 		}
 		#endregion

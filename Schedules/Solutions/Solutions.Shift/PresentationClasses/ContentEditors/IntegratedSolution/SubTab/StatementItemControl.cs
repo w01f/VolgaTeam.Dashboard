@@ -4,11 +4,11 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Configuration;
-using Asa.Business.Solutions.Common.Interfaces;
 using Asa.Business.Solutions.Shift.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.FormStyle;
 using Asa.Common.GUI.Common;
+using Asa.Common.Resources.Solutions;
 using Asa.Solutions.Common.Helpers;
 using DevExpress.Skins;
 

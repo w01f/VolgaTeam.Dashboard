@@ -214,6 +214,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 							Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName())),
 						SlidesCount = _summaryControls.Count / RowsPerSlide + (_summaryControls.Count % RowsPerSlide > 0 ? 1 : 0),
 						IsCurrent = true,
+					    Enabled = outputGroup.IsCurrent && BusinessObjects.Instance.OutputManager.DigitalSlideOutputConfiguration.EnablePackages,
 						SlideGeneratingAction = (processor, destinationPresentation) =>
 						{
 							PopulateReplacementsList();

@@ -518,8 +518,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 						PresentationSourcePath =
 							Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName())),
 						SlidesCount = PackageRecords.Count() / RowsPerSlide + (PackageRecords.Count() % RowsPerSlide > 0 ? 1 : 0),
-						IsCurrent = true,
-						SlideGeneratingAction = (processor, destinationPresentation) =>
+					    IsCurrent = true,
+					    Enabled = outputGroup.IsCurrent && BusinessObjects.Instance.OutputManager.DigitalSlideOutputConfiguration.EnableAlaCart,
+					    SlideGeneratingAction = (processor, destinationPresentation) =>
 						{
 							PopulateReplacementsList();
 							processor.AppendWebPackage(this, destinationPresentation);

@@ -102,7 +102,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 
 		public override void InitBusinessObjects()
 		{
-			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitailization(Identifier);
+			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitialization(Identifier);
 		}
 
 		protected override void UpdateEditedContet()

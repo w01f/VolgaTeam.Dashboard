@@ -50,7 +50,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 
 		public override void InitBusinessObjects()
 		{
-			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitailization(Identifier);
+			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitialization(Identifier);
 
 			_allowToHandleEvents = false;
 			LoadControlPanel();

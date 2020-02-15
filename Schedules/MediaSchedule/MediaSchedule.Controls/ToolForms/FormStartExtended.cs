@@ -11,71 +11,82 @@ using DevExpress.XtraEditors;
 
 namespace Asa.Media.Controls.ToolForms
 {
-	public partial class FormStartExtended : MetroForm
-	{
-		public FormStartExtended()
-		{
-			InitializeComponent();
+    public partial class FormStartExtended : MetroForm
+    {
+        public FormStartExtended()
+        {
+            InitializeComponent();
 
-			pictureEditNew.Buttonize();
-			pictureEditOpen.Buttonize();
-			pictureEditQuickEditSchedule.Buttonize();
-			pictureEditExit.Buttonize();
+            simpleLabelItemSelectedMediaValue.Text = AppProfileManager.Instance.SubStorageName;
 
-			pictureEditLogo.Image = BusinessObjects.Instance.ImageResourcesManager.StartFormLogo ?? pictureEditLogo.Image;
-			pictureEditNew.Image = BusinessObjects.Instance.ImageResourcesManager.StartFormNewImage;
-			pictureEditOpen.Image = BusinessObjects.Instance.ImageResourcesManager.StartFormOpenImage;
-			pictureEditQuickEditSchedule.Image = BusinessObjects.Instance.ImageResourcesManager.StartFormQuickEditScheduleImage;
-			pictureEditExit.Image = BusinessObjects.Instance.ImageResourcesManager.StartFormCancelImage;
+            pictureEditNew.Buttonize();
+            pictureEditOpen.Buttonize();
+            pictureEditQuickEditSchedule.Buttonize();
+            pictureEditExit.Buttonize();
 
-			pictureEditOpen.Enabled = !FileStorageManager.Instance.UseLocalMode ||
-									  Directory.Exists(BusinessObjects.Instance.ScheduleManager.ContextPath);
+            pictureEditLogo.Image = BusinessObjects.Instance.ImageResourcesManager.StartFormLogo ?? pictureEditLogo.Image;
+            pictureEditNew.Image = BusinessObjects.Instance.ImageResourcesManager.StartFormNewImage;
+            pictureEditOpen.Image = BusinessObjects.Instance.ImageResourcesManager.StartFormOpenImage;
+            pictureEditQuickEditSchedule.Image = BusinessObjects.Instance.ImageResourcesManager.StartFormQuickEditScheduleImage;
+            pictureEditExit.Image = BusinessObjects.Instance.ImageResourcesManager.StartFormCancelImage;
 
-			layoutControlItemNew.MaxSize = RectangleHelper.ScaleSize(layoutControlItemNew.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
-			layoutControlItemNew.MinSize = RectangleHelper.ScaleSize(layoutControlItemNew.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
-			layoutControlItemOpen.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOpen.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
-			layoutControlItemOpen.MinSize = RectangleHelper.ScaleSize(layoutControlItemOpen.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
-			layoutControlItemQuickEditSchedule.MaxSize = RectangleHelper.ScaleSize(layoutControlItemQuickEditSchedule.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
-			layoutControlItemQuickEditSchedule.MinSize = RectangleHelper.ScaleSize(layoutControlItemQuickEditSchedule.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
-			layoutControlItemExit.MaxSize = RectangleHelper.ScaleSize(layoutControlItemExit.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
-			layoutControlItemExit.MinSize = RectangleHelper.ScaleSize(layoutControlItemExit.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
-		}
+            pictureEditOpen.Enabled = !FileStorageManager.Instance.UseLocalMode ||
+                                      Directory.Exists(BusinessObjects.Instance.ScheduleManager.ContextPath);
 
-		private void OnNewClick(object sender, EventArgs e)
-		{
-			DialogResult = DialogResult.Yes;
-		}
+            var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+            layoutControlItemChangeMedia.MaxSize = RectangleHelper.ScaleSize(layoutControlItemChangeMedia.MaxSize, scaleFactor);
+            layoutControlItemChangeMedia.MinSize = RectangleHelper.ScaleSize(layoutControlItemChangeMedia.MinSize, scaleFactor);
 
-		private void OnOpenClick(object sender, EventArgs e)
-		{
-			DialogResult = DialogResult.No;
-		}
+            layoutControlItemNew.MaxSize = RectangleHelper.ScaleSize(layoutControlItemNew.MaxSize, scaleFactor);
+            layoutControlItemNew.MinSize = RectangleHelper.ScaleSize(layoutControlItemNew.MinSize, scaleFactor);
+            layoutControlItemOpen.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOpen.MaxSize, scaleFactor);
+            layoutControlItemOpen.MinSize = RectangleHelper.ScaleSize(layoutControlItemOpen.MinSize, scaleFactor);
+            layoutControlItemQuickEditSchedule.MaxSize = RectangleHelper.ScaleSize(layoutControlItemQuickEditSchedule.MaxSize, scaleFactor);
+            layoutControlItemQuickEditSchedule.MinSize = RectangleHelper.ScaleSize(layoutControlItemQuickEditSchedule.MinSize, scaleFactor);
+            layoutControlItemExit.MaxSize = RectangleHelper.ScaleSize(layoutControlItemExit.MaxSize, scaleFactor);
+            layoutControlItemExit.MinSize = RectangleHelper.ScaleSize(layoutControlItemExit.MinSize, scaleFactor);
+        }
 
-		private void OnQuickEditScheduleClick(object sender, EventArgs e)
-		{
-			DialogResult = DialogResult.Abort;
-		}
+        private void OnNewClick(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Yes;
+        }
 
-		private void OnExitClick(object sender, EventArgs e)
-		{
-			DialogResult = DialogResult.Cancel;
-		}
+        private void OnOpenClick(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.No;
+        }
 
-		private void OnMouseHover(object sender, EventArgs e)
-		{
-			var pictureEdit = (PictureEdit)sender;
-			pictureEdit.BackColor = BusinessObjects.Instance.FormStyleManager.Style.ToggleHoverColor ?? BackColor;
-		}
+        private void OnQuickEditScheduleClick(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Abort;
+        }
 
-		private void OnMouseLeave(object sender, EventArgs e)
-		{
-			var pictureEdit = (PictureEdit)sender;
-			pictureEdit.BackColor = Color.White;
-		}
+        private void OnExitClick(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
 
-		private void OnMouseMove(object sender, MouseEventArgs e)
-		{
-			OnMouseHover(sender, e);
-		}
-	}
+        private void OnChangeStationClick(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Retry;
+        }
+
+        private void OnMouseHover(object sender, EventArgs e)
+        {
+            var pictureEdit = (PictureEdit)sender;
+            pictureEdit.BackColor = BusinessObjects.Instance.FormStyleManager.Style.ToggleHoverColor ?? BackColor;
+        }
+
+        private void OnMouseLeave(object sender, EventArgs e)
+        {
+            var pictureEdit = (PictureEdit)sender;
+            pictureEdit.BackColor = Color.White;
+        }
+
+        private void OnMouseMove(object sender, MouseEventArgs e)
+        {
+            OnMouseHover(sender, e);
+        }
+    }
 }

@@ -72,6 +72,7 @@
     <Compile Include="Common\ComboBoxListEdit.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Common\PopupStateHelper.cs" />
     <Compile Include="Common\FormStateHelper.cs" />
     <Compile Include="Common\ImageToggleButton.cs">
       <SubType>Component</SubType>

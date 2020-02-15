@@ -481,6 +481,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 							Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName())),
 						SlidesCount = PackageRecords.Count() / RowsPerSlide + (PackageRecords.Count() % RowsPerSlide > 0 ? 1 : 0),
 						IsCurrent = true,
+					    Enabled = outputGroup.IsCurrent && BusinessObjects.Instance.OutputManager.DigitalSlideOutputConfiguration.EnableWrapUp,
 						SlideGeneratingAction = (processor, destinationPresentation) =>
 						{
 							PopulateReplacementsList();

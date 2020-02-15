@@ -42,8 +42,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Media\IMediaGraphicResources.Browser.cs" />
+    <Compile Include="Media\IMediaGraphicResources.Calendar.cs" />
+    <Compile Include="Media\IMediaGraphicResources.Digital.cs" />
+    <Compile Include="Media\IMediaGraphicResources.Options.cs" />
+    <Compile Include="Media\IMediaGraphicResources.Snapshot.cs" />
+    <Compile Include="Media\IMediaGraphicResources.ProgramSchedule.cs" />
+    <Compile Include="Media\IMediaGraphicResources.Home.cs" />
+    <Compile Include="Media\IMediaGraphicResources.QatMenu.cs" />
+    <Compile Include="Media\IMediaGraphicResources.MainMenu.cs" />
+    <Compile Include="Media\IMediaGraphicResources.RetractableBar.cs" />
+    <Compile Include="Media\IMediaGraphicResources.Ribbon.cs" />
+    <Compile Include="Media\IMediaGraphicResources.StartForm.cs" />
+    <Compile Include="Media\IMediaGraphicResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Solutions\Dashboard\IDashboardGraphicResources.cs" />
+    <Compile Include="Solutions\ISolutionsResourceManager.cs" />
     <Compile Include="Solutions\Shift\IShiftGraphicResources.Tab16.cs" />
     <Compile Include="Solutions\Shift\IShiftGraphicResources.Tab15.cs" />
     <Compile Include="Solutions\Shift\IShiftGraphicResources.Tab14.cs" />

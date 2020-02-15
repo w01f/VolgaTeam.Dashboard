@@ -20,6 +20,7 @@ namespace Asa.Business.Media.Configuration
 
         #region Station Dependent
         public StorageFile TabsConfigFile { get; private set; }
+        public StorageFile SlideOutputConfigFile { get; private set; }
         public StorageFile BrowserConfigFile { get; private set; }
         public StorageFile Gallery1ConfigFile { get; private set; }
         public StorageFile Gallery2ConfigFile { get; private set; }
@@ -27,6 +28,7 @@ namespace Asa.Business.Media.Configuration
         public StorageFile SolutionsConfigFile { get; private set; }
         public StorageFile ConfigFile { get; private set; }
         public StorageFile TextResourcesFile { get; private set; }
+        public StorageFile GraphicResourcesFile { get; private set; }
         public StorageFile AdditionalTextResourcesFile { get; private set; }
         public StorageFile IdleSettingsFile { get; private set; }
 
@@ -48,7 +50,6 @@ namespace Asa.Business.Media.Configuration
             await Asa.Common.Core.Configuration.ResourceManager.Instance.LoadSubStorageDependentResources();
 
             await Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.Download();
-            await Asa.Common.Core.Configuration.ResourceManager.Instance.ScheduleSlideTemplatesFolder.Download();
             await Asa.Common.Core.Configuration.ResourceManager.Instance.CalendarSlideTemplatesFolder.Download();
             await Asa.Common.Core.Configuration.ResourceManager.Instance.ArtworkFolder.Download();
             await Asa.Common.Core.Configuration.ResourceManager.Instance.RateCardFolder.Download();
@@ -97,6 +98,13 @@ namespace Asa.Business.Media.Configuration
             if (await TextResourcesFile.Exists(true))
                 await TextResourcesFile.Download();
 
+            GraphicResourcesFile = new StorageFile(folderNameParts.Merge(new[]
+            {
+                "Asa.Media.Resources.dll"
+            }));
+            if (await GraphicResourcesFile.Exists(true, true))
+                await GraphicResourcesFile.Download();
+
             AdditionalTextResourcesFile = new StorageFile(folderNameParts.Merge(new[]
             {
                 "AppSettings",
@@ -127,6 +135,13 @@ namespace Asa.Business.Media.Configuration
                 $"{MediaMetaData.Instance.DataTypeString.ToLower()}_tab_names.xml"
             }));
             await TabsConfigFile.Download();
+
+            SlideOutputConfigFile = new StorageFile(folderNameParts.Merge(new[]
+            {
+                "AppSettings",
+                "OutputConfig.xml"
+            }));
+            await SlideOutputConfigFile.Download();
 
             BrowserConfigFile = new StorageFile(folderNameParts.Merge(new[]
             {

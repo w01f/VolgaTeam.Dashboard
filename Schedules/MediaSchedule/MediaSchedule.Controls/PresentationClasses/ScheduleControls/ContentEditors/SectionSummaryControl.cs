@@ -397,6 +397,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 					new OutputItem
 					{
 						Name = "Summary",
+					    Enabled = BusinessObjects.Instance.OutputManager.ProgramScheduleOutputConfiguration.EnableSummary,
 						IsCurrent = TabControl != null && TabControl.SelectedTabPage == this,
 						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
 							Path.GetFileName(Path.GetTempFileName())),

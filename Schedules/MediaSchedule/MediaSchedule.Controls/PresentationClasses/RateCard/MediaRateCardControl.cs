@@ -21,7 +21,7 @@ namespace Asa.Media.Controls.PresentationClasses.RateCard
 
 		public override void InitBusinessObjects()
 		{
-			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitailization(Identifier);
+			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitialization(Identifier);
 		}
 
 		public override void ShowControl(ContentOpenEventArgs args = null)

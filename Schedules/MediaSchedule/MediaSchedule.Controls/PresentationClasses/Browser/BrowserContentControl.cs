@@ -55,7 +55,7 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 
 		public void InitBusinessObjects()
 		{
-			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitailization(Identifier);
+			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitialization(Identifier);
 		}
 
 		public void ShowControl(ContentOpenEventArgs args = null)

@@ -40,8 +40,6 @@ namespace Asa.Media.Single
             Left = (Screen.PrimaryScreen.Bounds.Width - Width) / 2;
             Top = (Screen.PrimaryScreen.Bounds.Height - Height) / 2;
 
-            pictureEditDefaultLogo.Image = BusinessObjects.Instance.ImageResourcesManager.StartFormBackgroundLogo;
-
             var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
             simpleLabelItemAdvertiser.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemAdvertiser.MaxSize, scaleFactor);
             simpleLabelItemAdvertiser.MinSize = RectangleHelper.ScaleSize(simpleLabelItemAdvertiser.MinSize, scaleFactor);
@@ -62,6 +60,8 @@ namespace Asa.Media.Single
                 .LoadState();
 
             Icon = BusinessObjects.Instance.ImageResourcesManager.MainAppIcon ?? Icon;
+
+            pictureEditDefaultLogo.Image = BusinessObjects.Instance.ImageResourcesManager.StartFormBackgroundLogo;
 
             buttonItemApplicationMenuNew.Image = BusinessObjects.Instance.ImageResourcesManager.MainMenuNewImage ??
                                                  buttonItemApplicationMenuNew.Image;
@@ -501,18 +501,20 @@ namespace Asa.Media.Single
             BusinessObjects.Instance.IdleManager.BeforeCloseOnTimerExpired -= OnCloseOnIdleTimerExpired;
             BusinessObjects.Instance.IdleManager.BeforeCloseOnTimerExpired += OnCloseOnIdleTimerExpired;
 
-
             using (Form formStart = BusinessObjects.Instance.ConfigManager.UserQuickSchedules ?
                 (Form)new FormStartExtended() :
                 (Form)new FormStartSimple())
             {
                 var result = formStart.ShowDialog(this);
+
                 if (result == DialogResult.Yes)
                     AddNewRegularSchedule();
                 else if (result == DialogResult.No)
                     OpenSchedule();
                 else if (result == DialogResult.Abort)
                     AddNewQuickEditSchedule();
+                else if (result == DialogResult.Retry)
+                    OnMediaSettingsClick(formStart, EventArgs.Empty);
 
                 Application.DoEvents();
 

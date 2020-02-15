@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Solutions;
 using Asa.Business.Solutions.Common.Configuration;
-using Asa.Business.Solutions.Common.Interfaces;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Business.Solutions.StarApp.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
@@ -18,6 +17,7 @@ using Asa.Common.Core.Objects.Themes;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
+using Asa.Common.Resources.Solutions;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using DevExpress.XtraPrinting.Native;
 using Asa.Solutions.StarApp.PresentationClasses.ContentEditors;
@@ -34,7 +34,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		public override Form MainForm => Controller.Instance.FormMain;
 		public override Color? AccentColor => BusinessObjects.Instance.FormStyleManager.Style.AccentColor;
 		public override MainFormStyleConfiguration StyleConfiguration => BusinessObjects.Instance.FormStyleManager.Style;
-		public override ISolutionsResourceManager ResourceManager => BusinessObjects.Instance.ImageResourcesManager;
+		public override ISolutionsResourceManager ResourceManager => BusinessObjects.Instance.ImageResourcesManager as ISolutionsResourceManager;
 
 		public override void LoadData()
 		{

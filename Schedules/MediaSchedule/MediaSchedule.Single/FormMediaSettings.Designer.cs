@@ -32,24 +32,30 @@
             this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
             this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
+            this.comboBoxEditMedia = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItemCancel = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItemOK = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.styleController = new DevExpress.XtraEditors.StyleController();
-            this.comboBoxEditMedia = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlItemMedia = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.styleController = new DevExpress.XtraEditors.StyleController();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.pictureEditLogo = new DevExpress.XtraEditors.PictureEdit();
+            this.layoutControlItemLogo = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
             this.layoutControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditMedia.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditMedia.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMedia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEditLogo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl
@@ -68,6 +74,7 @@
             this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
             this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
             this.layoutControl.BackColor = System.Drawing.Color.White;
+            this.layoutControl.Controls.Add(this.pictureEditLogo);
             this.layoutControl.Controls.Add(this.buttonXOK);
             this.layoutControl.Controls.Add(this.buttonXCancel);
             this.layoutControl.Controls.Add(this.comboBoxEditMedia);
@@ -77,7 +84,7 @@
             this.layoutControl.Name = "layoutControl";
             this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
             this.layoutControl.Root = this.layoutControlGroupRoot;
-            this.layoutControl.Size = new System.Drawing.Size(337, 134);
+            this.layoutControl.Size = new System.Drawing.Size(558, 134);
             this.layoutControl.StyleController = this.styleController;
             this.layoutControl.TabIndex = 66;
             this.layoutControl.Text = "layoutControl1";
@@ -88,7 +95,7 @@
             this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonXOK.Location = new System.Drawing.Point(12, 86);
+            this.buttonXOK.Location = new System.Drawing.Point(210, 86);
             this.buttonXOK.Name = "buttonXOK";
             this.buttonXOK.Size = new System.Drawing.Size(116, 36);
             this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -102,13 +109,28 @@
             this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonXCancel.Location = new System.Drawing.Point(209, 86);
+            this.buttonXCancel.Location = new System.Drawing.Point(430, 86);
             this.buttonXCancel.Name = "buttonXCancel";
             this.buttonXCancel.Size = new System.Drawing.Size(116, 36);
             this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonXCancel.TabIndex = 2;
             this.buttonXCancel.Text = "Cancel";
             this.buttonXCancel.TextColor = System.Drawing.Color.Black;
+            // 
+            // comboBoxEditMedia
+            // 
+            this.comboBoxEditMedia.Location = new System.Drawing.Point(210, 33);
+            this.comboBoxEditMedia.Name = "comboBoxEditMedia";
+            this.comboBoxEditMedia.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.comboBoxEditMedia.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.comboBoxEditMedia.Properties.Appearance.Options.UseBackColor = true;
+            this.comboBoxEditMedia.Properties.Appearance.Options.UseForeColor = true;
+            this.comboBoxEditMedia.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEditMedia.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboBoxEditMedia.Size = new System.Drawing.Size(336, 22);
+            this.comboBoxEditMedia.StyleController = this.layoutControl;
+            this.comboBoxEditMedia.TabIndex = 4;
             // 
             // layoutControlGroupRoot
             // 
@@ -132,10 +154,12 @@
             this.layoutControlItemOK,
             this.emptySpaceItem5,
             this.layoutControlItemMedia,
-            this.emptySpaceItem1});
+            this.emptySpaceItem1,
+            this.emptySpaceItem2,
+            this.layoutControlItemLogo});
             this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroupRoot.Name = "Root";
-            this.layoutControlGroupRoot.Size = new System.Drawing.Size(337, 134);
+            this.layoutControlGroupRoot.Size = new System.Drawing.Size(558, 134);
             this.layoutControlGroupRoot.TextVisible = false;
             // 
             // layoutControlItemCancel
@@ -143,7 +167,7 @@
             this.layoutControlItemCancel.Control = this.buttonXCancel;
             this.layoutControlItemCancel.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.layoutControlItemCancel.FillControlToClientArea = false;
-            this.layoutControlItemCancel.Location = new System.Drawing.Point(197, 74);
+            this.layoutControlItemCancel.Location = new System.Drawing.Point(418, 74);
             this.layoutControlItemCancel.MaxSize = new System.Drawing.Size(120, 40);
             this.layoutControlItemCancel.MinSize = new System.Drawing.Size(120, 40);
             this.layoutControlItemCancel.Name = "layoutControlItemCancel";
@@ -159,7 +183,7 @@
             this.layoutControlItemOK.Control = this.buttonXOK;
             this.layoutControlItemOK.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.layoutControlItemOK.FillControlToClientArea = false;
-            this.layoutControlItemOK.Location = new System.Drawing.Point(0, 74);
+            this.layoutControlItemOK.Location = new System.Drawing.Point(198, 74);
             this.layoutControlItemOK.MaxSize = new System.Drawing.Size(120, 40);
             this.layoutControlItemOK.MinSize = new System.Drawing.Size(120, 40);
             this.layoutControlItemOK.Name = "layoutControlItemOK";
@@ -173,10 +197,32 @@
             // emptySpaceItem5
             // 
             this.emptySpaceItem5.AllowHotTrack = false;
-            this.emptySpaceItem5.Location = new System.Drawing.Point(120, 74);
+            this.emptySpaceItem5.Location = new System.Drawing.Point(318, 74);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(77, 40);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(100, 40);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItemMedia
+            // 
+            this.layoutControlItemMedia.Control = this.comboBoxEditMedia;
+            this.layoutControlItemMedia.FillControlToClientArea = false;
+            this.layoutControlItemMedia.Location = new System.Drawing.Point(198, 0);
+            this.layoutControlItemMedia.Name = "layoutControlItemMedia";
+            this.layoutControlItemMedia.Size = new System.Drawing.Size(340, 47);
+            this.layoutControlItemMedia.Text = "Select your Media Property to get started:";
+            this.layoutControlItemMedia.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItemMedia.TextLocation = DevExpress.Utils.Locations.Top;
+            this.layoutControlItemMedia.TextSize = new System.Drawing.Size(243, 16);
+            this.layoutControlItemMedia.TextToControlDistance = 5;
+            this.layoutControlItemMedia.TrimClientAreaToControl = false;
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(198, 47);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(340, 27);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // styleController
             // 
@@ -193,49 +239,52 @@
             this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
             this.styleController.AppearanceReadOnly.Options.UseFont = true;
             // 
-            // comboBoxEditMedia
+            // emptySpaceItem2
             // 
-            this.comboBoxEditMedia.Location = new System.Drawing.Point(12, 33);
-            this.comboBoxEditMedia.Name = "comboBoxEditMedia";
-            this.comboBoxEditMedia.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.comboBoxEditMedia.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.comboBoxEditMedia.Properties.Appearance.Options.UseBackColor = true;
-            this.comboBoxEditMedia.Properties.Appearance.Options.UseForeColor = true;
-            this.comboBoxEditMedia.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEditMedia.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comboBoxEditMedia.Size = new System.Drawing.Size(313, 22);
-            this.comboBoxEditMedia.StyleController = this.layoutControl;
-            this.comboBoxEditMedia.TabIndex = 4;
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(184, 0);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(14, 114);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // layoutControlItemMedia
+            // pictureEditLogo
             // 
-            this.layoutControlItemMedia.Control = this.comboBoxEditMedia;
-            this.layoutControlItemMedia.FillControlToClientArea = false;
-            this.layoutControlItemMedia.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItemMedia.Name = "layoutControlItemMedia";
-            this.layoutControlItemMedia.Size = new System.Drawing.Size(317, 47);
-            this.layoutControlItemMedia.Text = "Select your Media Property to get started:";
-            this.layoutControlItemMedia.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItemMedia.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItemMedia.TextSize = new System.Drawing.Size(243, 16);
-            this.layoutControlItemMedia.TextToControlDistance = 5;
-            this.layoutControlItemMedia.TrimClientAreaToControl = false;
+            this.pictureEditLogo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureEditLogo.EditValue = ((object)(resources.GetObject("pictureEditLogo.EditValue")));
+            this.pictureEditLogo.Location = new System.Drawing.Point(12, 12);
+            this.pictureEditLogo.Name = "pictureEditLogo";
+            this.pictureEditLogo.Properties.AllowFocused = false;
+            this.pictureEditLogo.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.pictureEditLogo.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.pictureEditLogo.Properties.Appearance.Options.UseBackColor = true;
+            this.pictureEditLogo.Properties.Appearance.Options.UseForeColor = true;
+            this.pictureEditLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pictureEditLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.pictureEditLogo.Properties.ReadOnly = true;
+            this.pictureEditLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEditLogo.Properties.ShowMenu = false;
+            this.pictureEditLogo.Properties.ZoomAccelerationFactor = 1D;
+            this.pictureEditLogo.Size = new System.Drawing.Size(180, 110);
+            this.pictureEditLogo.StyleController = this.layoutControl;
+            this.pictureEditLogo.TabIndex = 5;
             // 
-            // emptySpaceItem1
+            // layoutControlItemLogo
             // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 47);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(317, 27);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItemLogo.Control = this.pictureEditLogo;
+            this.layoutControlItemLogo.CustomizationFormText = "Logo";
+            this.layoutControlItemLogo.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItemLogo.Name = "layoutControlItemLogo";
+            this.layoutControlItemLogo.Size = new System.Drawing.Size(184, 114);
+            this.layoutControlItemLogo.Text = "Logo";
+            this.layoutControlItemLogo.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItemLogo.TextVisible = false;
             // 
             // FormMediaSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(337, 134);
+            this.ClientSize = new System.Drawing.Size(558, 134);
             this.Controls.Add(this.layoutControl);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -247,17 +296,20 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Select Media";
+            this.Text = "Select Media Property";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
             this.layoutControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditMedia.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditMedia.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMedia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEditLogo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -275,5 +327,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMedia;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         public DevExpress.XtraEditors.ComboBoxEdit comboBoxEditMedia;
+        private DevExpress.XtraEditors.PictureEdit pictureEditLogo;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItemLogo;
     }
 }

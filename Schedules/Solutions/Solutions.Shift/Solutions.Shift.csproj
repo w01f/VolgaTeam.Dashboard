@@ -1207,6 +1207,10 @@
       <Project>{A97255F0-74B3-4C03-B623-EC0E37E80A3C}</Project>
       <Name>Common.GUI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\Common.Resources\Common.Resources.csproj">
+      <Project>{45474E44-2DE4-4E27-ADA2-B17EDFC431B2}</Project>
+      <Name>Common.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Solutions.Common\Solutions.Common.csproj">
       <Project>{5265E59C-B925-4494-AA69-A40D8A8E50E0}</Project>
       <Name>Solutions.Common</Name>

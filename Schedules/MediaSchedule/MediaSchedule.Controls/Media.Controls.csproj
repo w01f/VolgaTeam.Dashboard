@@ -113,13 +113,14 @@
     <Compile Include="BusinessClasses\Managers\ContentTabStateManager.cs" />
     <Compile Include="BusinessClasses\Managers\ConfigManager.cs" />
     <Compile Include="BusinessClasses\Managers\TextResourcesManager.cs" />
-    <Compile Include="BusinessClasses\Managers\ImageResourcesManager.cs" />
     <Compile Include="BusinessClasses\Output\DigitalInfo\BaseDigitalInfoOneSheetOutputModel.cs" />
     <Compile Include="BusinessClasses\Output\DigitalInfo\DigitalInfoRecordOutputModel.cs" />
     <Compile Include="BusinessClasses\Output\DigitalInfo\DigitalInfoStrategyOutputModel.cs" />
     <Compile Include="BusinessClasses\Output\DigitalInfo\DigitalInfoStrategyRecordOutputModel.cs" />
     <Compile Include="BusinessClasses\Output\DigitalInfo\StandaloneDigitalInfoOneSheetOutputModel.cs" />
     <Compile Include="BusinessClasses\Output\OutputManager.cs" />
+    <Compile Include="BusinessClasses\Output\SlideOutputConfiguration\DigitalSlideOutputConfiguration.cs" />
+    <Compile Include="BusinessClasses\Output\SlideOutputConfiguration\ScheduleSlideOutputConfiguration.cs" />
     <Compile Include="BusinessClasses\Output\ProgramSchedule\ProgramDigitalInfoOneSheetOutputModel.cs" />
     <Compile Include="BusinessClasses\Output\ProgramSchedule\ProgramOutputModel.cs" />
     <Compile Include="BusinessClasses\Output\ProgramSchedule\ProgramScheduleOutputModel.cs" />
@@ -1083,6 +1084,10 @@
       <Project>{A97255F0-74B3-4C03-B623-EC0E37E80A3C}</Project>
       <Name>Common.GUI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\Common.Resources\Common.Resources.csproj">
+      <Project>{45474E44-2DE4-4E27-ADA2-B17EDFC431B2}</Project>
+      <Name>Common.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Calendar\Calendar.Controls\Calendar.Controls.csproj">
       <Project>{167bc40b-c87e-4972-b8a2-903f6f160b6b}</Project>
       <Name>Calendar.Controls</Name>
@@ -1110,10 +1115,6 @@
     <ProjectReference Include="..\..\Solutions\Solutions.StarApp\Solutions.StarApp.csproj">
       <Project>{d3c4fe3f-d410-4fdf-abfe-4359487db9db}</Project>
       <Name>Solutions.StarApp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MediaSchedule.Resources\Media.Resources.csproj">
-      <Project>{33cd8f07-000e-4f97-a1c2-0f39c73967ce}</Project>
-      <Name>Media.Resources</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

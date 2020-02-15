@@ -103,6 +103,20 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceContainer.Solution.cs" />
+    <Compile Include="ResourceContainer.Browser.cs" />
+    <Compile Include="ResourceContainer.Calendar.cs" />
+    <Compile Include="ResourceContainer.Digital.cs" />
+    <Compile Include="ResourceContainer.Options.cs" />
+    <Compile Include="ResourceContainer.Snapshot.cs" />
+    <Compile Include="ResourceContainer.ProgramSchedule.cs" />
+    <Compile Include="ResourceContainer.Home.cs" />
+    <Compile Include="ResourceContainer.QatMenu.cs" />
+    <Compile Include="ResourceContainer.MainMenu.cs" />
+    <Compile Include="ResourceContainer.RetractableBar.cs" />
+    <Compile Include="ResourceContainer.Ribbon.cs" />
+    <Compile Include="ResourceContainer.StartForm.cs" />
+    <Compile Include="ResourceContainer.cs" />
     <Compile Include="Ribbon\Calendar\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -455,7 +469,12 @@
   <ItemGroup>
     <None Include="Controls\Schedule\RetractableBarTVRadioTotals.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common.Resources\Common.Resources.csproj">
+      <Project>{45474E44-2DE4-4E27-ADA2-B17EDFC431B2}</Project>
+      <Name>Common.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="Controls\Snapshots\DefaultDigital.png" />
   </ItemGroup>

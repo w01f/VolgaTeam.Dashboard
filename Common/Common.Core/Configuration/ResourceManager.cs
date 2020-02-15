@@ -33,11 +33,12 @@ namespace Asa.Common.Core.Configuration
         public ArchiveDirectory DictionariesFolder { get; private set; }
         public ArchiveDirectory RateCardFolder { get; private set; }
         public ArchiveDirectory MasterWizardsFolder { get; private set; }
-        public ArchiveDirectory ScheduleSlideTemplatesFolder { get; private set; }
         public ArchiveDirectory CalendarSlideTemplatesFolder { get; private set; }
         public ArchiveDirectory SlideMastersFolder { get; private set; }
         public ArchiveDirectory ThemesFolder { get; private set; }
         public ArchiveDirectory ArtworkFolder { get; private set; }
+        
+        public StorageDirectory ScheduleSlideTemplatesFolder { get; private set; }
         
         public StorageFile DefaultSlideSettingsFile { get; private set; }
         public StorageFile SlideSizeSettingsFile { get; private set; }
@@ -165,7 +166,7 @@ namespace Asa.Common.Core.Configuration
             if (await SlideMastersFolder.Exists(true))
                 await SlideMastersFolder.Download();
 
-            ScheduleSlideTemplatesFolder = new ArchiveDirectory(folderNameParts.Merge(new[]
+            ScheduleSlideTemplatesFolder = new StorageDirectory(folderNameParts.Merge(new[]
             {
                 "ScheduleBuilders"
             }));

@@ -365,7 +365,8 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 					new OutputItem
 					{
 						Name = OutputName,
-						IsCurrent = true,
+					    IsCurrent = true,
+					    Enabled = TabControl.SelectedTabPage == this && BusinessObjects.Instance.OutputManager.SnapshotOutputConfiguration.EnableSummary,
 						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
 							Path.GetFileName(Path.GetTempFileName())),
 						SlidesCount = Data.Parent.Snapshots.Count / ProgramsPerSlide + (Data.Parent.Snapshots.Count % ProgramsPerSlide > 0 ? 1 : 0),

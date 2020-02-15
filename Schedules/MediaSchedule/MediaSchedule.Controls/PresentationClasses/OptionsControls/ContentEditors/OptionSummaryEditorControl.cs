@@ -370,7 +370,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 					new OutputItem
 					{
 						Name = OutputName,
-						IsCurrent = true,
+					    IsCurrent = true,
+					    Enabled = TabControl.SelectedTabPage == this && BusinessObjects.Instance.OutputManager.OptionsOutputConfiguration.EnableSummary,
 						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath,
 							Path.GetFileName(Path.GetTempFileName())),
 						SlidesCount = Data.Parent.Options.Count / ProgramsPerSlide + (Data.Parent.Options.Count % ProgramsPerSlide > 0 ? 1 : 0),

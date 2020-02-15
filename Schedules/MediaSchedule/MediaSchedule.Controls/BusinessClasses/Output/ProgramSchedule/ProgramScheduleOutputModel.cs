@@ -13,7 +13,6 @@ namespace Asa.Media.Controls.BusinessClasses.Output.ProgramSchedule
 	public class ProgramScheduleOutputModel
 	{
 		public const int MaxSingleMediaProducts = 12;
-		public const int MaxDigitalProducts = 6;
 		public const int MaxMediaProductsCobinedWithDigital = 8;
 
 		protected readonly ScheduleSection _parent;

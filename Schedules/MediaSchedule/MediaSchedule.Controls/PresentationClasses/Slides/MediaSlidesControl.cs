@@ -74,7 +74,7 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 
 		public void InitBusinessObjects()
 		{
-			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitailization(Identifier);
+			BusinessObjects.Instance.AdditionalInitializator.RequestContentInitialization(Identifier);
 			LoadSlides();
 		}
 
